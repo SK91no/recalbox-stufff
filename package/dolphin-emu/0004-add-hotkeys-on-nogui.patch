@@ -1,0 +1,238 @@
+From a7f3fc691676860a98441209964c53fc8b1aac03 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Mon, 31 Mar 2025 20:05:51 +0200
+Subject: [PATCH] add hotkeys on nogui
+
+---
+ Source/Core/Core/HW/GCPadEmu.cpp              |  4 ++
+ Source/Core/Core/HW/GCPadEmu.h                |  1 +
+ Source/Core/DolphinNoGUI/PlatformDRM.cpp      | 56 +++++++++++++++++++
+ Source/Core/DolphinNoGUI/PlatformX11.cpp      | 56 +++++++++++++++++++
+ .../ControllerInterface/Pipes/Pipes.cpp       |  4 +-
+ Source/Core/InputCommon/GCPadStatus.h         |  1 +
+ 6 files changed, 120 insertions(+), 2 deletions(-)
+
+diff --git a/Source/Core/Core/HW/GCPadEmu.cpp b/Source/Core/Core/HW/GCPadEmu.cpp
+index 0058bc74e4..f8bb53de82 100644
+--- a/Source/Core/Core/HW/GCPadEmu.cpp
++++ b/Source/Core/Core/HW/GCPadEmu.cpp
+@@ -24,6 +24,7 @@ static const u16 button_bitmasks[] = {
+     PAD_BUTTON_Y,
+     PAD_TRIGGER_Z,
+     PAD_BUTTON_START,
++    PAD_BUTTON_HOTKEY,
+     0  // MIC HAX
+ };
+ 
+@@ -48,6 +49,8 @@ GCPad::GCPad(const unsigned int index) : m_index(index)
+   // i18n: The START/PAUSE button on GameCube controllers
+   m_buttons->AddInput(Translatability::Translate, START_BUTTON, _trans("START"));
+ 
++  m_buttons->AddInput(Translatability::Translate, HOTKEY_BUTTON, _trans("HOTKEY"));
++
+   // sticks
+   groups.emplace_back(m_main_stick = new ControllerEmu::OctagonAnalogStick(
+                           MAIN_STICK_GROUP, _trans("Control Stick"), MAIN_STICK_GATE_RADIUS));
+@@ -195,6 +198,7 @@ void GCPad::LoadDefaults(const ControllerInterface& ciface)
+   // Start
+   m_buttons->SetControlExpression(5, "`Return`");
+ #endif
++  m_buttons->SetControlExpression(6, "`Tab`");
+ 
+   // D-Pad
+   m_dpad->SetControlExpression(0, "`T`");  // Up
+diff --git a/Source/Core/Core/HW/GCPadEmu.h b/Source/Core/Core/HW/GCPadEmu.h
+index 2555ee05b1..c2230a606a 100644
+--- a/Source/Core/Core/HW/GCPadEmu.h
++++ b/Source/Core/Core/HW/GCPadEmu.h
+@@ -68,6 +68,7 @@ public:
+   static constexpr const char* Y_BUTTON = "Y";
+   static constexpr const char* Z_BUTTON = "Z";
+   static constexpr const char* START_BUTTON = "Start";
++  static constexpr const char* HOTKEY_BUTTON = "Hotkey";
+ 
+   // i18n: The left trigger button (labeled L on real controllers)
+   static constexpr const char* L_DIGITAL = _trans("L");
+diff --git a/Source/Core/DolphinNoGUI/PlatformDRM.cpp b/Source/Core/DolphinNoGUI/PlatformDRM.cpp
+index 3658eee8da..f46b571411 100644
+--- a/Source/Core/DolphinNoGUI/PlatformDRM.cpp
++++ b/Source/Core/DolphinNoGUI/PlatformDRM.cpp
+@@ -11,6 +11,12 @@
+ #include "Core/State.h"
+ #include "Core/System.h"
+ 
++#include "Core/HW/GCPad.h"
++#include "InputCommon/GCPadStatus.h"
++#include <fmt/format.h>
++#include "Core/Config/GraphicsSettings.h"
++#include "VideoCommon/VideoConfig.h"
++
+ #include <climits>
+ #include <cstdio>
+ #include <thread>
+@@ -38,9 +44,59 @@ void PlatformDRM::MainLoop()
+ {
+   while (IsRunning())
+   {
++    static int hotkey = 0;
++    static int slot = 0;
++    static int stereo = 0;
++
+     UpdateRunningFlag();
+     Core::HostDispatchJobs(Core::System::GetInstance());
+ 
++    if(Pad::IsInitialized()) {
++      GCPadStatus x = Pad::GetStatus(0);
++
++      if( (x.button & PAD_BUTTON_HOTKEY) == PAD_BUTTON_HOTKEY) { // hotkey pressed
++        if(hotkey == 1) {
++          hotkey = 2;
++        }
++      } else {
++        hotkey = 1; // assure hotkey is released between actions
++      }
++
++      if(hotkey == 2) { // hotkey pressed
++        if( (x.button & PAD_BUTTON_START) == PAD_BUTTON_START) {
++          RequestShutdown();
++          hotkey = 0;
++        }
++
++        if( (x.button & PAD_BUTTON_X) == PAD_BUTTON_X) {
++          State::Load(Core::System::GetInstance(), slot);
++          hotkey = 0;
++        }
++
++        if( (x.button & PAD_BUTTON_Y) == PAD_BUTTON_Y) {
++          State::Save(Core::System::GetInstance(), slot);
++          hotkey = 0;
++        }
++
++        if( (x.button & PAD_BUTTON_DOWN) == PAD_BUTTON_DOWN) {
++          if(slot > 0) slot--;
++          Core::DisplayMessage(fmt::format("Slot {} selected", slot), 4000);
++          hotkey = 0;
++        }
++
++        if( (x.button & PAD_BUTTON_UP) == PAD_BUTTON_UP) {
++          if(slot < 10) slot++;
++          Core::DisplayMessage(fmt::format("Slot {} selected", slot), 4000);
++          hotkey = 0;
++        }
++
++        if( (x.button & PAD_TRIGGER_L) == PAD_TRIGGER_L) {
++          Core::SaveScreenShot();
++          hotkey = 0;
++        }
++      }
++    }
++
+     // TODO: Is this sleep appropriate?
+     std::this_thread::sleep_for(std::chrono::milliseconds(1));
+   }
+diff --git a/Source/Core/DolphinNoGUI/PlatformX11.cpp b/Source/Core/DolphinNoGUI/PlatformX11.cpp
+index 8fed2c8c87..5fee462784 100644
+--- a/Source/Core/DolphinNoGUI/PlatformX11.cpp
++++ b/Source/Core/DolphinNoGUI/PlatformX11.cpp
+@@ -17,6 +17,12 @@ static constexpr auto X_None = None;
+ #include "Core/State.h"
+ #include "Core/System.h"
+ 
++#include "Core/HW/GCPad.h"
++#include "InputCommon/GCPadStatus.h"
++#include <fmt/format.h>
++#include "Core/Config/GraphicsSettings.h"
++#include "VideoCommon/VideoConfig.h"
++
+ #include <climits>
+ #include <cstdio>
+ #include <cstring>
+@@ -152,8 +158,58 @@ void PlatformX11::MainLoop()
+ {
+   while (IsRunning())
+   {
++    static int hotkey = 0;
++    static int slot = 0;
++    static int stereo = 0;
++
+     UpdateRunningFlag();
+     Core::HostDispatchJobs(Core::System::GetInstance());
++
++    if(Pad::IsInitialized()) {
++      GCPadStatus x = Pad::GetStatus(0);
++
++      if( (x.button & PAD_BUTTON_HOTKEY) == PAD_BUTTON_HOTKEY) { // hotkey pressed
++        if(hotkey == 1) {
++          hotkey = 2;
++        }
++      } else {
++        hotkey = 1; // assure hotkey is released between actions
++      }
++
++      if(hotkey == 2) { // hotkey pressed
++        if ((x.button & PAD_BUTTON_START) == PAD_BUTTON_START) {
++          RequestShutdown();
++          hotkey = 0;
++        }
++
++        if ((x.button & PAD_BUTTON_X) == PAD_BUTTON_X) {
++          State::Load(Core::System::GetInstance(), slot);
++          hotkey = 0;
++        }
++
++        if ((x.button & PAD_BUTTON_Y) == PAD_BUTTON_Y) {
++          State::Save(Core::System::GetInstance(), slot);
++          hotkey = 0;
++        }
++
++        if ((x.button & PAD_BUTTON_DOWN) == PAD_BUTTON_DOWN) {
++          if (slot > 0) slot--;
++          Core::DisplayMessage(fmt::format("Slot {} selected", slot), 4000);
++          hotkey = 0;
++        }
++
++        if ((x.button & PAD_BUTTON_UP) == PAD_BUTTON_UP) {
++          if (slot < 10) slot++;
++          Core::DisplayMessage(fmt::format("Slot {} selected", slot), 4000);
++          hotkey = 0;
++        }
++
++        if ((x.button & PAD_TRIGGER_L) == PAD_TRIGGER_L) {
++          Core::SaveScreenShot();
++          hotkey = 0;
++        }
++      }
++    }
+     ProcessEvents();
+     UpdateWindowPosition();
+ 
+diff --git a/Source/Core/InputCommon/ControllerInterface/Pipes/Pipes.cpp b/Source/Core/InputCommon/ControllerInterface/Pipes/Pipes.cpp
+index 50175ebaf7..c99e12361a 100644
+--- a/Source/Core/InputCommon/ControllerInterface/Pipes/Pipes.cpp
++++ b/Source/Core/InputCommon/ControllerInterface/Pipes/Pipes.cpp
+@@ -22,8 +22,8 @@
+ 
+ namespace ciface::Pipes
+ {
+-static const std::array<std::string, 12> s_button_tokens{
+-    {"A", "B", "X", "Y", "Z", "START", "L", "R", "D_UP", "D_DOWN", "D_LEFT", "D_RIGHT"}};
++static const std::array<std::string, 13> s_button_tokens{
++    {"A", "B", "X", "Y", "Z", "START", "HOTKEY", "L", "R", "D_UP", "D_DOWN", "D_LEFT", "D_RIGHT"}};
+ 
+ static const std::array<std::string, 2> s_shoulder_tokens{{"L", "R"}};
+ 
+diff --git a/Source/Core/InputCommon/GCPadStatus.h b/Source/Core/InputCommon/GCPadStatus.h
+index 74849e5594..029ade5824 100644
+--- a/Source/Core/InputCommon/GCPadStatus.h
++++ b/Source/Core/InputCommon/GCPadStatus.h
+@@ -26,6 +26,7 @@ enum PadButton
+   PAD_BUTTON_X = 0x0400,
+   PAD_BUTTON_Y = 0x0800,
+   PAD_BUTTON_START = 0x1000,
++  PAD_BUTTON_HOTKEY = 0x2000,
+ };
+ 
+ struct GCPadStatus
+-- 
+2.49.0
+

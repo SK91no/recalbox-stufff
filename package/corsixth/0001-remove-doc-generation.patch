@@ -1,0 +1,98 @@
+From 3dd60460357480f78aeee3615b3f498a9c354892 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Fri, 21 Feb 2025 22:37:26 +0100
+Subject: [PATCH] remove doc generation
+
+---
+ CMake/GenerateDoc.cmake | 66 -----------------------------------------
+ CMakeLists.txt          |  2 +-
+ 2 files changed, 1 insertion(+), 67 deletions(-)
+
+diff --git a/CMake/GenerateDoc.cmake b/CMake/GenerateDoc.cmake
+index 354b45a9..371f0d40 100644
+--- a/CMake/GenerateDoc.cmake
++++ b/CMake/GenerateDoc.cmake
+@@ -14,69 +14,3 @@ find_program(LUA_PROGRAM_PATH ${LUA_PROGRAM_NAMES}
+     ~/Library/Frameworks
+     /Library/Frameworks
+ )
+-
+-# Find Doxygen.
+-find_package(Doxygen)
+-
+-if(DOXYGEN_FOUND OR LUA_PROGRAM_PATH)
+-  add_custom_target(doc)
+-  # Add sub-targets of the 'doc' target.
+-  file(WRITE  ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<!DOCTYPE html>\n<html>\n")
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<head><title>CorsixTH source code documentation</title></head>\n")
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<body>\n<h1>CorsixTH main program source code documentation</h1>\n<ul>\n")
+-else()
+-  message("Cannot locate Doxygen or Lua, 'doc' target is not available")
+-endif()
+-
+-if(LUA_PROGRAM_PATH)
+-  add_custom_target(doc_corsixth_lua
+-    ${LUA_PROGRAM_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/LDocGen/main.lua
+-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/LDocGen/output/corner_right.gif ${CMAKE_CURRENT_BINARY_DIR}/doc/corsixth_lua
+-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/LDocGen/output/logo.png         ${CMAKE_CURRENT_BINARY_DIR}/doc/corsixth_lua
+-    COMMAND ${CMAKE_COMMAND} -E copy ${CMAKE_CURRENT_SOURCE_DIR}/LDocGen/output/main.css         ${CMAKE_CURRENT_BINARY_DIR}/doc/corsixth_lua
+-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+-    COMMENT "Generating API documentation for corsixth_lua" VERBATIM
+-  )
+-  add_dependencies(doc doc_corsixth_lua)
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<li><a href='corsixth_lua/index.html'>CorsixTH Lua documentation</a>\n")
+-endif()
+-
+-if(DOXYGEN_FOUND)
+-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/DoxyGen/corsixth_engine.doxygen.in
+-    ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/corsixth_engine.doxygen @ONLY)
+-
+-  add_custom_target(doc_corsixth_engine
+-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/corsixth_engine.doxygen
+-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+-    COMMENT "Generating API documentation for corsixth_engine" VERBATIM
+-  )
+-  add_dependencies(doc doc_corsixth_engine)
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<li><a href='corsixth_engine/html/index.html'>CorsixTH engine documentation</a>\n")
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "</ul>\n<h1>CorsixTH helper programs source code documentation</h1>\n<ul>\n")
+-
+-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/DoxyGen/leveledit.doxygen.in
+-    ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/leveledit.doxygen @ONLY)
+-
+-  add_custom_target(doc_leveledit
+-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/leveledit.doxygen
+-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+-    COMMENT "Generating API documentation for LevelEdit" VERBATIM
+-  )
+-  add_dependencies(doc doc_leveledit)
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<li><a href='leveledit/html/index.html'>Level editor documentation</a>\n")
+-
+-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/DoxyGen/animview.doxygen.in
+-    ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/animview.doxygen @ONLY)
+-
+-  add_custom_target(doc_animview
+-    ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/DoxyGen/animview.doxygen
+-    WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+-    COMMENT "Generating API documentation for AnimView" VERBATIM
+-  )
+-  add_dependencies(doc doc_animview)
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "<li><a href='animview/html/index.html'>Animation viewer documentation</a>\n")
+-endif()
+-
+-if(DOXYGEN_FOUND OR LUA_PROGRAM_PATH)
+-  file(APPEND ${CMAKE_CURRENT_BINARY_DIR}/doc/index.html "</ul>\n</body>\n</html>\n")
+-endif()
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 65bc0753..581fcd5e 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -173,4 +173,4 @@ endif()
+ message("")
+ 
+ # Documentation generation, construct 'doc' target
+-include(GenerateDoc)
++include(GenerateDoc)
+\ No newline at end of file
+-- 
+2.48.1
+

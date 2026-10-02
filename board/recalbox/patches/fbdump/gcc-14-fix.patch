@@ -1,0 +1,11 @@
+--- fbdump-0.4.2/src/main.c.orig	2024-08-01 00:19:53.763932712 +0200
++++ fbdump-0.4.2/src/main.c	2024-08-01 00:20:30.816730643 +0200
+@@ -58,7 +58,7 @@
+ }
+ 
+ 
+-int main( int argc, char *argv[] )
++int main( int argc, const char *argv[] )
+ {
+   Options  opts = {
+     .fbdev = DEFAULT_DEVICE,

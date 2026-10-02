@@ -1,0 +1,80 @@
+From 5a644b1c0d3d61b5c0496bf91affbc8e0fabec9c Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Thu, 27 Jun 2024 13:23:11 +0200
+Subject: [PATCH 15/27] crt: change range for arcade vertical sync
+
+---
+ deps/switchres/monitor.cpp | 14 ++++++++++----
+ gfx/video_crt_switch.c     |  8 ++++++--
+ 2 files changed, 16 insertions(+), 6 deletions(-)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index e0c24563ee..3d73b37025 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -144,7 +144,13 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 	// Arcade 15.7 kHz - standard resolution
+ 	else if (!strcmp(type, "arcade_15"))
+ 	{
+-		monitor_fill_range(&range[0], "15625-16200, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[0], "15625-16000, 49.50-62.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		return 1;
++	}
++	// Arcade 15.7 kHz - no 50hz
++	else if (!strcmp(type, "arcade_15_no_50"))
++	{
++		monitor_fill_range(&range[0], "15625-16200, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
+ 		return 1;
+ 	}
+ 	// Arcade 15.7-16.5 kHz - extended resolution
+@@ -168,21 +174,21 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 	// Arcade 15.7/25.0 kHz - dual-sync
+ 	else if (!strcmp(type, "arcade_15_25"))
+ 	{
+-		monitor_fill_range(&range[0], "15625-16200, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[0], "15625-16200, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
+ 		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 400, 768, 800");
+ 		return 2;
+ 	}
+ 	// Arcade 15.7/31.5 kHz - dual-sync
+ 	else if (!strcmp(type, "arcade_15_31"))
+ 	{
+-		monitor_fill_range(&range[0], "15625-16200, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[0], "15625-16200, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
+ 		monitor_fill_range(&range[1], "31400-31500, 49.50-65.00, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 400, 512, 0, 0");
+ 		return 2;
+ 	}
+ 	// Arcade 15.7/25.0/31.5 kHz - tri-sync
+ 	else if (!strcmp(type, "arcade_15_25_31"))
+ 	{
+-		monitor_fill_range(&range[0], "15625-16200, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[0], "15625-16200, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
+ 		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 400, 768, 800");
+ 		monitor_fill_range(&range[2], "31400-31500, 49.50-65.00, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 400, 512, 0, 0");
+ 		return 3;
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 6f9ca93396..1813d881e8 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -208,12 +208,16 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+          case 5:
+             sr_set_monitor("arcade_15_25_31");
+             RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_25_31 \n", crt_mode);
+-          break;
++            break;
+          case 6:
+             sr_set_monitor("pc_31_120");
+             RARCH_LOG("[CRT]: CRT Mode: %d - pc_31_120 \n", crt_mode);
+-          break;
++            break;
+          case 7:
++           sr_set_monitor("arcade_15_no_50");
++           RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_no_50 \n", crt_mode);
++           break;
++         case 8:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

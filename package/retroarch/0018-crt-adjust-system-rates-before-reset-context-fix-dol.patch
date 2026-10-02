@@ -1,0 +1,28 @@
+From 17daa4e1e3cee54fa9222c32ace0ef695f40f977 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Tue, 8 Jul 2025 12:17:26 +0200
+Subject: [PATCH 18/27] crt: adjust system rates before reset context fix
+ dolphin on crt
+
+---
+ retroarch.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/retroarch.c b/retroarch.c
+index 9c1afb25d7..855ff67f3d 100644
+--- a/retroarch.c
++++ b/retroarch.c
+@@ -1570,7 +1570,10 @@ void drivers_init(
+ 
+       if (   !(video_st->flags & VIDEO_FLAG_CACHE_CONTEXT_ACK)
+             && hwr->context_reset)
++      {
++         driver_adjust_system_rates(runloop_st, video_st, settings);
+          hwr->context_reset();
++      }
+       video_st->flags            &= ~VIDEO_FLAG_CACHE_CONTEXT_ACK;
+       runloop_st->frame_time_last = 0;
+    }
+-- 
+2.51.0
+

@@ -1,0 +1,29 @@
+[general]
+show_welcome = false
+screenshot_dir = '/recalbox/share/screenshots'
+last_viewed_menu_index = 2
+
+[input.bindings]
+port1_driver = 'usb-xbox-gamepad'
+port1 = '030081b85e0400008e02000010010000'
+
+[display.window]
+fullscreen_on_startup = true
+
+[display.ui]
+show_menubar = false
+show_notifications = false
+
+[net]
+enable = true
+
+[sys]
+mem_limit = '128'
+
+[sys.files]
+bootrom_path = '/recalbox/share/bios/xbox/mcpx_1.0.bin'
+flashrom_path = '/recalbox/share/bios/xbox/Complex_4627.bin'
+eeprom_path = '/recalbox/share/saves/xbox/xemu_eeprom.bin'
+hdd_path = '/recalbox/share/saves/xbox/xbox_hdd.qcow2'
+dvd_path = '/recalbox/share/roms/xbox/Conker - Live & Reloaded (Europe) (En,Ja,Fr,De,Es,It).xiso.iso'
+

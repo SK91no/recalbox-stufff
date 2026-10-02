@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# Looks for nvidia drivers in /usr/lib/updates/
+# one directory per version, eg: nvidia-515.1
+
+# A controller may be supported in many versions.
+# One should make sure driver are read from newer to older
+# in order to always have newer driver version first
+
+# nvidia driver installation is done in 2 steps
+# 1st step is done in early hardware, before udev loads drivers
+# the nvidia-installer script will prepare the system for nvidia (if eligible):
+# - link kernel modules
+# - blacklist nouveau
+# - configure drm for nvidia
+#
+# 2nd step is done after udev is started
+# - it prepares a working xorg.conf file if system supports prime
+#
+
+INIT_SCRIPT=$(basename "$0")
+
+log_info() {
+  while read -r line; do
+    log INFO "$line"
+  done
+}
+
+log_error() {
+  while read -r line; do
+    log ERROR "$line"
+  done
+}
+
+log() {
+  /usr/bin/recallog -s "${INIT_SCRIPT}" -t "$1" -e "$2"
+}
+
+exec 1> >(log_info)
+exec 2> >(log_error)
+
+cd "$(dirname "$0")" || :
+
+for driver_version in $(find /usr/lib/updates/ -name "nvidia-*" -maxdepth 1 | cut -d - -f 2 | sort -n -r); do
+  # run driver installer at least one time to reconfigure xorg.conf
+  python main.py --version "$driver_version" && exit 0
+done

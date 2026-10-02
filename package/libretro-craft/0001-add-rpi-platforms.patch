@@ -1,0 +1,103 @@
+From f53f7f4ad0f3ecd29835e73ac2fe70728a2340d8 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 23 Dec 2025 18:34:22 +0100
+Subject: [PATCH] add rpi platforms
+
+---
+ Makefile.libretro |  8 ++++++--
+ src/renderer.c    | 20 ++++++++++++++++++++
+ 2 files changed, 26 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.libretro b/Makefile.libretro
+index 8e5574a..a5e8702 100644
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -83,7 +83,11 @@ else ifneq (,$(findstring rpi,$(platform)))
+ 	LDFLAGS += -shared -Wl,--version-script=$(ROOT_DIR)/link.T
+ 	fpic = -fPIC
+  	GLES = 1
+-	ifneq (,$(findstring rpi4,$(platform)))
++	ifneq (,$(findstring rpi5_64,$(platform))$(findstring rpi4_64,$(platform)))
++		GL_LIB := -lGLESv2
++		CPUFLAGS += -DNO_ASM -DARM_ASM -frename-registers -ftree-vectorize
++		HAVE_NEON = 1
++	else ifneq (,$(findstring rpi4,$(platform)))
+ 		GL_LIB := -lGLESv2
+ 		CPUFLAGS += -DNO_ASM -DARM_ASM -frename-registers -ftree-vectorize
+ 		CFLAGS += -marm -mfloat-abi=hard -mcpu=cortex-a72 -mtune=cortex-a72 -mfpu=neon-vfpv4
+@@ -101,7 +105,7 @@ else ifneq (,$(findstring rpi,$(platform)))
+ 		CPUFLAGS += -DARM -D__arm__ -D__NEON_OPT
+ 		CPUFLAGS += -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
+ 		HAVE_NEON = 1
+- 	else
++ 	else ifeq (,$(findstring rpi5,$(platform))$(findstring rpi4_64,$(platform)))
+ 		CPUFLAGS += -DARMv5_ONLY
+  	endif
+ 
+diff --git a/src/renderer.c b/src/renderer.c
+index a2ecf80..1368525 100644
+--- a/src/renderer.c
++++ b/src/renderer.c
+@@ -149,7 +149,11 @@ static const char *block_fragment_shader[] = {
+     "uniform sampler2D sky_sampler;\n",
+     "uniform float timer;\n",
+     "uniform float daylight;\n",
++#if defined(HAVE_OPENGLES)
++    "uniform lowp float ortho;\n",
++#else
+     "uniform int ortho;\n",
++#endif
+     "varying vec2 fragment_uv;\n",
+     "varying float fragment_ao;\n",
+     "varying float fragment_light;\n",
+@@ -163,7 +167,11 @@ static const char *block_fragment_shader[] = {
+     "    discard;\n",
+     "  }\n",
+     "  bool cloud = color == vec3(1.0, 1.0, 1.0);\n",
++#if defined(HAVE_OPENGLES)
++    "  if (cloud && (ortho > 0.5)) {\n",
++#else
+     "  if (cloud && bool(ortho)) {\n",
++#endif
+     "    discard;\n",
+     "  }\n",
+     "  float df = cloud ? 1.0 - diffuse * 0.2 : diffuse;\n",
+@@ -187,7 +195,11 @@ static const char *block_vertex_shader[] = {
+    "uniform mat4 matrix;\n",
+    "uniform vec3 camera;\n",
+    "uniform float fog_distance;\n",
++#if defined(HAVE_OPENGLES)
++   "uniform lowp float ortho;\n",
++#else
+    "uniform int ortho;\n",
++#endif
+    "attribute vec4 position;\n",
+    "attribute vec3 normal;\n",
+    "attribute vec4 uv;\n",
+@@ -205,7 +217,11 @@ static const char *block_vertex_shader[] = {
+    "  fragment_ao = 0.3 + (1.0 - uv.z) * 0.7;\n",
+    "  fragment_light = uv.w;\n",
+    "  diffuse = max(0.0, dot(normal, light_direction));\n",
++#if defined(HAVE_OPENGLES)
++   "  if (ortho > 0.5) {\n",
++#else
+    "  if (bool(ortho)) {\n",
++#endif
+    "    fog_factor = 0.0;\n",
+    "    fog_height = 0.0;\n",
+    "  }\n",
+@@ -435,7 +451,11 @@ void render_shader_program(struct shader_program_info *info)
+       glUniform1f(info->attrib->extra3,   info->extra3.data);
+ 
+    if (info->extra4.enable)
++#if defined(HAVE_OPENGLES)
++      glUniform1f(info->attrib->extra4,   info->extra4.data);
++#else
+       glUniform1i(info->attrib->extra4,   info->extra4.data);
++#endif
+ 
+    if (info->timer.enable)
+       glUniform1f(info->attrib->timer,    info->timer.data);
+-- 
+2.52.0
+

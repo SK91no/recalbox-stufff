@@ -1,0 +1,6 @@
+config BR2_PACKAGE_SOUND_OPEN_FIRMWARE
+	bool "Sound Open Firmware"
+	help
+	  Open source audio DSP firmware
+
+	  https://www.sofproject.org/

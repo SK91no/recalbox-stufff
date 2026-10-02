@@ -1,0 +1,28 @@
+From 177f62e75566ce1fc9a998d07fda059b0632dde5 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 2 Nov 2022 23:05:07 +0100
+Subject: [PATCH 1/2] mpv no egl 1-5 for rpi
+
+---
+ video/out/opengl/egl_helpers.h | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/video/out/opengl/egl_helpers.h b/video/out/opengl/egl_helpers.h
+index 32ec5d12e4..0186c077ee 100644
+--- a/video/out/opengl/egl_helpers.h
++++ b/video/out/opengl/egl_helpers.h
+@@ -8,6 +8,11 @@
+ 
+ #include "video/out/gpu/context.h"
+ 
++// define EGLAttrib for rpi <= 3 platform
++#ifndef EGL_VERSION_1_5
++typedef intptr_t EGLAttrib;
++#endif
++
+ struct mp_log;
+ 
+ bool mpegl_create_context(struct ra_ctx *ctx, EGLDisplay display,
+-- 
+2.43.0
+

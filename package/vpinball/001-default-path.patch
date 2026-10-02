@@ -1,0 +1,15 @@
+diff --git a/plugins/pinmame/PinMAMEPlugin.cpp b/plugins/pinmame/PinMAMEPlugin.cpp
+--- a/plugins/pinmame/PinMAMEPlugin.cpp
++++ b/plugins/pinmame/PinMAMEPlugin.cpp
+@@ -474,5 +474,9 @@
+       }
+       #elif defined(__APPLE__) || defined(__linux__)
+-      if (pinmamePath.empty())
+-         pinmamePath = std::filesystem::path(getenv("HOME")) / ".pinmame"sv;
++      if (pinmamePath.empty() && vpxApi != nullptr)
++      {
++         VPXInfo vpxInfo;
++         vpxApi->GetVpxInfo(&vpxInfo);
++         pinmamePath = find_case_insensitive_directory_path(std::filesystem::path(vpxInfo.prefPath) / "pinmame"sv);
++      }
+       #endif

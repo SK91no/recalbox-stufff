@@ -1,0 +1,24 @@
+################################################################################
+#
+# mali-t62x
+#
+################################################################################
+
+# Commit of 2019/11/13
+LIBRELEC_LIBMALI_VERSION = d4000def121b818ae0f583d8372d57643f723fdc
+LIBRELEC_LIBMALI_SITE = $(call github,LibreELEC,libmali,$(LIBRELEC_LIBMALI_VERSION))
+LIBRELEC_LIBMALI_INSTALL_STAGING = YES
+LIBRELEC_LIBMALI_PROVIDES = libegl libgles libgbm
+LIBRELEC_LIBMALI_LICENSE = COPYRIGHT
+LIBRELEC_LIBMALI_LICENSE_FILES = END_USER_LICENCE_AGREEMENT.txt
+LIBRELEC_LIBMALI_DEPENDENCIES += libdrm
+
+ifeq ($(BR2_PACKAGE_LIBRELEC_LIBMALI_T62X),y)
+LIBRELEC_LIBMALI_DEPENDENCIES += wayland
+endif
+
+LIBRELEC_LIBMALI_CONF_OPTS = \
+	-DMALI_VARIANT=$(BR2_PACKAGE_LIBRELEC_LIBMALI_VARIANT) \
+	-DMALI_ARCH=$(BR2_PACKAGE_LIBRELEC_LIBMALI_ARCH)
+
+$(eval $(cmake-package))

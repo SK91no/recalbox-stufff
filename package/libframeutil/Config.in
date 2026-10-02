@@ -1,0 +1,6 @@
+config BR2_PACKAGE_LIBFRAMEUTIL
+	bool "libframeutil"
+	help
+	  Header-only library for pinball DMD frame processing.
+
+	  https://github.com/PPUC/libframeutil

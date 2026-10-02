@@ -1,0 +1,31 @@
+From 0ea91aa9227f73e83bd04a18cb9ba36bc8450c1d Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sat, 22 Jan 2022 09:35:17 +0100
+Subject: [PATCH 2/4] compile asm defines no lto
+
+---
+ Makefile | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 27c62dd..dfd4bd2 100644
+--- a/Makefile
++++ b/Makefile
+@@ -686,6 +686,14 @@ $(AWK_DEST_DIR)/asm_defines_gas.h: $(AWK_DEST_DIR)/asm_defines_nasm.h
+ $(AWK_DEST_DIR)/asm_defines_nasm.h: $(ASM_DEFINES_OBJ)
+ 	$(STRINGS) "$<" | $(TR) -d '\r' | $(AWK) -v dest_dir="$(AWK_DEST_DIR)" -f $(CORE_DIR)/tools/gen_asm_defines.awk
+ 
++# It is important to disable LTO for this object file
++# otherwise we can't extract useful information from it.
++$(ASM_DEFINES_OBJ): $(CORE_DIR)/src/asm_defines/asm_defines.c
++	$(COMPILE.c) -fno-lto -o $@ $<
++
++$(LIBRETRO_COMM_DIR)/libco/libco.o: $(LIBRETRO_COMM_DIR)/libco/libco.c
++	$(COMPILE.c) -fno-lto -o $@ $<
++
+ %.o: %.asm $(AWK_DEST_DIR)/asm_defines_gas.h
+ 	$(NASM) -i$(AWK_DEST_DIR)/ $(ASFLAGS) $< -o $@
+ 
+-- 
+2.34.1
+

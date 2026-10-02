@@ -1,0 +1,109 @@
+#!/bin/bash
+#
+# Retroflag Gpi Case 2 dock management
+# Take care of
+# * unset in-case pad when HDMI connected
+# * audio switching between in-case and HDMI
+# * Manage different custom configuration for docked/undocked modes (theme, audio, shaders)
+
+CONFIG_FILE="/overlay/.configs/gpi2settings.conf"
+
+# Create configuration file if not exist (more robust in case of user deletion)
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  cat > "$CONFIG_FILE" <<EOL
+hdmiTheme="recalbox-next"
+hdmiThemeCarousel="$(recalbox_settings  -command load -key emulationstation.theme.carousel)"
+hdmiThemeTransition="$(recalbox_settings  -command load -key emulationstation.theme.transition)"
+hdmiAudio="alsa_card.0:hdmi-output-0:output:hdmi-stereo"
+hdmiShaders=""
+hdmiShaderSet=""
+lcdTheme="recalbox-goa2"
+lcdThemeCarousel="$(recalbox_settings  -command load -key emulationstation.theme.carousel)"
+lcdThemeTransition="$(recalbox_settings  -command load -key emulationstation.theme.transition)"
+lcdAudio="mono:"
+lcdShaders=""
+lcdShaderSet=""
+previousMode=""
+EOL
+fi
+
+# shellcheck disable=SC1090
+source "$CONFIG_FILE"
+
+start() {
+
+  # If HDMI is plugged
+  if grep -q -E '^connected' /sys/class/drm/card?-HDMI-A-*/status; then
+    # Load HDMI settings
+    if [ "$previousMode" != "hdmi" ]; then
+
+      # Test to prevent overwriting default config in case of empty previous mode (first start)
+      if [ "$previousMode" = "lcd" ]; then
+        # Save current setting as LCD settings
+        saveLcd
+      fi
+
+      # Apply HDMI Settings
+      recalbox_settings -command save -key emulationstation.theme.folder -value "$hdmiTheme"
+      recalbox_settings -command save -key emulationstation.theme.carousel -value "$hdmiThemeCarousel"
+      recalbox_settings -command save -key emulationstation.theme.transition -value "$hdmiThemeTransition"
+      recalbox_settings -command save -key audio.device -value "$hdmiAudio"
+      recalbox_settings -command save -key global.shaders -value "$hdmiShaders"
+      recalbox_settings -command save -key global.shaderset -value "$hdmiShaderSet"
+    else
+      # As HDMI was already connected on previous boot, save the user settings in CONFIG_FILE
+      saveHdmi
+    fi
+
+    # Set previous mode to HDMI for next restart
+    sed -i "s/^previousMode=.*/previousMode=\"hdmi\"/" "$CONFIG_FILE"
+
+  else
+    # Load LCD settings
+    if [ "$previousMode" != "lcd" ]; then
+
+      # Test to prevent overwriting default config in case of empty previous mode (first start)
+      if [ "$previousMode" = "hdmi" ]; then
+        # Save current setting as HDMI settings
+        saveHdmi
+      fi
+
+      # Apply LCD Settings
+      recalbox_settings -command save -key emulationstation.theme.folder -value "$lcdTheme"
+      recalbox_settings -command save -key emulationstation.theme.carousel -value "$lcdThemeCarousel"
+      recalbox_settings -command save -key emulationstation.theme.transition -value "$lcdThemeTransition"
+      recalbox_settings -command save -key audio.device -value "$lcdAudio"
+      recalbox_settings -command save -key global.shaders -value "$lcdShaders"
+      recalbox_settings -command save -key global.shaderset -value "$lcdShaderSet"
+    else
+      # As LCD was already connected on previous boot, save the user settings in CONFIG_FILE
+      saveLcd
+    fi
+
+    # Set previous mode to LCD for next restart
+    sed -i "s/^previousMode=.*/previousMode=\"lcd\"/" "$CONFIG_FILE"
+  fi
+}
+
+# This fonction saves user LCD settings in CONFIG_FILE
+saveLcd() {
+  sed -i "s/^lcdTheme=.*/lcdTheme=\"$(recalbox_settings -command load -key emulationstation.theme.folder)\"/" "$CONFIG_FILE"
+  sed -i "s/^lcdThemeCarousel=.*/lcdThemeCarousel=\"$(recalbox_settings -command load -key emulationstation.theme.carousel)\"/" "$CONFIG_FILE"
+  sed -i "s/^lcdThemeTransition=.*/lcdThemeTransition=\"$(recalbox_settings -command load -key emulationstation.theme.transition)\"/" "$CONFIG_FILE"
+  sed -i "s/^lcdAudio=.*/lcdAudio=\"$(recalbox_settings -command load -key audio.device)\"/" "$CONFIG_FILE"
+  sed -i "s#^lcdShaders=.*#lcdShaders=\"$(recalbox_settings -command load -key global.shaders)\"#" "$CONFIG_FILE"
+  sed -i "s/^lcdShaderSet=.*/lcdShaderSet=\"$(recalbox_settings -command load -key global.shaderset)\"/" "$CONFIG_FILE"
+}
+
+# This fonction saves user LCD settings in CONFIG_FILE
+saveHdmi() {
+  sed -i "s/^hdmiTheme=.*/hdmiTheme=\"$(recalbox_settings -command load -key emulationstation.theme.folder)\"/" "$CONFIG_FILE"
+  sed -i "s/^hdmiThemeCarousel=.*/hdmiThemeCarousel=\"$(recalbox_settings -command load -key emulationstation.theme.carousel)\"/" "$CONFIG_FILE"
+  sed -i "s/^hdmiThemeTransition=.*/hdmiThemeTransition=\"$(recalbox_settings -command load -key emulationstation.theme.transition)\"/" "$CONFIG_FILE"
+  sed -i "s/^hdmiAudio=.*/hdmiAudio=\"$(recalbox_settings -command load -key audio.device)\"/" "$CONFIG_FILE"
+  sed -i "s#^hdmiShaders=.*#hdmiShaders=\"$(recalbox_settings -command load -key global.shaders)\"#" "$CONFIG_FILE"
+  sed -i "s/^hdmiShaderSet=.*/hdmiShaderSet=\"$(recalbox_settings -command load -key global.shaderset)\"/" "$CONFIG_FILE"
+}
+
+start

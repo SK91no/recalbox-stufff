@@ -1,0 +1,26 @@
+From 364012cb2cecad8e4d39de1261f1e239c516a70b Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 4 Sep 2024 23:00:01 +0200
+Subject: [PATCH] gcc14 fix
+
+---
+ yabause/src/yabause.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/yabause/src/yabause.c b/yabause/src/yabause.c
+index 31aeba01d..32a8cf549 100644
+--- a/yabause/src/yabause.c
++++ b/yabause/src/yabause.c
+@@ -118,6 +118,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ #include <inttypes.h>
+ 
+ extern void SH2HandleInterrupts(SH2_struct *context);
++#if DYNAREC_DEVMIYAX
++   extern void SH2DynShowSttaics(SH2_struct * master, SH2_struct * slave );
++#endif
+ 
+ //////////////////////////////////////////////////////////////////////////////
+ 
+-- 
+2.46.0
+

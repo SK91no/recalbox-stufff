@@ -1,0 +1,277 @@
+From 15a853130db3e0b34b74149fafa1af9d4999fa68 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 23 Dec 2025 19:30:32 +0100
+Subject: [PATCH] allow run with empty game file
+
+---
+ src/PowderToyLibRetro.cpp | 175 +++++++++++++++++++++++++++++++-------
+ 1 file changed, 143 insertions(+), 32 deletions(-)
+
+diff --git a/src/PowderToyLibRetro.cpp b/src/PowderToyLibRetro.cpp
+index 4ddd74f..0a1812d 100644
+--- a/src/PowderToyLibRetro.cpp
++++ b/src/PowderToyLibRetro.cpp
+@@ -84,28 +84,57 @@ int mouseX, resultX;
+ int mouseY, resultY;
+ 
+ void EngineProcess() {
+-    if (!engine->Running()) {
+-        LibRetro::Shutdown();
+-        return;
+-    }
+-
+-    if (!crashed) {
+-        if (engine->Broken()) {
+-            engine->UnBreak();
++    static int crashCount = 0;
++    
++    try {
++        if (!engine->Running()) {
++            LibRetro::Shutdown();
+             return;
+         }
+ 
+-        engine->Tick();
+-        engine->Draw();
+-    }
++        if (!crashed) {
++            if (engine->Broken()) {
++                engine->UnBreak();
++                return;
++            }
+ 
+-    auto buffer = engine->g->DumpFrame();
++            engine->Tick();
++            engine->Draw();
++        }
+ 
+-    // We want to copy the pixels into the framebuffer with the longer lifetime, otherwise
+-    // the frontend may read garbage pixels.
+-    memcpy(framebuffer, buffer.Buffer, WINDOWW * WINDOWH * 4);
++        // Copy directly from vid buffer to avoid allocation in DumpFrame()
++        // This prevents memory leak of ~1 MB per frame
++        if (engine->g->vid && framebuffer) {
++            // Copy pixel data directly
++            // Note: We use 4 bytes per pixel to match XRGB8888 format expected by RetroArch
++            // The internal format should already be compatible (32-bit RGB)
++            memcpy(framebuffer, engine->g->vid, WINDOWW * WINDOWH * 4);
++        } else {
++            return;
++        }
+ 
+-    LibRetro::UploadVideoFrame(framebuffer, buffer.Width, buffer.Height, 4 * buffer.Width);
++        LibRetro::UploadVideoFrame(framebuffer, WINDOWW, WINDOWH, 4 * WINDOWW);
++    }
++    catch (std::exception& e) {
++        crashCount++;
++        printf("[ThePowderToy] EXCEPTION in EngineProcess #%d: %s\n", crashCount, e.what());
++        fflush(stdout);
++        if (crashCount > 10) {
++            printf("[ThePowderToy] Too many crashes, shutting down\n");
++            fflush(stdout);
++            LibRetro::Shutdown();
++        }
++    }
++    catch (...) {
++        crashCount++;
++        printf("[ThePowderToy] UNKNOWN EXCEPTION in EngineProcess #%d\n", crashCount);
++        fflush(stdout);
++        if (crashCount > 10) {
++            printf("[ThePowderToy] Too many crashes, shutting down\n");
++            fflush(stdout);
++            LibRetro::Shutdown();
++        }
++    }
+ }
+ 
+ void BlueScreen(const char * detailMessage){
+@@ -137,20 +166,27 @@ void BlueScreen(const char * detailMessage){
+ 
+ void SigHandler(int signal)
+ {
++    // Just log and exit immediately, don't try to recover or draw anything
++    // Drawing (BlueScreen) from a signal handler can cause recursive crashes
++    
+     switch(signal) {
+     case SIGSEGV:
+-        BlueScreen("Memory read/write error");
++        write(STDERR_FILENO, "[ThePowderToy] FATAL: SIGSEGV\n", 31);
+         break;
+     case SIGFPE:
+-        BlueScreen("Floating point exception");
++        write(STDERR_FILENO, "[ThePowderToy] FATAL: SIGFPE\n", 30);
+         break;
+     case SIGILL:
+-        BlueScreen("Program execution exception");
++        write(STDERR_FILENO, "[ThePowderToy] FATAL: SIGILL\n", 30);
+         break;
+     case SIGABRT:
+-        BlueScreen("Unexpected program abort");
++        write(STDERR_FILENO, "[ThePowderToy] FATAL: SIGABRT\n", 31);
+         break;
+     }
++    
++    // Force immediate exit without cleanup
++    // Cleanup could cause more crashes in corrupted state
++    _exit(1);
+ }
+ 
+ void keyboard_callback(bool down, unsigned keycode, uint32_t character, uint16_t key_modifiers) {
+@@ -193,13 +229,13 @@ void retro_init() {
+     engine->Begin(WINDOWW, WINDOWH);
+     engine->SetFastQuit(Client::Ref().GetPrefBool("FastQuit", true));
+ 
+-#if !defined(DEBUG) && !defined(_DEBUG)
+     //Get ready to catch any dodgy errors
++    printf("[ThePowderToy] Installing signal handlers...\n");
++    fflush(stdout);
+     signal(SIGSEGV, SigHandler);
+     signal(SIGFPE, SigHandler);
+     signal(SIGILL, SigHandler);
+     signal(SIGABRT, SigHandler);
+-#endif
+ 
+ #ifdef X86_SSE
+     _MM_SET_FLUSH_ZERO_MODE(_MM_FLUSH_ZERO_ON);
+@@ -226,6 +262,8 @@ unsigned retro_api_version() {
+ }
+ 
+ void retro_run() {
++    static int runCrashCount = 0;
++    
+     try {
+         // TODO: currentFrame isn't used for anything AFAIK
+         currentFrame++;
+@@ -339,7 +377,26 @@ void retro_run() {
+     }
+     catch(exception& e)
+     {
++        runCrashCount++;
++        printf("[ThePowderToy] EXCEPTION in retro_run #%d: %s\n", runCrashCount, e.what());
++        fflush(stdout);
+         BlueScreen(e.what());
++        if (runCrashCount > 10) {
++            printf("[ThePowderToy] Too many exceptions in retro_run, shutting down\n");
++            fflush(stdout);
++            LibRetro::Shutdown();
++        }
++    }
++    catch(...)
++    {
++        runCrashCount++;
++        printf("[ThePowderToy] UNKNOWN EXCEPTION in retro_run #%d\n", runCrashCount);
++        fflush(stdout);
++        if (runCrashCount > 10) {
++            printf("[ThePowderToy] Too many exceptions in retro_run, shutting down\n");
++            fflush(stdout);
++            LibRetro::Shutdown();
++        }
+     }
+ }
+ 
+@@ -349,6 +406,12 @@ void retro_reset() {
+         if (gameController != nullptr) {
+             delete gameController;
+         }
++        
++        // Reduce undo history to save memory in libretro
++        // RetroArch has its own save state system
++        // Use 1 instead of 0 to avoid potential null pointer issues
++        Client::Ref().SetPref("Simulation.UndoHistoryLimit", 1);
++        
+         gameController = new GameController();
+         engine->ShowWindow(gameController->GetView());
+     }
+@@ -364,16 +427,55 @@ bool retro_load_game(const struct retro_game_info* info) {
+     }
+ 
+     if (info->data) {
+-        // TODO: should this say "LibRetro Content"?
+-        return retro_unserialize(info->data, info->size);
+-    } else {
+-        std::vector<unsigned char> gameSaveData = Client::Ref().ReadFile(info->path);
+-        SaveFile* newFile = new SaveFile(std::string("LibRetro Content File"));
+-        GameSave* newSave = new GameSave(gameSaveData);
+-        newFile->SetGameSave(newSave);
+-        gameController->LoadSaveFile(newFile);
+-        return true;
++        // If data is provided but too small to be a valid save, start with empty simulation
++        // Valid save files need at least 16 bytes for the header
++        if (info->size < 16) {
++            return true;
++        }
++        
++        try {
++            retro_unserialize(info->data, info->size);
++            return true;
++        }
++        catch (ParseException& e) {
++            // Start with empty simulation if loading fails
++            return true;
++        }
++        catch (std::exception& e) {
++            return true;
++        }
++    } else if (info->path) {
++        try {
++            std::vector<unsigned char> gameSaveData = Client::Ref().ReadFile(info->path);
++            
++            // If the file is empty or too small to be valid, start with empty simulation
++            // Valid save files need at least 16 bytes for the header
++            if (gameSaveData.empty() || gameSaveData.size() < 16) {
++                return true;
++            }
++            
++            try {
++                SaveFile* newFile = new SaveFile(std::string("LibRetro Content File"));
++                GameSave* newSave = new GameSave(gameSaveData);
++                newFile->SetGameSave(newSave);
++                gameController->LoadSaveFile(newFile);
++                delete newFile;
++                return true;
++            }
++            catch (ParseException& e) {
++                // Start with empty simulation if loading fails
++                return true;
++            }
++            catch (std::exception& e) {
++                return true;
++            }
++        }
++        catch (std::exception& e) {
++            return true;
++        }
+     }
++    
++    return true;
+ }
+ 
+ void retro_unload_game() {
+@@ -398,7 +500,13 @@ size_t retro_serialize_size() {
+     }
+ 
+     auto serialised = data->Serialise();
+-    return serialised.size();
++    size_t size = serialised.size();
++    
++    // CRITICAL: Delete the GameSave to prevent massive memory leak
++    // RetroArch calls this function very frequently
++    delete data;
++    
++    return size;
+ }
+ 
+ bool retro_serialize(void* data_, size_t size) {
+@@ -410,6 +518,9 @@ bool retro_serialize(void* data_, size_t size) {
+ 
+     auto data = save->Serialise();
+     memcpy(exported, data.data(), size);
++    
++    // CRITICAL: Delete the GameSave to prevent memory leak
++    delete save;
+ 
+     return true;
+ }
+-- 
+2.52.0
+

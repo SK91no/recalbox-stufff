@@ -1,0 +1,70 @@
+--- a/src/osd/libretro/libretro-internal/retro_init.cpp	2023-09-01 22:04:24.000000000 +0200
++++ b/src/osd/libretro/libretro-internal/retro_init.cpp	2024-11-30 10:09:19.934062131 +0100
+@@ -112,10 +112,11 @@
+    "artwork",
+    "cheat",
+    "hash",
++   "samples",
++   "",
++
+    "ini",
+    "plugins",
+-   "samples",
+-   ""
+ };
+ 
+ static const char *opt_name[NB_OPTPATH] =
+@@ -130,17 +131,19 @@
+     "-artpath",
+     "-cheatpath",
+     "-hashpath",
++    "-samplepath",
++    "-homepath",
++
+     "-inipath",
+     "-pluginspath",
+-    "-samplepath",
+-    "-homepath"
+ };
+ 
+ int opt_type[NB_OPTPATH] =
+ {
+    // 0 for save_dir | 1 for system_dir
+    0,0,0,0,0,0,
+-   1,1,1,1,1,1,1
++   1,1,1,1,1,
++   2,2
+ };
+ 
+ //============================================================
+@@ -557,12 +560,18 @@
+                (retro_save_directory) ? retro_save_directory : ".",
+                slash, CORE_NAME, slash, dir_name[i]);
+       }
+-      else
++	  else if (opt_type[i] == 1)
+       {
+          snprintf(tmp_dir, sizeof(tmp_dir), "%s%c%s%c%s",
+                (retro_system_directory) ? retro_system_directory : ".",
+                slash, CORE_NAME, slash, dir_name[i]);
+       }
++	  else
++      {
++         snprintf(tmp_dir, sizeof(tmp_dir), "%s%c%s%c%s",
++               "/usr/share/libretro-mame",
++               slash, "mame0258", slash, dir_name[i]);
++      }
+ 
+       Add_Option((char*)(tmp_dir));
+    }
+--- a/plugins/hiscore/init.lua	2024-11-30 10:30:32.995226354 +0100
++++ b/plugins/hiscore/init.lua	2024-11-30 10:31:46.058475171 +0100
+@@ -24,7 +24,7 @@
+ function hiscore.startplugin()
+ 
+ 	local function get_data_path()
+-		return manager.machine.options.entries.homepath:value():match('([^;]+)') .. '/hiscore'
++		return '/recalbox/share/saves/mame/mame0258/hiscore'
+ 	end
+ 
+ 	-- configuration

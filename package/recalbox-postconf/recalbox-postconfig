@@ -1,0 +1,134 @@
+#!/usr/bin/env python
+import os
+
+ssh_file = "/recalbox/share/system/.ssh/authorized_keys"
+data_file = "/boot/user-data"
+network_files = ["/boot/network-.con", "/boot/network-config"]
+shadow_file = "/run/recalbox.shadow"
+cmdline_file = "/boot/cmdline.txt"
+
+
+def recallog(message: str, has_escape_chars=False, log_type=""):
+    final_text = message
+    log_type_arg = "-t '{}'".format(log_type) if log_type != "" else ""
+    escape_char_args = "-e" if has_escape_chars else ""
+
+    os.system(
+        '/usr/bin/recallog -s POSTINST {} {} "{}"'.format(
+            log_type_arg, escape_char_args, final_text
+        )
+    )
+
+
+if os.path.isfile(data_file):
+    import yaml
+    import configgen.recalboxFiles as recalboxFiles
+    from configgen.settings.keyValueSettings import keyValueSettings
+
+    with open(data_file, "r") as userdata:
+        userconf = yaml.safe_load(userdata)
+
+    recalconf = keyValueSettings(recalboxFiles.recalboxConf, False)
+    recalconf.loadFile(True)
+
+    if "users" in userconf and len(userconf["users"]) > 0:
+        if "ssh_authorized_keys" in userconf["users"][0]:
+            recallog("Configuration SSH Key")
+            try:
+                os.makedirs(os.path.dirname(ssh_file), exist_ok=True)
+            except OSError as error:
+                recallog(error)
+            with open(ssh_file, "w") as keyfile:
+                keyfile.write(userconf["users"][0]["ssh_authorized_keys"][0])
+                keyfile.close()
+        if "passwd" in userconf["users"][0]:
+            password = userconf["users"][0]["passwd"]
+            recallog("Configuration Root password")
+            text_shadow = "root:{}:::::::".format(password)
+            if not os.path.isfile(shadow_file):
+                f = open(shadow_file, "a")
+                f.close
+            try:
+                f = open(shadow_file, "w")
+                f.write(text_shadow)
+                f.close
+            except IOError:
+                recallog("While trying to perform write password, an error occurred.")
+            recalconf.setOption("system.default_password", password)
+            recalconf.safeSaveFile()
+
+    if "hostname" in userconf:
+        recallog("Configuration Hostname")
+        recalconf.setOption("system.hostname", userconf["hostname"])
+        recalconf.safeSaveFile()
+
+    if "timezone" in userconf:
+        recallog("Configuration Timezone")
+        recalconf.setOption("system.timezone", userconf["timezone"])
+        recalconf.safeSaveFile()
+
+    if "keyboard" in userconf:
+        if "layout" in userconf["keyboard"]:
+            recallog("Configuration keyboard layout")
+            recalconf.setOption(
+                "system.kblayout", userconf["keyboard"]["layout"]
+            )
+            recalconf.safeSaveFile()
+
+    if "runcmd" in userconf:
+        recallog("Configuration keyboard layout")
+        recalconf.setOption(
+            "system.kblayout", userconf["runcmd"][0].split()[2].replace('"', "")
+        )
+        recalconf.safeSaveFile()
+
+    try:
+        os.system("mount -o remount,rw /boot")
+        os.remove(data_file)
+        os.system("mount -o remount,ro /boot")
+    except OSError as error:
+        recallog(error)
+
+for network_file in network_files:
+    if os.path.isfile(network_file):
+        recallog("Configuration WIFI")
+        import yaml
+        import configgen.recalboxFiles as recalboxFiles
+        import subprocess
+        from configgen.settings.keyValueSettings import keyValueSettings
+
+        with open(network_file, "r") as userdata:
+            networkconf = yaml.safe_load(userdata)
+
+        recalconf = keyValueSettings(recalboxFiles.recalboxConf, False)
+        recalconf.loadFile(True)
+
+        if networkconf["wifis"]["wlan0"]["access-points"]:
+            for key, value in networkconf["wifis"]["wlan0"]["access-points"].items():
+                ssid = key
+                password = value["password"]
+
+            recalconf.setOption("wifi.enabled", "1")
+            recalconf.setOption("wifi.ssid", ssid)
+            recalconf.setOption("wifi.key", password)
+
+            if os.path.isfile(cmdline_file):
+                import re
+
+                f = open(cmdline_file, "r")
+                text = f.read()
+                f.close()
+                matches = re.search("cfg80211.ieee80211_regdom=(..)", text)
+                if matches:
+                    recalconf.setOption("wifi.region", matches.group(1))
+
+            recalconf.safeSaveFile()
+            subprocess.run(["/etc/init.d/S09wifi", "start"])
+        try:
+            os.system("mount -o remount,rw /boot")
+            os.remove(network_file)
+            os.system("mount -o remount,ro /boot")
+        except OSError as error:
+            recallog(error)
+
+recallog("Not found postconfig data")

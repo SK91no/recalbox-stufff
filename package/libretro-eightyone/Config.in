@@ -1,0 +1,12 @@
+config BR2_PACKAGE_LIBRETRO_EIGHTYONE
+	bool "libretro-eightyone"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_ZLIB
+	help
+	  A libretro core for the EeightyOne emulator.
+
+	  https://gitlab.com/recalbox/packages/recalbox-cores/libretro-eightyone
+
+comment "LIBRETRO_EIGHTYONE needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

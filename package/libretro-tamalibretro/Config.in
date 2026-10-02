@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBRETRO_TAMALIBRETRO
+	bool "libretro-tamalibretro"
+	depends on BR2_PACKAGE_RETROARCH
+	help
+	  TamaLIB Tamagotchi P1 emulator implementation
+	  in the libretro API
+
+	  https://github.com/celerizer/tamalibretro?tab=readme-ov-file

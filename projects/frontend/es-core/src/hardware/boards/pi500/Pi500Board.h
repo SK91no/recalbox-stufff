@@ -1,0 +1,151 @@
+//
+// Created by Pit64 on 2024/11/28.
+//
+#pragma once
+
+#include "Pi500PowerEventReader.h"
+#include "hardware/IBoardInterface.h"
+
+// Forward declaration
+class InputCompactEvent;
+
+class Pi500Board: public IBoardInterface
+{
+public:
+    explicit Pi500Board(HardwareMessageSender& messageSender)
+            : IBoardInterface(messageSender)
+            , mPowerReader(messageSender)
+    {
+    }
+
+private:
+
+    //! Power button event reader
+    Pi500PowerEventReader mPowerReader;
+
+    /*!
+     * @brief Start optional global background processes
+     * This method is called when ES starts
+     */
+    void StartGlobalBackgroundProcesses() final
+    {
+      mPowerReader.StartReader();
+    }
+
+    /*!
+     * @brief Stop optional global background processes
+     * This method is called when ES stops
+     */
+    void StopGlobalBackgroundProcesses() final
+    {
+      mPowerReader.StopReader();
+    }
+
+    /*!
+     * @brief Start optional in-game background processes.
+     * This method is called when a game starts
+     */
+    void StartInGameBackgroundProcesses(Sdl2Runner&) final {}
+
+    /*!
+     * @brief Stop optional in-game background processes.
+     * This method is called when a game stops
+     */
+    void StopInGameBackgroundProcesses(Sdl2Runner&) final {}
+
+    /*!
+     * @brief Has Battery?
+     */
+    bool HasBattery() final { return false; }
+
+    /*!
+     * @brief Has Performance governance? (and is it worth the use)
+     */
+    bool HasPerformanceGovernance() final { return false; }
+
+    /*!
+     * @brief Has physical volume buttons?
+     */
+    bool HasMappableVolumeButtons() final { return false; }
+
+    /*!
+     * @brief Has physical brightness buttons?
+     */
+    bool HasMappableBrightnessButtons() final { return false; }
+
+    /*!
+     * @brief Has physical brightness buttons?
+     */
+    bool HasBrightnessSupport() final { return false; }
+
+    /*!
+     * @brief Has hardware suspend/resume?
+     */
+    bool HasSuspendResume() final { return false; }
+
+    /*!
+     * @brief Set lowest brightness possible, including black screen
+     */
+    void SetLowestBrightness() final {}
+
+    /*!
+     * @brief Set brightness
+     * @param brightness brightness step from 0 to 8 included
+     */
+    void SetBrightness(int brightness) final { (void)brightness; }
+
+    /*!
+     * @brief Set new Performance governance
+     * @param governance cpu governance
+     */
+    void SetPerformanceGovernance(PerformanceGovernance governance) final { (void)governance; }
+
+    /*!
+     * @brief Process special input if any
+     * @param inputEvent Input to process
+     * @return True if the input has been processed, false otherwise
+     */
+    bool ProcessSpecialInputs(InputCompactEvent& inputEvent, ISpecialGlobalAction* action) final { (void)inputEvent; (void)action; return false; }
+
+    /*!
+     * @brief Suspend!
+     */
+    void Suspend() final {}
+
+    /*!
+     * @brief Get battery charge in percent
+     * @return Battery charge (-1 = no battery)
+     */
+    int BatteryChargePercent() final { return -1; }
+
+    /*!
+     * @brief Check if the battery is charging
+     * @return True = charging, False = discharging or no battery
+     */
+    bool IsBatteryCharging() final { return false; }
+
+    /*!
+     * @brief The reboot or shutdown is managed by MainRunner, but the board can have some features to manage
+     * @return True if a side effect has been triggered
+     */
+    bool OnRebootOrShutdown() { return false; }
+
+    void HeadphonePlugged() final {};
+    void HeadphoneUnplugged() final {};
+
+    /*!
+     * @brief Set the Performance governor for EmulationStation
+     */
+    void SetFrontendPerformanceGovernor() final {};
+
+    /*!
+     * @bried action to execute after resuming to correct glitches
+     */
+    void PostResumeActions() final {};
+
+    /*!
+    * @brief Has vulkan support
+    */
+    bool HasVulkanSupport() final
+    { return true; }
+};

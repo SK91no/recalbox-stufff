@@ -1,0 +1,49 @@
+From 1997bc7bc83e8370845d6607ca1494e23f3e9a1a Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Sat, 22 Jun 2024 22:21:44 +0200
+Subject: [PATCH 14/27] crt: add support for several resolution for switchres
+
+---
+ gfx/video_crt_switch.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
+
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 0138b5e934..6f9ca93396 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -194,15 +194,27 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT] CRT mode: %d - arcade_15.\n", crt_mode);
+             break;
+          case 2:
+-            sr_set_monitor("arcade_31");
+-            RARCH_LOG("[CRT] CRT mode: %d - arcade_31.\n", crt_mode);
++            sr_set_monitor("arcade_15_25");
++            RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_25 \n", crt_mode);
+             break;
+          case 3:
+-            sr_set_monitor("pc_31_120");
+-            RARCH_LOG("[CRT] CRT mode: %d - pc_31_120.\n", crt_mode);
++            sr_set_monitor("arcade_31");
++            RARCH_LOG("[CRT] CRT mode: %d - arcade_31.\n", crt_mode);
+             break;
+          case 4:
+-            RARCH_LOG("[CRT] CRT mode: %d - Selected from ini.\n", crt_mode);
++            sr_set_monitor("arcade_15_31");
++            RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_31 \n", crt_mode);
++            break;
++         case 5:
++            sr_set_monitor("arcade_15_25_31");
++            RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_25_31 \n", crt_mode);
++          break;
++         case 6:
++            sr_set_monitor("pc_31_120");
++            RARCH_LOG("[CRT]: CRT Mode: %d - pc_31_120 \n", crt_mode);
++          break;
++         case 7:
++            RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+             break;
+-- 
+2.51.0
+

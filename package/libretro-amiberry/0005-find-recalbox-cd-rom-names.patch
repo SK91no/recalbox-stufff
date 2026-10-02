@@ -1,0 +1,33 @@
+Recalbox names the Amiga CD BIOS files kick40060.CD32 / kick40060.CD32.ext and
+kick34005.A500 / kick34005.CDTV, and the A600 kickstart kick40063.A600 (see
+share_init/.emulationstation/es_bios.xml). None of these were looked up.
+The extended ROM names were missing, so -K was never passed and a CD32 booting
+on a 512k kickstart never saw a CD. On CDTV, kick34005.CDTV is the extended
+ROM, not the kickstart, so kick34005.A500 must be tried first.
+
+diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
+--- a/libretro/libretro.cpp
++++ b/libretro/libretro.cpp
+@@ -1624,9 +1624,9 @@ static bool find_kickstart_in_system_dir(const char* model, char* out, size_t ou
+ 	const char* candidates_a500p[] = { "kick20.rom", "kick204.rom", "kick.rom" };
+-	const char* candidates_a600[] = { "kick205.rom", "kick20.rom", "kick31.rom", "kick.rom" };
++	const char* candidates_a600[] = { "kick205.rom", "kick40063.A600", "kick20.rom", "kick31.rom", "kick.rom" };
+ 	const char* candidates_a1200[] = { "kick31.rom", "kick40068.A1200", "kick.rom" };
+ 	const char* candidates_a4000[] = { "kick31.rom", "kick40068.A4000", "kick.rom" };
+ 	const char* candidates_cd32[] = { "cd32.rom", "amiga-os-310-cd32.rom", "kick40060.CD32", "kick31.rom", "kick.rom" };
+-	const char* candidates_cdtv[] = { "cdtv.rom", "kick34005.CDTV", "kick13.rom", "kick.rom" };
++	const char* candidates_cdtv[] = { "cdtv.rom", "kick34005.A500", "kick34005.CDTV", "kick13.rom", "kick.rom" };
+ 
+ 	const char** candidates = candidates_generic;
+ 	size_t count = sizeof(candidates_generic) / sizeof(candidates_generic[0]);
+@@ -1684,9 +1684,9 @@ static bool find_ext_rom_in_system_dir(const char* model, char* out, size_t out_
+ 
+ 	// CD32 extended ROM candidates
+-	const char* candidates_cd32[] = { "cd32ext.rom", "amiga-ext-310-cd32.rom", "CD32 Extended.ROM" };
++	const char* candidates_cd32[] = { "cd32ext.rom", "amiga-ext-310-cd32.rom", "CD32 Extended.ROM", "kick40060.CD32.ext" };
+ 	// CDTV extended ROM candidates
+-	const char* candidates_cdtv[] = { "cdtvext.rom", "CDTV Extended.ROM" };
++	const char* candidates_cdtv[] = { "cdtvext.rom", "CDTV Extended.ROM", "kick34005.CDTV" };
+ 
+ 	const char** candidates = nullptr;
+ 	size_t count = 0;

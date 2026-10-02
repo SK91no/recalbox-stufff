@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gameList>
+  <provider>
+    <System>ZX Spectrum</System>
+    <software>Skraper</software>
+    <database>ScreenScraper.fr</database>
+    <web>http://www.screenscraper.fr</web>
+  </provider>
+  <game id="162924" source="ScreenScraper.fr">
+    <path>./Cray-5 (Retroworks).tzx</path>
+    <name>Cray 5</name>
+    <desc>The game starts when you first enter the main control module of Cray-5. 
+ 
+Once there, you should disconnect the host, and go to the escape pod to return to the main hall. 
+ 
+For safety reasons, the Cray-5 control module is separated from the rest of the ship, cannot be accessed from it, and, moreover, is segmented into 9 watertight levels. 
+ 
+To disconnect the host computer, you should turn off each and every one of the switches scattered in nine zones. In each area you will find a teleporter that may carry you to a variable number of other areas, depending on how many switches you have turned off. 
+</desc>
+    <rating>0.6</rating>
+    <releasedate>20110101T000000</releasedate>
+    <developer>RetroWorks</developer>
+    <publisher>RetroWorks</publisher>
+    <genre>Action-Action / Adventure</genre>
+    <players>1</players>
+    <hash>5718676D</hash>
+    <image>./media/images/Cray-5 (Retroworks).png</image>
+    <genreid>256</genreid>
+  </game>
+  <game id="162604" source="ScreenScraper.fr">
+    <path>./Genesis (Retroworks).tzx</path>
+    <name>Genesis - Dawn of a New Day</name>
+    <desc>Your mission is quite simple: kill as many enemies as possible, while trying to stay alive. First, you must escape from Earth, to visit five planets and get a part of the Genesis on each one. Once you have successfully assembled the spaceship, you will use it to get back to Earth and free us from the Dork menace. 
+ 
+Your ship has two different shoot types: normal shoot, which will be used to fire the weapons equipped by your ship at any time, and a megablast, which will kill every enemy around you. To activate the megablast, keep the fire button pressed, until the power bar located on the lower-right side of the screen is filled up. The blast will be launched when you release the fire button. You have an unlimited number of normal shoots and a very limited amount of available megablasts, so use them wisely.</desc>
+    <rating>0.75</rating>
+    <releasedate>20100101T000000</releasedate>
+    <developer>RetroWorks</developer>
+    <publisher>RetroWorks</publisher>
+    <genre>Shoot'em Up-Shoot'em up / Horizontal</genre>
+    <hash>982C67A4</hash>
+    <image>./media/images/Genesis (Retroworks).png</image>
+    <genreid>260</genreid>
+  </game>
+</gameList>

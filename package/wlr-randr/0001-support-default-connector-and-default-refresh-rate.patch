@@ -1,0 +1,31 @@
+diff --git a/main.c b/main.c
+index 40795bf..3845956 100644
+--- a/main.c
++++ b/main.c
+@@ -481,6 +481,17 @@ static bool parse_output_arg(struct randr_head *head,
+ 				break;
+ 			}
+ 		}
++	    if (!found) {
++	      // 1Hz diff mode will do it
++	      wl_list_for_each(mode, &head->modes, link) {
++	        if (mode->width == width && mode->height == height &&
++              (refresh == 0 || abs(mode->refresh - refresh) < 1000)) {
++	          fprintf(stderr, "found close mode = %dx%d@%fHz\n",mode->width, mode->height, mode->refresh/1000.0);
++	          found = true;
++	          break;
++              }
++	      }
++	    }
+ 
+ 		if (!found) {
+ 			fprintf(stderr, "unknown mode: %s\n", value);
+@@ -631,7 +642,7 @@ int main(int argc, char *argv[]) {
+ 		if (strcmp(name, "output") == 0) {
+ 			bool found = false;
+ 			wl_list_for_each(current_head, &state.heads, link) {
+-				if (strcmp(current_head->name, value) == 0) {
++				if (strcmp(current_head->name, value) == 0 || (strcmp("", value) == 0 && current_head->enabled)) {
+ 					found = true;
+ 					break;
+ 				}

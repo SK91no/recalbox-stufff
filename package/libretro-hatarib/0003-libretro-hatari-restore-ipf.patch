@@ -1,0 +1,25 @@
+--- a/makefile	2025-01-12 20:51:22.769385186 +0100
++++ b/makefile	2025-01-12 20:51:41.739358106 +0100
+@@ -45,9 +45,7 @@
+ 	-DSDL2_DIR=$(SDL2_DIR)/lib/cmake/SDL2 \
+ 	-DCMAKE_DISABLE_FIND_PACKAGE_Readline=1 \
+ 	-DCMAKE_DISABLE_FIND_PACKAGE_X11=1 \
+-	-DCMAKE_DISABLE_FIND_PACKAGE_PNG=1 \
+ 	-DCMAKE_DISABLE_FIND_PACKAGE_PortMidi=1 \
+-	-DCMAKE_DISABLE_FIND_PACKAGE_CapsImage=1 \
+ 	-DCMAKE_SYSTEM_NAME=Linux \
+ 	-DENABLE_SMALL_MEM=0
+ CMAKEBUILDFLAGS += $(MULTITHREAD)
+--- a/hatari/src/floppy_ipf.c	2025-01-12 21:27:49.490202434 +0100
++++ b/hatari/src/floppy_ipf.c	2025-01-12 21:28:09.481162428 +0100
+@@ -27,6 +27,10 @@
+ 
+ #include <string.h>
+ 
++#ifndef HAVE_DLOPEN
++#define HAVE_DLOPEN 1
++#endif
++
+ #ifndef __LIBRETRO__
+ #ifdef HAVE_CAPSIMAGE
+ #ifndef __cdecl

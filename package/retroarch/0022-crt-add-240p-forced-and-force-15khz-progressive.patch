@@ -1,0 +1,46 @@
+From d25cf7f8bcbaa9e80f95058617f623614d98b435 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Tue, 23 Sep 2025 08:34:26 +0200
+Subject: [PATCH 22/27] crt: add 240p forced and force 15khz progressive
+
+---
+ deps/switchres/monitor.cpp | 7 ++++++-
+ gfx/video_crt_switch.c     | 4 ++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index ff223fb4d0..0305f9d279 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -155,7 +155,12 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 	}
+   else if (!strcmp(type, "forced_240p"))
+   {
+-    monitor_fill_range(&range[0], "15625-15750, 59.9-60.10, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 240, 0, 0");
++    monitor_fill_range(&range[0], "15625-15750, 59.9-60.10, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 240, 240, 0, 0");
++    return 1;
++  }
++  else if (!strcmp(type, "forced_15_progressive"))
++  {
++    monitor_fill_range(&range[0], "15625-15750, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 0, 0");
+     return 1;
+   }
+ 	// Arcade 15.7-16.5 kHz - extended resolution
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 99a9d856d0..ae1b9c747d 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -246,6 +246,10 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT]: CRT Mode: %d - forced_384p\n", crt_mode);
+             break;
+          case 15:
++            sr_set_monitor("forced_15_progressive");
++            RARCH_LOG("[CRT]: CRT Mode: %d - forced_15_progressive\n", crt_mode);
++            break;
++         case 16:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

@@ -1,0 +1,27 @@
+--- a/taito_pt.c	2025-05-10 00:02:52.000000000 +0200
++++ b/taito_pt.c	2025-06-06 10:46:59.207604987 +0200
+@@ -47,10 +47,10 @@
+     input_report_key(input, BTN_SIDE, data[0] & 0x02);
+     input_report_key(input, BTN_EXTRA, data[0] & 0x04);
+     // Report trackball
+-    input_report_rel(input, REL_HWHEEL, (signed char)data[2] * 16);
+-    input_report_rel(input, REL_WHEEL, (signed char)data[3] * 16);
++    input_report_rel(input, REL_X, (signed char)data[2] * 4);
++    input_report_rel(input, REL_Y, (signed char)data[3] * 4);
+     // Report paddle
+-    input_report_rel(input, REL_HWHEEL, -(signed char)data[4] * 8);
++    input_report_rel(input, REL_X, -(signed char)data[4] * 1);
+ 
+     input_sync(input);
+ 
+@@ -107,8 +107,8 @@
+     input_set_capability(input, EV_KEY, BTN_MIDDLE);
+     input_set_capability(input, EV_KEY, BTN_SIDE);
+     input_set_capability(input, EV_KEY, BTN_EXTRA);
+-    input_set_capability(input, EV_REL, REL_WHEEL);
+-    input_set_capability(input, EV_REL, REL_HWHEEL);
++    input_set_capability(input, EV_REL, REL_X);
++    input_set_capability(input, EV_REL, REL_Y);
+ 
+     taito->data = usb_alloc_coherent(udev, 8, GFP_ATOMIC, &taito->data_dma);
+     if (!taito->data)

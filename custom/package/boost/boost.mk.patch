@@ -1,0 +1,33 @@
+From 8d4a9afdd530c4957ce03b156bc6a0bf1b4ca507 Mon Sep 17 00:00:00 2001
+From: Michael Nosthoff <buildroot@heine.tech>
+Date: Mon, 11 Nov 2024 12:05:39 +0100
+Subject: [PATCH] package/boost: update download url
+
+boost moved its package hosting from jfrog to their own url
+provided by the C++ Alliance. According to [0] the old urls
+might cease to exist after December 2024.
+
+[0] https://lists.boost.org/Archives/boost/2024/05/256914.php
+
+Signed-off-by: Michael Nosthoff <buildroot@heine.tech>
+Signed-off-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+---
+ package/boost/boost.mk | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/package/boost/boost.mk b/package/boost/boost.mk
+index 61284b967a..c0d17f7670 100644
+--- a/package/boost/boost.mk
++++ b/package/boost/boost.mk
+@@ -6,7 +6,7 @@
+ 
+ BOOST_VERSION = 1.83.0
+ BOOST_SOURCE = boost_$(subst .,_,$(BOOST_VERSION)).tar.bz2
+-BOOST_SITE = https://boostorg.jfrog.io/artifactory/main/release/$(BOOST_VERSION)/source
++BOOST_SITE = https://archives.boost.io/release/$(BOOST_VERSION)/source
+ BOOST_INSTALL_STAGING = YES
+ BOOST_LICENSE = BSL-1.0
+ BOOST_LICENSE_FILES = LICENSE_1_0.txt
+-- 
+GitLab
+

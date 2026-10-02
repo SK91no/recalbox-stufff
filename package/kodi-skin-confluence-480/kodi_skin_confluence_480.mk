@@ -1,0 +1,25 @@
+################################################################################
+#
+# kodi confluence 480 skin
+#
+################################################################################
+
+KODI_SKIN_CONFLUENCE_480_VERSION = 4.7.16
+KODI_SKIN_CONFLUENCE_480_PLUGINNAME = skin.confluence.480
+KODI_SKIN_CONFLUENCE_480_SOURCE = $(KODI_SKIN_CONFLUENCE_480_PLUGINNAME)_v$(KODI_SKIN_CONFLUENCE_480_VERSION).zip
+KODI_SKIN_CONFLUENCE_480_SITE = https://gitlab.com/api/v4/projects/64776026/packages/generic/$(KODI_SKIN_CONFLUENCE_480_PLUGINNAME)/$(KODI_SKIN_CONFLUENCE_480_VERSION)
+KODI_SKIN_CONFLUENCE_480_LICENSE = GPL-2.0
+KODI_SKIN_CONFLUENCE_480_LICENSE_FILES = $(KODI_SKIN_CONFLUENCE_480_PLUGINNAME)/LICENSE.txt
+
+KODI_SKIN_CONFLUENCE_480_TARGET_DIR=$(TARGET_DIR)/usr/share/kodi/addons
+
+define KODI_SKIN_CONFLUENCE_480_EXTRACT_CMDS
+	@unzip -q -o $(DL_DIR)/kodi-skin-confluence-480/$(KODI_SKIN_CONFLUENCE_480_SOURCE) -d $(@D)
+endef
+
+define KODI_SKIN_CONFLUENCE_480_INSTALL_TARGET_CMDS
+	@mkdir -p $(KODI_SKIN_CONFLUENCE_480_TARGET_DIR)
+	@cp -r $(@D)/$(KODI_SKIN_CONFLUENCE_480_PLUGINNAME) $(KODI_SKIN_CONFLUENCE_480_TARGET_DIR)
+endef
+
+$(eval $(generic-package))

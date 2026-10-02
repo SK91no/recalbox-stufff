@@ -1,0 +1,8 @@
+config BR2_PACKAGE_RECALBOX_POSTCONF
+	bool "recalbox-postconf"
+	select BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_LIBYAML
+	select BR2_PACKAGE_PYTHON_PYYAML
+	select BR2_PACKAGE_RECALBOX_CONFIGGEN
+	help
+	  Install the recalbox postconfig script

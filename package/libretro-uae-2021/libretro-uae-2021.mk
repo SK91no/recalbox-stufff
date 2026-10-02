@@ -1,0 +1,55 @@
+################################################################################
+#
+# UAE 2021
+#
+################################################################################
+
+# Commit of 2026/02/27
+LIBRETRO_UAE_2021_VERSION = 2826e67ac623974f3b8ab15951f2f8407d81fc17
+LIBRETRO_UAE_2021_SITE = $(call gitlab,recalbox,packages/libretro/libretro-uae,$(LIBRETRO_UAE_2021_VERSION))
+LIBRETRO_UAE_2021_LICENSE = GPL-2.0
+LIBRETRO_UAE_2021_LICENSE_FILES = COPYING
+
+ifeq ($(BR2_PACKAGE_RPI_USERLAND),y)
+LIBRETRO_UAE_2021_PLATFORM=rpi
+else
+LIBRETRO_UAE_2021_PLATFORM=unix
+ifeq ($(BR2_ARM_CPU_HAS_ARM),y)
+LIBRETRO_UAE_2021_PLATFLAGS=-DARM -marm
+endif
+ifeq ($(BR2_aarch64),y)
+LIBRETRO_UAE_2021_PLATFLAGS=-DAARCH64
+endif
+endif
+
+ifeq ($(BR2_x86_64),y)
+# x64 does not support LTO
+LIBRETRO_UAE_2021_COMPILER_COMMONS_CFLAGS = $(COMPILER_COMMONS_CFLAGS_NOLTO)
+LIBRETRO_UAE_2021_COMPILER_COMMONS_CXXFLAGS = $(COMPILER_COMMONS_CXXFLAGS_NOLTO)
+LIBRETRO_UAE_2021_COMPILER_COMMONS_LDFLAGS = $(COMPILER_COMMONS_LDFLAGS_NOLTO)
+else
+LIBRETRO_UAE_2021_COMPILER_COMMONS_CFLAGS = $(COMPILER_COMMONS_CFLAGS_SO)
+LIBRETRO_UAE_2021_COMPILER_COMMONS_CXXFLAGS = $(COMPILER_COMMONS_CXXFLAGS_SO)
+LIBRETRO_UAE_2021_COMPILER_COMMONS_LDFLAGS = $(COMPILER_COMMONS_LDFLAGS_SO)
+endif
+
+define LIBRETRO_UAE_2021_BUILD_CMDS
+	$(SED) "s|-O2|-O3|g" $(@D)/Makefile
+	$(SED) "s|^PLATFLAGS :=|PLATFLAGS := $(LIBRETRO_UAE_2021__PLATFLAGS)|g" $(@D)/Makefile
+	CFLAGS="$(TARGET_CFLAGS) $(LIBRETRO_UAE_2021_COMPILER_COMMONS_CFLAGS)" \
+		CXXFLAGS="$(TARGET_CXXFLAGS) $(LIBRETRO_UAE_2021_COMPILER_COMMONS_CXXFLAGS)" \
+		LDFLAGS="$(TARGET_LDFLAGS) $(LIBRETRO_UAE_2021_COMPILER_COMMONS_LDFLAGS)" \
+		$(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_UAE_2021_PLATFORM)"
+endef
+
+define LIBRETRO_UAE_2021_INSTALL_TARGET_CMDS
+	$(INSTALL) -D $(@D)/puae2021_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/puae2021_libretro.so
+	mkdir -p $(TARGET_DIR)/recalbox/share_upgrade/bios/amiga/bios
+	mkdir -p $(TARGET_DIR)/recalbox/share_upgrade/bios/uae_data
+	# Copy RTB files
+	mkdir -p $(TARGET_DIR)/recalbox/share_upgrade/bios && \
+		cp $(@D)/whdload/WHDLoad_files/Devs/Kickstarts/*.RTB $(TARGET_DIR)/recalbox/share_upgrade/bios/amiga/bios
+endef
+
+$(eval $(generic-package))

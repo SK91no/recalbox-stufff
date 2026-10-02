@@ -1,0 +1,9 @@
+//
+// Created by bkg2k on 07/02/25.
+//
+#pragma once
+
+class MenuPersistantData
+{
+
+};

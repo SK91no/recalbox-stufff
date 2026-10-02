@@ -1,0 +1,44 @@
+#!/bin/bash
+#
+# Starts volumed.
+#
+systemsetting="recalbox_settings"
+[ -f /recalbox/share/system/recalbox.conf ] && RECALBOX_CONF=/recalbox/share/system/recalbox.conf || RECALBOX_CONF=/boot/recalbox-backup.conf
+
+start() {
+	printf "Starting volumed: "
+  HOTKEY="$($systemsetting -command load -key system.volumed.hotkey -source "$RECALBOX_CONF")"
+  ENABLE_ABS_VOLUME="$($systemsetting -command load -key system.volumed.enable_abs_volume -source "$RECALBOX_CONF")"
+  VOLUMED_OPTIONS=()
+  [ -n "$HOTKEY" ] && VOLUMED_OPTIONS+=("--hotkey-code" "$HOTKEY")
+  [ -n "$ENABLE_ABS_VOLUME" ] && VOLUMED_OPTIONS+=(--enable-abs-volume)
+	start-stop-daemon -S -x /usr/bin/volumed -- "${VOLUMED_OPTIONS[@]}"
+	echo "OK"
+}
+stop() {
+	printf "Stopping volumed: "
+	killall volumed
+	echo "OK"
+}
+restart() {
+	stop
+	start
+}
+
+case "$1" in
+  start)
+	start
+	;;
+  stop)
+	stop
+	;;
+  restart|reload)
+	restart
+	;;
+  *)
+	echo "Usage: $0 {start|stop|restart}"
+	exit 1
+esac
+
+exit $?
+

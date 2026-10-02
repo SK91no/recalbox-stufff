@@ -1,0 +1,25 @@
+From 2bf5ab07731b3d4160196e6b8d9ab9e25bea2ef9 Mon Sep 17 00:00:00 2001
+From: Rudi Heitbaum <rudi@heitbaum.com>
+Date: Thu, 2 May 2024 08:02:42 +0000
+Subject: [PATCH] add missing c++ headers
+
+Add missing headers which are no longer indirectly included by
+other headers, fixes build with gcc-14
+
+Signed-off-by: Rudi Heitbaum <rudi@heitbaum.com>
+---
+ xbmc/platform/posix/filesystem/SMBWSDiscoveryListener.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/xbmc/platform/posix/filesystem/SMBWSDiscoveryListener.cpp b/xbmc/platform/posix/filesystem/SMBWSDiscoveryListener.cpp
+index d42c19bb2cd4a..142974591b1a7 100644
+--- a/xbmc/platform/posix/filesystem/SMBWSDiscoveryListener.cpp
++++ b/xbmc/platform/posix/filesystem/SMBWSDiscoveryListener.cpp
+@@ -17,6 +17,7 @@
+ 
+ #include "platform/posix/filesystem/SMBWSDiscovery.h"
+ 
++#include <algorithm>
+ #include <array>
+ #include <chrono>
+ #include <mutex>

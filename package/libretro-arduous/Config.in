@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_ARDUOUS
+	bool "libretro-arduous"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  Arduboy is a portable game based on the Arduino hardware.
+
+	  https://github.com/libretro/arduous
+
+comment "LIBRETRO_ARDUOUS needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

@@ -1,0 +1,271 @@
+From 5b629d47b6aa62b05a3972b736904a4112fd3c32 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 15 Apr 2025 14:34:30 +0200
+Subject: [PATCH 3/3] Add bilinear filtering
+
+---
+ cli/src/main.cpp                              |  2 ++
+ .../solarus/graphics/glrenderer/GlRenderer.h  |  5 ++--
+ .../solarus/graphics/glrenderer/GlTexture.h   |  6 ++---
+ .../graphics/sdlrenderer/SDLRenderer.h        |  2 +-
+ src/graphics/Video.cpp                        | 17 +++++++-------
+ src/graphics/glrenderer/GlRenderer.cpp        | 15 ++++++------
+ src/graphics/glrenderer/GlTexture.cpp         | 23 +++++++++++++------
+ src/graphics/sdlrenderer/SDLRenderer.cpp      |  4 +++-
+ 8 files changed, 45 insertions(+), 29 deletions(-)
+
+diff --git a/cli/src/main.cpp b/cli/src/main.cpp
+index b4eb53f28..ffe1f6f4e 100644
+--- a/cli/src/main.cpp
++++ b/cli/src/main.cpp
+@@ -82,6 +82,8 @@ void print_help(const Arguments& args) {
+     << "  -s=<code>                     execute some Lua code before the main.lua script of the quest."
+     << std::endl
+     << "  -force-software-rendering     force the engine to use SDL software rendering. Disabling opengl."
++    << std::endl
++    << "  -bilinear-filtering           force bilinear filtering for GL textures. Only available in GL renderer."
+     << std::endl;
+ }
+ 
+diff --git a/include/solarus/graphics/glrenderer/GlRenderer.h b/include/solarus/graphics/glrenderer/GlRenderer.h
+index 6e50fda74..acd54446c 100644
+--- a/include/solarus/graphics/glrenderer/GlRenderer.h
++++ b/include/solarus/graphics/glrenderer/GlRenderer.h
+@@ -54,8 +54,8 @@ public:
+     glm::ivec2 viewport;
+   };
+ 
+-  GlRenderer(SDL_GLContext ctx);
+-  static RendererPtr create(SDL_Window* window, bool force_software);
++  GlRenderer(SDL_GLContext ctx, bool smoothtexture);
++  static RendererPtr create(SDL_Window* window, bool force_software, bool smoothtexture);
+   SurfaceImplPtr create_texture(int width, int height, int margin) override;
+   SurfaceImplPtr create_texture(SDL_Surface_UniquePtr &&surface) override;
+   SurfaceImplPtr create_window_surface(SDL_Window* w, int width, int height) override;
+@@ -141,5 +141,6 @@ private:
+   Rectangle window_viewport;
+ 
+   bool is_es_context;
++  bool bilinear_filtering;
+ };
+ }
+diff --git a/include/solarus/graphics/glrenderer/GlTexture.h b/include/solarus/graphics/glrenderer/GlTexture.h
+index 47e26a8da..086bbbace 100644
+--- a/include/solarus/graphics/glrenderer/GlTexture.h
++++ b/include/solarus/graphics/glrenderer/GlTexture.h
+@@ -33,8 +33,8 @@ class GlTexture : public SurfaceImpl
+ {
+   friend class GlRenderer;
+ public:
+-  GlTexture(int width, int height, bool screen_tex = false, int margin = 0);
+-  GlTexture(SDL_Surface_UniquePtr surface);
++  GlTexture(int width, int height, bool smooth_texture, bool screen_tex = false, int margin = 0);
++  GlTexture(SDL_Surface_UniquePtr surface, bool smooth_texture);
+ 
+   GLuint get_texture() const;
+   SDL_Surface* get_surface() const override;
+@@ -51,7 +51,7 @@ public:
+ private:
+   bool target = false;
+   void release() const;
+-  void set_texture_params();
++  void set_texture_params(bool smooth_texture);
+   void create_surface() const;
+   glm::mat3 uv_transform;
+   mutable bool surface_dirty = true;
+diff --git a/include/solarus/graphics/sdlrenderer/SDLRenderer.h b/include/solarus/graphics/sdlrenderer/SDLRenderer.h
+index 9c45a87c3..8a0a61d7c 100644
+--- a/include/solarus/graphics/sdlrenderer/SDLRenderer.h
++++ b/include/solarus/graphics/sdlrenderer/SDLRenderer.h
+@@ -44,7 +44,7 @@ class SDLRenderer : public Renderer {
+   };
+ public:
+   SDLRenderer(SDL_Renderer* window, bool shaders);
+-  static RendererPtr create(SDL_Window* window, bool force_software);
++  static RendererPtr create(SDL_Window* window, bool force_software, bool b);
+   SurfaceImplPtr create_texture(int width, int height, int margin=0) override;
+   SurfaceImplPtr create_texture(SDL_Surface_UniquePtr &&surface) override;
+   SurfaceImplPtr create_window_surface(SDL_Window* w, int width, int height) override;
+diff --git a/src/graphics/Video.cpp b/src/graphics/Video.cpp
+index 6ffd08f92..2bac70e5d 100644
+--- a/src/graphics/Video.cpp
++++ b/src/graphics/Video.cpp
+@@ -95,22 +95,22 @@ VideoContext context;
+ struct chain_end{};
+ 
+ template<typename T = chain_end>
+-RendererPtr renderer_chain(SDL_Window*, bool) {
++RendererPtr renderer_chain(SDL_Window*, bool, bool) {
+   return nullptr;
+ }
+ 
+ template<typename T, typename ...Rest>
+ typename std::enable_if<!std::is_same<T,chain_end>::value,RendererPtr>::type
+-renderer_chain(SDL_Window* w, bool force_software) {
+-  auto p = T::create(w, force_software);
++renderer_chain(SDL_Window* w, bool force_software, bool smooth_texture) {
++  auto p = T::create(w, force_software, smooth_texture);
+   if(p) return p;
+-  return renderer_chain<Rest...>(w, force_software);
++  return renderer_chain<Rest...>(w, force_software, smooth_texture);
+ }
+ 
+ 
+ template<typename ...T>
+-RendererPtr create_chain(SDL_Window* w, bool force_software) {
+-  return renderer_chain<T...,chain_end>(w, force_software);
++RendererPtr create_chain(SDL_Window* w, bool force_software, bool smoothtexture) {
++  return renderer_chain<T...,chain_end>(w, force_software, smoothtexture);
+ }
+ 
+ 
+@@ -123,6 +123,7 @@ void create_window(const Arguments& args) {
+   SOLARUS_REQUIRE(context.main_window == nullptr, "Window already exists");
+ 
+   bool force_software = args.has_argument("-force-software-rendering");
++  bool smooth_texture = args.has_argument("-bilinear-filtering");
+ 
+   if(force_software) {
+     Logger::info("Forcing software rendering : shaders will be unavailable");
+@@ -144,7 +145,7 @@ void create_window(const Arguments& args) {
+   SOLARUS_REQUIRE(context.main_window != nullptr,
+       std::string("Cannot create the window: ") + SDL_GetError());
+ 
+-  context.renderer = create_chain<GlRenderer,SDLRenderer>(context.main_window, force_software);
++  context.renderer = create_chain<GlRenderer,SDLRenderer>(context.main_window, force_software, smooth_texture);
+ 
+   SOLARUS_REQUIRE(static_cast<bool>(context.renderer),
+       std::string("Cannot create the renderer: ") + SDL_GetError());
+@@ -249,7 +250,7 @@ void initialize(const Arguments& args) {
+   context.rgba_format = SDL_AllocFormat(SDL_PIXELFORMAT_ABGR8888);
+ 
+   if (context.disable_window) {
+-    context.renderer = SDLRenderer::create(nullptr, true); //Create window-less sdl renderer
++    context.renderer = SDLRenderer::create(nullptr, true, false); //Create window-less sdl renderer
+   }else {
+     create_window(args);
+   }
+diff --git a/src/graphics/glrenderer/GlRenderer.cpp b/src/graphics/glrenderer/GlRenderer.cpp
+index 2930d0e7c..ea6b99a7e 100644
+--- a/src/graphics/glrenderer/GlRenderer.cpp
++++ b/src/graphics/glrenderer/GlRenderer.cpp
+@@ -104,9 +104,10 @@ MessageCallback( GLenum source,
+ }*/
+ 
+ 
+-GlRenderer::GlRenderer(SDL_GLContext sdl_ctx) :
++GlRenderer::GlRenderer(SDL_GLContext sdl_ctx, bool smoothtexture) :
+   sdl_gl_context(sdl_ctx),
+-  screen_fbo{0,glm::mat4(1.f),{1,1}}
++  screen_fbo{0,glm::mat4(1.f),{1,1}},
++  bilinear_filtering(smoothtexture)
+ {
+ 
+   SOLARUS_REQUIRE(!instance,"Creating two GL renderer");
+@@ -127,7 +128,7 @@ GlRenderer::GlRenderer(SDL_GLContext sdl_ctx) :
+       "Failed to compile glRenderer main shader");
+ }
+ 
+-RendererPtr GlRenderer::create(SDL_Window* window, bool force_software) {
++RendererPtr GlRenderer::create(SDL_Window* window, bool force_software, bool smoothtexture) {
+ 
+   if(force_software) {
+     return nullptr; // this renderer does not support software rendering
+@@ -190,21 +191,21 @@ RendererPtr GlRenderer::create(SDL_Window* window, bool force_software) {
+ 
+   //Context populated create Renderer
+   std::cerr << SDL_GetError();
+-  return RendererPtr(new GlRenderer(sdl_ctx));
++  return RendererPtr(new GlRenderer(sdl_ctx, smoothtexture));
+ }
+ 
+ SurfaceImplPtr GlRenderer::create_texture(int width, int height, int margin) {
+-  auto simpl = new GlTexture(width, height, false, margin);
++  auto simpl = new GlTexture(width, height, bilinear_filtering, false, margin);
+   clear(*simpl);
+   return SurfaceImplPtr(simpl);
+ }
+ 
+ SurfaceImplPtr GlRenderer::create_texture(SDL_Surface_UniquePtr&& surface) {
+-  return SurfaceImplPtr(new GlTexture(std::move(surface)));
++  return SurfaceImplPtr(new GlTexture(std::move(surface), bilinear_filtering));
+ }
+ 
+ SurfaceImplPtr GlRenderer::create_window_surface(SDL_Window* /*w*/, int width, int height) {
+-  return SurfaceImplPtr(new GlTexture(width,height,true));
++  return SurfaceImplPtr(new GlTexture(width,height,bilinear_filtering,true));
+ }
+ 
+ ShaderPtr GlRenderer::create_shader(const std::string& shader_id) {
+diff --git a/src/graphics/glrenderer/GlTexture.cpp b/src/graphics/glrenderer/GlTexture.cpp
+index 5baf6ba03..3293ff004 100644
+--- a/src/graphics/glrenderer/GlTexture.cpp
++++ b/src/graphics/glrenderer/GlTexture.cpp
+@@ -38,7 +38,7 @@ inline glm::mat3 uv_view(int width, int height, int margin=0) {
+   return result;
+ }
+ 
+-GlTexture::GlTexture(int width, int height, bool screen_tex, int margin)
++GlTexture::GlTexture(int width, int height, bool smooth_texture, bool screen_tex, int margin)
+   : SurfaceImpl({width, height}),
+     target(true),
+     uv_transform(uv_view(width, height, margin)),
+@@ -47,11 +47,11 @@ GlTexture::GlTexture(int width, int height, bool screen_tex, int margin)
+   glBindTexture(GL_TEXTURE_2D,tex_id);
+   glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width+margin*2,height+margin*2,0,GL_RGBA,GL_UNSIGNED_BYTE,nullptr);
+ 
+-  set_texture_params();
++  set_texture_params(smooth_texture);
+   GlRenderer::get().rebind_texture();
+ }
+ 
+-GlTexture::GlTexture(SDL_Surface_UniquePtr a_surface)
++GlTexture::GlTexture(SDL_Surface_UniquePtr a_surface, bool smooth_texture)
+   : SurfaceImpl({a_surface->w, a_surface->h}),
+     target(false),
+     uv_transform(uv_view(a_surface->w,a_surface->h)),
+@@ -62,13 +62,22 @@ GlTexture::GlTexture(SDL_Surface_UniquePtr a_surface)
+ 
+   glBindTexture(GL_TEXTURE_2D,tex_id);
+   glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,width,height,0,GL_RGBA,GL_UNSIGNED_BYTE,surface->pixels);
+-  set_texture_params();
++  set_texture_params(smooth_texture);
+   GlRenderer::get().rebind_texture();
+ }
+ 
+-void GlTexture::set_texture_params() {
+-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+-  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
++void GlTexture::set_texture_params(bool smooth_texture) {
++  if (smooth_texture)
++  {
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
++  }
++  else
++  {
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
++    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
++  }
++
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+   glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+ }
+diff --git a/src/graphics/sdlrenderer/SDLRenderer.cpp b/src/graphics/sdlrenderer/SDLRenderer.cpp
+index 730de4c23..457767e4d 100644
+--- a/src/graphics/sdlrenderer/SDLRenderer.cpp
++++ b/src/graphics/sdlrenderer/SDLRenderer.cpp
+@@ -54,7 +54,9 @@ SDLRenderer::SDLRenderer(SDL_Renderer* a_renderer, bool shaders) : renderer(a_re
+   instance = this; //Set this renderer as the unique instance
+ }
+ 
+-RendererPtr SDLRenderer::create(SDL_Window* window, bool force_software) {
++RendererPtr SDLRenderer::create(SDL_Window* window, bool force_software, bool smooth_texture) {
++  (void)smooth_texture;
++
+   if(!window) {
+     //No window... asked for a software renderer
+     return RendererPtr(new SDLRenderer(nullptr,false));
+-- 
+2.49.0
+

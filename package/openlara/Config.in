@@ -1,0 +1,14 @@
+config BR2_PACKAGE_OPENLARA
+	bool "openlara"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_SDL2_NET
+	select BR2_PACKAGE_SDL2_MIXER
+	select BR2_PACKAGE_SDL2_IMAGE
+	help
+	  Openlara is an open source port of Tomb Raider.
+
+	  https://github.com/XProger/OpenLara
+
+comment "Openlara needs a toolchain w/ C++, SDL2"
+	depends on !BR2_INSTALL_LIBSTDCPP

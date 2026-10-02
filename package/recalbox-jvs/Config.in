@@ -1,0 +1,9 @@
+config BR2_PACKAGE_RECALBOX_JVS
+	bool "Recalbox jvs dts"
+	depends on BR2_LINUX_KERNEL
+	select BR2_PACKAGE_PYTHON_ESPTOOL
+	help
+	  Support for Recalbox JVS for RPi 5
+
+comment "Recalbox JVS needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

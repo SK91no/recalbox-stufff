@@ -1,0 +1,116 @@
+From 4ee68b9ea150725dff3d61d7473accc92fe2959e Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Mon, 9 Sep 2024 15:20:45 +0200
+Subject: [PATCH 2/3] odroidgoa kmsdrm and rotate cursor
+
+---
+ src/video/kmsdrm/SDL_kmsdrmmouse.c | 39 ++++++++++++++++++++++++------
+ 1 file changed, 31 insertions(+), 8 deletions(-)
+
+diff --git a/src/video/kmsdrm/SDL_kmsdrmmouse.c b/src/video/kmsdrm/SDL_kmsdrmmouse.c
+index c58947663..cafcb429a 100644
+--- a/src/video/kmsdrm/SDL_kmsdrmmouse.c
++++ b/src/video/kmsdrm/SDL_kmsdrmmouse.c
+@@ -39,6 +39,7 @@ static void KMSDRM_MoveCursor(SDL_Cursor *cursor);
+ static void KMSDRM_FreeCursor(SDL_Cursor *cursor);
+ static void KMSDRM_WarpMouse(SDL_Window *window, int x, int y);
+ static int KMSDRM_WarpMouseGlobal(int x, int y);
++extern bool odroidgo_rotate;
+ 
+ /**************************************************************************************/
+ /* BEFORE CODING ANYTHING MOUSE/CURSOR RELATED, REMEMBER THIS.                        */
+@@ -150,6 +151,7 @@ static int KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
+     uint8_t *src_row;
+ 
+     int i;
++    int j;
+     int ret;
+ 
+     if (!curdata || !dispdata->cursor_bo) {
+@@ -170,8 +172,15 @@ static int KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
+ 
+     /* Copy from the cursor buffer to a buffer that we can dump to the GBM BO. */
+     for (i = 0; i < curdata->h; i++) {
+-        src_row = &((uint8_t *)curdata->buffer)[i * curdata->w * 4];
+-        SDL_memcpy(ready_buffer + (i * bo_stride), src_row, (size_t)4 * curdata->w);
++        if (odroidgo_rotate) {
++            for (j = 0; j < curdata->w; j++) {
++                src_row = &((uint8_t*)curdata->buffer)[i * curdata->w + j];
++                SDL_memcpy(ready_buffer + ((curdata->w - j + 1) * bo_stride) + i, src_row, 4);
++            }
++        }else {
++            src_row = &((uint8_t*)curdata->buffer)[i * curdata->w * 4];
++            SDL_memcpy(ready_buffer + (i * bo_stride), src_row, 4 * curdata->w);
++        }
+     }
+ 
+     /* Dump the cursor buffer to our GBM BO. */
+@@ -183,10 +192,18 @@ static int KMSDRM_DumpCursorToBO(SDL_VideoDisplay *display, SDL_Cursor *cursor)
+     /* Put the GBM BO buffer on screen using the DRM interface. */
+     bo_handle = KMSDRM_gbm_bo_get_handle(dispdata->cursor_bo).u32;
+     if (curdata->hot_x == 0 && curdata->hot_y == 0) {
+-        ret = KMSDRM_drmModeSetCursor(viddata->drm_fd, dispdata->crtc->crtc_id,
++        if (odroidgo_rotate)
++          ret = KMSDRM_drmModeSetCursor(viddata->drm_fd, dispdata->crtc->crtc_id,
++            bo_handle, dispdata->cursor_h, dispdata->cursor_w);
++        else
++          ret = KMSDRM_drmModeSetCursor(viddata->drm_fd, dispdata->crtc->crtc_id,
+                                       bo_handle, dispdata->cursor_w, dispdata->cursor_h);
+     } else {
+-        ret = KMSDRM_drmModeSetCursor2(viddata->drm_fd, dispdata->crtc->crtc_id,
++        if (odroidgo_rotate)
++          ret = KMSDRM_drmModeSetCursor2(viddata->drm_fd, dispdata->crtc->crtc_id,
++            bo_handle, dispdata->cursor_h, dispdata->cursor_w, curdata->hot_y, (curdata->w - curdata->hot_x + 1));
++        else
++          ret = KMSDRM_drmModeSetCursor2(viddata->drm_fd, dispdata->crtc->crtc_id,
+                                        bo_handle, dispdata->cursor_w, dispdata->cursor_h, curdata->hot_x, curdata->hot_y);
+     }
+ 
+@@ -367,9 +384,9 @@ static int KMSDRM_WarpMouseGlobal(int x, int y)
+     SDL_Mouse *mouse = SDL_GetMouse();
+ 
+     if (mouse && mouse->cur_cursor && mouse->focus) {
+-
+         SDL_Window *window = mouse->focus;
+         SDL_DisplayData *dispdata = (SDL_DisplayData *)SDL_GetDisplayForWindow(window)->driverdata;
++        KMSDRM_CursorData *curdata = mouse->cur_cursor->driverdata;
+ 
+         /* Update internal mouse position. */
+         SDL_SendMouseMotion(mouse->focus, mouse->mouseID, 0, x, y);
+@@ -378,7 +395,10 @@ static int KMSDRM_WarpMouseGlobal(int x, int y)
+         if (dispdata->cursor_bo) {
+             int ret = 0;
+ 
+-            ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, x, y);
++            if (odroidgo_rotate)
++                ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, y, dispdata->mode.vdisplay + curdata->w - x);
++            else
++                ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, x, y);
+ 
+             if (ret) {
+                 SDL_SetError("drmModeMoveCursor() failed.");
+@@ -429,16 +449,19 @@ static void KMSDRM_MoveCursor(SDL_Cursor *cursor)
+     /* We must NOT call SDL_SendMouseMotion() here or we will enter recursivity!
+        That's why we move the cursor graphic ONLY. */
+     if (mouse && mouse->cur_cursor && mouse->focus) {
+-
+         SDL_Window *window = mouse->focus;
+         SDL_DisplayData *dispdata = (SDL_DisplayData *)SDL_GetDisplayForWindow(window)->driverdata;
++        KMSDRM_CursorData *curdata = mouse->cur_cursor->driverdata;
+ 
+         if (!dispdata->cursor_bo) {
+             SDL_SetError("Cursor not initialized properly.");
+             return;
+         }
+ 
+-        ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, mouse->x, mouse->y);
++        if (odroidgo_rotate)
++            ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, mouse->y, dispdata->mode.vdisplay - curdata->w - mouse->x);
++        else
++            ret = KMSDRM_drmModeMoveCursor(dispdata->cursor_bo_drm_fd, dispdata->crtc->crtc_id, mouse->x, mouse->y);
+ 
+         if (ret) {
+             SDL_SetError("drmModeMoveCursor() failed.");
+-- 
+2.45.2
+

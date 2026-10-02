@@ -1,0 +1,44 @@
+--- a/backends/platform/libretro/src/libretro-core.cpp	2024-04-24 13:30:29.000000000 +0200
++++ b/backends/platform/libretro/src/libretro-core.cpp	2024-11-10 09:05:22.530703050 +0100
+@@ -25,6 +25,8 @@
+ #include "common/error.h"
+ #include "streams/file_stream.h"
+ #include "graphics/surface.h"
++#include <string>
++#include <vector>
+ #ifdef _WIN32
+ #include <direct.h>
+ #else
+@@ -924,6 +926,19 @@
+ 	}
+ }
+ 
++static void Split(const std::string& input, std::vector<std::string>& output, char splitter)
++{
++    int start = 0;
++    int comma = input.find(splitter, 0);
++    while(comma >= 0)
++    {
++		output.push_back(std::string(input.data() + start, comma - start));
++		start = comma + 1;
++		comma = input.find(splitter, (std::string::size_type)start);
++    }
++    if (start >= 0 && start <= (int)input.size()) output.push_back(std::string(input.data() + start, (int)input.size() - start));
++}
++
+ bool retro_load_game(const struct retro_game_info *game) {
+ 	if (!g_system) {
+ 		if (retro_log_cb)
+@@ -967,7 +982,11 @@
+ 			}
+ 			filestream_close(gamefile);
+ 
+-			Common::String tmp = target_id;
++			std::vector<std::string> chunks;
++			Split(target_id, chunks, ':');
++			Common::String tmp = chunks[0].data();
++			tmp += ":";
++			tmp += chunks[1].data();
+ 			tmp.trim();
+ 			strcpy(target_id, tmp.c_str());
+ 

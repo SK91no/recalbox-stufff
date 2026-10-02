@@ -1,0 +1,10 @@
+--- a/backends/platform/libretro/Makefile	2025-04-21 18:38:46.435289739 +0200
++++ b/backends/platform/libretro/Makefile	2025-04-21 21:07:45.817611439 +0200
+@@ -348,7 +348,6 @@
+ # Odroid Go Advance
+ else ifneq (,$(findstring odroidgo2,$(platform)))
+    TARGET := $(TARGET_NAME)_libretro.so
+-   DEFINES += -fPIC -D_ARM_ASSEM_ -DARM -DUSE_CXX11 -marm -mtune=cortex-a35 -mfpu=neon-fp-armv8 -mfloat-abi=hard -march=armv8-a+crc
+    DEFINES += -fPIC -D_ARM_ASSEM_ -DUSE_CXX11 -DARM
+    LDFLAGS += -shared -Wl,--version-script=$(ROOT_PATH)/link.T -fPIC
+    CFLAGS += -fPIC -mcpu=cortex-a35 -fomit-frame-pointer -ffast-math

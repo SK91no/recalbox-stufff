@@ -1,0 +1,27 @@
+From 52e09017b03f1420e08caa0c86b4c558fbdc9853 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 3 Sep 2023 00:35:56 +0200
+Subject: [PATCH 2/2] remove config fb backlight comment
+
+---
+ include/uapi/linux/fb.h | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/include/uapi/linux/fb.h b/include/uapi/linux/fb.h
+index fd94e21ca013..7bd4cb85e46a 100644
+--- a/include/uapi/linux/fb.h
++++ b/include/uapi/linux/fb.h
+@@ -400,10 +400,8 @@ struct fb_dmabuf_export {
+        __u32 flags;
+ };
+ 
+-//#ifdef CONFIG_FB_BACKLIGHT
+ /* Settings for the generic backlight code */
+ #define FB_BACKLIGHT_LEVELS	128
+ #define FB_BACKLIGHT_MAX	0xFF
+-//#endif
+ 
+ #endif /* _UAPI_LINUX_FB_H */
+-- 
+2.42.0
+

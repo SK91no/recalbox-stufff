@@ -1,0 +1,65 @@
+#!/bin/bash
+set -e
+
+if [[ $1 == "start" ]];then
+  if [[ "$(cat /recalbox/recalbox.arch)" =~ rpi(4|5) ]]; then
+    if [[ "$(cat /boot/bootloader.lastupgrade)" != "$(cat /recalbox/recalbox.version)" ]];then
+      mount -o remount,rw /boot
+      # try only once, avoid infinite reboot
+      cp /recalbox/recalbox.version /boot/bootloader.lastupgrade
+      echo "S01rpieeprom: checking for bootloader upgrade for $(cat /recalbox/recalbox.version)" >> /boot/hardware.log
+      # rpi-eeprom-update returns 1 when available
+      if ! rpi-eeprom-update; then
+        echo "S01rpieeprom: rpi-eeprom-update says an update is available" >> /boot/hardware.log
+        # we double check
+        latest=$(rpi-eeprom-update | grep LATEST | awk '{print $8}' | sed 's/(\(.*\))/\1/')
+        current=$(rpi-eeprom-update | grep CURRENT | awk '{print $8}' | sed 's/(\(.*\))/\1/')
+        if [[ $current != "" ]] && [[ "$current" < "$latest" ]]; then
+          echo "S01rpieeprom: Upgrading bootloader from ${current} to ${latest}" >> /boot/hardware.log
+          rpi-eeprom-update -a
+          echo "The bootloader of your Raspberry Pi has been automatically updated." >> /overlay/.frontend_boot_notif
+          mount -o remount,ro /boot
+          reboot
+        else
+          echo "S01rpieeprom: update version is older than current one, something is wrong" >> /boot/hardware.log
+        fi
+      else
+        echo "S01rpieeprom: uploader already up to date" >> /boot/hardware.log
+      fi
+      mount -o remount,ro /boot
+    fi
+    if [[ "$(cat /recalbox/recalbox.arch)" == rpi5_64 ]]; then
+      if [[ "$(cat /boot/bootloader.lastconfig)" != "$(cat /recalbox/recalbox.version)" ]];then
+        mount -o remount,rw /boot
+        # try only once, avoid infinite reboot
+        cp /recalbox/recalbox.version /boot/bootloader.lastconfig
+        rpi-eeprom-config > /boot/recalbox-eeprom-config.txt
+        if [ $? -eq 0 ]; then
+          should_update=false
+          # Net install is default to 0, we must disable it if it have been forced to 1
+          if grep -q "NET_INSTALL_AT_POWER_ON=1" /boot/recalbox-eeprom-config.txt; then
+            echo "S01rpieeprom: Setting eeprom NET_INSTALL_AT_POWER_ON to 0" >> /boot/hardware.log
+            sed -i "s/NET_INSTALL_AT_POWER_ON=1/NET_INSTALL_AT_POWER_ON=0/" /boot/recalbox-eeprom-config.txt
+            should_update=true
+          fi
+          # POWER_OFF_ON_HALT is default to 0
+          if ! grep -q "POWER_OFF_ON_HALT" /boot/recalbox-eeprom-config.txt; then
+            echo "S01rpieeprom: Setting eeprom POWER_OFF_ON_HALT to 1" >> /boot/hardware.log
+            echo "POWER_OFF_ON_HALT=1" >> /boot/recalbox-eeprom-config.txt
+            should_update=true
+          elif grep -q "POWER_OFF_ON_HALT=0" /boot/recalbox-eeprom-config.txt; then
+            echo "S01rpieeprom: Setting eeprom POWER_OFF_ON_HALT to 1" >> /boot/hardware.log
+            sed -i "s/POWER_OFF_ON_HALT=0/POWER_OFF_ON_HALT=1/" /boot/recalbox-eeprom-config.txt
+            should_update=true
+          fi
+          if [ "${should_update}" == "true" ]; then
+            echo -e "S01rpieeprom: Writing new eeprom : \n$(cat /boot/recalbox-eeprom-config.txt)" >> /boot/hardware.log
+            rpi-eeprom-config --apply /boot/recalbox-eeprom-config.txt
+            reboot
+          fi
+        fi
+        mount -o remount,ro /boot
+      fi
+    fi
+  fi
+fi

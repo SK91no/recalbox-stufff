@@ -1,0 +1,268 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+    compatible = "brcm,bcm2712";
+
+
+    fragment@1 {
+        target = <&gpio>;
+        __overlay__ {
+            rp1_gpio: rp1_gpio_conf {
+                brcm,pins = <0 26>;
+                brcm,function = <1 1>;
+                brcm,pull = <0 0>;
+            };
+        };
+    };
+
+    fragment@2 {
+        target-path = "/";
+        __overlay__ {
+
+            bridge: recalboxrgbdual2 {
+                compatible = "raspberrypi,recalboxrgbdual";
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                vc4-vga666-mode = <6>;
+                rp1-gpios = <&gpio 0 0>, <&gpio 26 1>;
+                pinctrl-0 = <&rp1_gpio>;
+                pinctrl-names = "default";
+
+                ports {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+
+                    port@0 {
+                        reg = <0>;
+                        vga_bridge_in: endpoint {
+                            remote-endpoint = <&dpi_out>;
+                        };
+                    };
+
+                    port@1 {
+                        reg = <1>;
+                        vga_bridge_out: endpoint {
+                            remote-endpoint = <&vga_con_in>;
+                        };
+                    };
+                };
+            };
+
+            vga {
+                compatible = "vga-connector";
+                label = "recalboxrgbdual2";
+                port {
+                    vga_con_in: endpoint {
+                        remote-endpoint = <&vga_bridge_out>;
+                    };
+                };
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&dpi>;
+        __overlay__  {
+            // Not enabled by default, see rgbdualvideo.dtbo
+            //status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&vga666_mode6_pins>;
+            port {
+                dpi_out: endpoint@0 {
+                    remote-endpoint = <&vga_bridge_in>;
+                };
+            };
+        };
+    };
+
+    fragment@4 {
+        target = <&gpio>;
+        __overlay__ {
+            vga666_mode6_pins: vga666_mode6_pins {
+                function = "dpi";
+                pins = "gpio1", "gpio2", "gpio3",
+                       "gpio4", "gpio5", "gpio6", "gpio7",
+                       "gpio8", "gpio9",
+                       "gpio12", "gpio13", "gpio14", "gpio15",
+                       "gpio16", "gpio17",
+                       "gpio20", "gpio21", "gpio22", "gpio23",
+                       "gpio24", "gpio25";
+                bias-disable;
+            };
+        };
+    };
+
+
+    // I2S audio
+    fragment@5 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            rp1_i2s0_dual: rp1_i2s0_dual {
+                function = "i2s0";
+                pins = "gpio18", "gpio19", "gpio27";
+                bias-disable;
+            };
+        };
+    };
+    fragment@6{
+        target = <&i2s_clk_producer>;
+        __overlay__ {
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2s0_dual>;
+            status = "okay";
+        };
+    };
+
+
+    fragment@7 {
+        target = <&sound>;
+        __overlay__ {
+            compatible = "simple-audio-card";
+            simple-audio-card,name = "Recalbox RGB DUAL 2";
+            status = "okay";
+            simple-audio-card,dai-link@1 {
+                format = "i2s";
+                cpu {
+                    sound-dai = <&i2s_clk_producer>;
+                    dai-tdm-slot-num = <2>;
+                    dai-tdm-slot-width = <32>;
+                };
+                codec {
+                    sound-dai = <&codec_out>;
+                };
+            };
+        };
+    };
+
+    fragment@8 {
+        target-path = "/";
+        __overlay__ {
+            codec_out: recalbox_i2s {
+                #sound-dai-cells = <0>;
+                compatible = "recalbox_i2s";
+                status = "okay";
+            };
+        };
+    };
+
+
+    // Overrides for different protos
+
+    // Config Chip
+    fragment@100 {
+        target = <&i2c1>;
+        __dormant__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2c1_10_11>;
+            clock-frequency = <100000>;
+            read-timeout-ms = <50>;
+
+            pca: pca@20 {
+                compatible = "nxp,pca9555";
+                reg = <0x20>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                status = "okay";
+            };
+        };
+    };
+
+    // Proto 3 and 4
+    fragment@14 {
+        target = <&bridge>;
+        __dormant__ {
+            recalbox-rgb-dual-2 = <4>;
+            // TCA GPIOS = filter_bypass, force_50Hz, force_31kHz, force_comp, scart_comp,  rgb_disable, dac_enable,  scart_enable, csync_rpi5
+            pca-gpios    = <&pca 1 0>,    <&pca 2 0>, <&pca 3 0>,  <&pca 4 0>,  <&pca 6 0>, <&pca 12 0>, <&pca 13 0>, <&pca 14 1>,  <&pca 15 0>;
+        };
+    };
+
+    // Proto 5
+    fragment@15 {
+        target = <&bridge>;
+        __dormant__ {
+            recalbox-rgb-dual-2 = <5>;
+            /*
+             * RGBDUAL 2 - PROTO 5
+             *                                             __________
+             *                                IO0-1  <--- |0        8| ---> IO1-0     VERSION-0
+             *   GPIO_VIDEO_FILTER_BYPASS     IO0-1  <--- |1        9| ---> IO1-1     VERSION-1
+             *   FORCE-50HZ                   IO0-2  <--- |2       10| ---> IO1-2     VERSION-2
+             *   FORCE-31KHZ                  IO0-3  <--- |3       11| ---> IO1-3     VERSION-3
+             *   FORCE-COMP                   IO0-4  <--- |4       12| ---> IO1-4     GPIO_RGB_ENABLE
+             *   GPIO-SCART-COMP              IO0-5  <--- |5       13| ---> IO1-5     GPIO_DAC_ENABLE
+             *   GPIO-SCART-12V               IO0-6  <--- |6       14| ---> IO1-6     GPIO-SCART-ENABLE
+             *   GPIO_SW_PIO_CSYNC_RCA        IO0-7  <--- |7       15| ---> IO1-7     GPIO-CSYNC-RPI5
+             *                                             ‾‾‾‾‾‾‾‾‾‾
+             */
+            // TCA GPIOS = filter_bypass, force_50Hz, force_31kHz, force_comp, scart_comp,  rgb_enable,  dac_enable,  scart_enable, csync_rpi5,  scart-12v,  pio-on-rca
+            pca-gpios    = <&pca 1 0>,    <&pca 2 0>, <&pca 3 0>,  <&pca 4 0>,  <&pca 5 0>, <&pca 12 1>, <&pca 13 0>, <&pca 14 1>,  <&pca 15 0>, <&pca 6 1>, <&pca 7 0>;
+        };
+    };
+
+    // REV C
+    // Config Chip
+    fragment@101 {
+        target = <&i2c1>;
+        __dormant__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2c1_10_11>;
+            clock-frequency = <100000>;
+            read-timeout-ms = <50>;
+
+            mcp: mcp@21 {
+                compatible = "microchip,mcp23017";
+                reg = <0x21>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&gpio21pullups>;
+                gpio21pullups: pinmux {
+                    pins = "gpio2", "gpio3", "gpio4", "gpio8", "gpio9", "gpio10", "gpio11";
+                    bias-pull-up;
+                };
+            };
+        };
+    };
+
+    fragment@16 {
+        target = <&bridge>;
+        __dormant__ {
+            recalbox-rgb-dual-2 = <6>;
+            /*
+             * RGBDUAL 2 - Rev C
+             *                                             __________
+             *   GPIO_RGB_ENABLE              IO0-0  <--- |0        8| ---< IO1-0     VERSION-0
+             *   GPIO_VIDEO_FILTER_BYPASS     IO0-1  <--- |1        9| ---< IO1-1     VERSION-1
+             *   FORCE-50HZ                   IO0-2  >--- |2       10| ---< IO1-2     VERSION-2
+             *   FORCE-31KHZ                  IO0-3  >--- |3       11| ---< IO1-3     VERSION-3
+             *   FORCE-COMP                   IO0-4  >--- |4       12| ---> IO1-4     GPIO-SCART-12V
+             *   GPIO_SW_PIO_CSYNC_RCA        IO0-5  <--- |5       13| ---> IO1-5     GPIO_DAC_ENABLE
+             *   GPIO-SCART-COMP              IO0-6  <--- |6       14| ---> IO1-6     GPIO-SCART-ENABLE
+             *                                IO0-7  <--- |7       15| ---> IO1-7     GPIO-CSYNC-RPI5
+             *                                             ‾‾‾‾‾‾‾‾‾‾
+             */
+            // TCA GPIOS = filter_bypass, force_50Hz, force_31kHz, force_comp, scart_comp,  rgb_enable,  dac_enable,  scart_enable, csync_rpi5,  scart-12v,   pio-on-rca
+            pca-gpios    = <&mcp 1 0>,    <&mcp 2 0>, <&mcp 3 0>,  <&mcp 4 0>,  <&mcp 6 0>, <&mcp 0 1>,  <&mcp 13 0>, <&mcp 14 1>,  <&mcp 15 0>, <&mcp 12 1>, <&mcp 5 0>;
+        };
+    };
+
+
+    __overrides__ {
+        proto3 = <0>, "+100+14";
+        proto4 = <0>, "+100+14";
+        proto5 = <0>, "+100+15";
+        revc =   <0>, "+101+16";
+    };
+};

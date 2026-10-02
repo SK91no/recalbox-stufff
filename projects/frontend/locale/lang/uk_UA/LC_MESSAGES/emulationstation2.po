@@ -1,0 +1,6879 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
+"(n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+msgid "AN UPDATE IS AVAILABLE FOR YOUR RECALBOX"
+msgstr "ДОСТУПНЕ ОНОВЛЕННЯ ДЛЯ ВАШОГО RECALBOX"
+
+msgid "NEW VERSION:"
+msgstr "НОВА ВЕРСІЯ:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "СПИСОК ЗМІН ОНОВЛЕННЯ:"
+
+msgid "CANCEL"
+msgstr "ВІДМІНА"
+
+msgid "Rating"
+msgstr "Рейтинг"
+
+msgid "Released"
+msgstr "Видано"
+
+msgid "Developer"
+msgstr "Розробник"
+
+msgid "Publisher"
+msgstr "Видавець"
+
+msgid "Genre"
+msgstr "Жанр"
+
+msgid "Players"
+msgstr "Гравці"
+
+msgid "SEARCH"
+msgstr "ПОШУК"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "ЙДЕ ОТРИМАННЯ МЕТА-ДАНИХ"
+
+msgid "SYSTEM"
+msgstr "СИСТЕМА"
+
+msgid "subtitle text"
+msgstr "текст субтитрів"
+
+msgid "STOP"
+msgstr "СТОП"
+
+msgid "stop (progress saved)"
+msgstr "стоп (прогрес збережено)"
+
+msgid "ESTIMATED TIME: "
+msgstr "ТРИВАТИМЕ: "
+
+msgid "ELAPSED TIME: "
+msgstr "ВЖЕ ТРИВАЄ: "
+
+msgid "COMPLETE!"
+msgstr "ЗАВЕРШЕНО!"
+
+msgid "PLEASE VISIT"
+msgstr "БУДЬ-ЛАСКА ВІДВІДАЙТЕ"
+
+msgid "ONLY 1 SCRAPPING ENGINE"
+msgid_plural "%i SCRAPPING ENGINES"
+msgstr[0] "ЛИШЕ 1 "
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+
+msgid ""
+"Scraping complete! {PROCESSED} games processed.\n"
+"\n"
+"{SUCCESS} game(s) scraped or updated\n"
+"{NOTFOUND} game(s) not found...\n"
+"{ERRORS} request/download errors\n"
+"\n"
+"{TEXTINFO} Text information updated\n"
+"{IMAGES} images and {VIDEOS} videos downloaded\n"
+"{MEDIASIZE} of media saved"
+msgstr ""
+"Скрапінг завершено! Оброблено ігор: {PROCESSED}.\n"
+"\n"
+"{SUCCESS} гру(ігор) отримано або оновлено\n"
+"{NOTFOUND} гру(ігор) не знайдено...\n"
+"{ERRORS} помилок запиту/завантаження\n"
+"\n"
+"{TEXTINFO} текстової інформації оновлено\n"
+"Завантажено зображень: {IMAGES}, відео: {VIDEOS}\n"
+"{MEDIASIZE} медіафайлів збережено"
+
+msgid ""
+"You reached your daily quota of scraping request.\n"
+"All your today's scrapes have been saved anyway.\n"
+"\n"
+"Start scraping again tomorrow.\n"
+"Dont forget to select 'update' and not 'scrape all'"
+msgstr ""
+"Ваш денний ліміт на запити мета-даних вичерпано. Втім, всі сьогоднішні "
+"запити збережено.\n"
+"\n"
+"\n"
+"Спробуйте зробити новий запит завтра.\n"
+"Не забудьте вибрати 'Оновити' а не 'Отримати всі мета-дані'"
+
+msgid ""
+"Your share partition is almost full.\n"
+"The scraper stopped automatically.\n"
+"\n"
+"Remove unused games, media, files to make room before running the scraper "
+"again!"
+msgstr ""
+"Розділ спільного доступу практично заповнений!\n"
+"Скрепер автоматично припинив роботу.\n"
+"\n"
+"Видаліть непотрібні ігри, мультимедійні та інші файли, щоб звільнити місце "
+"перед повторним запуском скрепера!"
+
+msgid "OK"
+msgstr "ОК"
+
+msgid "SCRAPE"
+msgstr "ЗАВАНТАЖИТИ ДАНІ"
+
+msgid "SAVE"
+msgstr "ЗБЕРЕГТИ"
+
+msgid "YES"
+msgstr "ТАК"
+
+msgid "NO"
+msgstr "НІ"
+
+msgid "DELETE"
+msgstr "ВИДАЛИТИ"
+
+msgid "BACK"
+msgstr "НАЗАД"
+
+msgid "CLOSE"
+msgstr "ЗАКРИТИ"
+
+msgid "MAIN MENU"
+msgstr "ГОЛОВНЕ МЕНЮ"
+
+msgid "KODI MEDIA CENTER"
+msgstr "МЕДІАЦЕНТР KODI"
+
+msgid "SYSTEM SETTINGS"
+msgstr "НАЛАШТУВАННЯ СИСТЕМИ"
+
+msgid "VERSION"
+msgstr "ВЕРСІЯ"
+
+msgid "LANGUAGE"
+msgstr "МОВА"
+
+msgid "OVERCLOCK"
+msgstr "РОЗГІН"
+
+msgid "NONE"
+msgstr "ПУСТО"
+
+msgid "UPDATES"
+msgstr "ОНОВЛЕННЯ"
+
+msgid "KODI SETTINGS"
+msgstr "НАЛАШТУВАННЯ KODI"
+
+msgid "ENABLE KODI"
+msgstr "АКТИВУВАТИ KODI"
+
+msgid "KODI AT START"
+msgstr "АВТОЗАПУСК KODI"
+
+msgid "START KODI WITH X"
+msgstr "ЗАПУСК KODI КНОПКОЮ X"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "СИСТЕМА ЗАРАЗ ПЕРЕЗАВАНТАЖИТЬСЯ"
+
+msgid "GAME RATIO"
+msgstr "СПІВВІДНОШЕННЯ СТОРІН У ІГРАХ"
+
+msgid "SMOOTH GAMES"
+msgstr "ЗГЛАДЖУВАННЯ ІГОР"
+
+msgid "REWIND"
+msgstr "ПЕРЕМОТУВАННЯ"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "АВТО ЗБЕРЕЖЕННЯ/ЗАВАНТАЖЕННЯ"
+
+msgid "PRESS TWICE TO QUIT GAME"
+msgstr "НАТИСНІТЬ ДВІЧІ, ЩОБ ВИЙТИ З ГРИ"
+
+msgid "SHADERS SET"
+msgstr "НАБІР ШЕЙДЕРІВ"
+
+msgid "SCANLINES"
+msgstr "РАСТРОВІ РЯДКИ"
+
+msgid "RETRO"
+msgstr "РЕТРО"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "НАЛАШТУВАННЯ РЕТРОДОСЯГНЕНЬ"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "РЕТРОДОСЯГНЕННЯ"
+
+msgid "HARDCORE MODE"
+msgstr "РЕЖИМ ХАРДКОР"
+
+msgid "USERNAME"
+msgstr "ІМ'Я КОРИСТУВАЧА"
+
+msgid "PASSWORD"
+msgstr "ПАРОЛЬ"
+
+msgid "ADVANCED"
+msgstr "РОЗШИРЕНІ"
+
+msgid "UPDATE GAMES LISTS"
+msgstr "ОНОВИТИ СПИСКИ ІГОР"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "НАЛАШТУВАННЯ КОНТРОЛЛЕРІВ"
+
+msgid "SCREENSAVER AFTER"
+msgstr "ЗБЕРІГАЧ ЕКРАНА ЧЕРЕЗ"
+
+msgid "CAROUSEL ANIMATION"
+msgstr "КАРУСЕЛЬНА АНІМАЦІЯ"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "ПОВЕДІНКА ЕКРАННОЇ ЗАСТАВКИ"
+
+msgid "SHOW FRAMERATE"
+msgstr "ПОКАЗУВАТИ ЧАСТОТУ КАДРІВ"
+
+msgid "ON-SCREEN HELP"
+msgstr "ПІДКАЗКИ НА ЕКРАНІ"
+
+msgid "THEME SET"
+msgstr "НАБІР ТЕМ"
+
+msgid "SOUND SETTINGS"
+msgstr "НАЛАШТУВАННЯ ЗВУКУ"
+
+msgid "SYSTEM VOLUME"
+msgstr "ГУЧНІСТЬ"
+
+msgid "OUTPUT DEVICE"
+msgstr "ПРИСТРІВ ВИВОДУ"
+
+msgid "AUTO"
+msgstr "АВТО"
+
+msgid "NETWORK SETTINGS"
+msgstr "НАЛАШТУВАННЯ МЕРЕЖІ"
+
+msgid "CONNECTED"
+msgstr "ПІДКЛЮЧЕНО"
+
+msgid "NOT CONNECTED"
+msgstr "НЕ ПІДКЛЮЧЕНО"
+
+msgid "STATUS"
+msgstr "СТАТУС"
+
+msgid "IP ADDRESS"
+msgstr "IP АДРЕСА"
+
+msgid "HOSTNAME"
+msgstr "ІМ'Я ХОСТА"
+
+msgid "ENABLE WIFI"
+msgstr "ВКЛЮЧИТИ WI-FI"
+
+msgid "WIFI SSID"
+msgstr "НАЗВА МЕРЕЖІ WI-FI"
+
+msgid "WIFI KEY"
+msgstr "ПАРОЛЬ WI-FI"
+
+msgid "SCRAPER"
+msgstr "ОТРИМАННЯ ДАНИХ"
+
+msgid "SCRAPE FROM"
+msgstr "ЗАВАНТАЖИТИ З"
+
+msgid "SCRAPE NOW"
+msgstr "ОТРИМАТИ ДАНІ ЗАРАЗ"
+
+msgid "QUIT"
+msgstr "ВИХІД"
+
+msgid "REALLY RESTART?"
+msgstr "ДІЙСНО ПЕРЕЗАВАНТАЖИТИ?"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "ДІЙСНО ВИМКНУТИ?"
+
+msgid "Emulator"
+msgstr "Емулятор"
+
+msgid "Core"
+msgstr "Ядро"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "КОНФІГУРАЦІЯ КОНТРОЛЛЕРА"
+
+msgid "CONTROLLER PAIRED"
+msgstr "КОНТРОЛЛЕР СПАРОВАНО"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "НЕ ВДАЄТЬСЯ СПАРУВАТИ КОНТРОЛЛЕР"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "КОНТРОЛЛЕРІВ НЕ ЗНАЙДЕНО"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "ЗВ'ЯЗКИ КОНТРОЛЛЕРІВ ВИДАЛЕНО."
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "ЗАБУТИ BLUETOOTH КОНТРОЛЕРИ"
+
+msgid "INPUT P%i"
+msgstr "ВВЕДІТЬ P%i"
+
+msgid "CHOOSE"
+msgstr "ВИБЕРІТЬ"
+
+msgid "SELECT"
+msgstr "ВИБІР"
+
+msgid "OPTIONS"
+msgstr "ОПЦІЇ"
+
+msgid "JUMP TO LETTER"
+msgstr "ПЕРЕЙТИ ДО ЛІТЕРИ"
+
+msgid "SORT GAMES BY"
+msgstr "ВІДСОРТУВАТИ ЗА ІГРАМИ"
+
+msgid "All Games"
+msgstr "Всі ігри"
+
+msgid "Only missing image"
+msgstr "Лише відсутні зображення"
+
+msgid "FILTER"
+msgstr "ФІЛЬТР"
+
+msgid "SYSTEMS"
+msgstr "СИСТЕМИ"
+
+msgid "START"
+msgstr "СТАРТ"
+
+msgid "Ratio"
+msgstr "відношення"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Image"
+msgstr "Зображення"
+
+msgid "Favorite"
+msgstr "Улюблене"
+
+msgid "Region"
+msgstr "Регіон"
+
+msgid "Hidden"
+msgstr "Сховати"
+
+msgid "Last played"
+msgstr "Востаннє зіграно"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "%i ГРА ДОСТУПНА"
+msgstr[1] "%i ГРИ ДОСТУПНО"
+msgstr[2] "%i ІГОР ДОСТУПНО"
+msgstr[3] "%i ГРА ДОСТУПНА"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "%i В ОБРАНИХ"
+msgstr[1] "%i В ОБРАНИХ"
+msgstr[2] "%i В ОБРАНИХ"
+msgstr[3] "%i В ОБРАНИХ"
+
+msgid "LAUNCH"
+msgstr "ЗАПУСК"
+
+msgid "Times played"
+msgstr "Зіграно раз"
+
+msgid "MENU"
+msgstr "МЕНЮ"
+
+msgid "START KODI"
+msgstr "ЗАПУСТИТИ KODI"
+
+msgid "WORKING..."
+msgstr "ОБРОБКА..."
+
+msgid "CHANGE"
+msgstr "ЗМІНИТИ"
+
+msgid "never"
+msgstr "ніколи"
+
+msgid "just now"
+msgstr "щойно"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "%i сек тому"
+msgstr[1] "%i сек тому"
+msgstr[2] "%i сек тому"
+msgstr[3] "%i сек тому"
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "%i хв назад"
+msgstr[1] "%i хв назад"
+msgstr[2] "%i хв назад"
+msgstr[3] "%i хв назад"
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "%i год назад"
+msgstr[1] "%i год назад"
+msgstr[2] "%i год назад"
+msgstr[3] "%i год назад"
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "%i день назад"
+msgstr[1] "%i дні назад"
+msgstr[2] "%i днів назад"
+msgstr[3] "%i днів назад"
+
+msgid "unknown"
+msgstr "невідомо"
+
+msgid "SELECT ALL"
+msgstr "ВИБРАТИ ВСЕ"
+
+msgid "SELECT NONE"
+msgstr "ВІДМІНИТИ ВИБІР"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i вибрано"
+msgstr[1] "%i вибрано"
+msgstr[2] "%i вибрано"
+msgstr[3] "%i вибрано"
+
+msgid "UP"
+msgstr "ВВЕРХ"
+
+msgid "DOWN"
+msgstr "ВНИЗ"
+
+msgid "LEFT"
+msgstr "ВЛІВО"
+
+msgid "RIGHT"
+msgstr "ВПРАВО"
+
+msgid "HOTKEY"
+msgstr "ГАРЯЧА КНОПКА"
+
+msgid "CONFIGURING"
+msgstr "КОНФІГУРАЦІЯ"
+
+msgid "KEYBOARD"
+msgstr "КЛАВІАТУРА"
+
+msgid "GAMEPAD %i"
+msgstr "КОНТРОЛЛЕР %i"
+
+msgid "(skipped)"
+msgstr "(пропустити)"
+
+msgid "DISCARD CHANGES"
+msgstr "ВІДМІНИТИ ЗМІНИ"
+
+msgid "WELCOME"
+msgstr "ЛАСКАВО ПРОСИМО!"
+
+msgid "CONFIGURE INPUT"
+msgstr "КОНФІГУРАЦІЯ ВВОДУ"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "ЗНАЙДЕНО %i КОНТРОЛЛЕР"
+msgstr[1] "ЗНАЙДЕНО %i КОНТРОЛЛЕРИ"
+msgstr[2] "ЗНАЙДЕНО %i КОНТРОЛЛЕРІВ"
+msgstr[3] "ЗНАЙДЕНО %i КОНТРОЛЛЕРІВ"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "КОНТРОЛЛЕРІВ НЕ ЗНАЙДЕНО"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "ЗАТИСНІТЬ КНОПКУ НА ПРИСТРОЇ ДЛЯ ЙОГО КОНФІГУРАЦІЇ."
+
+msgid "PRESS ESC OR THE HOTKEY TO CANCEL."
+msgstr "НАТИСНІТЬ ESC ЧИ ГАРЯЧУ КНОПКУ ДЛЯ ВІДМІНИ."
+
+msgid "LOADING..."
+msgstr "ЗАВАНТАЖЕННЯ..."
+
+msgid "PLEASE WAIT..."
+msgstr "ЗАЧЕКАЙТЕ, БУДЬ ЛАСКА..."
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "ДІЙСНО ВИМКНУТИ БЕЗ ЗБЕРЕЖЕННЯ МЕТАДАНИХ?"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "ЗМІНА РЕГІСТРУ ТА СПЕЦСИМВОЛИ"
+
+msgid "SPACE"
+msgstr "ПРОБІЛ"
+
+msgid "DELETE A CHAR"
+msgstr "ВИДАЛИТИ СИМВОЛ"
+
+msgid "SHIFT"
+msgstr "ЗМІНА РЕГІСТРУ"
+
+msgid "STOP EDITING"
+msgstr "ЗАВЕРШИТИ РЕДАГУВАННЯ"
+
+msgid "MOVE CURSOR"
+msgstr "ПЕРЕМІСТИТИ КУРСОР"
+
+msgid "EDIT"
+msgstr "РЕДАГУВАТИ"
+
+msgid "FILENAME"
+msgstr "НАЗВА ФАЙЛУ"
+
+msgid "RATING"
+msgstr "РЕЙТИНГ"
+
+msgid "TIMES PLAYED"
+msgstr "ЗІГРАНО РАЗ"
+
+msgid "LAST PLAYED"
+msgstr "ОСТАННІЙ ЗАПУСК"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "КІЛЬКІСТЬ ГРАВЦІВ"
+
+msgid "DEVELOPER"
+msgstr "РОЗРОБНИК"
+
+msgid "GENRE"
+msgstr "ЖАНР"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE "
+"THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"РЕЖИМИ ТУРБО ТА ЕКСТРИМ МОЖУТЬ ВИКЛИКАТИ НЕСТАБІЛЬНІСТЬ СИСТЕМИ, "
+"ВИКОРИСТОВУЙТЕ ЇХ НА ВЛАСНИЙ РИЗИК.\n"
+"ЯКЩО ВИ ПРОДОВЖИТЕ, СИСТЕМУ БУДЕ ПЕРЕЗАВАНТАЖЕНО."
+
+msgid "Start kodi media player."
+msgstr "Запуск медіапрогравача KODI"
+
+msgid ""
+"Select the language for your recalbox, select an external drive to store "
+"your games and configurations, check your current version and the free space "
+"on your drive"
+msgstr ""
+"Вибір системної мови, вибір зовнішнього носія для збереження ваших ігр та "
+"налаштувань, перевірка версії система та вільного місця на вашому носії"
+
+msgid "Shows your current recalboxOS version."
+msgstr "Показує поточну версію recalboxOS."
+
+msgid ""
+"Show how much space is used on your SHARE partition, located either on the "
+"SDCARD or on an external drive. The information shows how many GB are used "
+"and how many GB your storage has in total (example 13GB/26GB)."
+msgstr ""
+"Показує використання місця на Вашому розділі SHARE, що знаходиться на SD "
+"картці чи зовнішньому носії. Інформація подана у вигляді використаний об'єм/"
+"загальний об'єм, наприклад 13ГБ/26ГБ."
+
+msgid ""
+"Select an external drive to store your roms, saves, configurations etc.\n"
+"Use a FAT32 formatted drive. The system does not format the drive. On first "
+"boot, with this option enabled, recalbox will create a '/recalbox' folder "
+"with all system files inside."
+msgstr ""
+"Виберіть зовнішній носій для збереження ваших файлів (rom, save, "
+"налаштування, тощо). Використовуйте носії у форматі FAT32. Система не "
+"форматує носій. Якщо ця опція активно, recalbox при першому запуску створить "
+"на носії  каталог '/recalbox'  з усіма системними файлами."
+
+msgid ""
+"Manage your recalbox updates. Select the update type. Activate update check."
+msgstr ""
+"Керування оновленнями recalbox. Вибір типу оновлення. Запуск перевірки "
+"оновлення."
+
+msgid "Check if an update is available, and start the update process."
+msgstr "Перевірити наявість і розпочати процес оновлення."
+
+msgid ""
+"Configure games display, ratio, filters (shaders), auto save and load and "
+"retroachievement account."
+msgstr ""
+"Налаштування екрану, фільтрів (шейдерів), автозбереження та запуску, а також "
+"облікового запису ретродосягнень"
+
+msgid ""
+"The game ratio is the ratio between image width and image height. Use AUTO "
+"to let the emulator choose the original game ratio, that will give you the "
+"best retrogaming experience."
+msgstr ""
+"Співідношення сторін це відношення між шириною і висотою екрану. Встановіть "
+"АВТО, щоб встановити співвідношення як у оригінальній гри."
+
+msgid ""
+"Smooth the game image. This option makes the image smoother, using bilinear "
+"filtering."
+msgstr "Згладити зображення використовуючи білінійну фільтрацію."
+
+msgid ""
+"This option allows you to rewind the game if you get killed by a monster, or "
+"if you make any other mistake. Use the HOTKEY + LEFT command within the game "
+"to rewind."
+msgstr ""
+"Ця опція дозволить Вам перемотати гру назад, якщо Вас уб'є монстр чи Ви "
+"зробите якусь іншу помилку. Використовуйте комбінацію ГАРЯЧА КНОПКА + ВЛІВО "
+"для перемотки у грі."
+
+msgid ""
+"Auto save the state when you quit a game, and auto load last saved state "
+"when you start a game."
+msgstr ""
+"Автозбереження стану при виході з гри та автозагрузка останнього збереженого "
+"стану при запуску."
+
+msgid "Press the buttons twice to end the game and go back to the main menu."
+msgstr "Натисніть кнопки двічі, щоб закінчити гру та вийти в меню."
+
+msgid ""
+"Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, "
+"4x, etc. This option scales the image up to the greatest integer scale below "
+"the set resolution. So for instance, if you set your fullscreen resolution "
+"to 1920x1080 and enable integer scaling, it will only scale a 320x240 image "
+"up to 1280x960, and leave black borders all around. This is to maintain a "
+"1:1 pixel ratio with the original source image, so that pixels are not "
+"unevenly duplicated."
+msgstr ""
+"Цілочислене масштабування це масштабування пропорційно цілому "
+"множниканаприклад 2х, 3х, 4х тощо. Ця опція масштабує зображення до "
+"найбільшого множника, можливого для заданої роздільної здатності. Наприклад, "
+"при встановленому екрані 1920х1080 і грі з розділенням 320х240, ця опція "
+"змасштабує зображення до 1280х960 і залишить чорну рамку навколо. Мета "
+"полягає в збереження відношення пікселів 1:1 з оригінальним зображення, так "
+"щоб пікселі не дублювались спотворено."
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a shader set "
+"here, which is a collection of shaders selected for each system. You can "
+"also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr ""
+"Шейдери це свого роду фільтри для рендерінгу. Тут Ви можете вибрати набір "
+"шейдерів, тобто колекцію шейдерів відібрану для кожної системи. Ви також "
+"можете змінити шейдери безпосередньо з гри здопомогою ГАРЯЧА КНОПКА + L2 чи "
+"ГАРЯЧА КНОПКА + R2."
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "Увімкнути чи вимкнути ретродосягнення в іграх."
+
+msgid ""
+"Hardcore mode disables *all* savestate and rewind functions within the "
+"emulator: you will not be able to save and reload at any time. You will have "
+"to complete the game and get the achievements first time, just like on the "
+"original console. In reward for this, you will earn both the standard and "
+"the hardcore achievement, in effect earning double points! A regular game "
+"worth 400 points, is now worth 800 if you complete it on hardcore! For "
+"example: if you complete the game for 400 points, you then have the "
+"opportunity to earn another 400 on hardcore."
+msgstr ""
+"Режим Хардкор вимикає *всі* фунції збереження стану та перемотки в "
+"емуляторі: ви не зможете зберігатись та перезавантажуватись у будь-який час. "
+"Вам доведеться пройти гру до кінця і отримати досягнення вперше, так я і на "
+"оригінальній приставці. В нагороду за це ви отримаєте одночасно як звичайні, "
+"так і хардкорні досягнення, а це подвійні пункти!  Якщо звичайна гра варта "
+"400 пунктів, її вартість підвищиться до 800 якщо Ви пройдете її на Хардкор! "
+"Також, якщо ви вже пройшли гру у звичайому режимі на 400 пунктів, ви зможете "
+"отримати ще 400 якщо пройдете її на Хардкор."
+
+msgid ""
+"Configure an associated controller. Your controller has to be associated / "
+"plugged before."
+msgstr ""
+"Налаштувати асоційований контроллер. Але спочатку підключіть Ваш контроллер."
+
+msgid ""
+"Pair a bluetooth controller with your recalbox. Your controller must be in "
+"pairing mode."
+msgstr ""
+"Спаруйте контроллер bluetooth з Вашим recalbox. Ваш контролер має бути в "
+"режимі пошуку."
+
+msgid ""
+"Forget all paired bluetooth controllers. You will have to pair your "
+"controllers again, but this option can help if you have issues to reconnect "
+"a controller, which is already paired."
+msgstr ""
+"Забути всі зв'язані bluetooth контроллери. Вам доведеться парувати їх знову, "
+"але ця опція може допомогти, якщо у Вас є проблеми з під'єднанням уже "
+"спарованого контроллера."
+
+msgid ""
+"Configure your EmulationStation experience. Select transition types, help "
+"prompts, screensaver behavior. You can also deactivate the onscreen keyboard "
+"if you have a real keyboard plugged into your recalbox.\n"
+"If you've added games since the last boot, you can also refresh the gamelist "
+"from this menu."
+msgstr ""
+"Налаштування Вашої EmulationStation. Виберіть типи переходів, підказки, "
+"поведінку заставок. Також Ви можете деактивувати екранну клавіатуру, якщо у "
+"Вас підключена реальна. \n"
+"Якщо Ви додали ігри після останнього перезапуску, ви також зможете оновити "
+"список ігор з цього меню."
+
+msgid "Configure screensaver"
+msgstr "Конфігурація Screensaver"
+
+msgid "Start the screensaver after N minutes."
+msgstr "Запустити заставку через N хвилин."
+
+msgid ""
+"Set the screensaver behavior. DIM will reduce the screen light, BLACK will "
+"turn the screen black, DEMO will launch demo mode."
+msgstr ""
+"Встановіть поведінку заставки. DIM зменшить світло екрана, ЧОРНИЙ "
+"перетворить екран у чорний колір, а DEMO запустить демонстраційний режим."
+
+msgid ""
+"Shows a help at the bottom of the screen which displays commands you can use."
+msgstr ""
+"Показувати допоміжні написи з можливими командами в нижній частині екрану."
+
+msgid ""
+"When enabled, you can switch between systems while browsing a gamelist by "
+"pressing LEFT or RIGHT."
+msgstr ""
+"Якщо ця опція включена, Ви зможете змінювати системи в списку ігор, "
+"натискаючи ВЛІВО чи ВПРАВО."
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "Виберіть чи при переході буде карусель анімована, чи ні."
+
+msgid "Select a theme for your recalbox."
+msgstr "Виберіть тему для Вашого recalbox."
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr "Оновити список ігр, якщо Ви додали ігри після останнього перезапуску."
+
+msgid "Configure the sound options of your recalbox."
+msgstr "Налаштування звуку Вашого recalbox."
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "Встановити гучність інтерфейсу та в іграх."
+
+msgid "Select your output device. Only HDMI and JACK are supported."
+msgstr "Виберіть аудіовихід. Пітримуються тільки HDMI та JACK."
+
+msgid ""
+"Configure the network options of your recalbox.\n"
+"Check your network status and IP address, set the hostname and configure the "
+"WIFI."
+msgstr ""
+"Налаштування мережі Вашого recalbox. Перевірка статусу та IP-адреси, "
+"встановлення імені хосту та конфігурація WIFI."
+
+msgid ""
+"Displays CONNECTED, if you are connected, by checking if your recalbox can "
+"access the recalbox.com update server."
+msgstr ""
+"Показує CONNECTED, якщо ви під'єднані. Для цього recalbox перевіряє чи є "
+"доступ до серверу оновлень recalbox.com."
+
+msgid "The IP address of your recalbox within your local network."
+msgstr "IP-адреса Вашого recalbox у Вашій локальній мережі."
+
+msgid ""
+"Enable or disable WIFI.\n"
+"If you disable WIFI, the SSID and the WIFI passwords are saved and can be "
+"used when you reactivate it"
+msgstr ""
+"Увімкнути чи вимкнути WIFI.\n"
+"Якщо ви вимкнете WIFI, Ваші SSID та пароль WIFI буде збережено для "
+"подальшого використання після реактивації."
+
+msgid "The name of your recalbox in your local network"
+msgstr "Назва Вашого recalbox у Вашій локальній мережі."
+
+msgid "SSID (WIFI Name) of your network."
+msgstr "SSID (Назва WIFI) у Вашій мережі."
+
+msgid "Private key of your WIFI network."
+msgstr "Приватний ключ Вашої WIFI мережі."
+
+msgid ""
+"Get information and visuals for your games. The scraper downloads metadata "
+"and visuals for your games from different servers, and greatly enhances the "
+"user experience in EmulationStation."
+msgstr ""
+"Отримайте текстову та графічну інформацію про Ваші ігри. Програма "
+"завантажить метадані з різних серверів, що значно покращить якість "
+"інтерфейсу EmulationStation."
+
+msgid ""
+"Select a server to scrape from. The SCREENSCRAPER server is recommended and "
+"is based on www.screenscraper.fr and scrapes game data in your language, if "
+"available."
+msgstr ""
+"Виберіть сервер для загрузки даних. Рекомендовано використовувати "
+"SCREENSCRAPER, що розташовано на www.screenscraper.fr і завантажує "
+"інформацію на Вашій мові, якщо можливо."
+
+msgid ""
+"Advanced settings. Please make sure you really know what you're doing, "
+"before changing any values in this menu."
+msgstr ""
+"Розширені налаштування. Будь-ласка, впевніться, що Ви знаєте, що робите, "
+"перед тим як змінювати будь-які значення у цьому меню."
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind "
+"that overclocking your board can void your warranty."
+msgstr ""
+"Розгін вашого процесора для збільшення продуктивності.\n"
+"Налаштування розгону протестовані і перевірені нашою спільнотою.\n"
+"Майте на увазі, що розгін процесора може призвести до втрати гарантії."
+
+msgid ""
+"Select which system to show when the recalbox frontend starts. The default "
+"value is 'favorites'."
+msgstr ""
+"Виберіть яку систему показувати після запуску. Значення по замовченню "
+"\"улюблені\"."
+
+msgid ""
+"On boot, recalbox will show the list of games of the selected system rather "
+"than the system view."
+msgstr ""
+"Після завантаження, recalbox покаже список ігр вибраної системи замість "
+"системного меню."
+
+msgid ""
+"Override global options like emulator, core, ratio and more for each "
+"available system in your recalbox."
+msgstr ""
+"Змінювати глобальні опції, такі як емулятор, ядро, відношення та інші для "
+"кожної доступної системи у Вашому recalbox."
+
+msgid ""
+"Configure boot options that make your recalbox boot straight into a system "
+"or into Kodi, lock a user to a single system, or directly show the gamelist."
+msgstr ""
+"Налаштування опцій запуску, таких як запуск напряму в Kodi чи в вибрану "
+"систему, обмеження на одну систему чи показ списку ігор."
+
+msgid ""
+"Enable or disable Kodi. If kodi is disabled, you won't be able to start it "
+"with the X button, or start it automatically at boot. The menu entry will be "
+"removed as well."
+msgstr ""
+"Увімкнути чи вимкнути Kodi. Якщо Kodi деактивовано, буде неможливо запустити "
+"його автоматично при запуску чи кнопкою Х. Пункт в меню теж буде видалено."
+
+msgid "Use the X button to start Kodi."
+msgstr "Запуск Kodi кнопкою Х."
+
+msgid "Automatically start into Kodi on boot."
+msgstr "Автостарт Kodi при запуску системи."
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "Показувати частоту кадрів в EmulationStation та в грі."
+
+msgid ""
+"Enable or disable the Recalbox Manager.\n"
+"The Recalbox Manager is a web application available at http://recalbox if "
+"you are on Windows, at http://recalbox.local if you are on Linux or Mac, or "
+"directly with your recalbox IP: http://192.168.1.XX.\n"
+"You can configure many options from within the manager, and even manage "
+"games, saves, and scrapes!"
+msgstr ""
+"Увімкнути чи вимкнути менеджер Recalbox.\n"
+"Менеджер Recalbox - це веб-додаток за адресою http://recalbox , якщо ви "
+"використовуєте Windows, http://recalbox.local , якщо Linux чи Mac, а також "
+"напряму через recalbox IP : http://192.168.1.XX.\n"
+"Менеджер дозволяє конфігурувати багато опцій recalbox, включно з управлінням "
+"іграми, збереженнями та метаданими."
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr ""
+"Виберіть емулятор, що буде використовуватись для запуску ігор даної системи."
+
+msgid ""
+"Switch between showing only the favorite games and showing them all. To add "
+"a game to the favorite list, select the game and toggle its state with 'Y'."
+msgstr ""
+"Переключитися між відображенням чи приховуванням улюблених ігор. Щоб додати "
+"гру в список улюблених, виберіть гру і додайте її за допомогою 'Y'."
+
+msgid ""
+"Switch between seeing the folder structure and seeing all games in a flat "
+"top-level list."
+msgstr ""
+"Перекл. між видом структури папок та відображенням всіх ігор на верхньому "
+"рівні."
+
+msgid "UPDATE TYPE"
+msgstr "ТИП ОНОВЛЕННЯ"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "ЦІЛОЧИСЛЕНЕ МАСШТАБУВАННЯ (1:1 ПІКСЕЛІ)"
+
+msgid "ADVANCED SETTINGS"
+msgstr "РОЗШИРЕНІ НАЛАШТУВАННЯ"
+
+msgid "BOOT SETTINGS"
+msgstr "НАЛАШТУВАННЯ ЗАВАНТАЖЕННЯ"
+
+msgid "BOOT ON SYSTEM"
+msgstr "ЗАВАНТАЖИТИ СИСТЕМУ"
+
+msgid "BOOT ON GAMELIST"
+msgstr "ЗАВАНТАЖИТИ СПИСОК ІГОР"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "СХОВАТИ СИСТЕМНИЙ ВИД"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "КОНФІГУРАЦІЯ ДОДАТКОВОГО ЕМУЛЯТОРА"
+
+msgid "HELP"
+msgstr "ДОПОМОГА"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "СИСТЕМА НЕ ПОТРЕБУЄ ОНОВЛЕННЯ"
+
+msgid "Now playing"
+msgstr "Зараз граєте"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr "Встановити тривалість підказок, 0 означає без підказок"
+
+msgid "HELP POPUP DURATION"
+msgstr "ТРИВАЛІСТЬ ПІДКАЗОК"
+
+msgid "POPUP SETTINGS"
+msgstr "НАЛАШТУВАННЯ ПІДКАЗОК"
+
+msgid "Set position and duration of popups."
+msgstr "Втановіть розташування та тривалість підказок."
+
+msgid "NETPLAY"
+msgstr "NETPLAY"
+
+msgid "NETPLAY SETTINGS"
+msgstr "NETPLAY НАЛАШТУВАННЯ"
+
+msgid "NETPLAY LOBBY"
+msgstr "NETPLAY ЛОББІ"
+
+msgid "Enable or disable Netplay in games."
+msgstr "Увімкнути чи вимкнути Netplay у грі"
+
+msgid "PORT"
+msgstr "ПОРТ"
+
+msgid "NICKNAME"
+msgstr "НІКНЕЙМ"
+
+msgid "Enable or disable connections through relay servers."
+msgstr "Увімкнути чи вимкнути з'єднання через пов'язані сервери."
+
+msgid "KODI/NETPLAY"
+msgstr "KODI/NETPLAY"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "НЕМА ІГОР ЧИ НЕМА З'ЄДНАННЯ"
+
+msgid ""
+"Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr ""
+"Додати хеш ромів до свого списку ігор для більш точних результатів у Netplay."
+
+msgid "HASH ROMS"
+msgstr "ХЕШУВАТИ РОМИ"
+
+msgid "Username"
+msgstr "Ім'я користувача"
+
+msgid "Country"
+msgstr "Країна"
+
+msgid "Latency"
+msgstr "Затримка"
+
+msgid "Host arch."
+msgstr "Хост арх."
+
+msgid "Core ver."
+msgstr "Ядро вер."
+
+msgid "RA ver."
+msgstr "RA вер."
+
+msgid "Can join"
+msgstr "Можна приєднатися"
+
+msgid "Rom and core match"
+msgstr "Ром і ядро підходять"
+
+msgid "Rom, hash and core match"
+msgstr "РОМ, хеш та ядро підходять"
+
+msgid "No rom match"
+msgstr "Жоден РОМ не підходить"
+
+msgid "No core match"
+msgstr "Жодне ядро не підходить"
+
+msgid "Match"
+msgstr "Підходить"
+
+msgid "No Match"
+msgstr "Не підходить"
+
+msgid "Rom file"
+msgstr "РОМ файл"
+
+msgid "Rom hash"
+msgstr "РОМ хеш"
+
+msgid "good"
+msgstr "добре"
+
+msgid "bad"
+msgstr "погано"
+
+msgid "medium"
+msgstr "середньо"
+
+msgid "Player"
+msgstr "Гравець"
+
+msgid "Game"
+msgstr "Гра"
+
+msgid "A Recalbox friend has started a Netplay game!"
+msgstr "Recalbox друг розпочав Netplay гру!"
+
+msgid "EMPTY LIST"
+msgstr "СПИСОК ПОРОЖНІЙ"
+
+msgid "Auto"
+msgstr "Авто"
+
+msgid "Square pixel"
+msgstr "Квадратний піксель"
+
+msgid "Retroarch Config"
+msgstr "Конфігурація Retroarch"
+
+msgid "Retroarch Custom"
+msgstr "Кастомний Retroarch"
+
+msgid "Core provided"
+msgstr "Надане ядро"
+
+msgid "Do not set"
+msgstr "Не встановлено"
+
+msgid "BIOS CHECKING"
+msgstr "ПЕРЕВІРКА BIOS"
+
+msgid ""
+"Scan and check all your BIOS files and report everything in a comprehensive "
+"way."
+msgstr "Сканувати і перевірити всі Ваші файли BIOS і отримати детальний звіт."
+
+msgid "RESCAN"
+msgstr "Пересканування"
+
+msgid ""
+"EMULATOR %s MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE AVAILABLE!"
+msgstr "ЕМУЛЯТОР %s МОЖЕ ПРАЦЮВАТИ НЕКОРЕКТНО БЕЗ ВСІХ НЕОБХІДНИХ БІОСІВ!"
+
+msgid ""
+"%i EMULATORS MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE "
+"AVAILABLE!"
+msgstr "%i ЕМУЛЯТОРИ МОЖУТЬ ПРАЦЮВАТИ НЕКОРЕКТНО БЕЗ ВСІХ НЕОБХІДНИХ БІОСІВ!"
+
+msgid "CONGRATULATIONS! ALL EMULATORS SHOULD WORK PROPERLY!"
+msgstr "ВІТАННЯ! ВСІ ЕМУЛЯТОРИ МАЮТЬ КОРРЕТНО ПРАЦЮВАТИ!"
+
+msgid "%i BIOS NOT FOUND"
+msgstr "%i BIOS НЕ ЗНАЙДЕНО"
+
+msgid "%i NON-MATCHING BIOS FOUND"
+msgstr "ЗНАЙДЕНО %i НЕВІДПОВІДНИЙ BIOS"
+
+msgid "%i GOOD BIOS FOUND!"
+msgstr "ЗНАЙДЕНО %i ВІРНИЙ BIOS!"
+
+msgid "File Path"
+msgstr "Шлях до файлу"
+
+msgid "Mandatory"
+msgstr "Обов'язково"
+
+msgid "Must match MD5"
+msgstr "Має відповідати MD5"
+
+msgid "File found ?"
+msgstr "Файл існує?"
+
+msgid "Matching MD5 ?"
+msgstr "Відповідна MD5?"
+
+msgid "NOTE"
+msgstr "ПРИМІТКА"
+
+msgid ""
+"This bios is required in order to run the emulator properly. You won't be "
+"able to run any games with the emulator/core above."
+msgstr ""
+"Цей BIOS необхідний для запуску емулятора. Ви не зможете запустити жодної "
+"гри емулятором/ядром вказаним вище."
+
+msgid ""
+"This bios is not mandatory in most cases. The emulator will run properly "
+"unless you want to use features requiring this particular bios file."
+msgstr ""
+"Цей BIOS не є обов'язковим. Якщо ви не використовуєте спеціальні функції "
+"цього BIOS, емулятор повинен працювати і без нього."
+
+msgid ""
+"Your bios file does not match any known MD5. However, there are chances of "
+"getting the emulator running fine."
+msgstr ""
+"Ваш файл BIOS не збігається з відомими хешами, цілком ймовірно, що все буде "
+"працювати нормально і без нього."
+
+msgid ""
+"Your bios file does not match any known MD5 but this is not required. So "
+"there are strong chances of getting everything running fine."
+msgstr ""
+"Оскільки ваш файл BIOS не збігається з жодним відомим хешем, то він не є "
+"необхідним. Цілком ймовірно, що все буде працювати нормально і без нього."
+
+msgid ""
+"Your bios file does match one of the known MD5. Everything will run fine!"
+msgstr ""
+"Ваш BIOS відповідає одному з відомих хешів MD5, тому все повинно працювати "
+"нормально!"
+
+msgid "MD5 LIST"
+msgstr "Список MD5"
+
+msgid "Congratulation, all cores/emulators listed below will work flawlessly!"
+msgstr ""
+"Вітаємо, всі перераховані нижче ядра/емулятори будуть працювати бездоганно!"
+
+msgid ""
+"Cores/emulators listed below won't probably work until required bios are "
+"made available."
+msgstr ""
+"Ядра/емулятори, перелічені нижче, можуть не працювати, доки не будуть "
+"доступні всі необхідні файли BIOS."
+
+msgid ""
+"Cores/emulators listed below may work in most cases, unless you use features "
+"requiring special bios."
+msgstr ""
+"Ядра/емулятори, перелічені нижче, працюватимуть, якщо ви не використовуєте "
+"функції, які вимагають спеціального BIOS."
+
+msgid "BIOS OK"
+msgstr "BIOS OK"
+
+msgid "BIOS UNSAFE"
+msgstr "НЕБЕЗПЕЧНИЙ BIOS"
+
+msgid "BIOS KO"
+msgstr "BIOS KO"
+
+msgid "BIOS NOT FOUND"
+msgstr "BIOS НЕ ЗНАЙДЕНО"
+
+msgid "MD5 OK"
+msgstr "MD5 OK"
+
+msgid "MD5 NOT OK"
+msgstr "MD5 НЕ OK"
+
+msgid "BROWSE"
+msgstr "ОГЛЯД"
+
+msgid "Your bios' MD5"
+msgstr "MD5 Вашого BIOS"
+
+msgid "Known MD5 List"
+msgstr "Список відомих MD5"
+
+msgid "MY SYSTEMS"
+msgstr "МОЇ СИСТЕМИ"
+
+msgid "ALL SYSTEMS"
+msgstr "ВСІ СИСТЕМИ"
+
+msgid ""
+"EmulationStation has detected external changes on a gamelist file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"Детектовано зовнішні зміни до файлу зі списком ігор. EmulationStation "
+"перезапуститься і завантажить всі файли наново, щоб уникнути втрати даних."
+
+msgid ""
+"EmulationStation has detected external changes on a theme file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"Детектовано зовнішні зміни до файлу теми. EmulationStation перезапуститься і "
+"завантажить всі файли наново, щоб уникнути втрати даних."
+
+msgid "VIRTUAL SYSTEMS"
+msgstr "ВІРТУАЛЬНІ СИСТЕМИ"
+
+msgid "SHOW ALL-GAMES SYSTEM"
+msgstr "ПОКАЗАТИ ВСЕІГРОВУ СИСТЕМУ"
+
+msgid "SHOW MULTIPLAYER SYSTEM"
+msgstr "ПОКАЗАТИ БАГАТОКОРИСТУВАЦЬКУ СИСТЕМУ"
+
+msgid "SHOW LAST-PLAYED SYSTEM"
+msgstr "ПОКАЗАТИ ОСТАННЮ ВИКОРИСТАНУ СИСТЕМУ"
+
+msgid "VIRTUAL SYSTEMS PER GENRE"
+msgstr "ВІРТУАЛЬНІ СИСТЕМИ ЗА ЖАНРАМИ"
+
+msgid "Show a 'all-games' system with all games from all systems."
+msgstr "Показати систему \"всі ігри\" з усіма іграми з усіх систем."
+
+msgid "Show multiplayer games (all games playable by two or more players)."
+msgstr ""
+"Показувати багатокористувацькі ігри (всі ігри, в які можуть грати двоє і "
+"більше гравців)"
+
+msgid "Show last played games."
+msgstr "Показати останні ігри."
+
+msgid "Select virtual systems per genre to show."
+msgstr "Виберіть віртуальні системи за жанром для показу."
+
+msgid "HIGHLIGHT GAMES OF REGION..."
+msgstr "ВИДІЛИТИ ІГРИ РЕГІОНУ..."
+
+msgid ""
+"Select the source of your game name. Trust the scraping database or get them "
+"from filename, raw or undecorated (without decoration in () or [] )."
+msgstr ""
+"Виберіть джерело назви вашої гри. Довіртеся базі даних скрепінгу або "
+"візьміть їх з імені файлу, необробленого або неприкрашеного (без прикрас у "
+"() або [] )."
+
+msgid "GET GAME NAME FROM"
+msgstr "ОТРИМАТИ НАЗВУ ГРИ З"
+
+msgid "Scraper results"
+msgstr "Результати скреперу"
+
+msgid "Raw filename"
+msgstr "Вихідне ім'я файлу"
+
+msgid "Undecorated filename"
+msgstr "Неоформлене ім'я файлу"
+
+msgid "OPEN-SOURCE LICENSE"
+msgstr "ЛІЦЕНЗІЯ З ВІДКРИТИМ ВИХІДНИМ КОДОМ"
+
+msgid "SELECT IMAGE TYPE"
+msgstr "ОБЕРІТЬ ТИП ЗОБРАЖЕННЯ"
+
+msgid "In-game screenshot"
+msgstr "Скріншот з гри"
+
+msgid "Title screenshot"
+msgstr "Титульний скріншот"
+
+msgid "Marquee"
+msgstr "Тікер"
+
+msgid "ScreenScraper Mix V1"
+msgstr "ScreenScraper Мікс v1"
+
+msgid "ScreenScraper Mix V2"
+msgstr "ScreenScraper Мікс v2"
+
+msgid "SELECT VIDEO TYPE"
+msgstr "ВИБЕРІТЬ ТИП ВІДЕО"
+
+msgid "No video"
+msgstr "Без відео"
+
+msgid "Original video"
+msgstr "Оригінальне відео"
+
+msgid "SELECT FAVORITE REGION"
+msgstr "ОБЕРІТЬ УЛЮБЛЕНИЙ РЕГІОН"
+
+msgid "FAVORITE REGION"
+msgstr "УЛЮБЛЕНИЙ РЕГІОН"
+
+msgid "SELECT FAVORITE LANGUAGE"
+msgstr "ОБЕРІТЬ УЛЮБЛЕНУ МОВУ"
+
+msgid "SYSTEM NAME"
+msgstr "НАЗВА СИСТЕМИ"
+
+msgid "PUBLISHER"
+msgstr "ВИДАВНИЦТВО"
+
+msgid "DEFAULT"
+msgstr "ЗА ЗАМОВЧАННЯМ"
+
+msgid ""
+"It seems that your game didn't start at all!\n"
+"\n"
+"It's most likely due to either:\n"
+"- bad rom\n"
+"- missing/bad mandatory bios files\n"
+"- missing/bad optional BIOS files (but required for this very game)"
+msgstr ""
+"Схоже, що ваша гра взагалі не запустилася!\n"
+"\n"
+"Є кілька причин, які можуть спричинити це:\n"
+"- Поганий ROM\n"
+"- Відсутні/пошкоджені обов'язкові файли BIOS\n"
+"- Відсутні/пошкоджені додаткові файли BIOS (необхідні для цієї гри)"
+
+msgid ""
+"At least one mandatory BIOS is missing for %emulator%!\n"
+"Your game '%game%' will very likely not run at all until required BIOS are "
+"put in the expected folder.\n"
+"\n"
+"Do you want to launch the game anyway?"
+msgstr ""
+"Для %emulator% бракує принаймні одного обов'язкового BIOS!\n"
+"Ваша гра '%game%', швидше за все, не запуститься, поки необхідний BIOS не "
+"буде покладено у правильну папку.\n"
+"\n"
+"Ви все одно хочете запустити гру?"
+
+msgid "BACKSPACE"
+msgstr "BACKSPACE"
+
+msgid "FAST WHEEL"
+msgstr "ШВИДКА ПРОКРУТКА"
+
+msgid "CHANGE CHARSET"
+msgstr "ЗМІНИТИ НАБІР СИМВОЛІВ"
+
+msgid "MOVE WHEEL"
+msgstr "РУХАТИ КОЛЕСО"
+
+msgid "DOWNLOAD GAME MANUALS"
+msgstr "ЗАВАНТАЖУВАТИ ДОВІДНИКИ"
+
+msgid "DOWNLOAD GAME MAPS"
+msgstr "ЗАВАНТАЖУВАТИ ІГРОВІ МАПИ"
+
+msgid "INSTALL PAD-2-KEYBOARD CONFIGURATIONS"
+msgstr "ВСТАНОВИТИ КОНФІГУРАЦІЮ PAD-2-КЛАВІАТУРА"
+
+msgid ""
+"You're strongly recommended to update your Recalbox.\n"
+"No support will be provided for older versions!"
+msgstr ""
+"Наполегливо рекомендуємо оновити Recalbox.\n"
+"Підтримка застарілих версій не надається!"
+
+msgid " has been plugged!"
+msgstr " підключено!"
+
+msgid "Ready to play!"
+msgstr "До гри готові!"
+
+msgid "Not configured yet! Press a button to enter the configuration window."
+msgstr ""
+"Налаштування ще не завершено! Натисніть кнопку для входу у вікно "
+"конфігурації."
+
+msgid " has been unplugged!"
+msgstr " відключено!"
+
+msgid "Remove from favorite"
+msgstr "Видалити з обраного"
+
+msgid "Default output"
+msgstr "Стандартний вивід"
+
+msgid "HIDE ORIGINAL SYSTEMS"
+msgstr "ПРИХОВАТИ ОРИГІНАЛЬНІ СИСТЕМИ"
+
+msgid "PREDEFINED PASSWORDS"
+msgstr "ЗАЗДАЛЕГІДЬ ВСТАНОВЛЕНІ ПАРОЛІ"
+
+msgid "VALIDATE"
+msgstr "ПІДТВЕРДИТИ"
+
+msgid "CHOOSE PLAYER PASSWORD"
+msgstr "ВИБЕРІТЬ ПАРОЛЬ ГРАВЦЯ"
+
+msgid "SEARCH IN..."
+msgstr "ШУКАТИ В..."
+
+msgid "DOWNLOADING UPDATE..."
+msgstr "ЗАВАНТАЖУЮ ОНОВЛЕННЯ..."
+
+msgid "REBOOT IN %s"
+msgstr "ПЕРЕЗАВАНТАЖЕННЯ ЧЕРЕЗ %s"
+
+msgid "Error downloading Recalbox %s... Please retry later!"
+msgstr "Помилка завантаження Recalbox %s... Будь ласка, спробуйте пізніше!"
+
+msgid "ALL"
+msgstr "ВСІ"
+
+msgid "TYPE AT LEAST 3 CHARACTERS"
+msgstr "НАБЕРІТЬ МІНІМУМ 3 СИМВОЛИ"
+
+msgid "AUTOMATIC WPS CONNECTION"
+msgstr "АВТОМАТИЧНЕ З'ЄДНАННЯ WPS"
+
+msgid "Connecting to WIFI..."
+msgstr "Під'єднуюсь до Wi-Fi..."
+
+msgid "Disconnecting from WIFI..."
+msgstr "Від'єднуюсь від Wi-Fi..."
+
+msgid "NO WPS CONFIGURATION FOUND!"
+msgstr "НЕ ЗНАЙДЕНО WPS КОНФІГУРАЦІЇ!"
+
+msgid "Hostname changes will not be effective until next reboot"
+msgstr "Зміна імені хоста не набуде чинності до наступного перезавантаження."
+
+msgid "Fetching WIFI parameters"
+msgstr "Отримання параметрів Wi-Fi..."
+
+msgid "NETPLAY MITM"
+msgstr "NETPLAY MITM"
+
+msgid "Reseting WIFI configuration..."
+msgstr "Скидання налаштувань Wi-Fi..."
+
+msgid "WPS CONFIGURATION SUCCESSFUL!"
+msgstr "КОНФІГУРАЦІЮ WPS УСПІШНО ЗАВЕРШЕНО!"
+
+msgid "Waiting for IP address... (%is)"
+msgstr "Очікуємо на отримання IP-адреси... (%is)"
+
+msgid "Waiting for WPS configuration..."
+msgstr "Очікуємо на конфігурацію WPS..."
+
+msgid "SCREENSAVER"
+msgstr "ЗБЕРЕЖЕННЯ ЕКРАНУ"
+
+msgid "SHADERS"
+msgstr "ШЕЙДЕРИ"
+
+msgid "Saving WIFI configuration"
+msgstr "Зберігаємо конфігурацію Wi-Fi..."
+
+msgid "THEME"
+msgstr "ТЕМА"
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a raw shader "
+"file here. This setting may be overridden by the shader set if it is not set "
+"to 'none'."
+msgstr ""
+"Шейдери - це як фільтри для візуалізації гри. Тут ви можете вибрати "
+"необроблений файл шейдерів. Ця установка може бути переписана вибраним "
+"комплектом шейдерів, якщо тільки не встановлена на \"ніякі\"."
+
+msgid "Select your keyboard layout."
+msgstr "Виберіть розкладку клавіатури."
+
+msgid "Mute (no sound)"
+msgstr "Вимкнути (без звуку)"
+
+msgid "Internal Speakers"
+msgstr "Вбудовані динаміки"
+
+msgid "Headphone Jack"
+msgstr "Роз'єм для навушників"
+
+msgid "Internal Speakers + Headphone Jack"
+msgstr "Вбудовані динаміки + роз'єм для навушників"
+
+msgid "black"
+msgstr "чорний"
+
+msgid "demo"
+msgstr "демо"
+
+msgid "dim"
+msgstr "затемнити"
+
+msgid "gameclip"
+msgstr "ігровий ролик"
+
+msgid "Action (All)"
+msgstr "Екшн (Всі)"
+
+msgid "Action RPG"
+msgstr "Екшн рольові"
+
+msgid "Adventure (All)"
+msgstr "Пригоди (Всі)"
+
+msgid "Artillery"
+msgstr "Артилерія"
+
+msgid "Auto-battler"
+msgstr "Авто-битва"
+
+msgid "Battle Royale"
+msgstr "Цар гори"
+
+msgid "Beat'em All"
+msgstr "Бий їх!"
+
+msgid "Board game"
+msgstr "Настільна гра"
+
+msgid "Build & Management"
+msgstr "Розбудова і менеджмент"
+
+msgid "Casino"
+msgstr "Казино"
+
+msgid "Casual game"
+msgstr "Casual"
+
+msgid "Competition Sport"
+msgstr "Змагальний спорт"
+
+msgid "Demo from Demo Screne"
+msgstr "Демо з демо-сцени"
+
+msgid "Digital Cards"
+msgstr "Цифрові Карти"
+
+msgid "Dungeon Crawler"
+msgstr "Підземелля"
+
+msgid "Educative"
+msgstr "Освітні"
+
+msgid "Favorites"
+msgstr "Улюблені"
+
+msgid "Fighting"
+msgstr "Файтинг"
+
+msgid "Fighting/Violent Sport"
+msgstr "Файтинг / Жорсткий спорт"
+
+msgid "First Person Shooter"
+msgstr "Шутер від першого лиця"
+
+msgid "Fishing & Hunting"
+msgstr "Рибалка & Мисливство"
+
+msgid "Graphical Adventure"
+msgstr "Графічна пригода"
+
+msgid "Infiltration"
+msgstr "Стелс"
+
+msgid "Interactive Movie"
+msgstr "Інтерактивне кіно"
+
+msgid "JRPG"
+msgstr "Японська рольова гра"
+
+msgid "Life Simulation"
+msgstr "Сим життя"
+
+msgid "MMORPG"
+msgstr "ММО рольова гра"
+
+msgid "Multi Game Compilation"
+msgstr "Збірка ігор"
+
+msgid "Multiplayer Online Battle Arena"
+msgstr "Багатокористувацька онлайн-арена для битв (MOBA)"
+
+msgid "Multiplayer Party Game"
+msgstr "Багатокористувацька гра для вечірок"
+
+msgid "Party based RPG"
+msgstr "Рольова гра з групами"
+
+msgid "Pinball"
+msgstr "Пінбол"
+
+msgid "Platform Shooter"
+msgstr "Платформний шутер"
+
+msgid "Platform"
+msgstr "Платформер"
+
+msgid "Puzzle & Logic"
+msgstr "Головоломки та логіка"
+
+msgid "RPG (All)"
+msgstr "Рольові (Всі)"
+
+msgid "Racing"
+msgstr "Перегони"
+
+msgid "Real Time 3D Adventure"
+msgstr "3D пригоди в реальному часі"
+
+msgid "Real Time Strategy"
+msgstr "Стратегія Реального Часу"
+
+msgid "Rythm & Music"
+msgstr "Ритм і музика"
+
+msgid "Science Fiction Simulation"
+msgstr "Науково-фантастична симуляція"
+
+msgid "Shoot with Gun"
+msgstr "Стріляй з пістолета"
+
+msgid "Shoot'em Up"
+msgstr "Застрели їх!"
+
+msgid "Simulation (All)"
+msgstr "Симуляція (Всі)"
+
+msgid "Sport Simulation"
+msgstr "Спортивні симуляції"
+
+msgid "Sports (All)"
+msgstr "Спорт (Всі)"
+
+msgid "Strategy (All)"
+msgstr "Стратегії (Всі)"
+
+msgid "Survival"
+msgstr "Виживання"
+
+msgid "Tactical RPG"
+msgstr "Тактична рольова гра"
+
+msgid "Textual Adventure"
+msgstr "Текстова пригода"
+
+msgid "Tower Defense"
+msgstr "Баштова оборона"
+
+msgid "Trivia"
+msgstr "Вікторина"
+
+msgid "Turn Based Strategy"
+msgstr "Покрокова стратегія"
+
+msgid "Vehicle Simulation"
+msgstr "Симуляція транспортного засобу"
+
+msgid "Visual Novel"
+msgstr "Візуальна новела"
+
+msgid "Wargame"
+msgstr "Війна"
+
+msgid "eXplore, eXpand, eXploit & eXterminate"
+msgstr "Досліджуй, розширюйся, експлуатуй і знищуй (4X)"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Advance!\n"
+"This little presentation will show you how to use the 6 special buttons "
+"available right under the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Ласкаво просимо до RECALBOX для ODROID-GO Advance!\n"
+"Ця коротка презентація покаже вам, як використовувати 6 спеціальних кнопок "
+"прямо під екраном.\n"
+"\n"
+"Натисніть будь-яку кнопку, щоб розпочати."
+
+msgid ""
+"The leftmost button is the SELECT button, marked with a 'I', also available "
+"on most modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Крайня ліва кнопка - це кнопка SELECT, позначена \"I\".\n"
+"Це також кнопка HOTKEY, яку можна використовувати в поєднанні з іншими "
+"кнопками в більшості емуляторів.\n"
+"Наприклад, ви можете використовувати HOTKEY+START, щоб вийти з поточної "
+"гри.\n"
+"\n"
+"Щоб продовжити, натисніть кнопку SELECT."
+
+msgid ""
+"Next to the SELECT button is the START button, marked with an 'II'.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Поруч з кнопкою SELECT знаходиться кнопка START, позначена \"II\".\n"
+"Використовуйте її, щоб відкрити головне меню в інтерфейсі Recalbox, або "
+"використовуйте її в грі як звичайну кнопку START, доступну на більшості "
+"консолей.\n"
+"\n"
+"Натисніть кнопку START, щоб продовжити."
+
+msgid ""
+"Then, there are 2 buttons marked with a 'III' and a 'IV'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press either volume up or down (III/IV)."
+msgstr ""
+"Далі є 2 кнопки з позначками 'III' та 'IV'.\n"
+"Використовуйте їх, щоб у будь-який момент збільшити чи зменшити гучність в "
+"інтерфейсі Recalbox або в грі.\n"
+"\n"
+" Натисніть кнопку збільшення або зменшення гучності (III/IV)."
+
+msgid ""
+"The last two buttons marked 'V' and 'VI' are useful to make your screen "
+"darker or brighter.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down (V/VI)."
+msgstr ""
+"Останні дві кнопки з позначками 'V' та 'VI' дозволяють зробити екран "
+"темнішим або яскравішим.\n"
+"Зауважте, що чим яскравіший екран, тим більше енергії він споживає!\n"
+"\n"
+"Натисніть кнопку збільшення або зменшення яскравості (V/VI)."
+
+msgid ""
+"Now you're ready to start your RETROGAMING experience with Recalbox! Press "
+"button B to start... and PLAY AGAIN!"
+msgstr ""
+"Ви готові розпочати свою РЕТРО-ігрову діяльність з Recalbox! Натисніть "
+"кнопку B, щоб почати ... і ГРАЙТЕ ЩЕ РАЗ!"
+
+msgid "WELCOME TO RECALBOX!"
+msgstr "ЛАСКАВО ПРОСИМО ДО RECALBOX!"
+
+msgid ""
+"Just a few words about the POWER button.\n"
+"Make a short press, just like a mouse click, and your console will enter "
+"sleep mode. Make another short press and your console will restart instanly! "
+"Work in Recalbox interface and in-game!\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Кілька речей, які ви повинні знати про кнопку POWER.\n"
+"Коротке натискання - як клацання мишею - переведе вашу консоль в сплячий "
+"режим. Ще одне коротке натискання - і ваша консоль знову увімкнеться! Це "
+"працює як в інтерфейсі Recalbox, так і в грі.\n"
+"\n"
+"Натисніть кнопку B, щоб продовжити."
+
+msgid ""
+"If you push the POWER button more than 2 seconds, this will power-off your "
+"console. If you do so in-game, Recalbox will close the current emulator "
+"gracefully.\n"
+"Just in case, holding the POWER button down more than 5s perform an hard "
+"power-off.\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Якщо утримувати кнопку POWER натиснутою більше 2 секунд, консоль вимкнеться. "
+"Якщо ви зробите це під час гри, Recalbox акуратно закриє поточний емулятор "
+"перед вимкненням.\n"
+"До відома, якщо утримувати кнопку POWER натиснутою більше 5 секунд, "
+"відбудеться жорстке вимкнення.\n"
+"\n"
+"Натисніть кнопку B, щоб продовжити."
+
+msgid ""
+"One more thing to know: If you plug in or unplug your headphones in the jack "
+"connector, Recalbox will automatically switch the audio output. Convenient.\n"
+"\n"
+"Press button B, as usual."
+msgstr ""
+"Ще одна річ, про яку слід пам'ятати: Якщо ви підключаєте або відключаєте "
+"навушники від роз'єму, Recalbox автоматично перемикає аудіовихід. Зручно, чи "
+"не так?\n"
+"\n"
+"Натисніть кнопку B, щоб продовжити."
+
+msgid "System"
+msgstr "Система"
+
+msgid "Added to favorites"
+msgstr "Додано до обраного"
+
+msgid "Removed from favorites"
+msgstr "Видалено з обраного"
+
+msgid "Gameclips cannot be played. No video availabe for your selection"
+msgstr ""
+"Ігрові кліпи не можуть бути відтворені. Для вашого вибору немає відеороликів."
+
+msgid "EmulationStation must relaunch to apply your changes."
+msgstr "EmulationStation має перезапуститися, щоб застосувати ваші зміни."
+
+msgid "PAIRING %s ..."
+msgstr "ПАРУВАННЯ %s ..."
+
+msgid "GAME %s"
+msgstr "Гра %s"
+
+msgid "RUN WITH"
+msgstr "ЗАПУСТИТИ З"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Super!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Ласкаво просимо до RECALBOX для ODROID-GO Super!\n"
+"Ця невелика презентація покаже вам, як користуватися всіма спеціальними "
+"кнопками довкола екрану.\n"
+"\n"
+"Натисніть будь-яку кнопку, щоб почати!"
+
+msgid ""
+"The top-left black button is the SELECT button, also available on most "
+"modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Верхня ліва чорна кнопка - це кнопка SELECT, яка доступна на більшості "
+"сучасних контролерів.\n"
+"Однак це також кнопка HOTKEY, яку ви можете використовувати в поєднанні з "
+"іншими кнопками в більшості емуляторів.\n"
+"Наприклад, ви можете використовувати HOTKEY+START, щоб вийти з гри, в яку ви "
+"граєте.\n"
+"\n"
+"Натисніть кнопку SELECT."
+
+msgid ""
+"At the opposite side of the SELECT button is the START button.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Навпроти кнопки SELECT знаходиться кнопка START. Використовуйте її, щоб "
+"відкрити головне меню в інтерфейсі Recalbox, і використовуйте її як звичайну "
+"кнопку СТАРТ в грі.\n"
+"\n"
+"Натисніть кнопку START."
+
+msgid ""
+"Then, on the top of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press any button to continue"
+msgstr ""
+"У верхній частині консолі є дві кнопки, позначені \"-\" і \"+\". "
+"Використовуйте їх для збільшення та зменшення гучності в будь-який час, "
+"незалежно від того, перебуваєте ви в інтерфейсі Recalbox або в грі.\n"
+"\n"
+"Натисніть будь-яку кнопку, щоб продовжити."
+
+msgid ""
+"The two bottom-left gray buttons control the screen brightness.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down button"
+msgstr ""
+"Дві ліві нижні сірі кнопки регулюють яскравість екрану.\n"
+"Пам'ятайте: чим яскравіший екран, тим більше енергії ви споживаєте!\n"
+"\n"
+"Натискайте кнопки збільшення або зменшення яскравості."
+
+msgid ""
+"Finally, the two bottom-right gray buttons are third left & right triggers "
+"(L3/R3), only usefull in some emulators or to record videos.\n"
+"\n"
+" Press either L3 or R3"
+msgstr ""
+"Останні дві сірі кнопки внизу праворуч - це третій лівий і правий тригери "
+"(L3/R3). Це корисно лише в деяких емуляторах або для запису відео.\n"
+"\n"
+"Натисніть L3 або R3."
+
+msgid ""
+"Change the driver if your pad is not working at all or not working properly "
+"in-game."
+msgstr "Замініть драйвер, якщо ваш контролер не працює належним чином."
+
+msgid "In Memory!"
+msgstr "В пам'яті!"
+
+msgid "Internal Share Partition"
+msgstr "Внутрішній розділ загального доступу"
+
+msgid "Network Share"
+msgstr "Спільний мережевий ресурс"
+
+msgid "Device %d - %l (%f)"
+msgstr "Пристрій %d - %l (%f)"
+
+msgid "Any External Device"
+msgstr "Будь-який зовнішній пристрій"
+
+msgid "DETECTED REGION"
+msgstr "ЗНАЙДЕНИЙ РЕГІОН"
+
+msgid "SELECT REGION PRIORITY"
+msgstr "ВИБІР ПРІОРИТЕТНОГО РЕГІОНУ"
+
+msgid "LATER"
+msgstr "ПІЗНІШЕ"
+
+msgid "A reboot is required to apply pending changes."
+msgstr "Щоб застосувати заплановані зміни, необхідно перезавантажитися."
+
+msgid "SHOW LIGHTGUN SYSTEM"
+msgstr "ПОКАЗАТИ СИСТЕМУ З СВІТЛОВИМ ПІСТОЛЕТОМ"
+
+msgid "SHOW PORTS SYSTEM"
+msgstr "ПОКАЗАТИ СИСТЕМУ ПОРТІВ"
+
+msgid "Show all available games playable with a lightgun."
+msgstr "Показати всі доступні ігри, в які можна грати зі світловим пістолетом."
+
+msgid "Show a 'ports' system with all ports in the same place."
+msgstr "Показати систему 'ports' з усіма портами в одному місці."
+
+msgid ""
+"WARNING! This option erases all Recalbox and emulator configurations! Use it "
+"carefully!"
+msgstr ""
+"УВАГА! Ця опція стирає всі конфігурації Recalbox та емулятора. "
+"Використовуйте її обережно!"
+
+msgid "RESET TO FACTORY SETTINGS"
+msgstr "СКИНУТИ ДО ЗАВОДСЬКИХ НАЛАШТУВАНЬ"
+
+msgid "WARNING!"
+msgstr "ПОПЕРЕДЖЕННЯ!"
+
+msgid ""
+"RESET TO FACTORY SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET RECALBOX AND EMULATOR SETTINGS TO DEFAULT VALUES.\n"
+"ALL YOUR DATA LIKE GAMES, SAVES, MUSIC, SCREENSHOTS AND SO ON, WILL BE "
+"KEPT.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR SETTINGS?"
+msgstr ""
+"СКИДАННЯ ДО ЗАВОДСЬКИХ НАЛАШТУВАНЬ\n"
+"\n"
+"ВИ ЗБИРАЄТЕСЯ СКИНУТИ НАЛАШТУВАННЯ RECALBOX ТА ЕМУЛЯТОРА ДО ЗНАЧЕНЬ ЗА "
+"ЗАМОВЧУВАННЯМ.\n"
+"ВСІ ВАШІ ДАНІ, ТАКІ ЯК ІГРИ, СЕЙВИ, МУЗИКА, СКРІНШОТИ І Т.Д. БУДУТЬ "
+"ЗБЕРЕЖЕНІ.\n"
+"\n"
+"ЦЮ ОПЕРАЦІЮ НЕМОЖЛИВО СКАСУВАТИ!\n"
+"ВИ ВПЕВНЕНІ, ЩО ХОЧЕТЕ СКИНУТИ ВСІ НАЛАШТУВАННЯ?"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR RECALBOX TO FACTORY SETTINGS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"ВИ ЗНАХОДИТЕСЬ НА ВІДСТАНІ ОДНОГО КЛІКУ ВІД СКИДАННЯ ВАШОГО RECALBOX ДО "
+"ЗАВОДСЬКИХ НАЛАШТУВАНЬ!\n"
+"\n"
+"ВИ ВПЕВНЕНІ, ЩО ХОЧЕТЕ ЦЕ ЗРОБИТИ?"
+
+msgid "SWAP VALIDATE/CANCEL BUTTONS"
+msgstr "ПОМІНЯТИ МІСЦЯМИ КНОПКИ ПІДТВЕРДЖЕННЯ/ВІДМІНИ"
+
+msgid "AUDIO MODE"
+msgstr "АУДІО РЕЖИМ"
+
+msgid "Select sound to play. Musics, videos sound, both or none"
+msgstr "Виберіть звук для відтворення. Музика, звук відео, обидва або жодного"
+
+msgid "Musics or videos sound"
+msgstr "Звук музики або відео"
+
+msgid "Musics and videos sound"
+msgstr "Звук музики і відео"
+
+msgid "Musics only"
+msgstr "Тільки музика"
+
+msgid "Videos sound only"
+msgstr "Тільки відео"
+
+msgid "No sound"
+msgstr "Без звуку"
+
+msgid "Adult"
+msgstr "Для дорослих"
+
+msgid "Waking up!"
+msgstr "Прокидаюсь..."
+
+msgid "LightGun Games"
+msgstr "Ігри з світловим пістолетом"
+
+msgid "NEW YORK"
+msgstr "НЬЮ-ЙОРК"
+
+msgid "MADRID"
+msgstr "МАДРІД"
+
+msgid "Swap the validate button (B/X) and the cancel button (B/O)."
+msgstr "Поміняти місцями кнопки підтвердження (B/X) та відміни (A/O)"
+
+msgid "box3d"
+msgstr "BOX3D"
+
+msgid "P2K CONTROLS"
+msgstr "ЕЛЕМЕНТИ УПРАВЛІННЯ P2K"
+
+msgid "THE UPGRADE HAS FAILED"
+msgstr "ОНОВЛЕННЯ НЕ ВИКОНАНО"
+
+msgid ""
+"The upgrade process has failed. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, and contact the team on https://forum."
+"recalbox.com if the problem persists."
+msgstr ""
+"Процес оновлення завершився невдало. Ви повернулися до Recalbox %s.\n"
+"Будь ласка, спробуйте оновити Recalbox ще раз і зв'яжіться з командою за "
+"адресою https://forum.recalbox.com, якщо проблема не зникне."
+
+msgid "RECALBOX OVERLAYS"
+msgstr "ОВЕРЛЕЙ RECALBOX "
+
+msgid ""
+"On wide screens, display system images that wrap around emulated screen."
+msgstr ""
+"На широких екранах виводити системне зображення, що охоплює екран емуляції."
+
+msgid "No comment available"
+msgstr "Коментарі відсутні"
+
+msgid "UNKNOWN"
+msgstr "НЕВІДОМО"
+
+msgid "GO TO GAME"
+msgstr "ПЕРЕЙТИ ДО ГРИ"
+
+msgid "MEDIA FILES"
+msgstr "МЕДІА ФАЙЛИ"
+
+msgid "CONFIGURATION AND PATCH FILES"
+msgstr "КОНФІГУРАЦІЙНІ ТА ПАТЧ-ФАЙЛИ"
+
+msgid "SAVE FILES"
+msgstr "ЗБЕРЕГТИ ФАЙЛИ"
+
+msgid "RELEASE DATE"
+msgstr "ДАТА ВИХОДУ"
+
+msgid "TYPE, THEN NAME"
+msgstr "ТИП, ПОТІМ НАЗВА"
+
+msgid "TYPE, THEN RELEASE DATE"
+msgstr "ТИП, ПОТІМ ДАТА ВИПУСКУ"
+
+msgid "MANUFACTURER, THEN NAME"
+msgstr "ВИРОБНИК, ПОТІМ НАЗВА"
+
+msgid "MANUFACTURER, THEN RELEASE DATE"
+msgstr "ТИП, ПОТІМ ВИРОБНИК, ПОТІМ ДАТА ВИПУСКУ"
+
+msgid "TYPE, THEN MANUFACTURER, THEN NAME"
+msgstr "ТИП, ПОТІМ ВИРОБНИК, ПОТІМ НАЗВА"
+
+msgid "TYPE, THEN MANUFACTURER, THEN RELEASE DATE"
+msgstr "ТИП, ПОТІМ ВИРОБНИК, ПОТІМ ДАТА ВИПУСКУ"
+
+msgid "SYSTEM SORTING"
+msgstr "СИСТЕМНЕ СОРТУВАННЯ"
+
+msgid ""
+"Default: use original or custom systemlist.xml order\n"
+"System Type: order by Console/Handheld/Computer/Arcade/Other\n"
+"Release Date: order by release date asc\n"
+"Manufacturer: order by manufacturer (e.g. Sega)\n"
+"Special Blend: Sort by type then Manufacturer then Release Date"
+msgstr ""
+"За замовчуванням: використовувати оригінальний або користувацький порядок "
+"systemlist.xml\n"
+"Назва: впорядкувати за назвою системи в алфавітному порядку\n"
+"Тип системи: впорядкувати за консолями/портативними/комп'ютерами/аркадами/"
+"іншими\n"
+"Дата випуску: впорядкувати за датою випуску\n"
+"Виробник: впорядкувати за виробником (наприклад, Sega)"
+
+msgid "DELETE ALL FILES"
+msgstr "ВИДАЛИТИ ВСІ ФАЙЛИ"
+
+msgid "ADVANCED DELETE"
+msgstr "РОЗШИРЕНЕ ВИДАЛЕННЯ"
+
+msgid "DELETE ALL FILES, CONFIRM?"
+msgstr "ИДАЛИТИ ВСІ ФАЙЛИ, ПІДТВЕРДЖУЄТЕ?"
+
+msgid "DELETE SCREENSHOT, CONFIRM?"
+msgstr "ВИДАЛИТИ ЗНІМОК ЕКРАНА, ПІДТВЕРДЖУЄТЕ?"
+
+msgid ""
+"Global resolution is the resolution used by default when specific "
+"resolutions are undefined."
+msgstr ""
+"Глобальна роздільна здатність - це роздільна здатність, яка використовується "
+"за замовчуванням, коли конкретні роздільні здатності не визначені."
+
+msgid "Select the resolution EmulationStation will use."
+msgstr "Виберіть роздільну здатність, яку використовуватиме EmulationStation."
+
+msgid "RESOLUTIONS"
+msgstr "РОЗДІЛЬНА ЗДАТНІСТЬ"
+
+msgid "GLOBAL RESOLUTION"
+msgstr "ГЛОБАЛЬНА РОЗДІЛЬНА ЗДАТНІСТЬ"
+
+msgid "EMULATIONSTATION RESOLUTION"
+msgstr "РОЗДІЛЬНА ЗДАТНІСТЬ EMULATIONSTATION"
+
+msgid "USE GLOBAL"
+msgstr "ВИКОРИСТОВУВАТИ ГЛОБАЛЬНУ"
+
+msgid "NATIVE"
+msgstr "РІДНА"
+
+msgid ""
+"No file selected,\n"
+"you must at least choose one."
+msgstr ""
+"Не вибрано жодного файлу.\n"
+"Ви повинні вибрати хоча б один."
+
+msgid ""
+"The device %NAME% containing roms has been plugged in! EmulationStation must "
+"relaunch to load new games."
+msgstr ""
+"Пристрій %NAME%, що містить ROM, підключено! Для завантаження нових ігор "
+"необхідно перезапустити EmulationStation."
+
+msgid ""
+"A device containing roms has been unplugged! EmulationStation must relaunch "
+"to remove unavailable games."
+msgstr ""
+"Пристрій, що містить ROMи, від'єднано! Щоб видалити тепер недосяжні ігри, "
+"необхідно перезапустити EmulationStation."
+
+msgid ""
+"Your USB device has been initialized! You can unplug it and copy your games "
+"on it."
+msgstr ""
+"Ваш USB-пристрій ініціалізовано! Ви можете від'єднати його від мережі та "
+"скопіювати на нього свої ігри."
+
+msgid ""
+"Initialization failed! Your USB device is full or contains errors. Please "
+"repair or use another device."
+msgstr ""
+"Ініціалізація не вдалася! Ваш USB-пристрій переповнений або містить помилки. "
+"Будь ласка, відремонтуйте або використовуйте інший пристрій."
+
+msgid "DISPLAY BY FILENAME"
+msgstr "ВІДОБРАЖАТИ ЗА НАЗВОЮ ФАЙЛУ"
+
+msgid "SEARCH GAMES HERE"
+msgstr "ШУКАТИ ІГРИ ТУТ"
+
+msgid "This game is currently updating its metadata. Retry in a few seconds."
+msgstr ""
+"Ця гра в даний час оновлює свої метадані. Спробуйте ще раз через кілька "
+"секунд."
+
+msgid "SHOW ONLY LATEST VERSION"
+msgstr "ПОКАЗАТИ ТІЛЬКИ ОСТАННЮ ВЕРСІЮ"
+
+msgid "SHOW ONLY FAVORITES"
+msgstr "ПОКАЗАТИ ТІЛЬКИ ОБРАНЕ"
+
+msgid "SHOW HIDDEN GAMES"
+msgstr "ПОКАЗАТИ ПРИХОВАНІ ІГРИ"
+
+msgid "Display game by file name instead of game name."
+msgstr "Відображати гру за назвою файлу замість назви гри."
+
+msgid "DISABLE"
+msgstr "ВІДКЛЮЧИТИ"
+
+msgid "original"
+msgstr "оригінал"
+
+msgid ""
+"A fatal error occured while scraping your game! It may be related to server "
+"issues or bad login/password.\n"
+"\n"
+"Try again in a few moment or fix your credentials if required."
+msgstr ""
+"Виникла фатальна помилка під час скрейпінгу вашої гри! Це може бути "
+"пов'язано з проблемами сервера або неправильним логіном/паролем.\n"
+"\n"
+"Спробуйте повторити спробу через декілька хвилин або виправте свої облікові "
+"дані."
+
+msgid "Your scraping session completed!"
+msgstr "Сеанс скрапінгу завершено!"
+
+msgid "Please select one or more systems to scrape!"
+msgstr "Будь-ласка оберить одну чи більше систем для завантаження!"
+
+msgid ""
+"Your system has not enough memory to handle %SYSTEMS% systems. You should "
+"not exceed %MAXSYSTEMS% consoles/computers or you may face stability "
+"issues!\n"
+"\n"
+"You can hide preinstalled games in UI SETTINGS menu to decrease active "
+"systems"
+msgstr ""
+"У вашій системі недостатньо пам'яті для роботи з системами %SYSTEMS%. Не "
+"слід перевищувати %MAXSYSTEMS% консолей/комп'ютерів, інакше можуть виникнути "
+"проблеми зі стабільністю!\n"
+"\n"
+"Ви можете приховати попередньо встановлені ігри в меню НАЛАШТУВАННЯ "
+"ІНТЕРФЕЙСУ, щоб зменшити кількість активних систем."
+
+msgid ""
+"Your system has not enough memory to handle %GAMES% games. You should not "
+"exceed %MAXGAMES% or you may face stability issues!"
+msgstr ""
+"Вашій системі не вистачає пам'яті для обробки %GAMES% ігор. Не перевищуйте "
+"%MAXGAMES%, інакше можуть виникнути проблеми зі стабільністю!"
+
+msgid "WARNING! SYSTEM OVERLOAD!"
+msgstr "ПОПЕРЕДЖЕННЯ! ПЕРЕВАНТАЖЕННЯ СИСТЕМИ!"
+
+msgid ""
+"Welcome back %NAME%!\n"
+"Patron level %LEVEL%\n"
+"You are now connected to your recalbox patron account, and all exclusives "
+"features are available!"
+msgstr ""
+"З поверненням %NAME%!\n"
+"Рівень патрона %LEVEL%\n"
+"Ви підключені до свого облікового запису Recalbox Patreon, і вам доступні "
+"всі ексклюзивні функції!"
+
+msgid ""
+"Hello %NAME%, your private key is linked to a Patreon account which is no "
+"longer a Recalbox Patron.\n"
+"We still hope to see you back soon as a Recalbox Patron!\n"
+"Delete your private key to suppress this message."
+msgstr ""
+"Привіт %NAME%, Ваш приватний ключ прив'язаний до облікового запису Patreon, "
+"який більше не є патроном Recalbox.\n"
+"Ми все ще сподіваємося, що ви скоро повернетеся як Recalbox Patron!\n"
+"Видаліть свій приватний ключ, щоб прибрати це повідомлення."
+
+msgid ""
+"Your private key does not allow to retrieve your Patreon information. Go to "
+"recalbox.com/patreon to generate a new valid key!"
+msgstr ""
+"Ваш приватний ключ не дає змоги завантажити Ваші дані Patreon. Перейдіть на "
+"recalbox.com/patreon, щоб згенерувати новий дійсний ключ!"
+
+msgid ""
+"Sorry we're not able to retrieve your Patron level because no network is "
+"available!"
+msgstr ""
+"Вибачте, ми не можемо отримати інформацію про ваш рівень на Patreon, тому що "
+"мережа недоступна!"
+
+msgid ""
+"We're not able to retrieve your Patron level! Sorry for the inconvenience, "
+"we're already working on a fix!"
+msgstr ""
+"Ми не можемо отримати інформацію про ваш рівень на Patreon! Вибачте за "
+"незручності, ми вже працюємо над рішенням проблеми!"
+
+msgid "CASE MANAGEMENT"
+msgstr "МЕНЕДЖМЕНТ КЕЙСУ"
+
+msgid ""
+"If you installed a case on your Recalbox, you can install or uninstall it in "
+"this menu. Some cases are detected automatically and will also be reported "
+"here."
+msgstr ""
+"Якщо ви встановили кейс на Recalbox, ви можете встановити або видалити його "
+"в цьому розділі. Деякі кейси виявляються автоматично і також будуть "
+"повідомлятися тут."
+
+msgid ""
+"The USB device %NAME% with no rom folder and no share folder has been "
+"plugged in! Would you like to initialize this device?"
+msgstr ""
+"Підключено USB-пристрій %NAME% без папки rom та папки share! Бажаєте "
+"ініціалізувати цей пристрій?"
+
+msgid "• Choose '%INIT%' to create only all the rom folders"
+msgstr "•  Виберіть '%INIT%', щоб створити лише всі теки rom"
+
+msgid ""
+"• Choose '%MOVE%' to copy all the current share to the new device, "
+"automatically switch to this device, and reboot"
+msgstr ""
+"•  Виберіть \"%MOVE%\", щоб скопіювати весь наявний спільний каталог на "
+"новий пристрій, автоматично переключитися на цей пристрій і перезавантажитися"
+
+msgid "• Or just chose '%CANCEL%' to do nothing with this new device"
+msgstr ""
+"•  Або просто виберіть \"%CANCEL%\", щоб нічого не робити з новим пристроєм"
+
+msgid "INITIALIZE"
+msgstr "ІНІЦІАЛІЗАЦІЯ"
+
+msgid "MOVE SHARE"
+msgstr "ПЕРЕМІСТИТИ КАТАЛОГ СПІЛЬНОГО ДОСТУПУ"
+
+msgid "Setting up boot device..."
+msgstr "Встановлення пристрою запуску..."
+
+msgid ""
+"Your USB device has been initialized! Ready to reboot on your new share "
+"device!"
+msgstr ""
+"Ваш USB-пристрій ініціалізовано! Готовий до перезавантаження на новому "
+"пристрої спільного доступу!"
+
+msgid "UPDATING..."
+msgstr "ОНОВЛЮЄТЬСЯ..."
+
+msgid "Video"
+msgstr "Відео"
+
+msgid ""
+"For safe shutdown to work, set the SAFE SHUTDOWN switch to ON. You will find "
+"it on the circuit board, inside your Retroflag case."
+msgstr ""
+"Щоб безпечне вимкнення працювало, переведіть перемикач SAFE SHUTDOWN у "
+"положення ON. Ви знайдете його на електронній платі всередині корпусу "
+"Retroflag."
+
+msgid "MENU RESOLUTION"
+msgstr "РОЗДІЛЬНА ЗДАТНІСТЬ МЕНЮ"
+
+msgid "SCREEN TYPE"
+msgstr "ТИП ЕКРАНУ"
+
+msgid "SELECT GAME REFRESH RATE AT LAUNCH"
+msgstr "ВИБІР ЧАСТОТИ ОНОВЛЕННЯ ГРИ ПРИ ЗАПУСКУ"
+
+msgid "Let you choose between 50Hz and 60Hz at launch, for compatible systems."
+msgstr "Дозволяє вибрати між 50 Гц та 60 Гц при запуску для сумісних систем."
+
+msgid "SELECT GAME RESOLUTION AT LAUNCH"
+msgstr "ВИБІР РОЗДІЛЬНОЇ ЗДАТНОСТІ ГРИ ПІД ЧАС ЗАПУСКУ"
+
+msgid ""
+"Let you choose between 240p, 480i, or 480p at launch, for compatible systems."
+msgstr ""
+"Дозволяє вибрати роздільну здатність 240p, 480i або 480p під час запуску для "
+"сумісних систем."
+
+msgid "FORCE SOUND ON JACK"
+msgstr "УВІМКНУТИ ЗВУК НА РОЗ'ЄМІ АУДІОВИХОДУ"
+
+msgid "Force sound on jack. Auto-enabled when 31kHz switch is ON"
+msgstr ""
+"Примусовий вивід звуку на роз'єм аудіовиходу. Автоматично вмикається, коли "
+"перемикач 31 кГц увімкнено"
+
+msgid "MOVE SCREEN"
+msgstr "РУХАТИ ЕКРАН"
+
+msgid "Horizontal offset:"
+msgstr "Горизонтальний зсув:"
+
+msgid "Vertical offset:"
+msgstr "Вертикальний зсув:"
+
+msgid "YOUR LIST IS EMPTY. PRESS START TO CHANGE GAME FILTERS."
+msgstr "ВАШ СПИСОК ПОРОЖНІЙ. НАТИСНІТЬ СТАРТ, ЩОБ ЗМІНИТИ ФІЛЬТРИ ІГОР."
+
+msgid "Select a region to filter out games not matching the selected region."
+msgstr ""
+"Виберіть регіон, щоб відфільтрувати ігри, які не відповідають вибраному "
+"регіону."
+
+msgid "SOFTPATCHING"
+msgstr "ПАТЧ НА ЛЬОТУ"
+
+msgid "AUTOMATIC SCRAPING"
+msgstr "АВТОМАТИЧНИЙ СКРЕЙПІНГ"
+
+msgid "RUN IN BACKGROUND"
+msgstr "ЗАПУСТИТИ У ФОНОВОМУ РЕЖИМІ"
+
+msgid "MONTREAL"
+msgstr "МОНРЕАЛЬ"
+
+msgid "SAOPAULO"
+msgstr "САН-ПАУЛУ"
+
+msgid "%i Known MD5"
+msgstr "%i відомих MD5"
+
+msgid "Restarting."
+msgstr "Перезапуск."
+
+msgid "Entering standby..."
+msgstr "Переходжу в режим очікування..."
+
+msgid "PAD TO KEYBOARD CONTROLS"
+msgstr "УПРАВЛІННЯ КЛАВІАТУРИ З ГЕЙМПАДА"
+
+msgid "You are about to delete this files, confirm ?"
+msgstr "Ви збираєтеся видалити ці файли, підтверджуєте?"
+
+msgid "Preparing Games..."
+msgstr "Готуємо Ігри..."
+
+msgid "Free"
+msgstr "Безкоштовно"
+
+msgid "FADE"
+msgstr "ЗГАСАННЯ"
+
+msgid "SLIDE"
+msgstr "ЗСУВ"
+
+msgid "INSTANT"
+msgstr "МИТТЄВО"
+
+msgid "You must have at least %dGB free on 'SHARE' partition!"
+msgstr "На розділі 'SHARE' повинно бути не менше %dGB вільного місця!"
+
+msgid "60Hz (US)"
+msgstr "60Гц (США)"
+
+msgid "60Hz (JP)"
+msgstr "60Гц (Японія)"
+
+msgid "50Hz (EU)"
+msgstr "60Гц (ЄС)"
+
+msgid "60Hz"
+msgstr "60Гц"
+
+msgid "50Hz"
+msgstr "50Гц"
+
+msgid "Recalbox RGB Dual options and configuration."
+msgstr "Опції та конфігурація Recalbox RGB Dual."
+
+msgid "Select system, frontend and emulator resolutions."
+msgstr "Вибір системи, інтерфейсу та роздільної здатності емулятора."
+
+msgid "PAIR BLUETOOTH CONTROLLERS"
+msgstr "Підключити Bluetooth Контроллер"
+
+msgid ""
+"The bluetooth pairing will start and run for several minutes.\n"
+"During this time, you just have to apply the pairing procedure on any "
+"bluetooth controller you want to pair.\n"
+"The next window will display all detected bluetooth devices and their status "
+"for information purposes only.\n"
+"You can close it at any time, while continuing to pair your bluetooth "
+"devices for as long as the bluetooth icon is blinking on the top left."
+msgstr ""
+"Розпочнеться сполучення Bluetooth, яке триватиме кілька хвилин.\n"
+"Увесь цей час просто виконуйте процедуру сполучення на будь-якому Bluetooth-"
+"контролері, який хочете підключити.\n"
+"У наступному вікні буде показано всі виявлені Bluetooth-пристрої та їхній "
+"стан лише в інформаційних цілях.\n"
+"Ви можете закрити його в будь-який момент, продовжуючи сполучати свої "
+"Bluetooth-пристрої, поки значок Bluetooth блимає у верхньому лівому куті."
+
+msgid "START DOWNLOADING..."
+msgstr "Завантаження..."
+
+msgid ""
+"Pair a bluetooth audio device. Put your device in discovery mode before "
+"starting."
+msgstr ""
+"Підключіть аудіопристрій Bluetooth. Перш ніж почати, переведіть пристрій у "
+"режим виявлення."
+
+msgid "PAIR A BLUETOOTH AUDIO DEVICE"
+msgstr "Підключити аудіопристрій Bluetooth."
+
+msgid "J1 UP"
+msgstr "J1 ВВЕРХ"
+
+msgid "J1 DOWN"
+msgstr "J1 ВНИЗ"
+
+msgid "J1 LEFT"
+msgstr "J1 ВЛІВО"
+
+msgid "J1 RIGHT"
+msgstr "J1 ВПРАВО"
+
+msgid "J2 UP"
+msgstr "J2 ВВЕРХ"
+
+msgid "J2 DOWN"
+msgstr "J2 ВНИЗ"
+
+msgid "J2 LEFT"
+msgstr "J2 ВЛІВО"
+
+msgid "J2 RIGHT"
+msgstr "J2 ВПРАВО"
+
+msgid "Alias: **"
+msgstr "Псевдонім: **"
+
+msgid "MAC: "
+msgstr "MAC:"
+
+msgid "Connected: "
+msgstr "Підключено:"
+
+msgid "Trusted: "
+msgstr "Довірений: "
+
+msgid "Paired: "
+msgstr "Сполучено: "
+
+msgid "Blocked: "
+msgstr "Заблоковано: "
+
+msgid "NO DEVICE"
+msgstr "НЕМАЄ ПРИСТРОЮ"
+
+msgid "SEARCH BY"
+msgstr "Пошук"
+
+msgid "NO RESULTS"
+msgstr "Не знайдено"
+
+msgid "PRIORITY TO HDMI"
+msgstr "ПРІОРИТЕТ HDMI"
+
+msgid "ON"
+msgstr "УВІМК"
+
+msgid "OFF"
+msgstr "ВИМК"
+
+msgid "60Hz Only"
+msgstr "60Hz Тільки"
+
+msgid "50Hz Only"
+msgstr "50Hz Тільки"
+
+msgid "DISCOVERING BLUETOOTH AUDIO DEVICES..."
+msgstr "ПОШУК АУДІОПРИСТРОЇВ BLUETOOTH..."
+
+msgid "NO AUDIO DEVICE FOUND"
+msgstr "Аудіо пристрій не знайдено"
+
+msgid "KODI RESOLUTION"
+msgstr "РОЗДІЛЬНА ЗДАТНІСТЬ KODI"
+
+msgid "AUDIO DEVICE PAIRED"
+msgstr "АУДІОПРИСТРІЙ СПОЛУЧЕНО"
+
+msgid "UNABLE TO PAIR AUDIO DEVICE"
+msgstr "НЕ ВДАЛОСЯ СПОЛУЧИТИ АУДІОПРИСТРІЙ"
+
+msgid "BRIGHTNESS"
+msgstr "Яскравість"
+
+msgid "NAME"
+msgstr "НАЗВА"
+
+msgid "suspend"
+msgstr "призупинити"
+
+msgid "NEXT RESOLUTION"
+msgstr "НАСТУПНА РОЗДІЛЬНА ЗДАТНІСТЬ"
+
+msgid "Game refresh rate"
+msgstr "Частота оновлення гри"
+
+msgid "Game resolution"
+msgstr "Роздільна здатність гри"
+
+msgid "CHANGELOG"
+msgstr "ЖУРНАЛ ЗМІН"
+
+msgid "Copying %s folder..."
+msgstr "Копіювання папки %s..."
+
+msgid "B"
+msgstr "Б"
+
+msgid "KB"
+msgstr "КБ"
+
+msgid "MB"
+msgstr "Мб"
+
+msgid "GB"
+msgstr "Гб"
+
+msgid "TB"
+msgstr "Тб"
+
+msgid "SAVE STATES"
+msgstr "ЗБЕРЕЖЕННЯ СТАНУ"
+
+msgid "SHOW SAVE STATES ON START"
+msgstr "ПОКАЗУВАТИ ЗБЕРЕЖЕННЯ СТАНУ ПРИ ЗАПУСКУ"
+
+msgid "You are about to delete this state, confirm ?"
+msgstr "Ви збираєтеся видалити це збереження стану, підтвердити?"
+
+msgid "DELETE STATE, CONFIRM?"
+msgstr "ВИДАЛИТИ ЗБЕРЕЖЕННЯ СТАНУ, ПІДТВЕРДИТИ?"
+
+msgid "CHANGE ORDER"
+msgstr "ЗМІНИТИ ПОРЯДОК"
+
+msgid "LAUNCH GAME FROM STATE"
+msgstr "ЗАПУСТИТИ ГРУ ЗІ ЗБЕРЕЖЕННЯ СТАНУ"
+
+msgid "DELETE STATE SLOT"
+msgstr "ВИДАЛИТИ СЛОТ ЗБЕРЕЖЕННЯ"
+
+msgid "Display the available save states before launching a game."
+msgstr ""
+"Показ збережень стану при запуску відображатиме доступні збереження стану "
+"перед запуском гри."
+
+msgid "DOWNLOADING GAMES FOR %s"
+msgstr "ЗАВАНТАЖЕННЯ ІГОР ДЛЯ %s"
+
+msgid "Downloading WASM4 games from the official site. Please wait..."
+msgstr "Завантаження ігор WASM4 з офіційного сайту. Будь ласка, зачекайте..."
+
+msgid "Downloading... Estimated time: %s"
+msgstr "Завантаження... Орієнтовний час: %s"
+
+msgid "Extracting... found %s games"
+msgstr "Розпакування... знайдено ігор: %s"
+
+msgid "Updating metadata..."
+msgstr "Оновлення метаданих"
+
+msgid "Refreshing gamelist..."
+msgstr "Оновлення списку ігор"
+
+msgid ""
+"Scrap running in background.\n"
+"Return to the scrap menu to get the progression."
+msgstr ""
+"Скрапінг виконується у фоновому режимі.\n"
+"Поверніться до меню скрапінгу, щоб побачити прогрес."
+
+msgid "ADVANCED SHADERS"
+msgstr "РОЗШИРЕНІ ШЕЙДЕРИ"
+
+msgid "GAME BOY MODE"
+msgstr "РЕЖИМ GAME BOY"
+
+msgid "GAME BOY"
+msgstr "GAME BOY"
+
+msgid "SUPER GAME BOY"
+msgstr "SUPER GAME BOY"
+
+msgid "ASK AT LAUNCH"
+msgstr "ЗАПИТУВАТИ ПРИ ЗАПУСКУ"
+
+msgid "CRT CURVED"
+msgstr "ЗАКРУГЛЕНИЙ CRT"
+
+msgid ""
+"YOU JUST ACTIVATED THE SHADERS FOR ALL SYSTEMS. FOR A BETTER RENDERING, IT "
+"IS ADVISED TO DISABLE GAME SMOOTHING. DO YOU WANT TO CHANGE THIS OPTION "
+"AUTOMATICALLY?"
+msgstr ""
+"ВИ ЩОЙНО УВІМКНУЛИ ШЕЙДЕРИ ДЛЯ ВСІХ СИСТЕМ. ДЛЯ КРАЩОГО ВІДОБРАЖЕННЯ "
+"РЕКОМЕНДУЄТЬСЯ ВИМКНУТИ ЗГЛАДЖУВАННЯ ГРИ. АВТОМАТИЧНО ЗМІНИТИ ЦЕЙ ПАРАМЕТР?"
+
+msgid "Optimized video"
+msgstr "Оптимізоване відео"
+
+msgid "RECOMMENDED"
+msgstr "Рекомендовано"
+
+msgid "TATE SETTINGS"
+msgstr "НАЛАШТУВАННЯ TATE"
+
+msgid "ENABLE TATE VIRTUAL SYSTEM"
+msgstr "УВІМКНУТИ ВІРТУАЛЬНУ СИСТЕМУ TATE"
+
+msgid "GAMES ROTATION"
+msgstr "ПОВОРОТ ІГОР"
+
+msgid "COMPLETE SYSTEM ROTATION"
+msgstr "ПОВНИЙ ПОВОРОТ СИСТЕМИ"
+
+msgid ""
+"Welcome to RECALBOX for Anbernic RG!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Ласкаво просимо до RECALBOX для Anbernic RG!\n"
+"Ця коротка презентація покаже вам, як користуватися всіма спеціальними "
+"кнопками навколо екрана.\n"
+"\n"
+"Натисніть будь-яку кнопку, щоб почати!"
+
+msgid ""
+"On the left side of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+"Press button B to continue"
+msgstr ""
+"На лівій стороні консолі є 2 кнопки з позначками '-' та '+'.\n"
+"Використовуйте їх, щоб у будь-який момент збільшити чи зменшити гучність в "
+"інтерфейсі Recalbox або в грі.\n"
+"\n"
+"Натисніть кнопку B, щоб продовжити"
+
+msgid ""
+"On the top side of the console, there is a button marked 'F'.\n"
+"This is the Hotkey button\n"
+"To quit a game press both F + START\n"
+"Press button B to continue"
+msgstr ""
+"На верхній стороні консолі є кнопка з позначкою 'F'.\n"
+"Це кнопка Hotkey\n"
+"Щоб вийти з гри, натисніть одночасно F + START\n"
+"Натисніть кнопку B, щоб продовжити"
+
+msgid ""
+"Use the function F button and a volume button to adjust brightness\n"
+"Press button B to continue"
+msgstr ""
+"Використовуйте функціональну кнопку F разом із кнопкою гучності, щоб "
+"налаштувати яскравість\n"
+"Натисніть кнопку B, щоб продовжити"
+
+msgid "GameBoy Mode"
+msgstr "Режим GameBoy"
+
+msgid "Rotation"
+msgstr "Поворот"
+
+msgid "Full Screen"
+msgstr "Повний екран"
+
+msgid "DOWNLOAD CONTENTS"
+msgstr "ЗАВАНТАЖИТИ КОНТЕНТ"
+
+msgid "Start downloading..."
+msgstr "Початок завантаження..."
+
+msgid "none"
+msgstr "немає"
+
+msgid "Games"
+msgstr "Ігри"
+
+msgid "Downloading free games from Recalbox repositories. Please wait..."
+msgstr ""
+"Завантаження безкоштовних ігор зі сховищ Recalbox. Будь ласка, зачекайте..."
+
+msgid "Installing %s games"
+msgstr "Встановлення ігор: %s"
+
+msgid "SLOT"
+msgstr "Слот"
+
+msgid "ENABLE ENHANCED VIEW"
+msgstr "УВІМКНУТИ РОЗШИРЕНИЙ ПЕРЕГЛЯД"
+
+msgid "FOLD CLONES BY DEFAULT"
+msgstr "ЗГОРТАТИ КЛОНИ ЗА ЗАМОВЧУВАННЯМ"
+
+msgid "HIDE BIOS"
+msgstr "СХОВАТИ BIOS"
+
+msgid "HIDE NON-WORKING GAMES"
+msgstr "СХОВАТИ НЕПРАЦЮЮЧІ ІГРИ"
+
+msgid "ALWAYS USE OFFICIAL NAMES"
+msgstr "ЗАВЖДИ ВИКОРИСТОВУВАТИ ОФІЦІЙНІ НАЗВИ"
+
+msgid "MANUFACTURER VIRTUAL SYSTEMS"
+msgstr "ВІРТУАЛЬНІ СИСТЕМИ ЗА ВИРОБНИКОМ"
+
+msgid "HD MODE"
+msgstr "РЕЖИМ HD"
+
+msgid "WIDESCREEN (16/9)"
+msgstr "ШИРОКОФОРМАТНИЙ (16/9)"
+
+msgid "LAUNCH LAST"
+msgstr "ЗАПУСТИТИ ОСТАННІЙ"
+
+msgid "BOOTLOADER UPDATE"
+msgstr "ОНОВЛЕННЯ ЗАВАНТАЖУВАЧА"
+
+msgid ""
+"If no configured controller is detected at boot, Recalbox will run as usual "
+"and display the system list."
+msgstr ""
+"Якщо під час завантаження не виявлено налаштованого контролера, recalbox "
+"запуститься як зазвичай і покаже список систем."
+
+msgid "Could not get bootloader status. Something went wrong"
+msgstr "Не вдалося отримати стан завантажувача. Щось пішло не так"
+
+msgid "An update is available :\n"
+msgstr "Доступне оновлення:\n"
+
+msgid "Current version: \n"
+msgstr "Поточна версія: \n"
+
+msgid ""
+"\n"
+"Latest version: \n"
+msgstr ""
+"\n"
+"Остання версія: \n"
+
+msgid "Update success. The bootloader is up to date."
+msgstr "Оновлення успішне. Завантажувач актуальний."
+
+msgid ""
+"Your bootloader is up to date.\n"
+"The bootloader version is:\n"
+msgstr ""
+"Ваш завантажувач актуальний.\n"
+"Версія завантажувача:\n"
+
+msgid "AUTO PAIR ON BOOT"
+msgstr "АВТОМАТИЧНЕ СПОЛУЧЕННЯ ПРИ ЗАВАНТАЖЕННІ"
+
+msgid "ALWAYS SHOW PAD OSD"
+msgstr "ЗАВЖДИ ПОКАЗУВАТИ OSD ПАДА"
+
+msgid "PAD OSD TYPE"
+msgstr "ТИП OSD ПАДА"
+
+msgid "REDUCED LATENCY (EXPERIMENTAL)"
+msgstr "ЗНИЖЕНА ЗАТРИМКА (ЕКСПЕРИМЕНТАЛЬНО)"
+
+msgid "RUN AHEAD (EXPERIMENTAL)"
+msgstr "RUN AHEAD (ЕКСПЕРИМЕНТАЛЬНО)"
+
+msgid "MONO AMP BOOST"
+msgstr "ПІДСИЛЕННЯ МОНО"
+
+msgid "PANEL TYPE"
+msgstr "ТИП ПАНЕЛІ"
+
+msgid "4 PLAYERS MODE"
+msgstr "РЕЖИМ 4 ГРАВЦІВ"
+
+msgid "START+BTN1 = CREDIT"
+msgstr "START+BTN1 = КРЕДИТ"
+
+msgid "START+BTN = HK+BTN"
+msgstr "START+BTN = HK+BTN"
+
+msgid "START 3SEC = EXIT"
+msgstr "START 3СЕК = ВИХІД"
+
+msgid "START+BTN 5SEC = AUTO FIRE"
+msgstr "START+BTN 5СЕК = АВТОВОГОНЬ"
+
+msgid "PIN E/27 AS GND"
+msgstr "ПІН E/27 ЯК GND"
+
+msgid "RESET JAMMA CONFIGURATION"
+msgstr "СКИНУТИ КОНФІГУРАЦІЮ JAMMA"
+
+msgid ""
+"You will now calibrate different resolutions for the frontend. Select the "
+"refresh rate according to what your TV supports.\n"
+"During the calibration, press B to validate, and A to cancel."
+msgstr ""
+"Зараз ви відкалібруєте різні роздільні здатності для інтерфейсу. Виберіть "
+"частоту оновлення відповідно до можливостей вашого телевізора.\n"
+"Під час калібрування натисніть B для підтвердження та A для скасування."
+
+msgid "Are you sure you want to reset JAMMA configuration?"
+msgstr "Ви впевнені, що хочете скинути конфігурацію JAMMA?"
+
+msgid "BOOT ON THIS GAME"
+msgstr "ЗАВАНТАЖУВАТИСЯ З ЦІЄЮ ГРОЮ"
+
+msgid "DOWNLOAD GAMES"
+msgstr "ЗАВАНТАЖИТИ ІГРИ"
+
+msgid "DISPLAY ONLY TATE GAMES IN GAMELISTS"
+msgstr "ПОКАЗУВАТИ У СПИСКАХ ІГОР ЛИШЕ ІГРИ TATE"
+
+msgid "TIME PLAYED"
+msgstr "ЧАС ГРИ"
+
+msgid "DID YOU KNOW?"
+msgstr "ЧИ ЗНАЛИ ВИ?"
+
+msgid ""
+"Last operation removed all systems!\n"
+"\n"
+"They have been restored to allow normal operations, regardless of the "
+"current filters."
+msgstr ""
+"Остання операція видалила всі системи!\n"
+"\n"
+"Їх було відновлено для забезпечення нормальної роботи, незалежно від "
+"поточних фільтрів."
+
+msgid ""
+"{0} reports the emulation status of this game is 'preliminary'. You should "
+"expect issues such as bugs or even crashes!"
+msgstr ""
+"{0} повідомляє, що стан емуляції цієї гри — 'попередній'. Можливі проблеми, "
+"як-от помилки або навіть збої!"
+
+msgid "Start the game standard Game Boy mode"
+msgstr "Запустити гру у стандартному режимі Game Boy"
+
+msgid "Start the game in Super Game Boy mode"
+msgstr "Запустити гру в режимі Super Game Boy"
+
+msgid "INITIALIZING SYSTEM {0}"
+msgid_plural "INITIALIZING SYSTEMS..."
+msgstr[0] "ІНІЦІАЛІЗАЦІЯ СИСТЕМИ..."
+msgstr[1] "ІНІЦІАЛІЗАЦІЯ СИСТЕМ..."
+msgstr[2] "ІНІЦІАЛІЗАЦІЯ СИСТЕМ..."
+msgstr[3] "ІНІЦІАЛІЗАЦІЯ СИСТЕМ..."
+
+msgid "LOADING SYSTEMS..."
+msgstr "ЗАВАНТАЖЕННЯ СИСТЕМ..."
+
+msgid "LOADING VIRTUAL SYSTEMS..."
+msgstr "ЗАВАНТАЖЕННЯ ВІРТУАЛЬНИХ СИСТЕМ..."
+
+msgid "INITIALIZING INTERFACE..."
+msgstr "ІНІЦІАЛІЗАЦІЯ ІНТЕРФЕЙСУ..."
+
+msgid ""
+"One or more files are corrupted. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, check your Recalbox storage (SD Card, "
+"USB Key or hard drive).\n"
+"Contact the team on https://forum.recalbox.com if the problem persists."
+msgstr ""
+"Один або кілька файлів пошкоджено. Ви повернулися до Recalbox %s.\n"
+"Спробуйте оновити Recalbox ще раз, перевірте носій Recalbox (SD-карту, USB-"
+"накопичувач або жорсткий диск).\n"
+"Зверніться до команди на https://forum.recalbox.com, якщо проблема не зникне."
+
+msgid "THE UPGRADE IS CORRUPTED"
+msgstr "ОНОВЛЕННЯ ПОШКОДЖЕНО"
+
+msgid "An undervoltage has been detected, the system may slow down.\n"
+msgstr "Виявлено недостатню напругу, система може працювати повільніше.\n"
+
+msgid ""
+"We recommend adjusting your JAMMA cabinet power supply to increase the "
+"voltage to between 5.05V and 5.2V"
+msgstr ""
+"Рекомендуємо налаштувати блок живлення вашого JAMMA-кабінету, щоб підвищити "
+"напругу до 5.05В-5.2В"
+
+msgid ""
+"We recommend that you purchase an official USB-C power supply designed for "
+"your Raspberry Pi"
+msgstr ""
+"Рекомендуємо придбати офіційний блок живлення USB-C, розроблений для вашого "
+"Raspberry Pi"
+
+msgid ""
+"The temperature of your system is high.\n"
+"The system may slow down. Try cooling your Raspberry Pi with a fan or "
+"disable overclock if it's enabled."
+msgstr ""
+"Температура вашої системи висока.\n"
+"Система може працювати повільніше. Спробуйте охолодити Raspberry Pi за "
+"допомогою вентилятора або вимкніть розгін, якщо він увімкнений."
+
+msgid ""
+"Choose strategy\n"
+"\n"
+"AUTO: auto apply default patch\n"
+"\n"
+"LAUNCH LAST: always launch the last one (can be modified in edit game menu)\n"
+"\n"
+"SELECT: choose manually which patch to apply. Default one or patches in "
+"[ROM_NAME]-patches directory\n"
+"\n"
+"DISABLED: never apply patch"
+msgstr ""
+"Виберіть стратегію\n"
+"\n"
+"AUTO: автоматично застосовувати типовий патч\n"
+"\n"
+"LAUNCH LAST: завжди запускати останній використаний (можна змінити в меню "
+"редагування гри)\n"
+"\n"
+"SELECT: вибрати патч вручну. Типовий або патчі з каталогу [ROM_NAME]-"
+"patches\n"
+"\n"
+"DISABLED: ніколи не застосовувати патч"
+
+msgid "Set the Super GameBoy mode for GameBoy games."
+msgstr "Встановити режим Super GameBoy для ігор GameBoy."
+
+msgid ""
+"Improves resolution on compatible 3d emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+msgstr ""
+"Покращує роздільну здатність у сумісних 3D-емуляторах. Може вплинути на "
+"продуктивність. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+
+msgid ""
+"Enables 16:9 hacks for compatible emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+msgstr ""
+"Вмикає хаки 16:9 для сумісних емуляторів. Може вплинути на продуктивність. "
+"(Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+
+msgid "Always display Pad OSD whether you are in pad menus or not."
+msgstr "Завжди показувати OSD пада незалежно від того, чи ви в меню пада."
+
+msgid "Change the icon used to display pad OSD."
+msgstr "Змінити значок, який використовується для показу OSD пада."
+
+msgid "Activates Bluetooth pairing automatically each time you boot."
+msgstr "Автоматично активує сполучення Bluetooth під час кожного завантаження."
+
+msgid ""
+"Enable the new arcade view, with parents and clones sorted hierarchically."
+msgstr ""
+"Увімкнено новий вигляд аркад з ієрархічним сортуванням оригіналів/клонів."
+
+msgid "Hide clones and orphaned games"
+msgstr "Сховати клони та осиротілі ігри"
+
+msgid "Hide bios files"
+msgstr "Сховати файли BIOS"
+
+msgid "Hide unknown and non-working games"
+msgstr "Сховати невідомі та непрацюючі ігри"
+
+msgid "Manage screen and game rotation options"
+msgstr "Керувати параметрами повороту екрана та гри"
+
+msgid "Proceed to a complete screen rotation, for frontend and games."
+msgstr "Виконати повний поворот екрана для інтерфейсу та ігор."
+
+msgid "Configure emulators to reduce latency."
+msgstr "Налаштувати емулятори для зменшення затримки."
+
+msgid ""
+"Use run ahead to reduce latency. Can have undesired effect on some emulators."
+msgstr ""
+"Використовувати run ahead для зменшення затримки. Може мати небажаний ефект "
+"у деяких емуляторах."
+
+msgid "When a HDMI cable is connected, use HDMI output in priority."
+msgstr "Коли підключено кабель HDMI, використовувати вихід HDMI пріоритетно."
+
+msgid "Superrez can increase image quality depending on your CRT."
+msgstr "Superrez може підвищити якість зображення залежно від вашого CRT."
+
+msgid "Number of buttons on your arcade cab panel."
+msgstr "Кількість кнопок на панелі вашого аркадного автомата."
+
+msgid "Boost mono amp power. Use only if the sound level is too low."
+msgstr ""
+"Підсилити потужність моно-підсилювача. Використовуйте лише якщо рівень звуку "
+"занадто низький."
+
+msgid "Define the NEOGEO layout when playing NEOGEO games."
+msgstr "Визначити розкладку NEOGEO під час гри в ігри NEOGEO."
+
+msgid "Add a credit in game, pressing START + BTN1. Works for all players."
+msgstr "Додати кредит у грі, натиснувши START + BTN1. Працює для всіх гравців."
+
+msgid ""
+"START + any button will send the HK+BTN event, so you can use special hotkey "
+"controls in emulators."
+msgstr ""
+"START + будь-яка кнопка надсилатиме подію HK+BTN, тож ви можете "
+"використовувати спеціальні гарячі клавіші в емуляторах."
+
+msgid ""
+"Pressing START for 3sec will exit the game. If you disable this option, you "
+"will have to exit the game with SERVICE + TEST."
+msgstr ""
+"Натискання START протягом 3 секунд призведе до виходу з гри. Якщо вимкнути "
+"цей параметр, доведеться виходити з гри за допомогою SERVICE + TEST."
+
+msgid ""
+"Select the type of your screen. If you don't know what you are doing, do not "
+"change this value."
+msgstr ""
+"Виберіть тип вашого екрана. Якщо ви не впевнені, не змінюйте це значення."
+
+msgid "4-player mode, with players 2 and 3 on the CPS2 kick harness."
+msgstr "Режим 4 гравців, з гравцями 2 та 3 на CPS2 kickharness."
+
+msgid "Set auto fire for a button by pressing START + a button for 5 seconds"
+msgstr ""
+"Встановити автовогонь для кнопки, натиснувши START + кнопку протягом 5 секунд"
+
+msgid ""
+"On some cabs, the pins E/27 of the JAMMA are the common ground for controls. "
+"Enable this option if you have this configuration."
+msgstr ""
+"У деяких автоматах піни E/27 роз'єму JAMMA є спільною землею для керування. "
+"Увімкніть цей параметр, якщо у вас така конфігурація."
+
+msgid "Refreshing systems..."
+msgstr "Оновлення систем..."
+
+msgid "Your scraping session completed. Press OK to show the results."
+msgstr "Процес скрейпінгу завершено. Натисніть OK, щоб переглянути результати."
+
+msgid ""
+"There is no game to show after this filter is changed! No change recorded."
+msgstr "Після зміни цього фільтра немає ігор для показу! Зміну не збережено."
+
+msgid "ENABLE VULKAN DRIVER"
+msgstr "УВІМКНУТИ ДРАЙВЕР VULKAN"
+
+msgid "UPDATE"
+msgstr "ОНОВИТИ"
+
+msgid "Could not update bootloader. Something went wrong"
+msgstr "Не вдалося оновити завантажувач. Щось пішло не так"
+
+msgid "BOOT VIDEOS"
+msgstr "ВІДЕО ЗАВАНТАЖЕННЯ"
+
+msgid "There is no favorite games in any system!"
+msgstr "Немає улюблених ігор у жодній системі!"
+
+msgid "FORCED"
+msgstr "ПРИМУСОВО"
+
+msgid "SYSTEM DEFAULT"
+msgstr "ЗА ЗАМОВЧУВАННЯМ СИСТЕМИ"
+
+msgid "SOUND"
+msgstr "ЗВУК"
+
+msgid "UPSIDEDOWN"
+msgstr "ДОГОРИ НОГАМИ"
+
+msgid "There is no TATE game to show!No change recorded."
+msgstr "Немає ігор TATE для показу! Зміну не збережено."
+
+msgid "REGION"
+msgstr "РЕГІОН"
+
+msgid "Europe"
+msgstr "Європа"
+
+msgid "USA"
+msgstr "США"
+
+msgid "Japan"
+msgstr "Японія"
+
+msgid "You display {0} is not in the list of this theme's supported displays:"
+msgstr "Ваш дисплей {0} відсутній у списку підтримуваних цією темою дисплеїв:"
+
+msgid ""
+"You current resolution {0} is not in the list of this theme's supported "
+"resolutions:"
+msgstr ""
+"Ваша поточна роздільна здатність {0} відсутня у списку підтримуваних цією "
+"темою роздільних здатностей:"
+
+msgid "You're in TATE mode and this theme does not seem to support TATE."
+msgstr "Ви в режимі TATE, а ця тема, схоже, не підтримує TATE."
+
+msgid ""
+"This theme may have one or more compatibility issues with your current "
+"display:\n"
+msgstr ""
+"Ця тема може мати одну або кілька проблем сумісності з вашим поточним "
+"дисплеєм:\n"
+
+msgid "NEXT"
+msgstr "ДАЛІ"
+
+msgid "UPDATE NOW"
+msgstr "ОНОВИТИ ЗАРАЗ"
+
+msgid "PAGE UP/DOWN"
+msgstr "СТОРІНКА ВВЕРХ/ВНИЗ"
+
+msgid "{0} reports the emulation status of this game is 'imperfect'."
+msgstr "{0} повідомляє, що стан емуляції цієї гри — 'недосконалий'."
+
+msgid ""
+"System \"{0}\" has no visible game yet!\n"
+"\n"
+"It will show up automatically as soon as it has visible games."
+msgstr ""
+"Система \"{0}\" ще не має видимих ігор!\n"
+"\n"
+"Вона з'явиться автоматично, щойно матиме видимі ігри."
+
+msgid ""
+"With regard to the new BIOS folder structure, some of your bios files have "
+"been moved automatically to their new path."
+msgstr ""
+"У зв'язку з новою структурою папок BIOS деякі ваші файли BIOS було "
+"автоматично переміщено до нового розташування."
+
+msgid "This move is applied only once. No additional operation required."
+msgstr ""
+"Це переміщення застосовується лише один раз. Додаткові дії не потрібні."
+
+msgid ""
+"However, some files failed to move. You should run the BIOS Checker and move "
+"some files manually."
+msgstr ""
+"Однак деякі файли не вдалося перемістити. Вам слід запустити BIOS Checker і "
+"перемістити деякі файли вручну."
+
+msgid ""
+"However, all files failed to move. You should:\n"
+"- either run the BIOS Checker and move the required files manually.\n"
+"- or if your bios files are on a read-only device or remote share, change it "
+"to read-write, reboot your recalbox, wait until all files are moved, then "
+"protect it again."
+msgstr ""
+"Однак жодного файлу не вдалося перемістити. Вам слід:\n"
+"- або запустити BIOS Checker і перемістити потрібні файли вручну.\n"
+"- або, якщо ваші файли BIOS перебувають на пристрої лише для читання чи "
+"віддаленому спільному ресурсі, змінити його на читання-запис, "
+"перезавантажити recalbox, зачекати, поки всі файли переміститься, а потім "
+"знову захистити його."
+
+msgid "Updating current theme..."
+msgstr "Оновлення поточної теми..."
+
+msgid "Loading new theme {0}"
+msgstr "Завантаження нової теми {0}"
+
+msgid "Shows the Recalbox license."
+msgstr "Показує ліцензію Recalbox."
+
+msgid "Shows the quit menu to reboot or shutdown Recalbox."
+msgstr "Показує меню виходу для перезавантаження або вимкнення Recalbox."
+
+msgid ""
+"Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, "
+"and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running."
+msgstr ""
+"Увімкнути драйвер vulkan, якщо доступний. Увімкнено за замовчуванням на "
+"RPi4, RPi5 і ПК. Встановіть ВИМК, якщо Dreamcast, Naomi чи Atomiswave "
+"перестають працювати."
+
+msgid "Sets the rating of the game."
+msgstr "Встановлює рейтинг гри."
+
+msgid "Sets the genre of the game."
+msgstr "Встановлює жанр гри."
+
+msgid "Sets the description of the game."
+msgstr "Встановлює опис гри."
+
+msgid "Defines the screen rotation of the game for tate usage."
+msgstr "Визначає поворот екрана гри для використання TATE."
+
+msgid "Retroachievements user name."
+msgstr "Ім'я користувача Retroachievements."
+
+msgid "Retroachievements password."
+msgstr "Пароль Retroachievements."
+
+msgid "Netplay user name. Do not use special characters!"
+msgstr "Ім'я користувача Netplay. Не використовуйте спеціальні символи!"
+
+msgid ""
+"Local port other players will connect to when hosting a Netplay session."
+msgstr ""
+"Локальний порт, до якого підключатимуться інші гравці під час хостингу "
+"сеансу Netplay."
+
+msgid ""
+"List of predefined passwords to use to protect access to your Netplay "
+"sessions."
+msgstr ""
+"Список попередньо визначених паролів для захисту доступу до ваших сеансів "
+"Netplay."
+
+msgid "Choose systems to use for demo and gameclip screensavers."
+msgstr ""
+"Виберіть системи для використання в демонстраційних заставках та заставках з "
+"ігровими кліпами."
+
+msgid "Select the region for theme supporting regionalized assets or texts"
+msgstr "Виберіть регіон для теми, що підтримує локалізовані ресурси або тексти"
+
+msgid "Shows the Arcade virtual system in the systems list."
+msgstr "Показує віртуальну систему Arcade у списку систем."
+
+msgid ""
+"Hides the original arcade systems when the Arcade virtual system is enabled."
+msgstr ""
+"Приховує оригінальні аркадні системи, коли увімкнена віртуальна система "
+"Arcade."
+
+msgid "Shows the Tate virtual system in the systems list."
+msgstr "Показує віртуальну систему Tate у списку систем."
+
+msgid "Shows only games playable in tate mode in gamelists."
+msgstr "Показує у списках ігор лише ігри, у які можна грати в режимі tate."
+
+msgid "Proceed to a screen rotation in games tate compatible."
+msgstr "Виконує поворот екрана в іграх, сумісних з tate."
+
+msgid ""
+"Sets whether the auto scraper is available or not. Auto scraping lets you "
+"scrape games just by moving onto them in gamelists."
+msgstr ""
+"Встановлює, чи доступний автоматичний скрапер. Автоскрапінг дозволяє "
+"отримувати дані про ігри, просто переміщуючись по них у списках ігор."
+
+msgid "Allows you to scrape only non-scraped games, or to scrape all games."
+msgstr ""
+"Дозволяє отримувати дані лише для ще не оброблених ігор або для всіх ігор."
+
+msgid "Allows you to choose which systems you would like to scrape."
+msgstr "Дозволяє вибрати системи, для яких потрібно отримати дані."
+
+msgid "Selects the image type to scrape for your games."
+msgstr "Вибирає тип зображення для отримання даних про ваші ігри."
+
+msgid "Selects the video type to scrape for your games."
+msgstr "Вибирає тип відео для отримання даних про ваші ігри."
+
+msgid "Selects the game region to use when you scrape your games."
+msgstr ""
+"Вибирає регіон гри для використання під час отримання даних про ваші ігри."
+
+msgid "Selects the preferred region to scrape for your games."
+msgstr "Вибирає бажаний регіон для отримання даних про ваші ігри."
+
+msgid "Selects the preferred language to scrape for your games."
+msgstr "Вибирає бажану мову для отримання даних про ваші ігри."
+
+msgid ""
+"Selects if you would like to download manuals with the scraped data if "
+"available."
+msgstr ""
+"Вибирає, чи потрібно завантажувати інструкцію разом з даними скрапінгу, якщо "
+"доступна."
+
+msgid ""
+"Selects if you would like to download maps with the scraped data if "
+"available."
+msgstr ""
+"Вибирає, чи потрібно завантажувати карти разом з даними скрапінгу, якщо "
+"доступні."
+
+msgid ""
+"Selects if you would like to download pad2keyboard files with the scraped "
+"data if available."
+msgstr ""
+"Вибирає, чи потрібно завантажувати файли pad2keyboard разом з даними "
+"скрапінгу, якщо доступні."
+
+msgid "Enable or disable videos on boot."
+msgstr "Вмикає або вимикає відео при завантаженні."
+
+msgid ""
+"This option allows you to select the current game to boot on it directly "
+"when you turn on your Recalbox. Don't forget to enable the boot on game "
+"option!"
+msgstr ""
+"Цей параметр дозволяє вибрати поточну гру для прямого завантаження при "
+"увімкненні Recalbox. Не забудьте увімкнути параметр завантаження з грою!"
+
+msgid "This option allows you to download games for the current system."
+msgstr "Цей параметр дозволяє завантажувати ігри для поточної системи."
+
+msgid ""
+"This option allows you to search games specifically in the current system "
+"only."
+msgstr "Цей параметр дозволяє шукати ігри лише в поточній системі."
+
+msgid "Select sound output: JACK/MONO or JACK/JST. Jack always takes priority."
+msgstr ""
+"Виберіть вихід звуку: JACK/MONO або JACK/JST. Jack завжди має пріоритет."
+
+msgid "Set the volume of the music in the frontend"
+msgstr "Встановити гучність музики в інтерфейсі"
+
+msgid "MUSIC VOLUME"
+msgstr "ГУЧНІСТЬ МУЗИКИ"
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON HD-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX АВТОМАТИЧНО ВИБИРАТИМЕ ЕМУЛЯТОРИ ДЛЯ ЗАПУСКУ НА HD-СУМІСНИХ "
+"СИСТЕМАХ. ДЕЯКІ ІГРИ МОЖУТЬ БУТИ НЕ ПОВНІСТЮ СУМІСНІ, ТОЖ НЕ ЗАБУДЬТЕ "
+"ВИМКНУТИ ЦЕЙ ПАРАМЕТР, ЯКЩО ВИНИКНУТЬ ПРОБЛЕМИ З ЕМУЛЯЦІЄЮ АБО "
+"ПРОДУКТИВНІСТЮ."
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON WIDESCREEN-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX АВТОМАТИЧНО ВИБИРАТИМЕ ЕМУЛЯТОРИ ДЛЯ ЗАПУСКУ НА ШИРОКОФОРМАТНО-"
+"СУМІСНИХ СИСТЕМАХ. ДЕЯКІ ІГРИ МОЖУТЬ БУТИ НЕ ПОВНІСТЮ СУМІСНІ, ТОЖ НЕ "
+"ЗАБУДЬТЕ ВИМКНУТИ ЦЕЙ ПАРАМЕТР, ЯКЩО ВИНИКНУТЬ ПРОБЛЕМИ З ЕМУЛЯЦІЄЮ АБО "
+"ПРОДУКТИВНІСТЮ."
+
+msgid "BOOT ON GAME"
+msgstr "ЗАВАНТАЖЕННЯ З ГРОЮ"
+
+msgid "Add a menu in game option to boot on a specific game on startup."
+msgstr ""
+"Додає в меню опцій гри пункт для завантаження з конкретною грою при запуску."
+
+msgid "SHOW ONLY 3+ PLAYERS GAMES"
+msgstr "ПОКАЗУВАТИ ЛИШЕ ІГРИ ДЛЯ 3+ ГРАВЦІВ"
+
+msgid "Deprecated"
+msgstr "Застаріле"
+
+msgid "QUICK JUMP"
+msgstr "ШВИДКИЙ ПЕРЕХІД"
+
+msgid "FOLD/UNFOLD"
+msgstr "ЗГОРНУТИ/РОЗГОРНУТИ"
+
+msgid "FAST MOVE"
+msgstr "ШВИДКЕ ПЕРЕМІЩЕННЯ"
+
+msgid "BOTTOM"
+msgstr "ВНИЗ"
+
+msgid "TOP"
+msgstr "ВГОРУ"
+
+msgid "UNFOLD"
+msgstr "РОЗГОРНУТИ"
+
+msgid "ADD CHARACTER"
+msgstr "ДОДАТИ СИМВОЛ"
+
+msgid "GAMELIST MODIFIED!"
+msgstr "СПИСОК ІГОР ЗМІНЕНО!"
+
+msgid "ROM FOLDERS MODIFIED!"
+msgstr "ПАПКИ ROM ЗМІНЕНО!"
+
+msgid "TOTAL PLAYING TIME"
+msgstr "ЗАГАЛЬНИЙ ЧАС ГРИ"
+
+msgid "OPTION NOT AVAILABLE"
+msgstr "ПАРАМЕТР НЕДОСТУПНИЙ"
+
+msgid "Screen calibration only available in YOKO mode."
+msgstr "Калібрування екрана доступне лише в режимі YOKO."
+
+msgid "REALLY UPDATE {0}'S GAME LIST ?"
+msgstr "ДІЙСНО ОНОВИТИ СПИСОК ІГОР {0}?"
+
+msgid ""
+"REALLY UPDATE ALL GAME LISTS ?\n"
+"\n"
+"IT MAY TAKE A LONG TIME DEPENDING OF YOUR STORAGE SPEED AND THE NUMBER OF "
+"GAMES."
+msgstr ""
+"ДІЙСНО ОНОВИТИ ВСІ СПИСКИ ІГОР?\n"
+"\n"
+"ЦЕ МОЖЕ ЗАЙНЯТИ БАГАТО ЧАСУ ЗАЛЕЖНО ВІД ШВИДКОСТІ ВАШОГО НОСІЯ ТА КІЛЬКОСТІ "
+"ІГОР."
+
+msgid "Do you want to enable the 3+ player filter for all the games ?"
+msgstr "Увімкнути фільтр 3+ гравців для всіх ігор?"
+
+msgid "Do you want to disable the 3+ player filter for all the games ?"
+msgstr "Вимкнути фільтр 3+ гравців для всіх ігор?"
+
+msgid ""
+"Make sure to check the compatibility of your hardware before changing the "
+"recalbox refresh rate. Are you sure you want to switch the display mode to "
+msgstr ""
+"Обов'язково перевірте сумісність вашого обладнання перед зміною частоти "
+"оновлення recalbox. Ви впевнені, що хочете переключити режим дисплея на"
+
+msgid "PAIR"
+msgstr "СПОЛУЧИТИ"
+
+msgid "JOIN GAME"
+msgstr "ПРИЄДНАТИСЯ ДО ГРИ"
+
+msgid "RUN"
+msgstr "ЗАПУСТИТИ"
+
+msgid "DON'T DELETE ANYTHING!"
+msgstr "НІЧОГО НЕ ВИДАЛЯТИ!"
+
+msgid "SHOW FAVORITES FIRST"
+msgstr "ПОКАЗУВАТИ УЛЮБЛЕНІ СПОЧАТКУ"
+
+msgid ""
+"Shutdown Recalbox. All pending operations are completed before Recalbox is "
+"switched off"
+msgstr ""
+"Вимкнути Recalbox. Усі незавершені операції буде завершено перед вимкненням "
+"Recalbox"
+
+msgid ""
+"Quickly shutdown Recalbox. All pending operations are ignored and no change "
+"is saved!"
+msgstr ""
+"Швидко вимкнути Recalbox. Усі незавершені операції буде проігноровано, зміни "
+"не збережуться!"
+
+msgid ""
+"Reboot Recalbox. All pending operations are completed before Recalbox "
+"restarts"
+msgstr ""
+"Перезавантажити Recalbox. Усі незавершені операції буде завершено перед "
+"перезавантаженням Recalbox"
+
+msgid "START GAME"
+msgstr "ЗАПУСТИТИ ГРУ"
+
+msgid "CONNECT"
+msgstr "ПІДКЛЮЧИТИСЯ"
+
+msgid "Run the original, unpatched game"
+msgstr "Запустити оригінальну, непатчену гру"
+
+msgid "Run the game, patched with the selected patch"
+msgstr "Запустити гру з вибраним патчем"
+
+msgid "USER SCRIPTS"
+msgstr "КОРИСТУВАЦЬКІ СКРИПТИ"
+
+msgid "CHECK FOR UPDATE NOW"
+msgstr "ПЕРЕВІРИТИ ОНОВЛЕННЯ ЗАРАЗ"
+
+msgid "Username not required for the selected scraper"
+msgstr "Ім'я користувача не потрібне для вибраного скрапера"
+
+msgid "Password not required for the selected scraper"
+msgstr "Пароль не потрібен для вибраного скрапера"
+
+msgid "NEOGEO/PGM LAYOUT P1"
+msgstr "РОЗКЛАДКА NEOGEO/PGM P1"
+
+msgid "NEOGEO/PGM LAYOUT P2"
+msgstr "РОЗКЛАДКА NEOGEO/PGM P2"
+
+msgid "START+UP/DOWN = VOLUME"
+msgstr "START+ВВЕРХ/ВНИЗ = ГУЧНІСТЬ"
+
+msgid "DUAL JOYSTICKS"
+msgstr "ПОДВІЙНІ ДЖОЙСТИКИ"
+
+msgid "RESET"
+msgstr "СКИНУТИ"
+
+msgid "FRONTEND SCREEN CALIBRATION"
+msgstr "КАЛІБРУВАННЯ ЕКРАНА ІНТЕРФЕЙСУ"
+
+msgid "Calibrate screen on frontend."
+msgstr "Калібрувати екран в інтерфейсі."
+
+msgid "CLOCK OSD"
+msgstr "OSD ГОДИННИКА"
+
+msgid "Script {0} started successfully!"
+msgstr "Скрипт {0} успішно запущено!"
+
+msgid "Running {0}..."
+msgstr "Виконання {0}..."
+
+msgid "Script execution complete"
+msgstr "Виконання скрипту завершено"
+
+msgid "Script {0} has failed!"
+msgstr "Скрипт {0} завершився помилкою!"
+
+msgid "With the following Error output:"
+msgstr "З таким виведенням помилки:"
+
+msgid "Script {0} executed successfully!"
+msgstr "Скрипт {0} успішно виконано!"
+
+msgid "With the following output:"
+msgstr "З таким виведенням:"
+
+msgid "SEARCH OTHER VERSIONS"
+msgstr "ШУКАТИ ІНШІ ВЕРСІЇ"
+
+msgid "SEARCH BY LICENCE"
+msgstr "ПОШУК ЗА ЛІЦЕНЗІЄЮ"
+
+msgid "DECORATIONS"
+msgstr "ОФОРМЛЕННЯ"
+
+msgid "UNSET"
+msgstr "НЕ ВСТАНОВЛЕНО"
+
+msgid "RUMBLE"
+msgstr "ВІБРАЦІЯ"
+
+msgid "Search games by licence"
+msgstr "Шукати ігри за ліцензією"
+
+msgid ""
+"There is no TATE game available in your gamelists. Add TATE games and/or run "
+"the scraper to update TATE information"
+msgstr ""
+"У ваших списках ігор немає доступних ігор TATE. Додайте ігри TATE та/або "
+"запустіть скрапер, щоб оновити інформацію TATE"
+
+msgid "ALL YOUR EMULATOR SETTINGS HAVE BEEN RESET TO THEIR FACTORY DEFAULTS."
+msgstr "УСІ ВАШІ НАЛАШТУВАННЯ ЕМУЛЯТОРІВ СКИНУТО ДО ЗАВОДСЬКИХ ЗНАЧЕНЬ."
+
+msgid ""
+"SOME ERROR OCCURRED WHILE RESETING ALL YOUR EMULATOR SETTINGS.\n"
+"\n"
+"IF YOU STILL HAVE ISSUES WITH SOME EMULATORS, REBOOT YOUR RECALBOX AND TRY "
+"RESETING EMULATOR SETTINGS AGAIN."
+msgstr ""
+"ПІД ЧАС СКИДАННЯ ВСІХ НАЛАШТУВАНЬ ЕМУЛЯТОРІВ СТАЛАСЯ ПОМИЛКА.\n"
+"\n"
+"ЯКЩО У ВАС ВСЕ ЩЕ Є ПРОБЛЕМИ З ДЕЯКИМИ ЕМУЛЯТОРАМИ, ПЕРЕЗАВАНТАЖТЕ RECALBOX "
+"І СПРОБУЙТЕ ЗНОВУ СКИНУТИ НАЛАШТУВАННЯ ЕМУЛЯТОРІВ."
+
+msgid "CHECKING UPDATE..."
+msgstr "ПЕРЕВІРКА ОНОВЛЕННЯ..."
+
+msgid "FACTORY RESET IN PROGRESS"
+msgstr "ВИКОНУЄТЬСЯ СКИДАННЯ ДО ЗАВОДСЬКИХ НАЛАШТУВАНЬ"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR EMULATOR SETTINGS TO FACTORY "
+"DEFAULTS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"ВАМ ЗАЛИШИЛОСЯ ОДНЕ НАТИСКАННЯ ДО СКИДАННЯ НАЛАШТУВАНЬ ЕМУЛЯТОРІВ ДО "
+"ЗАВОДСЬКИХ!\n"
+"\n"
+"ВИ ДІЙСНО ВПЕВНЕНІ, ЩО ХОЧЕТЕ ЦЕ ЗРОБИТИ?"
+
+msgid ""
+"RESET EMULATOR SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET ALL EMULATOR SETTINGS TO THEIR DEFAULT VALUES.\n"
+"YOU RECALBOX SETTINGS AND FILES WON'T BE AFFECTED.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR EMULATOR SETTINGS?"
+msgstr ""
+"СКИНУТИ НАЛАШТУВАННЯ ЕМУЛЯТОРІВ\n"
+"\n"
+"ВИ ЗБИРАЄТЕСЯ СКИНУТИ ВСІ НАЛАШТУВАННЯ ЕМУЛЯТОРІВ ДО ТИПОВИХ ЗНАЧЕНЬ.\n"
+"НАЛАШТУВАННЯ ТА ФАЙЛИ RECALBOX НЕ ЗМІНЯТЬСЯ.\n"
+"\n"
+"ЦЮ ОПЕРАЦІЮ НЕ МОЖНА СКАСУВАТИ!\n"
+"ВИ ВПЕВНЕНІ, ЩО ХОЧЕТЕ СКИНУТИ ВСІ НАЛАШТУВАННЯ ЕМУЛЯТОРІВ?"
+
+msgid "EMULATOR SETTINGS RESET IN PROGRESS"
+msgstr "ВИКОНУЄТЬСЯ СКИДАННЯ НАЛАШТУВАНЬ ЕМУЛЯТОРІВ"
+
+msgid "Refreshing gamelists..."
+msgstr "Оновлення списків ігор..."
+
+msgid "Preparing gamelists..."
+msgstr "Підготовка списків ігор..."
+
+msgid "Scan completed for system {0}."
+msgstr "Сканування системи {0} завершено."
+
+msgid "Scan completed for all your systems."
+msgstr "Сканування всіх ваших систем завершено."
+
+msgid "No game has been removed from your gamelists"
+msgstr "Жодну гру не видалено зі списків ігор"
+
+msgid "No game has been added to your gamelists"
+msgstr "Жодну гру не додано до списків ігор"
+
+msgid ""
+"Would you like to scrape newly added games now, using your current scraper "
+"configuration?"
+msgstr ""
+"Отримати дані для щойно доданих ігор зараз, використовуючи поточну "
+"конфігурацію скрапера?"
+
+msgid "GAMELIST UPDATE COMPLETED"
+msgstr "ОНОВЛЕННЯ СПИСКУ ІГОР ЗАВЕРШЕНО"
+
+msgid "Scanning {0} - 0 Added  - 0 Removed"
+msgstr "Сканування {0} - Додано 0 - Видалено 0"
+
+msgid "Scanning {0}... {1} Added - {2} Removed"
+msgstr "Сканування {0}... Додано {1} - Видалено {2}"
+
+msgid "Saving gamelist for {0}..."
+msgstr "Збереження списку ігор для {0}..."
+
+msgid "Added games: {0} - Removed games: {1}"
+msgstr "Додано ігор: {0} - Видалено ігор: {1}"
+
+msgid "WIFI CONNECTION OK!"
+msgstr "З'ЄДНАННЯ WIFI УСПІШНЕ!"
+
+msgid "Initializing roms folders on device "
+msgstr "Ініціалізація папок roms на пристрої "
+
+msgid "Moving share to device "
+msgstr "Переміщення спільного ресурсу на пристрій "
+
+msgid "A new version {0} is available!"
+msgstr "Доступна нова версія {0}!"
+
+msgid "No new version available yet."
+msgstr "Нової версії поки що немає."
+
+msgid "Reloading {0} gamelist..."
+msgstr "Перезавантаження списку ігор {0}..."
+
+msgid "Recalbox interface must restart to apply your changes."
+msgstr "Інтерфейс Recalbox потрібно перезапустити, щоб застосувати зміни."
+
+msgid "TESTING CONNECTION..."
+msgstr "ПЕРЕВІРКА З'ЄДНАННЯ..."
+
+msgid "UNAVAILABLE"
+msgstr "НЕДОСТУПНО"
+
+msgid "NO WIFI ACCESS POINT"
+msgstr "НЕМАЄ ТОЧКИ ДОСТУПУ WIFI"
+
+msgid "NO ACCESS"
+msgstr "НЕМАЄ ДОСТУПУ"
+
+msgid "YES, BUT NOT RECOMMENDED"
+msgstr "ТАК, АЛЕ НЕ РЕКОМЕНДОВАНО"
+
+msgid "CANCEL SELECTION"
+msgstr "СКАСУВАТИ ВИБІР"
+
+msgid "MOVE"
+msgstr "ПЕРЕМІСТИТИ"
+
+msgid "MIN/MAX"
+msgstr "МІН/МАКС"
+
+msgid "TOGGLE"
+msgstr "ПЕРЕМКНУТИ"
+
+msgid "SELECTED"
+msgstr "ВИБРАНО"
+
+msgid "OPEN"
+msgstr "ВІДКРИТИ"
+
+msgid "RECALBOX (DEFAULT)"
+msgstr "RECALBOX (ЗА ЗАМОВЧУВАННЯМ)"
+
+msgid "LICENCE"
+msgstr "ЛІЦЕНЗІЯ"
+
+msgid "GAME {0} OF {1}"
+msgstr "ГРА {0} З {1}"
+
+msgid "Saving gamelists..."
+msgstr "Збереження списків ігор..."
+
+msgid "DOWNLOADING GAME FOR %s"
+msgstr "ЗАВАНТАЖЕННЯ ГРИ ДЛЯ %s"
+
+msgid ""
+"Downloading Theme Hospital demo game from the official site. Please wait..."
+msgstr ""
+"Завантаження демогри Theme Hospital з офіційного сайту. Будь ласка, "
+"зачекайте..."
+
+msgid "Extracting... found 1 game"
+msgstr "Розпакування... знайдено 1 гру"
+
+msgid ""
+"There is no network available.\n"
+"Please connect your recalbox and try again."
+msgstr ""
+"Немає доступної мережі.\n"
+"Підключіть ваш recalbox і спробуйте ще раз."
+
+msgid "In alphabetical order"
+msgstr "За алфавітом"
+
+msgid "RATED {0} / 10"
+msgstr "РЕЙТИНГ {0} / 10"
+
+msgid "NOT RATED"
+msgstr "БЕЗ РЕЙТИНГУ"
+
+msgid "Never played"
+msgstr "Ніколи не грали"
+
+msgid "Just a few minutes"
+msgstr "Лише кілька хвилин"
+
+msgid "Less than an hour"
+msgstr "Менше години"
+
+msgid "{0} hours"
+msgstr "{0} год"
+
+msgid "One player"
+msgid_plural "{0} Players"
+msgstr[0] "Один гравець"
+msgstr[1] "{0} гравці"
+msgstr[2] "{0} гравців"
+msgstr[3] "{0} гравців"
+
+msgid "Unknown developer"
+msgstr "Невідомий розробник"
+
+msgid "Unknown publisher"
+msgstr "Невідомий видавець"
+
+msgid "Release date unknown"
+msgstr "Дата випуску невідома"
+
+msgid "Year {0}"
+msgstr "{0} рік"
+
+msgid "NO REGION"
+msgstr "БЕЗ РЕГІОНУ"
+
+msgid ""
+"Game are now sorted\n"
+"by {0}"
+msgstr ""
+"Ігри тепер сортуються\n"
+"за {0}"
+
+msgid "{0} Years ago..."
+msgstr "{0} років тому..."
+
+msgid "{0} Month ago..."
+msgstr "{0} місяців тому..."
+
+msgid "{0} Days ago..."
+msgstr "{0} днів тому..."
+
+msgid "{0} Hours ago..."
+msgstr "{0} годин тому..."
+
+msgid "A short while ago"
+msgstr "Нещодавно"
+
+msgid ""
+"The emulator selected to launch {0} does not support file '{1}'. Would you "
+"like to run the game anyway, even though there's a high chance it will not "
+"work?"
+msgstr ""
+"Емулятор, вибраний для запуску {0}, не підтримує файл '{1}'. Однаково "
+"запустити гру, хоча є висока ймовірність, що вона не працюватиме?"
+
+msgid ""
+"The emulator selected to launch {0} does not support zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Емулятор, вибраний для запуску {0}, не підтримує запаковані файли/роми. "
+"Однаково запустити гру, хоча є висока ймовірність, що вона не працюватиме?"
+
+msgid ""
+"This zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Ця запакована гра не містить жодного файлу, підтримуваного вибраним "
+"емулятором. Однаково запустити гру, хоча є висока ймовірність, що вона не "
+"працюватиме?"
+
+msgid ""
+"The emulator selected to launch {0} does not support 7zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Емулятор, вибраний для запуску {0}, не підтримує файли/роми у форматі 7zip. "
+"Однаково запустити гру, хоча є висока ймовірність, що вона не працюватиме?"
+
+msgid ""
+"This 7zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Ця гра у форматі 7zip не містить жодного файлу, підтримуваного вибраним "
+"емулятором. Однаково запустити гру, хоча є висока ймовірність, що вона не "
+"працюватиме?"
+
+msgid ""
+"The emulator selected to launch {0} does not support file extension '{1}'. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Емулятор, вибраний для запуску {0}, не підтримує розширення файлу '{1}'. "
+"Однаково запустити гру, хоча є висока ймовірність, що вона не працюватиме?"
+
+msgid "Signal"
+msgstr "Сигнал"
+
+msgid "MOVE 5 BY 5"
+msgstr "ПЕРЕМІЩЕННЯ ПО 5"
+
+msgid ""
+"We're downloading __Recalbox__ version **%s**!\n"
+"\n"
+"Once the download is complete, Recalbox will reboot and start installing the "
+"new version.\n"
+"Typical installations take about 5-10mn. **DO NOT reboot or power off "
+"Recalbox** until the installation is complete."
+msgstr ""
+"Завантажується __Recalbox__ версії **%s**!\n"
+"\n"
+"Після завершення завантаження Recalbox перезавантажиться і почне "
+"встановлення нової версії.\n"
+"Зазвичай встановлення триває 5-10 хв. **НЕ перезавантажуйте і не вимикайте "
+"Recalbox**, доки встановлення не завершиться."
+
+msgid "ZOOM"
+msgstr "МАСШТАБ"
+
+msgid "SCANNING..."
+msgstr "СКАНУВАННЯ..."
+
+msgid "Ok"
+msgstr "Гаразд"
+
+msgid "Disabling WIFI..."
+msgstr "Вимкнення WIFI..."
+
+msgid "Enabling WIFI..."
+msgstr "Увімкнення WIFI..."
+
+msgid ""
+"CONNECTION ERROR !\n"
+"Please check your SSID and Password."
+msgstr ""
+"ПОМИЛКА З'ЄДНАННЯ!\n"
+"Перевірте ваш SSID та пароль."
+
+msgid "FAVORITES FIRST"
+msgstr "УЛЮБЛЕНІ СПОЧАТКУ"
+
+msgid "SUPERREZ MULTIPLIER"
+msgstr "МНОЖНИК SUPERREZ"
+
+msgid "CALIBRATE"
+msgstr "КАЛІБРУВАТИ"
+
+msgid "DELETE SELECTED FILES"
+msgstr "ВИДАЛИТИ ВИБРАНІ ФАЙЛИ"
+
+msgid "**YES**"
+msgstr "**ТАК**"
+
+msgid "Press any button for 5s to cancel !"
+msgstr "Натисніть будь-яку кнопку протягом 5с, щоб скасувати!"
+
+msgid "Cancelling..."
+msgstr "Скасування..."
+
+msgid "CANCELLED! Please release all buttons."
+msgstr "СКАСОВАНО! Відпустіть усі кнопки."
+
+msgid "NEVER"
+msgstr "НІКОЛИ"
+
+msgid "THEME'S COLORSET"
+msgstr "КОЛІРНА СХЕМА ТЕМИ"
+
+msgid "Select a colorset from this theme."
+msgstr "Виберіть колірну схему цієї теми."
+
+msgid "THEME'S ICONSET"
+msgstr "НАБІР ЗНАЧКІВ ТЕМИ"
+
+msgid "Select an iconset from this theme."
+msgstr "Виберіть набір значків цієї теми."
+
+msgid "THEME'S MENU STYLE"
+msgstr "СТИЛЬ МЕНЮ ТЕМИ"
+
+msgid "Select menu style from this theme."
+msgstr "Виберіть стиль меню цієї теми."
+
+msgid "THEME'S SYSTEMVIEW LAYOUT"
+msgstr "МАКЕТ ОГЛЯДУ СИСТЕМ ТЕМИ"
+
+msgid "Select system view layout from this theme."
+msgstr "Виберіть макет огляду систем цієї теми."
+
+msgid "THEME'S GAMELISTVIEW LAYOUT"
+msgstr "МАКЕТ СПИСКУ ІГОР ТЕМИ"
+
+msgid "Select gamelist view layout from this theme."
+msgstr "Виберіть макет списку ігор цієї теми."
+
+msgid "THEME'S GAMECLIPVIEW LAYOUT"
+msgstr "МАКЕТ ІГРОВИХ КЛІПІВ ТЕМИ"
+
+msgid "Select gameclip view layout from this theme."
+msgstr "Виберіть макет ігрових кліпів цієї теми."
+
+msgid "Libretro HatariB Settings"
+msgstr "Налаштування Libretro HatariB"
+
+msgid "Machine Type"
+msgstr "Тип машини"
+
+msgid ""
+"Choose the machine model to emulate. STE is a good choice for most games."
+msgstr ""
+"Виберіть модель машини для емуляції. STE — гарний вибір для більшості ігор."
+
+msgid "Memory Size"
+msgstr "Обсяг пам'яті"
+
+msgid "Select the amount of memory. 1 MB is enough for gaming."
+msgstr "Виберіть обсяг пам'яті. 1 МБ достатньо для ігор."
+
+msgid "Fast Floppy"
+msgstr "Швидкий флопі-диск"
+
+msgid ""
+"Set ON to accelerate the floppy disc emulation. May cause some games to fail!"
+msgstr ""
+"Встановіть УВІМК, щоб прискорити емуляцію флопі-диска. Може призвести до "
+"збоїв у деяких іграх!"
+
+msgid "Libretro Fuse Settings"
+msgstr "Налаштування Libretro Fuse"
+
+msgid ""
+"Choose the Sinclair machine (or clone) to emulate. The original Spectrum "
+"128k is a good way to start."
+msgstr ""
+"Виберіть машину Sinclair (або клон) для емуляції. Оригінальний Spectrum 128k "
+"— гарний варіант для початку."
+
+msgid "Set ON to accelerate the tape emulation. May cause some games to fail!"
+msgstr ""
+"Встановіть УВІМК, щоб прискорити емуляцію стрічки. Може призвести до збоїв у "
+"деяких іграх!"
+
+msgid "Libretro PX68K Settings"
+msgstr "Налаштування Libretro PX68K"
+
+msgid "Model/CPU Speed"
+msgstr "Модель/швидкість CPU"
+
+msgid ""
+"Choose the CPU frequency to emulate. 10Mhz is the basic machine and will "
+"work for most of the games."
+msgstr ""
+"Виберіть частоту CPU для емуляції. 10Мгц — базова машина, яка підійде для "
+"більшості ігор."
+
+msgid "Memory Size (in MB)"
+msgstr "Обсяг пам'яті (у МБ)"
+
+msgid ""
+"Choose the amount of memory available. Most of the games will work with 2MB "
+"but some games may require 4MB."
+msgstr ""
+"Виберіть доступний обсяг пам'яті. Більшість ігор працюватимуть із 2МБ, але "
+"деякі можуть вимагати 4МБ."
+
+msgid "Dolphin / Dolphin-GUI Settings"
+msgstr "Налаштування Dolphin / Dolphin-GUI"
+
+msgid "Resolution"
+msgstr "Роздільна здатність"
+
+msgid "Choose the internal resolution."
+msgstr "Виберіть внутрішню роздільну здатність."
+
+msgid "Dual CPU"
+msgstr "Подвійний CPU"
+
+msgid ""
+"May improve performance on a few rare games, at the expense of others that "
+"are incompatible."
+msgstr ""
+"Увімкніть цей параметр, якщо він може покращити продуктивність деяких "
+"рідкісних ігор, але за рахунок несумісності інших."
+
+msgid "Sync GPU"
+msgstr "Синхронізація GPU"
+
+msgid "Enable this speed hack for dual core mode to fix some glitches."
+msgstr ""
+"Увімкніть цей хак швидкості для режиму двох ядер, щоб виправити деякі збої."
+
+msgid "Anti-aliasing"
+msgstr "Згладжування"
+
+msgid "Enable or disable anti-aliasing."
+msgstr "Увімкніть або вимкніть згладжування."
+
+msgid "VSync"
+msgstr "Вертикальна синхронізація"
+
+msgid "Enable or disable vsync."
+msgstr "Увімкніть цей параметр, щоб увімкнути або вимкнути vsync."
+
+msgid "Real Gamecube controllers"
+msgstr "Справжні контролери Gamecube"
+
+msgid "Enable this option to play with real GameCube controllers."
+msgstr "Увімкніть цей параметр, щоб грати зі справжніми контролерами GameCube."
+
+msgid "Real Wiimotes"
+msgstr "Справжні Wiimote"
+
+msgid "Enable this option to play with real Wiimotes."
+msgstr "Увімкніть цей параметр, щоб грати зі справжніми Wiimote."
+
+msgid "Emulated Wiimote"
+msgstr "Емульований Wiimote"
+
+msgid "Enable this option to play with emulated Wiimotes."
+msgstr "Увімкніть, щоб грати з емульованими Wiimote."
+
+msgid "Dolphinbar position"
+msgstr "Позиція Dolphinbar"
+
+msgid "Choose the position of the Dolphin bar."
+msgstr "Виберіть позицію панелі Dolphin."
+
+msgid "Show on-screen information"
+msgstr "Показувати інформацію на екрані"
+
+msgid "PPSSPP Settings"
+msgstr "Налаштування PPSSPP"
+
+msgid "Choose the internal resolution of the PSP."
+msgstr "Виберіть внутрішню роздільну здатність PSP."
+
+msgid "SCUMMVM Settings"
+msgstr "Налаштування SCUMMVM"
+
+msgid "Subtitles"
+msgstr "Субтитри"
+
+msgid "Enable subtitles"
+msgstr "Увімкнути субтитри"
+
+msgid "Supermodel Settings - Controllers"
+msgstr "Налаштування Supermodel - Контролери"
+
+msgid "Sensitivity"
+msgstr "Чутливість"
+
+msgid ""
+"Choose the rate at which analog control values increase/decrease when "
+"controlled by a key, between 1 to 100. Default is 25."
+msgstr ""
+"Виберіть швидкість зміни аналогових значень при керуванні клавішею, від 1 до "
+"100. За замовчуванням 25."
+
+msgid "Saturation"
+msgstr "Насиченість"
+
+msgid ""
+"Choose the position at which the joystick is interpreted as being in its "
+"most extreme position, between 0% to 200%. Default is 100%."
+msgstr ""
+"Виберіть позицію, за якої джойстик вважається в крайньому положенні, від 0% "
+"до 200%. За замовчуванням 100%."
+
+msgid "Deadzone"
+msgstr "Мертва зона"
+
+msgid "Choose the dead zone as a percentage, between 0% to 99%. Default is 2%."
+msgstr "Виберіть мертву зону у відсотках, від 0% до 99%. За замовчуванням 2%."
+
+msgid "Supermodel Settings - Audio"
+msgstr "Налаштування Supermodel - Звук"
+
+msgid "Sound volume"
+msgstr "Гучність звуку"
+
+msgid ""
+"Choose the master volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Виберіть загальну гучність у відсотках, від 0% до 100%. За замовчуванням "
+"100%."
+
+msgid "Music volume"
+msgstr "Гучність музики"
+
+msgid ""
+"Choose the music volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Виберіть гучність музики у відсотках, від 0% до 100%. За замовчуванням 100%."
+
+msgid "Balance"
+msgstr "Баланс"
+
+msgid ""
+"Choose the relative front/rear balance in percentage, between 0% to 100%. "
+"Default is 0%."
+msgstr ""
+"Виберіть відносний баланс перед/зад у відсотках, від 0% до 100%. За "
+"замовчуванням 0%."
+
+msgid "Channels"
+msgstr "Канали"
+
+msgid "Choose the number of sound channels to use on host. Default is 2."
+msgstr ""
+"Виберіть кількість звукових каналів для використання на хості. За "
+"замовчуванням 2."
+
+msgid "Flip stereo"
+msgstr "Перевернути стерео"
+
+msgid "Swap the left and right audio channels."
+msgstr "Виберіть, чи потрібно поміняти місцями лівий і правий аудіоканали."
+
+msgid "Sound"
+msgstr "Звук"
+
+msgid ""
+"Choose if you disable sound board emulation sound effects. Default is "
+"disabled."
+msgstr ""
+"Виберіть, чи вимкнути звукові ефекти емуляції звукової плати. За "
+"замовчуванням вимкнено."
+
+msgid "No Digital Sound Board (DSB)"
+msgstr "Без цифрової звукової плати (DSB)"
+
+msgid "Enable or disable Digital Sound Board MPEG music. Default is disabled."
+msgstr ""
+"Увімкніть або вимкніть музику MPEG цифрової звукової плати. За замовчуванням "
+"вимкнено."
+
+msgid "Sound engine"
+msgstr "Звуковий рушій"
+
+msgid ""
+"Choose between the legacy and new sound engines. Default is MAME engine."
+msgstr ""
+"Виберіть між застарілим та новим звуковими рушіями. За замовчуванням рушій "
+"MAME."
+
+msgid "Supermodel Settings - Video"
+msgstr "Налаштування Supermodel - Відео"
+
+msgid "Supersampling"
+msgstr "Суперсемплінг"
+
+msgid "Supersampling. Not enabled yet. Default is 1."
+msgstr "Суперсемплінг. Ще не увімкнено. За замовчуванням 1."
+
+msgid "Upscale"
+msgstr "Апскейл"
+
+msgid "Choose the 2D layer upscaling filter mode. Default is 0."
+msgstr "Виберіть режим фільтра апскейлу 2D-шару. За замовчуванням 0."
+
+msgid "Disable no throttle"
+msgstr "Вимкнути відсутність обмеження"
+
+msgid "Enable or disable the 60Hz frame rate lock. Default is disabled."
+msgstr ""
+"Виберіть, чи увімкнути фіксацію частоти кадрів 60Гц. За замовчуванням "
+"вимкнено."
+
+msgid "Lock the vertical refresh rate. Default is enabled."
+msgstr ""
+"Виберіть, чи фіксувати вертикальну частоту оновлення. За замовчуванням "
+"увімкнено."
+
+msgid "True Hz"
+msgstr "Справжні Гц"
+
+msgid "Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled."
+msgstr ""
+"Виберіть використання справжньої частоти оновлення Model 3 — 57,524 Гц. За "
+"замовчуванням вимкнено."
+
+msgid "Crosshairs"
+msgstr "Приціл"
+
+msgid "Show crosshairs. Default is disabled."
+msgstr "Виберіть, чи показувати приціл. За замовчуванням вимкнено."
+
+msgid "Multi texture"
+msgstr "Мультитекстура"
+
+msgid "Use 8 texture maps for decoding. Default is disabled."
+msgstr ""
+"Виберіть, чи використовувати 8 текстурних карт для декодування. За "
+"замовчуванням вимкнено."
+
+msgid "Quad rendering"
+msgstr "Квадрорендеринг"
+
+msgid "Enable proper quad rendering. Default is disabled."
+msgstr ""
+"Виберіть, чи увімкнути коректний квадрорендеринг. За замовчуванням вимкнено."
+
+msgid "Supermodel Settings - Core"
+msgstr "Налаштування Supermodel - Ядро"
+
+msgid "GPU multi threading"
+msgstr "Багатопотоковість GPU"
+
+msgid ""
+"Set to ON to run GPU in its own thread instead of sharing the CPU thread. "
+"Faster but may cause bugs, depending on the game."
+msgstr ""
+"Встановіть ON, щоб GPU працював у власному потоці замість спільного "
+"використання потоку CPU. Швидше, але може спричиняти помилки залежно від гри."
+
+msgid "PPC Frequency"
+msgstr "Частота PPC"
+
+msgid "Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70."
+msgstr "Виберіть частоту PowerPC у МГц, від 1 до 1000. За замовчуванням 70."
+
+msgid "Service button"
+msgstr "Сервісна кнопка"
+
+msgid ""
+"Enable or disable the service menu in games (L3 = test, R3 = service). "
+"Default is enabled."
+msgstr ""
+"Увімкніть або вимкніть сервісне меню в іграх (L3 = тест, R3 = сервіс). За "
+"замовчуванням увімкнено."
+
+msgid "Log level"
+msgstr "Рівень журналювання"
+
+msgid "Choose the level of detail in the log file. Default is Information."
+msgstr ""
+"Виберіть рівень інформації у файлі журналу. За замовчуванням — інформація."
+
+msgid "Xemu Settings"
+msgstr "Налаштування Xemu"
+
+msgid "Choose the internal resolution of the Xbox."
+msgstr "Виберіть внутрішню роздільну здатність Xbox."
+
+msgid "Show menu bar"
+msgstr "Показати панель меню"
+
+msgid "Show the menu bar."
+msgstr "Виберіть, чи показувати панель меню."
+
+msgid "Skip boot animation"
+msgstr "Пропустити анімацію завантаження"
+
+msgid "Skip the boot animation."
+msgstr "Виберіть, чи пропускати анімацію завантаження."
+
+msgid "Show notifications"
+msgstr "Показувати сповіщення"
+
+msgid "Show the notifications displayed in the top-right corner of the screen."
+msgstr "Показувати сповіщення у правому верхньому куті екрана."
+
+msgid "Display mode"
+msgstr "Режим відображення"
+
+msgid "Choose how the framebuffer should fit or scale."
+msgstr "Виберіть, як фреймбуфер має вписуватися чи масштабуватися."
+
+msgid "Aspect Ratio"
+msgstr "Співвідношення сторін"
+
+msgid "Choose the aspect ratio of the Xbox."
+msgstr "Виберіть співвідношення сторін Xbox."
+
+msgid "Xemu - EEPROM General Settings"
+msgstr "Xemu - Загальні налаштування EEPROM"
+
+msgid "Choose the region to use on Xbox."
+msgstr "Виберіть регіон для використання на Xbox."
+
+msgid "Video Standard"
+msgstr "Відеостандарт"
+
+msgid "Choose the video standard to use on Xbox."
+msgstr "Виберіть відеостандарт для використання на Xbox."
+
+msgid "Timezone"
+msgstr "Часовий пояс"
+
+msgid ""
+"Choose the timezone to use on Xbox. If your country is using DST, don't take "
+"it into account when you are setting this."
+msgstr ""
+"Виберіть часовий пояс для використання на Xbox. Якщо у вашій країні діє "
+"літній час, не враховуйте його під час налаштування."
+
+msgid "Disable automatic daylight saving time"
+msgstr "Вимкнути автоматичний перехід на літній час"
+
+msgid "Choose if you want to disable automatic daylight saving time."
+msgstr "Виберіть, чи вимкнути автоматичний перехід на літній час."
+
+msgid "DVD Region"
+msgstr "Регіон DVD"
+
+msgid "Choose the DVD region to use on Xbox."
+msgstr "Виберіть регіон DVD для використання на Xbox."
+
+msgid "Language"
+msgstr "Мова"
+
+msgid "Choose the language to use on Xbox."
+msgstr "Виберіть мову для використання на Xbox."
+
+msgid "Xemu - EEPROM Video Settings"
+msgstr "Xemu - Налаштування відео EEPROM"
+
+msgid "Enable 480p resolution on Xbox."
+msgstr "Виберіть, чи увімкнути роздільну здатність 480p на Xbox."
+
+msgid "720p"
+msgstr "720p"
+
+msgid "Enable 720p resolution on Xbox."
+msgstr "Виберіть, чи увімкнути роздільну здатність 720p на Xbox."
+
+msgid "1080i"
+msgstr "1080i"
+
+msgid "Enable 1080i resolution on Xbox."
+msgstr "Виберіть, чи увімкнути роздільну здатність 1080i на Xbox."
+
+msgid "Video Mode"
+msgstr "Відеорежим"
+
+msgid "Choose the video mode to use on Xbox."
+msgstr "Виберіть відеорежим для використання на Xbox."
+
+msgid "Refresh rate"
+msgstr "Частота оновлення"
+
+msgid "Set the refresh rate to 60Hz on Xbox."
+msgstr "Виберіть, чи встановити частоту оновлення 60Гц на Xbox."
+
+msgid "Xemu - EEPROM Audio Settings"
+msgstr "Xemu - Налаштування звуку EEPROM"
+
+msgid "Audio Output"
+msgstr "Аудіовихід"
+
+msgid "Choose the audio output to use on Xbox."
+msgstr "Виберіть аудіовихід для використання на Xbox."
+
+msgid "AC3"
+msgstr "AC3"
+
+msgid "Enable Dolby Digital (AC3) on Xbox."
+msgstr "Виберіть, чи увімкнути Dolby Digital (AC3) на Xbox."
+
+msgid "DTS"
+msgstr "DTS"
+
+msgid "Enable Dolby Surround (DTS) on Xbox."
+msgstr "Виберіть, чи увімкнути Dolby Surround (DTS) на Xbox."
+
+msgid "SHUTDOWN RECALBOX"
+msgstr "ВИМКНУТИ RECALBOX"
+
+msgid "FAST SHUTDOWN RECALBOX"
+msgstr "ШВИДКО ВИМКНУТИ RECALBOX"
+
+msgid "RESTART RECALBOX"
+msgstr "ПЕРЕЗАПУСТИТИ RECALBOX"
+
+msgid "EDIT NETPLAY PASSWORDS"
+msgstr "РЕДАГУВАТИ ПАРОЛІ NETPLAY"
+
+msgid "PASSWORD #{INDEX}"
+msgstr "ПАРОЛЬ #{INDEX}"
+
+msgid "SHARE USAGE"
+msgstr "ВИКОРИСТАННЯ СХОВИЩА"
+
+msgid "SHARE PARTITION"
+msgstr "РОЗДІЛ СХОВИЩА"
+
+msgid "Exit the password edition."
+msgstr "Вийти з редагування паролів."
+
+msgid "AVAILABLE STORAGES"
+msgstr "ДОСТУПНІ НОСІЇ"
+
+msgid ""
+"Show a list of storage available on your system. Select a storage to access "
+"extra information and available actions."
+msgstr ""
+"Показати список носіїв, доступних у вашій системі. Виберіть носій, щоб "
+"отримати доступ до додаткової інформації та доступних дій."
+
+msgid "Get information about {DEVICE.NAME}"
+msgstr "Отримати інформацію про {DEVICE.NAME}"
+
+msgid "FREE SPACE"
+msgstr "ВІЛЬНЕ МІСЦЕ"
+
+msgid "Display free space available on the device"
+msgstr "Показати вільне місце, доступне на пристрої"
+
+msgid "STORAGE NAME"
+msgstr "НАЗВА НОСІЯ"
+
+msgid "Display real device name"
+msgstr "Показати справжню назву пристрою"
+
+msgid "NETWORK ACCESS"
+msgstr "МЕРЕЖЕВИЙ ДОСТУП"
+
+msgid "Access to this storage through your local network."
+msgstr "Доступ до цього носія через вашу локальну мережу."
+
+msgid "FILE SYSTEM"
+msgstr "ФАЙЛОВА СИСТЕМА"
+
+msgid "FileSystem"
+msgstr "Файлова система"
+
+msgid "COMPATIBLE WITH RECALBOX?"
+msgstr "СУМІСНО З RECALBOX?"
+
+msgid "Show if this storage is compatible with recalbox"
+msgstr "Показати, чи сумісний цей носій з recalbox"
+
+msgid "INSTALL RECALBOX ROM FOLDERS"
+msgstr "ВСТАНОВИТИ ПАПКИ ROM RECALBOX"
+
+msgid "INITIALIZE!"
+msgstr "ІНІЦІАЛІЗУВАТИ!"
+
+msgid ""
+"Create rom structure so that this storage will be used by Recalbox on next "
+"boots."
+msgstr ""
+"Створити структуру roms, щоб цей носій використовувався Recalbox під час "
+"наступних завантажень."
+
+msgid ""
+"You cannot initialize this storage, because either it is already initialized "
+"or it is not compatible."
+msgstr ""
+"Неможливо ініціалізувати цей носій, оскільки він уже ініціалізований або "
+"несумісний."
+
+msgid ""
+"Select your language. A reboot is required to set this configuration active."
+msgstr ""
+"Виберіть вашу мову. Для активації цього налаштування потрібне "
+"перезавантаження."
+
+msgid "TIMEZONE"
+msgstr "ЧАСОВИЙ ПОЯС"
+
+msgid ""
+"Select the timezone used to display dates and times in their local format."
+msgstr ""
+"Дозволяє вибрати часовий пояс для показу дат і часу в локальному форматі."
+
+msgid "Shows available update version."
+msgstr "Показує доступну версію оновлення."
+
+msgid "CHECK UPDATES PERIODICALLY"
+msgstr "ПЕРІОДИЧНО ПЕРЕВІРЯТИ ОНОВЛЕННЯ"
+
+msgid ""
+"Automatically check if an update is available. If so, it notifies you with a "
+"message."
+msgstr "Автоматично перевіряє наявність оновлення. Якщо є, повідомляє про це."
+
+msgid "Select update type"
+msgstr "Виберіть тип оновлення"
+
+msgid "CHECK"
+msgstr "ПЕРЕВІРИТИ"
+
+msgid "Check if an update is available, right now."
+msgstr "Перевірити наявність оновлення прямо зараз."
+
+msgid "SHOW NEW VERSION CHANGELOG"
+msgstr "ПОКАЗАТИ ЖУРНАЛ ЗМІН НОВОЇ ВЕРСІЇ"
+
+msgid "SHOW"
+msgstr "ПОКАЗАТИ"
+
+msgid "Shows available update changelog."
+msgstr "Показує журнал змін доступного оновлення."
+
+msgid "DOWNLOAD AND UPDATE MY RECALBOX"
+msgstr "ЗАВАНТАЖИТИ Й ОНОВИТИ МІЙ RECALBOX"
+
+msgid "GO!"
+msgstr "ВПЕРЕД!"
+
+msgid "No update available yet."
+msgstr "Оновлення поки що недоступні."
+
+msgid "RECALBOX RGB DUAL SETTINGS"
+msgstr "НАЛАШТУВАННЯ RECALBOX RGB DUAL"
+
+msgid ""
+"Select Recalbox's interface resolution. 480i is recommended for better "
+"details."
+msgstr ""
+"Виберіть роздільну здатність інтерфейсу Recalbox. Для кращої деталізації "
+"рекомендується 480i."
+
+msgid "AVOID INTERLACED MODES"
+msgstr "УНИКАТИ ЧЕРЕЗРЯДКОВИХ РЕЖИМІВ"
+
+msgid "Avoid interlaced mode for all games."
+msgstr "Уникати черезрядкового режиму для всіх ігор."
+
+msgid "AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS"
+msgstr ""
+"УНИКАТИ ЧЕРЕЗРЯДКОВИХ РЕЖИМІВ ДЛЯ ІГОР TATE НА YOKO ТА ПОРТАТИВНИХ ПРИСТРОЯХ"
+
+msgid "31 KHZ"
+msgstr "31 КГЦ"
+
+msgid "You're not in 31khz mode"
+msgstr "Ви не в режимі 31кГц"
+
+msgid "RUN DEMOS AND AUTOBOOT GAMES IN 240P@120"
+msgstr "ЗАПУСКАТИ ДЕМО ТА АВТОЗАВАНТАЖУВАНІ ІГРИ В 240P@120"
+
+msgid ""
+"Run the demos and autoboot games in 240p resolution on your 31kHz monitor."
+msgstr ""
+"Запускати демо та автозавантажувані ігри в роздільній здатності 240p на "
+"вашому моніторі 31кГц."
+
+msgid "EXPERIMENTAL"
+msgstr "ЕКСПЕРИМЕНТАЛЬНО"
+
+msgid "RECALBOX RGB JAMMA SETTINGS"
+msgstr "НАЛАШТУВАННЯ RECALBOX RGB JAMMA"
+
+msgid "Recalbox RGB Jamma options and configuration."
+msgstr "Параметри та конфігурація Recalbox RGB Jamma."
+
+msgid ""
+"Avoid interlaced mode for tate (vertical) games on yoko (horizontal) "
+"screens, and for handheld consoles."
+msgstr ""
+"Уникати черезрядкового режиму для ігор tate (вертикальних) на екранах yoko "
+"(горизонтальних) і для портативних консолей."
+
+msgid "JAMMA OPTIONS"
+msgstr "ПАРАМЕТРИ JAMMA"
+
+msgid "START + UP and DOWN change the volume in frontend and in games."
+msgstr "START + ВВЕРХ і ВНИЗ змінюють гучність в інтерфейсі та в іграх."
+
+msgid "Load the dual joystick configuration on compatible games!"
+msgstr "Завантажити конфігурацію подвійного джойстика для сумісних ігор!"
+
+msgid "Reset all previous options to their default values"
+msgstr "Скинути всі попередні параметри до типових значень"
+
+msgid "RECALBOX RGB DUAL 2 SETTINGS"
+msgstr "НАЛАШТУВАННЯ RECALBOX RGB DUAL 2"
+
+msgid "Recalbox RGB Dual 2 options and configuration."
+msgstr "Параметри та конфігурація Recalbox RGB Dual 2."
+
+msgid "Select Recalbox's interface resolution."
+msgstr "Виберіть роздільну здатність інтерфейсу Recalbox."
+
+msgid "FORCE COMPOSITE"
+msgstr "ПРИМУСОВИЙ КОМПОЗИТНИЙ"
+
+msgid "Force composite output (On SCART, RCA and JACK)."
+msgstr "Примусово увімкнути композитний вихід (на SCART, RCA та JACK)."
+
+msgid "COMPOSITE SIGNAL STANDARD"
+msgstr "СТАНДАРТ КОМПОЗИТНОГО СИГНАЛУ"
+
+msgid ""
+"When using composite, selects the composite signal standard for your region."
+msgstr ""
+"У разі використання композитного сигналу вибирає його стандарт для вашого "
+"регіону."
+
+msgid "16/9 CRT TV"
+msgstr "ТЕЛЕВІЗОР CRT 16/9"
+
+msgid "Activate if you have a 16/9 CRT TV."
+msgstr "Активуйте, якщо у вас телевізор CRT 16/9."
+
+msgid "SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH"
+msgstr "ВИБІР СИГНАЛУ (RGB/КОМПОЗИТНИЙ) ПРИ ЗАПУСКУ"
+
+msgid ""
+"Let you choose between RGB Signal and composite signal at launch, for "
+"compatible systems."
+msgstr ""
+"Дозволяє вибрати між сигналом RGB і композитним сигналом при запуску для "
+"сумісних систем."
+
+msgid "DIP SWITCHES"
+msgstr "DIP-ПЕРЕМИКАЧІ"
+
+msgid "FORCED 50HZ DIP SWITCH"
+msgstr "ПРИМУСОВИЙ DIP-ПЕРЕМИКАЧ 50ГЦ"
+
+msgid "FORCED 31kHz/MULTISYNC DIP SWITCH"
+msgstr "ПРИМУСОВИЙ DIP-ПЕРЕМИКАЧ 31КГЦ/MULTISYNC"
+
+msgid "FORCED COMPOSITE DIP SWITCH"
+msgstr "ПРИМУСОВИЙ DIP-ПЕРЕМИКАЧ КОМПОЗИТНОГО СИГНАЛУ"
+
+msgid "IN-GAME SETTINGS"
+msgstr "НАЛАШТУВАННЯ В ГРІ"
+
+msgid "FEATURES"
+msgstr "ФУНКЦІЇ"
+
+msgid "GAMES RENDERING"
+msgstr "РЕНДЕРИНГ ІГОР"
+
+msgid "AUTO BLITTER (FBNEO/MAME)"
+msgstr "АВТО BLITTER (FBNEO/MAME)"
+
+msgid ""
+"Enables automatic blitter and CPU settings for fbneo and mame games. Can "
+"enhance emulation precision on games like Cave."
+msgstr ""
+"Вмикає автоматичні налаштування blitter і CPU для ігор fbneo та mame. Може "
+"підвищити точність емуляції в іграх на кшталт Cave."
+
+msgid "SYSTEM-LISTS & GAMELISTS SETTINGS"
+msgstr "НАЛАШТУВАННЯ СПИСКІВ СИСТЕМ ТА ІГОР"
+
+msgid "Configure system and gamelist filters and options"
+msgstr "Налаштувати фільтри та параметри систем і списків ігор"
+
+msgid "SYSTEM LISTS"
+msgstr "СПИСКИ СИСТЕМ"
+
+msgid "SHOW SYSTEMS"
+msgstr "ПОКАЗАТИ СИСТЕМИ"
+
+msgid "Show or hide systems individually"
+msgstr "Показувати або приховувати системи окремо"
+
+msgid "GAMES"
+msgstr "ІГРИ"
+
+msgid "ENABLE ADDING/REMOVING FAVORITES"
+msgstr "УВІМКНУТИ ДОДАВАННЯ/ВИДАЛЕННЯ УЛЮБЛЕНИХ"
+
+msgid ""
+"Enable or disable adding/removing favorites in gamelist, search and other "
+"various places."
+msgstr ""
+"Увімкнути або вимкнути додавання/видалення улюблених у списку ігор, пошуку "
+"та інших місцях."
+
+msgid ""
+"Show only favorites. May hide all systems with no favorite at all until you "
+"switch off this option."
+msgstr ""
+"Показувати лише улюблені. Може приховати всі системи без улюблених, доки цей "
+"параметр не буде вимкнено."
+
+msgid "Display all favorites at the top of the game list."
+msgstr "Показувати всі улюблені на початку списку ігор."
+
+msgid "Force hidden game to show in gamelists."
+msgstr "Примусово показувати приховані ігри у списках ігор."
+
+msgid "SHOW MAHJONG AND CASINO GAMES"
+msgstr "ПОКАЗАТИ ІГРИ МАДЖОНГ І КАЗИНО"
+
+msgid ""
+"Show or hide asian casino and mahjong games. You must scrape your game for "
+"this option to work."
+msgstr ""
+"Показувати або приховувати азіатські ігри казино та маджонг. Для роботи "
+"цього параметра потрібно виконати скрапінг гри."
+
+msgid "SHOW ADULT GAMES"
+msgstr "ПОКАЗАТИ ІГРИ ДЛЯ ДОРОСЛИХ"
+
+msgid ""
+"Show or hide adult games. You must scrape your game for this option to work."
+msgstr ""
+"Показувати або приховувати ігри для дорослих. Для роботи цього параметра "
+"потрібно виконати скрапінг гри."
+
+msgid "SHOW PREINSTALLED GAMES"
+msgstr "ПОКАЗАТИ ПОПЕРЕДНЬО ВСТАНОВЛЕНІ ІГРИ"
+
+msgid ""
+"Show or hide games distributed with Recalbox. But you don't want to do this: "
+"they are all excellent games!"
+msgstr ""
+"Показувати або приховувати ігри, що постачаються з Recalbox. Але навряд чи "
+"варто це робити: усі вони чудові!"
+
+msgid "Show only games playable with 3 or more players"
+msgstr "Показувати лише ігри, у які можна грати втрьох і більше"
+
+msgid "SHOW ONLY YOKO (HORIZONTAL) GAMES"
+msgstr "ПОКАЗАТИ ЛИШЕ ІГРИ YOKO (ГОРИЗОНТАЛЬНІ)"
+
+msgid ""
+"Show only YOKO (horizontal) games. Mutually exclusive with the option to "
+"show only TATE games."
+msgstr ""
+"Показувати лише ігри YOKO (горизонтальні). Взаємовиключно з параметром "
+"показу лише ігор TATE."
+
+msgid "SHOW ONLY TATE (VERTICAL) GAMES"
+msgstr "ПОКАЗАТИ ЛИШЕ ІГРИ TATE (ВЕРТИКАЛЬНІ)"
+
+msgid ""
+"Show only TATE (vertical) games. Mutually exclusive with the option to show "
+"only YOKO games."
+msgstr ""
+"Показувати лише ігри TATE (вертикальні). Взаємовиключно з параметром показу "
+"лише ігор YOKO."
+
+msgid "SHOW ROMS MARKED AS NON-GAMES"
+msgstr "ПОКАЗАТИ ROM, ПОЗНАЧЕНІ ЯК НЕ ІГРИ"
+
+msgid ""
+"Show or hide roms that are explicitly marked as non-game (application, "
+"utilities, ...). You must scrape your game for this option to work."
+msgstr ""
+"Показувати або приховувати roms, явно позначені як не ігри (застосунки, "
+"утиліти тощо). Для роботи цього параметра потрібно виконати скрапінг гри."
+
+msgid "ENABLE ONE GAME ONE ROM (1G1R)"
+msgstr "УВІМКНУТИ ОДНА ГРА ОДИН ROM (1G1R)"
+
+msgid "Display only one rom|disk image for a game from your preferred region."
+msgstr ""
+"Показувати лише один rom/образ диска для гри з вашого бажаного регіону."
+
+msgid "PRIORITY REGION (1G1R)"
+msgstr "ПРІОРИТЕТНИЙ РЕГІОН (1G1R)"
+
+msgid "Choose your preferred region for 1G1R filtering."
+msgstr "Виберіть бажаний регіон для фільтрації 1G1R"
+
+msgid "SECOND PRIORITY REGION (1G1R)"
+msgstr "ДРУГИЙ ПРІОРИТЕТНИЙ РЕГІОН (1G1R)"
+
+msgid "Choose your second preferred region for 1G1R filtering."
+msgstr "Виберіть другий бажаний регіон для фільтрації 1G1R"
+
+msgid "THIRD PRIORITY REGIONS (1G1R)"
+msgstr "ТРЕТІЙ ПРІОРИТЕТНИЙ РЕГІОН (1G1R)"
+
+msgid ""
+"Choose your preferred regions priority when there is no match with first and "
+"second regions"
+msgstr ""
+"Виберіть пріоритет бажаних регіонів, якщо немає збігу з першим і другим "
+"регіонами"
+
+msgid "ARCADE SYSTEMS"
+msgstr "АРКАДНІ СИСТЕМИ"
+
+msgid "ENABLE AGGREGATED ARCADE SYSTEM"
+msgstr "УВІМКНУТИ ОБ'ЄДНАНУ АРКАДНУ СИСТЕМУ"
+
+msgid "Available only when aggregated arcade system is on"
+msgstr "Доступно лише коли увімкнена об'єднана аркадна система"
+
+msgid ""
+"Select manufacturer virtual system to show in the system view (like "
+"CPS1/2/3, SEGA, TAITO, ...)"
+msgstr ""
+"Виберіть віртуальні системи за виробником для показу в огляді систем (як-от "
+"CPS1/2/3, SEGA, TAITO тощо)"
+
+msgid "ARCADE GAMES"
+msgstr "АРКАДНІ ІГРИ"
+
+msgid ""
+"Always use arcade names from official databases. Overwrites manual edits and "
+"scraper results."
+msgstr ""
+"Завжди використовувати аркадні назви з офіційних баз даних. Перезаписує "
+"ручне редагування та результати скрапера."
+
+msgid "USER INTERFACE SETTINGS"
+msgstr "НАЛАШТУВАННЯ КОРИСТУВАЦЬКОГО ІНТЕРФЕЙСУ"
+
+msgid "SYSTEMS TO SHOW IN DEMO/GAMECLIP"
+msgstr "СИСТЕМИ ДЛЯ ПОКАЗУ В ДЕМО/ІГРОВИХ КЛІПАХ"
+
+msgid "Adjust the screen brightness"
+msgstr "Налаштувати яскравість екрана"
+
+msgid "Change the look of your Recalbox!"
+msgstr "Змініть вигляд вашого Recalbox!"
+
+msgid "DEFAULT TRANSITION STYLE"
+msgstr "ТИПОВИЙ СТИЛЬ ПЕРЕХОДУ"
+
+msgid ""
+"Select the type of transition between system. INSTANT will do nothing, FADE "
+"will fade to dark, and SLIDE will slide the entire screen"
+msgstr ""
+"Виберіть тип переходу між системами. INSTANT нічого не робить, FADE затемнює "
+"екран, а SLIDE зсуває весь екран"
+
+msgid "Select {THEME.OPTION.NAME}"
+msgstr "Вибрати {THEME.OPTION.NAME}"
+
+msgid "GAME LAUNCH TRANSITION STYLE"
+msgstr "СТИЛЬ ПЕРЕХОДУ ПРИ ЗАПУСКУ ГРИ"
+
+msgid ""
+"Select the type of transition when you launch a game. INSTANT will do "
+"nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover."
+msgstr ""
+"Виберіть тип переходу при запуску гри. INSTANT нічого не робить, FADE "
+"затемнює екран, а SLIDE наближає обкладинку гри."
+
+msgid "ENABLE FAST MOVE IN GAMELIST"
+msgstr "УВІМКНУТИ ШВИДКЕ ПЕРЕМІЩЕННЯ У СПИСКУ ІГОР"
+
+msgid ""
+"When enabled, holding up or down for a few seconds makes the list scroll "
+"very fast."
+msgstr ""
+"Якщо увімкнено, утримування вгору/вниз протягом кількох секунд змушує список "
+"прокручуватися дуже швидко"
+
+msgid "Display the current time in a corner of the screen."
+msgstr "Показувати поточний час у кутку екрана."
+
+msgid "SHOW MUSIC POPUPS"
+msgstr "ПОКАЗУВАТИ СПЛИВАЮЧІ ВІКНА МУЗИКИ"
+
+msgid "When enabled, show music information every time a new music starts."
+msgstr ""
+"Якщо увімкнено, показує інформацію про музику щоразу, коли починається нова "
+"композиція."
+
+msgid "SHOW NETPLAY POPUPS"
+msgstr "ПОКАЗУВАТИ СПЛИВАЮЧІ ВІКНА NETPLAY"
+
+msgid ""
+"When enabled, show netplay information every time a user starts a new game "
+"over internet."
+msgstr ""
+"Якщо увімкнено, показує інформацію про netplay щоразу, коли користувач "
+"починає нову гру через інтернет."
+
+msgid "CONTROLLER SETTINGS"
+msgstr "НАЛАШТУВАННЯ КОНТРОЛЕРА"
+
+msgid "Add and configure all your controllers."
+msgstr "Додайте та налаштуйте всі свої контролери."
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "CONNECT AUTOMATICALLY"
+msgstr "ПІДКЛЮЧАТИСЯ АВТОМАТИЧНО"
+
+msgid ""
+"Automatically connect on startup if the WIFI network is available and "
+"properly configured!"
+msgstr ""
+"Автоматично підключатися при запуску, якщо мережа WIFI доступна та правильно "
+"налаштована!"
+
+msgid "WIFI is disabled!"
+msgstr "WIFI вимкнено!"
+
+msgid "SELECT SSID"
+msgstr "ВИБРАТИ SSID"
+
+msgid "Select an available SSID."
+msgstr "Виберіть доступний SSID."
+
+msgid "If your Internet box has a WPS system, activate it and then click here!"
+msgstr ""
+"Якщо ваш інтернет-роутер має систему WPS, активуйте її, а потім натисніть "
+"тут!"
+
+msgid ""
+"Run the scraper! The operation may take a while, however you can make it a "
+"background task and keep using Recalbox."
+msgstr ""
+"Запустіть скрапер! Операція може зайняти деякий час, однак ви можете зробити "
+"її фоновим завданням і продовжувати користуватися Recalbox."
+
+msgid "PATRON OPTIONS"
+msgstr "ПАРАМЕТРИ ПАТРОНА"
+
+msgid "user name for the selected scraper"
+msgstr "ім'я користувача для вибраного скрапера"
+
+msgid "password for the selected scraper"
+msgstr "пароль для вибраного скрапера"
+
+msgid "Download various free games and free contents!"
+msgstr "Завантажуйте різноманітні безкоштовні ігри та контент!"
+
+msgid "Download games for {SYSTEM.NAME}"
+msgstr "Завантажити ігри для {SYSTEM.NAME}"
+
+msgid ""
+"Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}"
+msgstr ""
+"Завантажити набір безкоштовних ігор, демоверсій та homebrew для {SYSTEM.NAME}"
+
+msgid "No content available yet for {SYSTEM.NAME}!"
+msgstr "Для {SYSTEM.NAME} поки що немає доступного контенту!"
+
+msgid "ACTIVATE DEBUG/VERBOSE LOGS"
+msgstr "АКТИВУВАТИ ДЕТАЛЬНІ ЖУРНАЛИ НАЛАГОДЖЕННЯ"
+
+msgid "Activate debug and verbose logs in Recalbox and Emulators."
+msgstr ""
+"Активувати журнали налагодження та детальні журнали в Recalbox і емуляторах."
+
+msgid "You cannot set up Kodi on boot when Kodi is disabled."
+msgstr ""
+"Неможливо налаштувати запуск Kodi при завантаженні, якщо Kodi вимкнено."
+
+msgid "DO NOT SCAN NEW GAMES"
+msgstr "НЕ СКАНУВАТИ НОВІ ІГРИ"
+
+msgid ""
+"Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not "
+"scanning new files. Use it if your romsets are rarely updated."
+msgstr ""
+"Раніше називалося 'GAMELIST ONLY', може значно прискорити час завантаження, "
+"не скануючи нові файли. Використовуйте, якщо ваші набори ромів рідко "
+"оновлюються."
+
+msgid "ALLOW BOOT ON GAME"
+msgstr "ДОЗВОЛИТИ ЗАВАНТАЖЕННЯ З ГРОЮ"
+
+msgid ""
+"When activated, Recalbox boots into the gamelist and does not allow moving "
+"back to the system list."
+msgstr ""
+"Якщо активовано, Recalbox завантажується зі списком ігор і не дозволяє "
+"повернутися до списку систем."
+
+msgid "SYSTEM SPECIFIC RESOLUTIONS"
+msgstr "РОЗДІЛЬНІ ЗДАТНОСТІ ДЛЯ КОНКРЕТНИХ СИСТЕМ"
+
+msgid "FOR {SYSTEM.NAME}"
+msgstr "ДЛЯ {SYSTEM.NAME}"
+
+msgid "Select the resolution used by the emulator '{SYSTEM.NAME}'."
+msgstr ""
+"Виберіть роздільну здатність, яку використовує емулятор '{SYSTEM.NAME}'."
+
+msgid "Set options for system {SYSTEM.NAME}"
+msgstr "Встановити параметри для системи {SYSTEM.NAME}"
+
+msgid "Set the way you want to use Kodi mediaplayer."
+msgstr "Встановіть спосіб використання медіаплеєра Kodi."
+
+msgid "RUN KODI ON STARTUP"
+msgstr "ЗАПУСКАТИ KODI ПРИ СТАРТІ"
+
+msgid "START KODI WITH X BUTTON"
+msgstr "ЗАПУСКАТИ KODI КНОПКОЮ X"
+
+msgid "Run your own scripts in shell or python"
+msgstr "Запускайте власні скрипти в shell або python"
+
+msgid "Run custom script {SCRIPT.NAME}"
+msgstr "Запустити користувацький скрипт {SCRIPT.NAME}"
+
+msgid "ENABLE WEB MANAGER"
+msgstr "УВІМКНУТИ ВЕБ-МЕНЕДЖЕР"
+
+msgid "RESET EMULATOR SETTINGS"
+msgstr "СКИНУТИ НАЛАШТУВАННЯ ЕМУЛЯТОРА"
+
+msgid "RESET!"
+msgstr "СКИНУТИ!"
+
+msgid ""
+"This option resets all emulator settings to their factory defaults. It does "
+"not affect any Recalbox setting."
+msgstr ""
+"Цей параметр скидає всі налаштування емулятора до заводських значень. Не "
+"впливає на жодне налаштування Recalbox."
+
+msgid "HARDWARE"
+msgstr "ОБЛАДНАННЯ"
+
+msgid "UPDATE!"
+msgstr "ОНОВИТИ!"
+
+msgid "Update Pi4 / Pi400 or Pi5 bootloader if required."
+msgstr "Оновіть завантажувач Pi4 / Pi400 або Pi5, якщо потрібно."
+
+msgid "Recalbox does not support overclocking for your board."
+msgstr "Recalbox не підтримує розгін для вашої плати."
+
+msgid "CONTEXTUAL OPTIONS"
+msgstr "КОНТЕКСТНІ ПАРАМЕТРИ"
+
+msgid "EDIT GAME {GAME.NAME}"
+msgstr "РЕДАГУВАТИ ГРУ {GAME.NAME}"
+
+msgid "Show options related to {GAME.NAME} and allow editing game metadata."
+msgstr ""
+"Показати параметри, пов'язані з {GAME.NAME}, і дозволити редагування "
+"метаданих гри."
+
+msgid ""
+"You cannot edit this game because it is a pre-installed game or it is stored "
+"on a read-only device"
+msgstr ""
+"Неможливо редагувати цю гру, оскільки вона попередньо встановлена або "
+"зберігається на пристрої лише для читання"
+
+msgid "Select the emulator to use to run {GAME.NAME}"
+msgstr "Виберіть емулятор для запуску {GAME.NAME}"
+
+msgid "SET PATCH"
+msgstr "ВСТАНОВИТИ ПАТЧ"
+
+msgid "Select patch to use when running an emulator supporting softpatching."
+msgstr ""
+"Виберіть патч для використання під час запуску емулятора, що підтримує "
+"softpatching."
+
+msgid ""
+"Either the game has no patch or the emulator selected to run this game is "
+"not supporting softpatching."
+msgstr ""
+"Або гра не має патча, або вибраний для її запуску емулятор не підтримує "
+"softpatching."
+
+msgid "Sets the name of the game or folder."
+msgstr "Встановлює назву гри чи папки."
+
+msgid "Set this game as favorite or not."
+msgstr "Позначити цю гру як улюблену чи ні."
+
+msgid "Editing favorites is not enabled."
+msgstr "Редагування улюблених не увімкнено."
+
+msgid "Hide or show this game."
+msgstr "Сховати або показати цю гру."
+
+msgid "Defines this game as an adult game or not."
+msgstr "Визначає, чи є ця гра грою для дорослих."
+
+msgid "Scraping"
+msgstr "Скрапінг"
+
+msgid "Scrape this game and fill in all metadata at once!"
+msgstr "Отримати дані для цієї гри та заповнити всі метадані одразу!"
+
+msgid "Statistics"
+msgstr "Статистика"
+
+msgid "Show the total time you played this game"
+msgstr "Показати загальний час, який ви грали в цю гру"
+
+msgid "PLAY COUNT"
+msgstr "КІЛЬКІСТЬ ЗАПУСКІВ"
+
+msgid "Show the number of times you played this game"
+msgstr "Показати, скільки разів ви грали в цю гру"
+
+msgid "Show the last date/time you played this game"
+msgstr "Показати дату/час останньої гри в цю гру"
+
+msgid "DELETE GAME {GAME.NAME}"
+msgstr "ВИДАЛИТИ ГРУ {GAME.NAME}"
+
+msgid "DELETE {ICON.WARNING}"
+msgstr "ВИДАЛИТИ {ICON.WARNING}"
+
+msgid ""
+"Delete game or screenshot physically on the storage. Allow keeping save, "
+"metadata and other related files individually."
+msgstr ""
+"Фізично видалити гру чи скріншот з носія. Дозволяє окремо зберегти файли "
+"збереження, метадані та інші пов'язані файли."
+
+msgid ""
+"You cannot delete this game because it is a pre-installed game or it is "
+"stored on a read-only device or it is a folder."
+msgstr ""
+"Неможливо видалити цю гру, оскільки вона попередньо встановлена, "
+"зберігається на пристрої лише для читання або є папкою."
+
+msgid ""
+"Boot on game is not enabled. To set a game to boot on, enable the "
+"appropriate option first."
+msgstr ""
+"Завантаження з грою не увімкнено. Щоб встановити гру для завантаження, "
+"спершу увімкніть відповідний параметр."
+
+msgid "RUN SAVE STATE"
+msgstr "ЗАПУСТИТИ ЗБЕРЕЖЕННЯ СТАНУ"
+
+msgid "Select, restore and run game in the selected save state."
+msgstr "Виберіть, відновіть і запустіть гру у вибраному збереженні стану."
+
+msgid ""
+"No save state has been detected for the currently selected game, or the "
+"currently selected item is not a game."
+msgstr ""
+"Для поточної вибраної гри не виявлено збережень стану, або поточний вибраний "
+"елемент не є грою."
+
+msgid "JUMP"
+msgstr "ПЕРЕХІД"
+
+msgid "Open the Quick Jump selector."
+msgstr "Відкрити селектор швидкого переходу."
+
+msgid "This option allows you to search for other versions of a game."
+msgstr "Цей параметр дозволяє шукати інші версії гри."
+
+msgid "This option allows you to search for other games with the same licence."
+msgstr "Цей параметр дозволяє шукати інші ігри з тією самою ліцензією."
+
+msgid ""
+"Select the way the game list is sorted (alphabetically, by rating, ...)."
+msgstr ""
+"Виберіть спосіб сортування списку ігор (за алфавітом, за оцінкою тощо)."
+
+msgid "This list has a natural order and can't be sorted."
+msgstr "Цей список має природний порядок і не може бути відсортований."
+
+msgid ""
+"Select what kind of information you want to see on the right of your "
+"gamelist: regions flags, players or game genre."
+msgstr ""
+"Виберіть, яку інформацію показувати праворуч у списку ігор: прапори "
+"регіонів, кількість гравців або жанр гри."
+
+msgid "FLATTEN FOLDERS"
+msgstr "СПЛОЩЕНІ ПАПКИ"
+
+msgid "This system is either always flattened or cannot be flattened!"
+msgstr "Ця система або завжди сплощена, або не може бути сплощена!"
+
+msgid "You can't hide favorites in the Favorite system!"
+msgstr "Ви не можете сховати улюблені в системі улюблених!"
+
+msgid "Display favorites at the top of gamelists."
+msgstr "Показувати улюблені на початку списків ігор."
+
+msgid "Favorites are always first in the Favorite system!"
+msgstr "Улюблені завжди першими в системі улюблених!"
+
+msgid "Virtual systems cannot be updated. Update real systems instead."
+msgstr ""
+"Віртуальні системи не можна оновити. Оновіть натомість реальні системи."
+
+msgid "Advanced system settings"
+msgstr "Розширені налаштування системи"
+
+msgid "Set advanced settings for system {SYSTEM.NAME}"
+msgstr "Встановити розширені налаштування для системи {SYSTEM.NAME}"
+
+msgid "DELETE {GAME.NAME}"
+msgstr "ВИДАЛИТИ {GAME.NAME}"
+
+msgid "GAME FILES (ROM, DISK IMAGE, TAPE, ...)"
+msgstr "ФАЙЛИ ГРИ (ROM, ОБРАЗ ДИСКА, СТРІЧКА ТОЩО)"
+
+msgid "Number of game files that are to be deleted."
+msgstr "Кількість файлів гри, які буде видалено."
+
+msgid ""
+"Number of media files (images, video, ...) that will be deleted along with "
+"game files."
+msgstr ""
+"Кількість медіафайлів (зображення, відео тощо), які буде видалено разом із "
+"файлами гри."
+
+msgid "There is no media file associated with this game"
+msgstr "З цією грою не пов'язано жодного медіафайлу"
+
+msgid ""
+"Number of extra files associated with this game: configurations, overrides, "
+"patches, ..."
+msgstr ""
+"Кількість додаткових файлів, пов'язаних із цією грою: конфігурації, "
+"перевизначення, патчі тощо"
+
+msgid "There is no extra file associated with this game"
+msgstr "З цією грою не пов'язано жодного додаткового файлу"
+
+msgid "Number of save games and save states of {GAME.NAME}"
+msgstr "Кількість збережених ігор і збережень стану для {GAME.NAME}"
+
+msgid "There is no save game or save state for this game"
+msgstr "Для цієї гри немає ні збереженої гри, ні збереження стану"
+
+msgid "Select files to delete one by one."
+msgstr "Виберіть файли для видалення по одному."
+
+msgid "Select game files that are to be deleted one by one."
+msgstr "Виберіть файли гри для видалення по одному."
+
+msgid ""
+"Select media files (images, video, ...) that will be deleted along with game "
+"files."
+msgstr ""
+"Виберіть медіафайли (зображення, відео тощо), які буде видалено разом із "
+"файлами гри."
+
+msgid "Select extra files to delete: configurations, overrides, patches, ..."
+msgstr ""
+"Виберіть додаткові файли для видалення: конфігурації, перевизначення, патчі "
+"тощо"
+
+msgid "Select save games and save states of {GAME.NAME} to delete"
+msgstr "Виберіть збережені ігри та збереження стану {GAME.NAME} для видалення"
+
+msgid "Delete all files selected below"
+msgstr "Видалити всі вибрані нижче файли"
+
+msgid "Cancel operation. Do not delete anything"
+msgstr "Скасувати операцію. Нічого не видаляти"
+
+msgid "Delete all files listed below"
+msgstr "Видалити всі перелічені нижче файли"
+
+msgid "SOFTPATCHING {GAME.NAME}"
+msgstr "SOFTPATCHING {GAME.NAME}"
+
+msgid "ORIGINAL GAME"
+msgstr "ОРИГІНАЛЬНА ГРА"
+
+msgid "PATCHED GAME"
+msgstr "ПАТЧЕНА ГРА"
+
+msgid "SELECT PATCH TO APPLY"
+msgstr "ВИБРАТИ ПАТЧ ДЛЯ ЗАСТОСУВАННЯ"
+
+msgid "Select the patch to apply."
+msgstr "Виберіть патч для застосування"
+
+msgid "INITIATE {GAME.NAME} NETPLAY GAME"
+msgstr "РОЗПОЧАТИ ГРУ NETPLAY {GAME.NAME}"
+
+msgid "Launch the game and wait for other player to join"
+msgstr "Запустити гру та чекати приєднання іншого гравця"
+
+msgid "Select password other player will have to use to join the game"
+msgstr "Виберіть пароль, який інший гравець використає для приєднання до гри"
+
+msgid "CHOOSE VIEWER PASSWORD"
+msgstr "ВИБРАТИ ПАРОЛЬ ГЛЯДАЧА"
+
+msgid "Select password other player will have to use to watch the game"
+msgstr "Виберіть пароль, який інший гравець використає для перегляду гри"
+
+msgid "Do not initiate this game."
+msgstr "Не розпочинати цю гру."
+
+msgid "JOIN {GAME.NAME} NETPLAY GAME"
+msgstr "ПРИЄДНАТИСЯ ДО ГРИ NETPLAY {GAME.NAME}"
+
+msgid "JOIN AS PLAYER"
+msgstr "ПРИЄДНАТИСЯ ЯК ГРАВЕЦЬ"
+
+msgid "JOIN"
+msgstr "ПРИЄДНАТИСЯ"
+
+msgid "Join the game as a player."
+msgstr "Приєднатися до гри як гравець."
+
+msgid "WATCH"
+msgstr "ПЕРЕГЛЯД"
+
+msgid "Join the game as a viewer. You can watch the game, but not participate."
+msgstr ""
+"Приєднатися до гри як глядач. Ви можете дивитися гру, але не брати участь."
+
+msgid "USE PASSWORD"
+msgstr "ВИКОРИСТАТИ ПАРОЛЬ"
+
+msgid "Use the selected password to join the game."
+msgstr "Використати вибраний пароль для приєднання до гри."
+
+msgid "Do not join this game."
+msgstr "Не приєднуватися до цієї гри."
+
+msgid "{0} free of {1}"
+msgstr "{0} вільно з {1}"
+
+msgid "{0} FREE"
+msgstr "{0} ВІЛЬНО"
+
+msgid "No vulkan driver is available on your hardware."
+msgstr "На вашому обладнанні немає доступного драйвера vulkan."
+
+msgid "Enable rumble with compatible controllers."
+msgstr "Увімкнути вібрацію із сумісними контролерами."
+
+msgid "EDIT FOLDER {GAME.NAME}"
+msgstr "РЕДАГУВАТИ ПАПКУ {GAME.NAME}"
+
+msgid "%i MINUTE"
+msgid_plural "%i MINUTES"
+msgstr[0] "%i ХВИЛИНА"
+msgstr[1] "%i ХВИЛИНИ"
+msgstr[2] "%i ХВИЛИН"
+msgstr[3] "%i ХВИЛИНИ"
+
+msgid "%i TIME"
+msgid_plural "%i TIMES"
+msgstr[0] "%i РАЗ"
+msgstr[1] "%i РАЗИ"
+msgstr[2] "%i РАЗІВ"
+msgstr[3] "%i РАЗУ"
+
+msgid ""
+"Show only the very latest version of a given game, hiding all previous "
+"versions/releases. Particularly useful in TOSEC romsets."
+msgstr ""
+"Показувати лише найновішу версію певної гри, приховуючи всі попередні версії/"
+"релізи. Особливо корисно в наборах ромів TOSEC."
+
+msgid "{THEME.OPTION.HELP}"
+msgstr "{THEME.OPTION.HELP}"
+
+msgid "Fast Tape"
+msgstr "Швидка стрічка"
+
+msgid "LIGHT"
+msgstr "СЛАБКА"
+
+msgid "MEDIUM"
+msgstr "СЕРЕДНЯ"
+
+msgid "HEAVY"
+msgstr "СИЛЬНА"
+
+msgid "X6 (DEFAULT)"
+msgstr "X6 (ЗА ЗАМОВЧУВАННЯМ)"
+
+msgid "Region flags"
+msgstr "Прапори регіонів"
+
+msgid "Genres"
+msgstr "Жанри"
+
+msgid "Support numbers"
+msgstr "Кількість гравців"
+
+msgid "Support types"
+msgstr "Типи підтримки"
+
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} файл"
+msgstr[1] "{0} файли"
+msgstr[2] "{0} файлів"
+msgstr[3] "{0} файлу"
+
+msgid "THEME MANAGER"
+msgstr "МЕНЕДЖЕР ТЕМ"
+
+msgid "LOADING THEME LIST..."
+msgstr "ЗАВАНТАЖЕННЯ СПИСКУ ТЕМ..."
+
+msgid "Loading theme list..."
+msgstr "Завантаження списку тем..."
+
+msgid "Unexpected error while retrieving theme list ! Please retry later."
+msgstr "Несподівана помилка під час отримання списку тем! Спробуйте пізніше."
+
+msgid "Installed"
+msgstr "Встановлено"
+
+msgid "Not Installed"
+msgstr "Не встановлено"
+
+msgid "Author"
+msgstr "Автор"
+
+msgid "Version"
+msgstr "Версія"
+
+msgid "Compatible with"
+msgstr "Сумісно з"
+
+msgid "Download Size"
+msgstr "Розмір завантаження"
+
+msgid "BROWSE PREVIEWS"
+msgstr "ПЕРЕГЛЯНУТИ ПРЕВ'Ю"
+
+msgid "BROWSE THEMES"
+msgstr "ПЕРЕГЛЯНУТИ ТЕМИ"
+
+msgid "INSTALL"
+msgstr "ВСТАНОВИТИ"
+
+msgid "Please confirm. Do you want to update the theme {0}?"
+msgstr "Підтвердьте. Оновити тему {0}?"
+
+msgid "Please confirm. Do you want to install the theme {0}?"
+msgstr "Підтвердьте. Встановити тему {0}?"
+
+msgid "Please confirm. Do you really want to delete the theme {0}?"
+msgstr "Підтвердьте. Дійсно видалити тему {0}?"
+
+msgid "Preparing theme installation..."
+msgstr "Підготовка до встановлення теми..."
+
+msgid "Downloading theme {0}"
+msgstr "Завантаження теми {0}"
+
+msgid "Installing theme {0}"
+msgstr "Встановлення теми {0}"
+
+msgid "Installed {0}%"
+msgstr "Встановлено {0}%"
+
+msgid "Cleaning..."
+msgstr "Очищення..."
+
+msgid ""
+"Error installing theme {0}\n"
+"Reason: {1}"
+msgstr ""
+"Помилка встановлення теми {0}\n"
+"Причина: {1}"
+
+msgid "Do you want to switch to the newly installed theme {0} ?"
+msgstr "Переключитися на щойно встановлену тему {0}?"
+
+msgid "Failed to download theme file. Please check your internet connection."
+msgstr "Не вдалося завантажити файл теми. Перевірте своє інтернет-з'єднання."
+
+msgid ""
+"Failed to install required files. Please check you've enough free space on "
+"your storage !"
+msgstr ""
+"Не вдалося встановити потрібні файли. Перевірте, чи достатньо вільного місця "
+"на вашому носії!"
+
+msgid "Unknown failure."
+msgstr "Невідома помилка."
+
+msgid "Downloaded {0}%"
+msgstr "Завантажено {0}%"
+
+msgid ""
+"Browse, download, install, update or remove themes from Recalbox's theme "
+"repository!"
+msgstr ""
+"Переглядайте, завантажуйте, встановлюйте, оновлюйте чи видаляйте теми зі "
+"сховища тем Recalbox!"
+
+msgid "Loading theme information..."
+msgstr "Завантаження інформації про тему..."
+
+msgid "{THEME.NAME}"
+msgstr "{THEME.NAME}"
+
+msgid "SWITCH TO"
+msgstr "ПЕРЕКЛЮЧИТИСЯ НА"
+
+msgid "DESCRIPTION"
+msgstr "ОПИС"
+
+msgid "and later versions"
+msgstr "і пізніші версії"
+
+msgid "The theme version is too old and the theme may not work properly."
+msgstr "Версія теми занадто стара, і тема може працювати неправильно."
+
+msgid "REGIONS"
+msgstr "РЕГІОНИ"
+
+msgid "SET THIS GAME FOR THE CURRENT CARD"
+msgstr "ВСТАНОВИТИ ЦЮ ГРУ ДЛЯ ПОТОЧНОЇ КАРТКИ"
+
+msgid "This option allows you to select the current game for the current card."
+msgstr "Цей параметр дозволяє вибрати поточну гру для поточної картки."
+
+msgid ""
+"A gamelist file has been altered manually or by an application external to "
+"Recalbox.\n"
+"\n"
+"In order not to lose any data, this file will be reloaded as soon as you "
+"click on the 'update' button.\n"
+"If several files have been modified when you click on 'update', all the "
+"systems concerned will be updated. No reboot is required."
+msgstr ""
+"Файл списку ігор було змінено вручну або застосунком, стороннім щодо "
+"Recalbox.\n"
+"\n"
+"Щоб не втратити дані, цей файл буде перезавантажено, щойно ви натиснете "
+"кнопку 'оновити'.\n"
+"Якщо на момент натискання 'оновити' було змінено кілька файлів, усі "
+"відповідні системи буде оновлено. Перезавантаження не потрібне."
+
+msgid ""
+"Changes have been detected in a roms directory on system {0}.\n"
+"\n"
+"Wait for your file operations to finish, then click on the 'update' button "
+"to update your roms in Recalbox.\n"
+"No restart is required, and if you've added roms, you'll be able to scrape "
+"them at the end of the update.\n"
+"\n"
+"If you add roms to several systems, they will all be updated when you click "
+"on the 'update' button."
+msgstr ""
+"У каталозі roms системи {0} виявлено зміни.\n"
+"\n"
+"Дочекайтеся завершення файлових операцій, потім натисніть кнопку 'оновити', "
+"щоб оновити roms у Recalbox.\n"
+"Перезапуск не потрібен, і якщо ви додали roms, ви зможете отримати для них "
+"дані наприкінці оновлення.\n"
+"\n"
+"Якщо ви додасте roms до кількох систем, усі вони будуть оновлені після "
+"натискання кнопки 'оновити'."
+
+msgid "Powering off."
+msgstr "Вимкнення."
+
+msgid "{0} game has been removed from your gamelists"
+msgid_plural "{0} games have been removed from your gamelists"
+msgstr[0] "{0} гру видалено з ваших списків ігор"
+msgstr[1] "{0} гри видалено з ваших списків ігор"
+msgstr[2] "{0} ігор видалено з ваших списків ігор"
+msgstr[3] "{0} гри видалено з ваших списків ігор"
+
+msgid "{0} game has been added to your gamelists"
+msgid_plural "{0} games have been added to your gamelists"
+msgstr[0] "{0} гру додано до ваших списків ігор"
+msgstr[1] "{0} гри додано до ваших списків ігор"
+msgstr[2] "{0} ігор додано до ваших списків ігор"
+msgstr[3] "{0} гри додано до ваших списків ігор"
+
+msgid "FULLSCREEN"
+msgstr "ПОВНОЕКРАННИЙ"
+
+msgid "ORIGINAL"
+msgstr "ОРИГІНАЛЬНИЙ"
+
+msgid ""
+"The card could not be read.\n"
+"This problem can probably be fixed by blowing on the card's contacts!"
+msgstr ""
+"Не вдалося прочитати картку.\n"
+"Цю проблему, ймовірно, можна вирішити, продувши контакти картки!"
+
+msgid ""
+"A card has been detected but is not yet associated with a game. Use START "
+"menu on a game to associate."
+msgstr ""
+"Виявлено картку, яка ще не пов'язана з грою. Використайте меню START на грі, "
+"щоб пов'язати."
+
+msgid "Arcade"
+msgstr "Аркада"
+
+msgid ""
+"The Recalbox team thanks you for your trust!\n"
+"\n"
+"Let's take advantage of this first launch to discover together how to use:\n"
+"- your Recalbox"
+msgstr ""
+"Команда Recalbox дякує вам за довіру!\n"
+"\n"
+"Скористаймося цим першим запуском, щоб разом дізнатися, як користуватися:\n"
+"- вашим Recalbox"
+
+msgid "and its Recaltower"
+msgstr "та його Recaltower"
+
+msgid "- your controller"
+msgstr "- вашим контролером"
+
+msgid "- your Recalbox RGB DUAL 2"
+msgstr "- вашим Recalbox RGB DUAL 2"
+
+msgid "- your Recalbox RGB JAMMA 2"
+msgstr "- вашим Recalbox RGB JAMMA 2"
+
+msgid "- your Recalbox Card Reader"
+msgstr "- вашим Recalbox Card Reader"
+
+msgid "Please connect your controller via USB and press X to continue."
+msgstr "Підключіть контролер через USB і натисніть X, щоб продовжити."
+
+msgid "Controller"
+msgstr "Контролер"
+
+msgid ""
+"You can navigate through the menus using the directional pad, **select a "
+"system**, or start a game with the **B button**. The **A button** allows you "
+"to exit a menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To exit a game, press the SELECT and START buttons simultaneously."
+msgstr ""
+"Ви можете переміщатися меню за допомогою хрестовини, **вибрати систему** або "
+"запустити гру **кнопкою B**. **Кнопка A** дозволяє вийти з меню чи списку "
+"ігор.\n"
+"\n"
+"Відкрийте **головне меню** за допомогою **кнопки START**.\n"
+"Щоб вийти з гри, натисніть одночасно кнопки SELECT і START."
+
+msgid "RGB JAMMA 2"
+msgstr "RGB JAMMA 2"
+
+msgid ""
+"You can navigate through the menus using the joystick, **select a system**, "
+"or start a game with the **button 1**. The **button 2** allows you to exit a "
+"menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To **exit a game**, **press and hold START** for 4 seconds and release."
+msgstr ""
+"Ви можете переміщатися меню за допомогою джойстика, **вибрати систему** або "
+"запустити гру **кнопкою 1**. **Кнопка 2** дозволяє вийти з меню чи списку "
+"ігор.\n"
+"\n"
+"Відкрийте **головне меню** за допомогою **кнопки START**.\n"
+"Щоб **вийти з гри**, **натисніть і утримуйте START** протягом 4 секунд, а "
+"потім відпустіть."
+
+msgid "RGB DUAL 2"
+msgstr "RGB DUAL 2"
+
+msgid ""
+"Your Recalbox RGB DUAL 2 has been detected and installed automatically! You "
+"can now enjoy **all your games** on Recalbox with **perfect pixels and "
+"frequency**!"
+msgstr ""
+"Ваш Recalbox RGB DUAL 2 виявлено та встановлено автоматично! Тепер ви можете "
+"насолоджуватися **всіма вашими іграми** на Recalbox з **ідеальними пікселями "
+"та частотою**!"
+
+msgid ""
+"\n"
+"\n"
+"Consider this: you can automatically switch back to **HDMI mode** by "
+"connecting an HDMI cable and restarting Recalbox!"
+msgstr ""
+"\n"
+"\n"
+"Зауважте: ви можете автоматично повернутися до **режиму HDMI**, підключивши "
+"кабель HDMI та перезапустивши Recalbox!"
+
+msgid ""
+"\n"
+"\n"
+"An HDMI cable has been detected and the “HDMI priority” mode is enabled in "
+"the options. To switch back to CRT mode, disconnect the HDMI cable and "
+"restart, or disable the HDMI priority option in the Recalbox RGB DUAL 2 "
+"(START) menu options."
+msgstr ""
+"\n"
+"\n"
+"Виявлено кабель HDMI, і в параметрах увімкнено режим “пріоритет HDMI”. Щоб "
+"повернутися до режиму CRT, від'єднайте кабель HDMI та перезапустіть систему, "
+"або вимкніть параметр пріоритету HDMI в меню параметрів Recalbox RGB DUAL 2 "
+"(START)."
+
+msgid "Recalbox Card Reader"
+msgstr "Recalbox Card Reader"
+
+msgid ""
+"Your Recalbox Card Reader has been detected and **installed automatically!"
+"**\n"
+"\n"
+"You can start using it right away by **inserting a card** into the reader "
+"and going to the game of your choice to **associate the game and card** "
+"using the **menu** available with the **START** button."
+msgstr ""
+"Ваш Recalbox Card Reader виявлено та **встановлено автоматично!**\n"
+"\n"
+"Ви можете одразу почати ним користуватися, **вставивши картку** в рідер і "
+"перейшовши до потрібної гри, щоб **пов'язати гру та картку** за допомогою "
+"**меню**, доступного кнопкою **START**."
+
+msgid "Add games"
+msgstr "Додати ігри"
+
+msgid ""
+"Recalbox shares its ROM, BIOS, and save files folders on the local network. "
+"Adding your ROMs couldn't be easier: on your computer, search for your "
+"“recalbox” in the network shares.\n"
+"Go to the ROMs folder, then copy your game to the folder corresponding to "
+"its system. For example, to add a “NES” game, copy it to the ‘roms/nes’ "
+"folder."
+msgstr ""
+"Recalbox надає спільний доступ до папок ROM, BIOS і збережень у локальній "
+"мережі. Додати ваші ROM простіше простого: на комп'ютері знайдіть свій "
+"“recalbox” у мережевих ресурсах.\n"
+"Перейдіть до папки ROMs, потім скопіюйте гру в папку, що відповідає її "
+"системі. Наприклад, щоб додати гру “NES”, скопіюйте її в папку ‘roms/nes’."
+
+msgid ""
+"Remember to connect your Recalbox to the internet to enjoy all its "
+"features!\n"
+msgstr ""
+"Не забудьте підключити Recalbox до інтернету, щоб скористатися всіма його "
+"функціями!\n"
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Оновлення пропонуватимуться вам автоматично.\n"
+"\n"
+"Знайдіть корисну інформацію та посібники на recalbox.com або у вікі "
+"recalbox, відсканувавши QR-код."
+
+msgid "Update"
+msgstr "Оновити"
+
+msgid "Are you sure to activate this theme?"
+msgstr "Ви впевнені, що хочете активувати цю тему?"
+
+msgid "Can't write game to share!"
+msgid_plural "Can't write games to share!"
+msgstr[0] "Неможливо записати гру у спільний ресурс!"
+msgstr[1] "Неможливо записати ігри у спільний ресурс!"
+msgstr[2] "Неможливо записати ігри у спільний ресурс!"
+msgstr[3] "Неможливо записати ігри у спільний ресурс!"
+
+msgid "Error downloading game! Retry later."
+msgid_plural "Error downloading games! Retry later."
+msgstr[0] "Помилка завантаження гри! Спробуйте пізніше."
+msgstr[1] "Помилка завантаження ігор! Спробуйте пізніше."
+msgstr[2] "Помилка завантаження ігор! Спробуйте пізніше."
+msgstr[3] "Помилка завантаження ігор! Спробуйте пізніше."
+
+msgid "Button "
+msgstr "Кнопка "
+
+msgid "Axis "
+msgstr "Вісь "
+
+msgid "pressed"
+msgstr "натиснуто"
+
+msgid "released"
+msgstr "відпущено"
+
+msgid " {0} Fps ({1}%) "
+msgstr " {0} кадр/с ({1}%) "
+
+msgid ""
+"Scraping game %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Скрапінг гри %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Scraper starting..."
+msgstr "Запуск скрапера..."
+
+msgid "Scraping completed!"
+msgstr "Скрапінг завершено!"
+
+msgid "All games scraped successfully."
+msgstr "Дані для всіх ігор успішно отримано."
+
+msgid "You reached your daily quota. Retry tomorrow."
+msgstr "Ви досягли денної квоти. Спробуйте завтра."
+
+msgid "Your disk is full Pleas make room before trying again."
+msgstr "Ваш диск заповнений. Звільніть місце перед повторною спробою."
+
+msgid ""
+"Errors occurred and prevented some games to get their metadata. Retry later."
+msgstr ""
+"Сталися помилки, що завадили деяким іграм отримати метадані. Спробуйте "
+"пізніше."
+
+msgid ""
+"Scraping game... %COUNT% yet to go.\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Скрапінг гри... залишилося: %COUNT%.\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Starting background scraper..."
+msgstr "Запуск фонового скрапера..."
+
+msgid " by "
+msgstr " — "
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"The filters will be reset and recalbox will be reloaded."
+msgstr ""
+"Ваші налаштування фільтрів приховують усі ваші ігри!\n"
+"Фільтри буде скинуто, а recalbox перезавантажено."
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"All filters have been reset."
+msgstr ""
+"Ваші налаштування фільтрів приховують усі ваші ігри!\n"
+"Усі фільтри скинуто."
+
+msgid ""
+"Free space on device %NAME% has gone under %LIMIT%!\n"
+"You should try to free some space quickly!"
+msgstr ""
+"Вільне місце на пристрої %NAME% опустилося нижче %LIMIT%!\n"
+"Вам слід якнайшвидше звільнити трохи місця!"
+
+msgid "Running script..."
+msgstr "Виконання скрипту..."
+
+msgid "Passwords cannot be empty ! Replaced with default value."
+msgstr "Паролі не можуть бути порожніми! Замінено на типове значення."
+
+msgid "%i SECOND"
+msgid_plural "%i SECONDS"
+msgstr[0] "%i СЕКУНДА"
+msgstr[1] "%i СЕКУНДИ"
+msgstr[2] "%i СЕКУНД"
+msgstr[3] "%i СЕКУНДИ"
+
+msgid "%i HOUR"
+msgid_plural "%i HOURS"
+msgstr[0] "%i ГОДИНА"
+msgstr[1] "%i ГОДИНИ"
+msgstr[2] "%i ГОДИН"
+msgstr[3] "%i ГОДИНИ"
+
+msgid ""
+"\n"
+"WARNING: You device may not have been properly unplugged and has consistency "
+"errors. As a result, it's been mounted as read-only. You should plug your "
+"device in a Window PC and use the repair tool."
+msgstr ""
+"\n"
+"УВАГА: можливо, ваш пристрій було від'єднано неправильно, і він має помилки "
+"цілісності. Тому його підключено в режимі лише для читання. Вам слід "
+"підключити пристрій до ПК з Windows і скористатися інструментом відновлення."
+
+msgid "{THEME.NAME} CONFIGURATION"
+msgstr "НАЛАШТУВАННЯ {THEME.NAME}"
+
+msgid "ENABLE SIDE NAVIGATION IN GAME LISTS"
+msgstr "УВІМКНУТИ БОКОВУ НАВІГАЦІЮ У СПИСКАХ ІГОР"
+
+msgid "JOIN AS VIEWER"
+msgstr "ПРИЄДНАТИСЯ ЯК ГЛЯДАЧ"
+
+msgid "RECALCARDS SETTINGS"
+msgstr "НАЛАШТУВАННЯ RECALCARDS"
+
+msgid "Recalbox Card Reader options and configuration."
+msgstr "Параметри та конфігурація Recalbox Card Reader."
+
+msgid "CARD READER"
+msgstr "РІДЕР КАРТОК"
+
+msgid "Card Reader Version and status."
+msgstr "Версія та стан рідера карток."
+
+msgid "BOOT ON CARD"
+msgstr "ЗАВАНТАЖЕННЯ З КАРТКОЮ"
+
+msgid "Boot on the card when inserted at Recalbox boot."
+msgstr ""
+"Завантажуватися з карткою, якщо вона вставлена під час завантаження Recalbox."
+
+msgid "RECALBOX BOOT VIDEOS"
+msgstr "ВІДЕО ЗАВАНТАЖЕННЯ RECALBOX"
+
+msgid "Enable or disable recalbox videos on boot."
+msgstr "Увімкнути або вимкнути відео recalbox при завантаженні."
+
+msgid "Console Mode (cards only)"
+msgstr "Режим консолі (лише картки)"
+
+msgid "Start Recalbox in console mode, where only cards can be played."
+msgstr "Запустити Recalbox у режимі консолі, де можна грати лише з картками."
+
+msgid "Console Mode exit buttons"
+msgstr "Кнопки виходу з режиму консолі"
+
+msgid "Select how to exit console mode."
+msgstr "Виберіть спосіб виходу з режиму консолі."
+
+msgid "Console Mode video"
+msgstr "Відео режиму консолі"
+
+msgid "Select the video to run in console mode."
+msgstr "Виберіть відео для показу в режимі консолі."
+
+msgid "Console Mode sound"
+msgstr "Звук режиму консолі"
+
+msgid "Switch between recalbox music and bios sound."
+msgstr "Перемикання між музикою recalbox і звуком bios."
+
+msgid "({0} AVAILABLE)"
+msgstr "({0} ДОСТУПНО)"
+
+msgid "UP TO DATE"
+msgstr "АКТУАЛЬНО"
+
+msgid ""
+"The game associated with the card was not found on your Recalbox, the card "
+"association has been cleared."
+msgstr ""
+"Гру, пов'язану з карткою, не знайдено на вашому Recalbox, зв'язок картки "
+"скинуто."
+
+msgid "Unable to start on the game, could not find the game."
+msgstr "Неможливо запуститися з грою, гру не знайдено."
+
+msgid "Unable to start on the game, no controllers found."
+msgstr "Неможливо запуститися з грою, контролерів не знайдено."
+
+msgid "GLOBAL CONFIGURATION"
+msgstr "ГЛОБАЛЬНА КОНФІГУРАЦІЯ"
+
+msgid "Board"
+msgstr "Плата"
+
+msgid "Shows your current board."
+msgstr "Показує вашу поточну плату."
+
+msgid "Show release notes"
+msgstr "Показати нотатки випуску"
+
+msgid "Shows current version's release notes."
+msgstr "Показує нотатки випуску поточної версії."
+
+msgid "RELEASE NOTES"
+msgstr "НОТАТКИ ВИПУСКУ"
+
+msgid "Scroll manually"
+msgstr "Прокручувати вручну"
+
+msgid "AVAILABLE UPDATE"
+msgstr "ДОСТУПНЕ ОНОВЛЕННЯ"
+
+msgid "DOWNLOAD"
+msgstr "ЗАВАНТАЖИТИ"
+
+msgid "Libretro Geolith Settings"
+msgstr "Налаштування Libretro Geolith"
+
+msgid "System Type"
+msgstr "Тип системи"
+
+msgid "Specify the System Type: AES, MVS or Universe BIOS System."
+msgstr "Вкажіть тип системи: AES, MVS або Universe BIOS System."
+
+msgid "480p"
+msgstr "480p"
+
+msgid "Select the resolution for Kodi interface and videos"
+msgstr "Виберіть роздільну здатність для інтерфейсу Kodi та відео"
+
+msgid ""
+"You are currently running a preview version of **Recalbox 10**. An update to "
+"the public version will be offered automatically when it becomes available "
+"for download."
+msgstr ""
+"Наразі ви використовуєте попередню версію **Recalbox 10**. Оновлення до "
+"публічної версії буде запропоновано автоматично, щойно вона стане доступною "
+"для завантаження."
+
+msgid ""
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Знайдіть корисну інформацію та посібники на recalbox.com або у вікі "
+"recalbox, відсканувавши QR-код."
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+msgstr ""
+"Оновлення пропонуватимуться вам автоматично.\n"
+"\n"
+
+msgid ""
+"Cannot check update ! Ensure your Recalbox is connected to the Internet, and "
+"try later."
+msgstr ""
+"Неможливо перевірити оновлення! Переконайтеся, що ваш Recalbox підключено до "
+"інтернету, і спробуйте пізніше."
+
+msgid "Libretro MelonDS Settings"
+msgstr "Налаштування Libretro MelonDS"
+
+msgid "Touch Mode"
+msgstr "Режим дотику"
+
+msgid "Choose mode for interactions with the touch screen."
+msgstr "Виберіть режим взаємодії з сенсорним екраном."
+
+msgid "Swap Screen Mode"
+msgstr "Режим перемикання екранів"
+
+msgid "Choose if the 'Swap screens' button should work on press or on hold."
+msgstr ""
+"Виберіть, чи має кнопка 'Перемкнути екрани' працювати при натисканні чи при "
+"утриманні."
+
+msgid "Screen Layout"
+msgstr "Розташування екранів"
+
+msgid ""
+"Choose how many screens should be displayed, and how they should be arranged."
+msgstr "Виберіть, скільки екранів показувати і як саме."
+
+msgid "Enabled (GPU)"
+msgstr "Увімкнено (GPU)"
+
+msgid "Run in main thread (CPU)"
+msgstr "Виконувати в головному потоці (CPU)"
+
+msgid "Disabled"
+msgstr "Вимкнено"
+
+msgid "Center"
+msgstr "По центру"
+
+msgid "Stretch"
+msgstr "Розтягнути"
+
+msgid "Scale"
+msgstr "Масштаб"
+
+msgid "North America"
+msgstr "Північна Америка"
+
+msgid "Europe and Australia"
+msgstr "Європа та Австралія"
+
+msgid "Manufacturing plant"
+msgstr "Виробничий завод"
+
+msgid "NTSC-M (North America)"
+msgstr "NTSC-M (Північна Америка)"
+
+msgid "NTSC-J (Japan)"
+msgstr "NTSC-J (Японія)"
+
+msgid "PAL-I (Europe and Australia)"
+msgstr "PAL-I (Європа та Австралія)"
+
+msgid "PAL-M (Brazil)"
+msgstr "PAL-M (Бразилія)"
+
+msgid "Stereo"
+msgstr "Стерео"
+
+msgid "Legacy sound engine"
+msgstr "Застарілий звуковий рушій"
+
+msgid "New sound engine based on MAME"
+msgstr "Новий звуковий рушій на основі MAME"
+
+msgid "Enable for 1 player"
+msgstr "Увімкнути для 1 гравця"
+
+msgid "Enable for 2 players"
+msgstr "Увімкнути для 2 гравців"
+
+msgid "MOUSE"
+msgstr "МИША"
+
+msgid "TOUCH"
+msgstr "ДОТИК"
+
+msgid "HOLD"
+msgstr "УТРИМАННЯ"
+
+msgid "Top/Bottom"
+msgstr "Верх/Низ"
+
+msgid "Bottom/Top"
+msgstr "Низ/Верх"
+
+msgid "Left/Right"
+msgstr "Ліворуч/Праворуч"
+
+msgid "Right/Left"
+msgstr "Праворуч/Ліворуч"
+
+msgid "Top Only"
+msgstr "Лише верх"
+
+msgid "Bottom Only"
+msgstr "Лише низ"
+
+msgid "Hybrid Top"
+msgstr "Гібридний верх"
+
+msgid "Hybrid Bottom"
+msgstr "Гібридний низ"
+
+msgid "Downloading Quake 3 demo game from the official site. Please wait..."
+msgstr ""
+"Завантаження демогри Quake 3 з офіційного сайту. Будь ласка, зачекайте..."
+
+msgid ""
+"Downloading Tomb Raider demo game from the official site. Please wait..."
+msgstr ""
+"Завантаження демогри Tomb Raider з офіційного сайту. Будь ласка, зачекайте..."
+
+msgid "AVOID LOW FREQUENCY MODES"
+msgstr "УНИКАТИ НИЗЬКОЧАСТОТНИХ РЕЖИМІВ"
+
+msgid "Avoid modes under 57Hz for non-compatible TVs."
+msgstr "Уникати режимів нижче 57Гц для несумісних телевізорів."
+
+msgid "HANDHELDS RATIO"
+msgstr "СПІВВІДНОШЕННЯ ДЛЯ ПОРТАТИВНИХ ПРИСТРОЇВ"
+
+msgid ""
+"Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full "
+"image, or ORIGINAL to get original and pixel perfect resolution."
+msgstr ""
+"Співвідношення сторін відео на CRT для портативних консолей. Виберіть "
+"FULLSCREEN для повного зображення або ORIGINAL для оригінальної піксель-"
+"точної роздільної здатності."
+
+#: GuiInputConfig — phase messages
+msgid "Press %LABEL%"
+msgstr "Натисніть %LABEL%"
+
+msgid "Release to confirm"
+msgstr "Відпустіть, щоб підтвердити"
+
+msgid "Press **HOTKEY + START** to validate"
+msgstr "Натисніть **HOTKEY + START**, щоб підтвердити"
+
+msgid "ALREADY USED"
+msgstr "ВЖЕ ВИКОРИСТОВУЄТЬСЯ"
+
+msgid "ALREADY USED BY {0}"
+msgstr "ВЖЕ ВИКОРИСТОВУЄТЬСЯ ДЛЯ {0}"
+
+msgid "Button combination"
+msgstr "Комбінація кнопок"
+
+msgid ""
+"Your controller has __no SELECT or HOTKEY button__. The START button will be "
+"used for special actions:\n"
+"- **Long press on START** = quit the game (START + HOTKEY)\n"
+"- **START + Validate** = SELECT (insert credit in arcade games)\n"
+"- **START + any other button** = HOTKEY + that button"
+msgstr ""
+"Ваш контролер __не має кнопки SELECT або HOTKEY__. Кнопка START "
+"використовуватиметься для спеціальних дій:\n"
+"- **Довге натискання START** = вийти з гри (START + HOTKEY)\n"
+"- **START + Підтвердити** = SELECT (вставити кредит в аркадних іграх)\n"
+"- **START + будь-яка інша кнопка** = HOTKEY + ця кнопка"
+
+msgid "**Long-press START** to validate"
+msgstr "**Довге натискання START**, щоб підтвердити"
+
+msgid "SAME AS SELECT"
+msgstr "ТЕ САМЕ, ЩО Й SELECT"
+
+msgid "DPAD RIGHT to skip"
+msgstr "DPAD ВПРАВО, щоб пропустити"
+
+msgid "DPAD LEFT to go back"
+msgstr "DPAD ВЛІВО, щоб повернутися"
+
+#: GuiInputConfig — DPAD / hat
+msgid "DPAD UP"
+msgstr "DPAD ВВЕРХ"
+
+msgid "DPAD RIGHT"
+msgstr "DPAD ВПРАВО"
+
+msgid "DPAD DOWN"
+msgstr "DPAD ВНИЗ"
+
+msgid "DPAD LEFT"
+msgstr "DPAD ВЛІВО"
+
+#: GuiInputConfig — left stick
+msgid "LEFT STICK UP"
+msgstr "ЛІВИЙ СТИК ВВЕРХ"
+
+msgid "LEFT STICK RIGHT"
+msgstr "ЛІВИЙ СТИК ВПРАВО"
+
+msgid "LEFT STICK DOWN"
+msgstr "ЛІВИЙ СТИК ВНИЗ"
+
+msgid "LEFT STICK LEFT"
+msgstr "ЛІВИЙ СТИК ВЛІВО"
+
+#: GuiInputConfig — right stick
+msgid "RIGHT STICK UP"
+msgstr "ПРАВИЙ СТИК ВВЕРХ"
+
+msgid "RIGHT STICK RIGHT"
+msgstr "ПРАВИЙ СТИК ВПРАВО"
+
+msgid "RIGHT STICK DOWN"
+msgstr "ПРАВИЙ СТИК ВНИЗ"
+
+msgid "RIGHT STICK LEFT"
+msgstr "ПРАВИЙ СТИК ВЛІВО"
+
+#: GuiInputConfig — Gamecube main stick
+msgid "MAIN STICK UP"
+msgstr "ГОЛОВНИЙ СТИК ВВЕРХ"
+
+msgid "MAIN STICK RIGHT"
+msgstr "ГОЛОВНИЙ СТИК ВПРАВО"
+
+msgid "MAIN STICK DOWN"
+msgstr "ГОЛОВНИЙ СТИК ВНИЗ"
+
+msgid "MAIN STICK LEFT"
+msgstr "ГОЛОВНИЙ СТИК ВЛІВО"
+
+#: GuiInputConfig — Gamecube C-stick
+msgid "C-STICK UP"
+msgstr "СТИК C ВВЕРХ"
+
+msgid "C-STICK RIGHT"
+msgstr "СТИК C ВПРАВО"
+
+msgid "C-STICK DOWN"
+msgstr "СТИК C ВНИЗ"
+
+msgid "C-STICK LEFT"
+msgstr "СТИК C ВЛІВО"
+
+#: GuiInputConfig — N64 C buttons
+msgid "C UP"
+msgstr "C ВВЕРХ"
+
+msgid "C RIGHT"
+msgstr "C ВПРАВО"
+
+msgid "C DOWN"
+msgstr "C ВНИЗ"
+
+msgid "C LEFT"
+msgstr "C ВЛІВО"
+
+#: GuiInputConfig — arcade single stick
+msgid "STICK UP"
+msgstr "СТИК ВВЕРХ"
+
+msgid "STICK RIGHT"
+msgstr "СТИК ВПРАВО"
+
+msgid "STICK DOWN"
+msgstr "СТИК ВНИЗ"
+
+msgid "STICK LEFT"
+msgstr "СТИК ВЛІВО"
+
+#: GuiInputConfig — Sony face buttons
+msgid "CIRCLE"
+msgstr "КОЛО"
+
+msgid "CROSS"
+msgstr "ХРЕСТ"
+
+msgid "TRIANGLE"
+msgstr "ТРИКУТНИК"
+
+msgid "SQUARE"
+msgstr "КВАДРАТ"
+
+#: GuiInputConfig — arcade 4 button labels
+msgid "BUTTON 1"
+msgstr "КНОПКА 1"
+
+msgid "BUTTON 2"
+msgstr "КНОПКА 2"
+
+msgid "BUTTON 3"
+msgstr "КНОПКА 3"
+
+msgid "BUTTON 4"
+msgstr "КНОПКА 4"
+
+#: GuiInputConfig — arcade row labels
+msgid "TOP ROW 1"
+msgstr "ВЕРХНІЙ РЯД 1"
+
+msgid "TOP ROW 2"
+msgstr "ВЕРХНІЙ РЯД 2"
+
+msgid "TOP ROW 3"
+msgstr "ВЕРХНІЙ РЯД 3"
+
+msgid "TOP ROW 4"
+msgstr "ВЕРХНІЙ РЯД 4"
+
+msgid "BOTTOM ROW 1"
+msgstr "НИЖНІЙ РЯД 1"
+
+msgid "BOTTOM ROW 2"
+msgstr "НИЖНІЙ РЯД 2"
+
+msgid "BOTTOM ROW 3"
+msgstr "НИЖНІЙ РЯД 3"
+
+msgid "BOTTOM ROW 4"
+msgstr "НИЖНІЙ РЯД 4"
+
+#: GuiInputConfig — shoulders / triggers stick clicks
+msgid "L1 (Left Shoulder)"
+msgstr "L1 (Ліве плече)"
+
+msgid "R1 (Right Shoulder)"
+msgstr "R1 (Праве плече)"
+
+msgid "L2 (Left Trigger)"
+msgstr "L2 (Лівий тригер)"
+
+msgid "R2 (Right Trigger)"
+msgstr "R2 (Правий тригер)"
+
+msgid "L3 (Left Joystick Click)"
+msgstr "L3 (Клік лівого стика)"
+
+msgid "R3 (Right Joystick Click)"
+msgstr "R3 (Клік правого стика)"
+
+#: GuiInputConfig — XBox shoulders / triggers
+msgid "LB (Left Shoulder)"
+msgstr "LB (Ліве плече)"
+
+msgid "RB (Right Shoulder)"
+msgstr "RB (Праве плече)"
+
+msgid "LT (Left Trigger)"
+msgstr "LT (Лівий тригер)"
+
+msgid "RT (Right Trigger)"
+msgstr "RT (Правий тригер)"
+
+#: GuiInputConfig — Gamecube / Megadrive N64 shoulders
+msgid "L (Left Shoulder)"
+msgstr "L (Ліве плече)"
+
+msgid "R (Right Shoulder)"
+msgstr "R (Праве плече)"
+
+msgid "Z (Trigger)"
+msgstr "Z (Тригер)"
+
+#: GuiInputConfig — Sony Start/Select/Hotkey
+msgid "OPTIONS (Start)"
+msgstr "OPTIONS (Start)"
+
+msgid "SHARE"
+msgstr "ПОДІЛИТИСЯ"
+
+msgid "SHARE (Select)"
+msgstr "ПОДІЛИТИСЯ (Select)"
+
+msgid "PS BUTTON (Hotkey)"
+msgstr "КНОПКА PS (Hotkey)"
+
+#: GuiInputConfig — XBox Start/Select/Hotkey
+msgid "MENU (Start)"
+msgstr "MENU (Start)"
+
+msgid "VIEW"
+msgstr "ОГЛЯД"
+
+msgid "VIEW (Select)"
+msgstr "ОГЛЯД (Select)"
+
+msgid "GUIDE (Hotkey)"
+msgstr "GUIDE (Hotkey)"
+
+msgid "HEART (Hotkey)"
+msgstr "СЕРЦЕ (Hotkey)"
+
+#: GuiInputConfig — skippable Select/Hotkey 2-line hints
+msgid "Skip if absent"
+msgstr "Пропустити, якщо відсутня"
+
+msgid "Skip if physically absent"
+msgstr "Пропустити, якщо фізично відсутня"
+
+msgid "Unable to update"
+msgstr "Не вдалося оновити"
+
+msgid ""
+"Recalbox adds many new features with each new version, which gradually "
+"increases the size of the system.\n"
+"The system partition on your installation is too small to accommodate "
+"version {0}.\n"
+"\n"
+"To continue receiving updates, you must reinstall Recalbox by downloading "
+"the latest image from www.recalbox.com."
+msgstr ""
+"Recalbox додає багато нових функцій з кожною новою версією, що поступово "
+"збільшує розмір системи.\n"
+"Розділ системи у вашій установці занадто малий, щоб вмістити версію {0}.\n"
+"\n"
+"Щоб продовжити отримання оновлень, необхідно перевстановити Recalbox, "
+"завантаживши найновіший образ із сайту www.recalbox.com."
+
+msgid ""
+"Unable to verify that there is enough space left on the boot partition. The "
+"update may not complete successfully."
+msgstr ""
+"Не вдалося перевірити, чи залишилося достатньо місця на розділі "
+"завантаження. Оновлення може бути не завершено успішно."
+
+msgid "PLAY"
+msgstr "ВІДТВОРЕННЯ"
+
+msgid "ENABLE/DISABLE"
+msgstr "УВІМКНУТИ/ВИМКНУТИ"
+
+msgid "Downloading"
+msgstr "Завантаження"
+
+msgid "SEEK"
+msgstr "ПЕРЕМОТКА"
+
+msgid "FOLLOW"
+msgstr "СТЕЖИТИ"
+
+msgid "SWITCH TO LINEAR PLAY"
+msgstr "ПЕРЕЙТИ ДО ЛІНІЙНОГО ВІДТВОРЕННЯ"
+
+msgid "SWITCH TO RANDOM PLAY"
+msgstr "ПЕРЕЙТИ ДО ВИПАДКОВОГО ВІДТВОРЕННЯ"
+
+msgid "JUKEBOX"
+msgstr "ДЖУКБОКС"
+
+#: MenuProvider.cpp InstallDevice — first warning title (destructive)
+msgid "WARNING ! DESTRUCTIVE OPERATION !"
+msgstr "ПОПЕРЕДЖЕННЯ! РУЙНІВНА ОПЕРАЦІЯ!"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: AND data
+msgid ""
+"**{DEVICE}** contains **partitions with existing data**.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly**:\n"
+"\n"
+"- Erase **all partitions** on this disk\n"
+"- **Destroy all data** present on those partitions\n"
+"\n"
+"**There is no going back.** Once confirmed, there is absolutely no way to "
+"recover your files or partitions.\n"
+"\n"
+"Are you **absolutely sure** you want to continue?"
+msgstr ""
+"**{DEVICE}** містить **розділи з наявними даними**.\n"
+"\n"
+"Якщо ви підтвердите, Recalbox **назавжди і безповоротно**:\n"
+"\n"
+"- Видалить **усі розділи** на цьому диску\n"
+"- **Знищить усі дані**, що містяться на цих розділах\n"
+"\n"
+"**Шляху назад не буде.** Після підтвердження не буде абсолютно жодної "
+"можливості відновити ваші файли чи розділи.\n"
+"\n"
+"Ви **абсолютно впевнені**, що хочете продовжити?"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: but no detected data
+msgid ""
+"**{DEVICE}** already has partitions.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly erase all "
+"existing partitions** on this disk.\n"
+"\n"
+"**There is no going back.**\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"**{DEVICE}** вже має розділи.\n"
+"\n"
+"Якщо ви підтвердите, Recalbox **назавжди і безповоротно видалить усі наявні "
+"розділи** на цьому диску.\n"
+"\n"
+"**Шляху назад не буде.**\n"
+"\n"
+"Ви впевнені, що хочете продовжити?"
+
+#: MenuProvider.cpp InstallDevice — second confirmation title
+msgid "LAST WARNING BEFORE INSTALLATION"
+msgstr "ОСТАННЄ ПОПЕРЕДЖЕННЯ ПЕРЕД ВСТАНОВЛЕННЯМ"
+
+#: MenuProvider.cpp InstallDevice — second confirmation body
+msgid ""
+"The installation of Recalbox on **{DEVICE}** may take **several minutes**.\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation.\n"
+"If the process is interrupted, the disk may be left in an unusable state.\n"
+"\n"
+"You can still change your mind and **cancel right now**."
+msgstr ""
+"Встановлення Recalbox на **{DEVICE}** може зайняти **кілька хвилин**.\n"
+"\n"
+"⚠ **НЕ** вимикайте і не перезавантажуйте Recalbox під час встановлення.\n"
+"Якщо процес буде перервано, диск може залишитися в непридатному для "
+"використання стані.\n"
+"\n"
+"Ви все ще можете передумати і **скасувати просто зараз**."
+
+#: GuiInstallRecalbox.cpp — window title
+msgid "INSTALLATION IN PROGRESS..."
+msgstr "ТРИВАЄ ВСТАНОВЛЕННЯ..."
+
+#: GuiInstallRecalbox.cpp — body text shown during installation
+msgid ""
+"Installing Recalbox on **{DEVICE}**...\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation process.\n"
+"If the installation is interrupted, the disk may be left in an unusable "
+"state.\n"
+"\n"
+"Please wait — this may take **several minutes**."
+msgstr ""
+"Встановлення Recalbox на **{DEVICE}**...\n"
+"\n"
+"⚠ **НЕ** вимикайте і не перезавантажуйте Recalbox під час процесу "
+"встановлення.\n"
+"Якщо встановлення буде перервано, диск може залишитися в непридатному для "
+"використання стані.\n"
+"\n"
+"Будь ласка, зачекайте — це може зайняти **кілька хвилин**."
+
+#: GuiInstallRecalbox.cpp — initial status line
+msgid "Starting installation..."
+msgstr "Розпочинається встановлення..."
+
+#: GuiInstallRecalbox.cpp — status line on success
+msgid "Installation complete! Press any button to reboot."
+msgstr ""
+"Встановлення завершено! Натисніть будь-яку кнопку, щоб перезавантажити."
+
+#: GuiInstallRecalbox.cpp — help bar label when installation is complete
+msgid "REBOOT"
+msgstr "ПЕРЕЗАВАНТАЖИТИ"
+
+#: GuiInstallRecalbox.cpp — status line on failure
+msgid "Installation failed! Check the logs for details."
+msgstr ""
+"Встановлення не вдалося! Перевірте журнали для отримання додаткової "
+"інформації."
+
+#: GuiInstallRecalbox.cpp — partition step status strings
+msgid "Unmounting existing partitions..."
+msgstr "Демонтування наявних розділів..."
+
+msgid "Wiping existing partitions..."
+msgstr "Видалення наявних розділів..."
+
+msgid "Creating RECALBOX partition (FAT32, 6 GB)..."
+msgstr "Створення розділу RECALBOX (FAT32, 6 ГБ)..."
+
+msgid "Creating SHARE partition (exFAT)..."
+msgstr "Створення розділу SHARE (exFAT)..."
+
+msgid "Creating OVERLAY partition (ext4, 1 GB)..."
+msgstr "Створення розділу OVERLAY (ext4, 1 ГБ)..."
+
+msgid "Reloading partition table..."
+msgstr "Перезавантаження таблиці розділів..."
+
+msgid "Formatting RECALBOX partition (FAT32)..."
+msgstr "Форматування розділу RECALBOX (FAT32)..."
+
+msgid "Formatting SHARE partition (exFAT)..."
+msgstr "Форматування розділу SHARE (exFAT)..."
+
+msgid "Formatting OVERLAY partition (ext4)..."
+msgstr "Форматування розділу OVERLAY (ext4)..."
+
+#: GuiInstallRecalbox.cpp — pre-flight size check
+msgid "Checking available disk space..."
+msgstr "Перевірка доступного місця на диску..."
+
+msgid ""
+"Not enough space on the target disk.\n"
+"\n"
+"The content of **/recalbox/share** ({SIZE_SHARE}) does not fit in the "
+"available SHARE partition ({SIZE_AVAIL}).\n"
+"\n"
+"Please use a larger disk or free up space on /recalbox/share first."
+msgstr ""
+"Недостатньо місця на цільовому диску.\n"
+"\n"
+"Вміст **/recalbox/share** ({SIZE_SHARE}) не поміщається в доступний розділ "
+"SHARE ({SIZE_AVAIL}).\n"
+"\n"
+"Використайте більший диск або спочатку звільніть місце на /recalbox/share."
+
+#: GuiInstallRecalbox.cpp — mount and measure steps
+msgid "Mounting partitions..."
+msgstr "Монтування розділів..."
+
+msgid "Measuring data to copy..."
+msgstr "Вимірювання обсягу даних для копіювання..."
+
+msgid "{COUNT} files copied ({DONE}/{TOTAL})"
+msgstr "Скопійовано файлів: {COUNT} ({DONE}/{TOTAL})"
+
+#: GuiInstallRecalbox.cpp — final step
+msgid "Finalizing installation..."
+msgstr "Завершення встановлення..."
+
+msgid "GUIDE"
+msgstr "GUIDE"
+
+#: GuiInputConfig — 8bitdo Hotkey
+msgid "HEART"
+msgstr "СЕРЦЕ"
+
+msgid "PS BUTTON"
+msgstr "КНОПКА PS"
+
+msgid "Text list"
+msgstr "Текстовий список"
+
+msgid "Logo list"
+msgstr "Список логотипів"
+
+msgid "Carousel"
+msgstr "Карусель"
+
+msgid "Grid"
+msgstr "Сітка"
+
+msgid "Gamelist layout"
+msgstr "Макет списку ігор"
+
+msgid "Game list layout"
+msgstr "Макет списку ігор"
+
+msgid ""
+"Select the way your games are shown. Text list, logo list, carousel, "
+"grid, ..."
+msgstr ""
+"Виберіть, як відображатимуться ваші ігри. Текстовий список, список "
+"логотипів, карусель, сітка, ..."

@@ -1,0 +1,316 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+
+/ {
+	compatible = "brcm,bcm2712";
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			bridge: recalboxrgbjamma {
+				compatible = "raspberrypi,recalboxrgbdual";
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				vc4-vga666-mode = <6>;
+				recalbox-rgb-jamma-2 = <1>;
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						recalboxrgbjamma_bridge_in: endpoint {
+							remote-endpoint = <&dpi_out>;
+						};
+					};
+
+					port@1 {
+						reg = <1>;
+
+						recalboxrgbjamma_bridge_out: endpoint {
+							remote-endpoint = <&recalboxrgbjamma_con_in>;
+						};
+					};
+				};
+			};
+
+			vga {
+				compatible = "vga-connector";
+
+				port {
+					recalboxrgbjamma_con_in: endpoint {
+						remote-endpoint = <&recalboxrgbjamma_bridge_out>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&dpi>;
+
+		__overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&rgbjamma_mode6_pins>;
+
+			port {
+				dpi_out: endpoint@0 {
+					remote-endpoint = <&recalboxrgbjamma_bridge_in>;
+				};
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&gpio>;
+
+		__overlay__ {
+			rgbjamma_mode6_pins: rgbjamma_mode6_pins {
+				function = "dpi";
+				pins = "gpio1", "gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7", "gpio8", "gpio9", "gpio12",
+					   "gpio13", "gpio14", "gpio15", "gpio16", "gpio17", "gpio20", "gpio21", "gpio22", "gpio23",
+					   "gpio24", "gpio25";
+				bias-disable;
+			};
+		};
+	};
+
+	fragment@50 {
+		target = <&rp1_gpio>;
+
+		__overlay__ {
+			rp1_i2s0_jamma: rp1_i2s0_jamma {
+				function = "i2s0";
+				pins = "gpio18", "gpio19", "gpio27";
+				bias-disable;
+			};
+		};
+	};
+
+	fragment@51 {
+		target = <&i2s_clk_producer>;
+
+		__overlay__ {
+			#sound-dai-cells = <0>;
+			pinctrl-names = "default";
+			pinctrl-0 = <&rp1_i2s0_jamma>;
+			status = "okay";
+		};
+	};
+
+	fragment@52 {
+		target = <&sound>;
+
+		__overlay__ {
+			compatible = "simple-audio-card";
+			simple-audio-card,name = "Recalbox RGB JAMMA 2";
+			status = "okay";
+
+			simple-audio-card,dai-link@1 {
+				format = "i2s";
+
+				cpu {
+					sound-dai = <&i2s_clk_producer>;
+					dai-tdm-slot-num = <2>;
+					dai-tdm-slot-width = <32>;
+				};
+
+				codec {
+					sound-dai = <&codec_out>;
+				};
+			};
+		};
+	};
+
+	fragment@53 {
+		target-path = "/";
+
+		__overlay__ {
+			codec_out: recalbox_i2s {
+				#sound-dai-cells = <0>;
+				compatible = "recalbox_i2s";
+				status = "okay";
+			};
+		};
+	};
+
+	fragment@7 {
+		target = <&rp1_gpio>;
+
+		__overlay__ {
+			irq_gpio_0: irq_gpio_0_conf {
+				function = "gpio";
+				pins = "gpio0";
+				bias-pull-up;
+			};
+			irq_gpio_26: irq_gpio_26_conf {
+				function = "gpio";
+				pins = "gpio26";
+				bias-pull-up;
+			};
+		};
+	};
+
+	fragment@8 {
+		target = <&i2c1>;
+
+		fragi2c: __overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&rp1_i2c1_10_11>;
+			clock-frequency = <400000>;
+			read-timeout-ms = <50>;
+
+			mcp20: mcp20@20 {
+				compatible = "microchip,mcp23017";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x20>;
+
+				interrupt-parent = <&rp1_gpio>;
+				interrupts = <0 IRQ_TYPE_EDGE_BOTH>;
+				interrupt-controller;
+				#interrupt-cells = <2>;
+				microchip,irq-mirror;
+
+				interrupt-names = "mcp20@20 irq";
+				pinctrl-names = "default";
+				pinctrl-0 = <&irq_gpio_0>, <&gpio20pullups>;
+
+				gpio20pullups: pinmux {
+					pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7", "gpio8", "gpio9",
+						   "gpio10", "gpio11", "gpio12", "gpio13", "gpio14", "gpio15";
+					bias-pull-up;
+				};
+			};
+			mcp22: mcp22@22 {
+				compatible = "microchip,mcp23017";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x22>;
+
+				interrupt-parent = <&rp1_gpio>;
+				interrupts = <26 IRQ_TYPE_EDGE_BOTH>;
+				interrupt-controller;
+				#interrupt-cells = <2>;
+				microchip,irq-mirror;
+
+				interrupt-names = "mcp22@22 irq";
+				pinctrl-names = "default";
+				pinctrl-0 = <&irq_gpio_26>, <&gpio22pullups>;
+
+				gpio22pullups: pinmux {
+					pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7", "gpio8", "gpio9",
+						   "gpio10", "gpio11", "gpio12", "gpio13", "gpio14", "gpio15";
+					bias-pull-up;
+				};
+			};
+			mcp21: mcp21@21 {
+				compatible = "microchip,mcp23017";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x21>;
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio21pullups>;
+
+				gpio21pullups: pinmux {
+					pins = "gpio8", "gpio9", "gpio10", "gpio11", "gpio12", "gpio13", "gpio14", "gpio15";
+					bias-pull-up;
+				};
+			};
+			mcp23: mcp23@23 {
+				compatible = "microchip,mcp23017";
+				gpio-controller;
+				#gpio-cells = <2>;
+				reg = <0x23>;
+
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio23pullups>;
+
+				gpio23pullups: pinmux {
+					pins = "gpio0", "gpio1", "gpio2", "gpio3", "gpio4", "gpio5", "gpio6", "gpio7", "gpio8", "gpio9",
+						   "gpio10", "gpio11", "gpio12", "gpio13", "gpio14", "gpio15";
+					bias-pull-up;
+				};
+			};
+			ssd1306: ssd1306@3c {
+				compatible = "recalbox,recalboxrgbjamma2-screen";
+				reg = <0x3c>;
+			};
+		};
+	};
+
+	fragment@100 {
+		target-path = "/";
+
+		__overlay__ {
+			jamma_platform: jamma_platform {
+				status = "okay";
+				compatible = "raspberrypi,recalboxrgbjamma2mcp";
+				rev = <4>;
+				pinctrl-names = "default";
+				//              UP          , DOWN        , LEFT        , RIGHT       , B1          , B2           , B3            , B4         , B5          ,   B6          , START        , COIN          , B4K         , B5K         , B6K
+				player1-gpios = <&mcp22 9 0>, <&mcp22 7 0>, <&mcp22 5 0>, <&mcp22 3 0>, <&mcp22 1 0>, <&mcp20 15 0>, <&mcp20 13 0>, <&mcp20 9 0>, <&mcp20 8 0>,   <&mcp20 6 0>, <&mcp22 11 0>, <&mcp22 13 0>, <&mcp20 5 0>, <&mcp20 4 0>, <&mcp20 3 0>;
+				player2-gpios = <&mcp22 8 0>, <&mcp22 6 0>, <&mcp22 4 0>, <&mcp22 2 0>, <&mcp22 0 0>, <&mcp20 14 0>, <&mcp20 12 0>, <&mcp20 11 0>, <&mcp20 10 0>, <&mcp20 7 0>, <&mcp22 10 0>, <&mcp22 12 0>, <&mcp20 2 0>, <&mcp20 1 0>, <&mcp20 0 0>;
+				//              P3-UP       , P3-B3        , P3-B4        , P3-LOCK,    , P3-START
+				player3-gpios = <&mcp23 6 0>, <&mcp23 13 0>, <&mcp23 15 0>, <&mcp23 1 0>, <&mcp23 4 0>;
+				//              P4-UP       , P4-DOWN     , P4-LEFT     , P4-RIGHT    , P4-B1         , P4-B2        , P4-B3        , P4-B4        , P4-LOCK     , P4-START    , P4-COIN
+				player4-gpios = <&mcp23 5 0>, <&mcp23 7 0>, <&mcp23 8 0>, <&mcp23 9 0>,  <&mcp23 10 0>, <&mcp23 11 0>, <&mcp23 12 0>, <&mcp23 14 0>, <&mcp23 0 0>, <&mcp23 3 0>, <&mcp23 2 0>;
+				//              TEST        , SERVICE
+				specials-gpios = <&mcp22 14 0>, <&mcp22 15 0>;
+				//               CC_P1       , CC_P2       , VIDEO_BYPASS , IS2_FILTER  , AMP_DISABLE , GAIN0       , GAIN1       , FAN          , B6 GND
+				configs-gpios   = <&mcp21 0 0>, <&mcp21 1 0>, <&mcp21 2 0> , <&mcp21 3 0>, <&mcp21 4 0>, <&mcp21 5 0>, <&mcp21 6 0>, <&mcp21 7 0>, <&mcp21 15 0>;
+			};
+		};
+	};
+
+	fragment@101 {
+		target-path = "/";
+
+		__overlay__ {
+			gamepad_proxy: gamepad-proxy {
+				compatible = "recalbox,gamepad-proxy";
+				no-debug;
+				grab;
+				/* Combo modifier: 0=START, 1=MODE, 2=DISABLED */
+				combo-modifier = <0>;
+				/* Filter devices by name (substring match) */
+				device-filter = "JammaController";
+				/* ===== Timing Settings ===== */
+				/* Long press duration to trigger exit combo (ms), 0 to disable */
+				longpress-ms = <4000>;
+				/* Duration of exit combo press (ms) */
+				exit-combo-release-ms = <50>;
+				/* Delay for modifier tap (ms) */
+				modifier-tap-delay-ms = <100>;
+				/* Button release debounce (ms), 0 to disable */
+				debounce-ms = <10>;
+				/* ===== Feature Toggles ===== */
+				/* SHIFT long press = START+MODE (exit) */
+				longpress-exit;
+				/* L3+R3 = START+MODE (exit) */
+				thumbstick-exit;
+				/* SHIFT + button = MODE + button */
+				shift-mode-passthrough;
+				/* SHIFT + Up/Down = Volume */
+				shift-volume;
+				/* SHIFT + SOUTH = SELECT (credit) */
+				shift-credit;
+			};
+		};
+	};
+
+	__overrides__ {
+		baudrate = <&fragi2c>, "clock-frequency:0";
+		rev = <&jamma_platform>, "rev:0";
+	};
+};

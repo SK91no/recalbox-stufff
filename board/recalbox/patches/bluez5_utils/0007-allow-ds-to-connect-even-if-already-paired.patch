@@ -1,0 +1,25 @@
+From ac9032154d050e63e8b8fd1608d2a38ccda89354 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 23 Mar 2025 00:46:14 +0100
+Subject: [PATCH 7/7] allow ds to connect even if already paired
+
+---
+ plugins/sixaxis.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/plugins/sixaxis.c b/plugins/sixaxis.c
+index ad8345083..29e77062e 100644
+--- a/plugins/sixaxis.c
++++ b/plugins/sixaxis.c
+@@ -341,7 +341,7 @@ static bool setup_device(int fd, const char *sysfs_path,
+ 		char device_addr[18];
+ 		ba2str(&device_bdaddr, device_addr);
+ 		DBG("device %s already known, skipping", device_addr);
+-		return false;
++		//return false;
+ 	}
+ 
+ 	device = btd_adapter_get_device(adapter, &device_bdaddr, BDADDR_BREDR);
+-- 
+2.48.1
+

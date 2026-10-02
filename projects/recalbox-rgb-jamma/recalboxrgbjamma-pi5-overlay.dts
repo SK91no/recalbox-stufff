@@ -1,0 +1,206 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2712";
+	fragment@0 {
+		target = <&gpio>;
+		__overlay__ {
+		irq_gpio_11: irq_gpio_11_conf {
+			brcm,pins = <11>; // GPIO 11
+			brcm,function = <0>; // Input
+			brcm,pull = <2>; // Pull up
+		};
+		irq_gpio_10: irq_gpio_10_conf {
+			brcm,pins = <10>; // GPIO 10
+			brcm,function = <0>; // Input
+			brcm,pull = <2>; // Pull up
+		};
+		irq_gpio_26: irq_gpio_26_conf {
+			brcm,pins = <26>; // GPIO 26
+			brcm,function = <0>; // Input
+			brcm,pull = <2>; // Pull up
+		};
+		};
+	};
+
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+
+			bridge: recalboxrgbjamma {
+				compatible = "raspberrypi,recalboxrgbdual";
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				vc4-vga666-mode = <6>;
+				recalbox-rgb-jamma = <1>;
+				avoid_interlaced = <1>;
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+
+						vga_bridge_in: endpoint {
+							remote-endpoint = <&dpi_out>;
+						};
+					};
+
+					port@1 {
+						reg = <1>;
+
+						vga_bridge_out: endpoint {
+							remote-endpoint = <&vga_con_in>;
+						};
+					};
+				};
+			};
+
+			vga {
+				compatible = "vga-connector";
+
+				port {
+					vga_con_in: endpoint {
+						remote-endpoint = <&vga_bridge_out>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&dpi>;
+		__overlay__  {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&vga666_mode6_pins>;
+			port {
+				dpi_out: endpoint@0 {
+					remote-endpoint = <&vga_bridge_in>;
+				};
+			};
+		};
+	};
+
+	fragment@4 {
+		target = <&gpio>;
+		__overlay__ {
+			vga666_mode6_pins: vga666_mode6_pins {
+				brcm,pins = <2 3
+				      4  5  6  7  8  9
+				      12 13 14 15 16 17
+				      20 21 22 23 24 25>;
+				brcm,function = <6>;
+				brcm,pull = <0>;
+			};
+		};
+	};
+
+    fragment@50 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            rp1_i2s0_jamma: rp1_i2s0_jamma {
+                function = "i2s0";
+                pins = "gpio18", "gpio19", "gpio27";
+                bias-disable;
+            };
+        };
+    };
+    fragment@51 {
+        target = <&i2s_clk_producer>;
+        __overlay__ {
+            #sound-dai-cells = <0>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2s0_jamma>;
+            status = "okay";
+        };
+    };
+
+	fragment@5 {
+		target = <&sound>;
+		__overlay__ {
+			compatible = "simple-audio-card";
+			simple-audio-card,name = "Recalbox RGB JAMMA";
+			status = "okay";
+			simple-audio-card,dai-link@1 {
+				format = "i2s";
+				cpu {
+					sound-dai = <&i2s_clk_producer>;
+					dai-tdm-slot-num = <2>;
+					dai-tdm-slot-width = <32>;
+				};
+				codec {
+					sound-dai = <&codec_out>;
+				};
+			};
+		};
+	};
+
+	fragment@6 {
+		target-path = "/";
+		__overlay__ {
+			codec_out: recalbox_i2s {
+				#sound-dai-cells = <0>;
+				compatible = "recalbox_i2s";
+				status = "okay";
+			};
+		};
+	};
+
+  fragment@8 {
+    target = <&i2c0>;
+    __overlay__ {
+      status = "okay";
+      pinctrl-names = "default";
+      pinctrl-0 = <&rp1_i2c0_0_1>;
+      clock-frequency = <400000>;
+      read-timeout-ms = <50>;
+
+      jammactrl_0: jammactrl_0@25 {
+        compatible = "raspberrypi,recalboxrgbjamma";
+        reg = <0x25>;
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&irq_gpio_11>;
+        interrupt-parent = <&gpio>;
+        interrupts = <11 2>;
+        irq-gpios = <&gpio 11 0>;
+      };
+      jammactrl_1: jammactrl_1@24 {
+        compatible = "raspberrypi,recalboxrgbjamma";
+        reg = <0x24>;
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&irq_gpio_10>;
+        interrupt-parent = <&gpio>;
+        interrupts = <10 2>;
+        irq-gpios = <&gpio 10 0>;
+      };
+      jammactrl_2: jammactrl_2@27 {
+        compatible = "raspberrypi,recalboxrgbjamma";
+        reg = <0x27>;
+        status = "okay";
+        pinctrl-names = "default";
+        pinctrl-0 = <&irq_gpio_26>;
+        interrupt-parent = <&gpio>;
+        interrupts = <26 2>;
+        irq-gpios = <&gpio 26 0>;
+      };
+      jammaexpander: jammaexpander@26 {
+        compatible = "raspberrypi,recalboxrgbjamma";
+        is_pi5 = <1>;
+        reg = <0x26>;
+        status = "okay";
+      };
+      ssd1306: ssd1306@3c {
+        compatible = "recalbox,recalboxrgbjamma-screen";
+        reg = <0x3c>;
+      };
+    };
+  };
+
+
+};

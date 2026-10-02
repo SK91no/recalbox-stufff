@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_LGPIO
+	bool "python-lgpio"
+	depends on BR2_arm || BR2_aarch64
+	select BR2_PACKAGE_LGPIO
+	help
+	  lgpio is a module for Linux Single Board Computers
+
+	  https://abyz.me.uk/lg/py_lgpio.html

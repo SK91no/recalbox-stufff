@@ -1,0 +1,43 @@
+From 748b31a2173eab95f4cd527cd94c9a22040d8270 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 17 Apr 2025 01:10:58 +0200
+Subject: [PATCH 1/2] use joystick
+
+---
+ src/platform/joystick.c | 12 ++++--------
+ 1 file changed, 4 insertions(+), 8 deletions(-)
+
+diff --git a/src/platform/joystick.c b/src/platform/joystick.c
+index 566a77f6..e3a426a7 100644
+--- a/src/platform/joystick.c
++++ b/src/platform/joystick.c
+@@ -83,10 +83,10 @@ static mapping_element default_mapping[] = {
+     {MAPPING_ACTION_RIGHT_MOUSE_BUTTON, {{JOYSTICK_ELEMENT_BUTTON, 1}}},
+     {MAPPING_ACTION_SCROLL_WINDOW_UP, {{JOYSTICK_ELEMENT_AXIS, 4, JOYSTICK_AXIS_NEGATIVE}}},
+     {MAPPING_ACTION_SCROLL_WINDOW_DOWN, {{JOYSTICK_ELEMENT_AXIS, 4, JOYSTICK_AXIS_POSITIVE}}},
+-    {MAPPING_ACTION_SCROLL_MAP_UP, {{JOYSTICK_ELEMENT_AXIS, 4, JOYSTICK_AXIS_NEGATIVE}}},
+-    {MAPPING_ACTION_SCROLL_MAP_LEFT, {{JOYSTICK_ELEMENT_AXIS, 3, JOYSTICK_AXIS_NEGATIVE}}},
+-    {MAPPING_ACTION_SCROLL_MAP_DOWN, {{JOYSTICK_ELEMENT_AXIS, 4, JOYSTICK_AXIS_POSITIVE}}},
+-    {MAPPING_ACTION_SCROLL_MAP_RIGHT, {{JOYSTICK_ELEMENT_AXIS, 3, JOYSTICK_AXIS_POSITIVE}}},
++    {MAPPING_ACTION_SCROLL_MAP_UP, {{JOYSTICK_ELEMENT_AXIS, 3, JOYSTICK_AXIS_NEGATIVE}}},
++    {MAPPING_ACTION_SCROLL_MAP_LEFT, {{JOYSTICK_ELEMENT_AXIS, 2, JOYSTICK_AXIS_NEGATIVE}}},
++    {MAPPING_ACTION_SCROLL_MAP_DOWN, {{JOYSTICK_ELEMENT_AXIS, 3, JOYSTICK_AXIS_POSITIVE}}},
++    {MAPPING_ACTION_SCROLL_MAP_RIGHT, {{JOYSTICK_ELEMENT_AXIS, 2, JOYSTICK_AXIS_POSITIVE}}},
+     {MAPPING_ACTION_ROTATE_MAP_LEFT, {{JOYSTICK_ELEMENT_BUTTON, 5}}},
+     {MAPPING_ACTION_ROTATE_MAP_RIGHT, {{JOYSTICK_ELEMENT_BUTTON, 4}}},
+     {MAPPING_ACTION_INCREASE_GAME_SPEED, {{JOYSTICK_ELEMENT_BUTTON, 2}}},
+@@ -100,11 +100,7 @@ static mapping_element default_mapping[] = {
+ 
+ static int use_joystick(void)
+ {
+-#if defined(__vita__) || defined(__SWITCH__)
+     return 1;
+-#else
+-    return 0;
+-#endif
+ }
+ 
+ static void create_new_model(const char *guid, const char *name, int instance_id)
+-- 
+2.49.0
+

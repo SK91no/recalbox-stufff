@@ -1,0 +1,51 @@
+From c6077621e1c91adfb955d382908b0b9ad4398e1f Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Wed, 19 Mar 2025 10:30:01 +0100
+Subject: [PATCH] use cxx
+
+---
+ src/platform/sdl2/Makefile | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/src/platform/sdl2/Makefile b/src/platform/sdl2/Makefile
+index 064300f..8b9f07d 100644
+--- a/src/platform/sdl2/Makefile
++++ b/src/platform/sdl2/Makefile
+@@ -2,18 +2,26 @@ SRCS=main.cpp \
+      ../../libs/stb_vorbis/stb_vorbis.c \
+      ../../libs/minimp3/minimp3.cpp \
+      ../../libs/tinf/tinflate.c
+-CC=g++
+-
+-SDL_CFLAGS := $(shell sdl2-config --cflags)
+-SDL_LDFLAGS := $(shell sdl2-config --libs)
+-
+-CFLAGS+=-DSDL2_GLES -D_GAPI_GLES2 -std=c++11 -O3 -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections -Wl,--gc-sections -D__SDL2__ $(SDL_CFLAGS) -Wall
+-LDFLAGS+=-lGLESv2 -lEGL -lm -lrt -lpthread -lasound -ludev $(SDL_LDFLAGS)
++CXX=$(HOST_CXX)
++
++SDL_CFLAGS := $(shell $(STAGING_DIR)/usr/bin/sdl2-config --cflags)
++SDL_LDFLAGS := $(shell $(STAGING_DIR)/usr/bin/sdl2-config --libs)
++
++ifeq ($(BACKEND),gles2)
++	CXXFLAGS+=-DSDL2_GLES -D_GAPI_GLES2 -std=c++11 $(SDL_CFLAGS) -O3 -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections -Wl,--gc-sections -DNDEBUG -D__SDL2__
++	LDFLAGS+=$(SDL_LDFLAGS) -lGLESv2 -lEGL -lm -lrt -lpthread -lasound -ludev
++else ifeq ($(BACKEND),gles3)
++	CXXFLAGS+=-DSDL2_GLES -std=c++11 $(SDL_CFLAGS) -O3 -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections -Wl,--gc-sections -DNDEBUG -D__SDL2__
++	LDFLAGS+=$(SDL_LDFLAGS) -lGLESv2 -lEGL -lm -lrt -lpthread -lasound -ludev
++else ifeq ($(BACKEND),gl)
++	CXXFLAGS+=-std=c++11 $(SDL_CFLAGS) -O3 -fno-exceptions -fno-rtti -ffunction-sections -fdata-sections -Wl,--gc-sections -DNDEBUG -D__SDL2__ -D_SDL2_OPENGL
++	LDFLAGS+=$(SDL_LDFLAGS) -lGL -lm -lrt -lpthread -lasound -ludev
++endif
+ 
+ INCLUDES+=-I../../
+ 
+ openlara :
+-	$(CC) $(INCLUDES) $(CFLAGS) $(LDFLAGS) $(SRCS) -o $@
++	$(CXX) $(CXXFLAGS) $(SRCS) $(INCLUDES) -o $@ $(LDFLAGS)
+ 
+ install : openlara
+ 	install -d $(DESTDIR)$(PREFIX)/bin/
+-- 
+2.49.0
+

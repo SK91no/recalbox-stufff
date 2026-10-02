@@ -1,0 +1,768 @@
+From 5c5410797aea72643a0e6ee186a38e96cdd2f408 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Fri, 12 Sep 2025 11:57:35 +0200
+Subject: [PATCH 19/27] add calibration-specific-menu-for-crt
+
+---
+ config.def.h                      |   1 +
+ configuration.c                   |  34 ++++++++-
+ configuration.h                   |   1 +
+ intl/msg_hash_lbl.h               |  21 ++++++
+ intl/msg_hash_us.h                |  17 ++++-
+ menu/cbs/menu_cbs_deferred_push.c |  11 +++
+ menu/cbs/menu_cbs_get_value.c     |   3 +
+ menu/cbs/menu_cbs_ok.c            | 119 ++++++++++++++++++++++++++++++
+ menu/cbs/menu_cbs_sublabel.c      |  19 ++++-
+ menu/cbs/menu_cbs_title.c         |   2 +
+ menu/drivers/materialui.c         |   1 +
+ menu/menu_cbs.h                   |   4 +
+ menu/menu_displaylist.c           |  53 ++++++++++++-
+ menu/menu_displaylist.h           |   4 +
+ menu/menu_driver.h                |   4 +-
+ menu/menu_setting.c               |  53 ++++++++++++-
+ msg_hash.h                        |   9 +++
+ 17 files changed, 348 insertions(+), 8 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index a2f36dab48..5b4fcc2a55 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -712,6 +712,7 @@
+ #define DEFAULT_SETTINGS_SHOW_STEAM true
+ 
+ #define DEFAULT_QUICK_MENU_SHOW_RESUME_CONTENT true
++#define DEFAULT_QUICK_MENU_SHOW_CRT_CALI false
+ #define DEFAULT_QUICK_MENU_SHOW_RESTART_CONTENT true
+ #define DEFAULT_QUICK_MENU_SHOW_CLOSE_CONTENT true
+ #define DEFAULT_QUICK_MENU_SHOW_TAKE_SCREENSHOT true
+diff --git a/configuration.c b/configuration.c
+index 9bbb5c4bff..d0ce81f69e 100644
+--- a/configuration.c
++++ b/configuration.c
+@@ -1999,6 +1999,7 @@ static struct config_bool_setting *populate_settings_bool(
+ #endif
+ 
+    SETTING_BOOL("quick_menu_show_resume_content",             &settings->bools.quick_menu_show_resume_content, true, DEFAULT_QUICK_MENU_SHOW_RESUME_CONTENT, false);
++   SETTING_BOOL("quick_menu_show_crt_cali",                    &settings->bools.quick_menu_show_crt_cali, true, DEFAULT_QUICK_MENU_SHOW_CRT_CALI, false);
+    SETTING_BOOL("quick_menu_show_restart_content",            &settings->bools.quick_menu_show_restart_content, true, DEFAULT_QUICK_MENU_SHOW_RESTART_CONTENT, false);
+    SETTING_BOOL("quick_menu_show_close_content",              &settings->bools.quick_menu_show_close_content, true, DEFAULT_QUICK_MENU_SHOW_CLOSE_CONTENT, false);
+    SETTING_BOOL("quick_menu_show_savestate_submenu",          &settings->bools.quick_menu_show_savestate_submenu, true, DEFAULT_QUICK_MENU_SHOW_SAVESTATE_SUBMENU, false);
+@@ -4580,6 +4581,7 @@ bool config_load_override(void *data)
+    char core_path[PATH_MAX_LENGTH];
+    char game_path[PATH_MAX_LENGTH];
+    char content_path[PATH_MAX_LENGTH];
++   char global_path[PATH_MAX_LENGTH];
+    char config_directory[DIR_MAX_LENGTH];
+    bool should_append                     = false;
+    bool show_notification                 = true;
+@@ -4594,6 +4596,7 @@ bool config_load_override(void *data)
+    core_path[0]        = '\0';
+    game_path[0]        = '\0';
+    content_path[0]     = '\0';
++   global_path[0]     = '\0';
+    config_directory[0] = '\0';
+ 
+    path_clear(RARCH_PATH_CONFIG_OVERRIDE);
+@@ -4635,13 +4638,42 @@ bool config_load_override(void *data)
+          ".cfg",
+          sizeof(core_path));
+ 
++  fill_pathname_join_special_ext(global_path,
++        config_directory, "",
++        "switchres-cali",
++        ".cfg",
++        sizeof(core_path));
+    /* Prevent "--appendconfig" from being ignored */
+    if (!path_is_empty(RARCH_PATH_CONFIG_APPEND))
+    {
+       should_append     = true;
+       show_notification = false;
+    }
+-
++   /* Global Override */
++  if (path_is_valid(global_path))
++  {
++
++    RARCH_LOG("[Overrides]: Global overrides found at \"%s\".\n",
++          global_path);
++
++    if (should_append && !string_is_empty(path_get(RARCH_PATH_CONFIG_OVERRIDE)))
++    {
++      char tmp_path[PATH_MAX_LENGTH];
++      size_t _len      = strlcpy(tmp_path,
++            path_get(RARCH_PATH_CONFIG_OVERRIDE),
++            sizeof(tmp_path) - 2);
++      tmp_path[  _len] = '|';
++      tmp_path[++_len] = '\0';
++      strlcpy(tmp_path + _len, global_path, sizeof(tmp_path) - _len);
++      path_set(RARCH_PATH_CONFIG_OVERRIDE, tmp_path);
++      RARCH_LOG("[Overrides]: Core-specific overrides stacking on top of previous overrides.\n");
++    }
++    else
++      path_set(RARCH_PATH_CONFIG_OVERRIDE, global_path);
++
++    should_append     = true;
++    show_notification = true;
++  }
+    /* per-core overrides */
+    /* Create a new config file from core_path */
+    if (path_is_valid(core_path))
+diff --git a/configuration.h b/configuration.h
+index 215f565261..b0f4b7bb8f 100644
+--- a/configuration.h
++++ b/configuration.h
+@@ -898,6 +898,7 @@ typedef struct settings
+       bool quick_menu_show_take_screenshot;
+       bool quick_menu_show_savestate_submenu;
+       bool quick_menu_show_save_load_state;
++      bool quick_menu_show_crt_cali;
+       bool quick_menu_show_replay;
+       bool quick_menu_show_undo_save_load_state;
+       bool quick_menu_show_add_to_favorites;
+diff --git a/intl/msg_hash_lbl.h b/intl/msg_hash_lbl.h
+index d27a77de6c..0d7e2e9b5f 100644
+--- a/intl/msg_hash_lbl.h
++++ b/intl/msg_hash_lbl.h
+@@ -4590,6 +4590,27 @@ MSG_HASH(
+    MENU_ENUM_LABEL_VIDEO_OUTPUT_SETTINGS,
+    "video_output_settings"
+    )
++
++MSG_HASH(
++   MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST,
++   "deferred_crt_cali_settings_list"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_CRT_CALI_SETTINGS,
++   "crt_cali_settings"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,
++     "crt_cali_save_for_system"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME,
++     "crt_cali_save_for_game"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL,
++     "crt_cali_save_for_global"
++   )
+ MSG_HASH(
+    MENU_ENUM_LABEL_CRT_SWITCHRES_SETTINGS,
+    "crt_switchres_settings"
+diff --git a/intl/msg_hash_us.h b/intl/msg_hash_us.h
+index d63ccc848c..16d4c5f34d 100644
+--- a/intl/msg_hash_us.h
++++ b/intl/msg_hash_us.h
+@@ -1977,7 +1977,22 @@ MSG_HASH(
+    )
+ 
+ /* Settings > Video */
+-
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_CALI_SETTINGS,
++   "CRT Calibration"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_SYSTEM,
++   "Save for this system"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GAME,
++   "Save for this game"
++   )
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GLOBAL,
++   "Save global"
++   )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_CRT_SWITCHRES_SETTINGS,
+    "CRT SwitchRes"
+diff --git a/menu/cbs/menu_cbs_deferred_push.c b/menu/cbs/menu_cbs_deferred_push.c
+index dfd7765a0e..74f8531ddf 100644
+--- a/menu/cbs/menu_cbs_deferred_push.c
++++ b/menu/cbs/menu_cbs_deferred_push.c
+@@ -95,6 +95,10 @@ GENERIC_DEFERRED_PUSH(deferred_push_remappings_port,                DISPLAYLIST_
+ GENERIC_DEFERRED_PUSH(deferred_push_video_shader_preset_parameters, DISPLAYLIST_SHADER_PARAMETERS_PRESET)
+ GENERIC_DEFERRED_PUSH(deferred_push_video_shader_parameters,        DISPLAYLIST_SHADER_PARAMETERS)
+ GENERIC_DEFERRED_PUSH(deferred_push_video_shader_preset_manager,    DISPLAYLIST_SHADER_PRESET_MANAGER)
++GENERIC_DEFERRED_PUSH(deferred_push_crt_cali_save_for_system,       DISPLAYLIST_CRT_CALI_SAVE_FOR_SYSTEM)
++GENERIC_DEFERRED_PUSH(deferred_push_crt_cali_save_for_game,         DISPLAYLIST_CRT_CALI_SAVE_FOR_GAME)
++GENERIC_DEFERRED_PUSH(deferred_push_crt_cali_save_for_global,       DISPLAYLIST_CRT_CALI_SAVE_FOR_GLOBAL)
++GENERIC_DEFERRED_PUSH(deferred_push_crt_cali_settings_list,         DISPLAYLIST_CRT_CALI_SETTINGS_LIST)
+ GENERIC_DEFERRED_PUSH(deferred_push_settings,                       DISPLAYLIST_SETTINGS_ALL)
+ GENERIC_DEFERRED_PUSH(deferred_push_shader_options,                 DISPLAYLIST_OPTIONS_SHADERS)
+ GENERIC_DEFERRED_PUSH(deferred_push_quick_menu_override_options,    DISPLAYLIST_OPTIONS_OVERRIDES)
+@@ -794,6 +798,10 @@ static int menu_cbs_init_bind_deferred_push_compare_label(
+       {MENU_ENUM_LABEL_DEFERRED_VIDEO_SCALING_SETTINGS_LIST, deferred_push_video_scaling_settings_list},
+       {MENU_ENUM_LABEL_DEFERRED_VIDEO_HDR_SETTINGS_LIST, deferred_push_video_hdr_settings_list},
+       {MENU_ENUM_LABEL_DEFERRED_CRT_SWITCHRES_SETTINGS_LIST, deferred_push_crt_switchres_settings_list},
++      {MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST, deferred_push_crt_cali_settings_list},
++      {MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_SYSTEM, deferred_push_crt_cali_save_for_system},
++      {MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_GAME, deferred_push_crt_cali_save_for_game},
++      {MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_GLOBAL, deferred_push_crt_cali_save_for_global},
+       {MENU_ENUM_LABEL_DEFERRED_AUDIO_SETTINGS_LIST, deferred_push_audio_settings_list},
+       {MENU_ENUM_LABEL_DEFERRED_AUDIO_SYNCHRONIZATION_SETTINGS_LIST, deferred_push_audio_synchronization_settings_list},
+       {MENU_ENUM_LABEL_DEFERRED_AUDIO_OUTPUT_SETTINGS_LIST, deferred_push_audio_output_settings_list},
+@@ -1278,6 +1286,9 @@ static int menu_cbs_init_bind_deferred_push_compare_label(
+          case MENU_ENUM_LABEL_DEFERRED_CRT_SWITCHRES_SETTINGS_LIST:
+             BIND_ACTION_DEFERRED_PUSH(cbs, deferred_push_crt_switchres_settings_list);
+             break;
++        case MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST:
++            BIND_ACTION_DEFERRED_PUSH(cbs, deferred_push_crt_cali_settings_list);
++            break;
+          case MENU_ENUM_LABEL_DEFERRED_CONFIGURATION_SETTINGS_LIST:
+             BIND_ACTION_DEFERRED_PUSH(cbs, deferred_push_configuration_settings_list);
+             break;
+diff --git a/menu/cbs/menu_cbs_get_value.c b/menu/cbs/menu_cbs_get_value.c
+index f8862f043e..bdcbe669ff 100644
+--- a/menu/cbs/menu_cbs_get_value.c
++++ b/menu/cbs/menu_cbs_get_value.c
+@@ -1913,6 +1913,9 @@ static int menu_cbs_init_bind_get_string_representation_compare_label(
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_SAVE_CURRENT:
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_SAVE_GLOBAL:
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_SAVE_CORE:
++         case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM:
++         case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME:
++         case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL:
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_SAVE_PARENT:
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_SAVE_GAME:
+          case MENU_ENUM_LABEL_VIDEO_SHADER_PRESET_REMOVE_GLOBAL:
+diff --git a/menu/cbs/menu_cbs_ok.c b/menu/cbs/menu_cbs_ok.c
+index 5283b0510c..94ed2ef4a9 100644
+--- a/menu/cbs/menu_cbs_ok.c
++++ b/menu/cbs/menu_cbs_ok.c
+@@ -353,6 +353,8 @@ static enum msg_hash_enums action_ok_dl_to_enum(unsigned lbl)
+          return MENU_ENUM_LABEL_DEFERRED_VIDEO_OUTPUT_SETTINGS_LIST;
+       case ACTION_OK_DL_CRT_SWITCHRES_SETTINGS_LIST:
+          return MENU_ENUM_LABEL_DEFERRED_CRT_SWITCHRES_SETTINGS_LIST;
++      case ACTION_OK_DL_CRT_CALI_SETTINGS_LIST:
++         return MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST;
+       case ACTION_OK_DL_CONFIGURATION_SETTINGS_LIST:
+          return MENU_ENUM_LABEL_DEFERRED_CONFIGURATION_SETTINGS_LIST;
+       case ACTION_OK_DL_SAVING_SETTINGS_LIST:
+@@ -1766,6 +1768,7 @@ int generic_action_ok_displaylist_push(
+       case ACTION_OK_DL_VIDEO_SCALING_SETTINGS_LIST:
+       case ACTION_OK_DL_VIDEO_OUTPUT_SETTINGS_LIST:
+       case ACTION_OK_DL_CRT_SWITCHRES_SETTINGS_LIST:
++      case ACTION_OK_DL_CRT_CALI_SETTINGS_LIST:
+       case ACTION_OK_DL_CONFIGURATION_SETTINGS_LIST:
+       case ACTION_OK_DL_SAVING_SETTINGS_LIST:
+       case ACTION_OK_DL_CLOUD_SYNC_SETTINGS_LIST:
+@@ -3927,6 +3930,111 @@ DEFAULT_ACTION_DIALOG_START(action_ok_remap_file_save_as,
+    (unsigned)idx,
+    menu_input_st_string_cb_remap_file_save_as)
+ 
++static char* get_game_name(char* full_path)
++{
++   int n = strlen(full_path);
++   char* rom_filename = full_path + n;
++   char delimiter = (char)  path_get(RARCH_PATH_BASENAME)[0];
++
++   for( int i = 0; i < n; i++)
++   {
++      if (full_path[i] == '/' || full_path[i] =='\\')
++      {
++         delimiter = full_path[i];
++         break;
++      }
++   }
++
++   while (0 < n && (full_path[--n] != delimiter ));
++   if (full_path[n] == delimiter ) {
++   rom_filename = full_path + n + 1;
++
++   }
++   return rom_filename;
++
++}
++
++#define CRT_SAVE_GAME 0
++#define CRT_SAVE_CORE 1
++#define CRT_SAVE_GLOBAL 2
++
++static int action_ok_crt_cali_save_generic(int type)
++{
++  config_file_t         *conf = NULL;
++  char config_directory[DIR_MAX_LENGTH];
++  char core_config_directory[DIR_MAX_LENGTH];
++  char switchres_cfg_override_file[PATH_MAX_LENGTH];
++  char game_file_cfg[PATH_MAX_LENGTH];
++  settings_t *settings          = config_get_ptr();
++
++  char* rom_filename = get_game_name((char*) path_get(RARCH_PATH_BASENAME));
++  if (string_is_empty(rom_filename))
++    return false;
++
++  config_directory[0] = '\0';
++  fill_pathname_application_special(config_directory,
++        sizeof(config_directory),
++        APPLICATION_SPECIAL_DIRECTORY_CONFIG);
++
++  const char * core_name = (const char*)runloop_state_get_ptr()->system.info.library_name;
++
++  if (type == CRT_SAVE_GAME)
++  {
++    fill_pathname_join_special(core_config_directory, config_directory, core_name, sizeof(core_config_directory));
++    /* Ensure base config directory exists */
++    if (!path_is_directory(core_config_directory))
++      path_mkdir(core_config_directory);
++    // sprintf(game_file_cfg, "%s%s","switchres-cali", rom_filename);
++    fill_pathname_join_special_ext(switchres_cfg_override_file, config_directory, core_name, rom_filename, ".cfg",
++                                   sizeof(switchres_cfg_override_file));
++  }
++  else if (type == CRT_SAVE_CORE)
++  {
++    fill_pathname_join_special(core_config_directory, config_directory, core_name, sizeof(core_config_directory));
++    /* Ensure base config directory exists */
++    if (!path_is_directory(core_config_directory))
++      path_mkdir(core_config_directory);
++    fill_pathname_join_special_ext(switchres_cfg_override_file, config_directory, core_name, core_name, ".cfg",
++                                   sizeof(switchres_cfg_override_file));
++  }
++  else
++  {
++    fill_pathname_join_special_ext(switchres_cfg_override_file, config_directory, "", "", "switchres-cali.cfg",
++                                   sizeof(switchres_cfg_override_file));
++  }
++
++  RARCH_LOG("[CRT]: rom = %s, corename = %s, system wide config : %s\n", rom_filename, core_name, switchres_cfg_override_file);
++
++  /* Attempt to load file */
++  if (!(conf = config_file_new_alloc()))
++    return false;
++
++  config_set_int(conf, "crt_switch_center_adjust", settings->ints.crt_switch_center_adjust);
++  config_set_int(conf, "crt_switch_porch_adjust", settings->ints.crt_switch_porch_adjust);
++  config_set_int(conf, "crt_switch_vertical_adjust", settings->ints.crt_switch_vertical_adjust);
++
++  config_file_write(conf, switchres_cfg_override_file, true);
++  config_file_free(conf);
++
++  //RARCH_LOG("[CRT]: action_ok_crt_cali_save_for_system %s, %s, %u, %d, %d\n", path, label, type, idx, entry_idx);
++  return 0;
++}
++static int action_ok_crt_cali_save_for_system(const char *path,
++      const char *label, unsigned type, size_t idx, size_t entry_idx)
++{
++  return action_ok_crt_cali_save_generic(CRT_SAVE_CORE);
++}
++static int action_ok_crt_cali_save_for_game(const char *path,
++      const char *label, unsigned type, size_t idx, size_t entry_idx)
++{
++  return action_ok_crt_cali_save_generic(CRT_SAVE_GAME);
++}
++static int action_ok_crt_cali_save_for_global(const char *path,
++      const char *label, unsigned type, size_t idx, size_t entry_idx)
++{
++  return action_ok_crt_cali_save_generic(CRT_SAVE_GLOBAL);
++}
++
+ static int action_ok_remap_file_save_core(const char *path,
+       const char *label, unsigned type, size_t idx, size_t entry_idx)
+ {
+@@ -6611,6 +6719,10 @@ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_file_load_music, ACTION_OK_DL_MUSIC)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_accounts_list, ACTION_OK_DL_ACCOUNTS_LIST)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_driver_settings_list, ACTION_OK_DL_DRIVER_SETTINGS_LIST)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_crt_switchres_settings_list, ACTION_OK_DL_CRT_SWITCHRES_SETTINGS_LIST)
++STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_crt_cali_settings_list, ACTION_OK_DL_CRT_CALI_SETTINGS_LIST)
++STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_crt_cali_save_for_system, ACTION_OK_DL_CRT_CALI_SAVE_FOR_SYSTEM)
++STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_crt_cali_save_for_game, ACTION_OK_DL_CRT_CALI_SAVE_FOR_GAME)
++STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_crt_cali_save_for_global, ACTION_OK_DL_CRT_CALI_SAVE_FOR_GLOBAL)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_video_settings_list, ACTION_OK_DL_VIDEO_SETTINGS_LIST)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_video_fullscreen_mode_settings_list, ACTION_OK_DL_VIDEO_FULLSCREEN_MODE_SETTINGS_LIST)
+ STATIC_DEFAULT_ACTION_OK_FUNC(action_ok_push_video_synchronization_settings_list, ACTION_OK_DL_VIDEO_SYNCHRONIZATION_SETTINGS_LIST)
+@@ -9187,6 +9299,7 @@ static int menu_cbs_init_bind_ok_compare_label(menu_file_list_cbs_t *cbs,
+          {MENU_ENUM_LABEL_VIDEO_HDR_SETTINGS,                  action_ok_push_video_hdr_settings_list},
+          {MENU_ENUM_LABEL_VIDEO_OUTPUT_SETTINGS,               action_ok_push_video_output_settings_list},
+          {MENU_ENUM_LABEL_CRT_SWITCHRES_SETTINGS,              action_ok_push_crt_switchres_settings_list},
++         {MENU_ENUM_LABEL_CRT_CALI_SETTINGS,                   action_ok_push_crt_cali_settings_list},
+          {MENU_ENUM_LABEL_AUDIO_SETTINGS,                      action_ok_push_audio_settings_list},
+          {MENU_ENUM_LABEL_AUDIO_SYNCHRONIZATION_SETTINGS,      action_ok_push_audio_synchronization_settings_list},
+          {MENU_ENUM_LABEL_MANUAL_CONTENT_SCAN_DIR,             action_ok_push_manual_content_scan_dir_select},
+@@ -9294,6 +9407,9 @@ static int menu_cbs_init_bind_ok_compare_label(menu_file_list_cbs_t *cbs,
+          {MENU_ENUM_LABEL_REMAP_FILE_LOAD,                     action_ok_remap_file},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_AS,                  action_ok_remap_file_save_as},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_CORE,                action_ok_remap_file_save_core},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,            action_ok_crt_cali_save_for_system},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME,              action_ok_crt_cali_save_for_game},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL,            action_ok_crt_cali_save_for_global},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_CONTENT_DIR,         action_ok_remap_file_save_content_dir},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_GAME,                action_ok_remap_file_save_game},
+          {MENU_ENUM_LABEL_REMAP_FILE_REMOVE_CORE,              action_ok_remap_file_remove_core},
+@@ -9428,6 +9544,9 @@ static int menu_cbs_init_bind_ok_compare_label(menu_file_list_cbs_t *cbs,
+          {MENU_ENUM_LABEL_CHEAT_FILE_SAVE_AS,                  action_ok_cheat_file_save_as},
+ #endif
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_CORE,                action_ok_remap_file_save_core},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,            action_ok_crt_cali_save_for_system},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME,              action_ok_crt_cali_save_for_game},
++         {MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL,            action_ok_crt_cali_save_for_global},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_CONTENT_DIR,         action_ok_remap_file_save_content_dir},
+          {MENU_ENUM_LABEL_REMAP_FILE_SAVE_GAME,                action_ok_remap_file_save_game},
+          {MENU_ENUM_LABEL_DISK_IMAGE_APPEND,                   action_ok_disk_image_append_list},
+diff --git a/menu/cbs/menu_cbs_sublabel.c b/menu/cbs/menu_cbs_sublabel.c
+index 57fa8db37c..20276f7aa4 100644
+--- a/menu/cbs/menu_cbs_sublabel.c
++++ b/menu/cbs/menu_cbs_sublabel.c
+@@ -256,6 +256,10 @@ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_switchres_porch_adjust,       ME
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_switchres_vertical_adjust,       MENU_ENUM_SUBLABEL_CRT_SWITCH_VERTICAL_ADJUST)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_switchres_use_custom_refresh_rate,       MENU_ENUM_SUBLABEL_CRT_SWITCH_RESOLUTION_USE_CUSTOM_REFRESH_RATE)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_switchres_hires_menu,       MENU_ENUM_SUBLABEL_CRT_SWITCH_HIRES_MENU)
++DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_cali_save_for_system,       MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM)
++DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_cali_save_for_game,         MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME)
++DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_cali_save_for_global,       MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL)
++
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_driver_settings_list,             MENU_ENUM_SUBLABEL_DRIVER_SETTINGS)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_retro_achievements_settings_list, MENU_ENUM_SUBLABEL_RETRO_ACHIEVEMENTS_SETTINGS)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_saving_settings_list,          MENU_ENUM_SUBLABEL_SAVING_SETTINGS)
+@@ -357,6 +361,7 @@ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_video_scaling_settings_list,
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_video_hdr_settings_list,           MENU_ENUM_SUBLABEL_VIDEO_HDR_SETTINGS)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_video_output_settings_list,           MENU_ENUM_SUBLABEL_VIDEO_OUTPUT_SETTINGS)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_switchres_settings_list,           MENU_ENUM_SUBLABEL_CRT_SWITCHRES_SETTINGS)
++DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_crt_cali_settings_list,           MENU_ENUM_SUBLABEL_CRT_CALI_SETTINGS)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_suspend_screensaver_enable,    MENU_ENUM_SUBLABEL_SUSPEND_SCREENSAVER_ENABLE)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_video_window_scale,            MENU_ENUM_SUBLABEL_VIDEO_WINDOW_SCALE)
+ DEFAULT_SUBLABEL_MACRO(action_bind_sublabel_video_window_opacity,          MENU_ENUM_SUBLABEL_VIDEO_WINDOW_OPACITY)
+@@ -2589,8 +2594,17 @@ int menu_cbs_init_bind_sublabel(menu_file_list_cbs_t *cbs,
+             break;
+          case MENU_ENUM_LABEL_CRT_SWITCH_HIRES_MENU:
+             BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_switchres_hires_menu);
++        break;
++         case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM:
++            BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_cali_save_for_system);
++            break;
++         case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME:
++            BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_cali_save_for_game);
++            break;
++          case MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL:
++            BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_cali_save_for_global);
+             break;
+-         case MENU_ENUM_LABEL_AUDIO_RESAMPLER_QUALITY:
++          case MENU_ENUM_LABEL_AUDIO_RESAMPLER_QUALITY:
+             BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_audio_resampler_quality);
+             break;
+ #ifdef HAVE_MICROPHONE
+@@ -5209,6 +5223,9 @@ int menu_cbs_init_bind_sublabel(menu_file_list_cbs_t *cbs,
+          case MENU_ENUM_LABEL_VIDEO_OUTPUT_SETTINGS:
+             BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_video_output_settings_list);
+             break;
++        case MENU_ENUM_LABEL_CRT_CALI_SETTINGS:
++          BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_cali_settings_list);
++          break;
+          case MENU_ENUM_LABEL_CRT_SWITCHRES_SETTINGS:
+             BIND_ACTION_SUBLABEL(cbs, action_bind_sublabel_crt_switchres_settings_list);
+             break;
+diff --git a/menu/cbs/menu_cbs_title.c b/menu/cbs/menu_cbs_title.c
+index 8ecd9f180d..07c2f8ff20 100644
+--- a/menu/cbs/menu_cbs_title.c
++++ b/menu/cbs/menu_cbs_title.c
+@@ -634,6 +634,7 @@ DEFAULT_TITLE_MACRO(action_get_input_turbo_fire_settings_list,      MENU_ENUM_LA
+ DEFAULT_TITLE_MACRO(action_get_input_haptic_feedback_settings_list, MENU_ENUM_LABEL_VALUE_INPUT_HAPTIC_FEEDBACK_SETTINGS)
+ 
+ DEFAULT_TITLE_MACRO(action_get_crt_switchres_settings_list,     MENU_ENUM_LABEL_VALUE_CRT_SWITCHRES_SETTINGS)
++DEFAULT_TITLE_MACRO(action_get_crt_cali_settings_list,          MENU_ENUM_LABEL_VALUE_CRT_CALI_SETTINGS)
+ DEFAULT_TITLE_MACRO(action_get_configuration_settings_list,     MENU_ENUM_LABEL_VALUE_CONFIGURATION_SETTINGS)
+ DEFAULT_TITLE_MACRO(action_get_load_disc_list,                  MENU_ENUM_LABEL_VALUE_LOAD_DISC)
+ DEFAULT_TITLE_MACRO(action_get_dump_disc_list,                  MENU_ENUM_LABEL_VALUE_DUMP_DISC)
+@@ -1074,6 +1075,7 @@ static int menu_cbs_init_bind_title_compare_label(menu_file_list_cbs_t *cbs,
+       {MENU_ENUM_LABEL_NETWORK_INFORMATION,                           action_get_network_information_list},
+       {MENU_ENUM_LABEL_DEFERRED_QUICK_MENU_OVERRIDE_OPTIONS,          action_get_quick_menu_override_options},
+       {MENU_ENUM_LABEL_DEFERRED_CRT_SWITCHRES_SETTINGS_LIST,          action_get_crt_switchres_settings_list},
++      {MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST,               action_get_crt_cali_settings_list},
+       {MENU_ENUM_LABEL_DEFERRED_ACCOUNTS_TWITCH_LIST,                 action_get_user_accounts_twitch_list},
+       {MENU_ENUM_LABEL_DEFERRED_ACCOUNTS_YOUTUBE_LIST,                action_get_user_accounts_youtube_list},
+       {MENU_ENUM_LABEL_DEFERRED_ACCOUNTS_FACEBOOK_LIST,               action_get_user_accounts_facebook_list},
+diff --git a/menu/drivers/materialui.c b/menu/drivers/materialui.c
+index 84ab34c32b..aee0063b6e 100644
+--- a/menu/drivers/materialui.c
++++ b/menu/drivers/materialui.c
+@@ -12085,6 +12085,7 @@ static void materialui_list_insert(void *userdata,
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_CONFIGURATION_SETTINGS))
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_SIDELOAD_CORE_LIST))
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_CRT_SWITCHRES_SETTINGS))
++                  || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_CRT_CALI_SETTINGS))
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_SAVING_SETTINGS))
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_CLOUD_SYNC_SETTINGS))
+                   || string_is_equal(label, msg_hash_to_str(MENU_ENUM_LABEL_LOGGING_SETTINGS))
+diff --git a/menu/menu_cbs.h b/menu/menu_cbs.h
+index 67c8f41256..7fdab7c999 100644
+--- a/menu/menu_cbs.h
++++ b/menu/menu_cbs.h
+@@ -112,6 +112,10 @@ enum
+    ACTION_OK_DL_VIDEO_SCALING_SETTINGS_LIST,
+    ACTION_OK_DL_VIDEO_HDR_SETTINGS_LIST,
+    ACTION_OK_DL_CRT_SWITCHRES_SETTINGS_LIST,
++   ACTION_OK_DL_CRT_CALI_SETTINGS_LIST,
++   ACTION_OK_DL_CRT_CALI_SAVE_FOR_SYSTEM,
++   ACTION_OK_DL_CRT_CALI_SAVE_FOR_GAME,
++   ACTION_OK_DL_CRT_CALI_SAVE_FOR_GLOBAL,
+    ACTION_OK_DL_AUDIO_SETTINGS_LIST,
+    ACTION_OK_DL_AUDIO_OUTPUT_SETTINGS_LIST,
+ #ifdef HAVE_MICROPHONE
+diff --git a/menu/menu_displaylist.c b/menu/menu_displaylist.c
+index f976a496dc..f5254fe86c 100644
+--- a/menu/menu_displaylist.c
++++ b/menu/menu_displaylist.c
+@@ -3656,6 +3656,7 @@ static int menu_displaylist_parse_load_content_settings(
+       bool show_advanced_settings         = settings->bools.menu_show_advanced_settings;
+ #endif
+       bool quickmenu_show_resume_content  = settings->bools.quick_menu_show_resume_content;
++      bool quick_menu_show_crt_cali       = settings->bools.quick_menu_show_crt_cali;
+       bool quickmenu_show_restart_content = settings->bools.quick_menu_show_restart_content;
+       bool savestates_enabled             = core_info_current_supports_savestate();
+       rarch_system_info_t *sys_info       = &runloop_state_get_ptr()->system;
+@@ -3668,6 +3669,14 @@ static int menu_displaylist_parse_load_content_settings(
+                MENU_SETTING_ACTION_RUN, 0, 0, NULL))
+             count++;
+ 
++      if(quick_menu_show_crt_cali)
++       if (menu_entries_append(list,
++             msg_hash_to_str(MENU_ENUM_LABEL_VALUE_CRT_CALI_SETTINGS),
++             msg_hash_to_str(MENU_ENUM_LABEL_CRT_CALI_SETTINGS),
++             MENU_ENUM_LABEL_CRT_CALI_SETTINGS,
++             MENU_SETTING_ACTION, 0, 0, NULL))
++         count++;
++
+       if (quickmenu_show_restart_content)
+          if (menu_entries_append(list,
+                msg_hash_to_str(MENU_ENUM_LABEL_VALUE_RESTART_CONTENT),
+@@ -10223,7 +10232,7 @@ unsigned menu_displaylist_build_list(
+                {MENU_ENUM_LABEL_CRT_SWITCH_PORCH_ADJUST,                               PARSE_ONLY_INT },
+                {MENU_ENUM_LABEL_CRT_SWITCH_VERTICAL_ADJUST,                            PARSE_ONLY_INT },
+                {MENU_ENUM_LABEL_CRT_SWITCH_RESOLUTION_USE_CUSTOM_REFRESH_RATE,         PARSE_ONLY_BOOL},
+-               {MENU_ENUM_LABEL_CRT_SWITCH_HIRES_MENU,         PARSE_ONLY_BOOL},
++               {MENU_ENUM_LABEL_CRT_SWITCH_HIRES_MENU,                                 PARSE_ONLY_BOOL},
+             };
+ 
+             for (i = 0; i < ARRAY_SIZE(build_list); i++)
+@@ -10235,6 +10244,41 @@ unsigned menu_displaylist_build_list(
+             }
+          }
+          break;
++     case DISPLAYLIST_CRT_CALI_SETTINGS_LIST:
++       {
++         menu_displaylist_build_info_t build_list[] = {
++           {MENU_ENUM_LABEL_CRT_SWITCH_X_AXIS_CENTERING,                           PARSE_ONLY_INT },
++           {MENU_ENUM_LABEL_CRT_SWITCH_PORCH_ADJUST,                               PARSE_ONLY_INT },
++           {MENU_ENUM_LABEL_CRT_SWITCH_VERTICAL_ADJUST,                            PARSE_ONLY_INT },
++        };
++
++         for (i = 0; i < ARRAY_SIZE(build_list); i++)
++         {
++           if (MENU_DISPLAYLIST_PARSE_SETTINGS_ENUM(list,
++                    build_list[i].enum_idx,  build_list[i].parse_type,
++                    false) == 0)
++             count++;
++         }
++       }
++     if (menu_entries_append(list,
++        msg_hash_to_str(MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GAME),
++        msg_hash_to_str(MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME),
++        MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME,
++        MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_GAME, 0, 0, NULL))
++       count++;
++     if (menu_entries_append(list,
++         msg_hash_to_str(MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_SYSTEM),
++         msg_hash_to_str(MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM),
++         MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,
++         MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_SYSTEM, 0, 0, NULL))
++       count++;
++     if (menu_entries_append(list,
++         msg_hash_to_str(MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GLOBAL),
++         msg_hash_to_str(MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL),
++         MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL,
++         MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_GLOBAL, 0, 0, NULL))
++       count++;
++     break;
+ #ifdef HAVE_LAKKA
+       case DISPLAYLIST_LAKKA_SERVICES_LIST:
+          {
+@@ -11453,7 +11497,11 @@ unsigned menu_displaylist_build_list(
+                         false) == 0)
+                   count++;
+             }
+-         }
++            if (MENU_DISPLAYLIST_PARSE_SETTINGS_ENUM(list,
++                     MENU_ENUM_LABEL_CRT_CALI_SETTINGS,
++                     PARSE_ONLY_BOOL, false) == 0)
++              count++;
++           }
+ 
+ #if defined(HAVE_CG) || defined(HAVE_GLSL) || defined(HAVE_SLANG) || defined(HAVE_HLSL)
+          {
+@@ -14657,6 +14705,7 @@ bool menu_displaylist_ctl(enum menu_displaylist_ctl_state type,
+ #endif
+          case DISPLAYLIST_MIDI_SETTINGS_LIST:
+          case DISPLAYLIST_CRT_SWITCHRES_SETTINGS_LIST:
++         case DISPLAYLIST_CRT_CALI_SETTINGS_LIST:
+          case DISPLAYLIST_VIDEO_FULLSCREEN_MODE_SETTINGS_LIST:
+          case DISPLAYLIST_VIDEO_WINDOWED_MODE_SETTINGS_LIST:
+          case DISPLAYLIST_VIDEO_OUTPUT_SETTINGS_LIST:
+diff --git a/menu/menu_displaylist.h b/menu/menu_displaylist.h
+index 90192b2a2b..b9741fafb5 100644
+--- a/menu/menu_displaylist.h
++++ b/menu/menu_displaylist.h
+@@ -181,6 +181,10 @@ enum menu_displaylist_ctl_state
+    DISPLAYLIST_VIDEO_SCALING_SETTINGS_LIST,
+    DISPLAYLIST_VIDEO_HDR_SETTINGS_LIST,
+    DISPLAYLIST_CRT_SWITCHRES_SETTINGS_LIST,
++   DISPLAYLIST_CRT_CALI_SETTINGS_LIST,
++   DISPLAYLIST_CRT_CALI_SAVE_FOR_SYSTEM,
++   DISPLAYLIST_CRT_CALI_SAVE_FOR_GAME,
++   DISPLAYLIST_CRT_CALI_SAVE_FOR_GLOBAL,
+    DISPLAYLIST_VIDEO_SETTINGS_LIST,
+    DISPLAYLIST_CONFIGURATION_SETTINGS_LIST,
+    DISPLAYLIST_SAVING_SETTINGS_LIST,
+diff --git a/menu/menu_driver.h b/menu/menu_driver.h
+index 21d958babd..da5f219578 100644
+--- a/menu/menu_driver.h
++++ b/menu/menu_driver.h
+@@ -307,7 +307,9 @@ enum menu_settings_type
+    MENU_SETTING_ACTION_REMAP_FILE_FLUSH,
+ 
+    MENU_SETTING_ACTION_CONTENTLESS_CORE_RUN,
+-
++   MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_SYSTEM,
++   MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_GAME,
++   MENU_SETTING_ACTION_CRT_CALI_SAVE_FOR_GLOBAL,
+    MENU_SETTINGS_LAST
+ };
+ 
+diff --git a/menu/menu_setting.c b/menu/menu_setting.c
+index 6371398a27..64b501c63f 100644
+--- a/menu/menu_setting.c
++++ b/menu/menu_setting.c
+@@ -294,6 +294,7 @@ enum settings_list_type
+    SETTINGS_LIST_CHEATS,
+    SETTINGS_LIST_VIDEO,
+    SETTINGS_LIST_CRT_SWITCHRES,
++   SETTINGS_LIST_CRT_CALI,
+    SETTINGS_LIST_AUDIO,
+ #ifdef HAVE_MICROPHONE
+    SETTINGS_LIST_MICROPHONE,
+@@ -10376,7 +10377,13 @@ static bool setting_append_list(
+                &group_info,
+                &subgroup_info,
+                parent_group);
+-
++         CONFIG_ACTION(
++               list, list_info,
++               MENU_ENUM_LABEL_CRT_CALI_SETTINGS,
++               MENU_ENUM_LABEL_VALUE_CRT_CALI_SETTINGS,
++               &group_info,
++               &subgroup_info,
++               parent_group);
+          CONFIG_ACTION(
+                list, list_info,
+                MENU_ENUM_LABEL_VIDEO_OUTPUT_SETTINGS,
+@@ -14226,7 +14233,11 @@ static bool setting_append_list(
+             END_GROUP(list, list_info, parent_group);
+          }
+          break;
++     case SETTINGS_LIST_CRT_CALI:
++         RARCH_LOG("[Menu] SETTINGS_LIST_CRT_CALI\n");
++    break;
+       case SETTINGS_LIST_CRT_SWITCHRES:
++         RARCH_LOG("[Menu] SETTINGS_LIST_CRT_CALI\n");
+          START_GROUP(list, list_info, &group_info,
+                msg_hash_to_str(MENU_ENUM_LABEL_VALUE_CRT_SWITCHRES_SETTINGS), parent_group);
+          MENU_SETTINGS_LIST_CURRENT_ADD_ENUM_IDX_PTR(list, list_info, MENU_ENUM_LABEL_CRT_SWITCHRES_SETTINGS);
+@@ -14353,6 +14364,30 @@ static bool setting_append_list(
+                SD_FLAG_NONE
+                );
+ 
++         CONFIG_ACTION(
++               list, list_info,
++               MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,
++               MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_SYSTEM,
++               &group_info,
++               &subgroup_info,
++               parent_group);
++
++         CONFIG_ACTION(
++               list, list_info,
++               MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GAME,
++               MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GAME,
++               &group_info,
++               &subgroup_info,
++               parent_group);
++
++         CONFIG_ACTION(
++               list, list_info,
++               MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_GLOBAL,
++               MENU_ENUM_LABEL_VALUE_CRT_CALI_SAVE_FOR_GLOBAL,
++               &group_info,
++               &subgroup_info,
++               parent_group);
++
+          END_SUB_GROUP(list, list_info, parent_group);
+          END_GROUP(list, list_info, parent_group);
+          break;
+@@ -21624,7 +21659,20 @@ static bool setting_append_list(
+                general_write_handler,
+                general_read_handler,
+                SD_FLAG_NONE);
+-
++         CONFIG_BOOL(
++               list, list_info,
++               &settings->bools.quick_menu_show_crt_cali,
++               MENU_ENUM_LABEL_QUICK_MENU_SHOW_CRT_CALI,
++               MENU_ENUM_LABEL_VALUE_QUICK_MENU_SHOW_CRT_CALI,
++               DEFAULT_QUICK_MENU_SHOW_CRT_CALI,
++               MENU_ENUM_LABEL_VALUE_OFF,
++               MENU_ENUM_LABEL_VALUE_ON,
++               &group_info,
++               &subgroup_info,
++               parent_group,
++               general_write_handler,
++               general_read_handler,
++               SD_FLAG_NONE);
+          CONFIG_BOOL(
+                list, list_info,
+                &settings->bools.quick_menu_show_restart_content,
+@@ -24875,6 +24923,7 @@ static rarch_setting_t *menu_setting_new_internal(rarch_setting_info_t *list_inf
+       SETTINGS_LIST_CHEATS,
+       SETTINGS_LIST_VIDEO,
+       SETTINGS_LIST_CRT_SWITCHRES,
++      SETTINGS_LIST_CRT_CALI,
+       SETTINGS_LIST_AUDIO,
+ #ifdef HAVE_MICROPHONE
+       SETTINGS_LIST_MICROPHONE,
+diff --git a/msg_hash.h b/msg_hash.h
+index 25a14235e3..98b0de588f 100644
+--- a/msg_hash.h
++++ b/msg_hash.h
+@@ -1715,6 +1715,7 @@ enum msg_hash_enums
+    MENU_LABEL(QUICK_MENU_SHOW_TAKE_SCREENSHOT),
+    MENU_LABEL(QUICK_MENU_SHOW_SAVESTATE_SUBMENU),
+    MENU_LABEL(QUICK_MENU_SHOW_SAVE_LOAD_STATE),
++   MENU_LABEL(QUICK_MENU_SHOW_CRT_CALI),
+    MENU_LABEL(QUICK_MENU_SHOW_UNDO_SAVE_LOAD_STATE),
+    MENU_LABEL(QUICK_MENU_SHOW_REPLAY),
+    MENU_LABEL(QUICK_MENU_SHOW_ADD_TO_FAVORITES),
+@@ -2107,6 +2108,10 @@ enum msg_hash_enums
+    MENU_ENUM_LABEL_DEFERRED_VIDEO_HDR_SETTINGS_LIST,
+    MENU_ENUM_LABEL_DEFERRED_VIDEO_SCALING_SETTINGS_LIST,
+    MENU_ENUM_LABEL_DEFERRED_CRT_SWITCHRES_SETTINGS_LIST,
++   MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SETTINGS_LIST,
++   MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_SYSTEM,
++   MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_GAME,
++   MENU_ENUM_LABEL_DEFERRED_CRT_CALI_SAVE_FOR_GLOBAL,
+    MENU_ENUM_LABEL_DEFERRED_CONFIGURATION_SETTINGS_LIST,
+    MENU_ENUM_LABEL_DEFERRED_SAVING_SETTINGS_LIST,
+    MENU_ENUM_LABEL_DEFERRED_CLOUD_SYNC_SETTINGS_LIST,
+@@ -3264,6 +3269,10 @@ enum msg_hash_enums
+    MENU_LABEL(VIDEO_SCALING_SETTINGS),
+    MENU_LABEL(VIDEO_HDR_SETTINGS),
+    MENU_LABEL(CRT_SWITCHRES_SETTINGS),
++   MENU_LABEL(CRT_CALI_SETTINGS),
++   MENU_LABEL(CRT_CALI_SAVE_FOR_SYSTEM),
++   MENU_LABEL(CRT_CALI_SAVE_FOR_GAME),
++   MENU_LABEL(CRT_CALI_SAVE_FOR_GLOBAL),
+    MENU_LABEL(AUDIO_SETTINGS),
+    MENU_LABEL(AUDIO_RESAMPLER_SETTINGS), /* deprecated */
+    MENU_LABEL(AUDIO_OUTPUT_SETTINGS),
+-- 
+2.51.0
+

@@ -1,0 +1,124 @@
+From 531b4d67ce6705de06779e4dfe3d046af7c7eb53 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Fri, 6 Jan 2023 21:04:11 +0100
+Subject: [PATCH 7/7] feat: add retroflag gpi2w dpi panel for kms driver
+
+---
+ arch/arm/boot/dts/overlays/Makefile           |  1 +
+ .../vc4-kms-dpi-retroflag-gpi2w-overlay.dts   | 44 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 29 ++++++++++++
+ 3 files changed, 74 insertions(+)
+ create mode 100644 arch/arm/boot/dts/overlays/vc4-kms-dpi-retroflag-gpi2w-overlay.dts
+
+diff --git a/arch/arm/boot/dts/overlays/Makefile b/arch/arm/boot/dts/overlays/Makefile
+index 717f41b8ea48..6616eb4e0bc2 100644
+--- a/arch/arm/boot/dts/overlays/Makefile
++++ b/arch/arm/boot/dts/overlays/Makefile
+@@ -268,6 +268,7 @@ dtbo-$(CONFIG_ARCH_BCM2835) += \
+ 	vc4-kms-dpi-panel.dtbo \
+ 	vc4-kms-dpi-piboydmg.dtbo \
+ 	vc4-kms-dpi-a030vvn01-0.dtbo \
++	vc4-kms-dpi-retroflag-gpi2w.dtbo \
+ 	vc4-kms-dsi-7inch.dtbo \
+ 	vc4-kms-dsi-lt070me05000.dtbo \
+ 	vc4-kms-dsi-lt070me05000-v2.dtbo \
+diff --git a/arch/arm/boot/dts/overlays/vc4-kms-dpi-retroflag-gpi2w-overlay.dts b/arch/arm/boot/dts/overlays/vc4-kms-dpi-retroflag-gpi2w-overlay.dts
+new file mode 100644
+index 000000000000..473a9f812087
+--- /dev/null
++++ b/arch/arm/boot/dts/overlays/vc4-kms-dpi-retroflag-gpi2w-overlay.dts
+@@ -0,0 +1,44 @@
++/*
++ * vc4-kms-dpi-a030vvn01-1-overlay.dts
++ */
++
++/dts-v1/;
++/plugin/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/pinctrl/bcm2835.h>
++
++/ {
++       compatible = "brcm,bcm2835";
++
++       fragment@0 {
++               target-path = "/";
++               __overlay__ {
++                       panel: panel {
++                               compatible = "retroflag,gpi2w", "simple-panel";
++
++                               port {
++                                       panel_in: endpoint {
++                                               remote-endpoint = <&dpi_out>;
++                                       };
++                               };
++                       };
++               };
++       };
++
++       fragment@1 {
++               target = <&dpi>;
++               __overlay__  {
++                       status = "okay";
++
++                       pinctrl-names = "default";
++                       pinctrl-0 = <&dpi_18bit_cpadhi_gpio0>;
++
++                       port {
++                               dpi_out: endpoint {
++                                       remote-endpoint = <&panel_in>;
++                               };
++                       };
++               };
++       };
++};
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 78a989e073a1..557786ef49b2 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -2548,6 +2548,32 @@ static const struct panel_desc auo_a030vvn01 = {
+ 	.connector_type = DRM_MODE_CONNECTOR_DPI,
+ };
+ 
++static const struct display_timing retroflag_gpi2w_timing = {
++	.pixelclock = { 19200000, 19200000, 19200000},
++	.hactive = { 640, 640, 640 },
++	.hfront_porch = { 1, 1, 1 },
++	.hback_porch = { 20, 20, 20 },
++	.hsync_len = { 1, 1, 1},
++	.vactive = { 480, 480, 480 },
++	.vfront_porch = { 1, 1, 1},
++	.vback_porch = { 2, 2, 2 },
++	.vsync_len = { 1, 1, 1 },
++	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
++};
++
++static const struct panel_desc retroflag_gpi2w = {
++	.timings = &retroflag_gpi2w_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 60,
++		.height = 45,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB666_1X24_CPADHI,
++	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct display_timing innolux_at056tn53v1_timing = {
+ 	.pixelclock = { 39700000, 39700000, 39700000},
+ 	.hactive = { 640, 640, 640 },
+@@ -4803,6 +4829,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "auo,a030vvn01",
+ 		.data = &auo_a030vvn01,
++	}, {
++		.compatible = "retroflag,gpi2w",
++		.data = &retroflag_gpi2w,
+ 	}, {
+ 		.compatible = "innolux,at056tn53v1",
+ 		.data = &innolux_at056tn53v1,
+-- 
+2.39.2
+

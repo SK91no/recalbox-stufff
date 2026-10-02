@@ -1,0 +1,25 @@
+From 35b4c03c8c12f78fd14863f858d81ff8bb532fea Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Sat, 21 Aug 2021 17:06:23 +0200
+Subject: [PATCH 1/9] gcc10 compatibility
+
+---
+ rules.mak | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/rules.mak b/rules.mak
+index ee4a542..4dc2dff 100644
+--- a/rules.mak
++++ b/rules.mak
+@@ -16,7 +16,7 @@ ifneq (,$(findstring /,$(shell whereis ccache)))
+ CXX      := ccache $(CXX)
+ endif
+ 
+-CFLAGS   += --std=c++2a
++CFLAGS   += --std=c++20
+ CFLAGS   += -fno-strict-aliasing -fexceptions -fPIC
+ CFLAGS   += -fdata-sections -ffunction-sections
+ CFLAGS   += -funsigned-char
+-- 
+2.46.0
+

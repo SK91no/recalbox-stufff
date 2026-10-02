@@ -1,0 +1,120 @@
+#!/bin/bash
+
+# This file runs migration scripts ONCE
+## Migration type will save the migration stamp will be save in BOOT or SHARE
+## Migrations will NOT be done on fresh install
+
+# Run this script on startup only
+if [[ $1 != "start" ]]; then
+  exit 0
+fi
+
+# Useful global variables
+INIT_SCRIPT=$(basename "$0")
+
+##########################
+###     Migrations     ###
+##########################
+
+recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Running MIGRATIONS..."
+BOOT_TYPE="boot"
+SHARE_TYPE="share"
+
+declare -A MIGRATION_FILES=(
+    [$BOOT_TYPE]="/boot/.system-migrations"
+    [$SHARE_TYPE]="/recalbox/share/system/.system-migrations"
+)
+
+function migrationDone {
+    local MIGRATIONTYPE="${1}"
+    local MIGRATION="${2}"
+    if [[ "${MIGRATIONTYPE}" == "${BOOT_TYPE}" ]];then
+        mount -o remount,rw /boot
+        echo "${MIGRATION}" >> "${MIGRATION_FILES[${BOOT_TYPE}]}"
+        mount -o remount,ro /boot
+    elif [[ "${MIGRATIONTYPE}" == "${SHARE_TYPE}" ]];then
+        echo "${MIGRATION}" >> "${MIGRATION_FILES[${SHARE_TYPE}]}"
+    fi
+}
+
+function shouldMigrate {
+    local MIGRATIONTYPE="${1}"
+    local MIGRATION="${2}"
+    # The file does not exists, we should create it
+    if [ -n "${MIGRATION_FILES[${MIGRATIONTYPE}]}" ] && [ ! -f "${MIGRATION_FILES[${MIGRATIONTYPE}]}" ]; then
+        recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Creating migration stamp file ${MIGRATION_FILES[${MIGRATIONTYPE}]}"
+        migrationDone "${MIGRATIONTYPE}" "#Migrations"
+    fi
+    # On first install we should not migrate
+    # so we save the migration as done and don't let the migration happen
+    if [ -f "/tmp/.first-install" ]; then
+        recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "First install, ignoring ${MIGRATION}"
+        migrationDone "${MIGRATIONTYPE}" "${MIGRATION}"
+        return 1
+    fi
+
+    ! grep -q "${MIGRATION}" "${MIGRATION_FILES[${MIGRATIONTYPE}]}"
+}
+
+function runMigrations {
+    if shouldMigrate "${BOOT_TYPE}" "9.1-hdmi-hotplug"; then
+        # HDMI hotplug options should be removed from recalbox-user-config.txt for all
+        # See https://gitlab.com/recalbox/recalbox/-/merge_requests/2514
+        source /recalbox/scripts/recalbox-utils.sh
+        if [[ $(getArchName) =~ rpi* ]] && [ -f "/boot/recalbox-user-config.txt" ];then
+            recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Running migration 9.1-hdmi-hotplug"
+            mount -o remount,rw /boot
+            sed -i "s/hdmi_force_hotplug=./hdmi_force_hotplug=0/g" "/boot/recalbox-user-config.txt"
+            mount -o remount,ro /boot
+            migrationDone "${BOOT_TYPE}" "9.1-hdmi-hotplug"
+            reboot
+            return
+        else
+            migrationDone "${BOOT_TYPE}" "9.1-hdmi-hotplug"
+        fi
+    fi
+    if shouldMigrate "${SHARE_TYPE}" "9.1-model3-save"; then
+        # Model 3 have invalid save directory
+        source /recalbox/scripts/recalbox-utils.sh
+        if [[ "$(getArchName)" = "x86_64" ]];then
+            recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Running 9.1-model3-save"
+            rm -rf "/recalbox/share/saves/model3/"
+            migrationDone "${SHARE_TYPE}" "9.1-model3-save"
+            return
+        else
+            migrationDone "${SHARE_TYPE}" "9.1-model3-save"
+        fi
+    fi
+    if shouldMigrate "${SHARE_TYPE}" "9.2-move-bios"; then
+        # Move bios into specific directories
+        recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Running migration 9.2-move-bios"
+        rm -rf "/recalbox/share/bios/64DD_IPL.bin"
+        sed -i "s|ROM_400/800_CUSTOM=/recalbox/share/bios/ATARIOSB.ROM|ROM_400/800_CUSTOM=/recalbox/share/bios/atari800/ATARIOSB.ROM|g" "/recalbox/share/system/.atari800.cfg"
+        sed -i "s|ROM_5200=/recalbox/share/bios/5200.rom|ROM_5200=/recalbox/share/bios/atari5200/5200.rom|g" "/recalbox/share/system/.atari800.cfg"
+        sed -i "s|ROM_BASIC_C=/recalbox/share/bios/ATARIBAS.ROM|ROM_BASIC_C=/recalbox/share/bios/atari800/ATARIBAS.ROM|g" "/recalbox/share/system/.atari800.cfg"
+        sed -i "s|ROM_OS_A_PAL=/recalbox/share/bios/ATARIOSA.ROM|ROM_OS_A_PAL=/recalbox/share/bios/atari800/ATARIOSA.ROM|g" "/recalbox/share/system/.atari800.cfg"
+        sed -i "s|ROM_OS_BB01R2=/recalbox/share/bios/ATARIXL.ROM|ROM_OS_BB01R2=/recalbox/share/bios/atari800/ATARIXL.ROM|g" "/recalbox/share/system/.atari800.cfg"
+        migrationDone "${SHARE_TYPE}" "9.2-move-bios"
+    fi
+    if shouldMigrate "${SHARE_TYPE}" "9.2-remove-autoconf-popup-retroarch"; then
+        source /recalbox/scripts/recalbox-utils.sh
+        recallog -s "${INIT_SCRIPT}" -t "MIGRATION" "Running 9.2-remove-autoconf-popup-retroarch"
+        notification_show_autoconfig
+        if grep -q "notification_show_autoconfig" /recalbox/share/system/configs/retroarch/retroarchcustom.cfg; then
+          sed -i 's/notification_show_autoconfig.*/notification_show_autoconfig = "false"/g' /recalbox/share/system/configs/retroarch/retroarchcustom.cfg
+        else
+          echo 'notification_show_autoconfig = "false"' >> /recalbox/share/system/configs/retroarch/retroarchcustom.cfg
+        fi
+        migrationDone "${SHARE_TYPE}" "9.2-remove-autoconf-popup-retroarch"
+    fi
+    if shouldMigrate "${SHARE_TYPE}" "9.2-add-default-theme-region"; then
+        if grep -q "emulationstation.theme.recalbox-next.region" /recalbox/share/system/recalbox.conf; then
+          sed -i 's/emulationstation.theme.recalbox-next.region/emulationstation.theme.region/g' >> /recalbox/share/system/recalbox.conf
+        else
+          printf "\nemulationstation.theme.region=us" >> /recalbox/share/system/recalbox.conf
+        fi
+        migrationDone "${SHARE_TYPE}" "9.2-add-default-theme-region"
+    fi
+}
+
+runMigrations

@@ -1,0 +1,13 @@
+diff --git a/UI/NativeApp.cpp b/UI/NativeApp.cpp
+index 4a26924960..7d30442622 100644
+--- a/UI/NativeApp.cpp
++++ b/UI/NativeApp.cpp
+@@ -506,7 +506,7 @@ void NativeInit(int argc, const char *argv[], const char *savegame_dir, const ch
+ 
+ 	// Note that if we don't have storage permission here, loading the config will
+ 	// fail and it will be set to the default. Later, we load again when we get permission.
+-	g_Config.Load();
++	g_Config.Load("/recalbox/share/system/configs/ppsspp/PSP/SYSTEM/ppsspp.ini", "/recalbox/share/system/configs/ppsspp/PSP/SYSTEM/controls.ini");
+ #endif
+ 
+ 	const char *fileToLog = nullptr;

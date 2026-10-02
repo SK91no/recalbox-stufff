@@ -1,0 +1,19 @@
+diff --git a/package/spirv-llvm-translator/spirv-llvm-translator.mk b/package/spirv-llvm-translator/spirv-llvm-translator.mk
+index 523890a986..ffc8a63b89 100644
+--- a/package/spirv-llvm-translator/spirv-llvm-translator.mk
++++ b/package/spirv-llvm-translator/spirv-llvm-translator.mk
+@@ -19,4 +19,14 @@ HOST_SPIRV_LLVM_TRANSLATOR_CONF_OPTS = \
+ 	-DLLVM_EXTERNAL_PROJECTS="SPIRV-Headers" \
+ 	-DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=$(HOST_DIR)/include
+ 
++SPIRV_LLVM_TRANSLATOR_INSTALL_STAGING = YES
++SPIRV_LLVM_TRANSLATOR_DEPENDENCIES = host-clang host-llvm llvm spirv-headers
++SPIRV_LLVM_TRANSLATOR_CONF_OPTS = \
++	-DLLVM_EXTERNAL_SPIRV_HEADERS_SOURCE_DIR=$(STAGING_DIR)/usr \
++	-DLLVM_BUILD_TOOLS=ON \
++	-DLLVM_DIR=$(STAGING_DIR)/lib/cmake/llvm \
++	-DLLVM_SPIRV_BUILD_EXTERNAL=YES \
++	-DLLVM_SPIRV_INCLUDE_TESTS=OFF
++
++$(eval $(cmake-package))
+ $(eval $(host-cmake-package))

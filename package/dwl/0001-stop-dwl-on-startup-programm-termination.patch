@@ -1,0 +1,42 @@
+From 4d21915528dded4d61e71919fd1e1c3c9818fd73 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 31 Jan 2024 23:08:33 +0100
+Subject: [PATCH] stop dwl on startup programm termination
+
+---
+ dwl.c | 16 ++++------------
+ 1 file changed, 4 insertions(+), 12 deletions(-)
+
+diff --git a/dwl.c b/dwl.c
+index ef27a1d..8460931 100644
+--- a/dwl.c
++++ b/dwl.c
+@@ -1974,21 +1974,13 @@ run(char *startup_cmd)
+ 
+ 	/* Now that the socket exists and the backend is started, run the startup command */
+ 	if (startup_cmd) {
+-		int piperw[2];
+-		if (pipe(piperw) < 0)
+-			die("startup: pipe:");
+ 		if ((child_pid = fork()) < 0)
+ 			die("startup: fork:");
+ 		if (child_pid == 0) {
+-			dup2(piperw[0], STDIN_FILENO);
+-			close(piperw[0]);
+-			close(piperw[1]);
+-			execl("/bin/sh", "/bin/sh", "-c", startup_cmd, NULL);
+-			die("startup: execl:");
+-		}
+-		dup2(piperw[1], STDOUT_FILENO);
+-		close(piperw[1]);
+-		close(piperw[0]);
++      system(startup_cmd);
++      kill(getppid(), 15);
++      die("exit: end of startup program");
++    }
+ 	}
+ 	printstatus();
+ 
+-- 
+2.43.0
+

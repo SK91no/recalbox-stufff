@@ -1,0 +1,20 @@
+diff --git a/drivers/gpu/drm/rp1/rp1-vec/rp1_vec.c b/drivers/gpu/drm/rp1/rp1-vec/rp1_vec.c
+index a7ea68e76..551a19fe2 100644
+--- a/drivers/gpu/drm/rp1/rp1-vec/rp1_vec.c
++++ b/drivers/gpu/drm/rp1/rp1-vec/rp1_vec.c
+@@ -527,12 +527,11 @@ static int rp1vec_platform_probe(struct platform_device *pdev)
+ 
+ 	vec->connector.interlace_allowed = true;
+ 	drm_connector_helper_add(&vec->connector, &rp1vec_connector_helper_funcs);
+-
++	int tv_mode = DRM_MODE_TV_MODE_NTSC;
++	of_property_read_u32(dev->of_node, "tv_mode", &tv_mode);
+ 	drm_object_attach_property(&vec->connector.base,
+ 				   vec->drm.mode_config.tv_mode_property,
+-				   (vec->connector.cmdline_mode.tv_mode_specified) ?
+-					   vec->connector.cmdline_mode.tv_mode :
+-					   DRM_MODE_TV_MODE_NTSC);
++					   tv_mode);
+ 
+ 	ret = drm_simple_display_pipe_init(&vec->drm,
+ 					   &vec->pipe,

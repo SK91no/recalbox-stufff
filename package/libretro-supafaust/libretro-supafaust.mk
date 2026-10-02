@@ -1,0 +1,32 @@
+################################################################################
+#
+# SUPAFAUST
+#
+################################################################################
+
+# Commit of 2023/07/19
+LIBRETRO_SUPAFAUST_VERSION = 6b639c98372d1c9bac885c55d772c812d2a9d525
+LIBRETRO_SUPAFAUST_SITE = $(call github,libretro,supafaust,$(LIBRETRO_SUPAFAUST_VERSION))
+LIBRETRO_SUPAFAUST_LICENSE = GPL-2.0
+LIBRETRO_SUPAFAUST_LICENSE_FILES = COPYING
+
+ifeq ($(BR2_PACKAGE_RECALBOX_TARGET_ODROIDXU4)$(BR2_PACKAGE_RECALBOX_TARGET_ODROIDGO2)$(BR2_PACKAGE_RECALBOX_TARGET_RG353X)$(BR2_PACKAGE_RECALBOX_TARGET_X86_64),y)
+LIBRETRO_SUPAFAUST_PLATFORM=unix
+else
+LIBRETRO_SUPAFAUST_PLATFORM=$(RECALBOX_SYSTEM_PLATFORM)
+endif
+
+define LIBRETRO_SUPAFAUST_BUILD_CMDS
+	$(SED) "s|-O2|-O3|g" $(@D)/Makefile
+	CFLAGS="$(TARGET_CFLAGS) $(COMPILER_COMMONS_CFLAGS_SO)" \
+		CXXFLAGS="$(TARGET_CXXFLAGS) $(COMPILER_COMMONS_CXXFLAGS_SO)" \
+		LDFLAGS="$(TARGET_LDFLAGS) $(COMPILER_COMMONS_LDFLAGS_SO)" \
+		$(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile platform="$(LIBRETRO_SUPAFAUST_PLATFORM)"
+endef
+
+define LIBRETRO_SUPAFAUST_INSTALL_TARGET_CMDS
+	$(INSTALL) -D $(@D)/mednafen_supafaust_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/mednafen_supafaust_libretro.so
+endef
+
+$(eval $(generic-package))

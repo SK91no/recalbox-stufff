@@ -1,0 +1,66 @@
+From a9e10e2c11bd5f1f999b0a4ac38f4f4055c60107 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Thu, 5 Dec 2024 19:31:20 +0100
+Subject: [PATCH 16/27] crt: add pal, ntsc, and 240p forced modes
+
+---
+ deps/switchres/monitor.cpp | 10 +++++++---
+ gfx/video_crt_switch.c     | 12 ++++++++++++
+ 2 files changed, 19 insertions(+), 3 deletions(-)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index 3d73b37025..613ad98ea6 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -150,9 +150,14 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 	// Arcade 15.7 kHz - no 50hz
+ 	else if (!strcmp(type, "arcade_15_no_50"))
+ 	{
+-		monitor_fill_range(&range[0], "15625-16200, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
++    monitor_fill_range(&range[0], "15625-16000, 55.00-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 448, 480");
+ 		return 1;
+ 	}
++  else if (!strcmp(type, "forced_240p"))
++  {
++    monitor_fill_range(&range[0], "15625-15750, 59.9-60.10, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 240, 0, 0");
++    return 1;
++  }
+ 	// Arcade 15.7-16.5 kHz - extended resolution
+ 	else if (!strcmp(type, "arcade_15ex"))
+ 	{
+@@ -281,8 +286,7 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 	else if (!strcmp(type, "pc_31_120"))
+ 	{
+ 		monitor_fill_range(&range[0], "31400-31600, 100-130, 0.671, 2.683, 3.353, 0.034, 0.101, 0.436, 0, 0, 200, 256, 0, 0");
+-		monitor_fill_range(&range[1], "31400-31600, 50-65, 0.671, 2.683, 3.353, 0.034, 0.101, 0.436, 0, 0, 400, 512, 0, 0");
+-		return 2;
++		return 1;
+ 	}
+ 	// PC CRT 70kHz/120Hz
+ 	else if (!strcmp(type, "pc_70_120"))
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 1813d881e8..6db000aa0c 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -218,6 +218,18 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+            RARCH_LOG("[CRT]: CRT Mode: %d - arcade_15_no_50 \n", crt_mode);
+            break;
+          case 8:
++            sr_set_monitor("forced_240p");
++            RARCH_LOG("[CRT]: CRT Mode: %d - forced_240p\n", crt_mode);
++            break;
++         case 9:
++            sr_set_monitor("pal");
++            RARCH_LOG("[CRT]: CRT Mode: %d - pal\n", crt_mode);
++            break;
++         case 10:
++            sr_set_monitor("ntsc");
++            RARCH_LOG("[CRT]: CRT Mode: %d - NTSC\n", crt_mode);
++            break;
++         case 11:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

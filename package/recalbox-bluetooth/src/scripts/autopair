@@ -1,0 +1,1079 @@
+#!/usr/bin/python3
+# SPDX-License-Identifier: LGPL-2.1-or-later
+
+from __future__ import absolute_import, print_function, unicode_literals
+
+import logging
+import logging.handlers
+import json
+import os
+import sys
+import threading
+import time
+from threading import Thread, Timer, Lock
+import queue
+import dbus
+import dbus.service
+import dbus.mainloop.glib
+
+from gi.repository import GLib
+
+try:
+    import paho.mqtt.client as mqtt
+
+    MQTT_AVAILABLE = True
+except ImportError:
+    MQTT_AVAILABLE = False
+
+message_queue = queue.Queue()
+
+APPNAME = "autopair"
+DISCOVERY_PERIOD = 300
+AGENT_INTERFACE = "org.bluez.Agent1"
+AGENT_PATH = "/recalbox/agent"
+
+# the dbus default of 25s would report a failure while bluez is still bonding or paging
+PAIRING_TIMEOUT = 120
+CONNECTION_TIMEOUT = 60
+# delay between a successful pairing and the connection attempt, in milliseconds
+CONNECTION_SETTLE_DELAY = 2000
+# period of the recovery checks, in seconds
+WATCHDOG_PERIOD = 15
+# connection cycles allowed per device before giving up until the next healthy state
+HID_CYCLE_BUDGET = 2
+
+INPUT_SYSFS_ROOT = "/sys/class/input"
+
+LOG_FILE = "/var/log/recalbox-bluetooth.log"
+RECALBOX_CONF = "/recalbox/share/system/recalbox.conf"
+
+
+def input_node_exists(mac: str) -> bool:
+    """ true when the kernel exposes an input device for this bluetooth address """
+    needle = mac.lower()
+    try:
+        nodes = os.listdir(INPUT_SYSFS_ROOT)
+    except OSError:
+        return False
+    for node in nodes:
+        if not node.startswith("input"):
+            continue
+        try:
+            with open(os.path.join(INPUT_SYSFS_ROOT, node, "uniq")) as uniq:
+                if uniq.read().strip().lower() == needle:
+                    return True
+        except OSError:
+            continue
+    return False
+
+
+def logged_handler(handler):
+    """ dbus-python prints handler exceptions to stderr, which the detached daemon has none of """
+    def wrapper(*args, **kwargs):
+        try:
+            return handler(*args, **kwargs)
+        except Exception:
+            logger.exception("unhandled error in %s", handler.__name__)
+    return wrapper
+
+
+class ThreadSafeDict(dict):
+    """ 
+    a thread safe dict class
+    use a Lock() when accessing the dict
+    """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._lock = Lock()
+
+    def __setitem__(self, key, value):
+        """ safely set a new item """
+        with self._lock:
+            super().__setitem__(key, value)
+
+    def __getitem__(self, key):
+        """ safely read an item """
+        with self._lock:
+            return super().__getitem__(key)
+
+    def __delitem__(self, key):
+        """ safely delete an item """
+        with self._lock:
+            super().__delitem__(key)
+
+    def get(self, key, default=None):
+        """ safely read a key with default value """
+        with self._lock:
+            return super().get(key, default)
+
+    def update(self, *args, **kwargs):
+        """ safely update many elements """
+        with self._lock:
+            super().update(*args, **kwargs)
+
+    def keys(self):
+        """ safely get keys """
+        with self._lock:
+            return list(super().keys())
+
+    def values(self):
+        """ safely get values """
+        with self._lock:
+            return list(super().values())
+
+    def items(self):
+        """ safely get item pairs"""
+        with self._lock:
+            return list(super().items())
+
+    def __repr__(self):
+        """ object representation """
+        with self._lock:
+            return super().__repr__()
+
+
+class BluetoothDevice:
+    """ class for managing bluetooth devices """
+    def __init__(self, path:str, interface:str):
+        self.path = path
+        self.bus = dbus.SystemBus()
+        self.interface = interface
+        self.dbus_device = self.bus.get_object("org.bluez", path)
+        self.properties = dbus.Interface(self.dbus_device, "org.freedesktop.DBus.Properties")
+        self.device = dbus.Interface(self.dbus_device, self.interface)
+
+    def dump(self) -> dict:
+        """ dump properties as object """
+        return {
+            "id": self.path,
+            "name": self.name(),
+            "alias": self.alias(),
+            "address": self.address(),
+            "rssi": self.rssi(),
+            "paired": self.paired(),
+            "trusted": self.trusted(),
+            "connected": self.connected(),
+            "blocked": self.blocked(),
+            "services_resolved": self.services_resolved(),
+        }
+
+    def get_property(self, propname:str, default=None):
+        """ gets a property from the device. If it fails, return default value """
+        try:
+            return self.properties.Get(self.interface, propname)
+        except:
+            return default
+
+    def set_property(self, propname:str, value):
+        """ set a property of the device """
+        return self.properties.Set(self.interface, propname, value)
+
+    def address(self) -> str:
+        """ returns device mac address """
+        return self.get_property(propname='Address', default="00:00:00:00:00:00")
+
+    def name(self) -> str:
+        """ returns the name of the device """
+        return self.get_property(propname='Name', default="Unknown")
+
+    def alias(self):
+        """ returns the alias of the device """
+        return self.get_property(propname='Alias', default="Unknown")
+
+    def btclass(self) -> int:
+        """ class is a reserved word
+            returns class of device """
+        return self.get_property(propname='Class', default=0)
+
+    def trust(self) -> bool:
+        """ trust the device """
+        return self.set_property(propname='Trusted', value=True)
+
+    def pair_async(self, on_success, on_error):
+        """ start pairing and return at once. Callbacks are run later, from the main loop """
+        self.device.Pair(
+            reply_handler=on_success,
+            error_handler=on_error,
+            timeout=PAIRING_TIMEOUT,
+        )
+
+    def connect_async(self, on_success, on_error):
+        """ start connecting and return at once. Callbacks are run later, from the main loop """
+        self.device.Connect(
+            reply_handler=on_success,
+            error_handler=on_error,
+            timeout=CONNECTION_TIMEOUT,
+        )
+
+    def connect(self):
+        """ initiate a connection to the device and wait for it to complete """
+        self.device.Connect()
+
+    def disconnect_async(self, on_success, on_error):
+        """ start disconnecting and return at once. Callbacks are run later, from the main loop """
+        self.device.Disconnect(
+            reply_handler=on_success,
+            error_handler=on_error,
+        )
+
+    def remove(self):
+        """ remove a joystick """
+        AdapterDevice(self.adapter()).remove_device(self.path)
+
+    def adapter(self) -> str:
+        """ return the adapter that connects this device """
+        return self.get_property(propname='Adapter', default=None)
+
+    def paired(self) -> bool:
+        """ return true if device is paired """
+        return bool(self.get_property(propname='Paired', default=False))
+
+    def connected(self) -> bool:
+        """ return true if device is connected """
+        return bool(self.get_property(propname='Connected', default=False))
+
+    def trusted(self) -> bool:
+        """ return true if device is trusted """
+        return bool(self.get_property(propname='Trusted', default=False))
+
+    def services_resolved(self) -> bool:
+        """ return true if services of device are resolved """
+        return bool(self.get_property(propname='ServicesResolved', default=False))
+
+    def appearance(self) -> int:
+        """ return appearance property """
+        return self.get_property(propname='Appearance', default=0)
+
+    def rssi(self) -> int:
+        """ return rssi value """
+        return self.get_property(propname='RSSI', default=None)
+
+    def blocked(self) -> bool:
+        """ return true if device is blocked else otherwise """
+        return bool(self.get_property(propname='Blocked', default=False))
+
+
+class AdapterInterface(BluetoothDevice):
+    """ class for interfacing bluetooth adapters """
+    def __init__(self, adapter_path):
+        super().__init__(path=adapter_path, interface="org.bluez.Adapter1")
+
+    def start_discovery(self):
+        """ start adapter discovery """
+        return self.device.StartDiscovery()
+
+    def stop_discovery(self):
+        """ stop adapter discovery """
+        return self.device.StopDiscovery()
+
+    def remove_device(self, device_path):
+        """ remove a device from adapter """
+        return self.device.RemoveDevice(device_path)
+
+    def powered(self) -> bool:
+        """ returns powered status """
+        return bool(self.get_property(propname="Powered", default=False))
+
+    def power_state(self):
+        """ returns current power state of the adapter """
+        return self.get_property(propname="PowerState", default="off")
+
+    def power_on(self):
+        """ power the adapter on """
+        return self.set_property(propname="Powered", value=dbus.Boolean(True))
+
+    def pairable(self) -> bool:
+        """ returns true if device is pairable """
+        return bool(self.get_property(propname='Pairable', default=False))
+
+    def connectable(self) -> bool:
+        """ returns true if device is connectable """
+        return bool(self.get_property(propname='Connectable', default=False))
+
+    def discoverable(self) -> bool:
+        """ returns true if device is discoverable """
+        return bool(self.get_property(propname='Discoverable', default=False))
+
+    def discovering(self) -> bool:
+        """ returns true if device is discovering """
+        return bool(self.get_property(propname='Discovering', default=False))
+
+
+class AdapterDevice(AdapterInterface):
+    """ class for managing bluetooth adapters """
+
+    def dump(self) -> dict:
+        """ dump properties as object """
+        return {
+            "id": self.path,
+            "name": self.name(),
+            "alias": self.alias(),
+            "address": self.address(),
+            "pairable": self.pairable(),
+        }
+
+
+class DeviceInterface(BluetoothDevice):
+    """ class for interfacing bluetooth devices """
+    def __init__(self, device_path):
+        super().__init__(device_path, "org.bluez.Device1")
+
+    def is_joystick(self) -> bool:
+        """ return true if class of device is joystick or gamepad"""
+        return (self.btclass() & 0x1F0F in (0x504, 0x508)) or (self.appearance() & 0xFFFF in (0x03C3, 0x03C4))
+
+    def is_audio_output_renderer(self) -> bool:
+        """ return true if class of device match a BT speaker or headphones """
+        return (self.btclass() in (0x240414, 0x0240418))
+
+
+class JoystickDevice(DeviceInterface):
+    """ class for managing Joystick/Gamepad bluetooth devices """
+
+    # consecutive connection failures allowed before the device is dropped so that it can pair again
+    MAX_CONNECT_TRIES = 3
+
+    def __init__(self, device_path):
+        self._force = False
+        self._connect_tries_left = self.MAX_CONNECT_TRIES
+        self._pending = None
+        self.hid_misses = 0
+        self.hid_cycles_left = HID_CYCLE_BUDGET
+        super().__init__(device_path)
+
+    @property
+    def pending(self):
+        """ name of the step currently running on this device, None when idle """
+        return self._pending
+
+    @pending.setter
+    def pending(self, step):
+        self._pending = step
+
+    def connection_succeeded(self):
+        """ the device went through: forget previous failures """
+        self._connect_tries_left = self.MAX_CONNECT_TRIES
+
+    def should_remove(self) -> bool:
+        """ count a connection failure and tell whether the device must be dropped """
+        self._connect_tries_left -= 1
+        return self._connect_tries_left <= 0
+
+    @property
+    def force(self):
+        """ property for forcing pairing """
+        return self._force
+
+    @force.setter
+    def force(self, force:bool):
+        self._force = force
+
+class SpeakerDevice(DeviceInterface):
+    """
+    class for managing speaker&headphones bluetooth devices
+    will automatically connect on startup
+    """
+    def __init__(self, device_path):
+        super().__init__(device_path)
+        self.reconnect()
+
+    def reconnect(self):
+        """ a powered-off speaker refuses the connection: report it, never die for it """
+        try:
+            self.connect_async(
+                lambda: logger.info("audio device %s reconnected", self.name()),
+                lambda err: logger.warning("audio device %s not reachable: %s", self.name(), err),
+            )
+        except dbus.exceptions.DBusException as err:
+            logger.warning("audio device %s not reachable: %s", self.name(), err)
+
+
+class BluetoothManager:
+    """ bluetooth pairing and connection manager """
+
+    def __init__(self, bus):
+        self.bus = bus
+
+        self.bluez_manager = self.get_bluez_manager()
+        self.bluez_manager_interface = self.get_manager_interface(self.bluez_manager)
+
+        self.bus.add_signal_receiver(
+            logged_handler(self.on_interfaces_added_handler),
+            dbus_interface="org.freedesktop.DBus.ObjectManager",
+            signal_name="InterfacesAdded",
+        )
+        self.bus.add_signal_receiver(
+            logged_handler(self.on_interfaces_removed_handler),
+            dbus_interface="org.freedesktop.DBus.ObjectManager",
+            signal_name="InterfacesRemoved",
+        )
+        self.bus.add_signal_receiver(
+            logged_handler(self.on_properties_changed_handler),
+            dbus_interface="org.freedesktop.DBus.Properties",
+            signal_name="PropertiesChanged",
+            arg0="org.bluez.Device1",
+            path_keyword="path",
+        )
+        self.devices = ThreadSafeDict()
+        self.adapters = ThreadSafeDict()
+        self.is_discovering = False
+        self.get_devices_and_adapters()
+        GLib.timeout_add_seconds(WATCHDOG_PERIOD, self.watchdog)
+        logger.info("starting bluetooth manager")
+
+    def get_bluez_manager(self):
+        """ initialize bluez manager """
+        return self.bus.get_object("org.bluez", "/")
+
+    def get_manager_interface(self, manager):
+        """ initialize dbus manager interface """
+        return dbus.Interface(
+            manager, "org.freedesktop.DBus.ObjectManager"
+        )
+
+    def get_devices_and_adapters(self):
+        """ check all BT managed items"""
+        logger.debug("get list of adapters and joysticks")
+        objects = self.bluez_manager_interface.GetManagedObjects()
+        for path, interfaces in objects.items():
+            # fill in known audio devices
+            if "org.bluez.Device1" in interfaces and DeviceInterface(path).is_audio_output_renderer():
+                logger.info(
+                    "adding speaker or headphones %s with path %s",
+                    interfaces["org.bluez.Device1"].get("Name", "<unknown>"),
+                    path
+                )
+                self.devices[path] = SpeakerDevice(path)
+
+            # fill in known gaming devices
+            if "org.bluez.Device1" in interfaces and DeviceInterface(path).is_joystick():
+                logger.info(
+                    "adding joystick %s with path %s",
+                    interfaces["org.bluez.Device1"].get("Name", "<unknown>"),
+                    path
+                )
+                self.devices[path] = JoystickDevice(path)
+
+            # power-on bt adapters
+            if "org.bluez.Adapter1" in interfaces:
+                adapter = AdapterDevice(path)
+                logger.info(
+                    "adding adapter %s (%s) with path %s: powered=%s pairable=%s discovering=%s",
+                    interfaces["org.bluez.Adapter1"].get("Name", "<unknown>"),
+                    adapter.address(),
+                    path,
+                    adapter.powered(),
+                    adapter.pairable(),
+                    adapter.discovering(),
+                )
+                self.adapters[path] = adapter
+                if not self.adapters[path].powered():
+                    logger.info(
+                        "powering bluetooth adapter %s on",
+                        self.adapters[path].address()
+                    )
+                    # bluetoothd (AutoEnable) also powers it: losing this race is not fatal
+                    try:
+                        self.adapters[path].power_on()
+                    except dbus.exceptions.DBusException as err:
+                        logger.error("can't power adapter %s on: %s", path, err)
+
+    def watchdog(self) -> bool:
+        """ periodic recovery, kept on a single timer """
+        self.adapter_watchdog()
+        self.hid_watchdog()
+        return True
+
+    def adapter_watchdog(self):
+        """ an adapter that lost power (rfkill, usb reset) never comes back alone """
+        for path, adapter in self.adapters.items():
+            try:
+                if not adapter.powered():
+                    logger.warning(
+                        "adapter %s is not powered (state=%s), powering it on",
+                        path,
+                        adapter.power_state(),
+                    )
+                    adapter.power_on()
+            except dbus.exceptions.DBusException as err:
+                logger.error("watchdog can't power adapter %s on: %s", path, err)
+
+    def hid_watchdog(self):
+        """
+        A connected pad without an input device means its HID profile accept failed;
+        bluez never retries by itself, cycling the connection does.
+        """
+        for path, device in self.devices.items():
+            if not isinstance(device, JoystickDevice):
+                continue
+            try:
+                if device.pending is not None or not (device.connected() and device.services_resolved()):
+                    device.hid_misses = 0
+                    continue
+                if input_node_exists(device.address()):
+                    device.hid_misses = 0
+                    device.hid_cycles_left = HID_CYCLE_BUDGET
+                    continue
+                device.hid_misses += 1
+                logger.warning(
+                    "device %s is connected but exposes no input device (%d/2)",
+                    device.name(), device.hid_misses,
+                )
+                if device.hid_misses < 2 or device.hid_cycles_left <= 0:
+                    continue
+                device.hid_cycles_left -= 1
+                device.hid_misses = 0
+                logger.warning(
+                    "cycling the connection of %s to attach its HID (%d cycles left)",
+                    device.name(), device.hid_cycles_left,
+                )
+                device.pending = "cycling"
+                device.disconnect_async(
+                    lambda dev=device: self.on_cycle_disconnected(dev),
+                    lambda err, dev=device: self.on_step_failed(dev, "cycling", err),
+                )
+            except dbus.exceptions.DBusException as err:
+                logger.error("hid watchdog failed on %s: %s", path, err)
+
+    def on_cycle_disconnected(self, joystick: JoystickDevice) -> None:
+        """ reconnect right away: the pad may still listen, else it will come back on a button press """
+        logger.info("device %s disconnected for HID recovery, reconnecting", joystick.name())
+        joystick.pending = "connecting"
+        try:
+            joystick.connect_async(
+                lambda: self.on_connection_done(joystick),
+                lambda err, dev=joystick: self.on_cycle_reconnect_failed(dev, err),
+            )
+        except dbus.exceptions.DBusException as err:
+            self.on_cycle_reconnect_failed(joystick, err)
+
+    def on_cycle_reconnect_failed(self, joystick: JoystickDevice, error) -> None:
+        """ a recovery miss is not a pairing failure: never let it push the device out """
+        joystick.pending = None
+        logger.warning(
+            "device %s did not reconnect after the HID recovery (%s): it will come back on a button press",
+            joystick.name(), error,
+        )
+
+    def on_interfaces_added_handler(self, path, interfaces):
+        """ handler called when a new dbus interface is added """
+        # names only: a LE reconnection adds dozens of GATT objects, full dumps drown the log
+        logger.debug("interfaces_added_handler() for path %s interfaces: %s", path, list(interfaces.keys()))
+
+        if "org.bluez.Adapter1" in interfaces:
+            logger.info("new bluetooth adapter found: %s", path)
+            self.adapters[path] = AdapterDevice(path)
+
+        if "org.bluez.Device1" not in interfaces:
+            return
+
+        device = DeviceInterface(path)
+        if not device.is_joystick():
+            logger.info(
+                "device %s (%s) is not a joystick, skipping (class=0x%06x, appearance=0x%04x)",
+                device.name(),
+                device.address(),
+                int(device.btclass()),
+                int(device.appearance()),
+            )
+            return
+
+        if not path in self.devices:
+            logger.info("adding new JoystickDevice: %s", path)
+            self.devices[path] = JoystickDevice(path)
+
+
+        self.connect_joystick_device_new(self.devices[path])
+        message_queue.put("report_status")
+
+    def on_interfaces_removed_handler(self, path, interfaces):
+        """ handler called when a dbus interface is removed """
+        logger.debug(
+            "interfaces_removed_handler() called for path %s details %s",
+            path,
+            interfaces
+        )
+        if "org.bluez.Adapter1" in interfaces:
+            logger.info("removing bluetooth adapter: %s", path)
+            del self.adapters[path]
+
+        if "org.bluez.Device1" not in interfaces:
+            return
+
+        if path in self.devices:
+            logger.info("removed device %s", path)
+            del self.devices[path]
+        message_queue.put("report_status")
+
+    def on_properties_changed_handler(self, interface, changed, invalidated, path):
+        """ handler called when a property of a dbus device has changed """
+        logger.debug(
+            "properties_changed_handler() called for path %s interface %s details %s",
+            path,
+            interface,
+            changed
+        )
+        if interface != "org.bluez.Device1":
+            return
+
+        if not DeviceInterface(path).is_joystick():
+            # not a joystick nor a gamepad, not interested
+            logger.debug("%s not a joystick, skipping", path)
+            return
+
+        if not path in self.devices:
+            logger.info("adding new joystick: %s", path)
+            self.devices[path] = JoystickDevice(path)
+
+        if dbus.String("Connected") in changed and bool(changed["Connected"]) is False:
+            logger.info("device %s disconnected", self.devices[path].name())
+            message_queue.put("report_status")
+            return
+
+        self.connect_joystick_device_new(self.devices[path])
+        message_queue.put("report_status")
+
+    def start_discovery(self):
+        """ start bluetooth discovery for all adapters """
+        for adapter_path,adapter in self.adapters.items():
+            try:
+                if not adapter.discovering():
+                    adapter.start_discovery()
+                    logger.info("started discovery on adapter %s", adapter_path)
+            except dbus.exceptions.DBusException as err:
+                logger.error("can't start discovery for adapter %s: %s", adapter_path, err)
+        self.is_discovering = True
+
+
+    def stop_discovery(self):
+        """ stop bluetooth discovery for all adapters """
+        for adapter_path,adapter in self.adapters.items():
+            try:
+                if adapter.discovering():
+                    adapter.stop_discovery()
+                    logger.info("stopped discovery on adapter %s", adapter_path)
+            except dbus.exceptions.DBusException as err:
+                logger.error("can't stop discovery: %s", err)
+        self.is_discovering = False
+
+    def connect_joystick_device_new(self, joystick: JoystickDevice) -> None:
+        """
+        Fire the first pairing step still needed and return: the slow work completes
+        in the callbacks below so the main loop stays free to serve the agent.
+        """
+        if joystick.pending is not None:
+            logger.debug("device %s is already %s, skipping", joystick.name(), joystick.pending)
+            return
+
+        logger.info("connect joystick %s", joystick.name())
+        try:
+            # Trust before pair - https://bbs.archlinux.org/viewtopic.php?pid=2193776#p2193776
+            if joystick.trusted():
+                logger.warning("device %s already trusted", joystick.name())
+            else:
+                logger.info("trusting device %s", joystick.name())
+                joystick.trust()
+
+            if joystick.paired():
+                if joystick.connected():
+                    logger.debug("device %s already paired and connected", joystick.name())
+                    return
+                logger.warning("device %s already paired", joystick.name())
+                self.start_connection(joystick)
+                return
+
+            logger.info("device %s not paired, pairing...", joystick.name())
+            joystick.pending = "pairing"
+            joystick.pair_async(
+                lambda: self.on_pairing_done(joystick),
+                lambda err: self.on_step_failed(joystick, "pairing", err),
+            )
+        except dbus.exceptions.DBusException as err:
+            self.on_step_failed(joystick, "preparing", err)
+
+    def start_connection(self, joystick: JoystickDevice) -> bool:
+        """
+        connection step
+        Also used as a one-shot GLib timeout callback, hence the False return value.
+        """
+        joystick.pending = None
+        try:
+            # a classic pad stays ACL-connected after pairing with no HID profile up:
+            # only Connect() establishes it, and the pad gives up waiting within seconds
+            logger.info("device %s connecting...", joystick.name())
+            joystick.pending = "connecting"
+            joystick.connect_async(
+                lambda: self.on_connection_done(joystick),
+                lambda err: self.on_connect_error(joystick, err),
+            )
+        except dbus.exceptions.DBusException as err:
+            self.on_step_failed(joystick, "connecting", err)
+        return False
+
+    def on_connect_error(self, joystick: JoystickDevice, error) -> None:
+        """ Connect() racing bluez's own profile work is a success in disguise """
+        get_name = getattr(error, "get_dbus_name", None)
+        name = get_name() if get_name is not None else ""
+        if name == "org.bluez.Error.AlreadyConnected":
+            self.on_connection_done(joystick)
+            return
+        if name == "org.bluez.Error.InProgress":
+            joystick.pending = None
+            logger.info("device %s connection already in progress", joystick.name())
+            return
+        self.on_step_failed(joystick, "connecting", error)
+
+    def on_pairing_done(self, joystick: JoystickDevice) -> None:
+        """ called from the main loop once the pairing went through """
+        logger.info("device %s paired", joystick.name())
+        # kept busy while bluez settles, or the PropertiesChanged burst defeats the delay
+        joystick.pending = "settling"
+        GLib.timeout_add(CONNECTION_SETTLE_DELAY, self.start_connection, joystick)
+
+    def on_connection_done(self, joystick: JoystickDevice) -> None:
+        """ called from the main loop once the connection went through """
+        joystick.pending = None
+        logger.info("device %s successfully connected", joystick.name())
+        joystick.connection_succeeded()
+        message_queue.put("report_status")
+
+    def on_step_failed(self, joystick: JoystickDevice, step: str, error) -> None:
+        """ called from the main loop when a step failed, either right away or later """
+        joystick.pending = None
+        logger.error("error %s device %s: %s", step, joystick.name(), error)
+        if not self.is_discovering:
+            # outside a pairing session a failure only means the pad is asleep
+            return
+        # repeated failures usually mean a stale link key: drop the device so a full pairing can happen
+        if joystick.should_remove():
+            logger.error("too many errors with device %s, removing it", joystick.name())
+            try:
+                joystick.remove()
+            except dbus.exceptions.DBusException as err:
+                logger.error("can't remove device %s: %s", joystick.name(), err)
+            if joystick.path in self.devices:
+                del self.devices[joystick.path]
+        message_queue.put("report_status")
+
+
+def trust_device(path):
+    """ trust from an agent callback: a failure must fail the log line, not the pairing """
+    try:
+        JoystickDevice(path).trust()
+    except dbus.exceptions.DBusException as err:
+        logger.error("can't trust device %s: %s", path, err)
+
+
+class BluetoothAgent(dbus.service.Object):
+    """ bluetooth agent class """
+    def __init__(self, bus):
+        self.bus = bus
+        super().__init__(self.bus, AGENT_PATH)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
+    def Release(self):
+        """ release agent """
+        logger.info("Release Agent")
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
+    def AuthorizeService(self, device, uuid):
+        """ authorize service """
+        logger.info("autorization requested for the service %s from device %s", uuid, device)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="s")
+    def RequestPinCode(self, device):
+        """ pin code request """
+        logger.info("pin code requested from device %s", device)
+        trust_device(device)
+        return "0000"
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="u")
+    def RequestPasskey(self, device):
+        """ pass key request """
+        logger.info("pass key requested from device %s", device)
+        trust_device(device)
+        return 0
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="ouq", out_signature="")
+    def DisplayPasskey(self, device, passkey, entered):
+        """ show pass key """
+        logger.info("pass key displayed for device %s: %s (entered %s)", device, passkey, entered)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="os", out_signature="")
+    def DisplayPinCode(self, device, pincode):
+        logger.info("pin code displayed for device %s: %s" % (device, pincode))
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="ou", out_signature="")
+    def RequestConfirmation(self, device, passkey):
+        """ pass key confirmation """
+        logger.info("confirm pass key %s for device %s", passkey, device)
+        trust_device(device)
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="o", out_signature="")
+    def RequestAuthorization(self, device):
+        logger.info("authorization requested for device %s", (device))
+
+    @dbus.service.method(AGENT_INTERFACE, in_signature="", out_signature="")
+    def Cancel(self):
+        """ cancel operation """
+        logger.warning("operation canceled")
+
+class MqttManager:
+    """ class for managing mqtt messaging """
+    def __init__(self):
+        self.is_discovering = False
+        self.discovery_timeout = 0
+        self.should_stop_discovery_timer = None
+        self.mqtt_client = None
+        if not MQTT_AVAILABLE:
+            logger.error("paho-mqtt is not installed: the frontend cannot drive pairing")
+            return
+        self.mqtt_client = mqtt.Client(APPNAME)
+        self.mqtt_client.on_connect = self.on_connect
+        self.mqtt_client.on_message = self.on_message
+        self.mqtt_client.on_disconnect = self.on_disconnect
+        self.mqtt_client.connect_async("127.0.0.1", 1883, 5)
+        self.mqtt_client.loop_start()
+
+    def on_connect(self, client, userdata, flags, rc):
+        logger.info("connected to mqtt broker (rc=%d)", rc)
+        client.subscribe("bluetooth/operation")
+
+    def on_disconnect(self, client, userdata, rc):
+        logger.error("mqtt disconnected (rc=%d)", rc)
+
+    def on_message(self, mqtt_client, userdata, message):
+        """ handler that receives MQTT messages """
+        try:
+            data = json.loads(message.payload.decode("utf-8"))
+            command = data.get("command")
+            logger.info("mqtt command '%s' received. is_discovering=%s", command, self.is_discovering)
+            if command == "start_discovery" and not self.is_discovering:
+                message_queue.put("start_discovery")
+                self.is_discovering = True
+                self.discovery_timeout = 0
+                self.restart_discovery_countdown()
+            if command == "stop_discovery" and self.is_discovering:
+                self.is_discovering = False
+                message_queue.put("stop_discovery")
+            if command == "report_status":
+                message_queue.put("report_status")
+        except Exception:
+            logger.exception("error processing mqtt message %r", message.payload)
+
+    def restart_discovery_countdown(self):
+        """ (re)arm the one-second countdown, never letting two chains run at once """
+        if self.should_stop_discovery_timer is not None:
+            self.should_stop_discovery_timer.cancel()
+        self.should_stop_discovery_timer = Timer(1.0, self.iterate_stop_discovery)
+        self.should_stop_discovery_timer.start()
+
+    def iterate_stop_discovery(self):
+        if self.discovery_timeout == 0:
+            # first iteration
+            self.discovery_timeout = DISCOVERY_PERIOD
+
+        if self.is_discovering is True:
+            self.discovery_timeout -= 1
+            if self.discovery_timeout == 0:
+                message_queue.put("stop_discovery")
+                self.is_discovering = False
+            else:
+                self.restart_discovery_countdown()
+
+        if self.is_discovering is False:
+            self.discovery_timeout = 0
+
+        message_queue.put("report_status")
+
+    def report_status(self, data):
+        """ send data through mqtt """
+        if self.mqtt_client is None:
+            return
+
+        self.mqtt_client.publish(
+            "bluetooth/status",
+            json.dumps(data, indent=2),
+        )
+
+def debug_logging_enabled() -> bool:
+    """ controllers.bluetooth.debug=1 in recalbox.conf raises the log level to DEBUG """
+    try:
+        with open(RECALBOX_CONF, encoding="utf-8", errors="replace") as conf:
+            for line in conf:
+                key, _, value = line.partition("=")
+                if key.strip() == "controllers.bluetooth.debug":
+                    return value.strip() == "1"
+    except OSError:
+        pass
+    return False
+
+
+def init_logger():
+    """initialize the logger"""
+    _logger = logging.getLogger(APPNAME)
+    log_formatter = logging.Formatter(
+        "%(asctime)s [%(name)-12.12s]:[%(threadName)-12.12s] [%(levelname)-5.5s]  %(message)s"
+    )
+    try:
+        file_handler = logging.handlers.RotatingFileHandler(
+            LOG_FILE, maxBytes=1_000_000, backupCount=1
+        )
+        file_handler.setFormatter(log_formatter)
+        _logger.addHandler(file_handler)
+    except OSError:
+        _logger.addHandler(logging.NullHandler())
+
+    if sys.stderr.isatty():
+        tty_handler = logging.StreamHandler()
+        tty_handler.setFormatter(log_formatter)
+        _logger.addHandler(tty_handler)
+
+    _logger.setLevel(logging.DEBUG if debug_logging_enabled() else logging.INFO)
+    return _logger
+
+
+def log_rfkill_state():
+    """ a blocked adapter silently refuses to power on: make the state visible """
+    rfkill_root = "/sys/class/rfkill"
+    try:
+        switches = sorted(os.listdir(rfkill_root))
+    except OSError as err:
+        logger.warning("can't read rfkill state: %s", err)
+        return
+    for switch in switches:
+        try:
+            base = os.path.join(rfkill_root, switch)
+            with open(os.path.join(base, "type")) as f:
+                if f.read().strip() != "bluetooth":
+                    continue
+            with open(os.path.join(base, "name")) as f:
+                name = f.read().strip()
+            with open(os.path.join(base, "soft")) as f:
+                soft = f.read().strip()
+            with open(os.path.join(base, "hard")) as f:
+                hard = f.read().strip()
+            logger.info(
+                "rfkill %s (%s): soft-blocked=%s hard-blocked=%s",
+                switch, name, soft == "1", hard == "1"
+            )
+        except OSError as err:
+            logger.warning("can't read rfkill switch %s: %s", switch, err)
+
+
+class ThreadArbitror:
+    """ main program managing threads """
+
+    def __init__(self):
+        # message_dispatcher runs in its own thread and issues dbus calls from there
+        dbus.mainloop.glib.threads_init()
+        dbus.mainloop.glib.DBusGMainLoop(set_as_default=True)
+        bus = dbus.SystemBus()
+        self.wait_for_bluez(bus)
+        # the agent must be in place before the first scan can trigger a pairing
+        self.agent = BluetoothAgent(bus)
+        self.agent_manager = dbus.Interface(
+            bus.get_object("org.bluez", "/org/bluez"),
+            "org.bluez.AgentManager1",
+        )
+        self.register_agent()
+        self.bluetooth_manager = BluetoothManager(bus)
+        self.messaging = Thread(target=self.message_dispatcher,name="msg-dispatch")
+        self.mqtt_manager = MqttManager()
+
+    @staticmethod
+    def wait_for_bluez(bus, timeout=30.0):
+        """ S07 starts bluetoothd right before us: wait for org.bluez to claim its name """
+        deadline = time.monotonic() + timeout
+        while not bus.name_has_owner("org.bluez"):
+            if time.monotonic() >= deadline:
+                raise RuntimeError(f"org.bluez did not appear on the system bus within {int(timeout)}s")
+            logger.info("waiting for bluetoothd to come up...")
+            time.sleep(0.5)
+
+    def register_agent(self):
+        """ register bluetooth agent """
+        try:
+            self.agent_manager.RegisterAgent(AGENT_PATH, "NoInputNoOutput")
+            self.agent_manager.RequestDefaultAgent(AGENT_PATH)
+        except dbus.exceptions.DBusException:
+            logger.exception("agent registration failed: nothing can pair without an agent")
+            raise
+        logger.info("agent successfully registered")
+
+    def run(self):
+        self.messaging.start()
+        try:
+            GLib.MainLoop().run()
+        except KeyboardInterrupt:
+            logger.warning("stopping bluetooth connection manager")
+            try:
+                self.agent_manager.UnregisterAgent(AGENT_PATH)
+            except dbus.exceptions.DBusException as err:
+                logger.warning("can't unregister agent: %s", err)
+            if self.mqtt_manager.mqtt_client is not None:
+                self.mqtt_manager.mqtt_client.disconnect()
+            message_queue.put('quit')
+            self.messaging.join()
+
+    def message_dispatcher(self):
+        logger.info("started message_dispatcher")
+        while True:
+            data = message_queue.get()
+            logger.debug("message received from message queue: %s", data)
+            try:
+                match data:
+                    case "start_discovery":
+                        self.bluetooth_manager.start_discovery()
+                    case "stop_discovery":
+                        self.bluetooth_manager.stop_discovery()
+                    case "report_status":
+                        self.mqtt_manager.report_status(self.generate_report_status_data())
+                    case "quit":
+                        return
+                    case _:
+                        logger.warning("unknown message queue '%s'", data)
+            except Exception:
+                logger.exception("error processing message '%s'", data)
+            message_queue.task_done()
+
+    def generate_report_status_data(self):
+        devicelist = []
+        for path, device in self.bluetooth_manager.devices.items():
+            if device.is_joystick():
+                devicelist.append(device.dump())
+        return {
+            "is_discovering": self.mqtt_manager.is_discovering,
+            "discovery_timeout": self.mqtt_manager.discovery_timeout,
+            "discovery_total": DISCOVERY_PERIOD,
+            "devices": devicelist,
+            "initiator": "bluetooth-manager",
+        }
+
+def global_except_hook(exc_type, exc_value, exc_traceback):
+    """ log what kills us: the daemon is started detached, its stderr goes nowhere """
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+
+    logger.error("uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+
+def thread_except_hook(args):
+    """ same purpose as global_except_hook, for the worker threads """
+    logger.error(
+        "uncaught exception in thread %s",
+        args.thread.name if args.thread else "?",
+        exc_info=(args.exc_type, args.exc_value, args.exc_traceback),
+    )
+
+
+logger = init_logger()
+sys.excepthook = global_except_hook
+threading.excepthook = thread_except_hook
+
+if __name__ == "__main__":
+    logger.info("=== autopair starting (debug=%s) ===", debug_logging_enabled())
+    log_rfkill_state()
+    ThreadArbitror().run()

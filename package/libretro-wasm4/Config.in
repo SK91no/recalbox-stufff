@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_WASM4
+	bool "libretro-wasm4"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  WASM-4 is a game console that builds games with WebAssembly.
+
+	  https://github.com/aduros/wasm4
+
+comment "LIBRETRO_WASM4 needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

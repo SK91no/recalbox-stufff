@@ -1,0 +1,33 @@
+From 922cf811c9f2ef8a5a3f8909d9165915d66c2fe9 Mon Sep 17 00:00:00 2001
+From: Adrien Beudin <beudbeud@gmail.com>
+Date: Mon, 20 Jan 2025 15:40:28 +0200
+Subject: [PATCH 2/5] add rpi5 board
+
+---
+ Makefile | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 22877ee4..16a74323 100644
+--- a/Makefile
++++ b/Makefile
+@@ -167,6 +167,16 @@ ifneq (,$(findstring unix,$(platform)))
+          HAVE_OPENGL = 0
+          GLES = 0
+          GL_LIB :=
++      # Raspberry pi 5 in 64bit mode with VULKAN
++      else ifneq (,$(findstring rpi5_64,$(platform)))
++         CPUFLAGS += -DNO_ASM -DARM -DARM_ASM -DDONT_WANT_ARM_OPTIMIZATIONS -DARM_FIX -DCLASSIC -DARM64
++         CPUFLAGS += -march=armv8.2-a+fp16+simd -mcpu=cortex-a76 -mtune=cortex-a76
++         HAVE_PARALLEL = 1
++         WITH_DYNAREC = aarch64
++         HAVE_NEON = 0
++         HAVE_OPENGL = 0
++         GLES = 0
++         GL_LIB :=
+       else
+          CPUFLAGS += -DARMv5_ONLY -DNO_ASM
+       endif
+-- 
+2.52.0
+

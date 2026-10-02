@@ -1,0 +1,2 @@
+# rorate TS
+ACTION=="add|change", SUBSYSTEM=="input", ATTRS{name}=="FTS3528:00 2808:1015", ENV{LIBINPUT_CALIBRATION_MATRIX}="0 1 0 -1 0 1 0 0 1"

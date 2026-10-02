@@ -1,0 +1,14 @@
+--- dhcpcd-10.0.8/src/if-linux.c.orig	2024-09-22 22:33:42.382113033 +0200
++++ dhcpcd-10.0.8/src/if-linux.c	2024-09-22 22:35:43.290517459 +0200
+@@ -60,8 +60,9 @@
+ #include <linux/if_arp.h>
+ #endif
+ 
+-/* Inlcude this *after* net/if.h so we get IFF_DORMANT */
+-#include <linux/if.h>
++#define IFF_LOWER_UPi  1<<16
++#define IFF_DORMANT    1<<17
++#define IFF_ECHO       1<<18
+ 
+ #include <dirent.h>
+ #include <errno.h>

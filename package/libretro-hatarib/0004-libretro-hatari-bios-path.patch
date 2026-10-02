@@ -1,0 +1,60 @@
+--- a/core/core_file.c	2025-01-13 07:18:54.174300124 +0100
++++ b/core/core_file.c	2025-01-13 07:22:11.354559018 +0100
+@@ -709,7 +709,7 @@
+ 	if (sf_count >= MAX_SYSTEM_FILE) return;
+ 	sf_filename[sf_count][0] = 0;
+ 	if (prefix_hatarib)
+-		strcpy_trunc(sf_filename[sf_count],"hatarib/",CORE_MAX_FILENAME);
++		strcpy_trunc(sf_filename[sf_count],"atarist/",CORE_MAX_FILENAME);
+ 	strcat_trunc(sf_filename[sf_count],filename,CORE_MAX_FILENAME);
+ 	//retro_log(RETRO_LOG_DEBUG,"core_file_system_add: %s\n",sf_filename[sf_count]);
+ 	++sf_count;
+@@ -720,7 +720,7 @@
+ 	if (sf_dir_count >= MAX_SYSTEM_DIR) return;
+ 	if (!strcmp(filename,".")) return;
+ 	if (!strcmp(filename,"..")) return;
+-	strcpy_trunc(sf_dirname[sf_dir_count],"hatarib/",CORE_MAX_FILENAME);
++	strcpy_trunc(sf_dirname[sf_dir_count],"atarist/",CORE_MAX_FILENAME);
+ 	strcat_trunc(sf_dirname[sf_dir_count],filename,CORE_MAX_FILENAME);
+ 	strcpy_trunc(sf_dirlabel[sf_dir_count],filename,CORE_MAX_FILENAME);
+ 	strcat_trunc(sf_dirlabel[sf_dir_count],"/",CORE_MAX_FILENAME);
+@@ -780,7 +780,7 @@
+ 
+ 		// check for tos.img
+ 
+-		fh = retro_vfs->open(temp_fn2(system_path,"tos.img"),RETRO_VFS_FILE_ACCESS_READ,0);
++		fh = retro_vfs->open(temp_fn2(system_path,"atarist/tos.img"),RETRO_VFS_FILE_ACCESS_READ,0);
+ 		if (fh)
+ 		{
+ 			core_file_system_add("tos.img",false);
+@@ -788,7 +788,7 @@
+ 		}
+ 
+ 		// scan system/hatarib/
+-		dir = retro_vfs->opendir(temp_fn2(system_path,"hatarib"),false);
++		dir = retro_vfs->opendir(temp_fn2(system_path,"atarist"),false);
+ 		if (dir)
+ 		{
+ 			while(retro_vfs->readdir(dir))
+@@ -812,18 +812,18 @@
+ 		struct stat fs;
+ 
+ 		// check for tos.img
+-		if((0 == stat(temp_fn2(system_path,"tos.img"), &fs)) && !(fs.st_mode & S_IFDIR))
++		if((0 == stat(temp_fn2(system_path,"atarist/tos.img"), &fs)) && !(fs.st_mode & S_IFDIR))
+ 		{
+ 			core_file_system_add("tos.img",false);
+ 		}
+ 
+ 		// scan system/hatarib/
+-		dir = opendir(temp_fn2(system_path,"hatarib"));
++		dir = opendir(temp_fn2(system_path,"atarist"));
+ 		if (dir)
+ 		{
+ 			while ((de = readdir(dir)))
+ 			{
+-				if(0 == stat(temp_fn3(system_path,"hatarib/",de->d_name), &fs))
++				if(0 == stat(temp_fn3(system_path,"atarist/",de->d_name), &fs))
+ 				{
+ 					 if (!(fs.st_mode & S_IFDIR))
+ 						core_file_system_add(de->d_name,true);

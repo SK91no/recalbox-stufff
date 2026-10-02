@@ -1,0 +1,27 @@
+From cb033d8b8d943386543998cf4117d95f16c2e811 Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Wed, 23 Feb 2022 10:02:49 +0100
+Subject: [PATCH 09/27] enable switchres kms
+
+---
+ Makefile.common | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/Makefile.common b/Makefile.common
+index 5782c17b1a..8be0b7667b 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -2561,6 +2561,10 @@ ifeq ($(HAVE_CRTSWITCHRES), 1)
+          OBJ += $(DEPS_DIR)/switchres/custom_video_xrandr.o
+          DEFINES += -DSR_WITH_XRANDR
+       endif
++      ifeq ($(HAVE_KMS), 1)
++         OBJ += $(DEPS_DIR)/switchres/custom_video_drmkms.o
++         DEFINES += -DSR_WITH_KMSDRM
++      endif
+    endif
+    ifneq ($(findstring Win32,$(OS)),)
+       DEFINES += -DSR_WIN32_STATIC
+-- 
+2.51.0
+

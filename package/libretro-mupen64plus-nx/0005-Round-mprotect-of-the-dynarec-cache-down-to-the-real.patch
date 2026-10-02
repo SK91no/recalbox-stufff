@@ -1,0 +1,75 @@
+From baebe46b7a8b113453321c4a1c251114bc3fe942 Mon Sep 17 00:00:00 2001
+From: beudbeud <beudbeud@gmail.com>
+Date: Fri, 4 Sep 2026 13:45:09 +0200
+Subject: [PATCH] Round mprotect of the dynarec cache down to the real page
+ size
+
+extra_memory is 4K-aligned inside struct r4300_core. On kernels with
+16K pages (Raspberry Pi 5) mprotect on it fails with EINVAL, the
+return value is ignored and the first recompiled block segfaults.
+---
+ .../device/r4300/new_dynarec/new_dynarec.c    | 20 +++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c b/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
+index 319cef2..f16cfca 100644
+--- a/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
++++ b/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
+@@ -8634,6 +8634,18 @@ static void pagespan_ds(void)
+ #ifdef HAVE_LIBNX
+ ALIGN(16384, char jit_memory[33554432]) __attribute__((section(".text")));
+ #endif
++#if !defined(WIN32) && !defined(HAVE_LIBNX)
++#include <unistd.h>
++/* extra_memory is only 4K-aligned; mprotect needs the address rounded down to the real page size. */
++static int mprotect_page_aligned(void *addr, size_t len, int prot)
++{
++  uintptr_t page = (uintptr_t)sysconf(_SC_PAGESIZE);
++  uintptr_t start = (uintptr_t)addr & ~(page - 1);
++  int ret = mprotect((void*)start, len + ((uintptr_t)addr - start), prot);
++  if (ret != 0) DebugMessage(M64MSG_ERROR, "mprotect() failed");
++  return ret;
++}
++#endif
+ void new_dynarec_init(void)
+ {
+   DebugMessage(M64MSG_INFO, "Init new dynarec");
+@@ -8683,7 +8695,7 @@ void new_dynarec_init(void)
+   close(fd);
+ #endif // HAVE_LIBNX
+ #elif CACHE_ADDR==FIXED_CACHE_ADDR
+-  mprotect ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
++  mprotect_page_aligned ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
+             PROT_READ | PROT_WRITE | PROT_EXEC);
+   base_addr = g_dev.r4300.extra_memory;
+   base_addr_rx = base_addr;
+@@ -8695,7 +8707,7 @@ void new_dynarec_init(void)
+   base_addr_rx = base_addr;
+ #endif
+ #elif NEW_DYNAREC == NEW_DYNAREC_ARM
+-  mprotect ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
++  mprotect_page_aligned ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
+             PROT_READ | PROT_WRITE | PROT_EXEC);
+   base_addr = g_dev.r4300.extra_memory;
+   base_addr_rx = base_addr;
+@@ -8706,7 +8718,7 @@ void new_dynarec_init(void)
+   assert(res!=0);
+   base_addr = base_addr_rx = (void*)g_dev.r4300.extra_memory;
+ #else
+-  mprotect ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
++  mprotect_page_aligned ((u_char *)g_dev.r4300.extra_memory, 1<<TARGET_SIZE_2,
+             PROT_READ | PROT_WRITE | PROT_EXEC);
+   base_addr = g_dev.r4300.extra_memory;
+   base_addr_rx = base_addr;
+@@ -8773,7 +8785,7 @@ void new_dynarec_cleanup(void)
+   #elif NEW_DYNAREC == NEW_DYNAREC_ARM64 && CACHE_ADDR!=FIXED_CACHE_ADDR
+     if (munmap (base_addr_rx, 1<<TARGET_SIZE_2) < 0) {DebugMessage(M64MSG_ERROR, "munmap() failed");}
+   #else
+-    mprotect(base_addr, 1<<TARGET_SIZE_2, PROT_READ | PROT_WRITE);
++    mprotect_page_aligned(base_addr, 1<<TARGET_SIZE_2, PROT_READ | PROT_WRITE);
+   #endif
+ #endif
+ #ifdef ROM_COPY
+-- 
+2.48.1
+

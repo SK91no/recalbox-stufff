@@ -1,0 +1,78 @@
+From: Recalbox <contact@recalbox.com>
+Date: Wed, 9 Jul 2026 00:00:00 +0200
+Subject: [PATCH] lightgun: reject calibration shots far from the target
+
+Aiming past the bottom edge makes the GunCon 2 wrap its vertical read back to
+mid-screen. Such a sample is indistinguishable from a genuine mid-screen aim
+on its own, so the driver cannot filter it -- but during calibration we know
+which target the user was asked to shoot, so a shot landing far from it is
+provably wrong.
+
+Drop those shots and keep the same target: the user simply shoots again, and
+the calibration bbox can no longer be poisoned. Nothing is filtered outside
+calibration.
+
+Only Y is checked. The guncon2 driver auto-calibrates the raw horizontal plage
+and only reaches the screen edges once the user has swept wide enough, so an
+early shot at the right-hand target legitimately reports an X far from its
+final position -- checking X there wedged the calibration on the second
+target. Y needs no such warm-up, and is the axis that actually misreads.
+---
+--- a/input/lightguns.c
++++ b/input/lightguns.c
+@@ -20,6 +20,39 @@
+  * all the cal code below stays in place, this is the single switch. */
+ static const bool GUNCON_CAL_ENABLED = true;
+ 
++/* Expected vertical position of each calibration target in the normalised
++ * libretro range, i.e. (v - 0.5) * 65536. Must stay in sync with TARGETS[]
++ * in shaders/lightgun-flash.slang: v = 0.08, 0.08, 0.92.
++ * Index 0 = top-left, 1 = top-right, 2 = bottom-left.
++ *
++ * Only Y is checked. X cannot be: the guncon2 driver auto-calibrates the
++ * raw horizontal plage and only reaches the screen edges once the user has
++ * swept wide enough, so an early shot at the right-hand target legitimately
++ * reports an X far from its final position. Y needs no such warm-up (it is
++ * scaled from the screen height), and Y is the axis that actually misreads:
++ * aiming past the bottom edge wraps back to mid-screen. */
++static const int guncon_cal_target_y[3] = { -27525, -27525, 27525 };
++
++/* Half-window, in normalised units, around the target's Y within which a
++ * shot is accepted (0.20 * 65536 = 20% of the screen height). A wrapped
++ * bottom read lands ~44% away, so it is rejected; a genuine shot, including
++ * at 240p where the driver doubles ABS_Y over the same full range, is well
++ * inside. */
++#define GUNCON_CAL_TOLERANCE 13107
++
++/* True when a captured shot lands close enough to the active target. */
++static bool guncon_cal_shot_plausible(uint8_t target, int lx, int ly)
++{
++   int dy;
++   if (target >= 3)
++      return false;
++   if (lx == -32768 || ly == -32768)   /* off-screen sentinel */
++      return false;
++   dy = ly - guncon_cal_target_y[target];
++   if (dy < 0) dy = -dy;
++   return dy <= GUNCON_CAL_TOLERANCE;
++}
++
+ /* --- Per-core detection (cached on first call) --- */
+ 
+ static int8_t s_service_frames_cached = 0;  /* 0 = not yet detected */
+@@ -412,7 +445,14 @@
+          if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_state[port] == 0)
+          {
+             uint8_t t = input_st->lightgun.cal_target[port];
+-            if (t < 3)
++            /* Only accept a shot that lands near the target being asked
++             * for. A wrapped/edge-lost read would otherwise poison the
++             * bbox below and offset the whole game. The target is kept,
++             * so the user simply shoots it again. */
++            if (t < 3
++                && guncon_cal_shot_plausible(t,
++                      input_st->lightgun.lock_x[port],
++                      input_st->lightgun.lock_y[port]))
+             {
+                input_st->lightgun.cal_pts_x[port][t] =
+                   input_st->lightgun.lock_x[port];

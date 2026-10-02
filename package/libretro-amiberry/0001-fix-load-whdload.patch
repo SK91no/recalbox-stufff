@@ -1,0 +1,82 @@
+diff --git a/src/osdep/amiberry.cpp b/src/osdep/amiberry.cpp
+index 4c6a250a..ea4bdb89 100644
+--- a/src/osdep/amiberry.cpp
++++ b/src/osdep/amiberry.cpp
+@@ -9692,6 +9692,26 @@ static void init_amiberry_dirs(const bool portable_mode, const bool materialize_
+ 	}
+
+ 	default_base_content_paths = get_current_base_content_path_set();
++
++#ifdef LIBRETRO
++	// In the libretro build, override whdboot_path with the recalbox BIOS
++	// directory BEFORE create_missing_amiberry_folders() seeds files, so the
++	// seed goes to the right place and get_whdbootpath() is correct for
++	// whdload_auto_prefs() without needing a -s argv workaround.
++	// Priority: <bios>/whdl if it exists, else the bios dir directly.
++	{
++		const char* lr_system_dir = "/recalbox/share/bios/amiga";
++		if (lr_system_dir && lr_system_dir[0]) {
++			std::string whdboot_candidate = std::string(lr_system_dir) + "/whdl";
++			if (!std::filesystem::is_directory(whdboot_candidate))
++				whdboot_candidate = std::string(lr_system_dir);
++			write_log("libretro: init_amiberry_dirs: whdboot_path overridden to '%s'\n",
++				whdboot_candidate.c_str());
++			set_whdbootpath(whdboot_candidate);
++			default_base_content_paths = get_current_base_content_path_set();
++		}
++	}
++#endif
+ }
+
+ static void dump_resolved_paths(const bool write_dump_file)
+diff --git a/src/osdep/amiberry_whdbooter.cpp b/src/osdep/amiberry_whdbooter.cpp
+index e8fbcb30..d9dd6edd 100644
+--- a/src/osdep/amiberry_whdbooter.cpp
++++ b/src/osdep/amiberry_whdbooter.cpp
+@@ -1483,8 +1483,10 @@ void set_booter_drives(uae_prefs* prefs, const char* filepath)
+ 	xfree(parsed);
+
+ 	boot_path = whdbooter_path / "boot-data.zip";
++	write_log("WHDBooter - looking for boot-data : '%s' -> %s\n", boot_path.string().c_str(), std::filesystem::exists(boot_path) ? "FOUND" : "NOT FOUND");
+ 	if (!std::filesystem::exists(boot_path))
+ 		boot_path = whdbooter_path / "boot-data";
++	write_log("WHDBooter - boot_path resolved    : '%s'\n", boot_path.string().c_str());
+
+ 	tmp = "filesystem2=rw,DH3:DH3:" + boot_path.string() + ",-10";
+ 	parsed = parse_text(tmp.c_str());
+@@ -1508,6 +1510,16 @@ void set_booter_drives(uae_prefs* prefs, const char* filepath)
+
+ 	if (std::filesystem::exists(save_path))
+ 	{
++		// WHDLoad is launched with SAVEPATH=Saves:Savegames/ — ensure the
++		// Savegames subdirectory exists inside the save volume, otherwise
++		// WHDLoad aborts with DOS-ERROR #205 (object not found) on first save.
++		const auto savegames_path = save_path / "Savegames";
++		if (!std::filesystem::exists(savegames_path))
++		{
++			write_log("WHDBooter - creating Savegames dir: '%s'\n", savegames_path.string().c_str());
++			std::filesystem::create_directories(savegames_path);
++		}
++
+ 		tmp = "filesystem2=rw,DH2:Saves:" + save_path.string() + ",0";
+ 		parsed = parse_text(tmp.c_str());
+ 		cfgfile_parse_line(prefs, parsed, 0);
+@@ -1546,6 +1558,9 @@ void whdload_auto_prefs(uae_prefs* prefs, const char* filepath)
+ 	conf_path = get_configuration_path();
+ 	whdbooter_path = get_whdbootpath();
+ 	save_path = get_savedatapath(false);
++	write_log("WHDBooter - whdbooter_path : '%s'\n", whdbooter_path.string().c_str());
++	write_log("WHDBooter - save_path      : '%s'\n", save_path.string().c_str());
++	write_log("WHDBooter - conf_path      : '%s'\n", conf_path.c_str());
+
+ 	symlink_roms(prefs);
+
+@@ -1604,6 +1619,8 @@ void whdload_auto_prefs(uae_prefs* prefs, const char* filepath)
+
+ 	const auto json_path = (whd_path / "whdload_db.json").string();
+ 	const auto xml_path = (whd_path / "whdload_db.xml").string();
++	write_log("WHDBooter - looking for DB : '%s' -> %s\n", json_path.c_str(), std::filesystem::exists(json_path) ? "FOUND" : "NOT FOUND");
++	write_log("WHDBooter - looking for DB : '%s' -> %s\n", xml_path.c_str(),  std::filesystem::exists(xml_path)  ? "FOUND" : "NOT FOUND");
+
+ 	if (std::filesystem::exists(json_path))
+ 	{

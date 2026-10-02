@@ -1,0 +1,20 @@
+Define our own __NR_pidfd_open if not declared
+
+diff --git a/src/pgrep.c b/src/pgrep.c
+index d8e57df..9abf3df 100644
+--- a/src/pgrep.c
++++ b/src/pgrep.c
+@@ -836,6 +836,13 @@ static int signal_option(int *argc, char **argv)
+ }
+
+ #if defined(ENABLE_PIDWAIT) && !defined(HAVE_PIDFD_OPEN)
++#ifndef __NR_pidfd_open
++#ifdef __alpha__
++#define __NR_pidfd_open 544
++#else
++#define __NR_pidfd_open 434
++#endif
++#endif
+ static int pidfd_open (pid_t pid, unsigned int flags)
+ {
+        return syscall(__NR_pidfd_open, pid, flags);

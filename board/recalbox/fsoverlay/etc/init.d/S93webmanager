@@ -1,0 +1,45 @@
+#!/bin/sh
+#
+
+systemsetting="recalbox_settings"
+
+WBPIDFILE=/var/run/webserver.pid
+WBBIN=/usr/bin/webserver
+
+case "$1" in
+  start)
+    enabled="$($systemsetting -command load -key system.manager.enabled)"
+    if [ "$enabled" != "0" ];then
+      recallog "starting webserver"
+      HOME=/recalbox/share/system start-stop-daemon -S -q -m -p "$WBPIDFILE" --exec "$WBBIN" >>/var/log/webmanager.log 2>&1 &
+    fi
+  ;;
+  stop)
+    recallog "Stopping webserver"
+    start-stop-daemon -K -q -p "${WBPIDFILE}" >>/var/log/webmanager.log 2>&1
+  ;;
+  restart|reload)
+    "$0" stop
+    if [ -f "${WBPIDFILE}" ] ; then
+      while "$0" status > /dev/null ; do
+        sleep 0.1
+      done
+    fi
+    "$0" start
+  ;;
+  status)
+    if pkill -0 -f "$WBBIN" ; then
+      WBPID=$(pgrep -f "$WBBIN")
+      echo "webserver is running (pid ${WBPID})"
+      exit 0
+    else
+      echo "webserver is stopped"
+      exit 1
+    fi
+  ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?

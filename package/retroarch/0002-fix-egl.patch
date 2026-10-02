@@ -1,0 +1,25 @@
+From 2caf21dad6d0492df2a11d617a2f6f90ed5b8925 Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Wed, 23 Feb 2022 09:04:05 +0100
+Subject: [PATCH 02/27] fix egl
+
+---
+ Makefile.common | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.common b/Makefile.common
+index 57dabf5eac..5782c17b1a 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -1461,7 +1461,7 @@ ifeq ($(HAVE_KMS), 1)
+ ifeq ($(HAVE_ODROIDGO2), 1)
+    OBJ += gfx/drivers_context/drm_go2_ctx.o
+ endif
+-   DEF_FLAGS += $(GBM_CFLAGS) $(DRM_CFLAGS)
++   DEF_FLAGS += $(GBM_CFLAGS) $(DRM_CFLAGS) -D__GBM__
+    LIBS += $(GBM_LIBS) $(DRM_LIBS)
+ endif
+ 
+-- 
+2.51.0
+

@@ -1,0 +1,9 @@
+config BR2_PACKAGE_LIBRETRO_YMIR
+	bool "libretro-ymir"
+	depends on BR2_PACKAGE_RETROARCH
+	select BR2_PACKAGE_LIBZLIB
+	select BR2_PACKAGE_ZSTD
+	help
+	  Sega Saturn emulator.
+
+	  https://github.com/StrikerX3/Ymir

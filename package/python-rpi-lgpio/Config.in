@@ -1,0 +1,8 @@
+config BR2_PACKAGE_PYTHON_RPI_LGPIO
+	bool "python-rpi-lgpio"
+	depends on BR2_arm || BR2_aarch64
+	select BR2_PACKAGE_PYTHON_LGPIO
+	help
+	  A Python module to control the GPIO on a Raspberry Pi.
+
+	  https://github.com/waveform80/rpi-lgpio

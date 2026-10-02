@@ -1,0 +1,69 @@
+From 682bda5fc2239d557fba066a68b7b9f288a100da Mon Sep 17 00:00:00 2001
+From: Yves Rigaud <yrigaud@internetbrands.com>
+Date: Mon, 12 Jan 2026 11:25:56 +0100
+Subject: [PATCH] fix pagesize
+
+---
+ configure.ac             | 10 ++++++++++
+ src/cpu/core_dyn_x86.cpp |  4 ++++
+ src/cpu/core_dynrec.cpp  |  4 ++++
+ 3 files changed, 18 insertions(+)
+
+diff --git a/configure.ac b/configure.ac
+index 3f121a0..bc991f0 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -505,6 +505,16 @@ else
+   AC_MSG_RESULT(no)
+ fi
+ 
++AH_TEMPLATE(C_PAGESIZE16K,[Define to 1 for 16K pagesize systems like RPi5])
++AC_ARG_ENABLE(pagesize16k,AC_HELP_STRING([--enable-pagesize16k],[Enable 16k pagesize support (RPi5)]),,enable_pagesize16k=no)
++AC_MSG_CHECKING(whether to enable 16K pagesize support)
++if test x$enable_pagesize16k = xyes; then
++  AC_DEFINE(C_PAGESIZE16K,1)
++  AC_MSG_RESULT(yes)
++else
++  AC_MSG_RESULT(no)
++fi
++
+ AH_TEMPLATE(C_SSHOT,[Define to 1 to enable screenshots, requires libpng])
+ AC_ARG_ENABLE(screenshots,AC_HELP_STRING([--disable-screenshots],[Disable screenshots and movie recording]),,enable_screenshots=yes)
+ AC_CHECK_HEADER(png.h,have_png_h=yes,)
+diff --git a/src/cpu/core_dyn_x86.cpp b/src/cpu/core_dyn_x86.cpp
+index 00a30b7..15d0ca8 100644
+--- a/src/cpu/core_dyn_x86.cpp
++++ b/src/cpu/core_dyn_x86.cpp
+@@ -38,8 +38,12 @@
+ 
+ #include <limits.h>
+ #ifndef PAGESIZE
++#ifdef C_PAGESIZE16k
++#define PAGESIZE 16384
++#else
+ #define PAGESIZE 4096
+ #endif
++#endif
+ #endif /* C_HAVE_MPROTECT */
+ 
+ #include "callback.h"
+diff --git a/src/cpu/core_dynrec.cpp b/src/cpu/core_dynrec.cpp
+index 9e23291..de33fca 100644
+--- a/src/cpu/core_dynrec.cpp
++++ b/src/cpu/core_dynrec.cpp
+@@ -38,8 +38,12 @@
+ 
+ #include <limits.h>
+ #ifndef PAGESIZE
++#ifdef C_PAGESIZE16K
++#define PAGESIZE 16384
++#else
+ #define PAGESIZE 4096
+ #endif
++#endif
+ #endif /* C_HAVE_MPROTECT */
+ 
+ #include "callback.h"
+-- 
+2.52.0
+

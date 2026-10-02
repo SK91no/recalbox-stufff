@@ -1,0 +1,59 @@
+{
+  "name": "Recalbox-next",
+  "version": 1,
+  "recalbox-version": 10,
+  "author": "Recalbox",
+  "description": "Older default official theme",
+  "description.fr": "Ancien thème officiel par defaut",
+  "description.es": "Tema oficial predeterminado anterior",
+  "description.de": "Älteres offizielles Standarddesign",
+  "files": [
+    {
+      "compatibility": "hdmi",
+      "resolutions": "hd,fhd",
+      "file": "",
+      "screenshots": [
+        {
+          "compatibility": "hdmi",
+          "resolutions": "hd",
+          "systems": [
+            "screen/screenshot-2025-11-18T21-25-57-255Z.png",
+            "screen/screenshot-2025-11-18T21-24-40-509Z.png",
+            "screen/screenshot-2025-11-18T21-23-37-418Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T21-42-21-521Z.png",
+            "screen/screenshot-2025-11-18T21-41-43-463Z.png",
+            "screen/screenshot-2025-11-18T21-38-04-166Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T21-23-23-433Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T21-42-45-843Z.png"
+          ]
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "fhd",
+          "systems": [
+            "screen/screenshot-2025-11-18T21-25-57-255Z.png",
+            "screen/screenshot-2025-11-18T21-24-40-509Z.png",
+            "screen/screenshot-2025-11-18T21-23-37-418Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T21-42-21-521Z.png",
+            "screen/screenshot-2025-11-18T21-41-43-463Z.png",
+            "screen/screenshot-2025-11-18T21-38-04-166Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T21-23-23-433Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T21-42-45-843Z.png"
+          ]
+        }
+      ]
+    }
+  ]
+}

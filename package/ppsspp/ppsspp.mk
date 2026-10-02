@@ -1,0 +1,106 @@
+################################################################################
+#
+# PPSSPP
+#
+################################################################################
+
+# Commit of 2026/05/16
+PPSSPP_VERSION = fa50bb1976065c4f8b1b47af227d367fe9771555
+PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
+PPSSPP_LICENSE = GPL-2.0
+PPSSPP_LICENSE_FILES = LICENSE.TXT
+
+PPSSPP_SITE_METHOD = git
+PPSSPP_GIT_SUBMODULES=y
+PPSSPP_DEPENDENCIES = sdl2 zlib libzip zip ffmpeg snappy
+
+PPSSPP_SUPPORTS_IN_SOURCE_BUILD = NO
+
+PPSSPP_CONF_OPTS += \
+	-DUSE_SYSTEM_FFMPEG=OFF \
+	-DUSE_DISCORD=OFF \
+	-DANDROID=OFF \
+	-DAPPLE=OFF \
+	-DUSE_WAYLAND_WSI=OFF \
+	-DWIN32=OFF \
+	-DCMAKE_BUILD_TYPE=Release \
+	-DCMAKE_SYSTEM_NAME=Linux \
+	-DUNITTEST=OFF \
+	-DBUILD_SHARED_LIBS=OFF \
+	-DSIMULATOR=OFF
+
+# required at least on x86
+ifeq ($(BR2_PACKAGE_LIBGLU),y)
+PPSSPP_DEPENDENCIES += libglu
+endif
+
+define PPSSPP_PRE_CONFIGURE
+	sed -E -i '/GIT_VERSION/s/unknown/$(PPSSPP_VERSION)/' $(@D)/git-version.cmake
+	sed -i "s+/opt/vc+$(STAGING_DIR)/usr+g" $(@D)/CMakeLists.txt
+endef
+
+PPSSPP_PRE_CONFIGURE_HOOKS += PPSSPP_PRE_CONFIGURE
+
+define PPSSPP_INSTALL_TO_TARGET
+	$(INSTALL) -D -m 0755 $(@D)/buildroot-build/PPSSPPSDL $(TARGET_DIR)/usr/bin
+	mkdir -p $(TARGET_DIR)/usr/share/ppsspp
+	cp -R $(@D)/buildroot-build/assets $(TARGET_DIR)/usr/share/ppsspp
+	cp $(@D)/buildroot-build/lib/*.so $(TARGET_DIR)/usr/lib/ || :
+endef
+
+PPSSPP_INSTALL_TARGET_CMDS = $(PPSSPP_INSTALL_TO_TARGET)
+
+ifeq ($(BR2_PACKAGE_HAS_LIBGLES),y)
+PPSSPP_DEPENDENCIES += libgles
+PPSSPP_CONF_OPTS += \
+	-DUSING_GLES2=ON \
+	-DUSING_X11_VULKAN=NO \
+	-DUSING_EGL=OFF \
+	-DUSING_FBDEV=ON
+endif
+
+ifeq ($(BR2_PACKAGE_RECALBOX_HAS_VULKAN),y)
+PPSSPP_DEPENDENCIES += vulkan-loader
+# Without a WSI platform there is no Vulkan surface on KMS: X11 and Wayland are off here.
+PPSSPP_CONF_OPTS += -DVULKAN=ON -DUSE_VULKAN_DISPLAY_KHR=ON
+else
+PPSSPP_CONF_OPTS += -DVULKAN=OFF
+endif
+
+ifeq ($(BR2_PACKAGE_RECALBOX_HAS_LIBMALI),y)
+PPSSPP_SIDE_LIBS = -lmali
+endif
+
+ifeq ($(BR2_PACKAGE_RECALBOX_EGL_NO_X11),y)
+PPSSPP_CONF_OPTS += -DARM_NO_VULKAN=OFF
+PPSSPP_CONF_OPTS += -DCMAKE_C_FLAGS="$(COMPILER_COMMONS_CFLAGS_EXE) -DEGL_NO_X11 -funsafe-math-optimizations $(PPSSPP_SIDE_LIBS)"
+PPSSPP_CONF_OPTS += -DCMAKE_CXX_FLAGS="$(COMPILER_COMMONS_CXXFLAGS_EXE) -DEGL_NO_X11 -funsafe-math-optimizations $(PPSSPP_SIDE_LIBS)"
+else
+PPSSPP_CONF_OPTS += -DCMAKE_C_FLAGS="$(COMPILER_COMMONS_CFLAGS_EXE) $(PPSSPP_SIDE_LIBS)"
+PPSSPP_CONF_OPTS += -DCMAKE_CXX_FLAGS="$(COMPILER_COMMONS_CXXFLAGS_EXE) $(PPSSPP_SIDE_LIBS)"
+endif
+
+ifeq ($(BR2_ARM_CPU_HAS_NEON),y)
+PPSSPP_CONF_OPTS += -DARM_NEON=ON
+endif
+
+ifeq ($(BR2_aarch64),y)
+PPSSPP_CONF_OPTS += -DARM64=ON
+endif
+
+# odroid xu4 / rpi3 / rpi4
+ifeq ($(BR2_arm),y)
+PPSSPP_CONF_OPTS += -DARMV7=ON -DARM=ON
+endif
+
+PPSSPP_CONF_OPTS += -DCMAKE_C_ARCHIVE_CREATE="<CMAKE_AR> qcs <TARGET> <LINK_FLAGS> <OBJECTS>"
+PPSSPP_CONF_OPTS += -DCMAKE_C_ARCHIVE_FINISH=true
+PPSSPP_CONF_OPTS += -DCMAKE_CXX_ARCHIVE_CREATE="<CMAKE_AR> qcs <TARGET> <LINK_FLAGS> <OBJECTS>"
+PPSSPP_CONF_OPTS += -DCMAKE_CXX_ARCHIVE_FINISH=true
+PPSSPP_CONF_OPTS += -DCMAKE_AR="$(TARGET_CC)-ar"
+PPSSPP_CONF_OPTS += -DCMAKE_C_COMPILER="$(TARGET_CC)"
+PPSSPP_CONF_OPTS += -DCMAKE_CXX_COMPILER="$(TARGET_CXX)"
+PPSSPP_CONF_OPTS += -DCMAKE_LINKER="$(TARGET_LD)"
+PPSSPP_CONF_OPTS += -DCMAKE_EXE_LINKER_FLAGS="$(COMPILER_COMMONS_LDFLAGS_EXE)"
+
+$(eval $(cmake-package))

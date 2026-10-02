@@ -1,0 +1,55 @@
+#!/bin/bash
+# Provides: argononed.py
+# Short-Description: Argon One Fan Service.
+# Description: Starts and stops service.
+
+. /recalbox/scripts/recalbox-utils.sh
+BOARD=$(getBoardName)
+if [[ ! "$BOARD" =~ ^Argon(One|OneV3)$ ]]; then
+  # not supported, skip
+  exit
+fi
+
+case "$BOARD" in
+  ArgonOne|ArgonOneV3)
+    RUN="/etc/argon/argononed.py"
+    ;;
+  *)
+    echo "unexpected error, skipping..."
+    exit 1
+    ;;
+esac
+
+start() {
+  cd /overlay/.configs || exit 1 # python-lgpio needs to create a named pipe, and this is not possible on exfat
+  start-stop-daemon -S -x "${RUN}" -b -m -p /run/argononed.pid -- service
+}
+
+stop() {
+  start-stop-daemon -K -p /run/argononed.pid
+  # prepare for shutdown if asked to
+  if runlevel | grep -q '0$'; then
+    "${RUN}" shutdown
+  fi
+}
+
+# Carry out specific functions when asked to by the system
+case "$1" in
+  start)
+    echo -e "Starting script ..."
+    start
+  ;;
+  stop)
+    stop
+  ;;
+  restart)
+    $0 stop
+    $0 start
+  ;;
+  *)
+    echo -e "Usage: $0 {start | stop | restart }"
+    exit 1
+  ;;
+esac
+
+exit $?

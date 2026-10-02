@@ -1,0 +1,49 @@
+From 3a4795157ca0c7c40ffce95ca32e6e6ebc4c9dee Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Thu, 11 Dec 2025 22:30:59 +0100
+Subject: [PATCH 5/9] steamdeck disable TL2/TR2 for triggers
+
+---
+ drivers/hid/hid-steam.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/hid/hid-steam.c b/drivers/hid/hid-steam.c
+index 511275f2b0a5..096401680059 100644
+--- a/drivers/hid/hid-steam.c
++++ b/drivers/hid/hid-steam.c
+@@ -739,8 +739,8 @@ static int steam_input_register(struct steam_device *steam)
+ 	input->id.product = hdev->product;
+ 	input->id.version = hdev->version;
+ 
+-	input_set_capability(input, EV_KEY, BTN_TR2);
+-	input_set_capability(input, EV_KEY, BTN_TL2);
++//	input_set_capability(input, EV_KEY, BTN_TR2);
++//	input_set_capability(input, EV_KEY, BTN_TL2);
+ 	input_set_capability(input, EV_KEY, BTN_TR);
+ 	input_set_capability(input, EV_KEY, BTN_TL);
+ 	input_set_capability(input, EV_KEY, BTN_Y);
+@@ -1480,8 +1480,8 @@ static void steam_do_input_event(struct steam_device *steam,
+ 	input_report_abs(input, ABS_RX, steam_le16(data + 20));
+ 	input_report_abs(input, ABS_RY, -steam_le16(data + 22));
+ 
+-	input_event(input, EV_KEY, BTN_TR2, !!(b8 & BIT(0)));
+-	input_event(input, EV_KEY, BTN_TL2, !!(b8 & BIT(1)));
++//	input_event(input, EV_KEY, BTN_TR2, !!(b8 & BIT(0)));
++//	input_event(input, EV_KEY, BTN_TL2, !!(b8 & BIT(1)));
+ 	input_event(input, EV_KEY, BTN_TR, !!(b8 & BIT(2)));
+ 	input_event(input, EV_KEY, BTN_TL, !!(b8 & BIT(3)));
+ 	input_event(input, EV_KEY, BTN_Y, !!(b8 & BIT(4)));
+@@ -1664,8 +1664,8 @@ static void steam_do_deck_input_event(struct steam_device *steam,
+ 	input_report_abs(input, ABS_Z, steam_le16(data + 44));
+ 	input_report_abs(input, ABS_RZ, steam_le16(data + 46));
+ 
+-	input_event(input, EV_KEY, BTN_TR2, !!(b8 & BIT(0)));
+-	input_event(input, EV_KEY, BTN_TL2, !!(b8 & BIT(1)));
++//	input_event(input, EV_KEY, BTN_TR2, !!(b8 & BIT(0)));
++//	input_event(input, EV_KEY, BTN_TL2, !!(b8 & BIT(1)));
+ 	input_event(input, EV_KEY, BTN_TR, !!(b8 & BIT(2)));
+ 	input_event(input, EV_KEY, BTN_TL, !!(b8 & BIT(3)));
+ 	input_event(input, EV_KEY, BTN_Y, !!(b8 & BIT(4)));
+-- 
+2.52.0
+

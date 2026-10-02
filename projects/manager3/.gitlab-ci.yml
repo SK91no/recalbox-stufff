@@ -1,0 +1,53 @@
+##
+## @author Nicolas TESSIER aka Asthonishia
+##
+image: node:18.15.0
+
+stages:
+  - CI Setup
+  - Validation
+#  - Tests
+
+variables:
+  npm_config_cache: "$CI_PROJECT_DIR/.npm"
+
+# Define a hidden job to be used with extends
+# Better than default to avoid activating cache for all jobs
+.dependencies_cache:
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm
+    policy: pull
+
+caching:
+  stage: CI Setup
+  script:
+    - npm ci
+  extends: .dependencies_cache
+  cache:
+    policy: pull-push
+  artifacts:
+    expire_in: 1h
+    paths:
+      - node_modules
+
+eslint:
+  stage: Validation
+  when: on_success
+  script:
+    - node_modules/eslint/bin/eslint.js .
+
+translations:
+  stage: Validation
+  when: on_success
+  script:
+    - node_modules/jest/bin/jest.js Translations.spec.ts
+
+#snapshots:
+#  stage: Tests
+#  when: on_success
+#  script:
+#    - node_modules/jest/bin/jest.js ./__tests__/components

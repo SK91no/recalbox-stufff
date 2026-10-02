@@ -1,0 +1,176 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+    compatible = "brcm,bcm2712";
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            rp1_gpio: rp1_gpio_conf {
+                brcm,pins = <0>; // 0 = AUDIO_ENABLE
+                brcm,function = <1>; // OUT
+                brcm,pull = <0>;
+            };
+        };
+    };
+    fragment@1 {
+        target-path = "/";
+        __overlay__ {
+
+            bridge: recalboxrgbdual2 {
+                compatible = "raspberrypi,recalboxrgbdual";
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                vc4-vga666-mode = <6>;
+                recalbox-rgb-dual-2 = <2>;
+
+                // RPI GPIOS  = audio_enable
+                rp1-gpios = <&gpio 0 0>;
+
+                // TCA GPIOS = filter_bypass, force_50Hz, force_31kHz, force_comp, scart_wide, scart_comp, scart_disable, rgb_disable, dac_enable,  csync_rpi5
+                pca-gpios    = <&pca 1 0>,    <&pca 2 0>, <&pca 3 0>,  <&pca 4 0>, <&pca 5 0>, <&pca 6 0>, <&pca 7 0>,    <&pca 12 0>, <&pca 13 0>, <&pca 15 0>;
+                pinctrl-0 = <&rp1_gpio>;
+                pinctrl-names = "default";
+
+                ports {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+
+                    port@0 {
+                        reg = <0>;
+                        vga_bridge_in: endpoint {
+                            remote-endpoint = <&dpi_out>;
+                        };
+                    };
+
+                    port@1 {
+                        reg = <1>;
+                        vga_bridge_out: endpoint {
+                            remote-endpoint = <&vga_con_in>;
+                        };
+                    };
+                };
+            };
+
+            vga {
+                compatible = "vga-connector";
+                label = "recalboxrgbdual2";
+                port {
+                    vga_con_in: endpoint {
+                        remote-endpoint = <&vga_bridge_out>;
+                    };
+                };
+            };
+        };
+    };
+
+    fragment@2 {
+        target = <&dpi>;
+        __overlay__  {
+            // Not enabled by default, see rgbdualvideo.dtbo
+            //status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&vga666_mode6_pins>;
+            port {
+                dpi_out: endpoint@0 {
+                    remote-endpoint = <&vga_bridge_in>;
+                };
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&gpio>;
+        __overlay__ {
+            vga666_mode6_pins: vga666_mode6_pins {
+                function = "dpi";
+                pins = "gpio1", "gpio2", "gpio3",
+                       "gpio4", "gpio5", "gpio6", "gpio7",
+                       "gpio8", "gpio9",
+                       "gpio12", "gpio13", "gpio14", "gpio15",
+                       "gpio16", "gpio17",
+                       "gpio20", "gpio21", "gpio22", "gpio23",
+                       "gpio24", "gpio25";
+                bias-disable;
+            };
+        };
+    };
+
+
+    // I2S audio
+    fragment@100 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            rp1_i2s0_dual: rp1_i2s0_dual {
+                function = "i2s0";
+                pins = "gpio18", "gpio19", "gpio27";
+                bias-disable;
+            };
+        };
+    };
+    fragment@101 {
+        target = <&i2s_clk_producer>;
+        __overlay__ {
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2s0_dual>;
+            status = "okay";
+        };
+    };
+
+
+    fragment@102 {
+        target = <&sound>;
+        __overlay__ {
+            compatible = "simple-audio-card";
+            simple-audio-card,name = "Recalbox RGB DUAL 2";
+            status = "okay";
+            simple-audio-card,dai-link@1 {
+                format = "i2s";
+                cpu {
+                    sound-dai = <&i2s_clk_producer>;
+                    dai-tdm-slot-num = <2>;
+                    dai-tdm-slot-width = <32>;
+                };
+                codec {
+                    sound-dai = <&codec_out>;
+                };
+            };
+        };
+    };
+
+    fragment@103 {
+        target-path = "/";
+        __overlay__ {
+            codec_out: recalbox_i2s {
+                #sound-dai-cells = <0>;
+                compatible = "recalbox_i2s";
+                status = "okay";
+            };
+        };
+    };
+
+    // Config Chip
+    fragment@200 {
+        target = <&i2c1>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2c1_10_11>;
+            clock-frequency = <100000>;
+            read-timeout-ms = <50>;
+
+            pca: pca@20 {
+                compatible = "nxp,pca9555";
+                reg = <0x20>;
+                gpio-controller;
+                #gpio-cells = <2>;
+                status = "okay";
+            };
+        };
+    };
+};

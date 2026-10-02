@@ -1,0 +1,71 @@
+From 56e089339a9a530f37e9d8be8fb42f14670014a6 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 1 Oct 2023 00:40:51 +0200
+Subject: [PATCH 2/2] make rumble optional
+
+---
+ drivers/input/joystick/odroidgo3-joypad.c | 20 +++++++++++++++-----
+ 1 file changed, 15 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/input/joystick/odroidgo3-joypad.c b/drivers/input/joystick/odroidgo3-joypad.c
+index 01872666c..c029ba19f 100644
+--- a/drivers/input/joystick/odroidgo3-joypad.c
++++ b/drivers/input/joystick/odroidgo3-joypad.c
+@@ -187,6 +187,8 @@ static void pwm_vibrator_play_work(struct work_struct *work)
+ 	struct joypad *joypad = container_of(work,
+ 					struct joypad, play_work);
+ 
++	if (!joypad->pwm)
++		return;
+ 	if (joypad->level)
+ 		pwm_vibrator_start(joypad);
+ 	else
+@@ -556,6 +558,8 @@ static ssize_t joypad_store_period(struct device *dev,
+ 	struct platform_device *pdev  = to_platform_device(dev);
+ 	struct joypad *joypad = platform_get_drvdata(pdev);
+ 
++	if (!joypad->pwm)
++		return 0;
+ 	mutex_lock(&joypad->lock);
+ 	pwm_set_period(joypad->pwm, simple_strtoul(buf, NULL, 21));
+ 	mutex_unlock(&joypad->lock);
+@@ -571,7 +575,10 @@ static ssize_t joypad_show_period(struct device *dev,
+ 	struct platform_device *pdev  = to_platform_device(dev);
+ 	struct joypad *joypad = platform_get_drvdata(pdev);
+ 
+-	return sprintf(buf, "%d\n", pwm_get_period(joypad->pwm));
++	if (!joypad->pwm)
++	  return 0;
++	else
++	  return sprintf(buf, "%d\n", pwm_get_period(joypad->pwm));
+ }
+ 
+ /*----------------------------------------------------------------------------*/
+@@ -800,8 +807,10 @@ static void joypad_close(struct input_polled_dev *poll_dev)
+ 	joypad->enable = false;
+ 	mutex_unlock(&joypad->lock);
+ 
+-	cancel_work_sync(&joypad->play_work);
+-	pwm_vibrator_stop(joypad);
++	if (joypad->pwm) {
++		cancel_work_sync(&joypad->play_work);
++		pwm_vibrator_stop(joypad);
++	}
+ 
+ 	dev_info(joypad->dev, "%s : closed\n", __func__);
+ }
+@@ -1062,8 +1071,9 @@ static int joypad_rumble_setup(struct device *dev, struct joypad *joypad)
+ 	joypad->pwm = devm_pwm_get(dev, "enable");
+ 	if (IS_ERR(joypad->pwm))
+ 	{
+-		dev_err(dev, "rumble get error\n");
+-		return -EINVAL;
++		dev_info(dev, "rumble detection error\n");
++		joypad->pwm = NULL;
++		return 0;
+ 	}
+ 
+ 	INIT_WORK(&joypad->play_work, pwm_vibrator_play_work);
+-- 
+2.42.0
+

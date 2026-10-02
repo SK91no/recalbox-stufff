@@ -1,0 +1,27 @@
+From 8c2947eaa5e34c4407a3fa142fbaa051d0e141ec Mon Sep 17 00:00:00 2001
+From: Bernd Kuhls <bernd@kuhls.net>
+Date: Sun, 7 Dec 2025 13:23:24 +0100
+Subject: [PATCH] package/x11r7/xdriver_xf86-video-intel: update SITE
+
+Updated URL of git server, tarball hash is unchanged.
+
+Signed-off-by: Bernd Kuhls <bernd@kuhls.net>
+Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+---
+ .../x11r7/xdriver_xf86-video-intel/xdriver_xf86-video-intel.mk | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/package/x11r7/xdriver_xf86-video-intel/xdriver_xf86-video-intel.mk b/package/x11r7/xdriver_xf86-video-intel/xdriver_xf86-video-intel.mk
+index 879abdd74d..ddd66598a6 100644
+--- a/package/x11r7/xdriver_xf86-video-intel/xdriver_xf86-video-intel.mk
++++ b/package/x11r7/xdriver_xf86-video-intel/xdriver_xf86-video-intel.mk
+@@ -5,7 +5,8 @@
+ ################################################################################
+ 
+ XDRIVER_XF86_VIDEO_INTEL_VERSION = 31486f40f8e8f8923ca0799aea84b58799754564
+-XDRIVER_XF86_VIDEO_INTEL_SITE = git://anongit.freedesktop.org/xorg/driver/xf86-video-intel
++XDRIVER_XF86_VIDEO_INTEL_SITE = https://gitlab.freedesktop.org/xorg/driver/xf86-video-intel.git
++XDRIVER_XF86_VIDEO_INTEL_SITE_METHOD = git
+ XDRIVER_XF86_VIDEO_INTEL_LICENSE = MIT
+ XDRIVER_XF86_VIDEO_INTEL_LICENSE_FILES = COPYING
+ XDRIVER_XF86_VIDEO_INTEL_AUTORECONF = YES

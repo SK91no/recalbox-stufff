@@ -1,0 +1,25 @@
+From c1e72d0d3071c34f44cb00e8eaf368cd86863569 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Mon, 31 Mar 2025 18:02:17 +0200
+Subject: [PATCH] gc bios
+
+---
+ Source/Core/Core/Config/MainSettings.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Source/Core/Core/Config/MainSettings.cpp b/Source/Core/Core/Config/MainSettings.cpp
+index 751ab05656..db1d8956d1 100644
+--- a/Source/Core/Core/Config/MainSettings.cpp
++++ b/Source/Core/Core/Config/MainSettings.cpp
+@@ -623,7 +623,7 @@ const char* GetDirectoryForRegion(DiscIO::Region region, RegionDirectoryStyle st
+ std::string GetBootROMPath(const std::string& region_directory)
+ {
+   const std::string path =
+-      File::GetUserPath(D_GCUSER_IDX) + DIR_SEP + region_directory + DIR_SEP GC_IPL;
++          std::string("/recalbox/share/bios/gamecube") + DIR_SEP + region_directory + DIR_SEP GC_IPL;
+   if (!File::Exists(path))
+     return File::GetSysDirectory() + GC_SYS_DIR + DIR_SEP + region_directory + DIR_SEP GC_IPL;
+   return path;
+-- 
+2.49.0
+

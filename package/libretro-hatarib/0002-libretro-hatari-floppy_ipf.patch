@@ -1,0 +1,11 @@
+--- a/hatari/src/floppy_ipf.c	2025-01-04 00:43:27.397530763 +0100
++++ b/hatari/src/floppy_ipf.c	2025-01-04 00:43:11.253699963 +0100
+@@ -327,7 +327,7 @@
+ #ifdef WIN32
+ #define CAPS_SONAME "capsimg.dll"
+ #else
+-#define CAPS_SONAME "capsimg.so"
++#define CAPS_SONAME "libcapsimage.so.5"
+ #endif
+ 
+ #endif

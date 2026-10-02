@@ -1,0 +1,7 @@
+config BR2_PACKAGE_PYTHON_SMBUS2
+	bool "python smbus2"
+	select BR2_PACKAGE_PYTHON3
+	help
+	  Smbus2 Support
+
+	  https://github.com/kplindegaard/smbus2

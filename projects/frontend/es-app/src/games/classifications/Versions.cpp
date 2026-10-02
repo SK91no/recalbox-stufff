@@ -1,0 +1,214 @@
+//
+// Created by pre2010-02 on 02/03/2022.
+//
+
+#include "Versions.h"
+#include <utils/storage/HashMap.h>
+
+String& Versions::Serialize(Versions::GameVersions versions)
+{
+  static HashMap<GameVersions, String> sVesionTagToVersion
+    ({
+
+       {GameVersions::Sample, "sample"},
+       {GameVersions::Sample1, "sample 1"},
+       {GameVersions::Sample2, "sample 2"},
+
+       {GameVersions::Proto, "proto"},
+       {GameVersions::Proto1, "proto 1"},
+       {GameVersions::Proto2, "proto 2"},
+
+       {GameVersions::Beta, "beta"},
+       {GameVersions::Beta1, "beta 1"},
+       {GameVersions::Beta2, "beta 2"},
+       {GameVersions::Beta3, "beta 3"},
+       {GameVersions::Beta4, "beta 4"},
+       {GameVersions::Beta5, "beta 5"},
+       {GameVersions::Beta6, "beta 6"},
+       {GameVersions::Beta7, "beta 7"},
+       {GameVersions::Beta8, "beta 8"},
+       {GameVersions::Beta9, "beta 9"},
+
+       {GameVersions::Alt, "alt"},
+       {GameVersions::Alt1, "alt 1"},
+       {GameVersions::Alt2, "alt 2"},
+       {GameVersions::Alt3, "alt 3"},
+       {GameVersions::Alt4, "alt 4"},
+       {GameVersions::Alt5, "alt 5"},
+       {GameVersions::Alt6, "alt 6"},
+       {GameVersions::Alt7, "alt 7"},
+       {GameVersions::Alt8, "alt 8"},
+       {GameVersions::Alt9, "alt 9"},
+
+       {GameVersions::Rev, "rev"},
+       {GameVersions::Rev1, "rev 1"},
+       {GameVersions::Rev2, "rev 2"},
+       {GameVersions::Rev3, "rev 3"},
+       {GameVersions::Rev4, "rev 4"},
+       {GameVersions::Rev5, "rev 5"},
+       {GameVersions::Rev6, "rev 6"},
+       {GameVersions::Rev7, "rev 7"},
+       {GameVersions::Rev8, "rev 8"},
+       {GameVersions::Rev9, "rev 9"},
+
+       {GameVersions::RevA, "rev a"},
+       {GameVersions::RevB, "rev b"},
+       {GameVersions::RevC, "rev c"},
+       {GameVersions::RevD, "rev d"},
+       {GameVersions::RevE, "rev e"},
+       {GameVersions::RevF, "rev f"},
+       {GameVersions::RevG, "rev g"},
+       {GameVersions::RevH, "rev h"},
+
+       {GameVersions::V1_1, "v1.1"},
+       {GameVersions::V1_2, "v1.2"},
+       {GameVersions::V1_3, "v1.3"},
+       {GameVersions::V1_4, "v1.4"},
+       {GameVersions::V1_5, "v1.5"},
+       {GameVersions::V1_6, "v1.6"},
+       {GameVersions::V1_7, "v1.7"},
+       {GameVersions::V1_8, "v1.8"},
+       {GameVersions::V1_9, "v1.9"},
+
+       {GameVersions::V2_1, "v2.1"},
+       {GameVersions::V2_2, "v2.2"},
+       {GameVersions::V2_3, "v2.3"},
+       {GameVersions::V2_4, "v2.4"},
+       {GameVersions::V2_5, "v2.5"},
+       {GameVersions::V2_6, "v2.6"},
+       {GameVersions::V2_7, "v2.7"},
+       {GameVersions::V2_8, "v2.8"},
+       {GameVersions::V2_9, "v2.9"},
+
+       {GameVersions::VirtualConsole, "virtual console"}
+       });
+
+  String* found = sVesionTagToVersion.try_get(versions);
+  if (found != nullptr)
+    return *found;
+
+  static String sEmpty("");
+  return sEmpty;
+}
+
+Versions::GameVersions Versions::Deserialize(const String& tag)
+{
+  static HashMap<String, GameVersions> sVesionTagToVersion
+    ({
+
+      {"sample", GameVersions::Sample},
+      {"sample 1", GameVersions::Sample1},
+      {"sample 2", GameVersions::Sample2},
+
+      {"proto",  GameVersions::Proto},
+      {"proto 1",  GameVersions::Proto1},
+      {"proto 2",  GameVersions::Proto2},
+
+      {"beta",   GameVersions::Beta},
+      {"beta 1", GameVersions::Beta1},
+      {"beta 2",  GameVersions::Beta2},
+      {"beta 3",  GameVersions::Beta3},
+      {"beta 4",  GameVersions::Beta4},
+      {"beta 5",  GameVersions::Beta5},
+      {"beta 6",  GameVersions::Beta6},
+      {"beta 7",  GameVersions::Beta7},
+      {"beta 8",  GameVersions::Beta8},
+      {"beta 9",  GameVersions::Beta9},
+
+      {"alt",   GameVersions::Alt},
+      {"alt 1", GameVersions::Alt1},
+      {"alt 2",  GameVersions::Alt2},
+      {"alt 3",  GameVersions::Alt3},
+      {"alt 4",  GameVersions::Alt4},
+      {"alt 5",  GameVersions::Alt5},
+      {"alt 6",  GameVersions::Alt6},
+      {"alt 7",  GameVersions::Alt7},
+      {"alt 8",  GameVersions::Alt8},
+      {"alt 9",  GameVersions::Alt9},
+
+      {"rev",    GameVersions::Rev},
+      {"rev 1",  GameVersions::Rev1},
+      {"rev 2",   GameVersions::Rev2},
+      {"rev 3",   GameVersions::Rev3},
+      {"rev 4",   GameVersions::Rev4},
+      {"rev 5",   GameVersions::Rev5},
+      {"rev 6",   GameVersions::Rev6},
+      {"rev 7",   GameVersions::Rev7},
+      {"rev 8",   GameVersions::Rev8},
+      {"rev 9",   GameVersions::Rev9},
+
+      {"rev a",  GameVersions::RevA},
+      {"rev b",   GameVersions::RevB},
+      {"rev c",   GameVersions::RevC},
+      {"rev d",   GameVersions::RevD},
+      {"rev e",   GameVersions::RevE},
+      {"rev f",   GameVersions::RevF},
+      {"rev g",   GameVersions::RevG},
+      {"rev h",   GameVersions::RevH},
+
+      {"v1.1",  GameVersions::V1_1},
+      {"v1.2",  GameVersions::V1_2},
+      {"v1.3",  GameVersions::V1_3},
+      {"v1.4",  GameVersions::V1_4},
+      {"v1.5",  GameVersions::V1_5},
+      {"v1.6",  GameVersions::V1_6},
+      {"v1.7",  GameVersions::V1_6},
+      {"v1.8",  GameVersions::V1_8},
+      {"v1.9",  GameVersions::V1_9},
+
+      {"v2.1",  GameVersions::V1_1},
+      {"v2.2",  GameVersions::V1_2},
+      {"v2.3",  GameVersions::V1_3},
+      {"v2.4",  GameVersions::V1_4},
+      {"v2.5",  GameVersions::V1_5},
+      {"v2.6",  GameVersions::V1_6},
+      {"v2.7",  GameVersions::V1_6},
+      {"v2.8",  GameVersions::V1_8},
+      {"v2.9",  GameVersions::V1_9}
+    });
+
+
+  GameVersions* found = sVesionTagToVersion.try_get(tag);
+  if (found != nullptr)
+    return *found;
+
+  if (tag.Contains("virtual console") || tag.Contains("switch online") || tag.Contains("classic mini"))
+    return GameVersions::VirtualConsole;
+
+  return GameVersions::Unknown;
+}
+
+Versions::GameVersions Versions::ExtractGameVersionNoIntro(const String& filename)
+{
+  for(int end = 0;;)
+  {
+    int begin = filename.Find('(', end);
+    if (begin < 0) break;
+    end = filename.Find(')', begin);
+    if (end < 0) break;
+
+    String tag = filename.SubString(begin +1, end - begin - 1).LowerCase();
+    if (tag.empty()) break;
+
+    GameVersions gameVersions = Deserialize(tag);
+    if(gameVersions != GameVersions::Unknown)
+      return gameVersions;
+  }
+
+  for(int end = 0;;)
+  {
+    int begin = filename.Find('[', end);
+    if (begin < 0) break;
+    end = filename.Find(']', begin);
+    if (end < 0) break;
+
+    String tag = filename.SubString(begin +1, end - begin - 1).LowerCase();
+    if (tag.empty()) break;
+
+    GameVersions gameVersions = Deserialize(tag);
+    if(gameVersions != GameVersions::Unknown)
+      return gameVersions;
+  }
+
+  return GameVersions::None;
+}

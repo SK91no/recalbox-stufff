@@ -1,0 +1,47 @@
+From b723ff555fd7ddb8c41136414ace4464fe9f5cd5 Mon Sep 17 00:00:00 2001
+From: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Date: Thu, 28 Aug 2025 10:08:13 +0200
+Subject: [PATCH] package/b43-firmware: fix upstream URL
+
+Unfortunately Larry Finger passed away in June 2024 [1], and
+lwfinger.com is now squatted, and no longer has the same content as
+before, causing a breakage when trying to download the 5.100.138
+version of b43-firmware.
+
+Since the exact same file is available from the OpenWrt mirror, and we
+already use this mirror for the other b43-firmware version, let's use
+the OpenWrt mirror for both.
+
+Fixes:
+
+  https://autobuild.buildroot.org/results/daf0aefbb10299f150c2c6a93df759ad07974752/
+
+[1] https://lore.kernel.org/linux-wireless/77997185-86a6-41c5-af7a-74e4e9064437@lwfinger.net/
+
+Signed-off-by: Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Signed-off-by: Peter Korsgaard <peter@korsgaard.com>
+---
+ package/b43-firmware/b43-firmware.mk | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/package/b43-firmware/b43-firmware.mk b/package/b43-firmware/b43-firmware.mk
+index 8e9e877692..d4ab8c9b24 100644
+--- a/package/b43-firmware/b43-firmware.mk
++++ b/package/b43-firmware/b43-firmware.mk
+@@ -4,14 +4,14 @@
+ #
+ ################################################################################
+ 
++B43_FIRMWARE_SITE = http://mirror2.openwrt.org/sources
++
+ ifeq ($(BR2_PACKAGE_B43_FIRMWARE_KERNEL_AFTER_3_2),y)
+ B43_FIRMWARE_VERSION = 5.100.138
+-B43_FIRMWARE_SITE = http://www.lwfinger.com/b43-firmware
+ B43_FIRMWARE_SOURCE = broadcom-wl-$(B43_FIRMWARE_VERSION).tar.bz2
+ B43_FIRMWARE_DRIVER_FILE = linux/wl_apsta.o
+ else ifeq ($(BR2_PACKAGE_B43_FIRMWARE_KERNEL_BEFORE_3_2),y)
+ B43_FIRMWARE_VERSION = 5.10.56.27.3
+-B43_FIRMWARE_SITE = http://mirror2.openwrt.org/sources
+ B43_FIRMWARE_SOURCE = broadcom-wl-$(B43_FIRMWARE_VERSION)_mipsel.tar.bz2
+ B43_FIRMWARE_DRIVER_FILE = driver/wl_apsta/wl_prebuilt.o
+ endif

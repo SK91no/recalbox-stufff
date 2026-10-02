@@ -1,0 +1,11 @@
+# Nintendo controllers permissions
+
+# Fix permissions for all joystick devices
+KERNEL=="js*", SUBSYSTEM=="input", MODE="0666"
+
+# Reload joydev when Nintendo controller connects (lock auto-expires after 3s)
+SUBSYSTEM=="input", KERNEL=="event*", ATTRS{id/vendor}=="057e", ATTRS{name}!="*IMU*", RUN+="/bin/sh -c '(sleep 3; rm -rf /tmp/joydev.lock) & mkdir /tmp/joydev.lock 2>/dev/null && (sleep 0.5; rmmod joydev; modprobe joydev) || true'"
+
+# Make Joy-Con IMU devices inaccessible
+SUBSYSTEM=="input", ATTRS{name}=="Joy-Con (L) (IMU)", MODE="0000"
+SUBSYSTEM=="input", ATTRS{name}=="Joy-Con (R) (IMU)", MODE="0000"

@@ -1,0 +1,22 @@
+From 4972da7137fbebc93071a17ee1fe6795ef50b5a3 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 20 Feb 2025 00:34:50 +0100
+Subject: [PATCH] fix asset install
+
+---
+ src/CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 780b802..1d221fc 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -162,3 +162,5 @@ set(CPACK_PACKAGE_VERSION_MINOR "${VER_MINOR}")
+ set(CPACK_PACKAGE_VERSION_PATCH "${VER_PATCH}")
+ 
+ include(CPack)
++install(TARGETS hypseus DESTINATION bin)
++install(DIRECTORY ../pics ../fonts ../sound DESTINATION share/daphne)
+-- 
+2.48.1
+

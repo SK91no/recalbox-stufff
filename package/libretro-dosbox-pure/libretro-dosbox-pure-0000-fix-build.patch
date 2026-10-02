@@ -1,0 +1,52 @@
+From dbbb802442928cffd227fbdcfcbf2c1d91c0423c Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 21 Jan 2025 17:08:58 +0100
+Subject: [PATCH] fix build
+
+---
+ Makefile | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 02adfb7..40f9267 100644
+--- a/Makefile
++++ b/Makefile
+@@ -33,7 +33,7 @@ SOURCES := \
+   src/*/*/*.cpp
+ 
+ CPUFLAGS := $(MAKE_CPUFLAGS)
+-STRIPCMD := $(or $(STRIP),strip) --strip-all
++STRIPCMD := $(STRIP) --strip-all
+ ifneq ($(ISWIN),)
+   OUTNAME := dosbox_pure_libretro.dll
+   CXX     ?= g++
+@@ -59,7 +59,7 @@ else ifneq (,$(findstring ios,$(platform)))
+   endif
+   COMMONFLAGS += $(MINVERSION) -Wno-ignored-optimization-argument -Wno-unknown-warning-option -Wno-deprecated-declarations
+   LDFLAGS += $(MINVERSION)
+-  STRIPCMD := $(or $(STRIP),strip) -xS
++  STRIPCMD := $(STRIP) -xS
+ else ifeq ($(platform),tvos-arm64)
+   ifeq ($(IOSSDK),)
+     IOSSDK := $(shell xcodebuild -version -sdk appletvos Path)
+@@ -69,7 +69,7 @@ else ifeq ($(platform),tvos-arm64)
+   MINVERSION = -mappletvos-version-min=11.0
+   LDFLAGS := -Wl,-dead_strip $(MINVERSION)
+   COMMONFLAGS += -DDISABLE_DYNAREC=1 -Wno-unknown-warning-option -Wno-deprecated-declarations $(MINVERSION)
+-  STRIPCMD := $(or $(STRIP),strip) -xS
++  STRIPCMD := $(STRIP) -xS
+ else ifneq ($(ISMAC),)
+   OUTNAME := dosbox_pure_libretro.dylib
+   CXX     ?= c++
+@@ -83,7 +83,7 @@ else ifneq ($(ISMAC),)
+   endif
+   COMMONFLAGS  += $(ARCHFLAGS)
+   LDFLAGS      += $(ARCHFLAGS)
+-  STRIPCMD := $(or $(STRIP),strip) -xS
++  STRIPCMD := $(STRIP) -xS
+ else ifeq ($(platform),windows) # For MSYS2 only
+   OUTNAME := dosbox_pure_libretro.dll
+   CXX     ?= g++
+-- 
+2.48.1
+

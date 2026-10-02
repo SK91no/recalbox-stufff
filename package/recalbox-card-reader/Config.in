@@ -1,0 +1,10 @@
+config BR2_PACKAGE_RECALBOX_CARD_READER
+	bool "Recalbox card reader dts and driver"
+	depends on BR2_LINUX_KERNEL
+	select BR2_PACKAGE_RECALBOX_HARDWARE
+	help
+	  Support for Recalbox card reader
+	  for Rasbperry Pi 5
+
+comment "Recalbox card reader needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

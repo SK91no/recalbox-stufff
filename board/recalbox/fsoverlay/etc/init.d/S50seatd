@@ -1,0 +1,30 @@
+#!/bin/bash
+
+daemon_name="seatd"
+daemon_cmd="/usr/bin/seatd"
+daemon_pid="/run/seatd.pid"
+
+# exit if seatd not present on this system
+[ -x "$daemon_cmd" ] || exit
+
+start() {
+  echo -n "Starting $daemon_name: "
+  start-stop-daemon -S -b -m -p "$daemon_pid" -- "$daemon_cmd"
+  echo "ok"
+}
+
+stop() {
+  echo -n "Stopping $daemon_name: "
+  start-stop-daemon -K -m -p "$daemon_pid"
+}
+
+restart() {
+  stop
+  start
+}
+
+case $1 in
+  start) start ;;
+  stop) stop ;;
+  restart) restart ;;
+esac

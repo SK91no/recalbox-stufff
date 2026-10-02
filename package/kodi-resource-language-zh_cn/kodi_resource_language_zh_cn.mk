@@ -1,0 +1,25 @@
+################################################################################
+#
+# kodi chinese simple language resource
+#
+################################################################################
+
+KODI_RESOURCE_LANGUAGE_ZH_CN_RELEASE = omega
+KODI_RESOURCE_LANGUAGE_ZH_CN_VERSION = 11.0.96
+KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGINNAME = resource.language.zh_cn
+KODI_RESOURCE_LANGUAGE_ZH_CN_SOURCE = $(KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGINNAME)-$(KODI_RESOURCE_LANGUAGE_ZH_CN_VERSION).zip
+KODI_RESOURCE_LANGUAGE_ZH_CN_SITE = https://mirrors.kodi.tv/addons/$(KODI_RESOURCE_LANGUAGE_ZH_CN_RELEASE)/$(KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGINNAME)
+KODI_RESOURCE_LANGUAGE_ZH_CN_LICENSE = COPYRIGHT
+
+KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGIN_TARGET_DIR=$(TARGET_DIR)/usr/share/kodi/addons
+
+define KODI_RESOURCE_LANGUAGE_ZH_CN_EXTRACT_CMDS
+	@unzip -q -o $(DL_DIR)/kodi-resource-language-zh_cn/$(KODI_RESOURCE_LANGUAGE_ZH_CN_SOURCE) -d $(@D)
+endef
+
+define KODI_RESOURCE_LANGUAGE_ZH_CN_INSTALL_TARGET_CMDS
+	@mkdir -p $(KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGIN_TARGET_DIR)
+	@cp -r $(@D)/$(KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGINNAME) $(KODI_RESOURCE_LANGUAGE_ZH_CN_PLUGIN_TARGET_DIR)
+endef
+
+$(eval $(generic-package))

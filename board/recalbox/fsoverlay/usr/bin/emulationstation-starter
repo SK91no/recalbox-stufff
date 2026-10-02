@@ -1,0 +1,33 @@
+#!/bin/bash
+INIT_SCRIPT=$(basename "$0")
+
+kill_emulationstation() {
+  recallog -s "${INIT_SCRIPT}" -t "ES" "emulationstation-starter caught SIGTERM signal!"
+  kill -TERM "$es_child" 2>/dev/null
+  loops=0
+  while kill -0 "$es_child" >/dev/null 2>&1 && [ $loops -lt 200 ]; do
+    sleep 0.1
+    loops=$(( loops + 1 ))
+  done
+  exit
+}
+
+trap kill_emulationstation SIGTERM
+
+rc=1
+
+recallog -s "${INIT_SCRIPT}" -t "ES" "emulationstation-starter started"
+
+while [ $rc -ne 0 ] &&    # normal exit \
+      [ $rc -ne 143 ] &&  # sigterm \
+      [ $rc -ne 137 ]; do # sigkill
+  /usr/bin/emulationstation &
+  es_child=$!
+  recallog -s "${INIT_SCRIPT}" -t "ES" "started emulationstation (pid=$es_child)"
+  wait $es_child
+  rc=$?
+  recallog -s "${INIT_SCRIPT}" -t "ES" "emulationstation exited code $rc"
+  sleep 5
+done
+
+recallog -s "${INIT_SCRIPT}" -t "ES" "emulationstation-starter ended"

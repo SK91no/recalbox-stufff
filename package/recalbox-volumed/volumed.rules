@@ -1,0 +1,1 @@
+KERNEL=="event*", ACTION=="add|remove", SUBSYSTEM=="input", RUN+="/usr/bin/killall -sighup volumed"

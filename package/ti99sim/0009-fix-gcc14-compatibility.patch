@@ -1,0 +1,24 @@
+From fcfc01582bdacf6d11b0e1c7d6521dbbf61e5bcd Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Thu, 12 Sep 2024 23:38:21 +0200
+Subject: [PATCH 9/9] fix gcc14 compatibility
+
+---
+ src/core/device-support.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/core/device-support.cpp b/src/core/device-support.cpp
+index ebaaf5e..1b3c5c1 100644
+--- a/src/core/device-support.cpp
++++ b/src/core/device-support.cpp
+@@ -27,6 +27,7 @@
+ //----------------------------------------------------------------------------
+ 
+ #include <regex>
++#include <cstring>
+ #include "idevice.hpp"
+ #include "icomputer.hpp"
+ #include "cartridge.hpp"
+-- 
+2.46.0
+

@@ -1,0 +1,12 @@
+config BR2_PACKAGE_LIBRETRO_GEOLITH
+	bool "libretro-geolith"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_ZLIB
+	help
+	  Geolith is a highly accurate Neo Geo AES/MVS emulator
+
+	  https://github.com/libretro/geolith-libretro
+
+comment "LIBRETRO_GEOLITH needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

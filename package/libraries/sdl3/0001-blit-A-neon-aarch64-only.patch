@@ -1,0 +1,27 @@
+From: Recalbox <recalbox@recalbox.com>
+Date: Mon, 7 Jul 2026 00:00:00 +0000
+Subject: [PATCH] video: gate NEON alpha blit on AArch64
+
+Blit8888to8888PixelAlphaSwizzleNEON uses vqtbl1q_u8, vmlal_high_u8 and
+vaddhn_high_u16, which are AArch64-only NEON intrinsics. The guard only
+checks (__ARM_ARCH >= 8), which is also true on 32-bit ARMv8 targets
+(e.g. Cortex-A53 built for arm-linux-gnueabihf, like rpi3/rpizero2),
+where these intrinsics do not exist and the build fails. Require an
+actual AArch64 target.
+
+--- a/src/video/SDL_blit_A.c
++++ b/src/video/SDL_blit_A.c
+@@ -743,5 +743,5 @@
+ }
+
+-#if defined(SDL_NEON_INTRINSICS) && (__ARM_ARCH >= 8)
++#if defined(SDL_NEON_INTRINSICS) && (__ARM_ARCH >= 8) && defined(__aarch64__)
+
+ static void Blit8888to8888PixelAlphaSwizzleNEON(SDL_BlitInfo *info)
+@@ -1005,5 +1005,5 @@
+ #endif
+
+-#if defined(SDL_NEON_INTRINSICS) && (__ARM_ARCH >= 8)
++#if defined(SDL_NEON_INTRINSICS) && (__ARM_ARCH >= 8) && defined(__aarch64__)
+                 // To prevent "unused function" compiler warnings/errors
+                 (void)Blit8888to8888PixelAlpha;

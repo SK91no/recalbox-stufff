@@ -1,0 +1,140 @@
+diff --git a/libretro/libretro.c b/libretro/libretro.c
+--- a/libretro/libretro.c
++++ b/libretro/libretro.c
+@@ -198,6 +198,14 @@
+     unsigned v;
+ } kvpair_t;
+ 
++/* Recalbox RGB JAMMA device subclasses.
++   The numeric values (1029/1285/1541) are a contract with Recalbox configgen
++   (JammaLayout.toRetroarchDeviceType) and must match libretro-fbneo, hence the
++   RETRO_DEVICE_ANALOG base (like fbneo) rather than RETRO_DEVICE_JOYPAD. */
++#define RETRO_RB_JAMMA_NEOLINE   RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_ANALOG, 3)
++#define RETRO_RB_JAMMA_NEOSQUARE RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_ANALOG, 4)
++#define RETRO_RB_JAMMA_STANDARD  RETRO_DEVICE_SUBCLASS(RETRO_DEVICE_ANALOG, 5)
++
+ static kvpair_t bindmap_js[] = {
+     { RETRO_DEVICE_ID_JOYPAD_UP,        0x01 },
+     { RETRO_DEVICE_ID_JOYPAD_DOWN,      0x02 },
+@@ -213,6 +221,56 @@
+     { RETRO_DEVICE_ID_JOYPAD_R2,        0x70 }  // ABC
+ };
+ 
++// Recalbox RGB JAMMA "NeoLine" button layout (mirror of libretro-fbneo).
++// Only the four face buttons are remapped; the JAMMA harness has no combo buttons.
++static kvpair_t bindmap_js_neoline[] = {
++    { RETRO_DEVICE_ID_JOYPAD_UP,        0x01 },
++    { RETRO_DEVICE_ID_JOYPAD_DOWN,      0x02 },
++    { RETRO_DEVICE_ID_JOYPAD_LEFT,      0x04 },
++    { RETRO_DEVICE_ID_JOYPAD_RIGHT,     0x08 },
++    { RETRO_DEVICE_ID_JOYPAD_X,         0x10 }, // A
++    { RETRO_DEVICE_ID_JOYPAD_B,         0x20 }, // B
++    { RETRO_DEVICE_ID_JOYPAD_A,         0x40 }, // C
++    { RETRO_DEVICE_ID_JOYPAD_Y,         0x80 }  // D
++};
++
++// Recalbox RGB JAMMA "NeoSquare" button layout (mirror of libretro-fbneo).
++static kvpair_t bindmap_js_neosquare[] = {
++    { RETRO_DEVICE_ID_JOYPAD_UP,        0x01 },
++    { RETRO_DEVICE_ID_JOYPAD_DOWN,      0x02 },
++    { RETRO_DEVICE_ID_JOYPAD_LEFT,      0x04 },
++    { RETRO_DEVICE_ID_JOYPAD_RIGHT,     0x08 },
++    { RETRO_DEVICE_ID_JOYPAD_B,         0x10 }, // A
++    { RETRO_DEVICE_ID_JOYPAD_X,         0x20 }, // B
++    { RETRO_DEVICE_ID_JOYPAD_A,         0x40 }, // C
++    { RETRO_DEVICE_ID_JOYPAD_L,         0x80 }  // D
++};
++
++// Per-port joystick bindmap selection. Defaults to the standard layout
++// (12 entries incl. combos); JAMMA NeoLine/NeoSquare use 8 entries (no combos).
++typedef struct {
++    kvpair_t *map;
++    unsigned count;
++} jsbind_t;
++
++static jsbind_t js_bind[4] = {
++    { bindmap_js, 12 }, { bindmap_js, 12 }, { bindmap_js, 12 }, { bindmap_js, 12 }
++};
++
++// Selectable controller types (exposes the Recalbox RGB JAMMA layouts in the UI)
++static const struct retro_controller_description port_devices[] = {
++    { "Neo Geo Joystick",           RETRO_DEVICE_JOYPAD },
++    { "Recalbox Jamma (NeoLine)",   RETRO_RB_JAMMA_NEOLINE },
++    { "Recalbox Jamma (NeoSquare)", RETRO_RB_JAMMA_NEOSQUARE },
++    { "Recalbox Jamma (Standard)",  RETRO_RB_JAMMA_STANDARD },
++};
++
++static const struct retro_controller_info port_info[] = {
++    { port_devices, 4 },
++    { port_devices, 4 },
++    { NULL, 0 }
++};
++
+ static kvpair_t bindmap_stat_a[] = {
+     { RETRO_DEVICE_ID_JOYPAD_SELECT,    0x06 }, // Coin 1
+     { RETRO_DEVICE_ID_JOYPAD_SELECT,    0x05 }, // Coin 2
+@@ -447,19 +505,22 @@
+     input_poll_cb();
+     unsigned b = 0xff;
+ 
++    // Per-port bindmap: standard layout, or a Recalbox RGB JAMMA layout
++    const jsbind_t *jb = &js_bind[port & 3];
++
+     if (bitmasks) {
+         int16_t ret = input_state_cb(port, RETRO_DEVICE_JOYPAD, 0,
+             RETRO_DEVICE_ID_JOYPAD_MASK);
+ 
+-        for (unsigned i = 0; i < 12; ++i) {
+-            if (ret & (1 << bindmap_js[i].k))
+-                b &= ~bindmap_js[i].v;
++        for (unsigned i = 0; i < jb->count; ++i) {
++            if (ret & (1 << jb->map[i].k))
++                b &= ~jb->map[i].v;
+         }
+     }
+     else {
+-        for (unsigned i = 0; i < 12; ++i) {
+-            if (input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, bindmap_js[i].k))
+-                b &= ~bindmap_js[i].v;
++        for (unsigned i = 0; i < jb->count; ++i) {
++            if (input_state_cb(port, RETRO_DEVICE_JOYPAD, 0, jb->map[i].k))
++                b &= ~jb->map[i].v;
+         }
+     }
+ 
+@@ -987,6 +1048,27 @@
+ 
+ void retro_set_controller_port_device(unsigned port, unsigned device) {
+     log_cb(RETRO_LOG_INFO, "Plugging device %u into port %u.\n", device, port);
++
++    if (port >= 4)
++        return;
++
++    // Select the per-port joystick bindmap for Recalbox RGB JAMMA layouts.
++    // Any other device (Joystick/None/...) keeps the standard Neo Geo layout.
++    switch (device) {
++        case RETRO_RB_JAMMA_NEOLINE:
++            js_bind[port].map = bindmap_js_neoline;
++            js_bind[port].count = 8;
++            break;
++        case RETRO_RB_JAMMA_NEOSQUARE:
++            js_bind[port].map = bindmap_js_neosquare;
++            js_bind[port].count = 8;
++            break;
++        case RETRO_RB_JAMMA_STANDARD:
++        default:
++            js_bind[port].map = bindmap_js;
++            js_bind[port].count = 12;
++            break;
++    }
+ }
+ 
+ void retro_get_system_info(struct retro_system_info *info) {
+@@ -1300,6 +1382,7 @@
+     }
+     else {
+         environ_cb(RETRO_ENVIRONMENT_SET_INPUT_DESCRIPTORS, input_desc_js);
++        environ_cb(RETRO_ENVIRONMENT_SET_CONTROLLER_INFO, (void *)port_info);
+     }
+ 
+     geo_reset(1);

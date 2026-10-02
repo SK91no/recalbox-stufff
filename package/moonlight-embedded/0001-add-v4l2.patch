@@ -1,0 +1,3598 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2be10fd..f5c35c8 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -23,30 +23,51 @@ find_package(Rockchip)
+ 
+ find_package(PkgConfig REQUIRED)
+ 
+-option(ENABLE_SDL "Compile SDL support" ON)
+-option(ENABLE_FFMPEG "Compile FFMPEG support" ON)
+-option(ENABLE_X11 "Compile X11 support (requires ENABLE_FFMPEG)" ON)
+-option(ENABLE_CEC "Compile CEC support" ON)
+-option(ENABLE_PULSE "Compile PulseAudio support" ON)
++option(ENABLE_SDL   "Compile SDL support"                     ON)
++option(ENABLE_FFMPEG "Compile FFMPEG support"                 ON)
++option(ENABLE_X11   "Compile X11 support (requires ENABLE_FFMPEG)" ON)
++option(ENABLE_CEC   "Compile CEC support"                     ON)
++option(ENABLE_PULSE "Compile PulseAudio support"              ON)
++
++# FIX #2 : option explicite pour le backend Pi 5
++option(ENABLE_V4L2_DRM "Compile V4L2 M2M + DRM/KMS support (Pi 5)" ON)
++option(ENABLE_MMLA "Compile MMLA support" OFF)
+ 
+ pkg_check_modules(EVDEV REQUIRED libevdev)
+-pkg_check_modules(UDEV REQUIRED libudev)
++pkg_check_modules(UDEV  REQUIRED libudev)
++
+ if (ENABLE_SDL)
+   pkg_check_modules(SDL sdl2>=2.0.4)
+ endif()
++
+ if (ENABLE_FFMPEG)
+   pkg_check_modules(AVCODEC libavcodec)
+-  pkg_check_modules(AVUTIL libavutil)
+-  pkg_check_modules(VDPAU vdpau)
+-  pkg_check_modules(LIBVA libva)
+-  pkg_check_modules(EGL egl)
+-  pkg_check_modules(GLES glesv2)
++  pkg_check_modules(AVUTIL  libavutil)
++  pkg_check_modules(VDPAU   vdpau)
++  pkg_check_modules(LIBVA   libva)
++  pkg_check_modules(EGL     egl)
++  pkg_check_modules(GLES    glesv2)
+ 
+   if (ENABLE_X11)
+-    pkg_check_modules(XLIB x11)
++    pkg_check_modules(XLIB      x11)
+     pkg_check_modules(LIBVA_X11 libva-x11)
+   endif()
++
++  # FIX #3+4 : libswscale nécessaire pour la conversion de format dans
++  # v4l2drm.c (YUV→XRGB8888) et potentiellement utile pour d'autres backends.
++  pkg_check_modules(SWSCALE libswscale)
++
++  # FIX #2 : libdrm pour le rendu DRM/KMS du backend Pi 5
++  if (ENABLE_V4L2_DRM)
++    pkg_check_modules(LIBDRM libdrm)
++  # Fix D : GBM + EGL pour le zero-copy DRM_PRIME sur Pi 5
++  # EGL est fourni par Mesa (libEGL) — on ajoute le check explicitement
++  pkg_check_modules(GBM   gbm)
++  pkg_check_modules(GLES2 glesv2)
++  pkg_check_modules(EGL2  egl)   # distinct de EGL (X11) pour éviter les conflits
++  endif()
+ endif()
++
+ if (ENABLE_PULSE)
+   pkg_check_modules(PULSE libpulse-simple)
+ endif()
+@@ -54,14 +75,20 @@ if (ENABLE_CEC)
+   pkg_check_modules(CEC libcec>=4)
+ endif()
+ 
+-pkg_check_modules(MMAL mmal)
+-if (NOT MMAL_FOUND)
+-  find_package(MMAL)
++if (ENABLE_MMAL)
++  pkg_check_modules(MMAL mmal)
++  if (NOT MMAL_FOUND)
++    find_package(MMAL)
++  endif()
+ endif()
+ 
++# -------------------------------------------------------------------------
++# Flags de feature
++# -------------------------------------------------------------------------
+ set(VDPAU_ACCEL_FOUND FALSE)
+-set(VA_ACCEL_FOUND FALSE)
+-set(SOFTWARE_FOUND FALSE)
++set(VA_ACCEL_FOUND    FALSE)
++set(SOFTWARE_FOUND    FALSE)
++set(V4L2_DRM_FOUND    FALSE)  # FIX #2
+ 
+ if(AVCODEC_FOUND AND AVUTIL_FOUND)
+   if(EGL_FOUND AND GLES_FOUND AND XLIB_FOUND)
+@@ -76,10 +103,24 @@ if(AVCODEC_FOUND AND AVUTIL_FOUND)
+   if(SDL_FOUND OR X11_FOUND)
+     set(SOFTWARE_FOUND TRUE)
+   endif()
++
++  # FIX #2 : V4L2_DRM ne nécessite pas X11 — juste libdrm + libswscale
++  if (ENABLE_V4L2_DRM AND LIBDRM_FOUND AND AVCODEC_FOUND)
++    # Fix D : EGL zero-copy (optionnel, fallback swscale si absent)
++    # EGL est toujours présent quand GBM+GLES2 le sont (même package Mesa)
++    if (GBM_FOUND AND GLES2_FOUND AND (EGL_FOUND OR EGL2_FOUND))
++      set(V4L2_DRM_EGL TRUE)
++      message(STATUS "V4L2_DRM: EGL zero-copy path enabled")
++    else()
++      message(STATUS "V4L2_DRM: EGL unavailable, swscale fallback only "
++              "(GBM=${GBM_FOUND} GLES2=${GLES2_FOUND} EGL=${EGL_FOUND} EGL2=${EGL2_FOUND})")
++    endif()
++    set(V4L2_DRM_FOUND TRUE)
++  endif()
+ endif()
+ 
+ SET(MOONLIGHT_COMMON_INCLUDE_DIR ./third_party/moonlight-common-c/src)
+-SET(GAMESTREAM_INCLUDE_DIR ./libgamestream)
++SET(GAMESTREAM_INCLUDE_DIR       ./libgamestream)
+ 
+ include_directories("${PROJECT_BINARY_DIR}")
+ 
+@@ -94,17 +135,25 @@ if (CMAKE_SYSTEM_NAME MATCHES "FreeBSD")
+   target_sources(moonlight PRIVATE ./src/audio/oss.c)
+ endif()
+ 
+-check_c_source_compiles("#include <sys/auxv.h>
+-                         int main(void) { return getauxval(AT_HWCAP); }" HAVE_GETAUXVAL)
++check_c_source_compiles("
++  #include <sys/auxv.h>
++  int main(void) { return getauxval(AT_HWCAP); }"
++  HAVE_GETAUXVAL)
+ if (HAVE_GETAUXVAL)
+   list(APPEND MOONLIGHT_DEFINITIONS HAVE_GETAUXVAL)
+ endif()
+ 
+-check_c_source_compiles("int main(void) { return __builtin_cpu_supports(\"aes\"); }" HAVE_BICS_AES)
++check_c_source_compiles(
++  "int main(void) { return __builtin_cpu_supports(\"aes\"); }"
++  HAVE_BICS_AES)
+ if (HAVE_BICS_AES)
+   list(APPEND MOONLIGHT_DEFINITIONS HAVE_BICS_AES)
+ endif()
+ 
++# -------------------------------------------------------------------------
++# Backends hardware (bibliothèques partagées chargées à l'exécution)
++# -------------------------------------------------------------------------
++
+ if (CEC_FOUND)
+   list(APPEND MOONLIGHT_DEFINITIONS HAVE_LIBCEC)
+   list(APPEND MOONLIGHT_OPTIONS CEC)
+@@ -162,6 +211,9 @@ if(ROCKCHIP_FOUND)
+   install(TARGETS moonlight-rk DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ endif()
+ 
++# -------------------------------------------------------------------------
++# Backend logiciel + accélération X11 (VAAPI / VDPAU)
++# -------------------------------------------------------------------------
+ if (SOFTWARE_FOUND)
+   target_sources(moonlight PRIVATE ./src/video/ffmpeg.c)
+   target_include_directories(moonlight PRIVATE ${AVCODEC_INCLUDE_DIRS} ${AVUTIL_INCLUDE_DIRS})
+@@ -195,6 +247,55 @@ if (SOFTWARE_FOUND)
+   endif()
+ endif()
+ 
++# -------------------------------------------------------------------------
++# FIX #2 : Backend V4L2 M2M + DRM/KMS (Raspberry Pi 5 et SoC Linux modernes)
++#
++# Compilé directement dans le binaire moonlight (comme X11/SDL), pas en
++# bibliothèque partagée, car il réutilise ffmpeg.c et util.c déjà présents.
++# Si SOFTWARE_FOUND est faux (pas de X11/SDL), on ajoute ffmpeg.c ici.
++# -------------------------------------------------------------------------
++if (V4L2_DRM_FOUND)
++  list(APPEND MOONLIGHT_DEFINITIONS HAVE_V4L2_DRM)
++  list(APPEND MOONLIGHT_OPTIONS     V4L2_DRM)
++
++  target_sources(moonlight PRIVATE ./src/video/v4l2drm.c)
++  target_include_directories(moonlight PRIVATE
++    ${LIBDRM_INCLUDE_DIRS}
++    ${SWSCALE_INCLUDE_DIRS}
++    ${AVCODEC_INCLUDE_DIRS}
++    ${AVUTIL_INCLUDE_DIRS})
++  target_link_libraries(moonlight
++    ${LIBDRM_LIBRARIES}
++    ${SWSCALE_LIBRARIES}
++    ${AVCODEC_LIBRARIES}
++    ${AVUTIL_LIBRARIES})
++
++  if (V4L2_DRM_EGL)
++    list(APPEND MOONLIGHT_DEFINITIONS HAVE_EGL)
++    target_include_directories(moonlight PRIVATE
++      ${GBM_INCLUDE_DIRS} ${GLES2_INCLUDE_DIRS} ${EGL_INCLUDE_DIRS})
++    target_link_libraries(moonlight
++      ${GBM_LIBRARIES} ${GLES2_LIBRARIES} ${EGL_LIBRARIES} ${EGL2_LIBRARIES})
++  endif()
++
++  # Si le backend X11/SDL n'a pas encore ajouté FFmpeg, on le fait ici
++  if (NOT SOFTWARE_FOUND)
++    target_sources(moonlight PRIVATE ./src/video/ffmpeg.c)
++    target_link_libraries(moonlight ${AVCODEC_LIBRARIES} ${AVUTIL_LIBRARIES})
++  endif()
++
++  message(STATUS "V4L2_DRM backend enabled (Pi 5 / V4L2 M2M + DRM/KMS)")
++else()
++  if (ENABLE_V4L2_DRM)
++    message(STATUS "V4L2_DRM backend disabled "
++            "(missing: libdrm=${LIBDRM_FOUND} libswscale=${SWSCALE_FOUND} "
++            "libavcodec=${AVCODEC_FOUND})")
++  endif()
++endif()
++
++# -------------------------------------------------------------------------
++# Audio
++# -------------------------------------------------------------------------
+ if (ALSA_FOUND)
+   list(APPEND MOONLIGHT_DEFINITIONS HAVE_ALSA)
+   list(APPEND MOONLIGHT_OPTIONS ALSA)
+@@ -211,23 +312,34 @@ if (PULSE_FOUND)
+   target_link_libraries(moonlight ${PULSE_LIBRARIES})
+ endif()
+ 
+-if (AMLOGIC_FOUND OR BROADCOM-OMX_FOUND OR MMAL_FOUND OR FREESCALE_FOUND OR ROCKCHIP_FOUND OR X11_FOUND)
++if (AMLOGIC_FOUND OR BROADCOM-OMX_FOUND OR MMAL_FOUND OR FREESCALE_FOUND OR ROCKCHIP_FOUND OR X11_FOUND OR V4L2_DRM_FOUND)
+   list(APPEND MOONLIGHT_DEFINITIONS HAVE_EMBEDDED)
+   list(APPEND MOONLIGHT_OPTIONS EMBEDDED)
+ endif()
+ 
+-if(NOT AMLOGIC_FOUND AND NOT BROADCOM-OMX_FOUND AND NOT MMAL_FOUND AND NOT FREESCALE_FOUND AND NOT ROCKCHIP_FOUND AND NOT SOFTWARE_FOUND)
++if(NOT AMLOGIC_FOUND AND NOT BROADCOM-OMX_FOUND AND NOT MMAL_FOUND AND NOT FREESCALE_FOUND AND NOT ROCKCHIP_FOUND AND NOT SOFTWARE_FOUND AND NOT V4L2_DRM_FOUND)
+   message(FATAL_ERROR "No video output available")
+ endif()
+ 
+ configure_file("./src/configuration.h.in" "${PROJECT_BINARY_DIR}/configuration.h")
+ 
+ set_property(TARGET moonlight PROPERTY COMPILE_DEFINITIONS ${MOONLIGHT_DEFINITIONS})
+-target_include_directories(moonlight PRIVATE ${GAMESTREAM_INCLUDE_DIR} ${MOONLIGHT_COMMON_INCLUDE_DIR} ${OPUS_INCLUDE_DIRS} ${EVDEV_INCLUDE_DIRS} ${UDEV_INCLUDE_DIRS})
+-target_link_libraries(moonlight ${EVDEV_LIBRARIES} ${OPUS_LIBRARY} ${UDEV_LIBRARIES} ${CMAKE_DL_LIBS})
++target_include_directories(moonlight PRIVATE
++  ${GAMESTREAM_INCLUDE_DIR}
++  ${MOONLIGHT_COMMON_INCLUDE_DIR}
++  ${OPUS_INCLUDE_DIRS}
++  ${EVDEV_INCLUDE_DIRS}
++  ${UDEV_INCLUDE_DIRS})
++target_link_libraries(moonlight
++  ${EVDEV_LIBRARIES}
++  ${OPUS_LIBRARY}
++  ${UDEV_LIBRARIES}
++  ${CMAKE_DL_LIBS})
+ 
+ add_subdirectory(docs)
+ 
++
+ install(TARGETS moonlight DESTINATION ${CMAKE_INSTALL_BINDIR})
+-install(FILES ./third_party/SDL_GameControllerDB/gamecontrollerdb.txt DESTINATION ${CMAKE_INSTALL_DATADIR}/moonlight)
++install(FILES ./third_party/SDL_GameControllerDB/gamecontrollerdb.txt
++        DESTINATION ${CMAKE_INSTALL_DATADIR}/moonlight)
+ install(FILES moonlight.conf DESTINATION ${CMAKE_INSTALL_SYSCONFDIR})
+diff --git a/src/audio/alsa.c b/src/audio/alsa.c
+index c63538c..480ab02 100644
+--- a/src/audio/alsa.c
++++ b/src/audio/alsa.c
+@@ -3,43 +3,38 @@
+  *
+  * Copyright (C) 2015-2017 Iwan Timmer
+  *
+- * Moonlight is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 3 of the License, or
+- * (at your option) any later version.
++ * Fixes :
++ *   - Buffer porté de 60 ms à 200 ms pour absorber les irrégularités
++ *     dues au packet loss réseau sans générer d'underrun.
++ *   - Après recover(), attente active si EAGAIN plutôt que drop silencieux.
++ *   - Ouverture en mode bloquant (suppression de SND_PCM_NONBLOCK) :
++ *     writei bloque au maximum ~20 ms (1 période), ce qui est acceptable
++ *     dans le thread audio dédié et évite tous les EAGAIN.
+  *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
++ * Moonlight is free software; GPL-3.0+
+  */
+ 
+ #include "audio.h"
+ 
+ #include <stdio.h>
+ #include <string.h>
++#include <errno.h>
+ 
+ #include <opus_multistream.h>
+ #include <alsa/asoundlib.h>
+ 
+-#define CHECK_RETURN(f) if ((rc = f) < 0) { printf("Alsa error code %d\n", rc); return -1; }
+ 
+-static snd_pcm_t *handle;
+-static OpusMSDecoder* decoder;
+-static short* pcmBuffer;
+-static int samplesPerFrame;
++static snd_pcm_t*       handle       = NULL;
++static OpusMSDecoder*   decoder      = NULL;
++static short*           pcmBuffer    = NULL;
++static int              samplesPerFrame;
+ 
+-static int alsa_renderer_init(int audioConfiguration, POPUS_MULTISTREAM_CONFIGURATION opusConfig, void* context, int arFlags) {
+-  int rc;
++static int alsa_renderer_init(int audioConfiguration,
++                               POPUS_MULTISTREAM_CONFIGURATION opusConfig,
++                               void* context, int arFlags) {
+   unsigned char alsaMapping[AUDIO_CONFIGURATION_MAX_CHANNEL_COUNT];
+ 
+-  /* The supplied mapping array has order: FL-FR-C-LFE-RL-RR-SL-SR
+-   * ALSA expects the order: FL-FR-RL-RR-C-LFE-SL-SR
+-   * We need copy the mapping locally and swap the channels around.
+-   */
++  /* Remap FL-FR-C-LFE-RL-RR → FL-FR-RL-RR-C-LFE (ordre ALSA) */
+   memcpy(alsaMapping, opusConfig->mapping, sizeof(alsaMapping));
+   if (opusConfig->channelCount >= 6) {
+     alsaMapping[2] = opusConfig->mapping[4];
+@@ -50,89 +45,134 @@ static int alsa_renderer_init(int audioConfiguration, POPUS_MULTISTREAM_CONFIGUR
+ 
+   samplesPerFrame = opusConfig->samplesPerFrame;
+   pcmBuffer = malloc(sizeof(short) * opusConfig->channelCount * samplesPerFrame);
+-  if (pcmBuffer == NULL)
++  if (!pcmBuffer) return -1;
++
++  int opus_err = 0;
++  decoder = opus_multistream_decoder_create(
++    opusConfig->sampleRate, opusConfig->channelCount,
++    opusConfig->streams, opusConfig->coupledStreams,
++    alsaMapping, &opus_err);
++  if (!decoder) { printf("ALSA: opus_multistream_decoder_create failed: %d\n", opus_err); return -1; }
++
++  unsigned int sampleRate  = opusConfig->sampleRate;
++  unsigned int pcmChannels = opusConfig->channelCount;
++
++  char* audio_device = (char*)context;
++  if (!audio_device) audio_device = "default";
++
++  /* Fallback chain: user device → "default" → "hw:0,0" */
++  static const char* const fallbacks[] = { "default", "hw:0,0", NULL };
++  int rc_open = snd_pcm_open(&handle, audio_device,
++                              SND_PCM_STREAM_PLAYBACK, 0);
++  for (int i = 0; rc_open < 0 && fallbacks[i]; i++) {
++    if (strcmp(audio_device, fallbacks[i]) == 0)
++      continue;
++    printf("ALSA: cannot open '%s' (%s), trying '%s'\n",
++           audio_device, snd_strerror(rc_open), fallbacks[i]);
++    audio_device = fallbacks[i];
++    rc_open = snd_pcm_open(&handle, audio_device,
++                            SND_PCM_STREAM_PLAYBACK, 0);
++  }
++  if (rc_open < 0) {
++    printf("ALSA: cannot open any audio device: %s\n", snd_strerror(rc_open));
+     return -1;
+-
+-  decoder = opus_multistream_decoder_create(opusConfig->sampleRate, opusConfig->channelCount, opusConfig->streams, opusConfig->coupledStreams, alsaMapping, &rc);
+-
+-  snd_pcm_hw_params_t *hw_params;
+-  snd_pcm_sw_params_t *sw_params;
+-  snd_pcm_uframes_t period_size = (opusConfig->sampleRate * 20) / 1000; // 20 ms period
+-  snd_pcm_uframes_t buffer_size = 3 * period_size; // 60 ms buffer
+-  unsigned int sampleRate = opusConfig->sampleRate;
+-
+-  char* audio_device = (char*) context;
+-  if (audio_device == NULL)
+-    audio_device = "sysdefault";
+-
+-  /* Open PCM device for playback. */
+-  CHECK_RETURN(snd_pcm_open(&handle, audio_device, SND_PCM_STREAM_PLAYBACK, SND_PCM_NONBLOCK))
+-
+-  /* Set hardware parameters */
+-  CHECK_RETURN(snd_pcm_hw_params_malloc(&hw_params));
+-  CHECK_RETURN(snd_pcm_hw_params_any(handle, hw_params));
+-  CHECK_RETURN(snd_pcm_hw_params_set_access(handle, hw_params, SND_PCM_ACCESS_RW_INTERLEAVED));
+-  CHECK_RETURN(snd_pcm_hw_params_set_format(handle, hw_params, SND_PCM_FORMAT_S16_LE));
+-  CHECK_RETURN(snd_pcm_hw_params_set_rate_near(handle, hw_params, &sampleRate, NULL));
+-  CHECK_RETURN(snd_pcm_hw_params_set_channels(handle, hw_params, opusConfig->channelCount));
+-  CHECK_RETURN(snd_pcm_hw_params_set_period_size_near(handle, hw_params, &period_size, NULL));
+-  CHECK_RETURN(snd_pcm_hw_params_set_buffer_size_near(handle, hw_params, &buffer_size));
+-  CHECK_RETURN(snd_pcm_hw_params(handle, hw_params));
+-  snd_pcm_hw_params_free(hw_params);
+-
+-  /* Set software parameters */
+-  CHECK_RETURN(snd_pcm_sw_params_malloc(&sw_params));
+-  CHECK_RETURN(snd_pcm_sw_params_current(handle, sw_params));
+-  CHECK_RETURN(snd_pcm_sw_params_set_avail_min(handle, sw_params, period_size));
+-  CHECK_RETURN(snd_pcm_sw_params_set_start_threshold(handle, sw_params, period_size));
+-  CHECK_RETURN(snd_pcm_sw_params(handle, sw_params));
+-  snd_pcm_sw_params_free(sw_params);
+-
+-  CHECK_RETURN(snd_pcm_prepare(handle));
+-
+-  return 0;
+-}
+-
+-static void alsa_renderer_cleanup() {
+-  if (decoder != NULL) {
+-    opus_multistream_decoder_destroy(decoder);
+-    decoder = NULL;
+   }
+ 
+-  if (handle != NULL) {
+-    snd_pcm_drain(handle);
++  /*
++   * snd_pcm_set_params() configure format, accès, canaux, taux et latence
++   * en une seule passe. Il laisse ALSA choisir la période optimale pour le
++   * hardware (contraintes DMA I2S, puissance de 2, etc.) plutôt que de
++   * forcer 960 frames qui peut être rejeté par certains drivers I2S.
++   * soft_resample=1 permet un resampling software si le taux exact n'est
++   * pas supporté (rare à 48000 Hz mais défensif).
++   * Latence cible : 200 ms (absorbe les irrégularités réseau).
++   */
++  int rc = snd_pcm_set_params(handle,
++                               SND_PCM_FORMAT_S16_LE,
++                               SND_PCM_ACCESS_RW_INTERLEAVED,
++                               pcmChannels, sampleRate,
++                               1,       /* soft_resample */
++                               200000); /* latence µs = 200 ms */
++  if (rc < 0 && pcmChannels > 2) {
++    /* Hardware (e.g. PCM5102A I2S DAC) is stereo-only: rebuild decoder for FL+FR. */
++    printf("ALSA: %u channels not supported (%s), falling back to stereo\n",
++           pcmChannels, snd_strerror(rc));
++    pcmChannels = 2;
++    rc = snd_pcm_set_params(handle, SND_PCM_FORMAT_S16_LE,
++                             SND_PCM_ACCESS_RW_INTERLEAVED,
++                             2, sampleRate, 1, 200000);
++    if (rc == 0) {
++      opus_multistream_decoder_destroy(decoder);
++      unsigned char stereo_map[2] = { 0, 1 };
++      decoder = opus_multistream_decoder_create(sampleRate, 2,
++          1, 1, stereo_map, &opus_err);
++      if (!decoder) {
++        printf("ALSA: stereo decoder creation failed: %d\n", opus_err);
++        snd_pcm_close(handle); handle = NULL; return -1;
++      }
++      free(pcmBuffer);
++      pcmBuffer = malloc(sizeof(short) * 2 * samplesPerFrame);
++      if (!pcmBuffer) { snd_pcm_close(handle); handle = NULL; return -1; }
++      printf("ALSA: stereo fallback active (FL+FR from %u-ch stream)\n",
++             opusConfig->channelCount);
++    }
++  }
++  if (rc < 0) {
++    printf("ALSA: snd_pcm_set_params failed on '%s': %s\n",
++           audio_device, snd_strerror(rc));
+     snd_pcm_close(handle);
+     handle = NULL;
++    return -1;
+   }
+ 
+-  if (pcmBuffer != NULL) {
+-    free(pcmBuffer);
+-    pcmBuffer = NULL;
+-  }
++  /* Log des paramètres effectifs */
++  snd_pcm_uframes_t actual_buf = 0, actual_period = 0;
++  snd_pcm_get_params(handle, &actual_buf, &actual_period);
++  printf("ALSA: %s | %d Hz | %u ch | period=%lu frames | buffer=%lu frames (%.0f ms)\n",
++         audio_device, sampleRate, pcmChannels,
++         actual_period, actual_buf,
++         (double)actual_buf * 1000.0 / sampleRate);
++
++  return 0;
++}
++
++static void alsa_renderer_cleanup(void) {
++  if (decoder) { opus_multistream_decoder_destroy(decoder); decoder = NULL; }
++  if (handle)  { snd_pcm_drain(handle); snd_pcm_close(handle); handle = NULL; }
++  if (pcmBuffer) { free(pcmBuffer); pcmBuffer = NULL; }
+ }
+ 
+ static void alsa_renderer_decode_and_play_sample(char* data, int length) {
+-  int decodeLen = opus_multistream_decode(decoder, data, length, pcmBuffer, samplesPerFrame, 0);
+-  if (decodeLen > 0) {
+-    int rc = snd_pcm_writei(handle, pcmBuffer, decodeLen);
+-    if (rc < 0) {
+-      rc = snd_pcm_recover(handle, rc, 0);
+-      if (rc == 0)
+-        rc = snd_pcm_writei(handle, pcmBuffer, decodeLen);
+-    }
++  int decodeLen = opus_multistream_decode(decoder, data, length,
++                                           pcmBuffer, samplesPerFrame, 0);
++  if (decodeLen < 0) {
++    fprintf(stderr, "ALSA: opus decode error %d\n", decodeLen);
++    return;
++  }
+ 
+-    if (rc<0)
+-      printf("Alsa error from writei: %d\n", rc);
+-    else if (decodeLen != rc)
+-      printf("Alsa shortm write, write %d frames\n", rc);
+-  } else if (decodeLen < 0) {
+-    printf("Opus error from decode: %d\n", decodeLen);
++  int rc = snd_pcm_writei(handle, pcmBuffer, decodeLen);
++  if (rc < 0) {
++    /*
++     * Underrun ou suspension : snd_pcm_recover() remet le device en état.
++     * On réessaie ensuite une seule fois (mode bloquant → writei va
++     * attendre que le buffer ait de la place, pas de EAGAIN).
++     */
++    rc = snd_pcm_recover(handle, rc, 1 /* silent */);
++    if (rc == 0) {
++      rc = snd_pcm_writei(handle, pcmBuffer, decodeLen);
++    }
+   }
++
++  if (rc < 0)
++    fprintf(stderr, "ALSA: writei failed after recover: %s\n", snd_strerror(rc));
++  else if (rc != decodeLen)
++    fprintf(stderr, "ALSA: short write %d/%d frames\n", rc, decodeLen);
+ }
+ 
+ AUDIO_RENDERER_CALLBACKS audio_callbacks_alsa = {
+-  .init = alsa_renderer_init,
+-  .cleanup = alsa_renderer_cleanup,
++  .init                = alsa_renderer_init,
++  .cleanup             = alsa_renderer_cleanup,
+   .decodeAndPlaySample = alsa_renderer_decode_and_play_sample,
+-  .capabilities = CAPABILITY_DIRECT_SUBMIT | CAPABILITY_SUPPORTS_ARBITRARY_AUDIO_DURATION,
++  .capabilities        = CAPABILITY_DIRECT_SUBMIT |
++                         CAPABILITY_SUPPORTS_ARBITRARY_AUDIO_DURATION,
+ };
+diff --git a/src/audio/pulse.c b/src/audio/pulse.c
+index 8eae95c..9929295 100644
+--- a/src/audio/pulse.c
++++ b/src/audio/pulse.c
+@@ -33,6 +33,17 @@ static short* pcmBuffer;
+ static int samplesPerFrame;
+ static int channelCount;
+ 
++/* Normalise un nom de device : les noms ALSA ("default", "hw:x,y", "plughw:...")
++ * ne sont pas des noms de sink PulseAudio valides → on passe NULL à PA pour
++ * qu'il utilise son sink par défaut. */
++static const char* pa_device_name(const char* device) {
++  if (!device) return NULL;
++  if (strcmp(device, "default") == 0) return NULL;
++  if (strncmp(device, "hw:", 3) == 0) return NULL;
++  if (strncmp(device, "plughw:", 7) == 0) return NULL;
++  return device;
++}
++
+ bool audio_pulse_init(char* audio_device) {
+   pa_sample_spec spec = {
+     .format = PA_SAMPLE_S16LE,
+@@ -41,12 +52,13 @@ bool audio_pulse_init(char* audio_device) {
+   };
+ 
+   int error;
+-  dev = pa_simple_new(NULL, "Moonlight Embedded", PA_STREAM_PLAYBACK, audio_device, "Streaming", &spec, NULL, NULL, &error);
+-
+-  if (dev)
+-    pa_simple_free(dev);
++  dev = pa_simple_new(NULL, "Moonlight Embedded", PA_STREAM_PLAYBACK,
++                      pa_device_name(audio_device), "Streaming",
++                      &spec, NULL, NULL, &error);
+ 
+-  return (bool) dev;
++  bool available = (dev != NULL);
++  if (dev) { pa_simple_free(dev); dev = NULL; }
++  return available;
+ }
+ 
+ static int pulse_renderer_init(int audioConfiguration, POPUS_MULTISTREAM_CONFIGURATION opusConfig, void* context, int arFlags) {
+@@ -72,6 +84,7 @@ static int pulse_renderer_init(int audioConfiguration, POPUS_MULTISTREAM_CONFIGU
+   }
+ 
+   decoder = opus_multistream_decoder_create(opusConfig->sampleRate, opusConfig->channelCount, opusConfig->streams, opusConfig->coupledStreams, alsaMapping, &rc);
++  if (!decoder) { printf("Pulseaudio: opus_multistream_decoder_create failed: %d\n", rc); return -1; }
+ 
+   pa_sample_spec spec = {
+     .format = PA_SAMPLE_S16LE,
+@@ -82,7 +95,7 @@ static int pulse_renderer_init(int audioConfiguration, POPUS_MULTISTREAM_CONFIGU
+   pa_channel_map map;
+   pa_channel_map_init_auto(&map, opusConfig->channelCount, PA_CHANNEL_MAP_ALSA);
+ 
+-  char* audio_device = (char*) context;
++  const char* audio_device = pa_device_name((char*) context);
+   dev = pa_simple_new(NULL, "Moonlight Embedded", PA_STREAM_PLAYBACK, audio_device, "Streaming", &spec, &map, NULL, &error);
+ 
+   if (!dev) {
+diff --git a/src/platform.c b/src/platform.c
+index fab3057..f767d5f 100644
+--- a/src/platform.c
++++ b/src/platform.c
+@@ -2,30 +2,26 @@
+  * This file is part of Moonlight Embedded.
+  *
+  * Copyright (C) 2015-2017 Iwan Timmer
++ * FIX #2 : détection et dispatch du backend V4L2_DRM
+  *
+  * Moonlight is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 3 of the License, or
+  * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+ #define _GNU_SOURCE
+ 
+ #include "platform.h"
+-
+ #include "util.h"
+-
+ #include "audio/audio.h"
+ #include "video/video.h"
+ 
++/* Fix F : vaapi_has_av1() utilisé dans platform_prefers_codec() */
++#ifdef HAVE_VAAPI
++#include "video/ffmpeg_vaapi.h"
++#endif
++
+ #include <stdlib.h>
+ #include <string.h>
+ #include <unistd.h>
+@@ -35,69 +31,118 @@ typedef bool(*ImxInit)();
+ 
+ enum platform platform_check(char* name) {
+   bool std = strcmp(name, "auto") == 0;
+-  #ifdef HAVE_IMX
++
++#ifdef HAVE_IMX
+   if (std || strcmp(name, "imx") == 0) {
+     void *handle = dlopen("libmoonlight-imx.so", RTLD_NOW | RTLD_GLOBAL);
+     ImxInit video_imx_init = (ImxInit) dlsym(RTLD_DEFAULT, "video_imx_init");
+-    if (handle != NULL) {
+-      if (video_imx_init())
+-        return IMX;
+-    }
++    if (handle != NULL && video_imx_init())
++      return IMX;
+   }
+-  #endif
+-  #ifdef HAVE_PI
++#endif
++
++#ifdef HAVE_PI
+   if (std || strcmp(name, "pi") == 0) {
+     void *handle = dlopen("libmoonlight-pi.so", RTLD_NOW | RTLD_GLOBAL);
+     if (handle != NULL && dlsym(RTLD_DEFAULT, "bcm_host_init") != NULL)
+       return PI;
+   }
+-  #endif
+-  #ifdef HAVE_MMAL
++#endif
++
++#ifdef HAVE_MMAL
+   if (std || strcmp(name, "mmal") == 0) {
+     void *handle = dlopen("libmoonlight-mmal.so", RTLD_NOW | RTLD_GLOBAL);
+     if (handle != NULL && dlsym(RTLD_DEFAULT, "bcm_host_init") != NULL)
+       return MMAL;
+   }
+-  #endif
+-  #ifdef HAVE_AML
++#endif
++
++  /*
++   * FIX #2 : détection V4L2_DRM pour Raspberry Pi 5 et SoC Linux modernes.
++   *
++   * Critères (tous optionnels, OR logique — on accepte dès qu'un des
++   * devices est présent, car leur disponibilité dépend du noyau/distro) :
++   *   /dev/video10  → décodeur H.264 exposé par le driver rp1 du Pi 5
++   *   /dev/video11  → décodeur HEVC exposé par le driver rp1 du Pi 5
++   *   /dev/dri/card0 → device DRM/KMS pour le rendu
++   *
++   * NB : on vérifie intentionnellement l'absence de bcm_host_init pour
++   * s'assurer qu'on n'entre pas dans ce chemin sur Pi 1-4 avec /opt/vc,
++   * où MMAL est préférable.
++   */
++#ifdef HAVE_V4L2_DRM
++  if (std || strcmp(name, "v4l2drm") == 0) {
++    bool has_drm = (access("/dev/dri/card0", F_OK) == 0 ||
++                    access("/dev/dri/card1", F_OK) == 0);
++    bool has_bcm = (dlsym(RTLD_DEFAULT, "bcm_host_init") != NULL);
++
++    if (std) {
++      /*
++       * Mode auto : détection stricte.
++       * Exige un décodeur V4L2 M2M connu ET un device DRM, sans Broadcom.
++       * Évite d'activer le backend sur des boards sans décodeur matériel
++       * (ex. Pi 3 qui a /dev/dri/card0 mais pas de V4L2 codec).
++       */
++      bool has_v4l2 = (access("/dev/video10", F_OK) == 0 ||
++                       access("/dev/video11", F_OK) == 0 ||
++                       access("/dev/video18", F_OK) == 0 || /* Pi 5 rp1 */
++                       access("/dev/video19", F_OK) == 0);
++      if (has_v4l2 && has_drm && !has_bcm)
++        return V4L2_DRM;
++    } else {
++      /*
++       * Mode explicite (-platform v4l2drm) :
++       * L'utilisateur sait ce qu'il fait. On vérifie seulement que DRM
++       * est disponible — pas de check V4L2 car le numéro de device varie
++       * selon le kernel (video10, video18, video19...).
++       * Le décodeur FFmpeg sera sélectionné au runtime par ffmpeg_init().
++       */
++      if (has_drm)
++        return V4L2_DRM;
++    }
++  }
++#endif
++
++#ifdef HAVE_AML
+   if (std || strcmp(name, "aml") == 0) {
+     void *handle = dlopen("libmoonlight-aml.so", RTLD_LAZY | RTLD_GLOBAL);
+     if (handle != NULL && access("/dev/amvideo", F_OK) != -1)
+       return AML;
+   }
+-  #endif
+-  #ifdef HAVE_ROCKCHIP
++#endif
++
++#ifdef HAVE_ROCKCHIP
+   if (std || strcmp(name, "rk") == 0) {
+     void *handle = dlopen("libmoonlight-rk.so", RTLD_NOW | RTLD_GLOBAL);
+     if (handle != NULL && dlsym(RTLD_DEFAULT, "mpp_init") != NULL)
+       return RK;
+   }
+-  #endif
+-  #ifdef HAVE_X11
+-  bool x11 = strcmp(name, "x11") == 0;
++#endif
++
++#ifdef HAVE_X11
++  bool x11   = strcmp(name, "x11")       == 0;
+   bool vdpau = strcmp(name, "x11_vdpau") == 0;
+   bool vaapi = strcmp(name, "x11_vaapi") == 0;
+   if (std || x11 || vdpau || vaapi) {
+     int init = x11_init(std || vdpau, std || vaapi);
+-    #ifdef HAVE_VAAPI
+-    if (init == INIT_VAAPI)
+-      return X11_VAAPI;
+-    #endif
+-    #ifdef HAVE_VDPAU
+-    if (init == INIT_VDPAU)
+-      return X11_VDPAU;
+-    #endif
+-    #ifdef HAVE_SDL
++#ifdef HAVE_VAAPI
++    if (init == INIT_VAAPI)  return X11_VAAPI;
++#endif
++#ifdef HAVE_VDPAU
++    if (init == INIT_VDPAU)  return X11_VDPAU;
++#endif
++#ifdef HAVE_SDL
+     return SDL;
+-    #else
++#else
+     return X11;
+-    #endif
++#endif
+   }
+-  #endif
+-  #ifdef HAVE_SDL
++#endif
++
++#ifdef HAVE_SDL
+   if (std || strcmp(name, "sdl") == 0)
+     return SDL;
+-  #endif
++#endif
+ 
+   if (strcmp(name, "fake") == 0)
+     return FAKE;
+@@ -107,104 +152,138 @@ enum platform platform_check(char* name) {
+ 
+ void platform_start(enum platform system) {
+   switch (system) {
+-  #ifdef HAVE_AML
++#ifdef HAVE_AML
+   case AML:
+-    write_bool("/sys/class/graphics/fb0/blank", true);
+-    write_bool("/sys/class/graphics/fb1/blank", true);
+-    write_bool("/sys/class/video/disable_video", false);
++    write_bool("/sys/class/graphics/fb0/blank",    true);
++    write_bool("/sys/class/graphics/fb1/blank",    true);
++    write_bool("/sys/class/video/disable_video",   false);
+     break;
+-  #endif
+-  #if defined(HAVE_PI) || defined(HAVE_MMAL)
++#endif
++#if defined(HAVE_PI) || defined(HAVE_MMAL)
+   case PI:
+     write_bool("/sys/class/graphics/fb0/blank", true);
+     break;
+-  #endif
++#endif
++  // V4L2_DRM gère lui-même le display via DRM — pas de sysfs nécessaire
++  default:
++    break;
+   }
+ }
+ 
+ void platform_stop(enum platform system) {
+   switch (system) {
+-  #ifdef HAVE_AML
++#ifdef HAVE_AML
+   case AML:
+     write_bool("/sys/class/graphics/fb0/blank", false);
+     write_bool("/sys/class/graphics/fb1/blank", false);
+     break;
+-  #endif
+-  #if defined(HAVE_PI) || defined(HAVE_MMAL)
++#endif
++#if defined(HAVE_PI) || defined(HAVE_MMAL)
+   case PI:
+     write_bool("/sys/class/graphics/fb0/blank", false);
+     break;
+-  #endif
++#endif
++  default:
++    break;
+   }
+ }
+ 
+ DECODER_RENDERER_CALLBACKS* platform_get_video(enum platform system) {
+   switch (system) {
+-  #ifdef HAVE_X11
++#ifdef HAVE_X11
+   case X11:
+     return &decoder_callbacks_x11;
+-  #ifdef HAVE_VAAPI
++#ifdef HAVE_VAAPI
+   case X11_VAAPI:
+     return &decoder_callbacks_x11_vaapi;
+-  #endif
+-  #ifdef HAVE_VDPAU
++#endif
++#ifdef HAVE_VDPAU
+   case X11_VDPAU:
+     return &decoder_callbacks_x11_vdpau;
+-  #endif
+-  #endif
+-  #ifdef HAVE_SDL
++#endif
++#endif
++#ifdef HAVE_SDL
+   case SDL:
+     return &decoder_callbacks_sdl;
+-  #endif
+-  #ifdef HAVE_IMX
++#endif
++#ifdef HAVE_IMX
+   case IMX:
+     return (PDECODER_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "decoder_callbacks_imx");
+-  #endif
+-  #ifdef HAVE_PI
++#endif
++#ifdef HAVE_PI
+   case PI:
+     return (PDECODER_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "decoder_callbacks_pi");
+-  #endif
+-  #ifdef HAVE_MMAL
++#endif
++#ifdef HAVE_MMAL
+   case MMAL:
+     return (PDECODER_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "decoder_callbacks_mmal");
+-  #endif
+-  #ifdef HAVE_AML
++#endif
++#ifdef HAVE_AML
+   case AML:
+     return (PDECODER_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "decoder_callbacks_aml");
+-  #endif
+-  #ifdef HAVE_ROCKCHIP
++#endif
++#ifdef HAVE_ROCKCHIP
+   case RK:
+     return (PDECODER_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "decoder_callbacks_rk");
+-  #endif
++#endif
++#ifdef HAVE_V4L2_DRM
++  // FIX #2 : dispatch vers le nouveau backend Pi 5
++  case V4L2_DRM:
++    return &decoder_callbacks_v4l2drm;
++#endif
+   }
+   return NULL;
+ }
+ 
+-AUDIO_RENDERER_CALLBACKS* platform_get_audio(enum platform system, char* audio_device) {
++AUDIO_RENDERER_CALLBACKS* platform_get_audio(enum platform system,
++                                             char* audio_device) {
++  if (audio_device && strcmp(audio_device, "nosound") == 0)
++    return NULL;
++
++#ifdef HAVE_SDL
++  if (audio_device && strcmp(audio_device, "sdl") == 0)
++    return &audio_callbacks_sdl;
++#endif
++
+   switch (system) {
+   case FAKE:
+-      return NULL;
+-  #ifdef HAVE_SDL
++    return NULL;
++#ifdef HAVE_SDL
+   case SDL:
+     return &audio_callbacks_sdl;
+-  #endif
+-  #ifdef HAVE_PI
++#endif
++#ifdef HAVE_V4L2_DRM
++  case V4L2_DRM:
++    /* On embedded systems, direct ALSA is often unavailable (PulseAudio holds
++     * the device, or the plug plugin is missing). Try PA first, then SDL which
++     * handles PA/OSS/ALSA transparently, before falling back to raw ALSA. */
++#ifdef HAVE_PULSE
++    if (audio_pulse_init(audio_device)) return &audio_callbacks_pulse;
++#endif
++#ifdef HAVE_SDL
++    return &audio_callbacks_sdl;
++#endif
++    break;
++#endif
++#ifdef HAVE_PI
+   case PI:
+-    if (audio_device == NULL || strcmp(audio_device, "local") == 0 || strcmp(audio_device, "hdmi") == 0)
++    if (audio_device == NULL ||
++        strcmp(audio_device, "local") == 0 ||
++        strcmp(audio_device, "hdmi")  == 0)
+       return (PAUDIO_RENDERER_CALLBACKS) dlsym(RTLD_DEFAULT, "audio_callbacks_omx");
+     // fall-through
+-  #endif
++#endif
+   default:
+-    #ifdef HAVE_PULSE
++#ifdef HAVE_PULSE
+     if (audio_pulse_init(audio_device))
+       return &audio_callbacks_pulse;
+-    #endif
+-    #ifdef HAVE_ALSA
++#endif
++#ifdef HAVE_ALSA
+     return &audio_callbacks_alsa;
+-    #endif
+-    #ifdef __FreeBSD__
++#endif
++#ifdef __FreeBSD__
+     return &audio_callbacks_oss;
+-    #endif
++#endif
+   }
+   return NULL;
+ }
+@@ -212,46 +291,62 @@ AUDIO_RENDERER_CALLBACKS* platform_get_audio(enum platform system, char* audio_d
+ bool platform_prefers_codec(enum platform system, enum codecs codec) {
+   switch (codec) {
+   case CODEC_H264:
+-    // H.264 is always supported
+-    return true;
++    /*
++     * Pi 5 (V4L2_DRM) : le fork rpi-ffmpeg (jc-kynesim, branch
++     * test/7.1.2/main) ne fournit PAS h264_v4l2request.
++     * Seul HEVC est accéléré via hevc_v4l2request + rpivid (/dev/video19).
++     * On retourne false pour que Moonlight négocie HEVC avec Sunshine
++     * plutôt que H.264 qui tomberait en soft decode.
++     */
++    return (system != V4L2_DRM);
++
+   case CODEC_HEVC:
+     switch (system) {
+     case AML:
+     case RK:
+     case X11_VAAPI:
+     case X11_VDPAU:
++    case V4L2_DRM:  /* Pi 5 : hevc_v4l2request via rpivid/dev/video19 */
++    case MMAL:      /* Pi 4 : MMAL_ENCODING_H265                       */
+       return true;
++    default:
++      return false;
+     }
+-    return false;
++
+   case CODEC_AV1:
++    /*
++     * Fix F : détection dynamique via vaQueryConfigProfiles().
++     * vaapi_has_av1() retourne true si le GPU courant supporte
++     * VAProfileAV1Profile0 (Intel ARC, AMD RDNA2+, NVIDIA Ada).
++     * Retourne false si VAAPI n'est pas initialisé ou si libva < 2.11.
++     */
++    switch (system) {
++#ifdef HAVE_VAAPI
++    case X11_VAAPI:
++      return vaapi_has_av1();
++#endif
++    default:
++      return false;
++    }
++
++  default:
+     return false;
+   }
+-  return false;
+ }
+ 
+ char* platform_name(enum platform system) {
+-  switch(system) {
+-  case PI:
+-    return "Raspberry Pi (Broadcom)";
+-  case MMAL:
+-    return "Raspberry Pi (Broadcom) MMAL";
+-  case IMX:
+-    return "i.MX6 (MXC Vivante)";
+-  case AML:
+-    return "AMLogic VPU";
+-  case RK:
+-    return "Rockchip VPU";
+-  case X11:
+-    return "X Window System (software decoding)";
+-  case X11_VAAPI:
+-    return "X Window System (VAAPI)";
+-  case X11_VDPAU:
+-    return "X Window System (VDPAU)";
+-  case SDL:
+-    return "SDL2 (software decoding)";
+-  case FAKE:
+-    return "Fake (no a/v output)";
+-  default:
+-    return "Unknown";
++  switch (system) {
++  case PI:        return "Raspberry Pi (Broadcom OMX)";
++  case MMAL:      return "Raspberry Pi (Broadcom MMAL)";
++  case V4L2_DRM:  return "Linux V4L2 M2M + DRM/KMS (Pi 5 / SoC moderne)";
++  case IMX:       return "i.MX6 (MXC Vivante)";
++  case AML:       return "AMLogic VPU";
++  case RK:        return "Rockchip VPU";
++  case X11:       return "X Window System (décodage logiciel)";
++  case X11_VAAPI: return "X Window System (VAAPI)";
++  case X11_VDPAU: return "X Window System (VDPAU)";
++  case SDL:       return "SDL2 (décodage logiciel)";
++  case FAKE:      return "Fake (pas de sortie A/V)";
++  default:        return "Inconnu";
+   }
+ }
+diff --git a/src/platform.h b/src/platform.h
+index 67c5cc7..e62d63e 100644
+--- a/src/platform.h
++++ b/src/platform.h
+@@ -7,14 +7,6 @@
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 3 of the License, or
+  * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+ #include <Limelight.h>
+@@ -26,13 +18,15 @@
+ 
+ #define IS_EMBEDDED(SYSTEM) SYSTEM != SDL
+ 
+-enum platform { NONE, SDL, X11, X11_VDPAU, X11_VAAPI, PI, MMAL, IMX, AML, RK, FAKE };
+-enum codecs { CODEC_UNSPECIFIED, CODEC_H264, CODEC_HEVC, CODEC_AV1 };
++enum platform { NONE, SDL, X11, X11_VDPAU, X11_VAAPI, PI, MMAL,
++                V4L2_DRM, IMX, AML, RK, FAKE };
++enum codecs   { CODEC_UNSPECIFIED, CODEC_H264, CODEC_HEVC, CODEC_AV1 };
+ 
+ enum platform platform_check(char*);
+ PDECODER_RENDERER_CALLBACKS platform_get_video(enum platform system);
+-PAUDIO_RENDERER_CALLBACKS platform_get_audio(enum platform system, char* audio_device);
+-bool platform_prefers_codec(enum platform system, enum codecs codec);
++PAUDIO_RENDERER_CALLBACKS   platform_get_audio(enum platform system,
++                                               char* audio_device);
++bool  platform_prefers_codec(enum platform system, enum codecs codec);
+ char* platform_name(enum platform system);
+ 
+ void platform_start(enum platform system);
+diff --git a/src/video/ffmpeg.c b/src/video/ffmpeg.c
+index 0839416..b37392e 100644
+--- a/src/video/ffmpeg.c
++++ b/src/video/ffmpeg.c
+@@ -1,20 +1,21 @@
+ /*
+- * This file is part of Moonlight Embedded.
++ * ffmpeg.c — initialisation FFmpeg avec support hwaccel DRM (Pi 5)
+  *
+- * Based on Moonlight Pc implementation
++ * Sur Pi 5 avec le fork jc-kynesim/rpi-ffmpeg (branch test/7.1.2/main),
++ * le décodage HEVC accéléré utilise un hwaccel DRM greffé sur le décodeur
++ * logiciel 'hevc' — PAS un décodeur standalone 'hevc_v4l2request'.
+  *
+- * Moonlight is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 3 of the License, or
+- * (at your option) any later version.
++ * Pipeline Pi 5 :
++ *   avcodec_find_decoder("hevc")
++ *   + AVHWDeviceContext AV_HWDEVICE_TYPE_DRM → /dev/dri/card0
++ *   + get_format callback → AV_PIX_FMT_DRM_PRIME
++ *   → frames exportées comme DMA-BUF vers le display DRM (zero-copy)
+  *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
++ * Pipeline Pi 4 :
++ *   avcodec_find_decoder("hevc_v4l2m2m") ou ("h264_v4l2m2m")
++ *   → API M2M stateful, frames en mémoire système
+  *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
++ * Moonlight is free software; GPL-3.0+
+  */
+ 
+ #include "ffmpeg.h"
+@@ -25,184 +26,310 @@
+ 
+ #include <Limelight.h>
+ #include <libavcodec/avcodec.h>
++#include <libavutil/hwcontext.h>
++#include <libavutil/hwcontext_drm.h>
+ 
+ #include <stdlib.h>
+ #include <pthread.h>
+ #include <stdio.h>
+ #include <stdbool.h>
++#include <unistd.h>
+ 
+-// General decoder and renderer state
+-static AVPacket* pkt;
+-static const AVCodec* decoder;
+-static AVCodecContext* decoder_ctx;
+-static AVFrame** dec_frames;
++/* ── État global ─────────────────────────────────────────────────────────── */
+ 
+-static int dec_frames_cnt;
+-static int current_frame, next_frame;
++static AVPacket*         pkt         = NULL;
++static const AVCodec*    decoder     = NULL;
++static AVCodecContext*   decoder_ctx = NULL;
++static AVFrame**         dec_frames  = NULL;
++static int               dec_frames_cnt = 0;
++static int               current_frame  = 0;
++static int               next_frame     = 0;
++static AVBufferRef*      hw_device_ctx  = NULL; /* contexte hwaccel DRM */
+ 
+ enum decoders ffmpeg_decoder;
+ 
+-#define BYTES_PER_PIXEL 4
++/* Hook de format optionnel — positionné par v4l2drm.c avant ffmpeg_init() */
++enum AVPixelFormat (*ffmpeg_get_format_cb)(AVCodecContext*,
++                                           const enum AVPixelFormat*) = NULL;
+ 
+-// This function must be called before
+-// any other decoding functions
+-int ffmpeg_init(int videoFormat, int width, int height, int perf_lvl, int buffer_count, int thread_count) {
+-  // Initialize the avcodec library and register codecs
+-  av_log_set_level(AV_LOG_QUIET);
++/* ── hwaccel DRM (Pi 5 / rpi-ffmpeg) ────────────────────────────────────── */
++
++/*
++ * Callback get_format pour le hwaccel DRM.
++ * Appelé par FFmpeg pour négocier le format de sortie des frames.
++ * On retourne AV_PIX_FMT_DRM_PRIME si disponible (zero-copy vers DRM/KMS),
++ * sinon on laisse FFmpeg choisir (fallback YUV en mémoire).
++ */
++static enum AVPixelFormat drm_hwaccel_get_format(AVCodecContext* ctx,
++                                                  const enum AVPixelFormat* fmts) {
++  /* Priorité : callback externe (v4l2drm.c) > DRM_PRIME > premier dispo */
++  if (ffmpeg_get_format_cb)
++    return ffmpeg_get_format_cb(ctx, fmts);
++
++  for (const enum AVPixelFormat* p = fmts; *p != AV_PIX_FMT_NONE; p++)
++    if (*p == AV_PIX_FMT_DRM_PRIME) return *p;
++
++  return fmts[0];
++}
++
++/*
++ * Tente d'initialiser le hwaccel DRM sur le premier device disponible.
++ * Retourne 0 si succès, -1 sinon (le décodeur soft sera utilisé quand même).
++ */
++static int try_init_drm_hwaccel(AVCodecContext* ctx) {
++  /*
++   * Sur Pi 5 :
++   *   renderD128 = nœud render V3D (sans droits display)
++   *   card0      = V3D GPU (compute)
++   *   card1      = contrôleur HDMI (display) ← essayer en dernier
++   *
++   * av_hwdevice_ctx_create AV_HWDEVICE_TYPE_DRM ouvre juste un fd
++   * sur le device DRM et l'utilise pour allouer des DMA-BUF partagés.
++   * Sur Pi 5 avec le fork jc-kynesim, card1 (le display controller)
++   * est souvent le bon device car c'est lui qui importe les DMA-BUF
++   * du décodeur rpivid vers le framebuffer HDMI.
++   */
++  const char* drm_devs[] = {
++    "/dev/dri/renderD128",
++    "/dev/dri/card0",
++    "/dev/dri/card1",
++    NULL
++  };
++
++  for (int i = 0; drm_devs[i]; i++) {
++    if (access(drm_devs[i], F_OK) != 0) {
++      printf("FFmpeg: DRM hwaccel: %s absent\n", drm_devs[i]);
++      continue;
++    }
++
++    int ret = av_hwdevice_ctx_create(&hw_device_ctx,
++                                     AV_HWDEVICE_TYPE_DRM,
++                                     drm_devs[i], NULL, 0);
++    if (ret == 0) {
++      ctx->hw_device_ctx = av_buffer_ref(hw_device_ctx);
++      ctx->get_format    = drm_hwaccel_get_format;
++      printf("FFmpeg: DRM hwaccel on %s\n", drm_devs[i]);
++      return 0;
++    }
++
++    char errbuf[128];
++    av_strerror(ret, errbuf, sizeof(errbuf));
++    printf("FFmpeg: DRM hwaccel %s failed: %s\n", drm_devs[i], errbuf);
++  }
++
++  /* Dernier essai : auto-détection FFmpeg (NULL = premier device DRM) */
++  int ret = av_hwdevice_ctx_create(&hw_device_ctx,
++                                   AV_HWDEVICE_TYPE_DRM,
++                                   NULL, NULL, 0);
++  if (ret == 0) {
++    ctx->hw_device_ctx = av_buffer_ref(hw_device_ctx);
++    ctx->get_format    = drm_hwaccel_get_format;
++    printf("FFmpeg: DRM hwaccel via auto-detection\n");
++    return 0;
++  }
++
++  char errbuf[128];
++  av_strerror(ret, errbuf, sizeof(errbuf));
++  fprintf(stderr, "FFmpeg: DRM hwaccel unavailable: %s\n", errbuf);
++  return -1;
++}
++
++/* ── Initialisation ──────────────────────────────────────────────────────── */
++
++int ffmpeg_init(int videoFormat, int width, int height,
++                int perf_lvl, int buffer_count, int thread_count) {
++  av_log_set_level(AV_LOG_WARNING);
+ #if LIBAVCODEC_VERSION_INT < AV_VERSION_INT(58,10,100)
+   avcodec_register_all();
+ #endif
+ 
+   pkt = av_packet_alloc();
+-  if (pkt == NULL) {
+-    printf("Couldn't allocate packet\n");
+-    return -1;
+-  }
+-
+-  ffmpeg_decoder = perf_lvl & VAAPI_ACCELERATION ? VAAPI : SOFTWARE;
++  if (!pkt) { fprintf(stderr, "FFmpeg: av_packet_alloc failed\n"); return -1; }
++
++  ffmpeg_decoder = (perf_lvl & VAAPI_ACCELERATION) ? VAAPI : SOFTWARE;
++
++  /*
++   * Sélection du décodeur par ordre de priorité :
++   *
++   * HEVC :
++   *   1. hevc_v4l2request (Pi 5 fork, si compilé comme décodeur standalone)
++   *   2. hevc             (Pi 5 fork, avec hwaccel DRM — cas le plus courant)
++   *   3. hevc_v4l2m2m     (Pi 4 bcm2835-codec, API stateful)
++   *   4. hevc             (soft decode pur, sans hwaccel)
++   *
++   * H264 :
++   *   1. h264_v4l2m2m     (Pi 4 bcm2835-codec)
++   *   2. h264             (soft decode — Pi 5 n'a pas h264_v4l2request)
++   *
++   * NB : Pour HEVC sur Pi 5, on tente hevc_v4l2request d'abord au cas où
++   * le fork l'aurait compilé en standalone dans une version future.
++   * Si absent, on utilise 'hevc' + hwaccel DRM.
++   */
++  decoder = NULL;
++  decoder_ctx = NULL;
++
++  for (int try = 0; try < 8 && !decoder; try++) {
++    const AVCodec* candidate = NULL;
++    bool           need_hwaccel = false; /* true = configure DRM hwaccel */
+ 
+-  for (int try = 0; try < 6; try++) {
+     if (videoFormat & VIDEO_FORMAT_MASK_H264) {
+       if (ffmpeg_decoder == SOFTWARE) {
+-        if (try == 0) decoder = avcodec_find_decoder_by_name("h264_nvv4l2"); // Tegra
+-        if (try == 1) decoder = avcodec_find_decoder_by_name("h264_nvmpi"); // Tegra
+-        if (try == 2) decoder = avcodec_find_decoder_by_name("h264_omx"); // VisionFive
+-        if (try == 3) decoder = avcodec_find_decoder_by_name("h264_v4l2m2m"); // Stateful V4L2
++        if (try == 0) candidate = avcodec_find_decoder_by_name("h264_v4l2m2m");
++        if (try == 1) candidate = avcodec_find_decoder_by_name("h264_nvv4l2");
++        if (try == 2) candidate = avcodec_find_decoder_by_name("h264_nvmpi");
++        if (try == 3) candidate = avcodec_find_decoder_by_name("h264_omx");
+       }
+-      if (try == 4) decoder = avcodec_find_decoder_by_name("h264"); // Software and hwaccel
++      if (try == 4) candidate = avcodec_find_decoder_by_name("h264");
++
+     } else if (videoFormat & VIDEO_FORMAT_MASK_H265) {
+       if (ffmpeg_decoder == SOFTWARE) {
+-        if (try == 0) decoder = avcodec_find_decoder_by_name("hevc_nvv4l2"); // Tegra
+-        if (try == 1) decoder = avcodec_find_decoder_by_name("hevc_nvmpi"); // Tegra
+-        if (try == 2) decoder = avcodec_find_decoder_by_name("hevc_omx"); // VisionFive
+-        if (try == 3) decoder = avcodec_find_decoder_by_name("hevc_v4l2m2m"); // Stateful V4L2
++        /* try 0 : décodeur standalone (fork futur ou autre distro) */
++        if (try == 0) candidate = avcodec_find_decoder_by_name("hevc_v4l2request");
++        /* try 1 : 'hevc' avec hwaccel DRM — cas Pi 5 rpi-ffmpeg actuel */
++        if (try == 1) {
++          candidate    = avcodec_find_decoder_by_name("hevc");
++          need_hwaccel = true;
++        }
++        /* try 2 : M2M stateful Pi 4 */
++        if (try == 2) candidate = avcodec_find_decoder_by_name("hevc_v4l2m2m");
++        if (try == 3) candidate = avcodec_find_decoder_by_name("hevc_nvv4l2");
++        if (try == 4) candidate = avcodec_find_decoder_by_name("hevc_nvmpi");
++        if (try == 5) candidate = avcodec_find_decoder_by_name("hevc_omx");
+       }
+-      if (try == 4) decoder = avcodec_find_decoder_by_name("hevc"); // Software and hwaccel
++      /* try 6 : soft decode pur, sans hwaccel */
++      if (try == 6) candidate = avcodec_find_decoder_by_name("hevc");
++
+     } else if (videoFormat & VIDEO_FORMAT_MASK_AV1) {
+-      if (ffmpeg_decoder == SOFTWARE) {
+-        if (try == 0) decoder = avcodec_find_decoder_by_name("libdav1d");
+-      }
+-      if (try == 1) decoder = avcodec_find_decoder_by_name("av1"); // Hwaccel
++      if (ffmpeg_decoder == SOFTWARE)
++        if (try == 0) candidate = avcodec_find_decoder_by_name("libdav1d");
++      if (try == 1) candidate = avcodec_find_decoder_by_name("av1");
+     } else {
+-      printf("Video format not supported\n");
+-      return -1;
+-    }
+-
+-    // Skip this decoder if it isn't compiled into FFmpeg
+-    if (!decoder) {
+-      continue;
+-    }
+-
+-    decoder_ctx = avcodec_alloc_context3(decoder);
+-    if (decoder_ctx == NULL) {
+-      printf("Couldn't allocate context\n");
++      fprintf(stderr, "FFmpeg: unsupported video format\n");
+       return -1;
+     }
+ 
+-    // Use low delay decoding
+-    decoder_ctx->flags |= AV_CODEC_FLAG_LOW_DELAY;
++    if (!candidate) continue;
+ 
+-    // Allow display of corrupt frames and frames missing references
+-    decoder_ctx->flags |= AV_CODEC_FLAG_OUTPUT_CORRUPT;
+-    decoder_ctx->flags2 |= AV_CODEC_FLAG2_SHOW_ALL;
++    AVCodecContext* ctx = avcodec_alloc_context3(candidate);
++    if (!ctx) { fprintf(stderr, "FFmpeg: avcodec_alloc_context3 failed\n"); return -1; }
+ 
+-    // Report decoding errors to allow us to request a key frame
+-    decoder_ctx->err_recognition = AV_EF_EXPLODE;
++    ctx->flags  |= AV_CODEC_FLAG_LOW_DELAY;
++    ctx->flags  |= AV_CODEC_FLAG_OUTPUT_CORRUPT;
++    ctx->flags2 |= AV_CODEC_FLAG2_SHOW_ALL;
++    ctx->err_recognition = AV_EF_EXPLODE;
++    ctx->width   = width;
++    ctx->height  = height;
++    ctx->pix_fmt = AV_PIX_FMT_YUV420P;
+ 
+     if (perf_lvl & SLICE_THREADING) {
+-      decoder_ctx->thread_type = FF_THREAD_SLICE;
+-      decoder_ctx->thread_count = thread_count;
++      ctx->thread_type  = FF_THREAD_SLICE;
++      ctx->thread_count = thread_count;
+     } else {
+-      decoder_ctx->thread_count = 1;
++      ctx->thread_count = 1;
+     }
+ 
+-    decoder_ctx->width = width;
+-    decoder_ctx->height = height;
+-    decoder_ctx->pix_fmt = AV_PIX_FMT_YUV420P;
++    /* Application du get_format :
++     * - Callback externe (v4l2drm.c) ou hwaccel DRM → seulement si hwaccel dispo
++     * - NE PAS appliquer sur le décodeur soft pur (try 6) car sans hw_device_ctx
++     *   FFmpeg rejette DRM_PRIME et génère une erreur → swscale sans context
++     */
++    if (need_hwaccel) {
++      /* try_init_drm_hwaccel configure get_format en interne si succès */
++      if (try_init_drm_hwaccel(ctx) < 0) {
++        avcodec_free_context(&ctx);
++        continue; /* essaie hevc_v4l2m2m (try 2) */
++      }
++    } else if (ffmpeg_get_format_cb && hw_device_ctx) {
++      /* Callback externe valide seulement si un contexte hw a été alloué */
++      ctx->get_format = ffmpeg_get_format_cb;
++    }
++    /* Sinon : décodeur software pur, pas de get_format personnalisé */
+ 
+-    int err = avcodec_open2(decoder_ctx, decoder, NULL);
++#ifdef HAVE_VAAPI
++    if (ffmpeg_decoder == VAAPI)
++      vaapi_init(ctx);
++#endif
++
++    int err = avcodec_open2(ctx, candidate, NULL);
+     if (err < 0) {
+-      printf("Couldn't open codec: %s\n", decoder->name);
+-      avcodec_free_context(&decoder_ctx);
++      char errbuf[256];
++      av_strerror(err, errbuf, sizeof(errbuf));
++      printf("FFmpeg: %s failed: %s\n", candidate->name, errbuf);
++      /* Libère aussi le hw_device_ctx si on en avait alloué un */
++      if (need_hwaccel && hw_device_ctx) {
++        av_buffer_unref(&hw_device_ctx);
++        hw_device_ctx = NULL;
++      }
++      avcodec_free_context(&ctx);
+       continue;
+     }
++
++    decoder     = candidate;
++    decoder_ctx = ctx;
++    /* break implicite : la condition !decoder stoppe la boucle */
+   }
+ 
+-  if (decoder == NULL) {
+-    printf("Couldn't find decoder\n");
++  if (!decoder) {
++    fprintf(stderr, "FFmpeg: no suitable decoder found\n");
+     return -1;
+   }
+ 
+-  printf("Using FFmpeg decoder: %s\n", decoder->name);
++  printf("FFmpeg: using decoder '%s'%s\n",
++         decoder->name,
++         hw_device_ctx ? " + DRM hwaccel" : "");
+ 
+   dec_frames_cnt = buffer_count;
+-  dec_frames = malloc(buffer_count * sizeof(AVFrame*));
+-  if (dec_frames == NULL) {
+-    fprintf(stderr, "Couldn't allocate frames");
+-    return -1;
+-  }
++  dec_frames = calloc(buffer_count, sizeof(AVFrame*));
++  if (!dec_frames) return -1;
+ 
+   for (int i = 0; i < buffer_count; i++) {
+     dec_frames[i] = av_frame_alloc();
+-    if (dec_frames[i] == NULL) {
+-      fprintf(stderr, "Couldn't allocate frame");
+-      return -1;
+-    }
++    if (!dec_frames[i]) return -1;
+   }
+ 
+-  #ifdef HAVE_VAAPI
+-  if (ffmpeg_decoder == VAAPI)
+-    vaapi_init(decoder_ctx);
+-  #endif
+-
+   return 0;
+ }
+ 
+-// This function must be called after
+-// decoding is finished
++/* ── Destruction ─────────────────────────────────────────────────────────── */
++
+ void ffmpeg_destroy(void) {
+   av_packet_free(&pkt);
+-  if (decoder_ctx) {
+-    avcodec_free_context(&decoder_ctx);
+-  }
++  if (decoder_ctx) avcodec_free_context(&decoder_ctx);
++  if (hw_device_ctx) { av_buffer_unref(&hw_device_ctx); hw_device_ctx = NULL; }
+   if (dec_frames) {
+-    for (int i = 0; i < dec_frames_cnt; i++) {
+-      if (dec_frames[i])
+-        av_frame_free(&dec_frames[i]);
+-    }
++    for (int i = 0; i < dec_frames_cnt; i++)
++      if (dec_frames[i]) av_frame_free(&dec_frames[i]);
++    free(dec_frames);
++    dec_frames = NULL;
+   }
++  ffmpeg_get_format_cb = NULL;
+ }
+ 
++/* ── Décodage ────────────────────────────────────────────────────────────── */
++
+ AVFrame* ffmpeg_get_frame(bool native_frame) {
+   int err = avcodec_receive_frame(decoder_ctx, dec_frames[next_frame]);
+   if (err == 0) {
+     current_frame = next_frame;
+-    next_frame = (current_frame+1) % dec_frames_cnt;
+-
++    next_frame    = (current_frame + 1) % dec_frames_cnt;
+     if (ffmpeg_decoder == SOFTWARE || native_frame)
+       return dec_frames[current_frame];
+   } else if (err != AVERROR(EAGAIN)) {
+-    char errorstring[512];
+-    av_strerror(err, errorstring, sizeof(errorstring));
+-    fprintf(stderr, "Receive failed - %d/%s\n", err, errorstring);
++    char errbuf[256];
++    av_strerror(err, errbuf, sizeof(errbuf));
++    fprintf(stderr, "FFmpeg: receive failed: %s\n", errbuf);
+   }
+   return NULL;
+ }
+ 
+-// packets must be decoded in order
+-// indata must be inlen + AV_INPUT_BUFFER_PADDING_SIZE in length
+ int ffmpeg_decode(unsigned char* indata, int inlen) {
+-  int err;
+-
+   pkt->data = indata;
+   pkt->size = inlen;
+-
+-  err = avcodec_send_packet(decoder_ctx, pkt);
++  int err = avcodec_send_packet(decoder_ctx, pkt);
+   if (err < 0) {
+-    char errorstring[512];
+-    av_strerror(err, errorstring, sizeof(errorstring));
+-    fprintf(stderr, "Decode failed - %s\n", errorstring);
++    char errbuf[256];
++    av_strerror(err, errbuf, sizeof(errbuf));
++    fprintf(stderr, "FFmpeg: decode failed: %s\n", errbuf);
+   }
+-
+   return err < 0 ? err : 0;
+ }
+diff --git a/src/video/ffmpeg.h b/src/video/ffmpeg.h
+index a6e9af8..c497592 100644
+--- a/src/video/ffmpeg.h
++++ b/src/video/ffmpeg.h
+@@ -7,32 +7,32 @@
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 3 of the License, or
+  * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+-#include <stdbool.h>
++#pragma once
+ 
++#include <stdbool.h>
+ #include <libavcodec/avcodec.h>
+ 
+-// Enable multi-threaded decoding
+-#define SLICE_THREADING 0x4
+-// Uses hardware acceleration
++#define SLICE_THREADING    0x4
+ #define VDPAU_ACCELERATION 0x40
+ #define VAAPI_ACCELERATION 0x80
+ 
+-enum decoders {SOFTWARE, VDPAU, VAAPI};
++enum decoders { SOFTWARE, VDPAU, VAAPI };
+ extern enum decoders ffmpeg_decoder;
+ 
+-int ffmpeg_init(int videoFormat, int width, int height, int perf_lvl, int buffer_count, int thread_count);
+-void ffmpeg_destroy(void);
++/*
++ * FIX C — Hook de format optionnel.
++ * Permet à v4l2drm de demander AV_PIX_FMT_DRM_PRIME avant ffmpeg_init()
++ * pour obtenir des frames exportables en DMA-BUF (zero-copy DRM_PRIME).
++ * Laisser NULL pour le comportement par défaut.
++ */
++extern enum AVPixelFormat (*ffmpeg_get_format_cb)(AVCodecContext*,
++                                                  const enum AVPixelFormat*);
++
+ 
+-int ffmpeg_draw_frame(AVFrame *pict);
++int      ffmpeg_init(int videoFormat, int width, int height,
++                     int perf_lvl, int buffer_count, int thread_count);
++void     ffmpeg_destroy(void);
+ AVFrame* ffmpeg_get_frame(bool native_frame);
+-int ffmpeg_decode(unsigned char* indata, int inlen);
++int      ffmpeg_decode(unsigned char* indata, int inlen);
+diff --git a/src/video/ffmpeg_vaapi.c b/src/video/ffmpeg_vaapi.c
+index 702a27f..4a4c564 100644
+--- a/src/video/ffmpeg_vaapi.c
++++ b/src/video/ffmpeg_vaapi.c
+@@ -2,55 +2,131 @@
+  * This file is part of Moonlight Embedded.
+  *
+  * Copyright (C) 2017 Iwan Timmer
++ * Fix #3/#4 : signature Display*, format surface P010
++ * Fix F     : détection AV1 dynamique via vaQueryConfigProfiles()
+  *
+- * Moonlight is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 3 of the License, or
+- * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
++ * Moonlight is free software; GPL-3.0+
+  */
+ 
++#include "ffmpeg_vaapi.h"
++
+ #include <va/va.h>
+ #include <va/va_x11.h>
+ #include <libavcodec/avcodec.h>
+ #include <libavutil/hwcontext.h>
+ #include <libavutil/hwcontext_vaapi.h>
++#include <libavutil/pixdesc.h>
+ #include <X11/Xlib.h>
+ 
++#include <stdio.h>
++#include <stdlib.h>
++#include <unistd.h>
++#include <stdbool.h>
++
+ #define MAX_SURFACES 16
+ 
+-static AVBufferRef* device_ref;
++static AVBufferRef* device_ref  = NULL;
++static bool         av1_support = false; /* Fix F : résultat de la sonde */
++
++/* ── Fix F : sonde AV1 ────────────────────────────────────────────────────
++ *
++ * Appelée juste après la création du device VAAPI.
++ * vaQueryConfigProfiles() retourne la liste des profils VA supportés par le
++ * GPU courant. On cherche VAProfileAV1Profile0 (et Profile1 si disponible).
++ *
++ * Guard #ifdef : VAProfileAV1Profile0 n'existe que depuis libva 2.11.0
++ * (2021). Sur des toolchains plus anciens, la détection retourne false
++ * sans erreur de compilation.
++ */
++static void probe_av1_support(void) {
++  av1_support = false;
++
++#ifdef VAProfileAV1Profile0
++  if (!device_ref) return;
++
++  AVHWDeviceContext*    device = (AVHWDeviceContext*)device_ref->data;
++  AVVAAPIDeviceContext* va_ctx = device->hwctx;
++
++  int max_profiles = vaMaxNumProfiles(va_ctx->display);
++  if (max_profiles <= 0) return;
++
++  VAProfile* profiles = malloc((size_t)max_profiles * sizeof(VAProfile));
++  if (!profiles) return;
++
++  int actual = 0;
++  VAStatus st = vaQueryConfigProfiles(va_ctx->display, profiles, &actual);
++  if (st == VA_STATUS_SUCCESS) {
++    for (int i = 0; i < actual; i++) {
++      if (profiles[i] == VAProfileAV1Profile0
++#ifdef VAProfileAV1Profile1
++          || profiles[i] == VAProfileAV1Profile1
++#endif
++      ) {
++        av1_support = true;
++        break;
++      }
++    }
++  }
++  free(profiles);
++
++  if (av1_support)
++    printf("VAAPI: AV1 hardware decoding available\n");
++  else
++    printf("VAAPI: AV1 hardware decoding not available on this GPU\n");
++#else
++  /* libva < 2.11 : VAProfileAV1Profile0 non défini — détection impossible */
++  printf("VAAPI: AV1 detection skipped (libva < 2.11)\n");
++#endif
++}
++
++bool vaapi_has_av1(void) {
++  return av1_support;
++}
++
++/* ── Fix #4 : sélection du format surface (8-bit / 10-bit) ─────────────── */
++
++static enum AVPixelFormat select_sw_format(AVCodecContext* context) {
++  if (context->codec_id == AV_CODEC_ID_HEVC) {
++    if (context->profile == FF_PROFILE_HEVC_MAIN_10 ||
++        context->profile == FF_PROFILE_HEVC_REXT)
++      return AV_PIX_FMT_P010;
++  }
++  if (context->sw_pix_fmt == AV_PIX_FMT_YUV420P10LE ||
++      context->sw_pix_fmt == AV_PIX_FMT_YUV420P10BE ||
++      context->sw_pix_fmt == AV_PIX_FMT_P010LE       ||
++      context->sw_pix_fmt == AV_PIX_FMT_P010BE)
++    return AV_PIX_FMT_P010;
++  return AV_PIX_FMT_NV12;
++}
+ 
+-static enum AVPixelFormat va_get_format(AVCodecContext* context, const enum AVPixelFormat* pixel_format) {
++static enum AVPixelFormat va_get_format(AVCodecContext* context,
++                                        const enum AVPixelFormat* pixel_format) {
+   AVBufferRef* hw_ctx = av_hwframe_ctx_alloc(device_ref);
+-  if (hw_ctx == NULL) {
+-    fprintf(stderr, "Failed to initialize Vaapi buffer\n");
++  if (!hw_ctx) {
++    fprintf(stderr, "VAAPI: failed to allocate hw frame context\n");
+     return AV_PIX_FMT_NONE;
+   }
+ 
+-  AVHWFramesContext* fr_ctx = (AVHWFramesContext*) hw_ctx->data;
+-  fr_ctx->format = AV_PIX_FMT_VAAPI;
+-  fr_ctx->sw_format = AV_PIX_FMT_NV12;
+-  fr_ctx->width = context->coded_width;
+-  fr_ctx->height = context->coded_height;
+-  fr_ctx->initial_pool_size = MAX_SURFACES + 1;
++  AVHWFramesContext* fr_ctx  = (AVHWFramesContext*)hw_ctx->data;
++  fr_ctx->format             = AV_PIX_FMT_VAAPI;
++  fr_ctx->sw_format          = select_sw_format(context); /* Fix #4 */
++  fr_ctx->width              = context->coded_width;
++  fr_ctx->height             = context->coded_height;
++  fr_ctx->initial_pool_size  = MAX_SURFACES + 1;
++
++  if (fr_ctx->sw_format == AV_PIX_FMT_P010)
++    printf("VAAPI: P010 surface format selected (10-bit content)\n");
+ 
+   if (av_hwframe_ctx_init(hw_ctx) < 0) {
+-    fprintf(stderr, "Failed to initialize VAAPI frame context");
++    fprintf(stderr, "VAAPI: failed to init hw frame context\n");
++    av_buffer_unref(&hw_ctx);
+     return AV_PIX_FMT_NONE;
+   }
+ 
+-  context->pix_fmt = AV_PIX_FMT_VAAPI;
++  context->pix_fmt       = AV_PIX_FMT_VAAPI;
+   context->hw_device_ctx = device_ref;
+   context->hw_frames_ctx = hw_ctx;
+-  context->slice_flags = SLICE_FLAG_CODED_ORDER | SLICE_FLAG_ALLOW_FIELD;
++  context->slice_flags   = SLICE_FLAG_CODED_ORDER | SLICE_FLAG_ALLOW_FIELD;
+   return AV_PIX_FMT_VAAPI;
+ }
+ 
+@@ -58,19 +134,58 @@ static int va_get_buffer(AVCodecContext* context, AVFrame* frame, int flags) {
+   return av_hwframe_get_buffer(context->hw_frames_ctx, frame, 0);
+ }
+ 
+-int vaapi_init_lib() {
+-  return av_hwdevice_ctx_create(&device_ref, AV_HWDEVICE_TYPE_VAAPI, ":0", NULL, 0);
++/* ── Fix #3 : init en cascade (DRM → auto → ":0") ──────────────────────── */
++
++int vaapi_init_lib(Display* display) {
++  (void)display;
++
++  const char* drm_nodes[] = {
++    "/dev/dri/renderD128", "/dev/dri/renderD129",
++    "/dev/dri/renderD130", "/dev/dri/renderD131", NULL
++  };
++
++  /* 1. Nœuds DRM render (robuste sur Wayland, DISPLAY != :0, multi-GPU) */
++  for (int i = 0; drm_nodes[i]; i++) {
++    if (access(drm_nodes[i], R_OK) != 0) continue;
++    if (av_hwdevice_ctx_create(&device_ref, AV_HWDEVICE_TYPE_VAAPI,
++                               drm_nodes[i], NULL, 0) == 0) {
++      printf("VAAPI: initialized via %s\n", drm_nodes[i]);
++      probe_av1_support(); /* Fix F */
++      return 0;
++    }
++  }
++
++  /* 2. Auto-détection FFmpeg */
++  if (av_hwdevice_ctx_create(&device_ref, AV_HWDEVICE_TYPE_VAAPI,
++                              NULL, NULL, 0) == 0) {
++    printf("VAAPI: initialized via auto-detection\n");
++    probe_av1_support(); /* Fix F */
++    return 0;
++  }
++
++  /* 3. Fallback ":0" (comportement original) */
++  if (av_hwdevice_ctx_create(&device_ref, AV_HWDEVICE_TYPE_VAAPI,
++                              ":0", NULL, 0) == 0) {
++    printf("VAAPI: initialized via display :0 (fallback)\n");
++    probe_av1_support(); /* Fix F */
++    return 0;
++  }
++
++  fprintf(stderr, "VAAPI: all initialization paths failed\n");
++  return -1;
+ }
+ 
+ int vaapi_init(AVCodecContext* decoder_ctx) {
+-  decoder_ctx->get_format = va_get_format;
++  decoder_ctx->get_format  = va_get_format;
+   decoder_ctx->get_buffer2 = va_get_buffer;
+   return 0;
+ }
+ 
+ void vaapi_queue(AVFrame* dec_frame, Window win, int width, int height) {
+   VASurfaceID surface = (VASurfaceID)(uintptr_t)dec_frame->data[3];
+-  AVHWDeviceContext* device = (AVHWDeviceContext*) device_ref->data;
+-  AVVAAPIDeviceContext *va_ctx = device->hwctx;
+-  vaPutSurface(va_ctx->display, surface, win, 0, 0, dec_frame->width, dec_frame->height, 0, 0, width, height, NULL, 0, 0);
++  AVHWDeviceContext*    device = (AVHWDeviceContext*)device_ref->data;
++  AVVAAPIDeviceContext* va_ctx = device->hwctx;
++  vaPutSurface(va_ctx->display, surface, win,
++               0, 0, dec_frame->width, dec_frame->height,
++               0, 0, width, height, NULL, 0, 0);
+ }
+diff --git a/src/video/ffmpeg_vaapi.h b/src/video/ffmpeg_vaapi.h
+index f87fcd7..f3b082e 100644
+--- a/src/video/ffmpeg_vaapi.h
++++ b/src/video/ffmpeg_vaapi.h
+@@ -2,24 +2,32 @@
+  * This file is part of Moonlight Embedded.
+  *
+  * Copyright (C) 2017 Iwan Timmer
++ * Fix #3/#4 : signature Display*, détection format 10-bit
++ * Fix F     : détection AV1 dynamique via vaQueryConfigProfiles()
+  *
+- * Moonlight is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 3 of the License, or
+- * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
++ * Moonlight is free software; GPL-3.0+
+  */
+ 
+-#include <va/va.h>
++#pragma once
++
++#include <libavcodec/avcodec.h>
+ #include <X11/Xlib.h>
++#include <stdbool.h>
+ 
+-int vaapi_init_lib();
+-int vaapi_init(AVCodecContext* decoder_ctx);
++/*
++ * Fix #3 : accepte le Display* ouvert par x11.c.
++ * Tente en cascade : nœuds DRM render → auto-détection → ":0".
++ * Retourne 0 en cas de succès, -1 si tous les chemins échouent.
++ */
++int vaapi_init_lib(Display* display);
++
++int  vaapi_init(AVCodecContext* decoder_ctx);
+ void vaapi_queue(AVFrame* dec_frame, Window win, int width, int height);
++
++/*
++ * Fix F : indique si le GPU courant supporte le décodage AV1 via VAAPI.
++ * Retourne false si vaapi_init_lib() n'a pas encore été appelé, ou si
++ * VAProfileAV1Profile0 n'est pas dans la liste des profils supportés.
++ * Compilé conditionnellement si libva >= 2.11 (VAProfileAV1Profile0 défini).
++ */
++bool vaapi_has_av1(void);
+diff --git a/src/video/mmal.c b/src/video/mmal.c
+index 49d0c60..ef2cb75 100644
+--- a/src/video/mmal.c
++++ b/src/video/mmal.c
+@@ -1,38 +1,20 @@
+-
+ /*
+-Copyright (c) 2012, Broadcom Europe Ltd
+-All rights reserved.
+-
+-Redistribution and use in source and binary forms, with or without
+-modification, are permitted provided that the following conditions are met:
+-  * Redistributions of source code must retain the above copyright
+-  notice, this list of conditions and the following disclaimer.
+-  * Redistributions in binary form must reproduce the above copyright
+-  notice, this list of conditions and the following disclaimer in the
+-  documentation and/or other materials provided with the distribution.
+-  * Neither the name of the copyright holder nor the
+-  names of its contributors may be used to endorse or promote products
+-  derived from this software without specific prior written permission.
+-
+-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+-ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+-WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+-DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY
+-DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+-(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+-LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+-ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+-(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+-SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-*/
+-
+-// Video decode on Raspberry Pi using MMAL
+-// Based upon example code from the Raspberry Pi
++ * Video decode on Raspberry Pi using MMAL
++ *
++ * FIX B : ajout du support HEVC (H.265) pour Pi 4.
++ *   - MMAL_ENCODING_H265 utilisé si le format entrant est H265
++ *   - gs_sps_fix() appelé uniquement pour H264 (SPS H265 a un format différent)
++ *   - CAPABILITY_REFERENCE_FRAME_INVALIDATION_HEVC déclaré dans les callbacks
++ *   - platform_prefers_codec() mis à jour dans platform.c pour retourner true
++ *     sur HEVC quand le backend est MMAL
++ *
++ * Copyright (c) 2012, Broadcom Europe Ltd — see LICENSE for terms.
++ * Moonlight Embedded — GPL-3.0+
++ */
+ 
+ #include "video.h"
+ 
+ #include <Limelight.h>
+-
+ #include <sps.h>
+ 
+ #include <stdio.h>
+@@ -50,199 +32,195 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ #define ALIGN(x, a) (((x)+(a)-1)&~((a)-1))
+ 
+-static VCOS_SEMAPHORE_T semaphore;
+-static MMAL_COMPONENT_T *decoder = NULL, *renderer = NULL;
+-static MMAL_POOL_T *pool_in = NULL, *pool_out = NULL;
++static VCOS_SEMAPHORE_T   semaphore;
++static MMAL_COMPONENT_T*  decoder  = NULL;
++static MMAL_COMPONENT_T*  renderer = NULL;
++static MMAL_POOL_T*       pool_in  = NULL;
++static MMAL_POOL_T*       pool_out = NULL;
+ 
+-static void input_callback(MMAL_PORT_T *port, MMAL_BUFFER_HEADER_T *buf) {
+-  mmal_buffer_header_release(buf);
++/* FIX B : format courant, nécessaire dans submit_decode_unit
++ * pour conditionner gs_sps_fix() sur H264 uniquement. */
++static int current_video_format = 0;
+ 
++/* ── Callbacks MMAL ───────────────────────────────────────────────────── */
++
++static void input_callback(MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf) {
++  mmal_buffer_header_release(buf);
+   if (port == decoder->input[0])
+     vcos_semaphore_post(&semaphore);
+ }
+ 
+-static void control_callback(MMAL_PORT_T *port, MMAL_BUFFER_HEADER_T *buf) {
+- if (buf->cmd == MMAL_EVENT_ERROR) {
+-    MMAL_STATUS_T status = *(uint32_t *) buf->data;
+-    fprintf(stderr, "Video decode error MMAL_EVENT_ERROR:%d\n", status);
+- }
+-
+- mmal_buffer_header_release(buf);
++static void control_callback(MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf) {
++  if (buf->cmd == MMAL_EVENT_ERROR) {
++    MMAL_STATUS_T status = *(uint32_t*)buf->data;
++    fprintf(stderr, "MMAL decode error: %d\n", status);
++  }
++  mmal_buffer_header_release(buf);
+ }
+ 
+-static void output_callback(MMAL_PORT_T *port, MMAL_BUFFER_HEADER_T *buf) {
++static void output_callback(MMAL_PORT_T* port, MMAL_BUFFER_HEADER_T* buf) {
+   if (mmal_port_send_buffer(renderer->input[0], buf) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't display decoded frame\n");
++    fprintf(stderr, "MMAL: can't display decoded frame\n");
+     mmal_buffer_header_release(buf);
+   }
+ }
+ 
+-static int decoder_renderer_setup(int videoFormat, int width, int height, int redrawRate, void* context, int drFlags) {
+-  if (videoFormat != VIDEO_FORMAT_H264) {
+-    fprintf(stderr, "Video format not supported\n");
++/* ── Setup ────────────────────────────────────────────────────────────── */
++
++static int decoder_renderer_setup(int videoFormat, int width, int height,
++                                   int redrawRate, void* context, int drFlags) {
++  /* FIX B : accepte H264 ET H265 */
++  if (!(videoFormat & VIDEO_FORMAT_MASK_H264) &&
++      !(videoFormat & VIDEO_FORMAT_MASK_H265)) {
++    fprintf(stderr, "MMAL: video format not supported (only H264/H265)\n");
+     return -1;
+   }
++  current_video_format = videoFormat;
+ 
+   bcm_host_init();
+   mmal_vc_init();
+-  gs_sps_init(width, height);
++
++  /* H264 utilise gs_sps_init pour le bitstream fixup ; H265 n'en a pas besoin */
++  if (videoFormat & VIDEO_FORMAT_MASK_H264)
++    gs_sps_init(width, height);
+ 
+   vcos_semaphore_create(&semaphore, "video_decoder", 1);
++
+   if (mmal_component_create(MMAL_COMPONENT_DEFAULT_VIDEO_DECODER, &decoder) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't create decoder\n");
++    fprintf(stderr, "MMAL: can't create decoder\n");
+     return -2;
+   }
+ 
+-  MMAL_ES_FORMAT_T *format_in = decoder->input[0]->format;
+-  format_in->type = MMAL_ES_TYPE_VIDEO;
+-  format_in->encoding = MMAL_ENCODING_H264;
+-  format_in->es->video.width = ALIGN(width, 32);
+-  format_in->es->video.height = ALIGN(height, 16);
+-  format_in->es->video.crop.width = width;
+-  format_in->es->video.crop.height = height;
+-  format_in->es->video.frame_rate.num = redrawRate;
+-  format_in->es->video.frame_rate.den = 1;
+-  format_in->es->video.par.num = 1;
+-  format_in->es->video.par.den = 1;
+-  format_in->flags = MMAL_ES_FORMAT_FLAG_FRAMED;
++  MMAL_ES_FORMAT_T* format_in = decoder->input[0]->format;
++  format_in->type               = MMAL_ES_TYPE_VIDEO;
++
++  /* FIX B : sélection de l'encoding MMAL selon le format */
++  format_in->encoding           = (videoFormat & VIDEO_FORMAT_MASK_H265)
++                                  ? MMAL_ENCODING_H265
++                                  : MMAL_ENCODING_H264;
++
++  format_in->es->video.width              = ALIGN(width, 32);
++  format_in->es->video.height             = ALIGN(height, 16);
++  format_in->es->video.crop.width         = width;
++  format_in->es->video.crop.height        = height;
++  format_in->es->video.frame_rate.num     = redrawRate;
++  format_in->es->video.frame_rate.den     = 1;
++  format_in->es->video.par.num            = 1;
++  format_in->es->video.par.den            = 1;
++  format_in->flags                        = MMAL_ES_FORMAT_FLAG_FRAMED;
+ 
+   if (mmal_port_format_commit(decoder->input[0]) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't commit input format to decoder\n");
++    fprintf(stderr, "MMAL: can't commit input format\n");
+     return -3;
+   }
+ 
+-  decoder->input[0]->buffer_num = 5;
++  decoder->input[0]->buffer_num  = 5;
+   decoder->input[0]->buffer_size = INITIAL_DECODER_BUFFER_SIZE;
+-  pool_in = mmal_port_pool_create(decoder->input[0], decoder->input[0]->buffer_num, decoder->output[0]->buffer_size);
++  pool_in = mmal_port_pool_create(decoder->input[0],
++                                  decoder->input[0]->buffer_num,
++                                  decoder->output[0]->buffer_size);
+ 
+-  MMAL_ES_FORMAT_T *format_out = decoder->output[0]->format;
++  MMAL_ES_FORMAT_T* format_out = decoder->output[0]->format;
+   format_out->encoding = MMAL_ENCODING_OPAQUE;
+   if (mmal_port_format_commit(decoder->output[0]) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't commit output format to decoder\n");
++    fprintf(stderr, "MMAL: can't commit output format\n");
+     return -3;
+   }
+ 
+-  decoder->output[0]->buffer_num = 3;
++  decoder->output[0]->buffer_num  = 3;
+   decoder->output[0]->buffer_size = decoder->output[0]->buffer_size_recommended;
+-  pool_out = mmal_port_pool_create(decoder->output[0], decoder->output[0]->buffer_num, decoder->output[0]->buffer_size);
++  pool_out = mmal_port_pool_create(decoder->output[0],
++                                   decoder->output[0]->buffer_num,
++                                   decoder->output[0]->buffer_size);
+ 
+   if (mmal_port_enable(decoder->control, control_callback) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable control port\n");
++    fprintf(stderr, "MMAL: can't enable decoder control port\n");
+     return -4;
+   }
+ 
++  /* ── Renderer ── */
+   if (mmal_component_create(MMAL_COMPONENT_DEFAULT_VIDEO_RENDERER, &renderer) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't create renderer\n");
++    fprintf(stderr, "MMAL: can't create renderer\n");
+     return -5;
+   }
+ 
+   format_in = renderer->input[0]->format;
+-  format_in->encoding = MMAL_ENCODING_OPAQUE;
+-  format_in->es->video.width = width;
+-  format_in->es->video.height = height;
+-  format_in->es->video.crop.x = 0;
+-  format_in->es->video.crop.y = 0;
++  format_in->encoding             = MMAL_ENCODING_OPAQUE;
++  format_in->es->video.width      = width;
++  format_in->es->video.height     = height;
++  format_in->es->video.crop.x     = 0;
++  format_in->es->video.crop.y     = 0;
+   format_in->es->video.crop.width = width;
+-  format_in->es->video.crop.height = height;
++  format_in->es->video.crop.height= height;
+   if (mmal_port_format_commit(renderer->input[0]) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't set output format\n");
++    fprintf(stderr, "MMAL: can't set renderer format\n");
+     return -6;
+   }
+ 
+   MMAL_DISPLAYREGION_T param;
+-  param.hdr.id = MMAL_PARAMETER_DISPLAYREGION;
++  param.hdr.id   = MMAL_PARAMETER_DISPLAYREGION;
+   param.hdr.size = sizeof(MMAL_DISPLAYREGION_T);
+-  param.set = MMAL_DISPLAY_SET_LAYER | MMAL_DISPLAY_SET_NUM | MMAL_DISPLAY_SET_FULLSCREEN | MMAL_DISPLAY_SET_TRANSFORM;
+-  param.layer = 128;
+-  param.display_num = 0;
++  param.set      = MMAL_DISPLAY_SET_LAYER | MMAL_DISPLAY_SET_NUM
++                 | MMAL_DISPLAY_SET_FULLSCREEN | MMAL_DISPLAY_SET_TRANSFORM;
++  param.layer      = 128;
++  param.display_num= 0;
+   param.fullscreen = true;
+-  int displayRotation = drFlags & DISPLAY_ROTATE_MASK;
+-  switch (displayRotation) {
+-  case DISPLAY_ROTATE_90:
+-    param.transform = MMAL_DISPLAY_ROT90;
+-    break;
+-  case DISPLAY_ROTATE_180:
+-    param.transform = MMAL_DISPLAY_ROT180;
+-    break;
+-  case DISPLAY_ROTATE_270:
+-    param.transform = MMAL_DISPLAY_ROT270;
+-    break;
+-  default:
+-    param.transform = MMAL_DISPLAY_ROT0;
+-    break;
++
++  int rot = drFlags & DISPLAY_ROTATE_MASK;
++  switch (rot) {
++  case DISPLAY_ROTATE_90:  param.transform = MMAL_DISPLAY_ROT90;  break;
++  case DISPLAY_ROTATE_180: param.transform = MMAL_DISPLAY_ROT180; break;
++  case DISPLAY_ROTATE_270: param.transform = MMAL_DISPLAY_ROT270; break;
++  default:                 param.transform = MMAL_DISPLAY_ROT0;   break;
+   }
+ 
+   if (mmal_port_parameter_set(renderer->input[0], &param.hdr) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't set parameters\n");
++    fprintf(stderr, "MMAL: can't set display parameters\n");
+     return -7;
+   }
+ 
+-  if (mmal_port_enable(renderer->control, control_callback) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable control port\n");
++  if (mmal_port_enable(renderer->control, control_callback)    != MMAL_SUCCESS ||
++      mmal_component_enable(renderer)                           != MMAL_SUCCESS ||
++      mmal_port_enable(renderer->input[0], input_callback)     != MMAL_SUCCESS ||
++      mmal_port_enable(decoder->input[0],  input_callback)     != MMAL_SUCCESS ||
++      mmal_port_enable(decoder->output[0], output_callback)    != MMAL_SUCCESS ||
++      mmal_component_enable(decoder)                           != MMAL_SUCCESS) {
++    fprintf(stderr, "MMAL: failed to enable components\n");
+     return -8;
+   }
+ 
+-  if (mmal_component_enable(renderer) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable renderer\n");
+-    return -9;
+-  }
+-
+-  if (mmal_port_enable(renderer->input[0], input_callback) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable renderer input port\n");
+-    return -10;
+-  }
+-
+-  if (mmal_port_enable(decoder->input[0], input_callback) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable decoder input port\n");
+-    return -11;
+-  }
+-
+-  if (mmal_port_enable(decoder->output[0], output_callback) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable decoder output port\n");
+-    return -12;
+-  }
+-
+-  if (mmal_component_enable(decoder) != MMAL_SUCCESS) {
+-    fprintf(stderr, "Can't enable decoder\n");
+-    return -13;
+-  }
+-
+   return 0;
+ }
+ 
+-static void decoder_renderer_cleanup() {
+-  if (decoder)
+-    mmal_component_destroy(decoder);
+-
+-  if (renderer)
+-    mmal_component_destroy(renderer);
+-
+-  if (pool_in)
+-    mmal_pool_destroy(pool_in);
+-
+-  if (pool_out)
+-    mmal_pool_destroy(pool_out);
++/* ── Cleanup ──────────────────────────────────────────────────────────── */
+ 
++static void decoder_renderer_cleanup(void) {
++  if (decoder)  mmal_component_destroy(decoder);
++  if (renderer) mmal_component_destroy(renderer);
++  if (pool_in)  mmal_pool_destroy(pool_in);
++  if (pool_out) mmal_pool_destroy(pool_out);
+   vcos_semaphore_delete(&semaphore);
+ }
+ 
++/* ── Submit ───────────────────────────────────────────────────────────── */
++
+ static int decoder_renderer_submit_decode_unit(PDECODE_UNIT decodeUnit) {
+-  MMAL_STATUS_T status;
+-  MMAL_BUFFER_HEADER_T *buf = NULL;
+-  PLENTRY entry = decodeUnit->bufferList;
+-  bool first_entry = false;
++  MMAL_STATUS_T         status;
++  MMAL_BUFFER_HEADER_T* buf      = NULL;
++  PLENTRY               entry    = decodeUnit->bufferList;
++  bool                  first_entry = false;
+ 
+   while (entry != NULL) {
+     if (buf == NULL) {
+       vcos_semaphore_wait(&semaphore);
+-      if ((buf = mmal_queue_get(pool_in->queue)) != NULL) {
+-        buf->flags = 0;
+-        buf->offset = 0;
+-        buf->pts = buf->dts = MMAL_TIME_UNKNOWN;
+-      } else {
+-        fprintf(stderr, "Video buffer full\n");
++      buf = mmal_queue_get(pool_in->queue);
++      if (!buf) {
++        fprintf(stderr, "MMAL: video buffer full\n");
+         return DR_NEED_IDR;
+       }
++      buf->flags  = 0;
++      buf->offset = 0;
++      buf->pts    = buf->dts = MMAL_TIME_UNKNOWN;
+     }
+ 
+     if (entry->bufferType != BUFFER_TYPE_PICDATA)
+@@ -252,11 +230,13 @@ static int decoder_renderer_submit_decode_unit(PDECODE_UNIT decodeUnit) {
+       first_entry = true;
+     }
+ 
+-    if (entry->bufferType == BUFFER_TYPE_SPS)
++    /* FIX B : gs_sps_fix() est spécifique H264 — ne pas appeler pour H265 */
++    if (entry->bufferType == BUFFER_TYPE_SPS &&
++        (current_video_format & VIDEO_FORMAT_MASK_H264)) {
+       gs_sps_fix(entry, GS_SPS_BITSTREAM_FIXUP, buf->data, &buf->length);
+-    else {
++    } else {
+       if (entry->length + buf->length > buf->alloc_size) {
+-        fprintf(stderr, "Video decoder buffer too small\n");
++        fprintf(stderr, "MMAL: decoder buffer too small\n");
+         mmal_buffer_header_release(buf);
+         return DR_NEED_IDR;
+       }
+@@ -264,9 +244,13 @@ static int decoder_renderer_submit_decode_unit(PDECODE_UNIT decodeUnit) {
+       buf->length += entry->length;
+     }
+ 
+-    if (entry->bufferType != BUFFER_TYPE_PICDATA || entry->next == NULL || entry->next->bufferType != BUFFER_TYPE_PICDATA) {
++    if (entry->bufferType != BUFFER_TYPE_PICDATA ||
++        entry->next == NULL ||
++        entry->next->bufferType != BUFFER_TYPE_PICDATA) {
++
+       buf->flags |= MMAL_BUFFER_HEADER_FLAG_FRAME_END;
+-      if ((status = mmal_port_send_buffer(decoder->input[0], buf)) != MMAL_SUCCESS) {
++      status = mmal_port_send_buffer(decoder->input[0], buf);
++      if (status != MMAL_SUCCESS) {
+         mmal_buffer_header_release(buf);
+         return DR_NEED_IDR;
+       }
+@@ -276,18 +260,42 @@ static int decoder_renderer_submit_decode_unit(PDECODE_UNIT decodeUnit) {
+     entry = entry->next;
+   }
+ 
+-  //Send available output buffers to decoder
++  /* Retourne les buffers de sortie disponibles au décodeur */
+   while ((buf = mmal_queue_get(pool_out->queue))) {
+-    if ((status = mmal_port_send_buffer(decoder->output[0], buf)) != MMAL_SUCCESS)
++    if (mmal_port_send_buffer(decoder->output[0], buf) != MMAL_SUCCESS)
+       mmal_buffer_header_release(buf);
+   }
+ 
+   return DR_OK;
+ }
+ 
++/* ── Callbacks exportés ───────────────────────────────────────────────── */
++
++/*
++ * FIX B : deux ensembles de capabilities pour refléter correctement
++ * les capacités selon le codec utilisé au runtime.
++ *
++ * decoder_callbacks_mmal          → H264 (comportement original)
++ * decoder_callbacks_mmal_hevc     → H265, avec RFI_HEVC activé
++ *
++ * platform_get_video() choisit l'un ou l'autre selon le codec négocié.
++ * En pratique, Moonlight appelle setup() avec le videoFormat concret,
++ * donc un seul callback suffit — on garde les deux pour la clarté de
++ * l'API et pour les outils d'inspection de capabilities.
++ */
+ DECODER_RENDERER_CALLBACKS decoder_callbacks_mmal = {
+-  .setup = decoder_renderer_setup,
+-  .cleanup = decoder_renderer_cleanup,
++  .setup            = decoder_renderer_setup,
++  .cleanup          = decoder_renderer_cleanup,
++  .submitDecodeUnit = decoder_renderer_submit_decode_unit,
++  .capabilities     = CAPABILITY_DIRECT_SUBMIT,
++};
++
++DECODER_RENDERER_CALLBACKS decoder_callbacks_mmal_hevc = {
++  .setup            = decoder_renderer_setup,
++  .cleanup          = decoder_renderer_cleanup,
+   .submitDecodeUnit = decoder_renderer_submit_decode_unit,
+-  .capabilities = CAPABILITY_DIRECT_SUBMIT,
++  /* FIX B : RFI_HEVC permet les mises à jour partielles de frames HEVC
++   * (pas d'IDR complet sur perte de paquets → latence réduite) */
++  .capabilities     = CAPABILITY_DIRECT_SUBMIT |
++                      CAPABILITY_REFERENCE_FRAME_INVALIDATION_HEVC,
+ };
+diff --git a/src/video/v4l2drm.c b/src/video/v4l2drm.c
+new file mode 100644
+index 0000000..80b6fe7
+--- /dev/null
++++ b/src/video/v4l2drm.c
+@@ -0,0 +1,1217 @@
++/*
++ * V4L2 + DRM/KMS backend for Raspberry Pi 5.
++ *
++ * Path priority (best to worst):
++ *
++ * 1. Atomic DRM direct (zero-copy, no GPU, no dumb buffers):
++ *      hevc_v4l2request → AVFrame DRM_PRIME NV12/SAND128
++ *      → drmModeAddFB2WithModifiers → drmModeAtomicCommit
++ *      Requires DRM_CAP_ADDFB2_MODIFIERS + DRM_CLIENT_CAP_ATOMIC.
++ *      Skips EGL init and dumb buffer alloc entirely.
++ *
++ * 2. Legacy DRM direct (zero-copy, no GPU):
++ *      Same as above but uses drmModeSetCrtc (first frame) +
++ *      drmModePageFlip (subsequent) when atomic is unavailable.
++ *
++ * 3. EGL path (HAVE_EGL, GPU readback to dumb buffer):
++ *      hevc_v4l2request → AVFrame DRM_PRIME SAND128
++ *      → eglCreateImageKHR → GL_TEXTURE_EXTERNAL_OES
++ *      → GLES2 passthrough shader → glReadPixels → dumb buf XRGB8888
++ *      → drmModePageFlip
++ *
++ * 4. Swscale path (last resort, CPU copy):
++ *      AVFrame DRM_PRIME → av_hwframe_transfer_data → swscale BGRA
++ *      → dumb buf XRGB8888 → drmModePageFlip
++ *
++ * Moonlight is free software; GPL-3.0+
++ */
++
++#include "video.h"
++#include "ffmpeg.h"
++#include "../loop.h"
++#include "../util.h"
++
++#include <Limelight.h>
++#include <libavcodec/avcodec.h>
++#include <libavutil/frame.h>
++#include <libavutil/hwcontext_drm.h>
++#include <libswscale/swscale.h>
++
++#include <xf86drm.h>
++#include <xf86drmMode.h>
++#include <drm/drm_fourcc.h>
++
++#ifdef HAVE_EGL
++#include <gbm.h>
++#include <EGL/egl.h>
++#include <EGL/eglext.h>
++#include <GLES2/gl2.h>
++#include <GLES2/gl2ext.h>
++
++#ifndef EGL_PLATFORM_GBM_KHR
++#define EGL_PLATFORM_GBM_KHR 0x31D7
++#endif
++#ifndef EGL_LINUX_DMA_BUF_EXT
++#define EGL_LINUX_DMA_BUF_EXT              0x3270
++#define EGL_LINUX_DRM_FOURCC_EXT           0x3271
++#define EGL_DMA_BUF_PLANE0_FD_EXT          0x3272
++#define EGL_DMA_BUF_PLANE0_OFFSET_EXT      0x3273
++#define EGL_DMA_BUF_PLANE0_PITCH_EXT       0x3274
++#define EGL_DMA_BUF_PLANE1_FD_EXT          0x3275
++#define EGL_DMA_BUF_PLANE1_OFFSET_EXT      0x3276
++#define EGL_DMA_BUF_PLANE1_PITCH_EXT       0x3277
++#endif
++/* Required for rpivid SAND128 tiled frames (Pi 5 HEVC decoder) */
++#ifndef EGL_DMA_BUF_PLANE0_MODIFIER_LO_EXT
++#define EGL_DMA_BUF_PLANE0_MODIFIER_LO_EXT 0x3443
++#define EGL_DMA_BUF_PLANE0_MODIFIER_HI_EXT 0x3444
++#define EGL_DMA_BUF_PLANE1_MODIFIER_LO_EXT 0x3445
++#define EGL_DMA_BUF_PLANE1_MODIFIER_HI_EXT 0x3446
++#endif
++
++typedef EGLDisplay (*PFNEGLGETPLATFORMDISPLAYEXTPROC_LOCAL)(
++    EGLenum platform, void* native_display, const EGLint* attrib_list);
++
++#endif /* HAVE_EGL */
++
++#include <fcntl.h>
++#include <unistd.h>
++#include <poll.h>
++#include <string.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <stdbool.h>
++#include <sys/mman.h>
++#include <sys/ioctl.h>
++#include <pthread.h>
++#include <errno.h>
++
++#define SLICES_PER_FRAME  4
++#define NUM_DUMB_BUFS     2
++#define FLIP_TIMEOUT_MS   20   /* max vblank wait; one frame at 60 Hz ≈ 16.7 ms */
++
++struct dumb_buf {
++  uint32_t handle, fb_id, stride, size;
++  void*    map;
++  int      w, h;
++};
++
++/* ── DRM state ───────────────────────────────────────────────────────────── */
++static int             drm_fd       = -1;
++static int             render_fd    = -1;
++static uint32_t        crtc_id      = 0;
++static uint32_t        connector_id = 0;
++static drmModeModeInfo drm_mode;
++static drmModeCrtcPtr  saved_crtc   = NULL;
++static volatile bool   flip_pending = false;
++
++/* ── Swscale / dumb buffer state ─────────────────────────────────────────── */
++static struct dumb_buf    dumb_bufs[NUM_DUMB_BUFS];
++static int                active_dumb  = 0;
++static struct SwsContext* sws_ctx      = NULL;
++static int                sws_src_fmt  = -1;
++static int                sws_src_w    = 0;
++static int                sws_src_h    = 0;
++static int                sws_dst_w    = 0;
++static int                sws_dst_h    = 0;
++static int                sws_src_cs   = -1; /* AVColorSpace */
++static int                sws_src_rng  = -1; /* AVColorRange */
++
++/* ── EGL state ───────────────────────────────────────────────────────────── */
++#ifdef HAVE_EGL
++static struct gbm_device* gbm_dev          = NULL;
++static EGLDisplay         egl_dpy          = EGL_NO_DISPLAY;
++static EGLContext         egl_ctx          = EGL_NO_CONTEXT;
++static GLuint             gl_prog          = 0;
++static GLuint             gl_vbo           = 0;
++static GLuint             gl_fbo           = 0;
++static GLuint             gl_fbo_tex       = 0;
++static GLuint             gl_yuv_tex       = 0;
++static GLint              gl_tex_loc       = -1;
++static GLint              gl_attr_pos      = -1;
++static GLint              gl_attr_uv       = -1;
++static uint8_t*           readback_buf     = NULL;
++static size_t             readback_sz      = 0;
++static bool               egl_has_mod_ext  = false;
++static bool               egl_frame_logged = false;
++
++static PFNEGLCREATEIMAGEKHRPROC            pfn_eglCreateImageKHR     = NULL;
++static PFNEGLDESTROYIMAGEKHRPROC           pfn_eglDestroyImageKHR    = NULL;
++static PFNGLEGLIMAGETARGETTEXTURE2DOESPROC pfn_glEGLImageTargetTex2D = NULL;
++#endif /* HAVE_EGL */
++
++/* ── DRM direct path state ───────────────────────────────────────────────── */
++struct drm_prime_fb {
++  uint32_t fb_id;
++  AVFrame* frame;
++};
++static struct drm_prime_fb* drm_on_screen     = NULL;
++static bool                 use_drm_direct    = false;
++static bool                 drm_direct_active = false; /* true after first NV12 commit */
++
++/* Atomic modesetting: property IDs for the primary plane */
++struct drm_plane_props {
++  uint32_t plane_id;
++  uint32_t prop_crtc_id,   prop_fb_id;
++  uint32_t prop_crtc_x,    prop_crtc_y,    prop_crtc_w,    prop_crtc_h;
++  uint32_t prop_src_x,     prop_src_y,     prop_src_w,     prop_src_h;
++  uint32_t prop_color_enc, prop_color_rng; /* 0 if driver doesn't expose them */
++};
++static struct drm_plane_props primary_plane;
++static bool                   use_atomic = false;
++
++/* YCbCr color metadata passed to the display engine per frame */
++#define DRM_YCBCR_BT601   0u
++#define DRM_YCBCR_BT709   1u
++#define DRM_YCBCR_BT2020  2u
++#define DRM_YCBCR_LIMITED 0u
++#define DRM_YCBCR_FULL    1u
++static uint64_t drm_color_enc = DRM_YCBCR_BT709;
++static uint64_t drm_color_rng = DRM_YCBCR_LIMITED;
++
++/* ── Decode / render thread state ────────────────────────────────────────── */
++static void*   decode_buf      = NULL;
++static size_t  decode_buf_sz   = 0;
++static int     pipefd[2]       = {-1, -1};
++static bool    prime_probed    = false;
++static bool    use_egl_path    = false;
++static bool    dumb_bufs_ready = false;
++
++static pthread_t       render_tid;
++static bool            render_started = false;
++static pthread_mutex_t render_mutex   = PTHREAD_MUTEX_INITIALIZER;
++static pthread_cond_t  render_cond    = PTHREAD_COND_INITIALIZER;
++static AVFrame*        render_queue[2] = {NULL, NULL};
++static int             render_q_head  = 0; /* producer index */
++static int             render_q_tail  = 0; /* consumer index */
++static int             render_q_count = 0;
++static bool            render_stop    = false;
++
++/* ── Forward declarations ────────────────────────────────────────────────── */
++static void do_page_flip(uint32_t fb_id);
++static void render_swscale_frame(AVFrame* frame);
++static bool render_drm_direct(AVFrame* frame);
++static bool find_primary_plane(void);
++static bool atomic_flip(uint32_t fb_id, int src_w, int src_h, void* user_data);
++#ifdef HAVE_EGL
++static bool render_egl_frame(AVFrame* frame);
++#endif
++
++/* ── Shared helpers ──────────────────────────────────────────────────────── */
++
++static void close_gem_handle(uint32_t handle) {
++  struct drm_gem_close gc = { .handle = handle };
++  drmIoctl(drm_fd, DRM_IOCTL_GEM_CLOSE, &gc);
++}
++
++/* Compute an aspect-ratio-correct destination rectangle centred in dw×dh.
++ * Adds letterbox (top/bottom) or pillarbox (left/right) bars as needed. */
++static void compute_dest_rect(int sw, int sh, int dw, int dh,
++                               int* ox, int* oy, int* ow, int* oh) {
++  if (sw > 0 && sh > 0 && sw * dh > sh * dw) {
++    *ow = dw; *oh = sh * dw / sw;  /* wider than display: letterbox */
++  } else if (sh > 0) {
++    *oh = dh; *ow = sw * dh / sh;  /* taller or same ratio: pillarbox */
++  } else {
++    *ow = dw; *oh = dh;
++  }
++  *ox = (dw - *ow) / 2;
++  *oy = (dh - *oh) / 2;
++}
++
++/* Release a drm_prime_fb: remove the KMS framebuffer, drop the frame ref. */
++static void release_prime_fb(struct drm_prime_fb* fb) {
++  if (!fb) return;
++  drmModeRmFB(drm_fd, fb->fb_id);
++  if (fb->frame) av_frame_free(&fb->frame);
++  free(fb);
++}
++
++/* ── EGL shaders ─────────────────────────────────────────────────────────── */
++#ifdef HAVE_EGL
++static const char* VS_SRC =
++  "attribute vec2 a_pos;\n"
++  "attribute vec2 a_uv;\n"
++  "varying vec2 v_uv;\n"
++  "void main() {\n"
++  "  v_uv = a_uv;\n"
++  "  gl_Position = vec4(a_pos, 0.0, 1.0);\n"
++  "}\n";
++
++static const char* FS_SRC =
++  "#extension GL_OES_EGL_image_external : require\n"
++  "precision mediump float;\n"
++  "uniform samplerExternalOES u_tex;\n"
++  "varying vec2 v_uv;\n"
++  "void main() {\n"
++  "  vec4 c = texture2D(u_tex, v_uv);\n"
++  /* Mesa V3D converts YCbCr→RGB in hardware for NV12/SAND128 OES textures.
++   * glReadPixels(GL_RGBA) writes [R,G,B,A]; DRM_FORMAT_XRGB8888 wants [B,G,R,X]. */
++  "  gl_FragColor = vec4(c.b, c.g, c.r, 1.0);\n"
++  "}\n";
++
++static const EGLint EGL_CFG_ATTRS[] = {
++  EGL_RENDERABLE_TYPE, EGL_OPENGL_ES2_BIT,
++  EGL_RED_SIZE,   8,
++  EGL_GREEN_SIZE, 8,
++  EGL_BLUE_SIZE,  8,
++  EGL_ALPHA_SIZE, 8,
++  EGL_NONE
++};
++static const EGLint EGL_CTX_ATTRS[] = {
++  EGL_CONTEXT_CLIENT_VERSION, 2,
++  EGL_NONE
++};
++/* UV(0,0)=top-left (DMA-BUF convention). Quad places it at OpenGL bottom,
++ * so glReadPixels row 0 = top of video — no flip needed in readback. */
++static const float EGL_QUAD[] = {
++  -1,-1, 0,0,
++   1,-1, 1,0,
++  -1, 1, 0,1,
++   1, 1, 1,1,
++};
++
++static GLuint compile_shader(GLenum type, const char* src) {
++  GLuint s = glCreateShader(type);
++  glShaderSource(s, 1, &src, NULL);
++  glCompileShader(s);
++  GLint ok = 0;
++  glGetShaderiv(s, GL_COMPILE_STATUS, &ok);
++  if (!ok) {
++    char log[512] = {0};
++    glGetShaderInfoLog(s, sizeof(log), NULL, log);
++    fprintf(stderr, "EGL: shader error: %s\n", log);
++    glDeleteShader(s);
++    return 0;
++  }
++  return s;
++}
++
++static bool egl_init(int width, int height) {
++  gbm_dev = gbm_create_device(render_fd);
++  if (!gbm_dev) { fprintf(stderr, "EGL: gbm_create_device failed\n"); return false; }
++
++  PFNEGLGETPLATFORMDISPLAYEXTPROC_LOCAL pfn_getPlatformDisplay =
++      (PFNEGLGETPLATFORMDISPLAYEXTPROC_LOCAL)
++      eglGetProcAddress("eglGetPlatformDisplayEXT");
++  if (pfn_getPlatformDisplay) {
++    egl_dpy = pfn_getPlatformDisplay(EGL_PLATFORM_GBM_KHR, gbm_dev, NULL);
++    printf("EGL: using eglGetPlatformDisplayEXT(GBM)\n");
++  } else {
++    setenv("EGL_PLATFORM", "gbm", 1);
++    egl_dpy = eglGetDisplay((EGLNativeDisplayType)gbm_dev);
++    printf("EGL: using eglGetDisplay with EGL_PLATFORM=gbm\n");
++  }
++  if (egl_dpy == EGL_NO_DISPLAY) {
++    fprintf(stderr, "EGL: failed to get GBM display (err 0x%x)\n", eglGetError());
++    return false;
++  }
++
++  EGLint major, minor;
++  if (!eglInitialize(egl_dpy, &major, &minor)) {
++    fprintf(stderr, "EGL: eglInitialize failed\n"); return false;
++  }
++  printf("EGL: version %d.%d\n", major, minor);
++
++  const char* exts     = eglQueryString(egl_dpy, EGL_EXTENSIONS);
++  bool has_dma         = exts && strstr(exts, "EGL_EXT_image_dma_buf_import");
++  bool has_img         = exts && strstr(exts, "EGL_KHR_image_base");
++  bool has_surfaceless = exts && strstr(exts, "EGL_KHR_surfaceless_context");
++  egl_has_mod_ext      = exts && strstr(exts, "EGL_EXT_image_dma_buf_import_modifiers");
++  printf("EGL: dma_buf=%d image_base=%d surfaceless=%d modifiers=%d\n",
++         has_dma, has_img, has_surfaceless, egl_has_mod_ext);
++  if (!has_dma || !has_img || !has_surfaceless) {
++    fprintf(stderr, "EGL: missing required extensions\n"); return false;
++  }
++
++  pfn_eglCreateImageKHR = (PFNEGLCREATEIMAGEKHRPROC)
++      eglGetProcAddress("eglCreateImageKHR");
++  pfn_eglDestroyImageKHR = (PFNEGLDESTROYIMAGEKHRPROC)
++      eglGetProcAddress("eglDestroyImageKHR");
++  pfn_glEGLImageTargetTex2D = (PFNGLEGLIMAGETARGETTEXTURE2DOESPROC)
++      eglGetProcAddress("glEGLImageTargetTexture2DOES");
++  if (!pfn_eglCreateImageKHR || !pfn_eglDestroyImageKHR || !pfn_glEGLImageTargetTex2D) {
++    fprintf(stderr, "EGL: extension functions not found\n"); return false;
++  }
++
++  eglBindAPI(EGL_OPENGL_ES_API);
++  EGLConfig cfg; EGLint ncfg = 0;
++  if (!eglChooseConfig(egl_dpy, EGL_CFG_ATTRS, &cfg, 1, &ncfg) || ncfg < 1) {
++    fprintf(stderr, "EGL: eglChooseConfig failed (0x%x)\n", eglGetError()); return false;
++  }
++
++  egl_ctx = eglCreateContext(egl_dpy, cfg, EGL_NO_CONTEXT, EGL_CTX_ATTRS);
++  if (egl_ctx == EGL_NO_CONTEXT) {
++    fprintf(stderr, "EGL: eglCreateContext failed (0x%x)\n", eglGetError()); return false;
++  }
++
++  if (!eglMakeCurrent(egl_dpy, EGL_NO_SURFACE, EGL_NO_SURFACE, egl_ctx)) {
++    fprintf(stderr, "EGL: eglMakeCurrent surfaceless failed (0x%x)\n", eglGetError());
++    return false;
++  }
++
++  glGenFramebuffers(1, &gl_fbo);
++  glGenTextures(1, &gl_fbo_tex);
++  glBindTexture(GL_TEXTURE_2D, gl_fbo_tex);
++  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0,
++               GL_RGBA, GL_UNSIGNED_BYTE, NULL);
++  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
++  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
++  glBindTexture(GL_TEXTURE_2D, 0);
++  glBindFramebuffer(GL_FRAMEBUFFER, gl_fbo);
++  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
++                         GL_TEXTURE_2D, gl_fbo_tex, 0);
++  if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
++    fprintf(stderr, "EGL: FBO incomplete\n");
++    glBindFramebuffer(GL_FRAMEBUFFER, 0);
++    return false;
++  }
++  glBindFramebuffer(GL_FRAMEBUFFER, 0);
++  printf("EGL: FBO created (%dx%d)\n", width, height);
++
++  GLuint vs = compile_shader(GL_VERTEX_SHADER,   VS_SRC);
++  GLuint fs = compile_shader(GL_FRAGMENT_SHADER, FS_SRC);
++  if (!vs || !fs) return false;
++  gl_prog = glCreateProgram();
++  glAttachShader(gl_prog, vs);
++  glAttachShader(gl_prog, fs);
++  glLinkProgram(gl_prog);
++  glDeleteShader(vs); glDeleteShader(fs);
++  GLint ok = 0;
++  glGetProgramiv(gl_prog, GL_LINK_STATUS, &ok);
++  if (!ok) { fprintf(stderr, "EGL: program link failed\n"); return false; }
++
++  /* Cache locations once — querying per frame is needlessly expensive */
++  gl_tex_loc  = glGetUniformLocation(gl_prog, "u_tex");
++  gl_attr_pos = glGetAttribLocation(gl_prog, "a_pos");
++  gl_attr_uv  = glGetAttribLocation(gl_prog, "a_uv");
++  glUseProgram(gl_prog);
++  glUniform1i(gl_tex_loc, 0);
++
++  glGenBuffers(1, &gl_vbo);
++  glBindBuffer(GL_ARRAY_BUFFER, gl_vbo);
++  glBufferData(GL_ARRAY_BUFFER, sizeof(EGL_QUAD), EGL_QUAD, GL_STATIC_DRAW);
++  glBindBuffer(GL_ARRAY_BUFFER, 0);
++
++  glGenTextures(1, &gl_yuv_tex);
++  glBindTexture(GL_TEXTURE_EXTERNAL_OES, gl_yuv_tex);
++  glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
++  glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
++  glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
++  glTexParameteri(GL_TEXTURE_EXTERNAL_OES, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
++  glBindTexture(GL_TEXTURE_EXTERNAL_OES, 0);
++
++  glViewport(0, 0, width, height);
++  printf("EGL: initialized (%dx%d)\n", width, height);
++  return true;
++}
++
++static void egl_destroy(void) {
++  if (gl_fbo_tex) { glDeleteTextures(1, &gl_fbo_tex);    gl_fbo_tex = 0; }
++  if (gl_fbo)     { glDeleteFramebuffers(1, &gl_fbo);    gl_fbo     = 0; }
++  if (gl_yuv_tex) { glDeleteTextures(1, &gl_yuv_tex);    gl_yuv_tex = 0; }
++  if (gl_vbo)     { glDeleteBuffers(1, &gl_vbo);         gl_vbo     = 0; }
++  if (gl_prog)    { glDeleteProgram(gl_prog);             gl_prog    = 0; }
++  if (egl_dpy != EGL_NO_DISPLAY) {
++    eglMakeCurrent(egl_dpy, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
++    if (egl_ctx != EGL_NO_CONTEXT) eglDestroyContext(egl_dpy, egl_ctx);
++    eglTerminate(egl_dpy);
++  }
++  if (gbm_dev) gbm_device_destroy(gbm_dev);
++  free(readback_buf);
++  egl_dpy = EGL_NO_DISPLAY; egl_ctx = EGL_NO_CONTEXT; gbm_dev = NULL;
++  readback_buf = NULL; readback_sz = 0;
++  gl_attr_pos = -1; gl_attr_uv = -1;
++  egl_has_mod_ext = false;
++}
++
++static bool render_egl_frame(AVFrame* frame) {
++  if (!dumb_bufs_ready) return false;
++  AVDRMFrameDescriptor* desc = (AVDRMFrameDescriptor*)frame->data[0];
++  if (!desc || desc->nb_objects < 1 || desc->nb_layers < 1) return false;
++
++  AVDRMLayerDescriptor* layer = &desc->layers[0];
++  struct dumb_buf* buf = &dumb_bufs[active_dumb];
++
++  int dw = drm_mode.hdisplay, dh = drm_mode.vdisplay;
++  int ox, oy, ow, oh;
++  compute_dest_rect(frame->width, frame->height, dw, dh, &ox, &oy, &ow, &oh);
++
++  glBindFramebuffer(GL_FRAMEBUFFER, gl_fbo);
++  glViewport(0, 0, dw, dh);
++  glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
++  glClear(GL_COLOR_BUFFER_BIT);
++  glViewport(ox, oy, ow, oh);
++
++  /* Build EGL attrib list for dma-buf import (max ~27 entries; 40 for headroom) */
++  EGLint attribs[40]; int na = 0;
++#define A(k,v) do { attribs[na++]=(k); attribs[na++]=(v); } while(0)
++  A(EGL_WIDTH,                frame->width);
++  A(EGL_HEIGHT,               frame->height);
++  A(EGL_LINUX_DRM_FOURCC_EXT, layer->format);
++  A(EGL_DMA_BUF_PLANE0_FD_EXT,     desc->objects[layer->planes[0].object_index].fd);
++  A(EGL_DMA_BUF_PLANE0_OFFSET_EXT, (EGLint)layer->planes[0].offset);
++  A(EGL_DMA_BUF_PLANE0_PITCH_EXT,  (EGLint)layer->planes[0].pitch);
++  if (egl_has_mod_ext) {
++    uint64_t m = desc->objects[layer->planes[0].object_index].format_modifier;
++    A(EGL_DMA_BUF_PLANE0_MODIFIER_LO_EXT, (EGLint)(m & 0xFFFFFFFFu));
++    A(EGL_DMA_BUF_PLANE0_MODIFIER_HI_EXT, (EGLint)((m >> 32) & 0xFFFFFFFFu));
++  }
++  if (layer->nb_planes >= 2) {
++    A(EGL_DMA_BUF_PLANE1_FD_EXT,     desc->objects[layer->planes[1].object_index].fd);
++    A(EGL_DMA_BUF_PLANE1_OFFSET_EXT, (EGLint)layer->planes[1].offset);
++    A(EGL_DMA_BUF_PLANE1_PITCH_EXT,  (EGLint)layer->planes[1].pitch);
++    if (egl_has_mod_ext) {
++      uint64_t m = desc->objects[layer->planes[1].object_index].format_modifier;
++      A(EGL_DMA_BUF_PLANE1_MODIFIER_LO_EXT, (EGLint)(m & 0xFFFFFFFFu));
++      A(EGL_DMA_BUF_PLANE1_MODIFIER_HI_EXT, (EGLint)((m >> 32) & 0xFFFFFFFFu));
++    }
++  }
++  attribs[na] = EGL_NONE;
++#undef A
++
++  if (!egl_frame_logged) {
++    egl_frame_logged = true;
++    uint64_t mod = desc->objects[layer->planes[0].object_index].format_modifier;
++    printf("EGL: frame fourcc=0x%08x modifier=0x%016llx nb_layers=%d nb_planes=%d\n",
++           layer->format, (unsigned long long)mod, desc->nb_layers, layer->nb_planes);
++    printf("EGL: stream=%dx%d → %dx%d+%d+%d (display %dx%d)\n",
++           frame->width, frame->height, ow, oh, ox, oy, dw, dh);
++  }
++
++  EGLImageKHR img = pfn_eglCreateImageKHR(
++      egl_dpy, EGL_NO_CONTEXT, EGL_LINUX_DMA_BUF_EXT, NULL, attribs);
++  if (img == EGL_NO_IMAGE_KHR) {
++    fprintf(stderr, "EGL: eglCreateImageKHR failed (0x%x)\n", eglGetError());
++    glBindFramebuffer(GL_FRAMEBUFFER, 0);
++    return false;
++  }
++  glBindTexture(GL_TEXTURE_EXTERNAL_OES, gl_yuv_tex);
++  pfn_glEGLImageTargetTex2D(GL_TEXTURE_EXTERNAL_OES, img);
++  pfn_eglDestroyImageKHR(egl_dpy, img);
++
++  glUseProgram(gl_prog);
++  glActiveTexture(GL_TEXTURE0);
++  glBindTexture(GL_TEXTURE_EXTERNAL_OES, gl_yuv_tex);
++  glBindBuffer(GL_ARRAY_BUFFER, gl_vbo);
++  glEnableVertexAttribArray(gl_attr_pos);
++  glEnableVertexAttribArray(gl_attr_uv);
++  glVertexAttribPointer(gl_attr_pos, 2, GL_FLOAT, GL_FALSE, 4*sizeof(float), (void*)0);
++  glVertexAttribPointer(gl_attr_uv,  2, GL_FLOAT, GL_FALSE, 4*sizeof(float),
++                        (void*)(2*sizeof(float)));
++  glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
++  glDisableVertexAttribArray(gl_attr_pos);
++  glDisableVertexAttribArray(gl_attr_uv);
++  glBindBuffer(GL_ARRAY_BUFFER, 0);
++  glBindTexture(GL_TEXTURE_EXTERNAL_OES, 0);
++
++  /* Readback: glReadPixels writes dw*4 bytes/row (no GLES2 GL_PACK_ROW_LENGTH).
++   * Use an intermediate buffer then stride-aware copy to the DRM dumb buffer. */
++  size_t row_bytes = (size_t)dw * 4;
++  size_t needed    = row_bytes * (size_t)dh;
++  if (needed > readback_sz) {
++    free(readback_buf);
++    readback_buf = malloc(needed);
++    if (!readback_buf) {
++      readback_sz = 0;
++      glBindFramebuffer(GL_FRAMEBUFFER, 0);
++      return false;
++    }
++    readback_sz = needed;
++  }
++  glReadPixels(0, 0, dw, dh, GL_RGBA, GL_UNSIGNED_BYTE, readback_buf);
++  if (buf->stride == (uint32_t)row_bytes) {
++    memcpy(buf->map, readback_buf, needed);
++  } else {
++    for (int y = 0; y < dh; y++)
++      memcpy((uint8_t*)buf->map + (size_t)y * buf->stride,
++             readback_buf        + (size_t)y * row_bytes, row_bytes);
++  }
++  glBindFramebuffer(GL_FRAMEBUFFER, 0);
++
++  do_page_flip(buf->fb_id);
++  active_dumb ^= 1;
++  return true;
++}
++#endif /* HAVE_EGL */
++
++/* ── DRM page flip ───────────────────────────────────────────────────────── */
++static void page_flip_handler(int fd, unsigned int seq,
++                               unsigned int tv_sec, unsigned int tv_usec,
++                               void* user_data) {
++  (void)fd; (void)seq; (void)tv_sec; (void)tv_usec;
++  /* DRM direct path passes the previous on-screen fb as user_data so it can
++   * be freed here, after the display has scanned out the new frame.
++   * EGL/swscale paths pass NULL; release_prime_fb(NULL) is a no-op. */
++  release_prime_fb((struct drm_prime_fb*)user_data);
++  flip_pending = false;
++}
++
++static void wait_for_flip(void) {
++  if (!flip_pending) return;
++  drmEventContext evctx = {
++    .version           = DRM_EVENT_CONTEXT_VERSION,
++    .page_flip_handler = page_flip_handler,
++  };
++  struct pollfd pfd = { .fd = drm_fd, .events = POLLIN };
++  if (poll(&pfd, 1, FLIP_TIMEOUT_MS) > 0 && (pfd.revents & POLLIN))
++    drmHandleEvent(drm_fd, &evctx);
++}
++
++static void do_page_flip(uint32_t fb_id) {
++  wait_for_flip();
++  if (drmModePageFlip(drm_fd, crtc_id, fb_id, DRM_MODE_PAGE_FLIP_EVENT, NULL) < 0) {
++    static int err_count = 0;
++    if (++err_count <= 3)
++      fprintf(stderr, "V4L2DRM: drmModePageFlip failed (%s), using SetCrtc\n",
++              strerror(errno));
++    drmModeSetCrtc(drm_fd, crtc_id, fb_id, 0, 0, &connector_id, 1, &drm_mode);
++    return;
++  }
++  flip_pending = true;
++}
++
++/* ── DRM helpers ─────────────────────────────────────────────────────────── */
++static int open_drm_display(void) {
++  const char* cards[] = { "/dev/dri/card0", "/dev/dri/card1",
++                           "/dev/dri/card2", "/dev/dri/card3", NULL };
++  for (int i = 0; cards[i]; i++) {
++    int fd = open(cards[i], O_RDWR | O_CLOEXEC);
++    if (fd < 0) continue;
++    drmModeRes* res = drmModeGetResources(fd);
++    if (!res) { close(fd); continue; }
++    bool ok = false;
++    for (int c = 0; c < res->count_connectors && !ok; c++) {
++      drmModeConnector* conn = drmModeGetConnector(fd, res->connectors[c]);
++      if (conn) {
++        if (conn->connection == DRM_MODE_CONNECTED && conn->count_modes > 0) ok = true;
++        drmModeFreeConnector(conn);
++      }
++    }
++    drmModeFreeResources(res);
++    if (ok) { printf("V4L2DRM: display on %s\n", cards[i]); drm_fd = fd; return 0; }
++    close(fd);
++  }
++  fprintf(stderr, "V4L2DRM: no display DRM device\n");
++  return -1;
++}
++
++static bool find_connector_crtc(void) {
++  drmModeRes* res = drmModeGetResources(drm_fd);
++  if (!res) return false;
++  for (int i = 0; i < res->count_connectors; i++) {
++    drmModeConnector* c = drmModeGetConnector(drm_fd, res->connectors[i]);
++    if (!c) continue;
++    if (c->connection != DRM_MODE_CONNECTED || c->count_modes == 0) {
++      drmModeFreeConnector(c); continue;
++    }
++    connector_id = c->connector_id;
++    drm_mode     = c->modes[0];
++    /* Prefer the mode flagged DRM_MODE_TYPE_PREFERRED (set by the EDID parser). */
++    for (int m = 0; m < c->count_modes; m++)
++      if (c->modes[m].type & DRM_MODE_TYPE_PREFERRED) { drm_mode = c->modes[m]; break; }
++    for (int e = 0; e < c->count_encoders && !crtc_id; e++) {
++      drmModeEncoder* enc = drmModeGetEncoder(drm_fd, c->encoders[e]);
++      if (!enc) continue;
++      for (int j = 0; j < res->count_crtcs && !crtc_id; j++)
++        if (enc->possible_crtcs & (1u << j)) crtc_id = res->crtcs[j];
++      drmModeFreeEncoder(enc);
++    }
++    drmModeFreeConnector(c);
++    if (crtc_id) break;
++  }
++  drmModeFreeResources(res);
++  return connector_id && crtc_id;
++}
++
++static bool alloc_dumb(struct dumb_buf* b, int w, int h) {
++  struct drm_mode_create_dumb cd = { .width=(uint32_t)w, .height=(uint32_t)h, .bpp=32 };
++  if (drmIoctl(drm_fd, DRM_IOCTL_MODE_CREATE_DUMB, &cd) < 0) return false;
++  b->handle = cd.handle; b->stride = cd.pitch; b->size = cd.size; b->w = w; b->h = h;
++  uint32_t handles[4] = {cd.handle}, pitches[4] = {cd.pitch}, offsets[4] = {0};
++  if (drmModeAddFB2(drm_fd, w, h, DRM_FORMAT_XRGB8888,
++                    handles, pitches, offsets, &b->fb_id, 0) < 0) return false;
++  struct drm_mode_map_dumb md = { .handle = cd.handle };
++  if (drmIoctl(drm_fd, DRM_IOCTL_MODE_MAP_DUMB, &md) < 0) return false;
++  b->map = mmap(NULL, cd.size, PROT_READ|PROT_WRITE, MAP_SHARED, drm_fd, md.offset);
++  if (b->map == MAP_FAILED) { b->map = NULL; return false; }
++  memset(b->map, 0, cd.size);
++  return true;
++}
++
++static void free_dumb(struct dumb_buf* b) {
++  if (b->map)    { munmap(b->map, b->size); b->map = NULL; }
++  if (b->fb_id)  { drmModeRmFB(drm_fd, b->fb_id); b->fb_id = 0; }
++  if (b->handle) {
++    struct drm_mode_destroy_dumb dd = { .handle = b->handle };
++    drmIoctl(drm_fd, DRM_IOCTL_MODE_DESTROY_DUMB, &dd);
++    b->handle = 0;
++  }
++}
++
++/* ── Atomic modesetting helpers ──────────────────────────────────────────── */
++static bool find_primary_plane(void) {
++  /* Discover the primary plane for our CRTC and cache its property IDs. */
++  uint32_t crtc_idx = UINT32_MAX;
++  drmModeRes* res = drmModeGetResources(drm_fd);
++  if (!res) return false;
++  for (int i = 0; i < res->count_crtcs; i++)
++    if (res->crtcs[i] == crtc_id) { crtc_idx = (uint32_t)i; break; }
++  drmModeFreeResources(res);
++  if (crtc_idx == UINT32_MAX) return false;
++
++  drmModePlaneResPtr pres = drmModeGetPlaneResources(drm_fd);
++  if (!pres) return false;
++
++  bool found = false;
++  for (uint32_t i = 0; i < pres->count_planes && !found; i++) {
++    drmModePlanePtr plane = drmModeGetPlane(drm_fd, pres->planes[i]);
++    if (!plane) continue;
++    if (!(plane->possible_crtcs & (1u << crtc_idx))) {
++      drmModeFreePlane(plane); continue;
++    }
++    drmModeObjectPropertiesPtr props = drmModeObjectGetProperties(
++        drm_fd, plane->plane_id, DRM_MODE_OBJECT_PLANE);
++    if (!props) { drmModeFreePlane(plane); continue; }
++
++    bool is_primary = false;
++    struct drm_plane_props pp = { .plane_id = plane->plane_id };
++    for (uint32_t j = 0; j < props->count_props; j++) {
++      drmModePropertyPtr p = drmModeGetProperty(drm_fd, props->props[j]);
++      if (!p) continue;
++      uint32_t id = p->prop_id;
++      if      (!strcmp(p->name, "type") &&
++               props->prop_values[j] == DRM_PLANE_TYPE_PRIMARY) is_primary = true;
++      else if (!strcmp(p->name, "CRTC_ID"))        pp.prop_crtc_id  = id;
++      else if (!strcmp(p->name, "FB_ID"))          pp.prop_fb_id    = id;
++      else if (!strcmp(p->name, "CRTC_X"))         pp.prop_crtc_x   = id;
++      else if (!strcmp(p->name, "CRTC_Y"))         pp.prop_crtc_y   = id;
++      else if (!strcmp(p->name, "CRTC_W"))         pp.prop_crtc_w   = id;
++      else if (!strcmp(p->name, "CRTC_H"))         pp.prop_crtc_h   = id;
++      else if (!strcmp(p->name, "SRC_X"))          pp.prop_src_x    = id;
++      else if (!strcmp(p->name, "SRC_Y"))          pp.prop_src_y    = id;
++      else if (!strcmp(p->name, "SRC_W"))          pp.prop_src_w    = id;
++      else if (!strcmp(p->name, "SRC_H"))          pp.prop_src_h    = id;
++      else if (!strcmp(p->name, "COLOR_ENCODING")) pp.prop_color_enc = id;
++      else if (!strcmp(p->name, "COLOR_RANGE"))    pp.prop_color_rng = id;
++      drmModeFreeProperty(p);
++    }
++    drmModeFreeObjectProperties(props);
++
++    if (is_primary && pp.prop_fb_id) { primary_plane = pp; found = true; }
++    drmModeFreePlane(plane);
++  }
++  drmModeFreePlaneResources(pres);
++  if (found)
++    printf("V4L2DRM: primary plane %u (COLOR_ENCODING=%s COLOR_RANGE=%s)\n",
++           primary_plane.plane_id,
++           primary_plane.prop_color_enc ? "yes" : "no",
++           primary_plane.prop_color_rng ? "yes" : "no");
++  return found;
++}
++
++static bool atomic_flip(uint32_t fb_id, int src_w, int src_h, void* user_data) {
++  drmModeAtomicReqPtr req = drmModeAtomicAlloc();
++  if (!req) return false;
++
++  int dw = drm_mode.hdisplay, dh = drm_mode.vdisplay;
++  int ox, oy, ow, oh;
++  compute_dest_rect(src_w, src_h, dw, dh, &ox, &oy, &ow, &oh);
++#define AP(prop, val) \
++  drmModeAtomicAddProperty(req, primary_plane.plane_id, primary_plane.prop_##prop, (val))
++  AP(crtc_id, crtc_id);
++  AP(fb_id,   fb_id);
++  AP(crtc_x,  (uint64_t)ox);
++  AP(crtc_y,  (uint64_t)oy);
++  AP(crtc_w,  (uint64_t)ow);
++  AP(crtc_h,  (uint64_t)oh);
++  AP(src_x,   0);
++  AP(src_y,   0);
++  AP(src_w,   (uint64_t)src_w << 16);
++  AP(src_h,   (uint64_t)src_h << 16);
++#undef AP
++
++  /* Color metadata: tells the HVS which YCbCr matrix and range to use when
++   * converting NV12 for scan-out. Silently skipped if driver lacks the props. */
++  if (primary_plane.prop_color_enc)
++    drmModeAtomicAddProperty(req, primary_plane.plane_id,
++                             primary_plane.prop_color_enc, drm_color_enc);
++  if (primary_plane.prop_color_rng)
++    drmModeAtomicAddProperty(req, primary_plane.plane_id,
++                             primary_plane.prop_color_rng, drm_color_rng);
++
++  /* ALLOW_MODESET for the first commit (format change XRGB8888 → NV12);
++   * omit it for subsequent same-format flips to avoid unnecessary overhead. */
++  uint32_t flags = DRM_MODE_ATOMIC_NONBLOCK | DRM_MODE_PAGE_FLIP_EVENT;
++  if (!drm_direct_active) flags |= DRM_MODE_ATOMIC_ALLOW_MODESET;
++
++  int ret = drmModeAtomicCommit(drm_fd, req, flags, user_data);
++  drmModeAtomicFree(req);
++  if (ret < 0) {
++    fprintf(stderr, "V4L2DRM: drmModeAtomicCommit failed (%s)\n", strerror(-ret));
++    return false;
++  }
++  if (!drm_direct_active) {
++    drm_direct_active = true;
++    printf("V4L2DRM: direct path active — NV12+SAND128 → display engine (atomic)\n");
++  }
++  return true;
++}
++
++/* ── DRM direct render (zero-copy: NV12/SAND128 → display engine) ────────── */
++
++/* Map AVFrame color metadata to DRM plane property values.
++ * Untagged streams default to BT.709/limited per ITU-R for HD, BT.601 for SD. */
++static void update_color_metadata(const AVFrame* frame) {
++  switch (frame->colorspace) {
++    case AVCOL_SPC_BT470BG:
++    case AVCOL_SPC_SMPTE170M:
++      drm_color_enc = DRM_YCBCR_BT601;  break;
++    case AVCOL_SPC_BT2020_NCL:
++    case AVCOL_SPC_BT2020_CL:
++      drm_color_enc = DRM_YCBCR_BT2020; break;
++    case AVCOL_SPC_UNSPECIFIED:
++    default:
++      drm_color_enc = (frame->height >= 720) ? DRM_YCBCR_BT709 : DRM_YCBCR_BT601;
++      break;
++  }
++  drm_color_rng = (frame->color_range == AVCOL_RANGE_JPEG)
++                  ? DRM_YCBCR_FULL : DRM_YCBCR_LIMITED;
++}
++
++static bool render_drm_direct(AVFrame* frame) {
++  AVDRMFrameDescriptor* desc = (AVDRMFrameDescriptor*)frame->data[0];
++  if (!desc || desc->nb_layers < 1) return false;
++
++  AVDRMLayerDescriptor* layer = &desc->layers[0];
++  int nb = layer->nb_planes;
++
++  uint32_t handles[4]   = {0};
++  uint32_t pitches[4]   = {0};
++  uint32_t offsets[4]   = {0};
++  uint64_t modifiers[4] = {0};
++
++  for (int i = 0; i < nb; i++) {
++    int obj = layer->planes[i].object_index;
++    if (drmPrimeFDToHandle(drm_fd, desc->objects[obj].fd, &handles[i]) < 0) {
++      for (int j = 0; j < i; j++) close_gem_handle(handles[j]);
++      return false;
++    }
++    pitches[i]   = layer->planes[i].pitch;
++    offsets[i]   = layer->planes[i].offset;
++    modifiers[i] = desc->objects[obj].format_modifier;
++  }
++
++  uint32_t fb_id = 0;
++  int rc = drmModeAddFB2WithModifiers(drm_fd, frame->width, frame->height,
++                                       layer->format, handles, pitches, offsets,
++                                       modifiers, &fb_id, DRM_MODE_FB_MODIFIERS);
++  /* Release our GEM refs immediately; KMS holds its own ref via the FB object. */
++  for (int i = 0; i < nb; i++) close_gem_handle(handles[i]);
++
++  if (rc < 0) {
++    fprintf(stderr, "V4L2DRM: drmModeAddFB2WithModifiers failed (%s), "
++            "disabling direct path\n", strerror(-rc));
++    use_drm_direct = false;
++    return false;
++  }
++
++  update_color_metadata(frame);
++
++  if (!drm_direct_active) {
++    static const char* enc_names[] = { "BT.601", "BT.709", "BT.2020" };
++    printf("V4L2DRM: direct fourcc=0x%08x modifier=0x%016llx color=%s %s\n"
++           "V4L2DRM: stream=%dx%d display=%dx%d\n",
++           layer->format, (unsigned long long)modifiers[0],
++           enc_names[drm_color_enc < 3 ? drm_color_enc : 1],
++           drm_color_rng ? "full" : "limited",
++           frame->width, frame->height,
++           drm_mode.hdisplay, drm_mode.vdisplay);
++  }
++
++  struct drm_prime_fb* ref = malloc(sizeof(*ref));
++  if (!ref) { drmModeRmFB(drm_fd, fb_id); return false; }
++  ref->fb_id = fb_id;
++  ref->frame = av_frame_clone(frame);
++  if (!ref->frame) { free(ref); drmModeRmFB(drm_fd, fb_id); return false; }
++
++  wait_for_flip();
++  struct drm_prime_fb* old = drm_on_screen;
++
++  if (use_atomic) {
++    if (!atomic_flip(fb_id, frame->width, frame->height, old)) {
++      release_prime_fb(ref);
++      use_drm_direct = false;
++      return false;
++    }
++  } else {
++    /* Legacy: SetCrtc once to switch format, PageFlip for steady-state. */
++    if (!drm_direct_active) {
++      if (drmModeSetCrtc(drm_fd, crtc_id, fb_id, 0, 0,
++                         &connector_id, 1, &drm_mode) < 0) {
++        fprintf(stderr, "V4L2DRM: drmModeSetCrtc NV12 failed (%s), "
++                "disabling direct path\n", strerror(errno));
++        release_prime_fb(ref);
++        use_drm_direct = false;
++        return false;
++      }
++      drm_direct_active = true;
++      printf("V4L2DRM: direct path active — NV12+SAND128 → display engine\n");
++      release_prime_fb(old); /* SetCrtc is synchronous; old is safe to free now. */
++      drm_on_screen = ref;
++      flip_pending  = false;
++      return true;
++    }
++    if (drmModePageFlip(drm_fd, crtc_id, fb_id, DRM_MODE_PAGE_FLIP_EVENT, old) < 0) {
++      /* Try SetCrtc as synchronous fallback. */
++      if (drmModeSetCrtc(drm_fd, crtc_id, fb_id, 0, 0,
++                         &connector_id, 1, &drm_mode) < 0) {
++        fprintf(stderr, "V4L2DRM: both PageFlip and SetCrtc failed (%s), "
++                "disabling direct path\n", strerror(errno));
++        release_prime_fb(ref);
++        use_drm_direct = false;
++        return false;
++      }
++      release_prime_fb(old);
++      drm_on_screen = ref;
++      flip_pending  = false;
++      return true;
++    }
++  }
++
++  drm_on_screen = ref;
++  flip_pending  = true;
++  return true;
++}
++
++/* ── Swscale fallback ────────────────────────────────────────────────────── */
++static void render_swscale_frame(AVFrame* frame) {
++  if (!dumb_bufs_ready) return;
++  struct dumb_buf* buf = &dumb_bufs[active_dumb];
++  AVFrame* sw = frame; AVFrame* tmp = NULL;
++  if (frame->format == AV_PIX_FMT_DRM_PRIME) {
++    tmp = av_frame_alloc();
++    if (!tmp) return;
++    if (av_hwframe_transfer_data(tmp, frame, 0) < 0) { av_frame_free(&tmp); return; }
++    sw = tmp;
++  }
++  int ox, oy, ow, oh;
++  compute_dest_rect(sw->width, sw->height, buf->w, buf->h, &ox, &oy, &ow, &oh);
++
++  int cs  = sw->colorspace;
++  int rng = sw->color_range;
++  if (!sws_ctx || sw->format != sws_src_fmt
++                || sw->width  != sws_src_w
++                || sw->height != sws_src_h
++                || ow         != sws_dst_w
++                || oh         != sws_dst_h
++                || cs         != sws_src_cs
++                || rng        != sws_src_rng) {
++    if (sws_ctx) { sws_freeContext(sws_ctx); sws_ctx = NULL; }
++    sws_ctx = sws_getContext(sw->width, sw->height, (enum AVPixelFormat)sw->format,
++                              ow, oh, AV_PIX_FMT_BGRA,
++                              SWS_FAST_BILINEAR, NULL, NULL, NULL);
++    sws_src_fmt = sw->format; sws_src_w = sw->width; sws_src_h = sw->height;
++    sws_dst_w = ow; sws_dst_h = oh; sws_src_cs = cs; sws_src_rng = rng;
++    if (!sws_ctx) {
++      fprintf(stderr, "V4L2DRM: sws_getContext failed\n");
++      if (tmp) av_frame_free(&tmp);
++      return;
++    }
++
++    /* Select the correct YCbCr→RGB matrix.
++     * Default: BT.709 for HD (≥720), BT.601 for SD — matches update_color_metadata(). */
++    int sws_cs;
++    switch (cs) {
++      case AVCOL_SPC_BT470BG:
++      case AVCOL_SPC_SMPTE170M: sws_cs = SWS_CS_ITU601;  break;
++      case AVCOL_SPC_BT2020_NCL:
++      case AVCOL_SPC_BT2020_CL:  sws_cs = SWS_CS_BT2020;  break;
++      default:
++        sws_cs = (sw->height >= 720) ? SWS_CS_ITU709 : SWS_CS_ITU601;
++        break;
++    }
++    int src_range = (rng == AVCOL_RANGE_JPEG) ? 1 : 0;
++    sws_setColorspaceDetails(sws_ctx,
++      sws_getCoefficients(sws_cs), src_range,
++      sws_getCoefficients(SWS_CS_DEFAULT), 1, /* full-range RGB out */
++      0, 1 << 16, 1 << 16);
++
++    printf("V4L2DRM: swscale fallback %dx%d → %dx%d+%d+%d fmt=%d cs=%d%s\n",
++           sw->width, sw->height, ow, oh, ox, oy, sw->format, sws_cs,
++           src_range ? " full-range" : "");
++  }
++  uint8_t* dst[4]    = { (uint8_t*)buf->map + (size_t)oy * buf->stride + (size_t)ox * 4 };
++  int      dst_ls[4] = { (int)buf->stride };
++  sws_scale(sws_ctx, (const uint8_t* const*)sw->data, sw->linesize,
++            0, sw->height, dst, dst_ls);
++  do_page_flip(buf->fb_id);
++  active_dumb ^= 1;
++  if (tmp) av_frame_free(&tmp);
++}
++
++/* ── Render thread ───────────────────────────────────────────────────────── */
++
++/* Try each render path in priority order; the first successful one wins. */
++static void dispatch_frame(AVFrame* frame) {
++  if (use_drm_direct && frame->format == AV_PIX_FMT_DRM_PRIME)
++    if (render_drm_direct(frame)) return;
++#ifdef HAVE_EGL
++  if (use_egl_path && frame->format == AV_PIX_FMT_DRM_PRIME)
++    if (render_egl_frame(frame)) return;
++#endif
++  render_swscale_frame(frame);
++}
++
++static void* render_thread_fn(void* arg) {
++  (void)arg;
++#ifdef HAVE_EGL
++  if (use_egl_path) {
++    if (!eglMakeCurrent(egl_dpy, EGL_NO_SURFACE, EGL_NO_SURFACE, egl_ctx)) {
++      fprintf(stderr, "EGL: render thread eglMakeCurrent failed (0x%x)\n", eglGetError());
++      use_egl_path = false;
++    } else {
++      printf("EGL: context bound to render thread\n");
++    }
++  }
++#endif
++  while (!render_stop) {
++    pthread_mutex_lock(&render_mutex);
++    while (!render_stop && render_q_count == 0)
++      pthread_cond_wait(&render_cond, &render_mutex);
++    AVFrame* frame = NULL;
++    if (render_q_count > 0) {
++      frame = render_queue[render_q_tail];
++      render_queue[render_q_tail] = NULL;
++      render_q_tail = (render_q_tail + 1) & 1;
++      render_q_count--;
++    }
++    pthread_mutex_unlock(&render_mutex);
++    if (!frame) continue;
++    dispatch_frame(frame);
++    av_frame_free(&frame);
++  }
++  return NULL;
++}
++
++/* ── Frame reception ─────────────────────────────────────────────────────── */
++static int frame_handle(int fd) {
++  /* ffmpeg_get_frame() returns dec_frames[current_frame], a pointer into the
++   * decoder's internal frame pool — not an independently owned allocation.
++   * We must av_frame_clone() to get a ref-counted copy before the decoder
++   * recycles the pool slot. Do not av_frame_free() the pool frames. */
++  AVFrame* frame = NULL;
++  while (read(fd, &frame, sizeof(void*)) > 0) {}
++  if (!frame) return LOOP_OK;
++  if (!prime_probed) {
++    prime_probed = true;
++    const char* path =
++      (frame->format == AV_PIX_FMT_DRM_PRIME && use_drm_direct) ? "DRM-direct"     :
++      (frame->format == AV_PIX_FMT_DRM_PRIME && use_egl_path)   ? "EGL"            :
++      (frame->format == AV_PIX_FMT_DRM_PRIME)                   ? "swscale+hwxfer" :
++                                                                   "software";
++    printf("V4L2DRM: %s path (fmt=%d)\n", path, frame->format);
++  }
++  AVFrame* clone = av_frame_clone(frame);
++  if (!clone) return LOOP_OK;
++  pthread_mutex_lock(&render_mutex);
++  if (render_q_count == 2) {
++    /* Queue full: drop oldest to keep latency minimal */
++    av_frame_free(&render_queue[render_q_tail]);
++    render_queue[render_q_tail] = NULL;
++    render_q_tail = (render_q_tail + 1) & 1;
++    render_q_count--;
++  }
++  render_queue[render_q_head] = clone;
++  render_q_head = (render_q_head + 1) & 1;
++  render_q_count++;
++  pthread_cond_signal(&render_cond);
++  pthread_mutex_unlock(&render_mutex);
++  return LOOP_OK;
++}
++
++/* ── get_format callback ─────────────────────────────────────────────────── */
++static enum AVPixelFormat drm_prime_get_format(AVCodecContext* ctx,
++                                               const enum AVPixelFormat* fmts) {
++  (void)ctx;
++  for (const enum AVPixelFormat* p = fmts; *p != AV_PIX_FMT_NONE; p++)
++    if (*p == AV_PIX_FMT_DRM_PRIME) return *p;
++  return fmts[0];
++}
++
++/* ── API callbacks ───────────────────────────────────────────────────────── */
++static int v4l2drm_setup(int videoFormat, int width, int height,
++                          int redrawRate, void* context, int drFlags) {
++  (void)redrawRate; (void)context; (void)drFlags;
++  ensure_buf_size(&decode_buf, &decode_buf_sz,
++                  INITIAL_DECODER_BUFFER_SIZE + AV_INPUT_BUFFER_PADDING_SIZE);
++
++  if (open_drm_display() < 0) return -1;
++  if (drmSetMaster(drm_fd) < 0)
++    printf("V4L2DRM: drmSetMaster failed (non-root?)\n");
++  if (!find_connector_crtc()) {
++    fprintf(stderr, "V4L2DRM: no connected display\n"); return -2;
++  }
++  printf("V4L2DRM: %dx%d @ %u Hz (CRTC %u, connector %u)\n",
++         drm_mode.hdisplay, drm_mode.vdisplay, drm_mode.vrefresh,
++         crtc_id, connector_id);
++  saved_crtc = drmModeGetCrtc(drm_fd, crtc_id);
++
++  /* Probe DRM direct path: requires display device to support FB modifiers. */
++  use_drm_direct = false; use_atomic = false;
++  uint64_t cap = 0;
++  if (drmGetCap(drm_fd, DRM_CAP_ADDFB2_MODIFIERS, &cap) == 0 && cap) {
++    use_drm_direct = true;
++    /* Atomic modesetting: handles format changes natively (ALLOW_MODESET on
++     * first commit). Preferred over legacy SetCrtc+PageFlip. */
++    if (drmSetClientCap(drm_fd, DRM_CLIENT_CAP_ATOMIC, 1) == 0 &&
++        drmSetClientCap(drm_fd, DRM_CLIENT_CAP_UNIVERSAL_PLANES, 1) == 0 &&
++        find_primary_plane()) {
++      use_atomic = true;
++      printf("V4L2DRM: atomic modesetting enabled\n");
++    } else {
++      printf("V4L2DRM: DRM direct enabled (legacy flip path)\n");
++    }
++  } else {
++    printf("V4L2DRM: DRM_CAP_ADDFB2_MODIFIERS not supported — will use EGL/swscale\n");
++  }
++
++  /* EGL: only needed when atomic DRM direct is not available. */
++  use_egl_path = false;
++#ifdef HAVE_EGL
++  if (!use_atomic) {
++    const char* rnodes[] = { "/dev/dri/renderD128", "/dev/dri/renderD129", NULL };
++    for (int i = 0; rnodes[i]; i++) {
++      render_fd = open(rnodes[i], O_RDWR | O_CLOEXEC);
++      if (render_fd >= 0) { printf("V4L2DRM: render node %s\n", rnodes[i]); break; }
++    }
++    if (render_fd >= 0 && egl_init(drm_mode.hdisplay, drm_mode.vdisplay)) {
++      use_egl_path = true;
++      printf("V4L2DRM: EGL path enabled\n");
++      /* Release from main thread; render_thread_fn will rebind it. */
++      eglMakeCurrent(egl_dpy, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
++    } else {
++      printf("V4L2DRM: EGL unavailable, using swscale fallback\n");
++      if (render_fd >= 0) { close(render_fd); render_fd = -1; }
++    }
++  }
++#endif
++
++  /* Always allocate dumb buffers and establish an initial XRGB8888 mode.
++   * In atomic mode, the first NV12 commit (ALLOW_MODESET) switches the format.
++   * If the NV12 path fails at runtime (plane doesn't support NV12+SAND128,
++   * which can happen on CRT outputs like the Recalbox RGB Dual), swscale
++   * takes over transparently using these buffers without a black screen. */
++  dumb_bufs_ready = false;
++  for (int i = 0; i < NUM_DUMB_BUFS; i++) {
++    if (!alloc_dumb(&dumb_bufs[i], drm_mode.hdisplay, drm_mode.vdisplay)) {
++      fprintf(stderr, "V4L2DRM: alloc_dumb[%d] failed\n", i); return -3;
++    }
++  }
++  dumb_bufs_ready = true;
++  if (drmModeSetCrtc(drm_fd, crtc_id, dumb_bufs[0].fb_id, 0, 0,
++                     &connector_id, 1, &drm_mode) < 0) {
++    perror("V4L2DRM: initial drmModeSetCrtc"); return -4;
++  }
++
++  int nproc   = (int)sysconf(_SC_NPROCESSORS_ONLN);
++  int threads = (nproc >= 1 && nproc < SLICES_PER_FRAME) ? nproc : SLICES_PER_FRAME;
++  printf("V4L2DRM: %d decode threads (%d CPUs)\n", threads, nproc);
++
++  ffmpeg_get_format_cb = drm_prime_get_format;
++  if (ffmpeg_init(videoFormat, width, height, SLICE_THREADING, 2, threads) < 0) {
++    fprintf(stderr, "V4L2DRM: ffmpeg_init failed\n"); return -5;
++  }
++
++  if (pipe(pipefd) < 0) { perror("V4L2DRM: pipe"); return -6; }
++  fcntl(pipefd[0], F_SETFL, O_NONBLOCK);
++  loop_add_fd(pipefd[0], &frame_handle, POLLIN);
++
++  render_stop    = false;
++  render_started = false;
++  if (pthread_create(&render_tid, NULL, render_thread_fn, NULL) != 0) {
++    perror("V4L2DRM: pthread_create"); return -7;
++  }
++  render_started = true;
++  return 0;
++}
++
++static void v4l2drm_cleanup(void) {
++  if (render_started) {
++    pthread_mutex_lock(&render_mutex);
++    render_stop = true;
++    for (int i = 0; i < 2; i++) {
++      if (render_queue[i]) { av_frame_free(&render_queue[i]); render_queue[i] = NULL; }
++    }
++    render_q_head = render_q_tail = render_q_count = 0;
++    pthread_cond_signal(&render_cond);
++    pthread_mutex_unlock(&render_mutex);
++    pthread_join(render_tid, NULL);
++    render_started = false;
++  }
++
++  wait_for_flip();
++
++  ffmpeg_destroy();
++
++#ifdef HAVE_EGL
++  if (use_egl_path) egl_destroy();
++#endif
++  if (sws_ctx) { sws_freeContext(sws_ctx); sws_ctx = NULL; }
++  if (pipefd[0] >= 0) { close(pipefd[0]); pipefd[0] = -1; }
++  if (pipefd[1] >= 0) { close(pipefd[1]); pipefd[1] = -1; }
++
++  /* Restore original CRTC before freeing DRM direct FBs: switching away from
++   * NV12 first ensures the display never references a freed framebuffer. */
++  if (saved_crtc && drm_fd >= 0) {
++    drmModeSetCrtc(drm_fd, saved_crtc->crtc_id, saved_crtc->buffer_id,
++                   saved_crtc->x, saved_crtc->y,
++                   &connector_id, 1, &saved_crtc->mode);
++    drmModeFreeCrtc(saved_crtc); saved_crtc = NULL;
++  }
++
++  /* Release the last on-screen NV12 FB (safe after CRTC restore above). */
++  release_prime_fb(drm_on_screen); drm_on_screen = NULL;
++
++  for (int i = 0; i < NUM_DUMB_BUFS; i++) free_dumb(&dumb_bufs[i]);
++  if (drm_fd >= 0)    { drmDropMaster(drm_fd); close(drm_fd); drm_fd = -1; }
++  if (render_fd >= 0) { close(render_fd); render_fd = -1; }
++
++  free(decode_buf); decode_buf = NULL; decode_buf_sz = 0;
++  prime_probed = false; use_egl_path = false; use_drm_direct = false;
++  use_atomic = false; drm_direct_active = false; dumb_bufs_ready = false;
++  flip_pending = false; active_dumb = 0; crtc_id = 0; connector_id = 0;
++  drm_color_enc = DRM_YCBCR_BT709; drm_color_rng = DRM_YCBCR_LIMITED;
++  sws_src_fmt = -1; sws_src_w = 0; sws_src_h = 0;
++  sws_dst_w = 0; sws_dst_h = 0; sws_src_cs = -1; sws_src_rng = -1;
++#ifdef HAVE_EGL
++  egl_frame_logged = false;
++#endif
++  memset(&primary_plane, 0, sizeof(primary_plane));
++}
++
++static int v4l2drm_submit(PDECODE_UNIT decodeUnit) {
++  PLENTRY entry = decodeUnit->bufferList; int length = 0;
++  ensure_buf_size(&decode_buf, &decode_buf_sz,
++                  decodeUnit->fullLength + AV_INPUT_BUFFER_PADDING_SIZE);
++  while (entry) {
++    memcpy((uint8_t*)decode_buf + length, entry->data, entry->length);
++    length += entry->length; entry = entry->next;
++  }
++  ffmpeg_decode(decode_buf, length);
++  AVFrame* frame = ffmpeg_get_frame(true);
++  if (frame) {
++    ssize_t n = write(pipefd[1], &frame, sizeof(void*));
++    (void)n;
++  }
++  return DR_OK;
++}
++
++DECODER_RENDERER_CALLBACKS decoder_callbacks_v4l2drm = {
++  .setup            = v4l2drm_setup,
++  .cleanup          = v4l2drm_cleanup,
++  .submitDecodeUnit = v4l2drm_submit,
++  .capabilities     = CAPABILITY_SLICES_PER_FRAME(SLICES_PER_FRAME) |
++                      CAPABILITY_REFERENCE_FRAME_INVALIDATION_HEVC  |
++                      CAPABILITY_DIRECT_SUBMIT,
++};
+diff --git a/src/video/video.h b/src/video/video.h
+index 4c1344b..d2a4600 100644
+--- a/src/video/video.h
++++ b/src/video/video.h
+@@ -2,34 +2,20 @@
+  * This file is part of Moonlight Embedded.
+  *
+  * Copyright (C) 2015-2017 Iwan Timmer
+- *
+- * Moonlight is free software; you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation; either version 3 of the License, or
+- * (at your option) any later version.
+- *
+- * Moonlight is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with Moonlight; if not, see <http://www.gnu.org/licenses/>.
+  */
+ 
+ #include <Limelight.h>
+-
+ #include <stdbool.h>
+ 
+-#define DISPLAY_FULLSCREEN 1
++#define DISPLAY_FULLSCREEN             1
+ #define ENABLE_HARDWARE_ACCELERATION_1 2
+ #define ENABLE_HARDWARE_ACCELERATION_2 4
+-#define DISPLAY_ROTATE_MASK 24
+-#define DISPLAY_ROTATE_90 8
+-#define DISPLAY_ROTATE_180 16
+-#define DISPLAY_ROTATE_270 24
++#define DISPLAY_ROTATE_MASK            24
++#define DISPLAY_ROTATE_90              8
++#define DISPLAY_ROTATE_180             16
++#define DISPLAY_ROTATE_270             24
+ 
+-#define INIT_EGL 1
++#define INIT_EGL   1
+ #define INIT_VDPAU 2
+ #define INIT_VAAPI 3
+ 
+@@ -45,6 +31,16 @@ extern DECODER_RENDERER_CALLBACKS decoder_callbacks_x11_vaapi;
+ extern DECODER_RENDERER_CALLBACKS decoder_callbacks_x11_vdpau;
+ #endif
+ #endif
++
+ #ifdef HAVE_SDL
+ extern DECODER_RENDERER_CALLBACKS decoder_callbacks_sdl;
+ #endif
++
++#ifdef HAVE_MMAL
++extern DECODER_RENDERER_CALLBACKS decoder_callbacks_mmal;
++extern DECODER_RENDERER_CALLBACKS decoder_callbacks_mmal_hevc;
++#endif
++
++#ifdef HAVE_V4L2_DRM
++extern DECODER_RENDERER_CALLBACKS decoder_callbacks_v4l2drm;
++#endif

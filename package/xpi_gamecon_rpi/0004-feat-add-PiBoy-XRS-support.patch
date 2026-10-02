@@ -1,0 +1,463 @@
+From c05abc71bbad224275971a120f19ca1614fe6e5f Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 11 Apr 2021 19:05:33 +0200
+Subject: [PATCH 4/4] feat: add PiBoy XRS support
+
+---
+ xpi_gamecon.c | 330 +++++++++++++++++++++++++++++++++++++++-----------
+ 1 file changed, 261 insertions(+), 69 deletions(-)
+
+diff --git a/xpi_gamecon.c b/xpi_gamecon.c
+index c315e06..f98335b 100644
+--- a/xpi_gamecon.c
++++ b/xpi_gamecon.c
+@@ -15,6 +15,10 @@ MODULE_AUTHOR("Nathan Scherdin");
+ MODULE_DESCRIPTION("Experimental Pi Controls driver");
+ MODULE_LICENSE("GPL");
+ 
++static int xpicase = 0;
++module_param(xpicase, int, 0444);
++MODULE_PARM_DESC(xpicase, "set PiBoy case type, 0:DMG 1:XRS (default: 0)");
++
+ #define EXPI_MANUFACTURER	"Experimental Pi"
+ #define EXPI_DRIVER_NAME	"Experimental Pi Driver"
+ 
+@@ -41,6 +45,7 @@ static const int gc_data_bit = 1<<27;
+ 
+ static unsigned long lastgood=0;
+ static unsigned long lasterror=0;
++static int gc_length;
+ 
+ static uint8_t index;
+ 
+@@ -65,7 +70,8 @@ volatile int vol_val = 0;
+ 
+ struct kobject *kobj_ref;
+ 
+-#define GC_LENGTH 14
++#define GC_LENGTH_DMG 12
++#define GC_LENGTH_XRS 14
+ 
+ #define GPIO_SET *(gpio+7)
+ #define GPIO_CLR *(gpio+10)
+@@ -77,25 +83,163 @@ struct kobject *kobj_ref;
+ 
+ static volatile unsigned *gpio;
+ 
+-static const short gc_btn[] = { 
+-				BTN_TRIGGER_HAPPY3,		//DPAD Up
+-				BTN_TRIGGER_HAPPY4,		//DPAD Down
+-				BTN_TRIGGER_HAPPY1,		//DPAD Left
+-				BTN_TRIGGER_HAPPY2,		//DPAD Right
+-				BTN_A,				//A
+-				BTN_B,				//B
+-				BTN_X,				//X
+-				BTN_Y,				//Y
+-				BTN_TL,				//Left Button
+-				BTN_TR,				//Right Button
+-				BTN_TL2,			//Left Trigger
+-				BTN_TR2,			//Right Trigger
+-				BTN_THUMBL,			//Left Thumb
+-				BTN_THUMBR,			//Right Thumb
+-				BTN_SELECT,			//Select
+-				BTN_START,			//Start
+-			};
+-int gc_btn_size = sizeof(gc_btn);
++#define CASE_PIBOY_DMG 0
++#define CASE_PIBOY_XRS 1
++
++
++typedef struct piboy_data_descriptor {
++	// joypad
++	char controller_name[32]; // name of the controller
++	int hat_byte[4];            // holds byte number to query for hat direction
++	int hat_mask[4];            // holds mask to apply on hat_byte to get hat direction
++	bool hat_inverted;          // if status of bit is inverted (0=pressed, 1=not pressed)
++	int button_byte[12];        // holds byte number to query to get button information
++	int button_mask[12];        // holds mask to apply on button_byte to get button status
++	bool button_inverted[12];   // if status of bit is inverted (0=pressed, 1=not pressed)
++
++	short button_mapping[12];   // list of buttons of the joypad
++
++	int number_of_buttons;      // total number of buttons (not hat)
++
++	// volume
++	int volume_byte;            // holds byte number to query to get volume level
++
++	// status
++	int status_byte;            // holds byte number to query to get status information
++
++	// status bits
++	int status_power_mask;      // mask for power button
++	int status_menu_mask;       // mask for menu button
++
++} piboy_data_descriptor;
++
++// declare our controllers
++static const piboy_data_descriptor piboy_data_descriptors[2] =
++{
++	{
++		// PiBoy DMG
++		.controller_name = "PiBoy DMG Controller",
++		.hat_byte = {4, 4, 4, 4}, // Hat byte in L, R, D, U
++		.hat_mask = {0x04, 0x08, 0x02, 0x01}, // Hat mask in L, R, D, U
++		.hat_inverted = false, // Hat inverted
++		.button_byte = { // button_byte
++			3, // A
++			3, // B
++			3, // C
++			3, // X
++			3, // Y
++			3, // Z
++			3, // select
++			3, // start
++			4, // left thumb
++			4, // right shoulder
++			4, // left shoulder
++			0, // not used
++		},
++		.button_mask = { // button_mask
++			0x02,
++			0x01,
++			0x04,
++			0x08,
++			0x10,
++			0x20,
++			0x40,
++			0x80,
++			0x40,
++			0x10,
++			0x20,
++			0,
++		},
++		.button_inverted = { // button_inverted
++			true, true, true, true, true, true,
++			false, false, false, false, false,
++			0,
++		},
++		.button_mapping = { // button_mapping
++			BTN_A, //A
++			BTN_B, //B
++			BTN_C, //C
++			BTN_X, //X
++			BTN_Y, //Y
++			BTN_Z, //Z
++			BTN_SELECT, //Select
++			BTN_START, //Start
++			BTN_THUMBL, //Left Thumb
++			BTN_TR, //Right Trigger
++			BTN_TL, //Left Trigger
++			-1,  // padding
++		},
++
++		.number_of_buttons = 11, // number of buttons
++
++		.volume_byte = 6, // volume byte
++		.status_byte = 5, // status byte
++		.status_power_mask = 0x40, // status mask
++		.status_menu_mask = NULL, // no menu button
++	},
++	{
++		// PiBoy XRS
++		.controller_name = "PiBoy XRS Controller",
++		.hat_byte = {5, 5, 5, 5}, // Hat byte in L, R, D, U
++		.hat_mask = {0x04, 0x08, 0x01, 0x02}, // Hat mask in L, R, D, U
++		.hat_inverted = true,  // hat inverted
++		.button_byte = { // button_byte
++			5, // a
++			5, // b
++			5, // x
++			5, // y
++			6, // left button
++			6, // right button
++			6, // left trigger
++			6, // right trigger
++			6, // left thumb
++			6, // right thumb
++			6, // select
++			6, // start
++		},
++		.button_mask = {	// button_mask
++			0x20,
++			0x10,
++			0x40,
++			0x80,
++			0x01,
++			0x02,
++			0x04,
++			0x08,
++			0x10,
++			0x20,
++			0x80,
++			0x40,
++		},
++		// button_inverted
++		.button_inverted = {
++			true, true, true, true, true, true,
++			true, true, true, true, true, true,
++		},
++		.button_mapping = { // button_mapping
++			BTN_A,				//A
++			BTN_B,				//B
++			BTN_X,				//X
++			BTN_Y,				//Y
++			BTN_TL,				//Left Button
++			BTN_TR,				//Right Button
++			BTN_TL2,			//Left Trigger
++			BTN_TR2,			//Right Trigger
++			BTN_THUMBL,		//Left Thumb
++			BTN_THUMBR,		//Right Thumb
++			BTN_SELECT,		//Select
++			BTN_START,		//Start
++		},
++
++		.number_of_buttons = 12, // number of buttons
++		.volume_byte = 8, // volume byte
++		.status_byte = 7, // status byte
++		.status_power_mask = 0x40, // status mask
++		.status_menu_mask = 0x10, // no menu button
++	}
++};
++
++piboy_data_descriptor * pdd; // point to current piboy data descriptor (for ease reading)
+ 
+ struct gc {
+ 	struct input_dev *dev;
+@@ -199,11 +343,11 @@ void gpio_func(int pin, int state)
+ 	else{*tgpio |= (0x1<<(pin%10)*3);}
+ }
+ 
+-uint16_t check_crc16(uint8_t data[])
++uint16_t check_crc16(uint8_t data[], int datalength)
+ {
+-	int len = GC_LENGTH-2;
++	int len = datalength-2;
+ 	uint16_t crc=0;
+-	uint16_t ccrc = (data[GC_LENGTH-1]<<8) | data[GC_LENGTH-2];
++	uint16_t ccrc = (data[datalength-1]<<8) | data[datalength-2];
+ 	int i,j;
+ 
+ 	for(i = 0;i<len;i++){
+@@ -244,15 +388,18 @@ static void gc_timer(struct timer_list *t)
+ 	struct input_dev *volume_dev = gc->volume_dev;
+ 	struct input_dev *power_dev = gc->power_dev;
+ 
++	uint8_t dpad_left, dpad_right, dpad_up, dpad_down;
++
+ 	int byteindex;
+ 	long bitindex;
++	int buttonindex;
+ 
+ 	if(running)
+ 		mod_timer(&gc->timer, jiffies + GC_REFRESH_TIME);
+ 
+ 	gpio_func(gc_gpio_data,1);	//input
+ 
+-	for(byteindex=0;byteindex<GC_LENGTH;byteindex++){
++	for(byteindex=0;byteindex<gc_length;byteindex++){
+ 		data[byteindex]=0;
+ 		for(bitindex=0;bitindex<8;bitindex++){
+ 			data[byteindex]<<=1;
+@@ -273,15 +420,15 @@ static void gc_timer(struct timer_list *t)
+ 	GPIO_CLR |= gc_clk_bit;
+ 	udelay(BITRATE);
+ 
+-	if(data[0] && !check_crc16(data)){
++	if(data[0] && !check_crc16(data, gc_length)){
+ 		version_val = ((data[0]&0xC0)<<2) | (data[0]&0x3F);
+ 
+-		data[GC_LENGTH+0] = 0xC0 | (index&0x3);
+-		data[GC_LENGTH+1] = values.data[index&0x3];
+-		calc_crc16(&data[GC_LENGTH],2);
++		data[gc_length+0] = 0xC0 | (index&0x3);
++		data[gc_length+1] = values.data[index&0x3];
++		calc_crc16(&data[gc_length],2);
+ 		index++;
+ 
+-		for(byteindex=GC_LENGTH;byteindex<GC_LENGTH+4;byteindex++){
++		for(byteindex=gc_length;byteindex<gc_length+4;byteindex++){
+ 			for(bitindex=0;bitindex<8;bitindex++){
+ 				if(data[byteindex]&(0x80>>bitindex))
+ 					GPIO_SET |= gc_data_bit;
+@@ -299,47 +446,71 @@ static void gc_timer(struct timer_list *t)
+ 
+ 		input_report_abs(dev, ABS_X, (int16_t)data[1]);		//X Axis
+ 		input_report_abs(dev, ABS_Y, (int16_t)data[2]);		//Y Axis
+-		input_report_abs(dev, ABS_RX, (int16_t)data[3]);	//RX Axis
+-		input_report_abs(dev, ABS_RY, (int16_t)data[4]);	//RY Axis
+-
+-		input_report_key(dev, gc_btn[0], !(data[5]&0x01));	//DPAD Up
+-		input_report_key(dev, gc_btn[1], !(data[5]&0x02));	//DPAD Down
+-		input_report_key(dev, gc_btn[2], !(data[5]&0x04));	//DPAD Left
+-		input_report_key(dev, gc_btn[3], !(data[5]&0x08));	//DPAD Right
+-		input_report_key(dev, gc_btn[4], !(data[5]&0x10));	//A
+-		input_report_key(dev, gc_btn[5], !(data[5]&0x20));	//B
+-		input_report_key(dev, gc_btn[6], !(data[5]&0x40));	//X
+-		input_report_key(dev, gc_btn[7], !(data[5]&0x80)); 	//Y
+-		input_report_key(dev, gc_btn[8], !(data[6]&0x01));	//Left Button
+-		input_report_key(dev, gc_btn[9], !(data[6]&0x02));	//Right Button
+-		input_report_key(dev, gc_btn[10], !(data[6]&0x04));	//Left Trigger
+-		input_report_key(dev, gc_btn[11], !(data[6]&0x08));	//Right Trigger
+-		input_report_key(dev, gc_btn[12], !(data[6]&0x10));	//Left Thumb
+-		input_report_key(dev, gc_btn[13], !(data[6]&0x20));	//Right Thumb
+-		input_report_key(dev, gc_btn[14], !(data[6]&0x40));	//Select
+-		input_report_key(dev, gc_btn[15], !(data[6]&0x80));	//Start
++		if (xpicase == CASE_PIBOY_XRS) {
++			input_report_abs(dev, ABS_RX, (int16_t)data[3]);	//RX Axis
++			input_report_abs(dev, ABS_RY, (int16_t)data[4]);	//RY Axis
++		}
++
++		dpad_left  = data[pdd->hat_byte[0]]&pdd->hat_mask[0] ? pdd->hat_inverted : !pdd->hat_inverted;
++		dpad_right = data[pdd->hat_byte[1]]&pdd->hat_mask[1] ? pdd->hat_inverted : !pdd->hat_inverted;
++		dpad_up    = data[pdd->hat_byte[2]]&pdd->hat_mask[2] ? pdd->hat_inverted : !pdd->hat_inverted;
++		dpad_down  = data[pdd->hat_byte[3]]&pdd->hat_mask[3] ? pdd->hat_inverted : !pdd->hat_inverted;
++		input_report_abs(dev, ABS_HAT0X, dpad_left - dpad_right);
++		input_report_abs(dev, ABS_HAT0Y, dpad_up   - dpad_down);
++
++		for(buttonindex=0; buttonindex<pdd->number_of_buttons; buttonindex++) {
++			// an inverted button means
++			// the button state is inverted (0 = pressed)
++			if (pdd->button_inverted[buttonindex]) {
++				input_report_key(dev,
++					pdd->button_mapping[buttonindex],
++					!(data[pdd->button_byte[buttonindex]] & pdd->button_mask[buttonindex])
++				);
++			}else {
++				input_report_key(dev,
++					pdd->button_mapping[buttonindex],
++					data[pdd->button_byte[buttonindex]] & pdd->button_mask[buttonindex]
++				);
++			}
++		}
++		if (pdd->status_menu_mask)
++			input_report_key(dev, BTN_MODE, data[pdd->status_byte]&pdd->status_menu_mask);
+ 
+ 		input_sync(dev);
+ 
+-		input_report_abs(volume_dev, ABS_VOLUME, data[6]);		//Y Axis
++		input_report_abs(volume_dev, ABS_VOLUME, data[pdd->volume_byte]);
+ 		input_sync(volume_dev);
+ 
+-		input_report_key(power_dev, KEY_POWER, !(data[7]&0x40));
++		input_report_key(power_dev, KEY_POWER, !(data[pdd->status_byte]&pdd->status_power_mask));
+ 		input_sync(power_dev);
+ 
+-		stat_val = data[7];					//VBus,Shutdown
+-		vol_val = data[8];					//Volume
+-		batt_val = (int)(data[9]*5)+2950;			//Battery Voltage
+-		cur_val = (int)((signed char)data[10])*50;		//Current
+-		percent_val = data[11];					//battery percentage
++		switch(xpicase) {
++			case CASE_PIBOY_DMG:
++				{
++					stat_val = data[5]&0xC6;									//VBus,Shutdown,VSTAT2,VSTAT1
++					vol_val = data[6];												//Volume
++					batt_val = (int)(data[7]*5)+2950;					//Battery Voltage
++					cur_val = (int)((signed char)data[8])*50;	//Current
++					percent_val = data[9];										//battery percentage
++					break;
++				};
++			case CASE_PIBOY_XRS:
++				{
++					stat_val = data[7];												//VBus,Shutdown
++					vol_val = data[8];												//Volume
++					batt_val = (int)(data[9]*5)+2950;					//Battery Voltage
++					cur_val = (int)((signed char)data[10])*50;//Current
++					percent_val = data[11];										//battery percentage
++					break;
++				}
++		}
+ 
+ 		lasterror = 0;
+-	}
+-	else{
++	}else {
+ 		lasterror++;
+ 		printk(KERN_INFO "XPi Gamecon CRC Error: %4.4lu %4.4lu",lastgood,lasterror);
+ 		//printk(KERN_INFO "XPi Gamecon CRC Error: %4.4lu %4.4lu %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x %2.2x",
+-		//	lastgood,lasterror, 
++		//	lastgood,lasterror,
+ 		//	data[0],data[1],data[2],data[3],
+ 		//	data[4],data[5],data[6],data[7],
+ 		//	data[8],data[9],data[10],data[11],
+@@ -362,12 +533,12 @@ static int gc_setup_pad(struct gc *gc)
+ 		return -ENOMEM;
+ 	}
+ 
+-	input_dev->name = "Experimental Pi Controller";
++	input_dev->name = pdd->controller_name;
+ 	input_dev->phys = "input0";
+ 	input_dev->id.bustype = BUS_PARPORT;
+ 	input_dev->id.vendor = 0x0001;
+ 	input_dev->id.product = 1;
+-	input_dev->id.version = 0x0100;
++	input_dev->id.version = 0x0101;
+ 
+ 	input_set_drvdata(input_dev, gc);
+ 
+@@ -375,13 +546,20 @@ static int gc_setup_pad(struct gc *gc)
+ 
+ 	input_set_abs_params(input_dev, ABS_X, 0, 255, 0, 0);
+ 	input_set_abs_params(input_dev, ABS_Y, 0, 255, 0, 0);
+-	input_set_abs_params(input_dev, ABS_RX, 0, 255, 0, 0);
+-	input_set_abs_params(input_dev, ABS_RY, 0, 255, 0, 0);
++	if (xpicase == CASE_PIBOY_XRS) {
++		input_set_abs_params(input_dev, ABS_RX, 0, 255, 0, 0);
++		input_set_abs_params(input_dev, ABS_RY, 0, 255, 0, 0);
++	}
++	input_set_abs_params(input_dev, ABS_HAT0X, -1, 1, 0, 0);
++	input_set_abs_params(input_dev, ABS_HAT0Y, -1, 1, 0, 0);
+ 
+-	for (i = 0; i < gc_btn_size; i++){
+-		__set_bit(gc_btn[i], input_dev->keybit);
++	for (i = 0; i < pdd->number_of_buttons; i++){
++		__set_bit(pdd->button_mapping[i], input_dev->keybit);
+ 	}
+ 
++	if (pdd->status_menu_mask)
++		__set_bit(BTN_MODE, input_dev->keybit);
++
+ 	err = input_register_device(input_dev);
+ 	if (err)
+ 		goto err_free_dev;
+@@ -580,10 +758,24 @@ static int __init gc_init(void)
+ 	printk(KERN_INFO "peripherals address base at 0x%08x\n", gc_bcm2708_peri_base);
+ 
+ 	/* Set up gpio pointer for direct register access */
+-   	if ((gpio = ioremap((gc_bcm2708_peri_base + 0x200000), 0xB0)) == NULL) {
+-   	   	printk(KERN_INFO "io remap failed\n");
+-   	   	return -EBUSY;
+-   	}
++	if ((gpio = ioremap((gc_bcm2708_peri_base + 0x200000), 0xB0)) == NULL) {
++		printk(KERN_INFO "io remap failed\n");
++		return -EBUSY;
++	}
++
++	switch(xpicase) {
++		case CASE_PIBOY_XRS: {
++			gc_length = GC_LENGTH_XRS;
++			break;
++		}
++		default:
++		case CASE_PIBOY_DMG: {
++			gc_length = GC_LENGTH_DMG;
++			break;
++		}
++	}
++
++	pdd = &piboy_data_descriptors[xpicase];
+ 
+ 	gc_base = gc_probe();
+ 	if (IS_ERR(gc_base)){
+@@ -659,7 +851,7 @@ r_sysfs:
+ 
+ 	iounmap(gpio);
+ 
+-        return -1;
++	return -1;
+ }
+ 
+ static void gc_exit(void)
+-- 
+2.40.1
+

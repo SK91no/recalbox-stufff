@@ -1,0 +1,7 @@
+config BR2_PACKAGE_RECALBOX_INPUT_LAG_TOOLS
+	bool "Recalbox input lag tools"
+	depends on BR2_LINUX_KERNEL
+	select BR2_PACKAGE_LIBGPIOD2
+	select BR2_PACKAGE_LIBGPIOD2_TOOLS
+	help
+	  Support for Recalbox input lag tools

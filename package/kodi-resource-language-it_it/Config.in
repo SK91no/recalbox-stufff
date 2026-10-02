@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KODI_RESOURCE_LANGUAGE_it_it
+	bool "kodi-resource-language-it_it"
+	default y
+	depends on BR2_PACKAGE_KODI
+	help
+	  Kodi Italian language resource
+
+	  https://mirrors.kodi.tv/addons/matrix/resource.language.it_it/

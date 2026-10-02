@@ -1,0 +1,47 @@
+name|description|type|sourcefile|rotate|width|height|refresh|bios|parent|status|manufacter
+beachspi|Beach Spikers (GDS-0014)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|CRI/Sega
+clubk2k3|Club Kart: European Session (2003, Rev A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+clubk2kp|Club Kart: European Session (2003, prototype, set 1)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubk2k3|preliminary|Sega
+clubk2kpa|Club Kart: European Session (2003, prototype, set 2)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubk2k3|preliminary|Sega
+clubkcyc|Club Kart for Cycraft (Rev A) (GDS-0029A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+clubkcyco|Club Kart for Cycraft (GDS-0029)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubkcyc|preliminary|Sega
+clubkprz|Club Kart Prize (Export, Japan, Rev A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+clubkpzb|Club Kart Prize Version B (Export, Japan)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+clubkpzbp|Club Kart Prize Version B (prototype)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubkpzb|preliminary|Sega
+clubkrt|Club Kart: European Session (Rev D)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+clubkrta|Club Kart: European Session (Rev A)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubkrt|preliminary|Sega
+clubkrtc|Club Kart: European Session (Rev C)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubkrt|preliminary|Sega
+clubkrto|Club Kart: European Session|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|clubkrt|preliminary|Sega
+inidv3ca|Initial D Arcade Stage Ver. 3 Cycraft Edition (Export, Rev A) (GDS-0039A)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|inidv3cy|preliminary|Sega
+inidv3cy|Initial D Arcade Stage Ver. 3 Cycraft Edition (Export, Rev B) (GDS-0039B)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initd|Initial D Arcade Stage (Japan, Rev B) (GDS-0020B)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initdexp|Initial D Arcade Stage (Export, Rev A) (GDS-0025A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initdexpo|Initial D Arcade Stage (Export) (GDS-0025)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initdexp|preliminary|Sega
+initdo|Initial D Arcade Stage (Japan) (GDS-0020)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initd|preliminary|Sega
+initdv2e|Initial D Arcade Stage Ver. 2 (Export) (GDS-0027)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initdv2j|preliminary|Sega
+initdv2j|Initial D Arcade Stage Ver. 2 (Japan, Rev B) (GDS-0026B)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initdv2ja|Initial D Arcade Stage Ver. 2 (Japan, Rev A) (GDS-0026A)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initdv2j|preliminary|Sega
+initdv2jo|Initial D Arcade Stage Ver. 2 (Japan) (GDS-0026)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initdv2j|preliminary|Sega
+initdv3e|Initial D Arcade Stage Ver. 3 (Export) (GDS-0033)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initdv3j|Initial D Arcade Stage Ver. 3 (Japan, Rev C) (GDS-0032C)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+initdv3jb|Initial D Arcade Stage Ver. 3 (Japan, Rev B) (GDS-0032B)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|initdv3j|preliminary|Sega
+kingrt66|The King of Route 66 (Rev A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+kingrt66p|The King of Route 66 (prototype)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|kingrt66|preliminary|Sega
+naomi2|NAOMI 2 BIOS|bios|sega/naomi.cpp|0|640|480|61.702586||||Sega
+sgdrvsim|Driving Simulator|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+soulsurf|Soul Surfer (Rev A)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4|Virtua Fighter 4 Version C (GDS-0012C)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4b|Virtua Fighter 4 (Rev B) (GDS-0012B)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4|preliminary|Sega
+vf4cart|Virtua Fighter 4 (World)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4evo|Virtua Fighter 4: Evolution (Version B) (Japan) (GDS-0024C)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4evoa|Virtua Fighter 4: Evolution (Japan) (GDS-0024A)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4evo|preliminary|Sega
+vf4evob|Virtua Fighter 4: Evolution (Version B) (Japan) (GDS-0024B)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4evo|preliminary|Sega
+vf4evoct|Virtua Fighter 4: Evolution (World)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4o|Virtua Fighter 4 (GDS-0012)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4|preliminary|Sega
+vf4tuned|Virtua Fighter 4: Final Tuned (Ver. B) (GDS-0036F)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vf4tuneda|Virtua Fighter 4: Final Tuned (Rev A) (GDS-0036A)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4tuned|preliminary|Sega
+vf4tunedd|Virtua Fighter 4: Final Tuned (Ver. A) (GDS-0036D)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vf4tuned|preliminary|Sega
+vstrik3|Virtua Striker 3 (GDS-0006)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega
+vstrik3c|Virtua Striker 3 (World, Rev B)|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Amusement Vision/Sega
+vstrik3co|Virtua Striker 3 (World)|clone|sega/naomi.cpp|0|640|480|61.702586|naomi2|vstrik3c|preliminary|Amusement Vision/Sega
+wldrider|Wild Riders|parent|sega/naomi.cpp|0|640|480|61.702586|naomi2||preliminary|Sega/Wow Entertainment

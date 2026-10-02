@@ -1,0 +1,11 @@
+#!/bin/ash
+
+if [ "$1" != "stop" ]; then
+  exit 0
+fi
+
+mount -o remount,ro /boot
+mount -o remount,ro /overlay
+sync
+
+clear > /dev/tty0

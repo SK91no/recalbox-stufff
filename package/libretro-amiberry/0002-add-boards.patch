@@ -1,0 +1,20 @@
+diff --git a/libretro/Makefile b/libretro/Makefile
+index a8a0a3a0..5221968f 100644
+--- a/libretro/Makefile
++++ b/libretro/Makefile
+@@ -141,6 +141,15 @@ else
+    FLAGS += -DCPU_X86_64
+ endif
+
++# Recalbox board-specific CPU tuning
++ifeq ($(system_board), rpi5_64)
++    FLAGS += -mcpu=cortex-a76 -mtune=cortex-a76 -fomit-frame-pointer -ffast-math
++else ifeq ($(system_board), rpi4_64)
++    FLAGS += -mcpu=cortex-a72 -mtune=cortex-a72 -fomit-frame-pointer -ffast-math
++else ifeq ($(system_board), rg353x)
++    FLAGS += -mcpu=cortex-a55 -mtune=cortex-a55 -fomit-frame-pointer -ffast-math
++endif
++
+ ifeq ($(platform), win)
+    # Prefer llvm-mingw / MSYS2 CLANG64 on Windows: the main Amiberry build is
+    # Clang/LLD-based, so the libretro core uses the same toolchain to keep ABI

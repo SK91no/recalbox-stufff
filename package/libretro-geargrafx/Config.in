@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBRETRO_GEARGRAFX
+	bool "libretro-geargrafx"
+	depends on BR2_PACKAGE_RETROARCH
+	help
+	  PC Engine / TurboGrafx-16 / SuperGrafx emulator
+
+	  http://www.libretro.com
+	  https://github.com/drhelius/Geargrafx

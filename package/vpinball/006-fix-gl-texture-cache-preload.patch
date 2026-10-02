@@ -1,0 +1,65 @@
+Fix the texture preload cache on the OpenGL renderer: hang, then untextured table.
+
+The texture loader runs its images through a ThreadPool, and when a texture is
+listed in the table's used_textures.xml cache it takes this path:
+
+    #ifdef ENABLE_OPENGL
+    // Uploading texture in OpenGL uses the state machine which will be wrong if done concurrently
+    const std::lock_guard<std::mutex> lock2(mutex);
+    #endif
+    m_renderer->m_renderDevice->UploadTexture(image, linearRGB);
+    uploaded = true;
+
+Two problems, one behind the other.
+
+'mutex' is already held a few lines above, for the whole block that follows
+GetRawBitmap(), and std::mutex is not recursive: the first worker thread to
+reach a cached texture deadlocks on itself while still holding the mutex, and
+every other loader thread piles up behind it. VPX hangs during startup, right
+after logging:
+
+    INFO  [Player::Player@571] Texture cache found at .../used_textures.xml
+
+The lock is not merely deadlocking, it is also the wrong tool. A mutex
+serializes the calls, but it cannot give the worker thread a GL context, and
+the context is only ever made current on the main thread. So even serialized,
+UploadTexture() from these threads issues its GL calls into nothing. Worse,
+'uploaded' is set to true regardless, which skips the AddPendingUpload()
+fallback right below, so the image is never registered with the texture manager
+either. Every texture listed in the cache -- in practice the whole table --
+ends up on the GPU as nothing at all, and the table renders invisible.
+
+Restrict the branch to the backends whose upload is thread safe. On OpenGL,
+leaving 'uploaded' false lets the texture manager hold the decoded data and
+create the sampler from the main thread on first use, which is what it already
+does for every non-cached image. The point of the preload is preserved: the
+expensive part (decode and resize) still happens here, in parallel.
+
+Only the OpenGL renderer is affected.
+
+Signed-off-by: Adrien Beudin <beudbeud@gmail.com>
+
+--- a/src/core/player.cpp
++++ b/src/core/player.cpp
+@@ -635,12 +635,17 @@
+                         const char *name = node->GetText();
+                         if (name != nullptr && image->m_name == name && node->QueryBoolAttribute("linear", &linearRGB) == tinyxml2::XML_SUCCESS)
+                         {
+-                           #ifdef ENABLE_OPENGL
+-                           // Uploading texture in OpenGL uses the state machine which will be wrong if done concurrently
+-                           const std::lock_guard<std::mutex> lock2(mutex);
+-                           #endif
++                           #ifndef ENABLE_OPENGL
++                           // OpenGL is excluded here: this runs on the loader thread pool, and the
++                           // GL context is only ever made current on the main thread, so the upload
++                           // would silently do nothing while still flagging the image as uploaded,
++                           // skipping the AddPendingUpload() fallback below and leaving the table
++                           // untextured. Leave 'uploaded' false so the texture manager keeps the
++                           // decoded data and uploads it from the main thread when first needed.
++                           // The costly decode/resize work is still done here, in parallel.
+                            m_renderer->m_renderDevice->UploadTexture(image, linearRGB);
+                            uploaded = true;
++                           #endif
+                            break;
+                         }
+                      }

@@ -1,0 +1,25 @@
+################################################################################
+#
+# kodi turkish language resource
+#
+################################################################################
+
+KODI_RESOURCE_LANGUAGE_TR_TR_RELEASE = omega
+KODI_RESOURCE_LANGUAGE_TR_TR_VERSION = 11.0.91
+KODI_RESOURCE_LANGUAGE_TR_TR_PLUGINNAME = resource.language.tr_tr
+KODI_RESOURCE_LANGUAGE_TR_TR_SOURCE = $(KODI_RESOURCE_LANGUAGE_TR_TR_PLUGINNAME)-$(KODI_RESOURCE_LANGUAGE_TR_TR_VERSION).zip
+KODI_RESOURCE_LANGUAGE_TR_TR_SITE = https://mirrors.kodi.tv/addons/$(KODI_RESOURCE_LANGUAGE_TR_TR_RELEASE)/$(KODI_RESOURCE_LANGUAGE_TR_TR_PLUGINNAME)
+KODI_RESOURCE_LANGUAGE_TR_TR_LICENSE = COPYRIGHT
+
+KODI_RESOURCE_LANGUAGE_TR_TR_PLUGIN_TARGET_DIR=$(TARGET_DIR)/usr/share/kodi/addons
+
+define KODI_RESOURCE_LANGUAGE_TR_TR_EXTRACT_CMDS
+	@unzip -q -o $(DL_DIR)/kodi-resource-language-tr_tr/$(KODI_RESOURCE_LANGUAGE_TR_TR_SOURCE) -d $(@D)
+endef
+
+define KODI_RESOURCE_LANGUAGE_TR_TR_INSTALL_TARGET_CMDS
+	@mkdir -p $(KODI_RESOURCE_LANGUAGE_TR_TR_PLUGIN_TARGET_DIR)
+	@cp -r $(@D)/$(KODI_RESOURCE_LANGUAGE_TR_TR_PLUGINNAME) $(KODI_RESOURCE_LANGUAGE_TR_TR_PLUGIN_TARGET_DIR)
+endef
+
+$(eval $(generic-package))

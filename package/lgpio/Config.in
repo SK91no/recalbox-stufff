@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LGPIO
+	bool "lgpio"
+	depends on BR2_arm || BR2_aarch64
+	help
+	  lgpio is a module for Linux Single Board Computers
+
+	  https://github.com/joan2937/lg

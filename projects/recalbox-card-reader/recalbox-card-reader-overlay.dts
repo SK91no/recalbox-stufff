@@ -1,0 +1,30 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+
+/ {
+	compatible = "brcm,bcm2712";
+
+	fragment@0 {
+		target = <&i2c1>;
+		cartreader_i2c: __overlay__ {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&rp1_i2c1_10_11>;
+			clock-frequency = <100000>;
+			read-timeout-ms = <50>;
+
+			cartreader: cr22@22 {
+				compatible = "recalbox,card-reader";
+				reg = <0x22>;
+				status = "okay";
+			};
+		};
+	};
+
+	__overrides__ {
+	};
+};

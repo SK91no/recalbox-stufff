@@ -1,0 +1,12 @@
+# cmake
+.idea/
+Kbuild
+cmake-build-*
+
+# cross compilation
+*.cmd
+Module.symvers
+modules.order
+built-in.a
+*.mod*
+*.o

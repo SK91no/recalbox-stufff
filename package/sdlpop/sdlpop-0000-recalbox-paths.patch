@@ -1,0 +1,110 @@
+--- a/src/seg009.c	2023-12-17 12:43:49.000000000 +0100
++++ b/src/seg009.c	2023-12-17 21:43:59.080216906 +0100
+@@ -80,15 +80,16 @@
+ #if ! (defined WIN32 || _WIN32 || WIN64 || _WIN64)
+ void find_home_dir(void) {
+ 	if (found_home_dir) return;
+-	const char* home_path = getenv("HOME");
++	const char* home_path = "/recalbox/share/system/configs";
+ 	snprintf_check(home_dir, POP_MAX_PATH - 1, "%s/.%s", home_path, POP_DIR_NAME);
+ 	if(file_exists(home_dir))
+ 		found_home_dir = true;
+ }
+ 
++// We will use it as save folder
+ void find_share_dir(void) {
+ 	if (found_share_dir) return;
+-	snprintf_check(share_dir, POP_MAX_PATH - 1, "%s/%s", SHARE_PATH, POP_DIR_NAME);
++	snprintf_check(share_dir, POP_MAX_PATH - 1, "%s", SHARE_PATH);
+ 	if(file_exists(share_dir))
+ 		found_share_dir = true;
+ }
+@@ -105,7 +106,7 @@
+ #else
+ 	find_home_dir();
+ 	find_share_dir();
+-	char* dirs[3] = {home_dir, share_dir, exe_dir};
++	char* dirs[3] = {home_dir, share_dir, "/recalbox/share/roms/ports/Prince of Persia"};
+ 	for (int i = 0; i < 3; i++) {
+ 		snprintf_check(dst, size, format, dirs[i], filename);
+ 		if(file_exists(dst))
+@@ -122,8 +123,8 @@
+ #else
+ 	find_home_dir();
+ 	find_share_dir();
+-	char* dirs[3] = {home_dir, share_dir, exe_dir};
+-	for (int i = 0; i < 3; i++) {
++	char* dirs[1] = {"/recalbox/share/saves/princeofpersia"};
++	for (int i = 0; i < 1; i++) {
+ 		struct stat path_stat;
+ 		int result = stat(dirs[i], &path_stat);
+ 		if (result == 0 && S_ISDIR(path_stat.st_mode) && access(dirs[i], W_OK) == 0) {
+ 
+--- a/src/config.h	2023-12-17 18:05:13.000000000 +0100
++++ b/src/config.h	2023-12-17 21:54:04.776750482 +0100
+@@ -34,8 +34,8 @@
+ #define WINDOW_TITLE "Prince of Persia (SDLPoP) v" SDLPOP_VERSION
+ 
+ #if ! (defined WIN32 || _WIN32 || WIN64 || _WIN64)
+-#define POP_DIR_NAME "SDLPoP"
+-#define SHARE_PATH "/usr/share"
++#define POP_DIR_NAME "sdlpop"
++#define SHARE_PATH "/recalbox/share/roms/ports/Prince of Persia" // Where is the data dir
+ #endif
+ 
+ // Enable or disable fading.
+
+--- a/src/options.c	2023-12-17 18:05:41.000000000 +0100
++++ b/src/options.c	2023-12-17 21:56:05.750609119 +0100
+@@ -72,7 +72,7 @@
+ 		}
+ 		if (fscanf(f, " ;%*[^\n]") != 0 ||
+ 		    fscanf(f, " \n") != 0) {
+-			fprintf(stderr, "short read from %s!?\n", filename);
++			// fprintf(stderr, "short read from %s!?\n", filename);
+ 			fclose(f);
+ 			return -1;
+ 		}
+@@ -497,7 +497,7 @@
+ 
+ void load_global_options() {
+ 	set_options_to_default();
+-	ini_load(locate_file("SDLPoP.ini"), global_ini_callback); // global configuration
++	ini_load(locate_file("/recalbox/share/system/configs/sdlpop/sdlpop.ini"), global_ini_callback); // global configuration
+ 	load_dos_exe_modifications("."); // read PRINCE.EXE in the current working directory
+ }
+
+--- a/src/menu.c	2023-12-17 18:05:35.000000000 +0100
++++ b/src/menu.c	2023-12-17 19:37:15.787590818 +0100
+@@ -2257,7 +2257,7 @@
+ }
+
+ void save_ingame_settings(void) {
+-	SDL_RWops* rw = SDL_RWFromFile(locate_save_file("SDLPoP.cfg"), "wb");
++	SDL_RWops* rw = SDL_RWFromFile(locate_save_file("/recalbox/share/system/configs/sdlpop/sdlpop.cfg"), "wb");
+ 	if (rw != NULL) {
+ 		calculate_exe_crc();
+ 		SDL_RWwrite(rw, &exe_crc, sizeof(exe_crc), 1);
+@@ -2274,8 +2274,8 @@
+ 	// We want the SDLPoP.cfg file (in-game menu settings) to override the SDLPoP.ini file,
+ 	// but ONLY if the .ini file wasn't modified since the last time the .cfg file was saved!
+ 	struct stat st_ini, st_cfg;
+-	const char* cfg_filename = locate_file("SDLPoP.cfg");
+-	const char* ini_filename = locate_file("SDLPoP.ini");
++	const char* cfg_filename = locate_file("/recalbox/share/system/configs/sdlpop/sdlpop.cfg");
++	const char* ini_filename = locate_file("/recalbox/share/system/configs/sdlpop/sdlpop.ini");
+ 	if (stat( cfg_filename, &st_cfg ) == 0 && stat( ini_filename, &st_ini ) == 0) {
+ 		if (st_ini.st_mtime > st_cfg.st_mtime ) {
+ 			// SDLPoP.ini is newer than SDLPoP.cfg, so just go with the .ini configuration
+ 
+--- a/src/seg000.c	2023-10-23 11:50:11.000000000 +0200
++++ b/src/seg000.c	2023-12-17 21:25:19.860423418 +0100
+@@ -2399,7 +2399,7 @@
+ 	if (custom_save_path != NULL && custom_save_path[0] != '\0')
+ 		snprintf_check(save_path, max_len, "%s", custom_save_path);
+ 	else if (home_path != NULL && home_path[0] != '\0')
+-		snprintf_check(save_path, max_len, "%s/.%s", home_path, POP_DIR_NAME);
++		snprintf_check(save_path, max_len, "%s", "/recalbox/share/saves/princeofpersia");
+ #endif
+ 
+ 	if (save_path != NULL && save_path[0] != '\0') {

@@ -1,0 +1,91 @@
+From dbb2b2cb01a0a7d9781a59bfdf2d3ad9bac1d16f Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Fri, 21 Jun 2024 15:12:30 +0200
+Subject: [PATCH 13/27] add option to avoid interlaced modes on retroarch
+ switchres
+
+---
+ configuration.c        | 1 +
+ configuration.h        | 1 +
+ gfx/video_crt_switch.c | 4 ++++
+ gfx/video_driver.c     | 5 ++++-
+ gfx/video_driver.h     | 1 +
+ 5 files changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/configuration.c b/configuration.c
+index 0ec2ee4c68..f59d8f2253 100644
+--- a/configuration.c
++++ b/configuration.c
+@@ -2493,6 +2493,7 @@ static struct config_uint_setting *populate_settings_uint(
+ 
+    SETTING_UINT("crt_switch_resolution",         &settings->uints.crt_switch_resolution, true, DEFAULT_CRT_SWITCH_RESOLUTION, false);
+    SETTING_UINT("crt_switch_resolution_super",   &settings->uints.crt_switch_resolution_super, true, DEFAULT_CRT_SWITCH_RESOLUTION_SUPER, false);
++   SETTING_UINT("crt_switch_resolution_no_interlaced",   &settings->uints.crt_switch_resolution_no_interlaced, true, 0, false);
+    SETTING_UINT("custom_viewport_width",         &settings->video_vp_custom.width, false, 0 /* TODO */, false);
+    SETTING_UINT("custom_viewport_height",        &settings->video_vp_custom.height, false, 0 /* TODO */, false);
+    SETTING_UINT("custom_viewport_x",             (unsigned*)&settings->video_vp_custom.x, false, 0 /* TODO */, false);
+diff --git a/configuration.h b/configuration.h
+index 81b30e894a..215f565261 100644
+--- a/configuration.h
++++ b/configuration.h
+@@ -249,6 +249,7 @@ typedef struct settings
+       unsigned video_window_opacity;
+       unsigned crt_switch_resolution;
+       unsigned crt_switch_resolution_super;
++      unsigned crt_switch_resolution_no_interlaced;
+       unsigned screen_brightness;
+       unsigned video_monitor_index;
+       unsigned video_fullscreen_x;
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index eab7173ab7..0138b5e934 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -311,6 +311,10 @@ static void switch_res_crt(
+       char current_core_name[NAME_MAX_LENGTH];
+       char current_content_dir[DIR_MAX_LENGTH];
+       double rr              = p_switch->ra_core_hz;
++      char * allow_interlace  = p_switch->interlace & 0x2 ? "0" : "1";
++      p_switch->interlace &= 0x1;
++      sr_set_option("interlace", allow_interlace);
++      sr_set_option("doublescan", "0");
+       const char *_core_name = (const char*)runloop_state_get_ptr()->system.info.library_name;
+ 
+ 
+diff --git a/gfx/video_driver.c b/gfx/video_driver.c
+index 7917922bb4..72ebac9bb1 100644
+--- a/gfx/video_driver.c
++++ b/gfx/video_driver.c
+@@ -2933,6 +2933,7 @@ void video_driver_build_info(video_frame_info_t *video_info)
+    video_info->refresh_rate                = settings->floats.video_refresh_rate;
+    video_info->crt_switch_resolution       = settings->uints.crt_switch_resolution;
+    video_info->crt_switch_resolution_super = settings->uints.crt_switch_resolution_super;
++   video_info->crt_switch_resolution_no_interlaced = settings->uints.crt_switch_resolution_no_interlaced;
+    video_info->crt_switch_center_adjust    = settings->ints.crt_switch_center_adjust;
+    video_info->crt_switch_porch_adjust     = settings->ints.crt_switch_porch_adjust;
+    video_info->crt_switch_vert_adjust      = settings->ints.crt_switch_vertical_adjust;
+@@ -4395,7 +4396,9 @@ void video_driver_frame(const void *data, unsigned width,
+          default:
+             break;
+       }
+-
++      // Set flag on interlace to avoid method modification
++      if(video_info.crt_switch_resolution_no_interlaced)
++        video_st->crt_switch_st.interlace |= 0x2;
+       crt_switch_res_core(
+             &video_st->crt_switch_st,
+             native_width, width,
+diff --git a/gfx/video_driver.h b/gfx/video_driver.h
+index ca6434cdb2..2852f0a956 100644
+--- a/gfx/video_driver.h
++++ b/gfx/video_driver.h
+@@ -409,6 +409,7 @@ typedef struct video_frame_info
+    unsigned monitor_index;
+    unsigned crt_switch_resolution;
+    unsigned crt_switch_resolution_super;
++   unsigned crt_switch_resolution_no_interlaced;
+    unsigned width;
+    unsigned height;
+    unsigned scale_width;
+-- 
+2.51.0
+

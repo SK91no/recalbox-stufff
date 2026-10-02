@@ -1,0 +1,25 @@
+# Nintendo controllers - hidraw permissions
+# All Nintendo controllers need hidraw access for the hid-nintendo driver
+
+# Joy-Con (L)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2006", MODE="0666"
+# Joy-Con (R)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2007", MODE="0666"
+# Pro Controller
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2009", MODE="0666"
+# Charging Grip
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="200e", MODE="0666"
+# SNES Controller (NSO)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2017", MODE="0666"
+# N64 Controller (NSO)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2019", MODE="0666"
+# MD/Gen Control Pad (NSO)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="201e", MODE="0666"
+# Joy-Con (L) Switch 2
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2066", MODE="0666"
+# Joy-Con (R) Switch 2
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2067", MODE="0666"
+# Pro Controller Switch 2
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2069", MODE="0666"
+# GameCube Controller (NSO)
+KERNEL=="hidraw*", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="2073", MODE="0666"

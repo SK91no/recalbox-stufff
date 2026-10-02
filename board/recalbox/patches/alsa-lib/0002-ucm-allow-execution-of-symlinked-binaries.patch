@@ -1,0 +1,25 @@
+From df6ee1b15c2c345892b33d857932dbfd7a23caa4 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Mon, 15 Sep 2025 10:46:25 +0200
+Subject: [PATCH 2/2] ucm: allow execution of symlinked binaries
+
+---
+ src/ucm/ucm_exec.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/ucm/ucm_exec.c b/src/ucm/ucm_exec.c
+index 276cf592..6c8a4e7c 100644
+--- a/src/ucm/ucm_exec.c
++++ b/src/ucm/ucm_exec.c
+@@ -77,7 +77,7 @@ static int find_exec(const char *name, char *out, size_t len)
+ 					continue;
+ 				snprintf(bin, sizeof(bin), "%s/%s", tmp,
+ 					 de->d_name);
+-				if (lstat64(bin, &st))
++				if (stat64(bin, &st))
+ 					continue;
+ 				if (!S_ISREG(st.st_mode)
+ 				    || !(st.st_mode & S_IEXEC))
+-- 
+2.51.0
+

@@ -1,0 +1,26 @@
+diff --git a/drivers/hid/hid-input.c b/drivers/hid/hid-input.c
+index 9d80635a91eb..bbff1c7be8be 100644
+--- a/drivers/hid/hid-input.c
++++ b/drivers/hid/hid-input.c
+@@ -2316,8 +2316,20 @@ int hidinput_connect(struct hid_device *hid, unsigned int force)
+ 
+ 			hidinput_configure_usages(hidinput, report);
+ 
+-			if (hid->quirks & HID_QUIRK_MULTI_INPUT)
++
++			if (hid->quirks & HID_QUIRK_MULTI_INPUT) {
+ 				hidinput->report = report;
++				if (report->id) {
++					char *name = kasprintf(GFP_KERNEL,
++						"%s #%u", hid->name,
++						report->id);
++					if (name) {
++						kfree(hidinput->name);
++						hidinput->name = name;
++						hidinput->input->name = name;
++					}
++				}
++			}
+ 
+ 			list_add_tail(&report->hidinput_list,
+ 				      &hidinput->reports);

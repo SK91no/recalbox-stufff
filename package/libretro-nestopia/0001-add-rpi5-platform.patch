@@ -1,0 +1,30 @@
+From 1206f4ddfdd27459cdf1d1eaccf67d88c44d3428 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 15 Sep 2024 22:01:52 +0200
+Subject: [PATCH] add rpi5 platform
+
+---
+ libretro/Makefile | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/libretro/Makefile b/libretro/Makefile
+index 965d298..1b4cd5f 100644
+--- a/libretro/Makefile
++++ b/libretro/Makefile
+@@ -231,6 +231,13 @@ else ifeq ($(platform), rpi4_64)
+ 	SHARED := -shared -Wl,-version-script=link.T -Wl,-no-undefined
+ 	PLATFORM_DEFINES += -mcpu=cortex-a72 -mtune=cortex-a72 -ffast-math
+ 
++# Raspberry Pi 5 (64-bit)
++else ifeq ($(platform), rpi5_64)
++	TARGET := $(TARGET_NAME)_libretro.so
++	fpic := -fPIC
++	SHARED := -shared -Wl,-version-script=link.T -Wl,-no-undefined
++	PLATFORM_DEFINES += -mcpu=cortex-a76 -mtune=cortex-a76 -ffast-math
++
+ # Lightweight PS3 Homebrew SDK
+ else ifneq (,$(filter $(platform), ps3 psl1ght))
+ 	TARGET := $(TARGET_NAME)_libretro_$(platform).a
+-- 
+2.46.0
+

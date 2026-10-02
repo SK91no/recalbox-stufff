@@ -1,0 +1,60 @@
+From 8980215afed13f9d4f063f6d480d92a0117559ff Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Mon, 9 Sep 2024 15:28:29 +0200
+Subject: [PATCH 3/3] sdl2 libmali patch
+
+---
+ src/video/SDL_egl.c                   |  2 +-
+ src/video/kmsdrm/SDL_kmsdrmopengles.c | 15 +++++++++++----
+ 2 files changed, 12 insertions(+), 5 deletions(-)
+
+diff --git a/src/video/SDL_egl.c b/src/video/SDL_egl.c
+index 50f7082f4..d2851f345 100644
+--- a/src/video/SDL_egl.c
++++ b/src/video/SDL_egl.c
+@@ -1044,7 +1044,7 @@ SDL_GLContext SDL_EGL_CreateContext(_THIS, EGLSurface egl_surface)
+         return NULL;
+     }
+ 
+-    _this->egl_data->egl_swapinterval = 0;
++    _this->egl_data->egl_swapinterval = 1;
+ 
+     if (SDL_EGL_MakeCurrent(_this, egl_surface, egl_context) < 0) {
+         /* Delete the context */
+diff --git a/src/video/kmsdrm/SDL_kmsdrmopengles.c b/src/video/kmsdrm/SDL_kmsdrmopengles.c
+index 4e9109880..20bba897b 100644
+--- a/src/video/kmsdrm/SDL_kmsdrmopengles.c
++++ b/src/video/kmsdrm/SDL_kmsdrmopengles.c
+@@ -46,11 +46,17 @@ void KMSDRM_GLES_DefaultProfileConfig(_THIS, int *mask, int *major, int *minor)
+ {
+     /* if SDL was _also_ built with the Raspberry Pi driver (so we're
+        definitely a Pi device), default to GLES2. */
+-#ifdef SDL_VIDEO_DRIVER_RPI
+-    *mask = SDL_GL_CONTEXT_PROFILE_ES;
+-    *major = 2;
+-    *minor = 0;
++    /* JohnnyonFlame: We want to use GLESv2 as a default for compatibility
++       with SDL 2.0.10 builds, but offer the ability to use the OpenGL defaults
++       if ever needed. */
++#ifndef SDL_VIDEO_DRIVER_RPI
++    if (!SDL_getenv("SDL_DEFAULT_CONTEXT_PROFILE"))
+ #endif
++    {
++        *mask = SDL_GL_CONTEXT_PROFILE_ES;
++        *major = 2;
++        *minor = 0;
++    }
+ }
+ 
+ int KMSDRM_GLES_LoadLibrary(_THIS, const char *path)
+@@ -78,6 +84,7 @@ SDL_EGL_CreateContext_impl(KMSDRM)
+     int KMSDRM_GLES_SetSwapInterval(_THIS, int interval)
+ {
+ 
++  interval = 1;
+     if (!_this->egl_data) {
+         return SDL_SetError("EGL not initialized");
+     }
+-- 
+2.45.2
+

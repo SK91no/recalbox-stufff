@@ -1,0 +1,407 @@
+#!/bin/bash
+
+if test "$1" != "start"; then
+  exit 0
+fi
+
+if [ -f "/sys/firmware/devicetree/base/panel_disp@1/compatible" ]; then
+  # Skip on 7" DSI panel — detection probes can corrupt the display.
+  grep -q "raspberrypi,7inch-dsi" "/sys/firmware/devicetree/base/panel_disp@1/compatible" && exit 0
+fi
+
+# RGB DUAL              = AUTO
+# RGB DUAL2 PROTO 1     = I2C0 - 0x20 - 0x.1
+# RGB DUAL2 PROTO 2     = I2C1 - 0x20 - 0x.2
+# RGB DUAL2 PROTO 4     = I2C1 - 0x20 - 0x.3
+# RGB DUAL2 PROTO 5     = I2C1 - 0x20 - 0x.5
+# RGB JAMMA             = I2C0 - 0x26 - 0xc
+# RGB JAMMA 2 PROTO 1   = I2C1 - 0x26 - .1100...
+# RGB JAMMA 2 REVA/B    = I2C1 - 0x26 - 0001....
+# RGB JAMMA 2 REVD      = I2C1 - 0x21 - MCP 0x1001 on GPB
+# RGB DUAL2 REVC        = I2C1 - 0x21 - MCP 0x0001 on GPB
+# CARD READER REV1 = I2C1 - 0x22 - 0x1000001 on 0x01
+
+
+source /recalbox/scripts/recalbox-utils.sh
+
+# ── JVS firmware flash helpers ─────────────────────────────────────────────────
+# HID-first, GPIO-on-demand. Touching GPIOs hard-resets the ESP32 (RESET line
+# pulled low through value=0 on direction change), which kills the cab mid-game
+# on a routine upgrade — so the GPIO helpers are only invoked when HID fails.
+
+# Echo the pinctrl-rp1 GPIO base, or empty if not found.
+jvs_pinctrl_base() {
+  local g
+  for g in /sys/class/gpio/*; do
+    [ -f "${g}/label" ] && [ "$(cat "${g}/label")" = "pinctrl-rp1" ] \
+      && cat "${g}/base" && return 0
+  done
+  return 1
+}
+
+# Set a GPIO to output-high atomically (`high` skips the value=0 glitch that
+# plain `out` causes).
+jvs_gpio_arm_high() {
+  local pin="$1"
+  [ -d "/sys/class/gpio/gpio${pin}" ] || echo "${pin}" > /sys/class/gpio/export 2>/dev/null
+  echo high > "/sys/class/gpio/gpio${pin}/direction"
+}
+
+# Pulse ESP32 into ROM bootloader. Returns 0 if 303a appears within 5 s.
+jvs_gpio_enter_rom() {
+  local boot_gpio="$1" reset_gpio="$2" try
+  jvs_gpio_arm_high "$boot_gpio"
+  jvs_gpio_arm_high "$reset_gpio"
+  echo 0 > "/sys/class/gpio/gpio${boot_gpio}/value"
+  echo 0 > "/sys/class/gpio/gpio${reset_gpio}/value"
+  sleep 1
+  echo 1 > "/sys/class/gpio/gpio${reset_gpio}/value"
+  for try in $(seq 0 50); do
+    [ -e /dev/ttyACM0 ] && lsusb | grep -q "ID 303a:" && return 0
+    sleep 0.1
+  done
+  return 1
+}
+
+# Reboot ESP32 into normal firmware mode.
+jvs_gpio_boot_firmware() {
+  local boot_gpio="$1" reset_gpio="$2"
+  echo 1 > "/sys/class/gpio/gpio${boot_gpio}/value"
+  echo 0 > "/sys/class/gpio/gpio${reset_gpio}/value"
+  sleep 1
+  echo 1 > "/sys/class/gpio/gpio${reset_gpio}/value"
+}
+
+# HID-only flash. Returns 0 on success. Zero GPIO writes — safe on a running cab.
+jvs_flash_via_hid() {
+  local update_file="$1" flash_attr="/sys/devices/platform/recalboxjvs/flash_mode" try rom
+  # mpv --vo=drm takeover at script start can briefly renum USB → sysfs torn
+  # down and recreated. Wait up to 10 s for the attr to come back.
+  for try in $(seq 0 100); do
+    [ -w "${flash_attr}" ] && break
+    sleep 0.1
+  done
+  if [ ! -w "${flash_attr}" ]; then
+    echo "JVS: HID flash_mode sysfs missing" >> /boot/hardware.log
+    return 1
+  fi
+  echo "JVS: HID flash_mode triggered" >> /boot/hardware.log
+  echo 1 > "${flash_attr}" 2>>/boot/hardware.log || return 1
+  # arduino-esp32#10204: commit-then-reboot routinely takes 2-4 s, allow 6 s.
+  rom=0
+  for try in $(seq 0 30); do
+    sleep 0.2
+    lsusb | grep -q "ID 303a:" && rom=1 && break
+  done
+  if [ "${rom}" != "1" ]; then
+    echo "JVS: ESP32 didn't enter ROM via HID" >> /boot/hardware.log
+    return 1
+  fi
+  sleep 1
+  python -m esptool --port /dev/ttyACM0 --before no_reset --after hard_reset \
+    write_flash 0x10000 "${update_file}" >> /boot/hardware.log 2>&1
+}
+
+# GPIO flash for one mapping "boot_off:reset_off:name". Returns 0 on success.
+jvs_flash_via_gpio() {
+  local mapping="$1" update_file="$2" base="$3"
+  local boot_off rest reset_off map_name boot_gpio reset_gpio
+  boot_off="${mapping%%:*}"
+  rest="${mapping#*:}"; reset_off="${rest%%:*}"; map_name="${rest#*:}"
+  boot_gpio=$((base + boot_off)); reset_gpio=$((base + reset_off))
+  echo "JVS: GPIO try mapping ${map_name} (BOOT=gpio${boot_off} RESET=gpio${reset_off})" >> /boot/hardware.log
+  if ! jvs_gpio_enter_rom "$boot_gpio" "$reset_gpio"; then
+    echo "JVS: mapping ${map_name}: no ROM mode" >> /boot/hardware.log
+    return 1
+  fi
+  sleep 1
+  if python -m esptool --port /dev/ttyACM0 --before no_reset --after no_reset \
+       write_flash 0x10000 "${update_file}" >> /boot/hardware.log 2>&1; then
+    jvs_gpio_boot_firmware "$boot_gpio" "$reset_gpio"
+    echo "JVS: GPIO flash done (mapping ${map_name})" >> /boot/hardware.log
+    return 0
+  fi
+  echo "JVS: GPIO flash error (mapping ${map_name})" >> /boot/hardware.log
+  return 1
+}
+
+# Top-level: HID first, then GPIO. rev=0 → probe both mappings (rev3 then rev2),
+# rev>=3 → rev3 only, rev 1|2 → rev2 only. Returns 0 on success.
+jvs_flash_firmware() {
+  local update_file="$1" rev="$2" base mappings mapping
+  if jvs_flash_via_hid "$update_file"; then
+    echo "JVS: flash done via HID" >> /boot/hardware.log
+    return 0
+  fi
+  echo "JVS: HID failed, escalating to GPIO" >> /boot/hardware.log
+  base=$(jvs_pinctrl_base) || { echo "JVS: pinctrl-rp1 not found" >> /boot/hardware.log; return 1; }
+  if [ "$rev" -ge 3 ]; then
+    mappings="1:0:rev3"
+  elif [ "$rev" -ge 1 ]; then
+    mappings="0:1:rev2"
+  else
+    mappings="1:0:rev3 0:1:rev2"
+  fi
+  for mapping in $mappings; do
+    jvs_flash_via_gpio "$mapping" "$update_file" "$base" && return 0
+  done
+  return 1
+}
+# ── end JVS helpers ────────────────────────────────────────────────────────────
+
+if [ "$(getArchName)" = 'rpi5_64' ]; then
+  CRT_CFG=/boot/crt/recalbox-crt-config.txt
+  RESCUE_FLAG=/boot/jvs-force-flash
+
+  # JVS rescue: forced flash, rev unknown — jvs_flash_firmware probes both mappings.
+  if [ -f "${RESCUE_FLAG}" ]; then
+    mount -o remount,rw /boot
+    FIRMWARE_DIR=/recalbox/system/jvs/
+    update_file=$(ls "${FIRMWARE_DIR}/recalbox"*.bin 2>/dev/null | tail -n1)
+    if [ -n "${update_file}" ]; then
+      if jvs_flash_firmware "${update_file}" 0; then
+        echo "JVS rescue: flash done" >> /boot/hardware.log
+      else
+        echo "JVS rescue: all attempts failed" >> /boot/hardware.log
+      fi
+    else
+      echo "JVS rescue: no firmware bin found in ${FIRMWARE_DIR}" >> /boot/hardware.log
+    fi
+    rm -f "${RESCUE_FLAG}"
+    echo "JVS rescue: cleanup done, rebooting" >> /boot/hardware.log
+    mount -o remount,ro /boot
+    reboot
+    exit 0
+  fi
+
+  # JVS
+  if lsusb -d "d191:5487"; then
+    # If the overlay is already installed, the HID sysfs WILL come up — wait for it
+    # before reading rev/version. Racing it yields rev=0 (→ wrong ,avoid_interlaced)
+    # and an empty version (→ spurious re-flash). When the overlay is not installed
+    # yet the sysfs can't exist (it is created from the overlay's platform device):
+    # we install it + reboot below and read everything correctly on the next boot.
+    if grep -q "dtoverlay=recalboxjvs" "${CRT_CFG}" 2>/dev/null; then
+      for try in $(seq 0 50); do
+        [ -r /sys/devices/platform/recalboxjvs/hw_revision ] && break
+        sleep 0.1
+      done
+    fi
+    # hw_revision is exposed by the HID driver but read at offset 11 of Report 5,
+    # which only firmwares >=2.4 populate. Older firmwares leave it at 0; in that
+    # case we cannot guess the rev (no presence of avoid_interlaced is reliable
+    # either — old rev2 installs predate that flag). Stay at 0 and let the flash
+    # path probe both mappings.
+    jvs_rev=0
+    if [ -r /sys/devices/platform/recalboxjvs/hw_revision ]; then
+      jvs_rev=$(cat /sys/devices/platform/recalboxjvs/hw_revision 2>/dev/null || echo 0)
+    fi
+    jvs_overlay_name="recalboxjvs"
+    if [ "${jvs_rev}" -ge 3 ]; then
+      jvs_overlay_args=""
+    else
+      # rev unknown or <=2: avoid_interlaced is safe (required on rev<=2, harmless on rev>=3).
+      jvs_overlay_args=",avoid_interlaced"
+    fi
+    # Self-correct a stale ,avoid_interlaced left by a previous boot that mis-read the
+    # rev as 0 (sysfs not ready). On a confirmed rev>=3, strip it and reboot —
+    # independent of any firmware update. Targeted edit, not the generic overlay
+    # compare (which must stay loose so old-version upgrades keep matching).
+    if [ "${jvs_rev}" -ge 3 ] && grep -q "^dtoverlay=recalboxjvs.*,avoid_interlaced" "${CRT_CFG}" 2>/dev/null; then
+      mount -o remount,rw /boot
+      sed -i '/^dtoverlay=recalboxjvs/ s/,avoid_interlaced//' "${CRT_CFG}"
+      sync
+      echo "JVS: rev3 detected with stale ,avoid_interlaced — removed, rebooting" >> /boot/hardware.log
+      mount -o remount,ro /boot
+      reboot
+      exit 0
+    fi
+    FIRMWARE_DIR=/recalbox/system/jvs/
+    serial=""
+    for try in $(seq 0 50); do
+      [ -r /sys/devices/platform/recalboxjvs/firmware_version ] && serial=$(cat /sys/devices/platform/recalboxjvs/firmware_version 2>/dev/null)
+      [ -n "${serial}" ] && break
+      sleep 0.1
+    done
+    # iSerialNumber is a live USB transfer that can come back empty; fall back to the
+    # config-report version (same source: CONFIG_APP_PROJECT_VER).
+    if [ -z "${serial}" ]; then
+      fw_major=$(cat /sys/devices/platform/recalboxjvs/firmware_major 2>/dev/null)
+      fw_minor=$(cat /sys/devices/platform/recalboxjvs/firmware_minor 2>/dev/null)
+      if [ -n "${fw_major}" ] && [ -n "${fw_minor}" ] && [ "${fw_major}" != "0" ]; then
+        serial="${fw_major}.${fw_minor}"
+        echo "JVS: firmware_version empty, using config-report version ${serial}" >> /boot/hardware.log
+      fi
+    fi
+    update_file=$(ls "${FIRMWARE_DIR}/recalbox"*.bin 2>/dev/null | tail -n1)
+    if [ -n "${update_file}" ]; then
+      # Read version[32] from the esp_app_desc_t struct embedded at offset 0x30 in the .bin
+      update=$(dd if="${update_file}" bs=1 skip=48 count=32 2>/dev/null | tr -d '\0')
+      mount -o remount,rw /boot
+
+      echo "JVS: Firmware version: ${serial:-unknown}, available: ${update}" >> /boot/hardware.log
+      if [ -z "${serial}" ] && [ -z "${FORCE_JVS_FLASH}" ]; then
+        # Device enumerated as d191:5487 → a working firmware is running; an empty
+        # version means the sysfs/USB read wasn't ready, never an old firmware (those
+        # report a non-empty version). Skip auto-flash to avoid a spurious re-flash.
+        echo "JVS: version unreadable, sysfs not ready — skipping auto-flash" >> /boot/hardware.log
+      elif [ "${update}" != "${serial}" ] || [ -n "${FORCE_JVS_FLASH}" ];then
+        echo "JVS: Flashing ${update} (firmware reports ${serial:-unknown})" >> /boot/hardware.log
+        MPV_VIDEO_PID=""; MPV_AUDIO_PID=""
+        if [ -f /recalbox/system/resources/jvs/jvs_upgrade.opus ]; then
+          mpv --vo=null --really-quiet --loop-file=inf /recalbox/system/resources/jvs/jvs_upgrade.opus >/dev/null 2>&1 &
+          MPV_AUDIO_PID=$!
+        fi
+        if [ -f /recalbox/system/resources/jvs/jvs_upgrade.mp4 ]; then
+          mpv $(getCrtMpvOptions) --really-quiet --no-audio --loop-file=inf /recalbox/system/resources/jvs/jvs_upgrade.mp4 >/dev/null 2>&1 &
+          MPV_VIDEO_PID=$!
+        fi
+
+        if ! jvs_flash_firmware "${update_file}" "${jvs_rev}"; then
+          echo "JVS: flash failed (HID + GPIO all errored)" >> /boot/hardware.log
+        fi
+
+        [ -n "${MPV_VIDEO_PID}" ] && kill -9 "${MPV_VIDEO_PID}" 2>/dev/null
+        [ -n "${MPV_AUDIO_PID}" ] && kill -9 "${MPV_AUDIO_PID}" 2>/dev/null
+      fi
+      mount -o remount,ro /boot
+    fi
+    adapter="${jvs_overlay_name}"; dtbo_extra="${jvs_overlay_args}"; crt=true;
+  else
+    i2c="0"
+    board="-pi5"
+    mount -o remount,rw /
+    mkdir -p /config
+    mount -o remount,ro /
+    mount -t configfs none /config
+    modprobe i2c-dev
+    dtoverlay "i2ccustom${board}"
+
+    # Card Reader
+    stackable="recalbox-card-reader"
+    CONFIG="/boot/recalbox-user-config.txt"
+    if ! grep -q "^dtoverlay=${stackable}$" "${CONFIG}"; then
+      id="$(timeout 2 i2cget -y "1" 0x22 0x01 b)"
+      if [[ "$?" == "0" && "${id}" != "" ]]; then
+        id=${id:2}
+        id=${id^^}
+        binaryId=$(printf "\x${id}" | xxd -b | cut -d' ' -f2)
+        if [[ $binaryId =~ 00000001 || $binaryId =~ 00001001 || $binaryId =~ 00001111 || $binaryId =~ 00001110 ]]; then
+          mount -o remount,rw /boot
+          echo "S03recalbox-official-harware-detector ${stackable} detected !" >> /boot/hardware.log
+          echo -e "\ndtoverlay=${stackable}" >> "${CONFIG}"
+          mount -o remount,ro /boot
+          reboot
+        fi
+      fi
+    fi
+
+    id="$(i2cget -y "${i2c}" 0x26 0 b)"
+    dtbo_extra=""
+    if [[ "$?" == "0" && "${id}" != "" ]]; then
+      if [[ $id =~ "0xc" ]]; then adapter="recalboxrgbjamma"; dtbo_extra="${board}"; crt=true; fi
+      if [[ $id =~ "0x1" ]]; then adapter="recalboxallinone"; fi
+    elif ! isCRTLoaded; then
+      # trying to detext rgb dual 2 and jamma 2 only if no crt loaded yet
+      # RGB DUAL 2 - REV C / JAMMA 2 - REV D
+      if i2cset -y "1" 0x21 0x0d 0x0f; then
+        id="$(timeout 2 i2cget -y "1" 0x21 0x13 b)"
+        if [[ "$?" == "0" && "${id}" != "" ]]; then
+          id=${id:2}
+          id=${id^^}
+          binaryId=$(printf "\x${id}" | xxd -b | cut -d' ' -f2)
+          if [[ $binaryId =~ ....0001 ]]; then
+            adapter="recalboxrgbdual2,revc"; crt=true;
+          elif [[ $binaryId =~ ....1001 ]]; then
+            adapter="recalboxrgbjamma2-mcp"; dtbo_extra=",revd"; crt=true;
+          fi
+        fi
+      else
+        # RGBDUAL2 proto 1
+        # TODO reorder by priority
+        id="$(timeout 2 i2cget -y "${i2c}" 0x20 1 b)"
+        if [[ "$?" == "0" && "${id}" != "" ]]; then
+          if [[ $id =~ 0x.1 ]]; then adapter="recalboxrgbdual2-proto1"; crt=true; fi
+        else
+          # RGBDUAL2 proto 2
+          id="$(timeout 2 i2cget -y "1" 0x20 1 b)"
+          if [[ "$?" == "0" && "${id}" != "" ]]; then
+            if [[ $id =~ 0x.2 ]]; then adapter="recalboxrgbdual2-proto2"; crt=true;
+            elif [[ $id =~ 0x.3 ]]; then adapter="recalboxrgbdual2,proto4"; crt=true;
+            elif [[ $id =~ 0x.5 ]]; then adapter="recalboxrgbdual2,proto5"; crt=true; fi
+          else
+            # RGBJAMMA2
+            id="$(timeout 2 i2cget -y "1" 0x26 0 b)"
+            if [[ "$?" == "0" && "${id}" != "" ]]; then
+              id=${id:2}
+              id=${id^^}
+              binaryId=$(printf "\x${id}" | xxd -b | cut -d' ' -f2)
+              if [[ $binaryId =~ 0001.... ]]; then
+                adapter="recalboxrgbjamma"; dtbo_extra="2${board},rev=2"; crt=true;
+              elif [[ $binaryId =~ .1100... ]]; then
+                adapter="recalboxrgbjamma"; dtbo_extra="2${board},rev=1"; crt=true;
+              fi
+            fi
+          fi
+        fi
+      fi
+    fi
+    dtoverlay -r "i2ccustom${board}"
+    rmmod i2c-dev
+    umount /config
+  fi
+else
+  # pi 3 and 4
+  i2c="22"
+  if [ "$(getArchName)" == "rpi3" ]; then
+    i2c="11"
+  fi
+  mount -o remount,rw /
+  mkdir -p /config
+  mount -o remount,ro /
+  mount -t configfs none /config
+  # Detect recalbox official hardware (rgb jamma 1 & 2, all in one, rgb dual 2 etc)
+  modprobe i2c-dev
+  dtoverlay "i2ccustom"
+
+  id="$(i2cget -y "${i2c}" 0x26 0 b)"
+  dtbo_extra=""
+  if [[ "$?" == "0" && "${id}" != "" ]]; then
+    if [[ $id =~ "0xc" ]]; then adapter="recalboxrgbjamma"; crt=true; fi
+    if [[ $id =~ "0x1" ]]; then adapter="recalboxallinone"; fi
+  fi
+  dtoverlay -r "i2ccustom"
+  rmmod i2c-dev
+  umount /config
+fi
+
+if [ "${adapter}" != "" ]; then
+  mkdir -p /tmp/recalboxhardware/
+  echo "${id}" > "/tmp/recalboxhardware/${adapter}"
+  mount -o remount,rw /boot
+  echo "S03recalbox-official-harware-detector ${adapter}${dtbo_extra} detected !" >> /boot/hardware.log
+  mount -o remount,ro /boot
+
+  # install
+  if $crt && ! isCRTLoaded; then
+    # Installing rgb hat
+    CONFIG="/boot/crt/recalbox-crt-options.cfg"
+    CRT_DAC_FILE="/boot/crt/recalbox-crt-config.txt"
+    mount -o remount,rw /boot
+    mkdir -p /boot/crt/
+    if ! grep -q "dtoverlay=${adapter}${dtbo_extra}" "${CRT_DAC_FILE}"; then
+      echo -e "\ndtoverlay=${adapter}${dtbo_extra}" > "${CRT_DAC_FILE}"
+      if [ "$(getArchName)" == "rpi5_64" ]; then
+        echo -e "power_force_3v3_pwm=1" >> "${CRT_DAC_FILE}"
+      fi
+      if grep -q "adapter.type = .\+" "${CONFIG}";then
+          sed -i "s/adapter.type = .+/adapter.type = ${adapter}/g" "${CONFIG}"
+      else
+          echo -e "\nadapter.type = ${adapter}" >> "${CONFIG}"
+      fi
+      echo "S03recalbox-official-harware-detector Reboot after installation of ${adapter}${dtbo_extra}" >> /boot/hardware.log
+      reboot
+    fi
+    mount -o ro,remount /boot
+  fi
+fi

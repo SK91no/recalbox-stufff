@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="manette_vue_de_haut" data-name="manette vue de haut" xmlns="http://www.w3.org/2000/svg" width="112.5312683" height="116.5308228" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 112.5312683 116.5308228">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dff0e3;
+      }
+
+      .cls-2 {
+        fill: url(#Dégradé_sans_nom_340);
+      }
+
+      .cls-3 {
+        fill: #1a1a1c;
+      }
+
+      .cls-4 {
+        fill: #00ff36;
+        opacity: .71;
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_340" data-name="Dégradé sans nom 340" x1="97.0983516" y1="32.8568994" x2="91.0121232" y2="32.8879209" gradientTransform="translate(133.3604646 -54.7724045) rotate(90)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00ff36" stop-opacity=".71"/>
+      <stop offset=".1375256" stop-color="#05fe39" stop-opacity=".7097168"/>
+      <stop offset=".2684835" stop-color="#15fe44" stop-opacity=".7088577"/>
+      <stop offset=".3968535" stop-color="#31fe56" stop-opacity=".7074198"/>
+      <stop offset=".5236253" stop-color="#57fe6f" stop-opacity=".7054009"/>
+      <stop offset=".6479822" stop-color="#88fd8f" stop-opacity=".7028282"/>
+      <stop offset=".7599882" stop-color="#bffdb3" stop-opacity=".7"/>
+      <stop offset=".8308484" stop-color="#c0fdb4" stop-opacity=".7051019"/>
+      <stop offset=".8654627" stop-color="#c3fdb8" stop-opacity=".7226739"/>
+      <stop offset=".8922273" stop-color="#cafdc0" stop-opacity=".7529446"/>
+      <stop offset=".9149574" stop-color="#d3fdcb" stop-opacity=".7959713"/>
+      <stop offset=".935117" stop-color="#dffed9" stop-opacity=".8518138"/>
+      <stop offset=".9531841" stop-color="#edfeea" stop-opacity=".9193879"/>
+      <stop offset=".9699984" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="arrow_right_active">
+    <circle class="cls-3" cx="100.4880545" cy="39.29403" r="3.4238562"/>
+    <path d="m99.8697056,40.8753304l2.2107756-1.4498916c.1645625-.1079249.1582797-.3512172-.0116338-.4505046l-2.2107756-1.2918466c-.1767055-.1032562-.3987935.0241936-.3987935.2288559v2.7417382c0,.2108008.2341537.337254.4104273.2216486Z"/>
+    <circle class="cls-4" cx="100.4880545" cy="39.29403" r="3.267096"/>
+    <circle class="cls-2" cx="100.4880545" cy="39.2828329" r="3.0431529"/>
+    <path class="cls-1" d="m99.8540132,40.6785523l1.9442168-1.2750745c.1447208-.0949121.1391955-.30887-.0102311-.3961861l-1.9442168-1.1360853c-.1553996-.0908064-.35071.0212765-.35071.2012622v2.4111598c0,.185384.2059212.2965905.360941.1949239Z"/>
+  </g>
+</svg>

@@ -1,0 +1,42 @@
+From 75d973edcb73fb8f608c354c646d02f529be4cb0 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 28 Aug 2024 22:47:35 +0200
+Subject: [PATCH] add rpi5 platform
+
+---
+ Makefile | 12 +++++++++++-
+ 1 file changed, 11 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 3adb9f6..ce98f0f 100644
+--- a/Makefile
++++ b/Makefile
+@@ -367,7 +367,7 @@ else ifeq ($(platform), rpi3_64)
+ 	FLAGS += -fomit-frame-pointer -ffast-math
+ 
+ # Raspberry Pi 4
+-else ifeq ($(platform), rpi4)
++else ifeq ($(platform), rpi4_64)
+ 	TARGET := $(TARGET_NAME)_libretro.so
+ 	fpic := -fPIC
+ 	SHARED := -shared -Wl,--no-undefined -Wl,--version-script=link.T
+@@ -376,6 +376,16 @@ else ifeq ($(platform), rpi4)
+ 	FLAGS += -mcpu=cortex-a72 -mtune=cortex-a72
+ 	FLAGS += -fomit-frame-pointer -ffast-math
+ 
++# Raspberry Pi 5
++else ifeq ($(platform), rpi5_64)
++	TARGET := $(TARGET_NAME)_libretro.so
++	fpic := -fPIC
++	SHARED := -shared -Wl,--no-undefined -Wl,--version-script=link.T
++	CFLAGS+=-fsigned-char
++	FLAGS += -DARM 
++	FLAGS += -mcpu=cortex-a76 -mtune=cortex-a76
++	FLAGS += -fomit-frame-pointer -ffast-math
++
+ else ifeq ($(platform), emscripten)
+ 	TARGET := $(TARGET_NAME)_libretro_$(platform).bc
+ 	STATIC_LINKING = 1
+-- 
+2.46.0
+

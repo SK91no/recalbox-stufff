@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_EXEL_HENCE
+	bool "libretro-exel-hence"
+	depends on BR2_PACKAGE_RETROARCH
+	select BR2_PACKAGE_ZLIB
+	help
+	  Exelvision EXL 100
+
+	  http://gitlab.com/recalbox/packages/recalbox-cores/libretro-exel-hence
+
+comment "exel-hence needs retroarch"
+	depends on BR2_PACKAGE_RETROARCH

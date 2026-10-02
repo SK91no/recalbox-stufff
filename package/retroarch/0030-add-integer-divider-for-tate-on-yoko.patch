@@ -1,0 +1,328 @@
+diff --git a/config.def.h b/config.def.h
+index 5b4fcc2a55..b0e917b1f0 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -173,6 +173,8 @@
+ 
+ #define DEFAULT_CRT_SWITCH_HIRES_MENU true
+ 
++#define DEFAULT_CRT_SWITCH_TATE_INTEGER_SCALE false
++
+ #define DEFAULT_HISTORY_LIST_ENABLE true
+ 
+ #define DEFAULT_PLAYLIST_ENTRY_RENAME true
+diff --git a/configuration.c b/configuration.c
+index d0ce81f69e..b9b0cfd1f4 100644
+--- a/configuration.c
++++ b/configuration.c
+@@ -1878,7 +1878,8 @@ static struct config_bool_setting *populate_settings_bool(
+ #endif
+ 
+    SETTING_BOOL("crt_switch_resolution_use_custom_refresh_rate", &settings->bools.crt_switch_custom_refresh_enable, true, false, false);
+-   SETTING_BOOL("crt_switch_hires_menu",         &settings->bools.crt_switch_hires_menu, true, false, true);
++   SETTING_BOOL("crt_switch_hires_menu",              &settings->bools.crt_switch_hires_menu, true, false, true);
++   SETTING_BOOL("crt_switch_tate_integer_scale",      &settings->bools.crt_switch_tate_integer_scale, true, DEFAULT_CRT_SWITCH_TATE_INTEGER_SCALE, false);
+    SETTING_BOOL("video_shader_enable",           &settings->bools.video_shader_enable, true, DEFAULT_SHADER_ENABLE, false);
+    SETTING_BOOL("video_shader_watch_files",      &settings->bools.video_shader_watch_files, true, DEFAULT_VIDEO_SHADER_WATCH_FILES, false);
+    SETTING_BOOL("video_shader_remember_last_dir", &settings->bools.video_shader_remember_last_dir, true, DEFAULT_VIDEO_SHADER_REMEMBER_LAST_DIR, false);
+diff --git a/configuration.h b/configuration.h
+index b0f4b7bb8f..be6f07ed8f 100644
+--- a/configuration.h
++++ b/configuration.h
+@@ -923,6 +923,7 @@ typedef struct settings
+ 
+       bool crt_switch_custom_refresh_enable;
+       bool crt_switch_hires_menu;
++      bool crt_switch_tate_integer_scale;
+ 
+       /* Netplay */
+       bool netplay_show_only_connectable;
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index b19db82e97..429edd2c9a 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -59,26 +59,28 @@ static void crt_rpi_switch(videocrt_switch_t *p_switch,int width, int height, fl
+ 
+ static bool crt_check_for_changes(videocrt_switch_t *p_switch)
+ {
+-   if (   (p_switch->ra_core_height != p_switch->ra_tmp_height)
+-       || (p_switch->ra_core_width  != p_switch->ra_tmp_width)
+-       || (p_switch->center_adjust  != p_switch->tmp_center_adjust)
+-       || (p_switch->porch_adjust   != p_switch->tmp_porch_adjust)
+-       || (p_switch->vert_adjust   != p_switch->tmp_vert_adjust)
+-       || (p_switch->ra_core_hz     != p_switch->ra_tmp_core_hz)
+-       || (p_switch->rotated        != p_switch->tmp_rotated))
++   if (   (p_switch->ra_core_height    != p_switch->ra_tmp_height)
++       || (p_switch->ra_core_width     != p_switch->ra_tmp_width)
++       || (p_switch->center_adjust     != p_switch->tmp_center_adjust)
++       || (p_switch->porch_adjust      != p_switch->tmp_porch_adjust)
++       || (p_switch->vert_adjust       != p_switch->tmp_vert_adjust)
++       || (p_switch->ra_core_hz        != p_switch->ra_tmp_core_hz)
++       || (p_switch->rotated           != p_switch->tmp_rotated)
++       || (p_switch->tate_integer_scale != p_switch->tmp_tate_integer_scale))
+       return true;
+    return false;
+ }
+ 
+ static void crt_store_temp_changes(videocrt_switch_t *p_switch)
+ {
+-   p_switch->ra_tmp_height     = p_switch->ra_core_height;
+-   p_switch->ra_tmp_width      = p_switch->ra_core_width;
+-   p_switch->tmp_center_adjust = p_switch->center_adjust;
+-   p_switch->tmp_porch_adjust  = p_switch->porch_adjust;
+-   p_switch->ra_tmp_core_hz    = p_switch->ra_core_hz;
+-   p_switch->tmp_rotated       = p_switch->rotated;
+-   p_switch->tmp_vert_adjust   = p_switch->vert_adjust;
++   p_switch->ra_tmp_height          = p_switch->ra_core_height;
++   p_switch->ra_tmp_width           = p_switch->ra_core_width;
++   p_switch->tmp_center_adjust      = p_switch->center_adjust;
++   p_switch->tmp_porch_adjust       = p_switch->porch_adjust;
++   p_switch->ra_tmp_core_hz         = p_switch->ra_core_hz;
++   p_switch->tmp_rotated            = p_switch->rotated;
++   p_switch->tmp_vert_adjust        = p_switch->vert_adjust;
++   p_switch->tmp_tate_integer_scale = p_switch->tate_integer_scale;
+ }
+ 
+ static void crt_aspect_ratio_switch(
+@@ -367,6 +369,70 @@ static void get_modeline_for_kms(videocrt_switch_t *p_switch, sr_mode* srm)
+    p_switch->vsync       = srm->vsync;
+ }
+ 
++/* Returns the maximum progressive scanlines achievable at the core's refresh
++ * rate for the configured monitor type. The calculation ensures the integer
++ * downscale result will fit at the ORIGINAL game hz, not at a different rate.
++ *
++ * Formula per frequency band: min(spec_max, floor(hfreq / hz) - blank_lines)
++ * Constants from deps/switchres/monitor.cpp vertical_blank field:
++ *   15kHz: hfreq=15625 Hz, vertical_blank=1.024ms -> blank=16 lines
++ *   25kHz: hfreq=24960 Hz, vertical_blank=1.000ms -> blank=25 lines
++ *   31kHz: hfreq=31450 Hz, vertical_blank=1.017ms -> blank=32 lines
++ *
++ * For multi-range monitors, return the max across all supported bands since
++ * SwitchRes will pick the highest-capable range for tall content. */
++static int crt_tate_max_progressive_lines(unsigned crt_mode, float hz)
++{
++   /* Max active lines achievable at this hz per frequency band */
++   int max_15 = (int)(15625.0f / hz) - 16;
++   int max_25 = (int)(24960.0f / hz) - 25;
++   int max_31 = (int)(31450.0f / hz) - 32;
++
++   /* Cap to each band's spec progressive_lines_max */
++   if (max_15 > 288) max_15 = 288;
++   if (max_25 > 400) max_25 = 400;
++   if (max_31 > 512) max_31 = 512;
++
++   switch (crt_mode)
++   {
++      case 8:  /* forced_240p - fixed resolution */
++         return 240;
++      case 10: /* ntsc - fixed 59.94Hz */
++         return (max_15 < 240) ? max_15 : 240;
++      case 6:  /* pc_31_120: 31kHz at 100-130Hz, special case */
++         return 512; /* don't interfere, SwitchRes handles it */
++      case 7:  /* arcade_15_no_50 */
++      case 16: /* tv_15khz_prog_57hz_min */
++         return (max_15 < 256) ? max_15 : 256;
++      case 1:  /* arcade_15 */
++      case 9:  /* pal */
++      case 15: /* forced_15_progressive */
++         return max_15;
++      case 14: /* forced_384p 24kHz fixed 59.9-60.1Hz */
++      case 19:
++         return (max_25 < 384) ? max_25 : 384;
++      case 18: /* forced_480p 31kHz fixed 59.9-60.1Hz */
++         return (max_31 < 480) ? max_31 : 480;
++      case 2:  /* arcade_15_25 */
++      case 13: /* tv_15_25 */
++         return (max_15 > max_25) ? max_15 : max_25;
++      case 3:  /* arcade_31 */
++         return max_31;
++      case 4:  /* arcade_15_31 */
++      case 12: /* tv_15_31 */
++         return (max_31 > max_15) ? max_31 : max_15;
++      case 5:  /* arcade_15_25_31 */
++      case 11: /* tv_15_25_31 */
++      {
++         int m = (max_25 > max_15) ? max_25 : max_15;
++         return (max_31 > m) ? max_31 : m;
++      }
++      case 17: /* custom ini - assume 15kHz conservatively */
++      default:
++         return max_15;
++   }
++}
++
+ static void switch_res_crt(
+       videocrt_switch_t *p_switch,
+       unsigned width, unsigned height,
+@@ -376,6 +442,46 @@ static void switch_res_crt(
+    int w                   = native_width;
+    int h                   = height;
+ 
++   /* Integer downscale for TATE (vertical) games on YOKO (horizontal) screen.
++    *
++    * The threshold depends on the monitor type: a 31kHz monitor can handle
++    * 448p natively (448 < 512) so no downscale is needed. On 15kHz (max 288p),
++    * 448 lines must be divided by 2 -> 224p (clean 2:1, preserves 60Hz).
++    *
++    * The integer result must be >= 224 to be usable. If it falls below 224
++    * (e.g. DoDonPachi 320p -> 160p on 15kHz), we leave h unchanged and let
++    * SwitchRes pick its best mode, then enable bilinear to soften the
++    * non-integer scaling. */
++   if (!p_switch->rotated && p_switch->tate_integer_scale && h > w)
++   {
++      int max_lines = crt_tate_max_progressive_lines(crt_mode, p_switch->ra_core_hz);
++      if (h > max_lines)
++      {
++         int divisor     = (h + max_lines - 1) / max_lines; /* ceil(h / max_lines) */
++         int effective_h = h / divisor;
++
++         if (effective_h >= 224)
++         {
++            /* Clean integer scale: effective_h is always <= max_lines by construction */
++            h                        = effective_h;
++            p_switch->force_bilinear = false;
++            RARCH_LOG("[CRT] TATE integer downscale: %d->%dp (divisor=%d, monitor max=%d).\n",
++                  height, h, divisor, max_lines);
++         }
++         else
++         {
++            /* Result < 224p: too compressed, let SwitchRes pick, enable bilinear */
++            p_switch->force_bilinear = true;
++            RARCH_LOG("[CRT] TATE bilinear fallback: divisor=%d gives %dp <224, leaving h=%d.\n",
++                  divisor, effective_h, h);
++         }
++      }
++      else
++         p_switch->force_bilinear = false; /* h fits naturally in this monitor type */
++   }
++   else
++      p_switch->force_bilinear = false;
++
+    /* Check if SR2 is loaded, if not, load it */
+    if (crt_sr2_init(p_switch, monitor_index, crt_mode, super_width))
+    {
+diff --git a/gfx/video_crt_switch.h b/gfx/video_crt_switch.h
+index 0be6a1dac1..17d88f1f65 100644
+--- a/gfx/video_crt_switch.h
++++ b/gfx/video_crt_switch.h
+@@ -69,6 +69,9 @@ typedef struct videocrt_switch
+ 
+    bool rotated;
+    bool tmp_rotated;
++   bool tate_integer_scale;
++   bool tmp_tate_integer_scale;
++   bool force_bilinear;
+    bool kms_ctx;
+    bool khr_ctx;
+ } videocrt_switch_t;
+diff --git a/gfx/video_driver.c b/gfx/video_driver.c
+index 72ebac9bb1..e28b804962 100644
+--- a/gfx/video_driver.c
++++ b/gfx/video_driver.c
+@@ -2937,7 +2937,8 @@ void video_driver_build_info(video_frame_info_t *video_info)
+    video_info->crt_switch_center_adjust    = settings->ints.crt_switch_center_adjust;
+    video_info->crt_switch_porch_adjust     = settings->ints.crt_switch_porch_adjust;
+    video_info->crt_switch_vert_adjust      = settings->ints.crt_switch_vertical_adjust;
+-   video_info->crt_switch_hires_menu       = settings->bools.crt_switch_hires_menu;
++   video_info->crt_switch_hires_menu            = settings->bools.crt_switch_hires_menu;
++   video_info->crt_switch_tate_integer_scale    = settings->bools.crt_switch_tate_integer_scale;
+    video_info->black_frame_insertion       = settings->uints.video_black_frame_insertion;
+    video_info->bfi_dark_frames             = settings->uints.video_bfi_dark_frames;
+    video_info->shader_subframes            = settings->uints.video_shader_subframes;
+@@ -4396,9 +4397,10 @@ void video_driver_frame(const void *data, unsigned width,
+          default:
+             break;
+       }
+-      // Set flag on interlace to avoid method modification
++      /* Set flag on interlace to avoid method modification */
+       if(video_info.crt_switch_resolution_no_interlaced)
+         video_st->crt_switch_st.interlace |= 0x2;
++      video_st->crt_switch_st.tate_integer_scale = video_info.crt_switch_tate_integer_scale;
+       crt_switch_res_core(
+             &video_st->crt_switch_st,
+             native_width, width,
+@@ -4414,6 +4416,13 @@ void video_driver_frame(const void *data, unsigned width,
+             video_info.crt_switch_hires_menu,
+             config_get_ptr()->uints.video_aspect_ratio_idx,
+             video_info.crt_switch_vert_adjust);
++      /* Apply bilinear filtering only when TATE integer scale falls back to
++       * a non-integer ratio (force_bilinear=true). In integer downscale or
++       * pixel-perfect cases, force smooth off regardless of user preference. */
++      if (video_info.crt_switch_tate_integer_scale)
++         video_driver_set_filtering(1,
++               video_st->crt_switch_st.force_bilinear,
++               config_get_ptr()->bools.video_ctx_scaling);
+    }
+    else if (!video_info.crt_switch_resolution)
+ #endif
+diff --git a/gfx/video_driver.h b/gfx/video_driver.h
+index 2852f0a956..ccb832be6f 100644
+--- a/gfx/video_driver.h
++++ b/gfx/video_driver.h
+@@ -498,6 +498,7 @@ typedef struct video_frame_info
+    bool fastforward_frameskip;
+    bool msg_bgcolor_enable;
+    bool crt_switch_hires_menu;
++   bool crt_switch_tate_integer_scale;
+    bool hdr_enable;
+    bool overlay_behind_menu;
+    bool scan_subframes;
+diff --git a/intl/msg_hash_us.h b/intl/msg_hash_us.h
+index 278e032fc3..55cadaff3c 100644
+--- a/intl/msg_hash_us.h
++++ b/intl/msg_hash_us.h
+@@ -2268,6 +2268,14 @@ MSG_HASH(
+    MENU_ENUM_SUBLABEL_CRT_SWITCH_HIRES_MENU,
+    "Switch to high resolution modeline for use with high-resolution menus when no content is loaded."
+    )
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_SWITCH_TATE_INTEGER_SCALE,
++   "TATE Integer Downscale"
++   )
++MSG_HASH(
++   MENU_ENUM_SUBLABEL_CRT_SWITCH_TATE_INTEGER_SCALE,
++   "Integer downscale vertical (TATE) games on horizontal (YOKO) CRT screens. Only applies when height exceeds 15kHz limits (>288 lines). Height is divided by the smallest integer divisor that fits (e.g. 448p -> 224p at 2:1). Produces a cleaner image and often preserves 60Hz."
++   )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_CRT_SWITCH_RESOLUTION_USE_CUSTOM_REFRESH_RATE,
+    "Custom Refresh Rate"
+diff --git a/menu/menu_setting.c b/menu/menu_setting.c
+index 64b501c63f..aff535387a 100644
+--- a/menu/menu_setting.c
++++ b/menu/menu_setting.c
+@@ -14364,6 +14364,22 @@ static bool setting_append_list(
+                SD_FLAG_NONE
+                );
+ 
++         CONFIG_BOOL(
++               list, list_info,
++               &settings->bools.crt_switch_tate_integer_scale,
++               MENU_ENUM_LABEL_CRT_SWITCH_TATE_INTEGER_SCALE,
++               MENU_ENUM_LABEL_VALUE_CRT_SWITCH_TATE_INTEGER_SCALE,
++               DEFAULT_CRT_SWITCH_TATE_INTEGER_SCALE,
++               MENU_ENUM_LABEL_VALUE_OFF,
++               MENU_ENUM_LABEL_VALUE_ON,
++               &group_info,
++               &subgroup_info,
++               parent_group,
++               general_write_handler,
++               general_read_handler,
++               SD_FLAG_NONE
++               );
++
+          CONFIG_ACTION(
+                list, list_info,
+                MENU_ENUM_LABEL_CRT_CALI_SAVE_FOR_SYSTEM,
+diff --git a/msg_hash.h b/msg_hash.h
+index 98b0de588f..49cc479c56 100644
+--- a/msg_hash.h
++++ b/msg_hash.h
+@@ -1428,6 +1428,7 @@ enum msg_hash_enums
+    MENU_LABEL(CRT_SWITCH_X_AXIS_CENTERING),
+    MENU_LABEL(CRT_SWITCH_PORCH_ADJUST),
+    MENU_LABEL(CRT_SWITCH_VERTICAL_ADJUST),
++   MENU_LABEL(CRT_SWITCH_TATE_INTEGER_SCALE),
+    MENU_LABEL(VIDEO_FONT_ENABLE),
+    MENU_LABEL(VIDEO_FONT_PATH),
+    MENU_LABEL(VIDEO_FONT_SIZE),

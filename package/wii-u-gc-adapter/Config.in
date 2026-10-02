@@ -1,0 +1,5 @@
+config BR2_PACKAGE_WII_U_GC_ADAPTER
+	bool "wii-u-gc-adapter"
+	select BR2_PACKAGE_LIBUSB
+	help
+	  Tool for using the Wii U GameCube Adapter on Linux

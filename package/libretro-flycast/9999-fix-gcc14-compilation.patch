@@ -1,0 +1,24 @@
+--- libretro-flycast-8e4fa54e26232d6d54d3b0adca163ae7e617b9bd/core/deps/libzip/mkstemp.c.orig	2024-08-07 22:34:50.281689416 +0200
++++ libretro-flycast-8e4fa54e26232d6d54d3b0adca163ae7e617b9bd/core/deps/libzip/mkstemp.c	2024-08-07 22:35:08.591441679 +0200
+@@ -43,9 +43,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+-#ifdef __APPLE__
+ #include <unistd.h>
+-#endif
+ 
+ #ifndef O_BINARY
+ #define O_BINARY 0
+--- libretro-flycast-8e4fa54e26232d6d54d3b0adca163ae7e617b9bd/core/deps/libzip/zip_close.c.orig	2024-08-07 22:36:45.406793937 +0200
++++ libretro-flycast-8e4fa54e26232d6d54d3b0adca163ae7e617b9bd/core/deps/libzip/zip_close.c	2024-08-07 22:37:06.243176810 +0200
+@@ -42,9 +42,7 @@
+ 
+ #include "zipint.h"
+ 
+-#ifdef __APPLE__
+ #include <unistd.h>
+-#endif
+ 
+ static int add_data(struct zip *, struct zip_source *, struct zip_dirent *,
+ 		    FILE *);

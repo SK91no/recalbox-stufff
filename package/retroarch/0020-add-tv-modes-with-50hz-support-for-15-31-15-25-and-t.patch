@@ -1,0 +1,70 @@
+From c53b27f3f4da7dc447b0bc9b743b242a46d7d7de Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Fri, 12 Sep 2025 12:24:19 +0200
+Subject: [PATCH 20/27] add tv modes with 50hz support for 15/31 15/25 and
+ trifreq
+
+---
+ deps/switchres/monitor.cpp | 22 ++++++++++++++++++++++
+ gfx/video_crt_switch.c     | 12 ++++++++++++
+ 2 files changed, 34 insertions(+)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index 613ad98ea6..3539dc98d3 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -198,6 +198,28 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 		monitor_fill_range(&range[2], "31400-31500, 49.50-65.00, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 400, 512, 0, 0");
+ 		return 3;
+ 	}
++	// TV 15.7/25.0/31.5 kHz - tri-sync
++	else if (!strcmp(type, "tv_15_25_31"))
++	{
++		monitor_fill_range(&range[0], "15625-15750, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 400, 768, 800");
++		monitor_fill_range(&range[2], "31400-31500, 49.50-65.00, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 400, 512, 0, 0");
++		return 3;
++	}
++	// TV 15.7/31.5 kHz
++	else if (!strcmp(type, "tv_15_31"))
++	{
++		monitor_fill_range(&range[0], "15625-15750, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[2], "31400-31500, 49.50-65.00, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 400, 512, 0, 0");
++		return 2;
++	}
++	// TV 15.7/25.0
++	else if (!strcmp(type, "tv_15_25"))
++	{
++		monitor_fill_range(&range[0], "15625-15750, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 448, 576");
++		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 400, 768, 800");
++		return 2;
++	}
+ 	// Makvision 2929D
+ 	else if (!strcmp(type, "m2929"))
+ 	{
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 6db000aa0c..e4ce15a9d4 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -230,6 +230,18 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT]: CRT Mode: %d - NTSC\n", crt_mode);
+             break;
+          case 11:
++            sr_set_monitor("tv_15_25_31");
++            RARCH_LOG("[CRT]: CRT Mode: %d - tv_15_25_31\n", crt_mode);
++            break;
++         case 12:
++            sr_set_monitor("tv_15_31");
++            RARCH_LOG("[CRT]: CRT Mode: %d - tv_15_31\n", crt_mode);
++            break;
++         case 13:
++            sr_set_monitor("tv_15_25");
++            RARCH_LOG("[CRT]: CRT Mode: %d - tv_15_25\n", crt_mode);
++            break;
++         case 14:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

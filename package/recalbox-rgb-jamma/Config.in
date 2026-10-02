@@ -1,0 +1,15 @@
+config BR2_PACKAGE_RECALBOX_RGB_JAMMA
+	bool "Recalbox RGB Jamma dts and driver"
+	depends on BR2_LINUX_KERNEL
+	select BR2_PACKAGE_RECALBOX_RGB_DUAL
+	select BR2_PACKAGE_RECALBOX_I2S_AUDIO
+	select BR2_PACKAGE_RPI_UTILS
+	select BR2_PACKAGE_MOSQUITTO
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_RECALBOX_HARDWARE
+	help
+	  Support for Recalbox RGB Jamma, the JAMMA adapter
+	  for Rasbperry Pi 5, 4, 400, and 3
+
+comment "Recalbox RGB Jamma needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

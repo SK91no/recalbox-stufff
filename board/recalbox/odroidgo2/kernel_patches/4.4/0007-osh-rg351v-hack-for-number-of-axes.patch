@@ -1,0 +1,37 @@
+From 98bab814b788f0e499d42ea45745fd8f3208d732 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Mon, 2 Oct 2023 22:33:32 +0200
+Subject: [PATCH 3/3] osh rg351v hack for number of axes
+
+---
+ drivers/input/evdev.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/input/evdev.c b/drivers/input/evdev.c
+index 632e3797d..1e2b3a6dc 100644
+--- a/drivers/input/evdev.c
++++ b/drivers/input/evdev.c
+@@ -37,6 +37,11 @@
+ #include <linux/cdev.h>
+ #include "input-compat.h"
+ 
++// to set correct number of axes/hats
++static int osh_rg351v_hack = 0;
++module_param(osh_rg351v_hack, int, 0444);
++MODULE_PARM_DESC(osh_rg351v_hack, "set to 1 for setting OpenSimHardware axes/hats for rg351v" );
++
+ enum evdev_clock_type {
+ 	EV_CLK_REAL = 0,
+ 	EV_CLK_MONO,
+@@ -836,7 +841,7 @@ static int handle_eviocgbit(struct input_dev *dev,
+ 	// [RG351P] OpenSimHardware OSH PB Controller
+ 	if (dev->id.vendor == 0x1209 && dev->id.product == 0x3100) {
+ 		if (type == EV_ABS) {
+-			for (nr = ABS_THROTTLE; nr <= ABS_BRAKE; nr++) {
++			for (nr = osh_rg351v_hack == 1 ? ABS_RY : ABS_THROTTLE; nr <= ABS_BRAKE; nr++) {
+ 				clear_bit(nr, bits);
+ 			}
+ 			for (nr = ABS_HAT1X; nr <= ABS_HAT3Y; nr++) {
+-- 
+2.42.0
+

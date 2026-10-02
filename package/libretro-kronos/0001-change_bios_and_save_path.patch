@@ -1,0 +1,63 @@
+diff --git a/yabause/src/libretro/libretro.c b/yabause/src/libretro/libretro.c
+index 0b696a8d5..60842880a 100644
+--- a/yabause/src/libretro/libretro.c
++++ b/yabause/src/libretro/libretro.c
+@@ -1605,34 +1605,24 @@ bool retro_load_game(const struct retro_game_info *info)
+ 
+    check_variables();
+ 
+-   snprintf(stv_bios_path, sizeof(stv_bios_path), "%s%ckronos%cstvbios.zip", g_system_dir, slash, slash);
++   snprintf(stv_bios_path, sizeof(stv_bios_path), "%s%cstvbios.zip", g_system_dir, slash);
+    if (does_file_exist(stv_bios_path) != 1)
+    {
+       log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", stv_bios_path);
+-      snprintf(stv_bios_path, sizeof(stv_bios_path), "%s%cstvbios.zip", g_system_dir, slash);
+-      if (does_file_exist(stv_bios_path) != 1)
+-      {
+-         log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", stv_bios_path);
+-      }
+    }
+ 
+-   snprintf(bios_path, sizeof(bios_path), "%s%ckronos%csaturn_bios.bin", g_system_dir, slash, slash);
++   snprintf(bios_path, sizeof(bios_path), "%s%csaturn_bios.bin", g_system_dir, slash);
+    if (does_file_exist(bios_path) != 1)
+    {
+       log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", bios_path);
+-      snprintf(bios_path, sizeof(bios_path), "%s%csaturn_bios.bin", g_system_dir, slash);
++      snprintf(bios_path, sizeof(bios_path), "%s%csega_101.bin", g_system_dir, slash);
+       if (does_file_exist(bios_path) != 1)
+       {
+          log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", bios_path);
+-         snprintf(bios_path, sizeof(bios_path), "%s%csega_101.bin", g_system_dir, slash);
++         snprintf(bios_path, sizeof(bios_path), "%s%cmpr-17933.bin", g_system_dir, slash);
+          if (does_file_exist(bios_path) != 1)
+          {
+             log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", bios_path);
+-            snprintf(bios_path, sizeof(bios_path), "%s%cmpr-17933.bin", g_system_dir, slash);
+-            if (does_file_exist(bios_path) != 1)
+-            {
+-               log_cb(RETRO_LOG_WARN, "%s NOT FOUND\n", bios_path);
+-            }
+          }
+       }
+    }
+@@ -1681,8 +1671,8 @@ bool retro_load_game(const struct retro_game_info *info)
+          return false;
+       }
+ 
+-      snprintf(bup_path, sizeof(bup_path), "%s%ckronos%cstv%c%s.ram", g_save_dir, slash, slash, slash, game_basename);
+-      snprintf(eeprom_dir, sizeof(eeprom_dir), "%s%ckronos%cstv%c", g_save_dir, slash, slash, slash);
++      snprintf(bup_path, sizeof(bup_path), "%s%cstv%c%s.ram", g_save_dir, slash, slash, game_basename);
++      snprintf(eeprom_dir, sizeof(eeprom_dir), "%s%cstv%c", g_save_dir, slash, slash);
+ 
+       yinit.stvgamepath     = disk_paths[disk_index];
+       yinit.stvgame         = stvgame;
+@@ -1709,7 +1699,7 @@ bool retro_load_game(const struct retro_game_info *info)
+       if (use_beetle_saves == 1)
+          snprintf(bup_path, sizeof(bup_path), "%s%c%s.bkr", g_save_dir, slash, game_basename);
+       else
+-         snprintf(bup_path, sizeof(bup_path), "%s%ckronos%csaturn%c%s.ram", g_save_dir, slash, slash, slash, game_basename);
++         snprintf(bup_path, sizeof(bup_path), "%s%csaturn%c%s.ram", g_save_dir, slash, slash, game_basename);
+ 
+       // Configure addon cart settings
+       configure_saturn_addon_cart();

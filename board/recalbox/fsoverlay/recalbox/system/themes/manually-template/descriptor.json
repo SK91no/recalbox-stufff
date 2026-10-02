@@ -1,0 +1,100 @@
+{
+  "name": "manual",
+  "version": 0,
+  "recalbox-version": 10,
+  "author": "Unknown",
+  "description": "This a manually installed theme. We have no information about it.",
+  "description.fr": "Ce theme a été installé manuellement. Nous n'avons aucune information à son sujet.",
+  "description.es": "Este tema se ha instalado manualmente. No tenemos ninguna información al respecto.",
+  "description.it": "Questo tema è stato installato manualmente. Non abbiamo alcuna informazione al riguardo.",
+  "description.de": "Dieses Theme wurde manuell installiert. Wir haben keine Informationen darüber.",
+  "files": [
+    {
+      "compatibility": "crt,jamma,hdmi,tate",
+      "resolutions": "qvga,vga,hd,fhd",
+      "file": "recalbox.zip",
+      "screenshots": [
+        {
+          "compatibility": "hdmi",
+          "resolutions": "hd",
+          "systems": [
+            "screen/wireframe-yoko-hd.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "fhd",
+          "systems": [
+            "screen/wireframe-yoko-hd.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "hd",
+          "systems": [
+            "screen/wireframe_tate_hd.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "fhd",
+          "systems": [
+            "screen/wireframe_tate_hd.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/wireframe-yoko-480.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "vga",
+          "systems": [
+            "screen/wireframe-yoko-480.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/wireframe-tate-480.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "vga",
+          "systems": [
+            "screen/wireframe-tate-480.jpg"
+          ],
+          "gamelist": [],
+          "menus": [],
+          "gameclip": []
+        }
+      ]
+    }
+  ]
+}

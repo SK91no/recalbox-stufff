@@ -1,0 +1,33 @@
+From f656a9e0e63819aeae20b7bec9094b845fd53061 Mon Sep 17 00:00:00 2001
+From: Rudi Heitbaum <rudi@heitbaum.com>
+Date: Tue, 7 May 2024 15:12:05 +1000
+Subject: [PATCH] fix compile with gcc-14
+
+ftruncate and fileno are not defined unless a minimum of _POSIX_C_SOURCE=199309L is set
+
+fixes:
+libretro/libretro-common/vfs/vfs_implementation.c: In function 'retro_vfs_file_truncate_impl':
+libretro/libretro-common/vfs/vfs_implementation.c:619:18: error: implicit declaration of function 'ftruncate'; did you mean 'strncat'? [-Wimplicit-function-declaration]
+  619 |    if (stream && ftruncate(fileno(stream->fp), (off_t)length) == 0)
+      |                  ^~~~~~~~~
+      |                  strncat
+libretro/libretro-common/vfs/vfs_implementation.c:619:28: error: implicit declaration of function 'fileno'; did you mean 'd_fileno'? [-Wimplicit-function-declaration]
+  619 |    if (stream && ftruncate(fileno(stream->fp), (off_t)length) == 0)
+      |                            ^~~~~~
+      |                            d_fileno
+---
+ Makefile | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Makefile b/Makefile
+index 1322d47..0bc799b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -75,6 +75,7 @@ ifeq ($(platform), unix)
+    fpic := -fPIC
+    SHARED := -shared -Wl,--version-script=libretro/link.T -Wl,--no-undefined -Wl,--as-needed
+    CFLAGS += -std=c99
++   CFLAGS += -D_POSIX_C_SOURCE=199309L
+ else ifeq ($(platform), linux-portable)
+ 	EXT    ?= so
+    TARGET := $(TARGET_NAME)_libretro.$(EXT)

@@ -1,0 +1,55 @@
+From 61e16a08636e74ad331e42dce65438b23136abe1 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Sat, 24 Jan 2026 10:50:21 +0100
+Subject: [PATCH 27/27] crt: translation for crt calibration options
+
+---
+ intl/msg_hash_en.h | 4 ++++
+ intl/msg_hash_fr.h | 2 +-
+ intl/msg_hash_us.h | 2 +-
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/intl/msg_hash_en.h b/intl/msg_hash_en.h
+index aed20f056b..caedb1864b 100644
+--- a/intl/msg_hash_en.h
++++ b/intl/msg_hash_en.h
+@@ -233,6 +233,10 @@ MSG_HASH(
+    MENU_ENUM_SUBLABEL_CRT_SWITCH_X_AXIS_CENTERING,
+    "Cycle through these options if the image is not centred properly on the display."
+    )
++MSG_HASH(
++   MENU_ENUM_LABEL_VALUE_CRT_SWITCH_VERTICAL_ADJUST,
++   "Vertical Centering"
++   )
+ MSG_HASH(
+    MENU_ENUM_SUBLABEL_CRT_SWITCH_HIRES_MENU,
+    "Switch to high resolution mode-line for use with high-resolution menus when no content is loaded."
+diff --git a/intl/msg_hash_fr.h b/intl/msg_hash_fr.h
+index 251de1dbd4..afd5f0a026 100644
+--- a/intl/msg_hash_fr.h
++++ b/intl/msg_hash_fr.h
+@@ -2167,7 +2167,7 @@ MSG_HASH(
+    )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_CRT_SWITCH_PORCH_ADJUST,
+-   "Largeur"
++   "Largeur de l'image"
+    )
+ MSG_HASH(
+    MENU_ENUM_SUBLABEL_CRT_SWITCH_PORCH_ADJUST,
+diff --git a/intl/msg_hash_us.h b/intl/msg_hash_us.h
+index 16d4c5f34d..278e032fc3 100644
+--- a/intl/msg_hash_us.h
++++ b/intl/msg_hash_us.h
+@@ -2258,7 +2258,7 @@ MSG_HASH(
+    )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_CRT_SWITCH_VERTICAL_ADJUST,
+-   "Vertical Centring"
++   "Vertical Centering"
+    )
+ MSG_HASH(
+    MENU_ENUM_LABEL_VALUE_CRT_SWITCH_HIRES_MENU,
+-- 
+2.51.0
+

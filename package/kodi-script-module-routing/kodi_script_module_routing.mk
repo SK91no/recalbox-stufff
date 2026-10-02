@@ -1,0 +1,25 @@
+################################################################################
+#
+# kodi routing script
+#
+################################################################################
+
+KODI_SCRIPT_MODULE_ROUTING_RELEASE = omega
+KODI_SCRIPT_MODULE_ROUTING_VERSION = 0.2.3+matrix.1
+KODI_SCRIPT_MODULE_ROUTING_PLUGIN_NAME = script.module.routing
+KODI_SCRIPT_MODULE_ROUTING_SOURCE = $(KODI_SCRIPT_MODULE_ROUTING_PLUGIN_NAME)-$(KODI_SCRIPT_MODULE_ROUTING_VERSION).zip
+KODI_SCRIPT_MODULE_ROUTING_SITE = https://mirrors.kodi.tv/addons/$(KODI_SCRIPT_MODULE_ROUTING_RELEASE)/$(KODI_SCRIPT_MODULE_ROUTING_PLUGIN_NAME)
+KODI_SCRIPT_MODULE_ROUTING_LICENSE = LICENSE
+
+KODI_SCRIPT_MODULE_ROUTING_TARGET_DIR=$(TARGET_DIR)/usr/share/kodi/addons
+
+define KODI_SCRIPT_MODULE_ROUTING_EXTRACT_CMDS
+	@unzip -q -o $(DL_DIR)/kodi-script-module-routing/$(KODI_SCRIPT_MODULE_ROUTING_SOURCE) -d $(@D)
+endef
+
+define KODI_SCRIPT_MODULE_ROUTING_INSTALL_TARGET_CMDS
+	@mkdir -p $(KODI_SCRIPT_MODULE_ROUTING_TARGET_DIR)
+	@cp -r $(@D)/$(KODI_SCRIPT_MODULE_ROUTING_PLUGIN_NAME) $(KODI_SCRIPT_MODULE_ROUTING_TARGET_DIR)/
+endef
+
+$(eval $(generic-package))

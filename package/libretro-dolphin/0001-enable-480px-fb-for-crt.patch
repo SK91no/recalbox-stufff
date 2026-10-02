@@ -1,0 +1,159 @@
+From d4dd3e226f411f7adfe10159f94307958944b1d3 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitalLumberjack@gmail.com>
+Date: Thu, 08 May 2025 20:40:18 +0100
+Subject: [PATCH 1/4] enable 480px fb for crt
+
+---
+ Source/Core/Core/Config/GraphicsSettings.cpp       |  3 ++-
+ Source/Core/Core/Config/GraphicsSettings.h         |  1 +
+ Source/Core/DolphinLibretro/Boot.cpp               |  3 +++
+ Source/Core/DolphinLibretro/Common/Options.cpp     | 14 ++++++++++++++
+ Source/Core/DolphinLibretro/Common/Options.h       |  1 +
+ .../Core/VideoBackends/Software/SWEfbInterface.cpp |  4 ++--
+ Source/Core/VideoCommon/VideoCommon.h              |  4 +++-
+ Source/Core/VideoCommon/VideoConfig.cpp            |  1 +
+ 8 files changed, 27 insertions(+), 4 deletions(-)
+
+diff --git a/Source/Core/Core/Config/GraphicsSettings.cpp b/Source/Core/Core/Config/GraphicsSettings.cpp
+index 7062a724cb..5e6b87a115 100644
+--- a/Source/Core/Core/Config/GraphicsSettings.cpp
++++ b/Source/Core/Core/Config/GraphicsSettings.cpp
+@@ -84,7 +84,8 @@ const Info<u32> GFX_MSAA{{System::GFX, "Settings", "MSAA"}, 1};
+ const Info<bool> GFX_SSAA{{System::GFX, "Settings", "SSAA"}, false};
+ const Info<int> GFX_EFB_SCALE{{System::GFX, "Settings", "InternalResolution"}, 1};
+ const Info<int> GFX_MAX_EFB_SCALE{{System::GFX, "Settings", "MaxInternalResolution"}, 12};
+-const Info<bool> GFX_TEXFMT_OVERLAY_ENABLE{{System::GFX, "Settings", "TexFmtOverlayEnable"}, false};
++const Info<u32> GFX_EFB_HEIGHT{{System::GFX, "Settings", "EFBHeight"}, 528};
++    const Info<bool> GFX_TEXFMT_OVERLAY_ENABLE{{System::GFX, "Settings", "TexFmtOverlayEnable"}, false};
+ const Info<bool> GFX_TEXFMT_OVERLAY_CENTER{{System::GFX, "Settings", "TexFmtOverlayCenter"}, false};
+ const Info<bool> GFX_ENABLE_WIREFRAME{{System::GFX, "Settings", "WireFrame"}, false};
+ const Info<bool> GFX_DISABLE_FOG{{System::GFX, "Settings", "DisableFog"}, false};
+diff --git a/Source/Core/Core/Config/GraphicsSettings.h b/Source/Core/Core/Config/GraphicsSettings.h
+index 99dbfb5e64..23af23e64c 100644
+--- a/Source/Core/Core/Config/GraphicsSettings.h
++++ b/Source/Core/Core/Config/GraphicsSettings.h
+@@ -80,6 +80,7 @@ extern const Info<bool> GFX_FAST_DEPTH_CALC;
+ extern const Info<u32> GFX_MSAA;
+ extern const Info<bool> GFX_SSAA;
+ extern const Info<int> GFX_EFB_SCALE;
++extern const Info<u32> GFX_EFB_HEIGHT;
+ extern const Info<int> GFX_MAX_EFB_SCALE;
+ extern const Info<bool> GFX_TEXFMT_OVERLAY_ENABLE;
+ extern const Info<bool> GFX_TEXFMT_OVERLAY_CENTER;
+diff --git a/Source/Core/DolphinLibretro/Boot.cpp b/Source/Core/DolphinLibretro/Boot.cpp
+index b2a04b0496..fe43fb6d79 100644
+--- a/Source/Core/DolphinLibretro/Boot.cpp
++++ b/Source/Core/DolphinLibretro/Boot.cpp
+@@ -36,6 +36,7 @@
+ #include "VideoCommon/OnScreenDisplay.h"
+ 
+ namespace fs = std::filesystem;
++extern u32 EFB_HEIGHT;
+ 
+ namespace Libretro
+ {
+@@ -237,6 +238,8 @@ bool retro_load_game(const struct retro_game_info* game)
+                   Libretro::GetOption<bool>(gfx_settings::DISABLE_FOG, /*def=*/false));
+   Config::SetBase(Config::GFX_EFB_SCALE,
+                  Libretro::GetOption<int>(gfx_settings::EFB_SCALE, /*def=*/1));
++  Config::SetBase(Config::GFX_EFB_HEIGHT,
++                 Libretro::GetOption<int>(gfx_settings::EFB_HEIGHT, /*def=*/528));
+   Config::SetBase(Config::GFX_BACKEND_MULTITHREADING, false);
+   Config::SetBase(Config::GFX_SHADER_COMPILATION_MODE,
+                   static_cast<ShaderCompilationMode>(
+diff --git a/Source/Core/DolphinLibretro/Common/Options.cpp b/Source/Core/DolphinLibretro/Common/Options.cpp
+index 7578c145c9..eed9baa75d 100644
+--- a/Source/Core/DolphinLibretro/Common/Options.cpp
++++ b/Source/Core/DolphinLibretro/Common/Options.cpp
+@@ -610,6 +610,20 @@ static struct retro_core_option_v2_definition option_defs[] = {
+     },
+     "1"
+   },
++  {
++    Libretro::Options::gfx_settings::EFB_HEIGHT,
++    "Graphics > Settings > EFB Height",
++    "EFB Height",
++    "",
++    nullptr,
++    CATEGORY_GFX_SETTINGS,
++    {
++      { "528", "528" },
++      { "528", "480" },
++      { nullptr, nullptr }
++    },
++    "528"
++  },
+   {
+     Libretro::Options::gfx_settings::SHADER_COMPILATION_MODE,
+     "Graphics > Settings > Shader Compilation",
+diff --git a/Source/Core/DolphinLibretro/Common/Options.h b/Source/Core/DolphinLibretro/Common/Options.h
+index 52373dc5ab..dc13490c7d 100644
+--- a/Source/Core/DolphinLibretro/Common/Options.h
++++ b/Source/Core/DolphinLibretro/Common/Options.h
+@@ -185,6 +185,7 @@ namespace gfx_settings {
+   constexpr const char WIDESCREEN_HACK[] = "dolphin_widescreen_hack";
+   constexpr const char CROP_OVERSCAN[] = "dolphin_crop_overscan";
+   constexpr const char EFB_SCALE[] = "dolphin_efb_scale";
++  constexpr const char EFB_HEIGHT[] = "dolphin_efb_height";
+   constexpr const char SHADER_COMPILATION_MODE[] = "dolphin_shader_compilation_mode";
+   constexpr const char WAIT_FOR_SHADERS[] = "dolphin_wait_for_shaders";
+   constexpr const char ANTI_ALIASING[] = "dolphin_anti_aliasing";
+diff --git a/Source/Core/VideoBackends/Software/SWEfbInterface.cpp b/Source/Core/VideoBackends/Software/SWEfbInterface.cpp
+index 7797b1da20..f8a9fc7ea5 100644
+--- a/Source/Core/VideoBackends/Software/SWEfbInterface.cpp
++++ b/Source/Core/VideoBackends/Software/SWEfbInterface.cpp
+@@ -21,7 +21,7 @@
+ 
+ namespace EfbInterface
+ {
+-static std::array<u8, EFB_WIDTH * EFB_HEIGHT * 6> efb;
++static std::array<u8, EFB_WIDTH * EFB_MAX_HEIGHT * 6> efb;
+ 
+ static std::array<u32, PQ_NUM_MEMBERS> perf_values;
+ 
+@@ -32,7 +32,7 @@ static inline u32 GetColorOffset(u16 x, u16 y)
+ 
+ static inline u32 GetDepthOffset(u16 x, u16 y)
+ {
+-  constexpr u32 depth_buffer_start = EFB_WIDTH * EFB_HEIGHT * 3;
++  u32 depth_buffer_start = EFB_WIDTH * EFB_HEIGHT * 3;
+ 
+   return (x + y * EFB_WIDTH) * 3 + depth_buffer_start;
+ }
+diff --git a/Source/Core/VideoCommon/VideoCommon.h b/Source/Core/VideoCommon/VideoCommon.h
+index abc79a847d..d84b35c906 100644
+--- a/Source/Core/VideoCommon/VideoCommon.h
++++ b/Source/Core/VideoCommon/VideoCommon.h
+@@ -5,6 +5,7 @@
+ 
+ #include <algorithm>
+ #include <bit>
++#include "Core/Config/GraphicsSettings.h"
+ 
+ #include "Common/BitUtils.h"
+ #include "Common/CommonTypes.h"
+@@ -13,7 +14,8 @@
+ 
+ // These are accurate (disregarding AA modes).
+ constexpr u32 EFB_WIDTH = 640u;
+-constexpr u32 EFB_HEIGHT = 528u;
++constexpr u32 EFB_MAX_HEIGHT = 480u;
++extern u32 EFB_HEIGHT;
+ 
+ // The maximum depth that is written to the depth buffer should never exceed this value.
+ // This is necessary because we use a 2^24 divisor for all our depth values to prevent
+diff --git a/Source/Core/VideoCommon/VideoConfig.cpp b/Source/Core/VideoCommon/VideoConfig.cpp
+index a15331569d..15b607bf6a 100644
+--- a/Source/Core/VideoCommon/VideoConfig.cpp
++++ b/Source/Core/VideoCommon/VideoConfig.cpp
+@@ -39,6 +39,7 @@ BackendInfo g_backend_info;
+ static std::optional<CPUThreadConfigCallback::ConfigChangedCallbackID>
+     s_config_changed_callback_id = std::nullopt;
+ static Common::EventHook s_check_config_event;
++u32 EFB_HEIGHT = EFB_MAX_HEIGHT;
+ 
+ static bool IsVSyncActive(bool enabled)
+ {
+-- 
+2.52.0
+

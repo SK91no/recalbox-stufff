@@ -1,0 +1,18 @@
+--- a/ui/xemu-settings.cc	2024-10-04 00:26:07
++++ b/ui/xemu-settings.cc	2024-10-04 00:37:24
+@@ -102,13 +102,10 @@
+ const char *xemu_settings_get_default_eeprom_path(void)
+ {
+     static char *eeprom_path = NULL;
+-    if (eeprom_path != NULL) {
+-        return eeprom_path;
+-    }
+ 
+-    const char *base = xemu_settings_get_base_path();
++    const char *base = "/recalbox/share/saves/xbox/";
+     assert(base != NULL);
+-    eeprom_path = g_strdup_printf("%s%s", base, "eeprom.bin");
++    eeprom_path = g_strdup_printf("%s%s", base, "xemu_eeprom.bin");
+     return eeprom_path;
+ }
+ 

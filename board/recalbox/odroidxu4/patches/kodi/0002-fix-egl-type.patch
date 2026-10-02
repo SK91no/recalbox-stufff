@@ -1,0 +1,25 @@
+From 3c850eb90cd0e60ec72763c7365967927ef84e78 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 25 Sep 2024 22:48:20 +0200
+Subject: [PATCH 2/8] fix egl type
+
+---
+ xbmc/windowing/gbm/WinSystemGbmEGLContext.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/xbmc/windowing/gbm/WinSystemGbmEGLContext.cpp b/xbmc/windowing/gbm/WinSystemGbmEGLContext.cpp
+index fac914d5e9..70b9c7a246 100644
+--- a/xbmc/windowing/gbm/WinSystemGbmEGLContext.cpp
++++ b/xbmc/windowing/gbm/WinSystemGbmEGLContext.cpp
+@@ -110,7 +110,7 @@ bool CWinSystemGbmEGLContext::CreateNewWindow(const std::string& name,
+ 
+   if (!m_eglContext.CreatePlatformSurface(
+           m_GBM->GetDevice().GetSurface().Get(),
+-          reinterpret_cast<khronos_uintptr_t>(m_GBM->GetDevice().GetSurface().Get())))
++          m_GBM->GetDevice().GetSurface().Get()))
+   {
+     return false;
+   }
+-- 
+2.46.1
+

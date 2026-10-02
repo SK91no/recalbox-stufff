@@ -1,0 +1,34 @@
+From cf4d966e36fad55adcf1c064ed2b11a6184205ed Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sun, 15 Sep 2024 21:41:43 +0200
+Subject: [PATCH] add rpi5 platform
+
+---
+ Makefile | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+
+diff --git a/Makefile b/Makefile
+index 53680b6..dc2fb52 100644
+--- a/Makefile
++++ b/Makefile
+@@ -250,6 +250,17 @@ else ifeq ($(platform), rpi4_64)
+ 	CXXFLAGS = $(CFLAGS) -fno-rtti -fno-exceptions
+ 	CPU_ARCH := arm64
+ 
++# Raspberry Pi 5 (AArch64)
++else ifeq ($(platform), rpi5_64)
++	TARGET = $(TARGET_NAME)_libretro.so
++	fpic = -fPIC
++	CFLAGS += $(fpic)
++	LDFLAGS += $(fpic) -shared -Wl,--version-script=link.T
++	PLATCFLAGS += -mcpu=cortex-a76 -mtune=cortex-a76
++	PLATCFLAGS += -fomit-frame-pointer -ffast-math
++	CXXFLAGS = $(CFLAGS) -fno-rtti -fno-exceptions
++	CPU_ARCH := arm64
++
+ # Classic Platforms - NESC, SNESC, C64 mini
+ else ifeq ($(platform), classic_armv7_a7)
+ 	TARGET := $(TARGET_NAME)_libretro.so
+-- 
+2.46.0
+

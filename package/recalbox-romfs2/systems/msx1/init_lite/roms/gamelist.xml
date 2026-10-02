@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gameList>
+  <provider>
+    <System>MSX</System>
+    <software>Skraper</software>
+    <database>ScreenScraper.fr</database>
+    <web>http://www.screenscraper.fr</web>
+  </provider>
+  <game id="200211" source="ScreenScraper.fr">
+    <path>./xracing.rom</path>
+    <name>XRacing</name>
+    <desc>XRacing is an arcade-simulation racing game where you play the role of a driver trying to become Formula 1 world champion. To achieve your goal, you will have to first prove you are worthy of driving in Formula 1 though! Before you can compete in Formula 1, you will have to play through two previous seasons: stock cars and endurance cars. Each season being harder than the previous one as your car gets faster and faster, and it's harder to control! You will also have to manage yur cash, as you will have to pay entry fees to every race, and also you will have to save money to buy better cars. Luckily, you have an agent that represents you and can give you some advise.</desc>
+    <rating>0.6</rating>
+    <releasedate>20190408T000000</releasedate>
+    <developer>Santi Ontañón Villar</developer>
+    <publisher>Santi Ontañón Villar</publisher>
+    <genre>Race, Driving</genre>
+    <players>1</players>
+    <hash>74AC3CE1</hash>
+    <image>./media/images/xracing.png</image>
+    <genreid>1537</genreid>
+  </game>
+  <game id="200209" source="ScreenScraper.fr">
+    <path>./xspelunker-en.rom</path>
+    <name>XSpelunker</name>
+    <desc>XSpelunker waS heavily inspired by Spelunky, which is simply genious, and also by other classic games such as Livingstone Supongo. Of course, XSpelunker, being an 8bit version running on MSX1 hardware, it is a much more limited game than Spelunky, but I've tried to keep the core mechanics of the original game while making it significantly different, in order to create a different game experience. 
+ 
+Being a game inspired by Spelunky, the game levels are procedurally generated. So, each time you play, you will have to face different challenges, and might encounter different subsets of equipment. Make sure you collect as much equipment as you can in order to face the later stages of the game where difficulty grows rapidly, and you might need to use larger amounts of items to complete the levels.</desc>
+    <rating>0.7</rating>
+    <releasedate>20170914T000000</releasedate>
+    <developer>Santi Ontañón Villar</developer>
+    <publisher>Santi Ontañón Villar</publisher>
+    <genre>Platform-Plateform / Run Jump</genre>
+    <players>1</players>
+    <hash>2CD7D688</hash>
+    <image>./media/images/xspelunker-en.png</image>
+    <genreid>257</genreid>
+  </game>
+</gameList>

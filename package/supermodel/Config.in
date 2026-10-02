@@ -1,0 +1,16 @@
+config BR2_PACKAGE_SUPERMODEL
+	bool "supermodel"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_ARCADE_DATS
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_SDL2_NET
+	select BR2_PACKAGE_LIBGLU
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_LIBOGG
+	select BR2_PACKAGE_LIBVORIS
+	select BR2_PACKAGE_LIBVORBIS
+	help
+	  Supermodel is a Sega Model 3 that uses the SDL-library
+
+	  https://sourceforge.net/p/model3emu/

@@ -1,0 +1,53 @@
+From 4f012a63ac8f4014aa273930476728e87dfbc7f3 Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Sun, 6 Apr 2025 11:54:58 +0200
+Subject: [PATCH 4/5] fix pagesize
+
+---
+ mupen64plus-core/src/main/main.c                               | 2 +-
+ mupen64plus-core/src/main/main.h                               | 2 +-
+ mupen64plus-core/src/r4300/new_dynarec/arm64/linkage_aarch64.S | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/mupen64plus-core/src/main/main.c b/mupen64plus-core/src/main/main.c
+index 40b87af2..46c04273 100644
+--- a/mupen64plus-core/src/main/main.c
++++ b/mupen64plus-core/src/main/main.c
+@@ -102,7 +102,7 @@ int         g_EmulatorRunning = 0;      /* need separate boolean to tell if emul
+ /* Need some guardbands so we can import g_rdram in parallel-RDP on Intel Windows which requires 64k alignment.
+  * Windows obj files don't seem to support more than 8 KiB alignment ... */
+ uint32_t rdram_pre_guardband[16 * 1024];
+-ALIGN(4096, uint32_t g_rdram[RDRAM_MAX_SIZE/4]);
++ALIGN(16384, uint32_t g_rdram[RDRAM_MAX_SIZE/4]);
+ uint32_t rdram_post_guardband[16 * 1024];
+ struct device g_dev;
+ struct r4300_core g_r4300;
+diff --git a/mupen64plus-core/src/main/main.h b/mupen64plus-core/src/main/main.h
+index 01162454..f319c676 100644
+--- a/mupen64plus-core/src/main/main.h
++++ b/mupen64plus-core/src/main/main.h
+@@ -37,7 +37,7 @@ extern int g_MemHasBeenBSwapped;
+ extern int g_DDMemHasBeenBSwapped;
+ extern int g_EmulatorRunning;
+ 
+-extern ALIGN(4096, uint32_t g_rdram[RDRAM_MAX_SIZE/4]);
++extern ALIGN(16384, uint32_t g_rdram[RDRAM_MAX_SIZE/4]);
+ 
+ extern struct device g_dev;
+ 
+diff --git a/mupen64plus-core/src/r4300/new_dynarec/arm64/linkage_aarch64.S b/mupen64plus-core/src/r4300/new_dynarec/arm64/linkage_aarch64.S
+index 0cb9af4a..5343d1b2 100644
+--- a/mupen64plus-core/src/r4300/new_dynarec/arm64/linkage_aarch64.S
++++ b/mupen64plus-core/src/r4300/new_dynarec/arm64/linkage_aarch64.S
+@@ -43,7 +43,7 @@
+ 
+ BSS_SECTION
+ 
+-    .align 12
++    .align 14
+     GLOBAL_VARIABLE(extra_memory, 33554432)
+     GLOBAL_VARIABLE(dynarec_local, 256)
+     GLOBAL_VARIABLE(next_interrupt, 4)
+-- 
+2.52.0
+

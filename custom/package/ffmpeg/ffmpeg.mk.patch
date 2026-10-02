@@ -1,0 +1,55 @@
+diff --git a/package/ffmpeg/ffmpeg.mk b/package/ffmpeg/ffmpeg.mk
+index 19c270a14b..9c4d66358f 100644
+--- a/package/ffmpeg/ffmpeg.mk
++++ b/package/ffmpeg/ffmpeg.mk
+@@ -4,9 +4,15 @@
+ #
+ ################################################################################
+ 
+-FFMPEG_VERSION = 6.1.2
+-FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
+-FFMPEG_SITE = https://ffmpeg.org/releases
++ifeq ($(BR2_PACKAGE_RECALBOX_RPI_ANY),y)
++    FFMPEG_VERSION = ee95431db6c8efbf8fd27aa7dc8a44ffa52eda12
++    FFMPEG_SITE = $(call github,jc-kynesim,rpi-ffmpeg,$(FFMPEG_VERSION))
++else
++    FFMPEG_VERSION = 6.1.3
++    FFMPEG_SOURCE = ffmpeg-$(FFMPEG_VERSION).tar.xz
++    FFMPEG_SITE = https://ffmpeg.org/releases
++endif
++
+ FFMPEG_INSTALL_STAGING = YES
+ 
+ FFMPEG_LICENSE = LGPL-2.1+, libjpeg license
+@@ -32,7 +38,6 @@ FFMPEG_CONF_OPTS = \
+ 	--disable-gray \
+ 	--enable-swscale-alpha \
+ 	--disable-small \
+-	--disable-crystalhd \
+ 	--disable-dxva2 \
+ 	--enable-runtime-cpudetect \
+ 	--disable-hardcoded-tables \
+@@ -56,6 +61,23 @@ FFMPEG_CONF_OPTS = \
+ 
+ FFMPEG_DEPENDENCIES += host-pkgconf
+ 
++# this is needed for hevc decoder to work
++# for rpi4, we need a patched version of ffmpeg
++ifeq ($(BR2_PACKAGE_RECALBOX_TARGET_RPI4_64),y)
++FFMPEG_CONF_OPTS += --enable-v4l2_m2m --enable-sand --enable-v4l2-request
++FFMPEG_DEPENDENCIES += udev
++endif
++
++ifeq ($(BR2_PACKAGE_RECALBOX_TARGET_RPI5_64),y)
++FFMPEG_CONF_OPTS += --enable-v4l2-request --enable-libdrm
++FFMPEG_DEPENDENCIES += udev libdrm
++endif
++
++ifeq ($(BR2_PACKAGE_ROCKCHIP_MPP),y)
++FFMPEG_CONF_OPTS += --enable-rkmpp --enable-libdrm --enable-version3
++FFMPEG_DEPENDENCIES += rockchip-mpp
++endif
++
+ ifeq ($(BR2_PACKAGE_FFMPEG_GPL),y)
+ FFMPEG_CONF_OPTS += --enable-gpl
+ else

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+if test "$1" != "start"; then
+  exit 0
+fi
+
+mount -o remount,rw /boot 2>/dev/null
+mkdir -p /boot/bootlogs
+for name in hardware.log udev-debug.log udev-monitor.log init.log; do
+    for i in 4 3 2 1; do
+        [ -f "/boot/bootlogs/${name}.${i}" ] && mv -f "/boot/bootlogs/${name}.${i}" "/boot/bootlogs/${name}.$((i+1))" 2>/dev/null
+    done
+    [ -f "/boot/${name}" ] && mv -f "/boot/${name}" "/boot/bootlogs/${name}.1" 2>/dev/null
+done
+sync
+mount -o remount,ro /boot 2>/dev/null

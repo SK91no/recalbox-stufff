@@ -1,0 +1,31 @@
+#!/bin/bash
+set -o pipefail
+set -e
+if test "$1" == "start"; then
+  source /recalbox/scripts/recalbox-utils.sh
+  if isRecalboxJVS;then
+    LOGFILE="/recalbox/share/system/logs/jvs.log"
+    # Rotate previous log if any — tolerate a missing file (fresh install) so
+    # `set -e` doesn't abort before the capture loop starts.
+    [ -f "${LOGFILE}" ] && mv "${LOGFILE}" "${LOGFILE}".last
+    #stty -F /dev/ttyACM0 115200 raw -echo
+    ( while true; do
+        cat /dev/ttyACM0 >> "${LOGFILE}" 2>&1
+        echo "JVS logs disconnected, retrying" >> "${LOGFILE}"
+        available=0
+        for try in $(seq 0 50); do
+          sleep 0.1
+          if test -e /dev/ttyACM0; then
+            available=1
+            break
+          fi
+        done
+        if [ "${available}" == "1" ]; then
+          continue
+        else
+          echo "JVS logs disconnected, waiting 10 secondes" >> "${LOGFILE}"
+          sleep 10
+        fi
+    done ) &
+  fi
+fi

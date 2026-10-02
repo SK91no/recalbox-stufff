@@ -1,0 +1,29 @@
+--- a/source/frontends/sdl/CMakeLists.txt	2025-01-26 22:25:07.000000000 +0100
++++ b/source/frontends/sdl/CMakeLists.txt	2025-02-10 20:45:41.610665976 +0100
+@@ -54,14 +54,23 @@
+   ${GLES2_INCLUDE_DIRS}
+   )
+ 
+-target_link_libraries(sa2 PRIVATE
++if (SA2_OPENGL)
++ target_link_libraries(sa2 PRIVATE
+   ${SDL2_LIBRARIES}
+   ${SDL2_IMAGE_LIBRARIES}
+-  ${GLES2_LIBRARIES}
+   OpenGL::GL
+   appleii
+   common2
+-  )
++ )
++else()
++ target_link_libraries(sa2 PRIVATE
++   ${SDL2_LIBRARIES}
++   ${SDL2_IMAGE_LIBRARIES}
++   ${GLES2_LIBRARIES}
++   appleii
++   common2
++ )
++endif()
+ 
+ if (NOT WIN32)
+   target_link_libraries(sa2 PUBLIC

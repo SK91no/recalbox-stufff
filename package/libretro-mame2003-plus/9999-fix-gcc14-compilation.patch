@@ -1,0 +1,134 @@
+From ab725a7f30a133551742b400089e8fffdf29d84a Mon Sep 17 00:00:00 2001
+From: mahoneyt944 <49591133+mahoneyt944@users.noreply.github.com>
+Date: Tue, 7 May 2024 12:00:34 -0400
+Subject: [PATCH] GCC14 fixes
+
+---
+ src/common.c         | 2 +-
+ src/drivers/asuka.c  | 2 +-
+ src/drivers/dietgo.c | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/common.c b/src/common.c
+index 8ab523919..3931b6dde 100644
+--- a/src/common.c
++++ b/src/common.c
+@@ -436,7 +436,7 @@ static struct GameSample *read_wav_sample(mame_file *f, const char *gamename, co
+ 		flac_file.write_position = 0;
+ 
+ 		if (b_data == 1) {
+-			flac_file.write_data = result->data;
++			flac_file.write_data = (INT16 *)result->data;
+ 
+ 			if (FLAC__stream_decoder_process_until_end_of_stream (decoder) != FLAC__STREAM_DECODER_READ_STATUS_END_OF_STREAM) {
+ 				free(flac_file.rawdata);
+diff --git a/src/drivers/asuka.c b/src/drivers/asuka.c
+index 36c221c46..65cafd3b5 100644
+--- a/src/drivers/asuka.c
++++ b/src/drivers/asuka.c
+@@ -1458,7 +1458,7 @@ ROM_END
+ 
+ DRIVER_INIT(earthjkr)
+ {
+-	data16_t *rom = memory_region(REGION_CPU1);
++	data16_t *rom = (data16_t *)memory_region(REGION_CPU1);
+ 	/* 357c -> 317c, I think this is bitrot, see ROM loading for which ROM needs redumping, causes rowscroll to be broken on final stage (writes to ROM area instead)
+ 	   code is correct in the 'prototype?' set */
+ 	rom[0x7aaa/2] = 0x317c; 
+diff --git a/src/drivers/dietgo.c b/src/drivers/dietgo.c
+index 1fdfa891a..62c8c60b6 100644
+--- a/src/drivers/dietgo.c
++++ b/src/drivers/dietgo.c
+@@ -23,7 +23,7 @@ PAL16R6A 11H
+ 
+ static int flip_screen;
+ static data16_t *spriteram16;
+-static unsigned int spriteram_size;
++static size_t spriteram_size;
+ 
+ 
+ static void dietgogo_drawsprites(struct mame_bitmap *bitmap,const struct rectangle *cliprect)
+From b320a1ffc51a2379a296ff319aded7711a8b37e4 Mon Sep 17 00:00:00 2001
+From: "Joseph C. Osborn" <jcoa2018@pomona.edu>
+Date: Wed, 1 Nov 2023 11:56:12 -0700
+Subject: [PATCH] Update some variable declarations for newer clang
+
+---
+ src/drivers/fastfred.c      | 2 +-
+ src/drivers/paradise.c      | 2 +-
+ src/machine/nmk004.c        | 3 +--
+ src/sound/samples.c         | 4 ++--
+ src/vidhrdw/seta2_vidhrdw.c | 3 +--
+ 5 files changed, 6 insertions(+), 8 deletions(-)
+
+diff --git a/src/drivers/fastfred.c b/src/drivers/fastfred.c
+index 32a3ec795..fe799ec7c 100644
+--- a/src/drivers/fastfred.c
++++ b/src/drivers/fastfred.c
+@@ -692,7 +692,7 @@ static struct GfxDecodeInfo jumpcoas_gfxdecodeinfo[] =
+ static struct GfxDecodeInfo imago_gfxdecodeinfo[] =
+ {
+ 	{ REGION_GFX1, 0, &charlayout,           0,     32 },
+-	{ NULL,   0xb800, &imago_spritelayout,   0,     32 },
++	{ 0,   0xb800, &imago_spritelayout,   0,     32 },
+ 	{ REGION_GFX3, 0, &charlayout,           0,     32 },
+ 	{ REGION_GFX4, 0, &imago_char_1bpp,      0x140,  1 },
+ 	{ -1 } /* end of array */
+diff --git a/src/drivers/paradise.c b/src/drivers/paradise.c
+index 0d198c889..e6a99c7ab 100644
+--- a/src/drivers/paradise.c
++++ b/src/drivers/paradise.c
+@@ -53,7 +53,7 @@ static WRITE_HANDLER( torus_coin_counter_w )
+ 	coin_counter_w(0, data ^ 0xff);
+ }
+ 
+-static irq_count = 0;
++static int irq_count = 0;
+ 
+ static INTERRUPT_GEN(paradise_irq)
+ {
+diff --git a/src/machine/nmk004.c b/src/machine/nmk004.c
+index 203d740e2..9c5681d69 100644
+--- a/src/machine/nmk004.c
++++ b/src/machine/nmk004.c
+@@ -98,8 +98,7 @@ static struct
+ 	/* C220-C2DF */	struct psg_control psg_control[PSG_CHANNELS];
+ 	/* C1A0-C21F */	struct effects_control effects_control[EFFECTS_CHANNELS];
+ } NMK004_state;
+-				int res;
+-				res = 0;
++				int res = 0;
+ 
+ #define SAMPLE_TABLE_0		0xefe0
+ #define SAMPLE_TABLE_1		0xefe2
+diff --git a/src/sound/samples.c b/src/sound/samples.c
+index d24c1bfee..afb1978a1 100644
+--- a/src/sound/samples.c
++++ b/src/sound/samples.c
+@@ -134,10 +134,10 @@ void sample_stop(int channel)
+ 				readsample(Machine->samples->sample[c_sample], c_sample, Machine->samples, 0);
+ 
+ 			if (channel == 0)
+-				leftSampleNum = NULL;
++				leftSampleNum = 0;
+ 
+ 			if (channel == 1)
+-				rightSampleNum = NULL;
++				rightSampleNum = 0;
+ 		}
+ 	}
+ }
+diff --git a/src/vidhrdw/seta2_vidhrdw.c b/src/vidhrdw/seta2_vidhrdw.c
+index 38f938b8d..a510ef028 100644
+--- a/src/vidhrdw/seta2_vidhrdw.c
++++ b/src/vidhrdw/seta2_vidhrdw.c
+@@ -77,8 +77,7 @@
+ data16_t *seta2_vregs;
+ 
+ static int yoffset;
+-int xpos;
+-xpos = 0;
++int xpos = 0;
+ 
+ /***************************************************************************
+ 

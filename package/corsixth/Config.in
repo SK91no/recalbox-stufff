@@ -1,0 +1,22 @@
+config BR2_PACKAGE_CORSIXTH
+	bool "CorsixTH"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_FFMPEG
+	select BR2_PACKAGE_FREETYPE
+	select BR2_PACKAGE_LPEG
+	select BR2_PACKAGE_LUA
+	select BR2_PACKAGE_LUAFILESYSTEM
+	select BR2_PACKAGE_LUASOCKET
+	select BR2_PACKAGE_LUASEC
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_SDL2_MIXER
+	select BR2_PACKAGE_PUGIXML
+	select BR2_PACKAGE_LIBCURL
+	select BR2_PACKAGE_MBEDTLS
+	help
+	  Port of Theme Hospital
+
+	  https://github.com/CorsixTH/CorsixTH
+
+comment "CorsixTH needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

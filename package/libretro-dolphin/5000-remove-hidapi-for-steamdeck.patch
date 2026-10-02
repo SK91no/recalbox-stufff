@@ -1,0 +1,12 @@
+--- libretro-dolphin-bbcc6eac9ff0027f3e5268c8d90cb0e0a58201e3/Source/Core/InputCommon/ControllerInterface/ControllerInterface.h	2025-10-02 00:05:45.906554601 +0200
++++ libretro-dolphin-bbcc6eac9ff0027f3e5268c8d90cb0e0a58201e3/Source/Core/InputCommon/ControllerInterface/ControllerInterface.h	2025-10-02 00:05:58.357745788 +0200
+@@ -35,9 +35,6 @@
+ #if defined(HAVE_SDL3)
+ #define CIFACE_USE_SDL
+ #endif
+-#if defined(HAVE_HIDAPI)
+-#define CIFACE_USE_STEAMDECK
+-#endif
+ 
+ namespace ciface
+ {

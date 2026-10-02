@@ -1,0 +1,121 @@
+#!/bin/bash
+#
+# Auto connect bluetooth controllers
+#
+
+INIT_SCRIPT=$(basename "$0")
+config_file_noshare="/boot/recalbox-backup.conf"
+config_file="/recalbox/share/system/recalbox.conf"
+systemsetting="recalbox_settings"
+if [ ! -f "$config_file" ]; then
+  systemsetting="recalbox_settings -source $config_file_noshare"
+fi
+
+btlog() {
+  recallog -s "${INIT_SCRIPT}" -t "BLUETOOTH" "$@"
+}
+
+handle_ertm() {
+  local modprobe_option
+  local ertm
+  ertm="$($systemsetting  -command load -key controllers.bluetooth.ertm -default 1)"
+  # handle ERTM activation (enhanced retransmission mode)
+  if [ "$ertm" = "0" ];then
+    modprobe_option="options bluetooth disable_ertm=Y"
+  else
+    modprobe_option="options bluetooth disable_ertm=N"
+  fi
+
+  if ! grep -q "$modprobe_option" /etc/modprobe.d/bluetooth.conf; then
+    mount -o remount,rw /
+    echo "$modprobe_option" > /etc/modprobe.d/bluetooth.conf
+    mount -o remount,ro /
+  fi
+}
+
+unblock_bluetooth() {
+  # S09wifi unblocks too, but that is two steps after bluetoothd needs the radio
+  [ -c /dev/rfkill ] || return 0
+  rfkill unblock bluetooth
+  btlog "rfkill after unblock: $(rfkill list bluetooth 2>/dev/null | tr '\n' ' ')"
+}
+
+load_uhid() {
+  # S16modprobe is too late: bluez never retries a HID accept that failed on a missing /dev/uhid
+  modprobe uhid 2>/dev/null
+  if [ -c /dev/uhid ]; then
+    btlog "uhid ready"
+  else
+    btlog "uhid NOT available: LE controllers will not create input devices"
+  fi
+}
+
+load_hidp() {
+  # a classic pad gets its input device through the HIDP socket, which bluez opens once
+  modprobe hidp 2>/dev/null
+  if grep -qw HIDP /proc/net/protocols; then
+    btlog "hidp ready"
+  else
+    btlog "hidp NOT available: BR/EDR controllers will pair but create no input device"
+  fi
+}
+
+start_bluetoothd() {
+  local settings_version
+  local debug
+  settings_version="$($systemsetting -command load -key controllers.ps3.driver -default bluez)"
+  if [ "$settings_version" != "bluez" ]; then BLUETOOTHD_ARGS="--noplugin=sixaxis"; else BLUETOOTHD_ARGS="--noplugin=sixaxispair"; fi
+  debug="$($systemsetting -command load -key controllers.bluetooth.debug -default 0)"
+  if [ "$debug" = "1" ]; then BLUETOOTHD_ARGS="$BLUETOOTHD_ARGS -d"; fi
+  btlog "starting bluetoothd $BLUETOOTHD_ARGS"
+  start-stop-daemon -S -q -m -p /var/run/bluetoothd.pid  --exec /usr/libexec/bluetooth/bluetoothd -- $BLUETOOTHD_ARGS &
+}
+
+stop_and_wait() {
+  # a restart must not race the old bluetoothd for the org.bluez dbus name
+  local pidfile="$1"
+  local pid
+  pid=$(cat "$pidfile" 2>/dev/null)
+  start-stop-daemon -K -q -p "$pidfile"
+  if [ -n "$pid" ]; then
+    for _ in $(seq 1 50); do
+      kill -0 "$pid" 2>/dev/null || break
+      sleep 0.1
+    done
+  fi
+  rm -f "$pidfile"
+}
+
+start_bluetooth_autopair() {
+  btlog "starting autopair"
+  start-stop-daemon -S -q -m -p /var/run/bt-autopair.pid -b --exec /recalbox/scripts/bluetooth/autopair --
+}
+
+case "$1" in
+  start)
+    handle_ertm
+    enabled="$($systemsetting  -command load -key controllers.bluetooth.enabled -default 1)"
+    if [ "$enabled" = "1" ];then
+      unblock_bluetooth
+      load_uhid
+      load_hidp
+      start_bluetoothd
+      start_bluetooth_autopair
+    else
+      btlog "bluetooth disabled by controllers.bluetooth.enabled=0"
+    fi
+  ;;
+  stop)
+    stop_and_wait /var/run/bt-autopair.pid
+    stop_and_wait /var/run/bluetoothd.pid
+  ;;
+  restart|reload)
+    "$0" stop
+    "$0" start
+  ;;
+  *)
+    echo "Usage: $0 {start|stop|restart}"
+    exit 1
+esac
+
+exit $?

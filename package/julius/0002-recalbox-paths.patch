@@ -1,0 +1,181 @@
+From 8bc0a59042cf140cfe12ad80979242b37cac03c8 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 17 Apr 2025 01:12:15 +0200
+Subject: [PATCH 2/2] recalbox paths
+
+---
+ src/core/config.c           |  2 +-
+ src/core/dir.c              | 14 ++++++++++++++
+ src/core/dir.h              |  2 ++
+ src/game/file_io.c          | 16 ++++++++++++++--
+ src/platform/file_manager.c | 17 +++++++++++++++++
+ src/platform/file_manager.h |  2 ++
+ src/window/file_dialog.c    | 25 +++++++++++++++++++++----
+ 7 files changed, 71 insertions(+), 7 deletions(-)
+
+diff --git a/src/core/config.c b/src/core/config.c
+index 6ba406f6..9c6a8273 100644
+--- a/src/core/config.c
++++ b/src/core/config.c
+@@ -8,7 +8,7 @@
+ 
+ #define MAX_LINE 100
+ 
+-static const char *INI_FILENAME = "julius.ini";
++static const char *INI_FILENAME = "/recalbox/share/system/configs/julius/julius.ini";
+ 
+ // Keep this in the same order as the config_keys in config.h
+ static const char *ini_keys[] = {
+diff --git a/src/core/dir.c b/src/core/dir.c
+index 36e49285..51f38f8f 100644
+--- a/src/core/dir.c
++++ b/src/core/dir.c
+@@ -171,3 +171,17 @@ const char *dir_get_file(const char *filepath, int localizable)
+ 
+     return get_case_corrected_file(0, filepath);
+ }
++
++const dir_listing *dir_find_files_with_extension_in_directory(const char *directory, const char *extension)
++{
++    clear_dir_listing();
++
++    if (directory) {
++        platform_file_manager_list_directory_contents(directory, TYPE_FILE, extension, add_to_listing);
++    } else {
++        platform_file_manager_list_directory_contents(0, TYPE_FILE, extension, add_to_listing);
++    }
++
++    qsort(data.listing.files, data.listing.num_files, sizeof(char*), compare_lower);
++    return &data.listing;
++}
+diff --git a/src/core/dir.h b/src/core/dir.h
+index 964ef510..96beae37 100644
+--- a/src/core/dir.h
++++ b/src/core/dir.h
+@@ -41,4 +41,6 @@ const dir_listing *dir_find_all_subdirectories(void);
+  */
+ const char *dir_get_file(const char *filepath, int localizable);
+ 
++const dir_listing *dir_find_files_with_extension_in_directory(const char *directory, const char *extension);
++
+ #endif // CORE_DIR_H
+diff --git a/src/game/file_io.c b/src/game/file_io.c
+index bca5285e..7693eeb1 100644
+--- a/src/game/file_io.c
++++ b/src/game/file_io.c
+@@ -635,7 +635,16 @@ int game_file_io_read_saved_game(const char *filename, int offset)
+     init_savegame_data();
+ 
+     log_info("Loading saved game", filename, 0);
+-    FILE *fp = file_open(dir_get_file(filename, NOT_LOCALIZED), "rb");
++
++    FILE *fp = NULL;
++
++    if (strstr(filename, ".sav") != NULL) {
++        static char custom_path[1024];
++        snprintf(custom_path, 1024, "/recalbox/share/saves/caesar3/%s", filename);
++        fp = fopen(custom_path, "rb");
++    } else {
++        fp = file_open(dir_get_file(filename, NOT_LOCALIZED), "rb");
++    }
+     if (!fp) {
+         log_error("Unable to load game", 0, 0);
+         return 0;
+@@ -658,10 +667,13 @@ int game_file_io_write_saved_game(const char *filename)
+     init_savegame_data();
+ 
+     log_info("Saving game", filename, 0);
++    static char save_dir[1024] = "/recalbox/share/saves/caesar3";
++    static char custom_path[1024];
++    snprintf(custom_path, 1024, "%s/%s", save_dir, filename);
+     savegame_version = SAVE_GAME_VERSION;
+     savegame_save_to_state(&savegame_data.state);
+ 
+-    FILE *fp = file_open(filename, "wb");
++    FILE *fp = file_open(custom_path, "wb");
+     if (!fp) {
+         log_error("Unable to save game", 0, 0);
+         return 0;
+diff --git a/src/platform/file_manager.c b/src/platform/file_manager.c
+index 958df392..7cbbdaaa 100644
+--- a/src/platform/file_manager.c
++++ b/src/platform/file_manager.c
+@@ -322,3 +322,20 @@ int platform_file_manager_close_file(FILE *stream)
+ #endif
+     return result;
+ }
++
++int file_exists_in_custom_dir(const char *filename, const char *custom_dir)
++{
++    if (!filename || !custom_dir) {
++        return 0;
++    }
++    
++    char full_path[1024];
++    snprintf(full_path, 1024, "%s/%s", custom_dir, filename);
++    
++    FILE *fp = fopen(full_path, "rb");
++    if (fp) {
++        fclose(fp);
++        return 1;
++    }
++    return 0;
++}
+diff --git a/src/platform/file_manager.h b/src/platform/file_manager.h
+index 01eca766..07b6b660 100644
+--- a/src/platform/file_manager.h
++++ b/src/platform/file_manager.h
+@@ -81,4 +81,6 @@ int platform_file_manager_close_file(FILE *stream);
+  */
+ int platform_file_manager_remove_file(const char *filename);
+ 
++int file_exists_in_custom_dir(const char *filename, const char *custom_dir);
++
+ #endif // PLATFORM_FILE_MANAGER_H
+diff --git a/src/window/file_dialog.c b/src/window/file_dialog.c
+index 0d53f98e..8142af76 100644
+--- a/src/window/file_dialog.c
++++ b/src/window/file_dialog.c
+@@ -141,7 +141,13 @@ static void init(file_type type, file_dialog_type dialog_type)
+     }
+     string_copy(data.typed_name, data.previously_seen_typed_name, FILE_NAME_MAX);
+ 
+-    data.file_list = dir_find_files_with_extension(data.file_data->extension);
++    if (type == FILE_TYPE_SAVED_GAME) {
++        data.file_list = dir_find_files_with_extension_in_directory("/recalbox/share/saves/caesar3/", data.file_data->extension);
++    }
++    else
++    {
++        data.file_list = dir_find_files_with_extension(data.file_data->extension);
++    }
+     scrollbar_init(&scrollbar, 0, data.file_list->num_files);
+     scroll_to_typed_text();
+ 
+@@ -257,10 +263,21 @@ static void button_ok_cancel(int is_ok, int param2)
+ 
+     const char *filename = get_chosen_filename();
+ 
+-    if (data.dialog_type != FILE_DIALOG_SAVE && !file_exists(filename, NOT_LOCALIZED)) {
+-        data.message_not_exist_start_time = time_get_millis();
+-        return;
++    if (data.dialog_type != FILE_DIALOG_SAVE) {
++        int file_found = 0;
++
++        if (data.type == FILE_TYPE_SAVED_GAME && strstr(filename, ".sav")) {
++            file_found = file_exists_in_custom_dir(filename, "/recalbox/share/saves/caesar3/");
++        } else {
++            file_found = file_exists(filename, NOT_LOCALIZED);
++        }
++
++        if (!file_found) {
++            data.message_not_exist_start_time = time_get_millis();
++            return;
++        }
+     }
++
+     if (data.dialog_type == FILE_DIALOG_LOAD) {
+         if (data.type == FILE_TYPE_SAVED_GAME) {
+             if (game_file_load_saved_game(filename)) {
+-- 
+2.49.0
+

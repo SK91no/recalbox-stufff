@@ -1,0 +1,25 @@
+From 350d53a656ce6bad822945cd29bb6fe7fb109063 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Fri, 29 Sep 2023 22:58:16 +0200
+Subject: [PATCH] odroidgo2 joystick vendor
+
+---
+ drivers/input/joystick/odroidgo2-joypad.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/input/joystick/odroidgo2-joypad.c b/drivers/input/joystick/odroidgo2-joypad.c
+index 68ae827ce..b2a3caf7e 100644
+--- a/drivers/input/joystick/odroidgo2-joypad.c
++++ b/drivers/input/joystick/odroidgo2-joypad.c
+@@ -669,7 +669,7 @@ static int joypad_input_setup(struct device *dev, struct joypad *joypad)
+ 	device_property_read_u32(dev, "joypad-revision", &joypad_revision);
+ 	device_property_read_u32(dev, "joypad-product", &joypad_product);
+ 	input->id.bustype = BUS_HOST;
+-	input->id.vendor  = 0x0001;
++	input->id.vendor  = 0x484b;
+ 	input->id.product = (u16)joypad_product;
+ 	input->id.version = (u16)joypad_revision;
+ 
+-- 
+2.42.0
+

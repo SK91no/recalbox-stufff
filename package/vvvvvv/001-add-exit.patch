@@ -1,0 +1,38 @@
+--- vvvvvv-d678bd59ff0c1643009e629b9795e87e83c8bd82/desktop_version/src/KeyPoll.cpp	2024-05-02 18:12:36.000000000 +0200
++++ vvvvvv-d678bd59ff0c1643009e629b9795e87e83c8bd82/desktop_version/src/KeyPoll.new	2024-05-19 23:23:59.645296747 +0200
+@@ -219,6 +219,7 @@
+     bool hidemouse = false;
+     bool altpressed = false;
+     bool fullscreenkeybind = false;
++    bool exitkeybind = false;
+     SDL_GameController *controller = NULL;
+     SDL_Event evt;
+     bool should_recompute_textboxes = false;
+@@ -246,10 +247,15 @@
+             bool returnpressed = evt.key.keysym.sym == SDLK_RETURN;
+             bool fpressed = evt.key.keysym.sym == SDLK_f;
+             bool f11pressed = evt.key.keysym.sym == SDLK_F11;
++            bool exitpressed = evt.key.keysym.sym == SDLK_ESCAPE;
+             if ((altpressed && (returnpressed || fpressed)) || f11pressed)
+             {
+                 fullscreenkeybind = true;
+             }
++            if (exitpressed)
++            {
++                exitkeybind = true;
++            }
+ 
+             if (loc::show_translator_menu && evt.key.keysym.sym == SDLK_F8 && !evt.key.repeat)
+             {
+@@ -547,6 +553,11 @@
+     {
+         toggleFullscreen();
+     }
++    
++    if (exitkeybind)
++    {
++        VVV_exit(0);
++    }
+ 
+     SDL_Rect rect;
+     graphics.get_stretch_info(&rect);

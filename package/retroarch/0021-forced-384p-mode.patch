@@ -1,0 +1,45 @@
+From 5a62d9e9b7a0dc79e17af5e603eadadd652e01b3 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Fri, 12 Sep 2025 13:28:59 +0200
+Subject: [PATCH 21/27] forced 384p mode
+
+---
+ deps/switchres/monitor.cpp | 6 ++++++
+ gfx/video_crt_switch.c     | 4 ++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index 3539dc98d3..ff223fb4d0 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -220,6 +220,12 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 400, 768, 800");
+ 		return 2;
+ 	}
++	// Forced 384p
++	else if (!strcmp(type, "forced_384p"))
++	{
++		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 384, 0, 0");
++		return 1;
++	}
+ 	// Makvision 2929D
+ 	else if (!strcmp(type, "m2929"))
+ 	{
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index e4ce15a9d4..99a9d856d0 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -242,6 +242,10 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT]: CRT Mode: %d - tv_15_25\n", crt_mode);
+             break;
+          case 14:
++            sr_set_monitor("forced_384p");
++            RARCH_LOG("[CRT]: CRT Mode: %d - forced_384p\n", crt_mode);
++            break;
++         case 15:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

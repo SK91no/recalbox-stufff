@@ -1,0 +1,23 @@
+make.sh: build serially
+
+make.sh derives its own job count from /proc/cpuinfo and passes --jobs=<nproc>,
+ignoring BR2_JLEVEL. lib/efi_loader/helloworld.so needs
+arch/arm/lib/crt0_aarch64_efi.o without declaring the dependency, so a parallel
+build hits:
+
+  make[4]: *** No rule to make target 'arch/arm/lib/crt0_aarch64_efi.o',
+           needed by 'lib/efi_loader/helloworld.so'.  Stop.
+
+Signed-off-by: digitalLumberjack <digitallumberjack@recalbox.com>
+
+--- a/make.sh	2026-08-02 21:37:19.730098120 +0200
++++ b/make.sh	2026-08-02 21:37:19.732077600 +0200
+@@ -846,7 +846,7 @@
+ select_chip_info
+ fixup_platform_configure
+ sub_commands
+-make CROSS_COMPILE=${TOOLCHAIN_GCC}  all --jobs=${JOB} ${OUTOPT}
++make CROSS_COMPILE=${TOOLCHAIN_GCC}  all --jobs=1 ${OUTOPT}
+ pack_uboot_image
+ pack_loader_image
+ pack_trust_image

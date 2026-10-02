@@ -1,0 +1,66 @@
+From 8991d509e41c463a70272a71011513ef0034c9cd Mon Sep 17 00:00:00 2001
+From: Robert Beckett <bob.beckett@collabora.com>
+Date: Fri, 20 Jun 2025 16:05:04 +0100
+Subject: [PATCH 9/9] [FOR-UPSTREAM] [SQUASHME] Bluetooth: btrrl: Don't check
+ for fw signature
+
+The fw versioning is not monotonic or anything useful we can use to
+compare if a given fw is newer than another. Instead of trying to make
+sure we have the correct fw or later to implement wobt, instead try to
+set the ignore mask, and politely warn on error, assuming older fw.
+
+Fixes: 3ee04c50b9b0 ("[FOR-UPSTREAM] Bluetooth: btrtl: add suspend handling to ignore BT_DIS")
+
+Signed-off-by: Robert Beckett <bob.beckett@collabora.com>
+---
+ drivers/bluetooth/btrtl.c | 20 +++-----------------
+ 1 file changed, 3 insertions(+), 17 deletions(-)
+
+diff --git a/drivers/bluetooth/btrtl.c b/drivers/bluetooth/btrtl.c
+index 3755acecfa75..04ea1cf0cc02 100644
+--- a/drivers/bluetooth/btrtl.c
++++ b/drivers/bluetooth/btrtl.c
+@@ -1326,9 +1326,6 @@ static const struct dmi_system_id btrtl_can_ignore_bt_dis_table[] = {
+ 
+ static void btrtl_handle_fw_can_ignore_bt_dis(struct hci_dev *hdev)
+ {
+-	struct sk_buff *skb;
+-	struct hci_rp_read_local_version *rp;
+-	bool can_ignore = false;
+ 	u16 ignore_mask;
+ 	u8 buf[2];
+ 	int ret;
+@@ -1336,19 +1333,6 @@ static void btrtl_handle_fw_can_ignore_bt_dis(struct hci_dev *hdev)
+ 	if (!dmi_check_system(btrtl_can_ignore_bt_dis_table))
+ 		return;
+ 
+-	skb = btrtl_read_local_version(hdev);
+-	if (IS_ERR(skb))
+-		return;
+-
+-	rp = (struct hci_rp_read_local_version *)skb->data;
+-	if (le16_to_cpu(rp->hci_rev) == 0x98d7 &&
+-	    le16_to_cpu(rp->lmp_subver) == 0x081e)
+-		can_ignore = true;
+-
+-	kfree_skb(skb);
+-	if (!can_ignore)
+-		return;
+-
+ 	ret = btrtl_vendor_read_reg16(hdev, RTL_IGNORE_MASK, buf);
+ 	if (ret) {
+ 		rtl_dev_warn(hdev, "failed to read ignore mask, will not wake on bluetooth");
+@@ -1361,7 +1345,9 @@ static void btrtl_handle_fw_can_ignore_bt_dis(struct hci_dev *hdev)
+ 
+ 	ret = btrtl_vendor_write_reg16(hdev, RTL_IGNORE_MASK, buf);
+ 	if (ret)
+-		rtl_dev_warn(hdev, "failed to write ignore mask, will not wake on bluetooth");
++		rtl_dev_warn(hdev, "Failed to enable wake-on-bluetooth. (possibly due to old fw)");
++	else
++		rtl_dev_info(hdev, "wake-on-bluetooth enabled");
+ }
+ 
+ void btrtl_set_quirks(struct hci_dev *hdev, struct btrtl_device_info *btrtl_dev)
+-- 
+2.52.0
+

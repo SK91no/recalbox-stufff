@@ -1,0 +1,18 @@
+config BR2_PACKAGE_DWL
+	bool "dwl"
+	select BR2_PACKAGE_WAYLAND
+	select BR2_PACKAGE_WAYLAND_PROTOCOLS
+	select BR2_PACKAGE_WLROOTS
+	select BR2_PACKAGE_WLROOTS_XWAYLAND
+	select BR2_PACKAGE_LIBINPUT
+	select BR2_PACKAGE_LIBXKBCOMMON
+	select BR2_PACKAGE_LIBXCB
+	select BR2_PACKAGE_SEATD
+	help
+	  dwl is a compact, hackable compositor for Wayland
+	  based on wlroots. It is intended to fill the same space
+	  in the Wayland world that dwm does in X11, primarily
+	  in terms of philosophy, and secondarily in terms
+	  of functionality.
+
+	  https://codeberg.org/dwl/dwl

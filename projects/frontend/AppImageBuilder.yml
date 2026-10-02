@@ -1,0 +1,64 @@
+---
+version: 1
+
+AppDir:
+  path: ./AppDir
+
+script: 
+  - rm -rf ./AppDir | true
+  - rm CMakeCache.txt | true
+  - apt update && apt-get install -y libavfilter-dev libavdevice-dev libprocps-dev libsdl2-dev libsdl2-mixer-dev libfreeimage-dev libfreetype6-dev libcurl4-openssl-dev libasound2-dev libgl1-mesa-dev libzip-dev build-essential cmake liblzma-dev | true
+  - cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DPISTACHE_BUILD_TESTS=OFF -DFORCE_OPENGL=ON
+  - make install DESTDIR=AppDir
+  - mkdir -p AppDir/usr/share/icons/hicolor/64x64/apps/
+  - cp flutter-mark-square-64.png AppDir/usr/share/icons/hicolor/64x64/apps/
+  - mkdir -p AppDir/usr/lib/x86_64-linux-gnu
+  - cp /usr/lib/x86_64-linux-gnu/libzip.so.4.0 AppDir/usr/lib/x86_64-linux-gnu/libzip.so.4
+  - cp /usr/lib/libopusfile.so.0.4.2 AppDir/usr/lib/libopusfile.so.0
+  - cp /usr/lib/libopusurl.so.0.4.2 AppDir/usr/lib/libopusurl.so.0
+  - mkdir -p AppDir/usr/share/fonts/truetype
+  - cp ./data/resources/ubuntu_condensed.ttf AppDir/usr/share/fonts/truetype/
+AppDir:
+  path: recalbox
+  app_info:
+    id: com.recalbox.app
+    name: recalbox
+    version: latest
+    exec: usr/bin/emulationstation
+    exec_args: $@
+    icon: flutter-mark-square-64.png
+  runtime:
+    env:
+      APPDIR_LIBRARY_PATH: $APPDIR/usr/lib/x86_64-linux-gnu:$APPDIR/lib/x86_64-linux-gnu:$APPDIR/usr/lib/x86_64-linux-gnu/pulseaudio:$APPDIR/lib/x86_64-linux-gnu/:$APPDIR/usr/lib
+  apt:
+    arch: [amd64]
+    sources:
+      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal main restricted universe multiverse'
+        key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C'
+      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-updates main restricted universe multiverse'      
+      - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ focal-backports main restricted universe multiverse'
+    include:
+      - libfreeimage3
+      - libavcodec58
+      - libpulse0
+      - libtinfo6
+      - libncursesw6
+      - libopenmpt0
+      - libavformat58
+      - libavfilter7
+      - libavdevice58
+      - libsdl2-mixer-2.0-0
+      - libprocps8
+      - fonts-ubuntu
+
+  files:
+    exclude:
+    - usr/share/man
+    - usr/share/doc/*/README.*
+    - usr/share/doc/*/changelog.*
+    - usr/share/doc/*/NEWS.*
+    - usr/share/doc/*/TODO.*
+    
+
+AppImage:
+  arch: x86_64

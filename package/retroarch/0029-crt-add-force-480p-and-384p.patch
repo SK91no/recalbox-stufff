@@ -1,0 +1,53 @@
+From 968d3c2f46d2754029a4c073e06019db49cee3d5 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Mon, 16 Feb 2026 18:52:39 +0100
+Subject: [PATCH 29/29] crt: add force 480p and 384p
+
+---
+ deps/switchres/monitor.cpp | 10 ++++++++++
+ gfx/video_crt_switch.c     |  8 ++++++++
+ 2 files changed, 18 insertions(+)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index d577a30401..60d370d69b 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -158,6 +158,16 @@ int monitor_set_preset(const char *type, monitor_range *range)
+     monitor_fill_range(&range[0], "15625-15750, 59.9-60.10, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 240, 240, 0, 0");
+     return 1;
+   }
++  else if (!strcmp(type, "forced_480p"))
++  {
++	monitor_fill_range(&range[0], "31400-31500, 59.9-60.10, 0.940, 3.770, 1.890, 0.349, 0.064, 1.017, 0, 0, 480, 480, 0, 0");
++    return 1;
++  }
++  else if (!strcmp(type, "forced_384p"))
++  {
++	monitor_fill_range(&range[0], "24960-24960, 59.9-60.10, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 384, 0, 0");
++    return 1;
++  }
+   else if (!strcmp(type, "forced_15_progressive"))
+   {
+     monitor_fill_range(&range[0], "15625-15750, 49.50-65.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 288, 0, 0");
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index c85cbc0833..1f13598351 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -256,6 +256,14 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+          case 17:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
++         case 18:
++            sr_set_monitor("forced_480p");
++            RARCH_LOG("[CRT]: CRT Mode: %d - forced_480p\n", crt_mode);
++            break;
++         case 19:
++            sr_set_monitor("forced_384p");
++            RARCH_LOG("[CRT]: CRT Mode: %d - forced_384p\n", crt_mode);
++            break;
+          default:
+             break;
+       }
+-- 
+2.51.0
+

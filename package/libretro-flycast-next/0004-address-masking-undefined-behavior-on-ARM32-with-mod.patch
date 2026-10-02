@@ -1,0 +1,69 @@
+From 2e2208d89272e30572538fa26d106bd75d0a6f1d Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 22 Jan 2026 03:22:22 +0100
+Subject: [PATCH 2/2] address masking undefined behavior on ARM32 with modern
+ toolchains
+
+---
+ core/hw/mem/addrspace.cpp | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/core/hw/mem/addrspace.cpp b/core/hw/mem/addrspace.cpp
+index fde6c74..09902f9 100644
+--- a/core/hw/mem/addrspace.cpp
++++ b/core/hw/mem/addrspace.cpp
+@@ -61,8 +61,10 @@ void *readConst(u32 addr, bool& ismem, u32 sz)
+ 	else
+ 	{
+ 		ismem = true;
+-		addr <<= iirf;
+-		addr >>= iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		return &(((u8 *)ptr)[addr]);
+ 	}
+@@ -94,8 +96,10 @@ void *writeConst(u32 addr, bool& ismem, u32 sz)
+ 	else
+ 	{
+ 		ismem = true;
+-		addr <<= iirf;
+-		addr >>= iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		return &(((u8 *)ptr)[addr]);
+ 	}
+@@ -112,8 +116,10 @@ T DYNACALL readt(u32 addr)
+ 
+ 	if (likely(ptr != nullptr))
+ 	{
+-		addr <<= iirf;
+-		addr >>= iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		return *(T *)&((u8 *)ptr)[addr];
+ 	}
+@@ -156,8 +162,10 @@ void DYNACALL writet(u32 addr, T data)
+ 
+ 	if (likely(ptr != nullptr))
+ 	{
+-		addr <<= iirf;
+-		addr >>= iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		*(T *)&((u8 *)ptr)[addr] = data;
+ 	}
+-- 
+2.52.0
+

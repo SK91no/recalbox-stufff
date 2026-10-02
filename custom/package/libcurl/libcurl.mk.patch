@@ -1,0 +1,23 @@
+diff --git a/package/libcurl/libcurl.mk b/package/libcurl/libcurl.mk
+index 966885aeda..6dd95d95b9 100644
+--- a/package/libcurl/libcurl.mk
++++ b/package/libcurl/libcurl.mk
+@@ -202,4 +202,18 @@ endef
+ LIBCURL_POST_INSTALL_TARGET_HOOKS += LIBCURL_TARGET_CLEANUP
+ endif
+ 
++HOST_LIBCURL_DEPENDENCIES = host-openssl
++HOST_LIBCURL_CONF_OPTS = \
++	--disable-manual \
++	--disable-ntlm-wb \
++	--disable-curldebug \
++	--with-ssl \
++	--without-gnutls \
++	--without-mbedtls \
++	--without-nss \
++	--without-libpsl
++
++HOST_LIBCURL_POST_PATCH_HOOKS += LIBCURL_FIX_DOT_PC
++
+ $(eval $(autotools-package))
++$(eval $(host-autotools-package))

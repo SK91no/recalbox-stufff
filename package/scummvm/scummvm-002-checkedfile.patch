@@ -1,0 +1,38 @@
+--- ./engines/grim/grim.cpp.orig	2023-03-08 23:58:40.661362734 +0100
++++ ./engines/grim/grim.cpp	2023-03-09 00:01:08.892573894 +0100
+@@ -32,6 +32,7 @@
+ #include "common/config-manager.h"
+ #include "common/compression/stuffit.h"
+ #include "common/translation.h"
++#include "common/stream.h"
+ 
+ #include "backends/keymapper/action.h"
+ #include "backends/keymapper/keymap.h"
+@@ -341,8 +342,10 @@
+ 		}
+ 	}
+ 
+-	ConfMan.registerDefault("check_gamedata", true);
+-	if (ConfMan.getBool("check_gamedata") && !isRemastered()) {
++	// If this file exists, game files have already been checked
++	Common::FSNode gameDir = Common::FSNode(ConfMan.get("path"));
++	Common::FSNode checkFile = gameDir.getChild(ConfMan.get("gameid") + ".checked");
++	if (!checkFile.exists()) {
+ 		MD5CheckDialog d;
+ 		if (!d.runModal()) {
+ 			Common::U32String confirmString = Common::U32String::format(_(
+@@ -357,8 +360,12 @@
+ 			}
+ 		}
+ 
+-		ConfMan.setBool("check_gamedata", false);
+-		ConfMan.flushToDisk();
++		else {
++			// Only create check file if no error
++			Common::WriteStream* checkStream = checkFile.createWriteStream();
++			checkStream->finalize();
++			delete checkStream;
++		}
+ 	}
+ 
+ 	g_resourceloader = new ResourceLoader();

@@ -1,0 +1,338 @@
+From: Recalbox <contact@recalbox.com>
+Date: Wed, 9 Jul 2026 00:00:00 +0200
+Subject: [PATCH] lightgun: validate the calibration by shooting, detect gun ports
+
+Three problems, one calibration flow.
+
+AUX_B used to skip (phase 1) or validate (phase 2). But lightgun.xml binds it,
+for the SuperScope "turbo" games, to the very same physical input as the
+trigger (trigger_mbtn = aux_b_mbtn = 1), so the first shot at the first target
+ended the calibration. AUX_B is no longer intercepted and reaches the core.
+
+No button can replace it: on the gun's port only its three mouse buttons are
+readable. The joypad-only binds (START, SELECT, AUX_C, D-pad) are dead, since
+that player's joypad index does not point at the gun and udev reads them with
+joypad->button(joyport_of_that_player, joykey). So the calibration is now
+validated by shooting: phase 1 is mandatory, and phase 2 draws a centre
+bullseye, "SHOOT HERE TO START". AUX_A and START (the GunCon B, bound through
+gun_start_mbtn) both mean "retry", from the test phase only. START is honoured
+solely from the deliberate force-poll inside the TRIGGER read: RetroArch also
+reads it for hotkey handling, outside the core's update_input, and those stray
+reads would restart the calibration on their own.
+
+Finally, the overlay was gated on the configured libretro device masked with
+RETRO_DEVICE_MASK, which misses fceumm: its Zapper is a MOUSE subclass (258),
+so Duck Hunt drew no targets and, the trigger staying masked while
+calibrating, saw no shots at all. Key it instead on what the core actually
+does -- it reads the port with RETRO_DEVICE_LIGHTGUN ids -- and require a gun
+to be configured there: on 2-player games the core polls every port as a
+lightgun even with a single gun plugged (flycast, House of the Dead), which
+resurrected a phantom player 2, re-opened the calibration and broke the target
+colours. configgen zeroes the device of gunless ports.
+---
+--- a/input/lightguns.c
++++ b/input/lightguns.c
+@@ -40,6 +40,22 @@
+  * inside. */
+ #define GUNCON_CAL_TOLERANCE 13107
+ 
++/* Half-window around the centre, as a percentage of the calibrated span of
++ * each axis, for the "shoot here to start" bullseye of the test phase. The
++ * drawn bullseye is only ~2.5% of that span; we accept anything in the
++ * middle ~30% of the screen, deliberately generous. Test shots meant to
++ * check the aim land on the edges anyway.
++ *
++ * It has to be expressed against the calibration bbox, not in absolute units:
++ * the captured lock is the RAW gun position (lightgun_filter_screen_axis
++ * records last_screen_* before applying the cal remap), so screen centre is
++ * the middle of [cal_min, cal_max], not 0. The three targets are symmetric
++ * about the screen centre, so that midpoint is exactly it.
++ *
++ * Validating by shooting is the only reliable option: on the gun's port the
++ * joypad-only binds (START, SELECT, D-pad) are unreadable. */
++#define GUNCON_CAL_CENTER_PCT 15
++
+ /* True when a captured shot lands close enough to the active target. */
+ static bool guncon_cal_shot_plausible(uint8_t target, int lx, int ly)
+ {
+@@ -170,17 +186,34 @@
+    input_st->lightgun.shots_pos_valid++;
+ }
+ 
+-/* AUX_A / AUX_B read handler.
+- *   AUX_A rising edge → restart cal phase 1 (target=0)
+- *   AUX_B rising edge → commit/skip, exit cal
+- * START shares the AUX_B rising-edge tracker so whichever the core
+- * polls first wins. We mask the value toward the core during cal so
+- * these buttons don't double-act as in-game inputs.
+- * NOTE: we deliberately do NOT bind LIGHTGUN_START here — RetroArch
+- * polls START internally for hotkey handling outside the core's
+- * update_input, which would let stray internal polls validate the
+- * cal. The TRIGGER block calls this AUX path explicitly. */
+-int16_t lightgun_handle_aux_button(input_driver_state_t *input_st,
++/* True only while lightgun_handle_trigger() deliberately force-polls the
++ * calibration buttons. RetroArch also reads LIGHTGUN_START on its own for
++ * hotkey handling, outside the core's update_input; honouring those stray
++ * reads would end the calibration by itself. So the START action is acted
++ * upon only when it comes from our own poll. Doubles as the recursion
++ * guard for that poll. */
++static __thread bool s_cal_force_poll_active = false;
++
++/* AUX_A / START read handler. Both mean "retry", and only from the test
++ * phase: phase 1 is mandatory, and the calibration is validated by shooting
++ * the centre bullseye (see the capture path), not by a button. Buttons are
++ * the only inputs guaranteed to be readable on the gun's port -- shooting is
++ * the other -- and START here is really the GunCon's B, bound through
++ * gun_start_mbtn since the gun's joypad binds are dead on that port.
++ *
++ * Both are masked toward the core during cal so they don't double-act as
++ * in-game inputs. AUX_B is deliberately NOT handled: games bind it to the
++ * same physical input as the trigger (SuperScope turbo, lightgun.xml), which
++ * made the very first shot end the calibration. It reaches the core
++ * untouched. */
++static void lightgun_cal_retry(input_driver_state_t *input_st, unsigned port)
++{
++   input_st->lightgun.cal_state[port]  = 0;
++   input_st->lightgun.cal_target[port] = 0;
++   input_st->lightgun.cal_valid[port]  = false;
++}
++
++int16_t lightgun_handle_cal_button(input_driver_state_t *input_st,
+       unsigned port, unsigned id, int16_t res)
+ {
+    if (!GUNCON_CAL_ENABLED)
+@@ -190,35 +223,20 @@
+    {
+       if (now && !input_st->lightgun.cal_aux_a_was_pressed[port]
+           && input_st->lightgun.cal_state[port] == 1)
+-      {
+-         input_st->lightgun.cal_state[port]  = 0;
+-         input_st->lightgun.cal_target[port] = 0;
+-         input_st->lightgun.cal_valid[port]  = false;
+-      }
++         lightgun_cal_retry(input_st, port);
+       input_st->lightgun.cal_aux_a_was_pressed[port] = now;
+    }
+-   else
++   else if (s_cal_force_poll_active)
+    {
+-      /* Rising-edge guarded for the first 60 frames so a stuck-on
+-       * input at boot can't auto-skip the calibration. */
++      /* Rising-edge guarded for the first 60 frames so a stuck-on input at
++       * boot can't restart the calibration on its own. */
+       video_driver_state_t *vs_btn = video_state_get_ptr();
+       unsigned fcount_btn          =
+          vs_btn ? (unsigned)vs_btn->frame_count : 0;
+       if (now && !input_st->lightgun.cal_start_was_pressed[port]
+-          && fcount_btn > 60)
+-      {
+-         uint8_t cs = input_st->lightgun.cal_state[port];
+-         bool may_act = (cs == 0) || (cs == 1);
+-         if (may_act)
+-         {
+-            bool was_phase1 = (cs == 0);
+-            /* Phase 1 = skip (no cal applied).
+-             * Phase 2 = validate (cal already computed at capture). */
+-            if (was_phase1)
+-               input_st->lightgun.cal_valid[port] = false;
+-            input_st->lightgun.cal_state[port] = 2; /* DONE */
+-         }
+-      }
++          && fcount_btn > 60
++          && input_st->lightgun.cal_state[port] == 1)
++         lightgun_cal_retry(input_st, port);
+       input_st->lightgun.cal_start_was_pressed[port] = now;
+    }
+    /* Mask these buttons toward the core during cal. */
+@@ -277,16 +295,16 @@
+          input_st->lightgun.cal_state[port] = 2;
+    }
+ 
+-   /* Force-poll AUX_A and AUX_B from inside the TRIGGER read so the
+-    * cal validate/retry buttons work even with cores that never
++   /* Force-poll AUX_A and START from inside the TRIGGER read so the
++    * cal retry/validate buttons work even with cores that never
+     * poll them (e.g. fbneo Point Blank only reads TRIGGER +
+     * SCREEN_X/Y in lightgun mode). The recursive
+     * input_state_fn() calls re-enter input_state_internal() which
+-    * passes through the AUX_A/AUX_B rising-edge handler. Skipped
+-    * once cal is DONE so we don't add input cost during normal
+-    * gameplay. */
++    * passes through the rising-edge handler. This is also the only
++    * context in which a START read is acted upon (see the handler).
++    * Skipped once cal is DONE so we don't add input cost during
++    * normal gameplay. */
+    {
+-      static __thread bool s_cal_force_poll_active = false;
+       if (GUNCON_CAL_ENABLED
+           && !s_cal_force_poll_active
+           && input_st->lightgun.cal_state[port] != 2
+@@ -298,7 +316,7 @@
+             RETRO_DEVICE_ID_LIGHTGUN_AUX_A);
+          (void)input_state_fn(input_st, settings, port,
+             RETRO_DEVICE_LIGHTGUN, 0,
+-            RETRO_DEVICE_ID_LIGHTGUN_AUX_B);
++            RETRO_DEVICE_ID_LIGHTGUN_START);
+          s_cal_force_poll_active = false;
+       }
+    }
+@@ -489,6 +507,32 @@
+                input_st->lightgun.cal_state[port] = 1; /* phase2 */
+             }
+          }
++         else if (GUNCON_CAL_ENABLED
++                  && input_st->lightgun.cal_state[port] == 1)
++         {
++            /* Test phase: shooting the centre bullseye validates and starts
++             * the game. Any other shot is just a test, so the user can check
++             * the calibration before committing to it. */
++            int cx   = input_st->lightgun.lock_x[port];
++            int cy   = input_st->lightgun.lock_y[port];
++            int xmin = input_st->lightgun.cal_x_min[port];
++            int xmax = input_st->lightgun.cal_x_max[port];
++            int ymin = input_st->lightgun.cal_y_min[port];
++            int ymax = input_st->lightgun.cal_y_max[port];
++            int xspan = xmax - xmin;
++            int yspan = ymax - ymin;
++            if (   cx != -32768 && cy != -32768
++                && xspan > 0    && yspan > 0)
++            {
++               int dx = cx - (xmin + xmax) / 2;
++               int dy = cy - (ymin + ymax) / 2;
++               if (dx < 0) dx = -dx;
++               if (dy < 0) dy = -dy;
++               if (   dx * 100 <= xspan * GUNCON_CAL_CENTER_PCT
++                   && dy * 100 <= yspan * GUNCON_CAL_CENTER_PCT)
++                  input_st->lightgun.cal_state[port] = 2; /* DONE */
++            }
++         }
+       }
+    }
+ 
+@@ -599,6 +643,25 @@
+ 
+ /* --- Per-frame video hooks --- */
+ 
++/* Whether the calibration overlay applies to this port. Two conditions, and
++ * both are needed.
++ *
++ * The core must actually read the port with RETRO_DEVICE_LIGHTGUN ids: device
++ * ids vary wildly (fceumm exposes its Zapper as a MOUSE subclass, 258) and no
++ * RETRO_DEVICE_MASK test catches them all.
++ *
++ * And a gun must really be configured on it: on 2-player games the core polls
++ * every port as a lightgun even with a single gun plugged (flycast, House of
++ * the Dead). Without this a phantom second player re-opens the calibration and
++ * wrecks the target colours. configgen zeroes the device of gunless ports. */
++static bool lightgun_port_is_gun(input_driver_state_t *input_st, unsigned port)
++{
++   settings_t *cfg = config_get_ptr();
++   return input_st->lightgun.polled_as_gun[port]
++       && cfg
++       && cfg->uints.input_libretro_device[port] != RETRO_DEVICE_NONE;
++}
++
+ void lightgun_apply_shader_params(input_driver_state_t *input_st,
+       video_driver_state_t *video_st)
+ {
+@@ -609,7 +672,6 @@
+        || shader_ctx.data->num_parameters == 0)
+       return;
+ 
+-   settings_t *cfg  = config_get_ptr();
+    float flash_val  = (video_st->lightgun_flash_frames > 0) ? 1.0f : 0.0f;
+ 
+    /* Cal phase exposed to the shader (max across ports). */
+@@ -617,10 +679,7 @@
+    if (GUNCON_CAL_ENABLED)
+    for (unsigned p = 0; p < 16; p++)
+    {
+-      /* Mask with RETRO_DEVICE_MASK so subclassed lightguns
+-       * (e.g. pcsx_rearmed GunCon) match too. */
+-      if (cfg && (cfg->uints.input_libretro_device[p]
+-                   & RETRO_DEVICE_MASK) != RETRO_DEVICE_LIGHTGUN)
++      if (!lightgun_port_is_gun(input_st, p))
+          continue;
+       uint8_t s = input_st->lightgun.cal_state[p];
+       if (s == 0 && cal_phase_val < 1.0f)
+@@ -632,12 +691,8 @@
+    /* 3 targets (TL/TR/BL); value 3 = "none active". */
+    float cal_target_p1 = 3.0f, cal_target_p2 = 3.0f;
+    {
+-      bool p1_is_gun = cfg &&
+-         (cfg->uints.input_libretro_device[0] & RETRO_DEVICE_MASK)
+-            == RETRO_DEVICE_LIGHTGUN;
+-      bool p2_is_gun = cfg &&
+-         (cfg->uints.input_libretro_device[1] & RETRO_DEVICE_MASK)
+-            == RETRO_DEVICE_LIGHTGUN;
++      bool p1_is_gun = lightgun_port_is_gun(input_st, 0);
++      bool p2_is_gun = lightgun_port_is_gun(input_st, 1);
+       if (p1_is_gun && input_st->lightgun.cal_state[0] == 0)
+          cal_target_p1 = (float)input_st->lightgun.cal_target[0];
+       if (p2_is_gun && input_st->lightgun.cal_state[1] == 0)
+--- a/input/lightguns.h
++++ b/input/lightguns.h
+@@ -57,11 +57,12 @@
+ void lightgun_track_screen_x_for_stats(input_driver_state_t *st,
+       unsigned port, unsigned id, int16_t res);
+ 
+-/* AUX_A / AUX_B read: handle cal phase 2 control buttons (restart
+- * with AUX_A, validate/skip with AUX_B). Mask the value toward
+- * the core during cal so the buttons don't double-act as in-game
+- * inputs. Returns the (possibly masked) value to report. */
+-int16_t lightgun_handle_aux_button(input_driver_state_t *st,
++/* AUX_A / START read: both restart the calibration, and only from the test
++ * phase. Validation is done by shooting the centre bullseye, not by a button.
++ * AUX_B is deliberately left alone: games bind it to the trigger's own input.
++ * Mask the value toward the core during cal so the buttons don't double-act
++ * as in-game inputs. Returns the (possibly masked) value to report. */
++int16_t lightgun_handle_cal_button(input_driver_state_t *st,
+       unsigned port, unsigned id, int16_t res);
+ 
+ /* Trigger read: full state machine + auto-tune deliver, OSD push
+--- a/input/lightgun_state.h
++++ b/input/lightgun_state.h
+@@ -63,6 +63,12 @@
+    int16_t  lock_x[16];
+    int16_t  lock_y[16];
+    bool     position_locked[16];
++   /* Set the first time the core reads this port with RETRO_DEVICE_LIGHTGUN
++    * ids. This, not the configured device, tells whether the port really
++    * drives a lightgun: cores expose their gun under wildly different
++    * device ids (fceumm's Zapper is a MOUSE subclass, 258), and masking
++    * with RETRO_DEVICE_MASK misses them. */
++   bool     polled_as_gun[16];
+    /* GunCon manual calibration: 3-target capture (TL, TR, BL) at
+     * retroarch boot, then a test phase. State per port:
+     *   0 = PHASE1: capture, awaiting 3 corner shots
+--- a/input/input_driver.c
++++ b/input/input_driver.c
+@@ -1846,10 +1846,15 @@
+           *     on-screen shot (unless lock = sentinel)
+           *   - SCREEN_X stat: per-shot "fresh sample" counter for
+           *     the auto-tune deliver-frame heuristic
+-          *   - AUX_A/AUX_B: cal restart (A) and commit/skip (B),
+-          *     masked toward the core during cal */
++          *   - AUX_A/START: cal restart (AUX_A) and skip/validate
++          *     (START), masked toward the core during cal. AUX_B is
++          *     left alone: games bind it to the trigger's input. */
+          if (device == RETRO_DEVICE_LIGHTGUN && port < 16)
+          {
++            /* The core reads this port as a lightgun, whatever device id it
++             * was configured with. That is what the shader hooks key on. */
++            input_st->lightgun.polled_as_gun[port] = true;
++
+             if (   id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X
+                 || id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_Y)
+                res = lightgun_filter_screen_axis(input_st, port, id, res);
+@@ -1860,8 +1865,8 @@
+                lightgun_track_screen_x_for_stats(input_st, port, id, res);
+ 
+             if (   id == RETRO_DEVICE_ID_LIGHTGUN_AUX_A
+-                || id == RETRO_DEVICE_ID_LIGHTGUN_AUX_B)
+-               res = lightgun_handle_aux_button(input_st, port, id, res);
++                || id == RETRO_DEVICE_ID_LIGHTGUN_START)
++               res = lightgun_handle_cal_button(input_st, port, id, res);
+          }
+ 
+          /* Lightgun TRIGGER read: full FSM lives in

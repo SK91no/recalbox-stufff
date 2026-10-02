@@ -1,0 +1,10 @@
+--- libretro-hatari-cea06eebf695b078fadc0e78bb0f2b2baaca799f/src/floppy_ipf.c.orig	2024-08-07 22:41:07.149877054 +0200
++++ libretro-hatari-cea06eebf695b078fadc0e78bb0f2b2baaca799f/src/floppy_ipf.c	2024-08-07 22:43:23.424665376 +0200
+@@ -31,6 +31,7 @@
+ #endif
+ #include <stdint.h>
+ #include <caps/CapsLibAll.h>
++#include <ctype.h>
+ #define CapsLong SDWORD
+ #define CapsULong UDWORD
+ /* Macro to check release and revision */

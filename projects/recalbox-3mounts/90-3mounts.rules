@@ -1,0 +1,18 @@
+# Rules for USBmount -*- conf -*-
+
+SUBSYSTEM!="block", GOTO="3mounts_probe_end"
+
+KERNEL=="sd*",   DRIVERS=="sbp2",     ACTION=="add",  ENV{XMOUNTS_TYPE}="usb", RUN+="/recalbox/scripts/recalbox-3mounts.sh add"
+KERNEL=="sd*",   SUBSYSTEMS=="usb",   ACTION=="add",  ENV{XMOUNTS_TYPE}="usb", RUN+="/recalbox/scripts/recalbox-3mounts.sh add", GOTO="3mounts_probe_end"
+KERNEL=="ub*",   SUBSYSTEMS=="usb",   ACTION=="add",  ENV{XMOUNTS_TYPE}="usb", RUN+="/recalbox/scripts/recalbox-3mounts.sh add"
+KERNEL=="mmcblk*",                    ACTION=="add",  ENV{XMOUNTS_TYPE}="mmc", RUN+="/recalbox/scripts/recalbox-3mounts.sh add"
+KERNEL=="nvme*",                      ACTION=="add",  ENV{XMOUNTS_TYPE}="hdd", RUN+="/recalbox/scripts/recalbox-3mounts.sh add"
+KERNEL=="sd*",   SUBSYSTEMS!="usb", DRIVERS!="sbp2",  ACTION=="add",  ENV{XMOUNTS_TYPE}="hdd", RUN+="/recalbox/scripts/recalbox-3mounts.sh add"
+
+
+KERNEL=="sd*",      ACTION=="remove",  RUN+="/recalbox/scripts/recalbox-3mounts.sh remove"
+KERNEL=="ub*",      ACTION=="remove",  RUN+="/recalbox/scripts/recalbox-3mounts.sh remove"
+KERNEL=="mmcblk*",  ACTION=="remove",  RUN+="/recalbox/scripts/recalbox-3mounts.sh remove"
+KERNEL=="nvme*",    ACTION=="remove",  RUN+="/recalbox/scripts/recalbox-3mounts.sh remove"
+
+LABEL="3mounts_probe_end"

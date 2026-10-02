@@ -1,0 +1,7 @@
+config BR2_PACKAGE_HOST_NODEJS_QUASAR
+	bool "host nodejs quasar"
+	select HOST_NODEJS
+	help
+	  Quasar Framework - Build high-performance VueJS user interfaces
+	  in record time
+	  https://github.com/quasarframework/quasar

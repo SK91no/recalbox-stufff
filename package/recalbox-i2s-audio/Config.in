@@ -1,0 +1,8 @@
+config BR2_PACKAGE_RECALBOX_I2S_AUDIO
+	bool "Recalbox I2S audio Driver"
+	depends on BR2_LINUX_KERNEL
+	help
+	  Support for Recalbox I2S Aduio devices
+
+comment "Recalbox I2S Audio needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

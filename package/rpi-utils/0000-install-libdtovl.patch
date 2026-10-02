@@ -1,0 +1,9 @@
+diff --git a/dtmerge/CMakeLists.txt b/dtmerge/CMakeLists.txt
+index f63648b..2adcbd0 100644
+--- a/dtmerge/CMakeLists.txt
++++ b/dtmerge/CMakeLists.txt
+@@ -27,3 +27,4 @@ install(FILES dtoverlay.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
+ add_custom_command(TARGET dtoverlay POST_BUILD COMMAND ln;-sf;dtoverlay;dtparam)
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/dtparam DESTINATION ${CMAKE_INSTALL_BINDIR})
+ install(FILES dtparam.1 DESTINATION ${CMAKE_INSTALL_MANDIR}/man1)
++install(FILES libdtovl.so DESTINATION ${CMAKE_INSTALL_LIBDIR})

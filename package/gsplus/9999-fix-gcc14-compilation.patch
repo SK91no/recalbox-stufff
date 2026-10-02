@@ -1,0 +1,10 @@
+--- gsplus-480572054518112647c8fae5d7ea7046a6d6ecfb/src/rawnet/rawnetarch_unix.c.orig	2024-08-03 23:31:29.737966022 +0200
++++ gsplus-480572054518112647c8fae5d7ea7046a6d6ecfb/src/rawnet/rawnetarch_unix.c	2024-08-03 23:32:07.267451359 +0200
+@@ -59,6 +59,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <unistd.h>
+ 
+ // #include "lib.h"
+ // #include "log.h"

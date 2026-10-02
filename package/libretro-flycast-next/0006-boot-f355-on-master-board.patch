@@ -1,0 +1,278 @@
+From: Akkeoss <akkeoss.recalbox@ik.me>
+Date: Wed, 3 Jun 2026 00:00:00 +0000
+Subject: [PATCH] libretro: boot Ferrari F355 Challenge on the master board
+
+Flycast emulates the Naomi multiboard used by Ferrari F355 Challenge as
+several emulator processes communicating through shared memory
+(NAOMI_MULTIBOARD), which is disabled in the single-instance libretro
+core. As a result F355 was rejected with "Unknown game".
+
+This patch lets F355 boot on the master board alone in libretro:
+ - the F355 rom entries are exposed unconditionally so the games are
+   identified (f355_inputs is already unguarded in this flycast version);
+ - the !NAOMI_MULTIBOARD Multiboard class is turned into a "master solo"
+   implementation (private comm memory, every slave board reported as
+   present/synced, no process spawning) so the firmware gets past the
+   "looking for master" handshake and boots;
+ - settings.naomi.multiboard is enabled for f355* in libretro builds to
+   instantiate it.
+
+The full multiboard build (standalone) is left untouched: the real
+multi-process class stays under #ifdef NAOMI_MULTIBOARD. The link between
+cabinets and the multi-screen deluxe/twin output are not emulated (a
+libretro core is single-instance with a single video output); the game
+runs on the master board only. Also boots Ferrari F355 Challenge 2
+(f355twn2), which shares the same multiboard mechanism.
+
+Rebased on flycast 1607eb5 by Recalbox.
+---
+diff --git a/core/hw/naomi/multiboard.h b/core/hw/naomi/multiboard.h
+index 5c3b3d6dd..cd2879868 100644
+--- a/core/hw/naomi/multiboard.h
++++ b/core/hw/naomi/multiboard.h
+@@ -73,27 +73,171 @@ private:
+ 
+ #else // !NAOMI_MULTIBOARD
+ 
++#include "naomi_regs.h"
++
++// Single-instance ("master solo") multiboard for builds that can't spawn slave
++// emulator processes (e.g. libretro). The register behavior is a 1:1 port of
++// the master-solo shipped with the previous flycast, which empirically boots
++// and plays Ferrari F355 Challenge: the UART link loops back on itself,
++// every slave board is reported present/synced and the comm memory is private.
++// One structural difference: readG1/writeG1 now run BEFORE the cartridge
++// handler, so anything not handled here must fall through ({0, false}) — the
++// cartridge's own "unknown register" path then returns 0xFFFF, exactly what
++// the old fallback-position default produced.
+ class Multiboard
+ {
+ public:
+-	std::pair<u32, bool> readG1(u32 addr, u32 size) {
+-		return std::make_pair(0, false);
++	Multiboard() {
++		// x2: the G2 comm window plus the bank offset can address past MEM_SIZE.
++		data = new u16[MEM_SIZE * 2]();
++		// Master ready + boards 1..3 present/synced (a real slave does
++		// status |= 0x10 << boardId; none will, so pre-assert them).
++		status = 0xff00 | (0x10 << 1) | (0x10 << 2) | (0x10 << 3);
++	}
++	~Multiboard() {
++		delete[] data;
++	}
++
++	// {value, handled}; handled==false falls through to the cartridge.
++	std::pair<u32, bool> readG1(u32 addr, u32 size)
++	{
++		switch (addr)
++		{
++		case NAOMI_MBOARD_OFFSET_addr:
++			return std::make_pair(offset, true);
++
++		case NAOMI_MBOARD_DATA_addr:
++			{
++				u32 bank = (status & 1) ? 0 : 0x80000;
++				bank = 0x80000 - bank;	// master bank
++				u32 a = offset + bank / 2;
++				u16 v = data[a & (MEM_SIZE - 1)];
++				offset++;
++				return std::make_pair(v, true);
++			}
++
++		case NAOMI_MBOARD_UART_DATA_addr:
++			return std::make_pair(reg74 & 0xff, true);	// UART loops back on itself
++
++		case NAOMI_MBOARD_BOARD_ID_addr:
++			return std::make_pair(0, true);
++
++		case G1_BASE + 0x08:
++			return std::make_pair(0x80, true);	// loops until bit 7 is set
++
++		case G1_BASE + 0x10:
++			return std::make_pair(0x60, true);
++
++		case G1_BASE + 0x14:
++			return std::make_pair(0x43, true);
++
++		default:
++			return std::make_pair(0, false);	// cartridge regs & unknowns (cart returns 0xFFFF)
++		}
+ 	}
+-	bool writeG1(u32 addr, u32 data, u32 size) { return false; }
+ 
+-	u32 readG2Ext(u32 addr, u32 size) {
+-		return 0;
++	bool writeG1(u32 addr, u32 value, u32 size)
++	{
++		switch (addr)
++		{
++		case NAOMI_MBOARD_OFFSET_addr:
++			offset = value;
++			return true;
++
++		case NAOMI_MBOARD_DATA_addr:
++			{
++				u32 bank = (status & 1) ? 0 : 0x80000;
++				bank = 0x80000 - bank;	// master bank
++				u32 a = offset + bank / 2;
++				data[a & (MEM_SIZE - 1)] = value;
++				offset++;
++			}
++			return true;
++
++		case NAOMI_MBOARD_UART_IDX_addr:
++			return true;
++
++		case NAOMI_MBOARD_UART_DATA_addr:
++			reg74 = value;	// no slave: reads loop back
++			return true;
++
++		default:
++			return false;
++		}
++	}
++
++	u32 readG2Ext(u32 addr, u32 size)
++	{
++		switch (addr)
++		{
++		case G2_BASE + 0x08:
++			return 0x80;
++		case G2_BASE + 0x10:
++			return 0x60;
++		case G2_BASE + 0x14:
++			return 0x43;
++		case G2_BASE + 0x9c:
++			return reg9c;	// master
++		case G2_BASE + 0xc0:
++			return 0;
++		case 0x1008000:	// status reg (master => high bits set)
++			return 0xff00 | status;
++		default:
++			if ((addr - 0x1020000) < MEM_SIZE * 2)
++			{
++				u32 bank = (status & 1) ? 0x80000 : 0;
++				u32 off = (addr - 0x1020000 + bank) / 2;
++				if (size == 2)
++					return data[off];
++				else
++					return *(u32 *)&data[off];
++			}
++			return 0;
++		}
++	}
++
++	void writeG2Ext(u32 addr, u32 value, u32 size)
++	{
++		switch (addr) {
++		case 0x1008000:	// status reg
++			status = value;
++			break;
++		case G2_BASE + 0x9c:
++			reg9c = value;
++			break;
++		case G2_BASE + 0xa0:	// LEDs
++			break;
++		default:
++			if ((addr - 0x1020000) < MEM_SIZE * 2)
++			{
++				u32 bank = (status & 1) ? 0x80000 : 0;
++				u32 off = (addr - 0x1020000 + bank) / 2;
++				if (size == 2)
++					data[off] = value;
++				else
++					*(u32 *)&data[off] = value;
++			}
++			break;
++		}
+ 	}
+-	void writeG2Ext(u32 addr, u32 data, u32 size) { }
+ 
+ 	bool dmaStart() {
+-		return false;
++		return false;	// master reads through G1/G2, no DMA from slaves
+ 	}
+ 	void reset() { }
++	void syncWait() { }	// no boards to sync with
++	static void keyboardEvent(u16 code, bool pressed) { }
+ 
+-	void syncWait() { }
++private:
++	static constexpr u32 G1_BASE = 0x05F7080;
++	static constexpr u32 G2_BASE = 0x1010000;
++	static constexpr size_t MEM_SIZE = 0x100000 / sizeof(u16);
+ 
+-	static void keyboardEvent(u16 code, bool pressed) { }
++	u16 *data = nullptr;
++	u16 status = 0;
++	u32 offset = 0;
++	u8 reg74 = 0;
++	u8 reg9c = 0;
+ };
+ 
+ #endif // !NAOMI_MULTIBOARD
+diff --git a/core/hw/naomi/naomi_cart.cpp b/core/hw/naomi/naomi_cart.cpp
+index 85fda8330..c3901dd4b 100644
+--- a/core/hw/naomi/naomi_cart.cpp
++++ b/core/hw/naomi/naomi_cart.cpp
+@@ -825,6 +825,11 @@ int naomi_cart_GetPlatform(const char *path)
+ 		if (game->multiboard > 0
+ 				&& (!strncmp("f355", game->name, 4) || config::MultiboardSlaves == 2))
+ 			settings.naomi.multiboard = true;
++#else
++		// Single-instance builds (libretro) can't spawn slave processes, but the
++		// "master solo" Multiboard lets F355 boot on the master board alone.
++		if (game->multiboard > 0 && !strncmp("f355", game->name, 4))
++			settings.naomi.multiboard = true;
+ #endif
+ 		return DC_PLATFORM_NAOMI;
+ 	}
+diff --git a/core/hw/naomi/naomi_roms.cpp b/core/hw/naomi/naomi_roms.cpp
+index 2e3aa051a..5ebce1d68 100644
+--- a/core/hw/naomi/naomi_roms.cpp
++++ b/core/hw/naomi/naomi_roms.cpp
+@@ -1832,7 +1832,12 @@ const Game Games[] =
+ 		nullptr,
+ 		&wsbb_inputs,
+     },
+-#ifdef NAOMI_MULTIBOARD
++    // Ferrari F355 Challenge games use the Naomi multiboard. Full multiboard
++    // emulation (NAOMI_MULTIBOARD) spawns one emulator process per board and is
++    // not available in single-instance builds such as libretro. The rom entries
++    // are still exposed unconditionally so the games can at least be identified
++    // and booted on the master board alone (multiboard stays disabled, see
++    // settings.naomi.multiboard in naomi_cart.cpp).
+     // Ferrari F355 Challenge (deluxe)
+     {
+         "f355",
+@@ -1995,7 +2000,7 @@ const Game Games[] =
+ 		nullptr,
+ 		3,
+     },
+-#endif
++    // End of Ferrari F355 Challenge multiboard games.
+     // Giant Gram: All Japan Pro Wrestling 2 (JPN, USA, EXP, KOR, AUS)
+     {
+         "ggram2",
+diff --git a/core/hw/naomi/naomi_roms_input.h b/core/hw/naomi/naomi_roms_input.h
+index 14e80c24d..26db995fd 100644
+--- a/core/hw/naomi/naomi_roms_input.h
++++ b/core/hw/naomi/naomi_roms_input.h
+@@ -369,7 +369,7 @@ static InputDescriptors marine_fishing_inputs = {
+ 	  },
+ };
+ 
+-#ifdef NAOMI_MULTIBOARD
++// F355 descriptor exposed unconditionally (its rom entries are too, see naomi_roms.cpp).
+ static InputDescriptors f355_inputs = {
+ 	  {
+ 			{ NAOMI_UP_KEY, "ASSIST SC" },
+@@ -401,7 +401,7 @@ static InputDescriptors f355_inputs = {
+ 			{ "CLUTCH", Half, 6 },	// Deluxe only
+ 	  },
+ };
+-#endif
++// End F355 descriptor.
+ 
+ static InputDescriptors zombie_inputs = {
+ 	  {

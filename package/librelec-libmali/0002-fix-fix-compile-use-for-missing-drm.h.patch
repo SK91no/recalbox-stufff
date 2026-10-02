@@ -1,0 +1,29 @@
+From 69d90c021013504a014f3c411419e50397462e8b Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Fri, 13 Aug 2021 11:56:23 +0200
+Subject: [PATCH 2/2] fix: fix compile use for missing drm.h
+
+---
+ CMakeLists.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index bb3b56b..8a74411 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -33,7 +33,12 @@ configure_file(src/gbm.pc.cmake gbm.pc @ONLY)
+ configure_file(pkgconfig/glesv1_cm.pc.cmake glesv1_cm.pc @ONLY)
+ configure_file(pkgconfig/glesv2.pc.cmake glesv2.pc @ONLY)
+ 
++find_package(PkgConfig REQUIRED)
++
++pkg_check_modules(LIBDRM REQUIRED IMPORTED_TARGET libdrm)
++
+ add_library(gbm STATIC src/gbm.c)
++target_include_directories(gbm PUBLIC ${LIBDRM_INCLUDE_DIRS})
+ 
+ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/egl.pc
+               ${CMAKE_CURRENT_BINARY_DIR}/gbm.pc
+-- 
+2.46.1
+

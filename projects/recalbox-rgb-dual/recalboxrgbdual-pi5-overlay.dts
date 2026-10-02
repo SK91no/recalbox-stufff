@@ -1,0 +1,123 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "brcm,bcm2712";
+	fragment@0 {
+		target = <&gpio>;
+		__overlay__ {
+			dipswitch_gpio: dipswitch_gpio_conf {
+				brcm,pins = <10 27>; // GPIO 10
+				brcm,function = <0>; // Input
+				brcm,pull = <2 2>; // Pull up
+			};
+		};
+	};
+	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+
+			bridge: recalboxrgbdual {
+				compatible = "raspberrypi,recalboxrgbdual";
+				#address-cells = <1>;
+				#size-cells = <0>;
+
+				vc4-vga666-mode = <6>;
+				recalbox-rgb-dual = <1>;
+				avoid_interlaced = <1>;
+
+				dipswitch-gpios = <&gpio 10 0>,<&gpio 27 0>;
+				pinctrl-0 = <&dipswitch_gpio>;
+				pinctrl-names = "default";
+
+				ports {
+					#address-cells = <1>;
+					#size-cells = <0>;
+
+					port@0 {
+						reg = <0>;
+						vga_bridge_in: endpoint {
+							remote-endpoint = <&dpi_out>;
+						};
+					};
+
+					port@1 {
+						reg = <1>;
+						vga_bridge_out: endpoint {
+							remote-endpoint = <&vga_con_in>;
+						};
+					};
+				};
+			};
+
+			vga {
+				compatible = "vga-connector";
+				port {
+					vga_con_in: endpoint {
+						remote-endpoint = <&vga_bridge_out>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@2 {
+		target = <&dpi>;
+		__overlay__  {
+			status = "okay";
+			pinctrl-names = "default";
+			pinctrl-0 = <&vga666_mode6_pins>;
+			port {
+				dpi_out: endpoint@0 {
+					remote-endpoint = <&vga_bridge_in>;
+				};
+			};
+		};
+	};
+
+	fragment@3 {
+		target = <&gpio>;
+		__overlay__ {
+			vga666_mode6_pins: vga666_mode6_pins {
+				brcm,pins = <2 3 4 5 6 7 8 9 12 13 14
+						 15 16 17 20 21 22 23 24 25>;
+				brcm,function = <6>;
+				brcm,pull = <0>;
+			};
+		};
+	};
+
+	fragment@4 {
+		target-path = "/";
+		__overlay__ {
+			fan0: gpio-fan@0 {
+				compatible = "gpio-fan";
+				gpios = <&gpio 26 0>;
+				gpio-fan,speed-map = <0    0>,
+									 <5000 1>;
+				#cooling-cells = <2>;
+			};
+		};
+	};
+
+	fragment@5 {
+		target = <&cpu_thermal>;
+		polling-delay = <5000>;	/* milliseconds */
+		__overlay__ {
+			trips {
+				cpu_hot: trip-point@0 {
+					temperature = <60000>;	/* (millicelsius) Fan started at 60°C */
+					hysteresis = <10000>;	/* (millicelsius) Fan stopped at 50°C */
+					type = "active";
+				};
+			};
+			cooling-maps {
+				map0 {
+					trip = <&cpu_hot>;
+					cooling-device = <&fan0 1 1>;
+				};
+			};
+		};
+	};
+	
+};

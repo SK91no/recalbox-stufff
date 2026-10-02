@@ -1,0 +1,68 @@
+#!/bin/sh
+#
+#
+
+log=/recalbox/share/system/logs/recalbox.log
+systemsetting="recalbox_settings"
+INIT_SCRIPT=$(basename "$0")
+
+case "$1" in
+	start)
+    boot_card=$(grep -H -l 1 /sys/class/drm/card*/device/boot_vga)
+    if [ -n "${boot_card}" ]; then
+      boot_card_vendor=$(cat $(dirname "${boot_card}")/vendor)
+    else
+      recallog -s "${INIT_SCRIPT}" -t "ES" "no boot_vga device"
+      boot_card_vendor=0x0000
+    fi
+    recallog -s "${INIT_SCRIPT}" -t "ES" "boot card vendor is ${boot_card_vendor}"
+    intel_chip_id=$(lspci -d 8086::0300 -mm -n | sed -E 's/^.*8086"\s*"([^"]+)".*/\1/')
+    if [ -n "$intel_chip_id" ] && [ "${boot_card_vendor}" = "0x8086" ] && [ ! -f /etc/X11/xorg.conf ]; then
+      # we should reach this part if we have an intel GPU and no hybrid laptop
+      # nor prime configuration (which configures /etc/X11/xorg.conf)
+      # and we booted from the intel GPU
+      source /recalbox/scripts/recalbox-utils.sh
+      mount -o remount,rw /
+      if isOldIntelChipset "$intel_chip_id"; then
+        recallog -s "${INIT_SCRIPT}" -t "ES" "Older intel chipset detected (${intel_chip_id}), using intel Xorg driver"
+        cat >/etc/X11/xorg.conf <<"        EOF"
+        Section "Device"
+            Identifier "intel"
+            Driver     "intel"
+        EndSection
+        EOF
+      else
+        recallog -s "${INIT_SCRIPT}" -t "ES" "Newer intel chipset detected (${intel_chip_id}), using modesetting Xorg driver"
+        cat >/etc/X11/xorg.conf <<"        EOF"
+        Section "Module"
+            Load     "modesetting"
+        EndSection
+        EOF
+      fi
+      mount -o remount,ro /
+    fi
+		enabled="`$systemsetting  -command load -key system.es.atstartup`"
+		if [ "$enabled" != "0" ];then
+			settings_lang="`$systemsetting -command load -key system.language`"
+			recallog -s "${INIT_SCRIPT}" -t "ES" "starting emulationstation with lang = $settings_lang"
+			command="HOME=/overlay startx"
+			recallog -s "${INIT_SCRIPT}" -t "ES" "Starting emulationstation with command : "
+			recallog -s "${INIT_SCRIPT}" -t "ES" "$command"
+			eval $command >> $log &
+		fi
+		;;
+	stop)
+		killall emulationstation
+		killall openbox & sleep 2s
+		;;
+	restart|reload)
+		"$0" stop
+		"$0" start
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+		;;
+esac
+
+exit $?

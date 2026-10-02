@@ -1,0 +1,66 @@
+################################################################################
+#
+# VICE
+#
+################################################################################
+
+# Commit of 2024/10/21
+LIBRETRO_VICE_VERSION = 8afb6a3a407e5ee40d48df45031c615507dd094e
+LIBRETRO_VICE_SITE = $(call github,libretro,vice-libretro,$(LIBRETRO_VICE_VERSION))
+LIBRETRO_VICE_LICENSE = GPL-2.0
+LIBRETRO_VICE_LICENSE_FILES = COPYING
+
+LIBRETRO_VICE_SUBEMULATORS = x64 x64sc x128 xpet xplus4 xvic xcbm2 xscpu64 xcbm5x0
+
+ifeq ($(BR2_PACKAGE_RECALBOX_TARGET_ODROIDGO2),y)
+LIBRETRO_VICE_PLATFORM = odroidgo2
+else
+LIBRETRO_VICE_PLATFORM = $(RETROARCH_LIBRETRO_PLATFORM)
+endif
+
+define LIBRETRO_VICE_BUILD_EMULATOR
+	find $(@D) -name *.o -delete; \
+	find $(@D) -name *.a -delete; \
+	CFLAGS="$(TARGET_CFLAGS) $(COMPILER_COMMONS_CFLAGS_NOLTO)" \
+		CXXFLAGS="$(TARGET_CXXFLAGS) $(COMPILER_COMMONS_CXXFLAGS_NOLTO)" \
+		LDFLAGS="$(TARGET_LDFLAGS) $(COMPILER_COMMONS_LDFLAGS_NOLTO)" \
+		SHARED="$(TARGET_SHARED)" \
+		$(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D)/ -f Makefile platform="$(LIBRETRO_VICE_PLATFORM)" EMUTYPE=$(strip $(1));
+endef
+
+define LIBRETRO_VICE_BUILD_CMDS
+	$(SED) "s|-fstack-protector||g" $(@D)/Makefile
+	$(SED) "s|-mthumb-interwork||g" $(@D)/Makefile
+	$(foreach emulator, $(LIBRETRO_VICE_SUBEMULATORS), $(call LIBRETRO_VICE_BUILD_EMULATOR, $(emulator)))
+endef
+
+define LIBRETRO_VICE_INSTALL_EMULATOR
+	echo "Installing $(1)..."; \
+	$(INSTALL) -D $(@D)/vice_$(strip $(1))_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/vice_$(strip $(1))_libretro.so ;
+endef
+
+define LIBRETRO_VICE_INSTALL_TARGET_CMDS
+	$(foreach emulator, $(LIBRETRO_VICE_SUBEMULATORS), $(call LIBRETRO_VICE_INSTALL_EMULATOR, $(emulator)))
+	mkdir -p $(TARGET_DIR)/recalbox/share_upgrade/bios/vice/SCPU64
+endef
+
+define LIBRETRO_VICE_PRE_PATCH_FIXUP
+	$(SED) "s|-O2|-O3|g" $(@D)/Makefile
+endef
+
+LIBRETRO_VICE_PRE_PATCH_HOOKS += LIBRETRO_VICE_PRE_PATCH_FIXUP
+
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_C_ARCHIVE_CREATE="<CMAKE_AR> qcs <TARGET> <LINK_FLAGS> <OBJECTS>"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_C_ARCHIVE_FINISH=true
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_CXX_ARCHIVE_CREATE="<CMAKE_AR> qcs <TARGET> <LINK_FLAGS> <OBJECTS>"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_CXX_ARCHIVE_FINISH=true
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_AR="$(TARGET_CC)-ar"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_C_COMPILER="$(TARGET_CC)"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_CXX_COMPILER="$(TARGET_CXX)"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_LINKER="$(TARGET_LD)"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_C_FLAGS="$(COMPILER_COMMONS_CFLAGS_SO)"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_CXX_FLAGS="$(COMPILER_COMMONS_CXXFLAGS_SO)"
+LIBRETRO_VICE_CONF_OPTS += -DCMAKE_LINKER_EXE_FLAGS="$(COMPILER_COMMONS_LDFLAGS_SO)"
+
+$(eval $(generic-package))

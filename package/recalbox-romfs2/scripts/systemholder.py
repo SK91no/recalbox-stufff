@@ -1,0 +1,433 @@
+#!/usr/bin/env python
+
+from typing import List, Dict
+
+from configin import ConfigIn
+from inisettings import IniSettings
+
+
+class SystemHolder:
+
+    class SystemProperties:
+
+        __systemTypes: Dict[str, int] = {
+            "arcade": 0,
+            "console": 1,
+            "handheld": 2,
+            "computer": 3,
+            "virtual": 4,
+            "engine": 5,
+            "port": 6,
+            "fantasy": 7,
+        }
+
+        __deviceRequirement: Dict[str, int] = {
+            "no": 0,
+            "optional": 1,
+            "recommended": 2,
+            "mandatory": 3,
+        }
+
+        def __init__(self, systemtype: str, pad: str, keyboard: str, mouse: str, lightgun: str, releasedate: str, manufacturer : str, retroachievements: bool, crtmultiresolution: bool, crtmultiregion: bool, ignoredfiles: str):
+            if systemtype not in self.__systemTypes.keys(): raise TypeError("Invalid system type! {}".format(systemtype))
+            if pad not in self.__deviceRequirement.keys(): raise TypeError("Invalid pad type! {}".format(pad))
+            if keyboard not in self.__deviceRequirement.keys(): raise TypeError("Invalid keyboard type! {}".format(keyboard))
+            if mouse not in self.__deviceRequirement.keys(): raise TypeError("Invalid mouse type! {}".format(mouse))
+            if lightgun not in self.__deviceRequirement.keys(): raise TypeError("Invalid lightgun type! {}".format(lightgun))
+            self.__type: str = systemtype
+            self.__pad: str = pad
+            self.__keyboard: str = keyboard
+            self.__mouse: str = mouse
+            self.__lightgun: str = lightgun
+            self.__releasedate: str = releasedate
+            self.__manufacturer = manufacturer
+            self.__retroachievements: bool = retroachievements
+            self.__multiresolution: bool = crtmultiresolution
+            self.__multiregion: bool = crtmultiregion
+            self.__ignoredfiles: List[str] = ignoredfiles.split(',')
+
+        def serialize(self):
+            return {
+                "type": self.__type,
+                "pad": self.__pad,
+                "keyboard": self.__keyboard,
+                "mouse": self.__mouse,
+                "lightgun": self.__lightgun,
+                "releasedate": self.__releasedate,
+                "manufacturer": self.__manufacturer,
+                "retroachievements": '1' if self.__retroachievements else '0',
+                "crt.multiresolution": '1' if self.__multiresolution else '0',
+                "crt.multiregion": '1' if self.__multiregion else '0',
+                "ignoredfiles": ','.join(self.__ignoredfiles)
+            }
+
+        @property
+        def Type(self): return self.__type
+
+        @property
+        def TypeEnum(self): return self.__systemTypes[self.__type]
+
+        @property
+        def Pad(self): return self.__pad
+
+        @property
+        def PadEnum(self): return self.__deviceRequirement[self.__pad]
+
+        @property
+        def Keyboard(self): return self.__keyboard
+
+        @property
+        def KeyboardEnum(self): return self.__deviceRequirement[self.__keyboard]
+
+        @property
+        def Mouse(self): return self.__mouse
+
+        @property
+        def MouseEnum(self): return self.__deviceRequirement[self.__mouse]
+
+        @property
+        def LightGun(self): return self.__lightgun
+
+        @property
+        def LightGunEnum(self): return self.__deviceRequirement[self.__lightgun]
+
+        @property
+        def ReleaseDate(self): return self.__releasedate
+
+        @property
+        def Manufacturer(self): return self.__manufacturer
+
+        @property
+        def RetroAchievements(self) -> bool: return self.__retroachievements
+
+        @property
+        def CrtMultiresolution(self) -> bool: return self.__multiresolution
+
+        @property
+        def CrtMultiRegion(self) -> bool: return self.__multiregion
+
+        @property
+        def IgnoredFiles(self) -> List[str]: return self.__ignoredfiles
+
+    class Core:
+
+        class ArcadeProperties:
+
+            def __init__(self, file: str, ignore: str):
+                self.__file: str = file
+                self.__ignore: str = ignore
+
+            def Serialize(self):
+                return {
+                    "file": self.__file,
+                    "ignore": self.__ignore,
+                }
+
+            @property
+            def IsValid(self) -> bool: return len(self.__file) > 0
+
+            @property
+            def File(self) -> str: return self.__file
+
+            @property
+            def Ignore(self) -> str: return self.__ignore
+
+        __CompatibilityValues: Dict[str, int] = {
+            "unknown": 0,
+            "high": 1,
+            "good": 2,
+            "average": 3,
+            "low" : 4,
+        }
+
+        __VideoBackendValues: Dict[str, int] = {
+            "unknown": 0,
+            "default": 1,
+            "kms": 2,
+            "x11r7": 3,
+            "wayland": 4,
+        }
+
+        def __init__(self, package: str, priority: int, emulator: str, core: str, extensions: str, netplay: bool, softpatching: bool, compatibility: str, speed: str, crtavailable: bool,
+                     arcadefile: str, arcadeignore: str, subfolder: str, video_backend: str):
+            self.__package: str = package
+            self.__priority: int = priority
+            self.__emulator: str = emulator
+            self.__core: str = core
+            self.__extensions: List[str] = extensions.split(' ')
+            self.__netplay: bool = netplay
+            self.__softpatching: bool = softpatching
+            if len(compatibility) == 0: compatibility = "unknown"
+            if compatibility not in self.__CompatibilityValues.keys(): raise TypeError("Invalid compatibility! {}".format(compatibility))
+            self.__compatibility: str = compatibility
+            self.__speed: str = speed
+            self.__crtavailable: bool = crtavailable
+            self.__arcade = SystemHolder.Core.ArcadeProperties(arcadefile, arcadeignore)
+            self.__subfolder = subfolder
+            if len(video_backend) == 0: video_backend = "default"
+            if video_backend not in self.__VideoBackendValues.keys(): raise TypeError("Invalid video backend! {}".format(video_backend))
+            self.__video_backend = video_backend
+            pass
+
+        @property
+        def arcade(self) -> ArcadeProperties:
+            return self.__arcade
+
+        @property
+        def priority(self) -> int:
+            return self.__priority
+
+        @property
+        def package(self) -> str:
+            return self.__package
+
+        @property
+        def emulator(self) -> str:
+            return self.__emulator
+
+        @property
+        def core(self) -> str:
+            return self.__core
+
+        @property
+        def extensions(self) -> List[str]:
+            return self.__extensions
+
+        @property
+        def netplay(self) -> bool:
+            return self.__netplay
+
+        @property
+        def softpatching(self) -> bool:
+            return self.__softpatching
+
+        @property
+        def compatibility(self) -> str:
+            return self.__compatibility
+
+        @property
+        def speed(self) -> str:
+            return self.__speed
+
+        @property
+        def crtavailable(self) -> bool:
+            return self.__crtavailable
+
+        @property
+        def subfolder(self) -> str:
+            return self.__subfolder
+
+        @property
+        def video_backend(self) -> str:
+            return self.__video_backend
+
+        def serialize(self):
+            return {
+                "name": self.__core,
+                "priority": str(self.__priority),
+                "extensions": ' '.join(self.__extensions),
+                "netplay": '1' if self.__netplay else '0',
+                "softpatching": '1' if self.__softpatching else '0',
+                "compatibility": self.__compatibility,
+                "speed": self.__speed,
+                "crt.available": '1' if self.__crtavailable else '0',
+                "video.backend": self.__video_backend,
+            }
+
+    __COMMAND_DEFAULT: str = "python /usr/bin/emulatorlauncher.pyc %CONTROLLERSCONFIG% -system %SYSTEM% -rom %ROM% -emulator %EMULATOR% -core %CORE% -ratio %RATIO% -videobackend %VIDEO_BACKEND% %NETPLAY% %CRT%"
+
+    def __init__(self, arch: str, systemIni: str, config: ConfigIn):
+        self.__config = config
+        self.__systemIni: str = systemIni
+        self.__arch: str = arch
+        self.__uuid: str = "uuid"
+        self.__name: str = "Name"
+        self.__fullname: str = "Fullname"
+        self.__theme: str = "Theme folder"
+        self.__roms: str = "Roms folder"
+        self.__screenscraperId: int = 0 # Screenscraper's system ID
+        self.__iconUnicode: str = "$0" # Icon unicode char in recalbox font
+        self.__command: str = "Command template"
+        self.__extensions: str = "Global extension list"
+        self.__extensiontypes: str = "Extension types list"
+        self.__docLinks: Dict[str, str] = {
+          "fr": "FR Documentation link",
+          "en": "EN Documentation link",
+          "es": "ES Documentation link",
+        }
+        self.__port: bool = False
+        self.__readOnly: bool = False
+        self.__hasDownloader: bool = False
+        self.__properties = SystemHolder.SystemProperties("virtual", "no", "no", "no", "no", "", "virtual", False, False, False, "")
+        self.__coreLists: Dict[str, List[SystemHolder.Core]] = dict()
+        self.__coreCount: int = 0
+        self.__deserialize()
+        pass
+
+    def DocLinks(self, language: str) -> str:
+        return  self.__docLinks[language] if language in self.__docLinks else ""
+
+    @property
+    def Cores(self) -> Dict[str, List[Core]]: return self.__coreLists
+
+    @property
+    def CoreCount(self) -> int: return self.__coreCount
+
+    @property
+    def Properties(self) -> SystemProperties: return self.__properties
+
+    @property
+    def Uuid(self) -> str: return self.__uuid
+
+    @property
+    def Name(self) -> str: return self.__name
+
+    @property
+    def FullName(self) -> str: return self.__fullname
+
+    @property
+    def ThemeFolder(self) -> str: return self.__theme
+
+    @property
+    def RomFolder(self) -> str: return self.__roms
+
+    @property
+    def Command(self) -> str: return self.__command
+
+    @property
+    def Extensions(self) -> str: return self.__extensions
+
+    @property
+    def ExtensionTypes(self) -> str: return self.__extensiontypes
+
+    @property
+    def ScreenScraperId(self) -> int: return self.__screenscraperId
+
+    @property
+    def IconUnicode(self) -> str: return self.__iconUnicode
+
+    @property
+    def IsPort(self) -> bool: return self.__port
+
+    @property
+    def HasDownloader(self) -> bool: return self.__hasDownloader
+
+    @property
+    def IsReadOnly(self) -> bool: return self.__readOnly
+
+    @property
+    def IsDefaultCommand(self) -> bool: return self.__command == self.__COMMAND_DEFAULT
+
+    @staticmethod
+    def DefaultCommand() -> str: return SystemHolder.__COMMAND_DEFAULT
+
+    def __get(self, ini: IniSettings, section: str, key: str, default: str, required: bool) -> str:
+        # Arch Section has the highest priority
+        archSection: str = section + "." + self.__arch
+        if ini.hasSection(archSection):
+            if ini.hasOption(archSection, key):
+                return ini.getOption(archSection, key, default)
+
+        # Then Arch Key
+        archKey: str = key + "." + self.__arch
+        if ini.hasOption(section, archKey):
+            return ini.getOption(section, archKey, default)
+
+        # Then regular section/key
+        if ini.hasOption(section, key):
+            return ini.getOption(section, key, default)
+
+        if not required:
+            return default
+        raise KeyError("Missing {}:{} in {}".format(section, key, ini.getSettingsFile()))
+
+    @staticmethod
+    def __ValidateExtensionType(ini: IniSettings, inputs: str) -> str:
+        if len(inputs) > 0:
+            groups: list[str] = inputs.split(",")
+            for group in groups:
+                key, value = group.split("=")
+                if value not in ("cart", "cd", "hd", "file", "tape", "qd", "fd3", "fd35", "fd525", "pcb", "md"):
+                    raise KeyError("Invalid type {} in extension.types from {}".format(value, ini.getSettingsFile()))
+                extensions: list[str] = key.split('|')
+                for extension in extensions:
+                    if len(extension) > 4 or '.' in extension or (not extension.isalnum() and extension != '*'):
+                        raise KeyError("Invalid extension {} in extension.types from {}".format(extension, ini.getSettingsFile()))
+        return inputs
+
+    def __deserialize(self):
+        # Load configuration
+        desc = IniSettings(self.__systemIni, extraSpaces=True)
+        desc.loadFile(True)
+
+        # System part
+        self.__uuid: str = self.__get(desc, "system", "uuid", "", True)
+        self.__name: str = self.__get(desc, "system", "name", "", True)
+        self.__fullname: str = self.__get(desc, "system", "fullname", "", True)
+        self.__theme: str = self.__get(desc, "system", "theme.folder", "", True)
+        self.__roms: str = self.__get(desc, "system", "roms.folder", "", True)
+        self.__screenscraperId: int = int(self.__get(desc, "system", "screenscraper.id", "0", True))
+        self.__iconUnicode: str = self.__get(desc, "system", "icon.unicode", "$0", True)
+        self.__extensiontypes: str = self.__ValidateExtensionType(desc, self.__get(desc, "system", "extension.types", "", True))
+        self.__command: str = self.__get(desc, "system", "command", self.__COMMAND_DEFAULT, False)
+        self.__docLinks["fr"] = self.__get(desc, "system", "doc.link.fr", "", False)
+        self.__docLinks["en"] = self.__get(desc, "system", "doc.link.en", "", False)
+        self.__docLinks["es"] = self.__get(desc, "system", "doc.link.es", "", False)
+        self.__port: bool = self.__get(desc, "system", "port", "0", False) == '1'
+        self.__hasDownloader: bool = self.__get(desc, "system", "downloader", "0", False) == '1'
+        self.__readOnly: bool = self.__get(desc, "system", "readonly", "0", False) == '1'
+
+        # Create Cores
+        extensions: set[str] = set()
+        for i in range(0, 20):
+            coreSection = "core.{}".format(i)
+            coreSectionArch = "{}.{}".format(coreSection, self.__arch)
+            if desc.hasSection(coreSection) or desc.hasSection(coreSectionArch):
+                # deserialize
+                core = SystemHolder.Core(
+                    package=self.__get(desc, coreSection, "package", "", True),
+                    priority=int(self.__get(desc, coreSection, "priority", "", True)),
+                    emulator=self.__get(desc, coreSection, "emulator", "", True),
+                    core=self.__get(desc, coreSection, "core", "", True),
+                    extensions=self.__get(desc, coreSection, "extensions", "", True),
+                    netplay=(self.__get(desc, coreSection, "netplay", "", True) == '1'),
+                    softpatching=(self.__get(desc, coreSection, "softpatching", "", True) == '1'),
+                    compatibility=self.__get(desc, coreSection, "compatibility", "", True),
+                    speed=self.__get(desc, coreSection, "speed", "", True),
+                    crtavailable=(self.__get(desc, coreSection, "crt.available", "", False) == '1'),
+                    arcadefile=self.__get(desc, coreSection, "arcade.file", "", False),
+                    arcadeignore=self.__get(desc, coreSection, "arcade.ignore", "", False),
+                    subfolder=self.__get(desc, coreSection, "roms.subfolder", "", False),
+                    video_backend=self.__get(desc, coreSection, "video.backend", "", False)
+                )
+                # Package defined?
+                if self.__config.isDefined(core.package):
+                    # count
+                    self.__coreCount = self.__coreCount + 1
+                    # record core
+                    if core.emulator not in self.__coreLists: self.__coreLists[core.emulator] = [core]
+                    else:                                     self.__coreLists[core.emulator].append(core)
+                    # Add extensions to global list
+                    for e in core.extensions:
+                        extensions.add(e)
+
+        # Record extensions
+        self.__extensions = ' '.join(extensions)
+        if "files:" in self.__extensions:
+            self.__extensions = "files:" + self.__extensions.replace("files:", "")
+
+        # Properties
+        self.__properties = SystemHolder.SystemProperties(
+            systemtype=self.__get(desc, "properties", "type", "", True),
+            pad=self.__get(desc, "properties", "device.pad", "no", True),
+            keyboard=self.__get(desc, "properties", "device.keyboard", "no", True),
+            mouse=self.__get(desc, "properties", "device.mouse", "no", True),
+            lightgun=self.__get(desc, "properties", "device.lightgun", "no", True),
+            releasedate=self.__get(desc, "properties", "release.date", "", True),
+            manufacturer=self.__get(desc, "properties", "manufacturer", "", True),
+            retroachievements=(self.__get(desc, "properties", "retroachievements", "0", True) == '1'),
+            crtmultiresolution=(self.__get(desc, "properties", "crt.multiresolution", "0", True) == '1'),
+            crtmultiregion=(self.__get(desc, "properties", "crt.multiregion", "0", True) == '1'),
+            ignoredfiles=self.__get(desc, "properties", "ignoredfiles", "", False),
+        )
+

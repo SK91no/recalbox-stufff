@@ -1,0 +1,37 @@
+#!/bin/bash
+set -x
+source /recalbox/scripts/recalbox-utils.sh
+
+ARCH=$(getArchName)
+
+case "$ARCH" in
+    rpi1|rpizero2legacy)
+        /usr/bin/raspi2png.real "$@"
+        ;;
+    x86|x86_64)
+        /usr/bin/ffmpeg -f x11grab -framerate 1 -video_size "$(DISPLAY=:0 xrandr |grep \* |awk '{print $1}')" -i :0.0 -vframes 1 -vcodec png "$2"
+        ;;
+    odroidgo2)
+        ffmpeg -y -i "$2" -vf transpose=1 /tmp/temp.png && mv -f /tmp/temp.png "$2"
+        ;;
+    *)
+        if currentVideoOnCRT; then
+            card=$(getCurrentCrtDriDevice)
+            res="ih*4/3:ih"
+            # since some time the plane is bgra in ES and still bgr0 on games
+            if grep -q "Action=run" /tmp/es_state.inf; then
+              /usr/bin/ffmpeg -device $card -f kmsgrab -i - -vf 'hwdownload,format=bgr0' -framerate 1 -frames:v 1 "$2"
+            else
+              /usr/bin/ffmpeg -device $card -f kmsgrab -i - -vf 'hwdownload,format=bgra' -framerate 1 -frames:v 1 "$2"
+            fi
+            /usr/bin/ffmpeg -i "$2" -vf scale="$res" /tmp/temp.png && mv -f /tmp/temp.png "$2"
+        elif useWayland; then
+            grim "$2"
+        else
+            /usr/bin/kmsgrab "$2"
+        fi
+        if [ "$ARCH" = "odroidgo2" ] && [ $? -eq 0 ]; then
+            ffmpeg -y -i "$2" -vf transpose=1 /tmp/temp.png && mv -f /tmp/temp.png "$2"
+        fi
+        ;;
+esac

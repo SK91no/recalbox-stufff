@@ -1,0 +1,12 @@
+--- dolphin-emu-1b85da9b85e72a555a08138aafcd2d75210ae078/Source/Core/InputCommon/ControllerInterface/ControllerInterface.h	2025-10-01 23:48:23.604683789 +0200
++++ dolphin-emu-1b85da9b85e72a555a08138aafcd2d75210ae078/Source/Core/InputCommon/ControllerInterface/ControllerInterface.h	2025-10-01 23:48:33.940155659 +0200
+@@ -34,9 +34,6 @@
+ #if defined(HAVE_SDL2)
+ #define CIFACE_USE_SDL
+ #endif
+-#if defined(HAVE_HIDAPI)
+-#define CIFACE_USE_STEAMDECK
+-#endif
+ 
+ namespace ciface
+ {

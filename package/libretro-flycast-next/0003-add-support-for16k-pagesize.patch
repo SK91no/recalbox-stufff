@@ -1,0 +1,35 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 648d9f94..595dbb43 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -100,6 +100,7 @@ option(ENABLE_DC_PROFILER "Build with support for target machine (SH4) profiler"
+ option(ENABLE_FC_PROFILER "Build with support for host app (Flycast) profiler" OFF)
+ option(USE_DISCORD "Use Discord Presence API" OFF)
+ option(USE_LIBCDIO "Use libcdio for CDROM access" OFF)
++option(PAGESIZE16K "pagesize 16K" OFF)
+
+ if(IOS AND NOT LIBRETRO)
+ 	set(USE_VULKAN OFF CACHE BOOL "Force vulkan off" FORCE)
+@@ -191,6 +192,9 @@ if(NINTENDO_SWITCH)
+
+ elseif(LIBRETRO)
+ 	add_library(${PROJECT_NAME} SHARED core/emulator.cpp)
++	if (PAGESIZE16K)
++		target_compile_definitions(${PROJECT_NAME} PRIVATE FLYCAST_PAGE_SIZE_16K)
++	endif()
+ 	if(APPLE)
+ 		if(NOT IOS)
+ 			set(CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} -Wl,-undefined,error")
+diff --git a/core/stdclass.h b/core/stdclass.h
+index c6b41d26..758f81b3 100644
+--- a/core/stdclass.h
++++ b/core/stdclass.h
+@@ -20,7 +20,7 @@
+ #undef PAGE_SIZE
+ extern const unsigned long PAGE_SIZE;
+ #define MAX_PAGE_SIZE 16384
+-#elif defined(__APPLE__) && defined(__aarch64__)
++#elif (defined(__APPLE__) && defined(__aarch64__)) || defined(FLYCAST_PAGE_SIZE_16K)
+ #define PAGE_SIZE 16384
+ #elif !defined(PAGE_SIZE)
+ #define PAGE_SIZE 4096

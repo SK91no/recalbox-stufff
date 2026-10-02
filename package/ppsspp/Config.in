@@ -1,0 +1,11 @@
+config BR2_PACKAGE_PPSSPP
+	bool "ppsspp"
+	depends on BR2_PACKAGE_SDL2
+	depends on BR2_PACKAGE_ZLIB
+	depends on BR2_PACKAGE_FFMPEG_SWSCALE
+	select BR2_PACKAGE_SNAPPY
+	select BR2_PACKAGE_VULKAN_LOADER
+	select BR2_PACKAGE_ZIP
+	select BR2_PACKAGE_LIBGLU if BR2_PACKAGE_HAS_LIBGL
+	help
+	  A  PSP emulator

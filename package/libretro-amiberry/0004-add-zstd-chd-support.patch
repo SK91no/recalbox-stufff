@@ -1,0 +1,23 @@
+The CMake build enables USE_ZSTD by default, the libretro Makefile never did.
+Without it chd_file::open() rejects any CHD compressed with cdzs/zstd, and
+blkdev_cdimage falls back to "CD: couldn't mount".
+
+diff --git a/libretro/Makefile b/libretro/Makefile
+--- a/libretro/Makefile
++++ b/libretro/Makefile
+@@ -200,6 +200,15 @@ INCFLAGS += -I$(LIBRETRO_COMMON)/include
+ 
+ INCFLAGS += $(ZLIB_CFLAGS)
+ LDFLAGS += $(ZLIB_LIBS)
++
++ZSTD_CFLAGS ?= $(shell $(PKG_CONFIG) --cflags libzstd 2>/dev/null)
++ZSTD_LIBS ?= $(shell $(PKG_CONFIG) --libs libzstd 2>/dev/null)
++ifeq ($(ZSTD_LIBS),)
++ZSTD_LIBS := -lzstd
++endif
++FLAGS += -DUSE_ZSTD
++INCFLAGS += $(ZSTD_CFLAGS)
++LDFLAGS += $(ZSTD_LIBS)
+ 
+ # nlohmann/json (header-only) — fetched once into deps/
+ NLOHMANN_JSON_VERSION ?= v3.11.3

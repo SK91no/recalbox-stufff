@@ -1,0 +1,13 @@
+--- sdl-1.2.15/src/video/fbcon/SDL_fbvideo.c.orig	2024-08-01 23:12:00.939183983 +0200
++++ sdl-1.2.15/src/video/fbcon/SDL_fbvideo.c	2024-08-01 23:11:01.749969629 +0200
+@@ -259,8 +259,8 @@
+ 	}
+ 	SDL_memset(this->hidden, 0, (sizeof *this->hidden));
+ 
+-	wait_vbl = SDL_getenv("SDL_FBCON_NOVBL") ? FB_NULL : FB_WaitVBL;
+-	wait_idle = FB_WaitIdle;
++	wait_vbl = SDL_getenv("SDL_FBCON_NOVBL") ? (void*)FB_NULL : (void*)FB_WaitVBL;
++	wait_idle = (void*)FB_WaitIdle;
+ 	mouse_fd = -1;
+ 	keyboard_fd = -1;
+ 

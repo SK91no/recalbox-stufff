@@ -1,0 +1,48 @@
+################################################################################
+#
+# recalbox-rockchip-mali
+#
+################################################################################
+
+RECALBOX_ROCKCHIP_MALI_VERSION = db646740a751082b31d4b53cc69ae311aab7e20f
+RECALBOX_ROCKCHIP_MALI_SITE = https://gitlab.com/recalbox/packages/libraries/rockchip-linux-libmali.git
+RECALBOX_ROCKCHIP_MALI_SITE_METHOD = git
+RECALBOX_ROCKCHIP_MALI_INSTALL_STAGING = YES
+
+RECALBOX_ROCKCHIP_MALI_DEPENDENCIES = libdrm
+RECALBOX_ROCKCHIP_MALI_PROVIDES = libegl libgles libgbm
+RECALBOX_ROCKCHIP_MALI_LICENSE = COPYRIGHT
+RECALBOX_ROCKCHIP_MALI_LICENSE_FILES = END_USER_LICENCE_AGREEMENT.txt
+
+ifeq ($(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_BIFROST_G31),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += \
+	-Dplatform=gbm \
+	-Dgpu=bifrost-g31 \
+	-Dversion=$(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_LIB_VERSION)
+else ifeq ($(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_BIFROST_G52),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += \
+	-Dplatform=gbm \
+	-Dgpu=bifrost-g52 \
+	-Dversion=$(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_LIB_VERSION)
+else ifeq ($(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_MIDGARD),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += \
+	-Dplatform=gbm \
+	-Dgpu=midgard-t86x \
+	-Dversion=$(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_LIB_VERSION)
+else ifeq ($(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_UTGARD),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += \
+	-Dplatform=gbm \
+	-Dgpu=utgard-450 \
+	-Dversion=$(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_LIB_VERSION)
+else ifeq ($(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_VALHALL),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += \
+	-Dplatform=gbm \
+	-Dgpu=valhall-g610 \
+	-Dversion=$(BR2_PACKAGE_RECALBOX_ROCKCHIP_MALI_LIB_VERSION)
+endif
+
+ifneq ($(BR2_PACKAGE_MESA3D),y)
+RECALBOX_ROCKCHIP_MALI_CONF_OPTS += -Dkhr-header=true
+endif
+
+$(eval $(meson-package))

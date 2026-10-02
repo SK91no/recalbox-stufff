@@ -1,0 +1,46 @@
+From 0ebba2d27bc439b5cc09c1cc30890e7075bd6c94 Mon Sep 17 00:00:00 2001
+From: Adrien Beudin <beudbeud@gmail.com>
+Date: Mon, 5 Jan 2026 17:06:17 +0100
+Subject: [PATCH 25/27] crt: load switchres.ini from retroarch configuration
+ directory
+
+---
+ gfx/video_crt_switch.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index 22b4d82bad..dc45a145f8 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -164,6 +164,7 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+    gfx_ctx_ident_t gfxctx;
+    char ra_config_path[PATH_MAX_LENGTH];
+    char sr_ini_file[PATH_MAX_LENGTH];
++   char config_directory[DIR_MAX_LENGTH];
+ 
+    if (monitor_index+1 >= 0 && monitor_index+1 < 10)
+       snprintf(index, sizeof(index), "%d", monitor_index);
+@@ -296,6 +297,20 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT] Loading switchres.ini override file from \"%s\".\n", sr_ini_file);
+             sr_load_ini(sr_ini_file);
+          }
++         if (crt_mode == 17)
++         {
++            fill_pathname_application_special(config_directory,
++                  sizeof(config_directory),
++                  APPLICATION_SPECIAL_DIRECTORY_CONFIG);
++            fill_pathname_join(sr_ini_file,
++                  config_directory, "switchres.ini", sizeof(sr_ini_file));
++
++            if (path_is_valid(sr_ini_file))
++            {
++               RARCH_LOG("[CRT]: Loading switchres.ini in %s directory \n", config_directory);
++               sr_load_ini(sr_ini_file);
++            }
++         }
+       }
+    }
+ 
+-- 
+2.51.0
+

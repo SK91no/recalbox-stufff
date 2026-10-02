@@ -1,0 +1,7 @@
+ACTION=="remove", GOTO="joystick_end"
+ENV{ID_BUS}!="bluetooth", GOTO="joystick_end"
+ENV{ID_INPUT_JOYSTICK}!="1", GOTO="joystick_end"
+
+SUBSYSTEM=="input", KERNELS=="input[0-9]*", ENV{ID_MODEL_ENC}="$attr{name}"
+
+LABEL="joystick_end"

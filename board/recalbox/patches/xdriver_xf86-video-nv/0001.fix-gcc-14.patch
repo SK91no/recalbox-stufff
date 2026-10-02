@@ -1,0 +1,24 @@
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index b7188e3..65b8254 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -64,6 +64,7 @@ static ModeStatus NVValidMode(SCRN_ARG_TYPE arg, DisplayModePtr mode,
+ static Bool    NVDriverFunc(ScrnInfoPtr pScrnInfo, xorgDriverFuncOp op,
+ 			      pointer data);
+ #endif
++extern void xf86DisableRandR();
+ 
+ /* Internally used functions */
+ 
+diff --git a/src/riva_driver.c b/src/riva_driver.c
+index 759501e..0e25e06 100644
+--- a/src/riva_driver.c
++++ b/src/riva_driver.c
+@@ -58,6 +58,7 @@ static void	RivaSave(ScrnInfoPtr pScrn);
+ static void	RivaRestore(ScrnInfoPtr pScrn);
+ static Bool	RivaModeInit(ScrnInfoPtr pScrn, DisplayModePtr mode);
+ 
++extern void xf86DisableRandR();
+ 
+ typedef enum {
+     OPTION_SW_CURSOR,

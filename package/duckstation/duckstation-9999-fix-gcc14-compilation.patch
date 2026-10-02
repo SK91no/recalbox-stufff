@@ -1,0 +1,20 @@
+--- duckstation-5b3c7072e760e70a458250f578b1cfaff23fa8bc/src/common/log.h.orig	2024-08-03 23:27:20.064718895 +0200
++++ duckstation-5b3c7072e760e70a458250f578b1cfaff23fa8bc/src/common/log.h	2024-08-03 23:26:17.505574160 +0200
+@@ -2,6 +2,7 @@
+ #include "types.h"
+ #include <cinttypes>
+ #include <mutex>
++#include <stdarg.h>
+ 
+ enum LOGLEVEL
+ {
+--- duckstation-5b3c7072e760e70a458250f578b1cfaff23fa8bc/src/frontend-common/cubeb_audio_stream.cpp.orig	2024-08-03 23:28:40.293621027 +0200
++++ duckstation-5b3c7072e760e70a458250f578b1cfaff23fa8bc/src/frontend-common/cubeb_audio_stream.cpp	2024-08-03 23:29:19.269753974 +0200
+@@ -1,6 +1,7 @@
+ #include "cubeb_audio_stream.h"
+ #include "common/assert.h"
+ #include "common/log.h"
++#include <string>
+ Log_SetChannel(CubebAudioStream);
+ 
+ #ifdef _WIN32

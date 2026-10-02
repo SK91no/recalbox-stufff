@@ -1,0 +1,301 @@
+/**
+ * @author Nicolas TESSIER aka Asthonishia
+ */
+
+// app global css in SASS form
+body
+  color: $primary
+
+// Custom Scrollbar
+::-webkit-scrollbar
+  width: .8em
+
+::-webkit-scrollbar-track
+  background: $primary
+  border-top-right-radius: 4px
+  border-bottom-right-radius: 4px
+
+::-webkit-scrollbar-thumb
+  background: $secondary
+  border-radius: 4px
+
+::-webkit-scrollbar-thumb:hover
+  background: $accent
+
+// Custom font
+$recalbox-font-family: "recalbox-manager" !default
+$recalbox-font-path: "../assets/fonts" !default
+
+$icon-gitbook: "\e900"
+$icon-recalbox-typo: "\e901"
+$icon-recalbox-simple: "\e902"
+$icon-recalbox-all: "\e903"
+$icon-emustation: "\e904"
+$icon-recalbox-buttons: "\e905"
+
+@font-face
+  font-family: 'recalbox-manager'
+  src: url('#{$recalbox-font-path}/#{$recalbox-font-family}.eot?hcbhz4')
+  src: url('#{$recalbox-font-path}/#{$recalbox-font-family}.eot?hcbhz4#iefix') format('embedded-opentype'), url('#{$recalbox-font-path}/#{$recalbox-font-family}.ttf?hcbhz4') format('truetype'), url('#{$recalbox-font-path}/#{$recalbox-font-family}.woff?hcbhz4') format('woff'), url('#{$recalbox-font-path}/#{$recalbox-font-family}.svg?hcbhz4##{$recalbox-font-family}') format('svg')
+  font-weight: normal
+  font-style: normal
+  font-display: block
+
+[class^="icon-"], [class*=" icon-"]
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$recalbox-font-family}' !important
+  speak: none
+  font-style: normal
+  font-weight: normal
+  font-variant: normal
+  text-transform: none
+  line-height: 1
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+.icon-gitbook
+  &:before
+    content: $icon-gitbook
+
+.icon-recalbox-typo
+  &:before
+    content: $icon-recalbox-typo
+
+.icon-recalbox-simple
+  &:before
+    content: $icon-recalbox-simple
+
+.icon-recalbox-all
+  &:before
+    content: $icon-recalbox-all
+
+.icon-emustation
+  &:before
+    content: $icon-emustation
+
+.icon-recalbox-buttons
+  &:before
+    content: $icon-recalbox-buttons
+
+// Animations
+@keyframes slidein
+  from
+    right: -38rem
+    bottom: -22rem
+  to
+    right: -6rem
+    bottom: 13rem
+
+// Backgrounds
+.home,
+.monitoring,
+.settings,
+.emulation,
+.kodi,
+.help-dialog,
+.virtual-keyboard,
+.screenshots,
+.patreon
+  overflow: hidden
+
+.background
+  &:before
+    font: normal normal normal 24px/1 "Material Design Icons"
+    font-size: 45em
+    text-align: center
+    display: block
+    line-height: 100px
+    position: absolute
+    bottom: 13rem
+    right: -6rem
+    transform: rotate(15deg)
+    color: $rc-mid-grey
+    animation-duration: .5s
+    animation-name: slidein
+
+// Custom Loader
+.custom-loader
+  &:after
+    display: block
+    content: ' '
+    background-image: url('../assets/logos_v2_recalbox-all-transparent.svg')
+    height: 70px
+    width: 70px
+    position: absolute
+    background-repeat: no-repeat
+    background-position: center
+    background-size: contain
+
+  svg
+    circle
+      stroke-width: 1px
+
+  div
+    &:not(.text-white)
+      position: absolute
+      margin: -33px
+
+    img
+      width: 45px
+
+.q-loading > div
+  margin: 90px 0 0
+  position: absolute
+  text-transform: uppercase
+  font-weight: 700
+  text-shadow: 0 0 4px #112131
+
+// Tab Panel
+.q-tab-panel
+  padding: 16px 8px
+
+// QDialog
+.q-dialog
+  .q-card
+    background: $primary
+    color: white
+
+    button
+      color: white!important
+
+// QSeparator
+.q-separator
+  margin-bottom: 14px
+
+// QCard
+.q-card--dark
+  border-color: rgb(0 0 0 / 28%)
+  box-shadow: 0 1px 5px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%)
+
+  .text-amber
+    color: $secondary!important
+
+  .q-hoverable:hover
+    color: $accent!important
+
+// Help container
+.help
+  background: $rc-light-grey
+  padding: .5em
+  border-left: 6px solid $rc-mid-grey
+
+// blank container
+.blank-container
+  margin: 0 8px 1em
+  background: white
+  padding: 1em
+
+// QTables
+.q-table
+  color: $primary
+
+// QRating
+.q-rating__icon
+  text-shadow: none
+
+// Notification
+.q-notification
+  transition: transform .2s, opacity 1s
+
+// Backgrounds : responsive
+@media(max-width: 700px)
+  .background
+    &:before
+      font-size: 18em
+      bottom: 3rem
+      right: -2rem
+
+  .home .home-emustation
+    height: calc(100vh - 292px - 5em)
+
+// Custom background et text classes
+.text-dark-grey-light
+  color: $dark-grey-light !important
+
+.text-dark-grey-medium
+  color: $dark-grey-medium !important
+
+.text-dark-grey-strong
+  color: $dark-grey-strong !important
+
+.text-dark-grey-stronger
+  color: $dark-grey-stronger !important
+
+.bg-dark-grey-light
+  background-color: $dark-grey-light !important
+
+.bg-dark-grey-medium
+  background-color: $dark-grey-medium !important
+
+.bg-dark-grey-strong
+  background-color: $dark-grey-strong !important
+
+.bg-dark-grey-stronger
+  background-color: $dark-grey-stronger !important
+  color: white
+
+// Dark mode
+.q-dark
+  color: $dark-grey-light
+  background: $dark-grey-medium
+
+.q-separator--dark
+  background: $dark-grey-light
+
+body.body--dark
+  body
+    color: $dark-grey-light
+
+  .text-primary
+    color: $dark-grey-light!important
+
+  .bg-primary
+    background: $dark-grey-stronger!important
+
+  .q-dark
+    color: $dark-grey-light
+
+  .q-table tbody td
+    border-color: $dark-grey-medium
+
+  .q-table--dark th, .q-table--dark .q-table__bottom
+    border-color: $dark-grey-stronger
+
+  .background
+    &:before
+      color: rgba($dark-grey-light, .2)
+
+  .q-tabs
+    background: $dark-grey-strong
+
+  .q-field--standout.q-field--dark .q-field__control
+    background: $dark-grey-medium
+
+  .q-slider--dark .q-slider__inner
+    background: $dark-grey-medium
+
+  .q-field__marginal
+    color: $dark-grey-light
+
+  .q-toggle__inner:not(.q-toggle__inner--truthy) .q-toggle__thumb::after
+    background: $dark-grey-light
+
+  .q-field--dark:not(.q-field--highlighted) .q-field__label
+    color: $dark-grey-light
+
+  .q-field--standout.q-field--dark.q-field--highlighted .q-field__native
+    color: $dark-grey-light
+
+  .q-field--standout.q-field--dark.q-field--highlighted .q-field__append
+    color: $dark-grey-light
+
+  .q-menu--dark
+    border: 1px solid $dark-grey-strong
+    box-shadow: none
+
+  .q-dialog
+    .q-card
+      background: $dark-grey-strong
+      color: white

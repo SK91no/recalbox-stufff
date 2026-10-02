@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KODI_SCRIPT_MODULE_ROUTING
+	bool "kodi-script-routing"
+	default n
+	depends on BR2_PACKAGE_KODI
+	help
+	  Kodi routing script module
+
+	  https://mirrors.kodi.tv/addons/matrix/script.module.routing/

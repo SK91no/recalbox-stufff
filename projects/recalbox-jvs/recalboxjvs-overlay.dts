@@ -1,0 +1,158 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+
+/ {
+    compatible = "brcm,bcm2712";
+
+    fragment@0 {
+        target-path = "/";
+        __overlay__ {
+
+            bridge: recalboxjvs {
+                compatible = "raspberrypi,recalboxrgbdual";
+                #address-cells = <1>;
+                #size-cells = <0>;
+
+                vc4-vga666-mode = <8>;
+                recalbox-jvs = <1>;
+
+                ports {
+                    #address-cells = <1>;
+                    #size-cells = <0>;
+
+                    port@0 {
+                        reg = <0>;
+                        vga_bridge_in: endpoint {
+                            remote-endpoint = <&dpi_out>;
+                        };
+                    };
+
+                    port@1 {
+                        reg = <1>;
+                        vga_bridge_out: endpoint {
+                            remote-endpoint = <&vga_con_in>;
+                        };
+                    };
+                };
+            };
+
+            vga {
+                compatible = "vga-connector";
+                label = "recalboxjvs";
+                port {
+                    vga_con_in: endpoint {
+                        remote-endpoint = <&vga_bridge_out>;
+                    };
+                };
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&dpi>;
+        __overlay__  {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&dpi_mode8_pins>;
+            port {
+                dpi_out: endpoint@0 {
+                    remote-endpoint = <&vga_bridge_in>;
+                };
+            };
+        };
+    };
+
+    fragment@4 {
+        target = <&gpio>;
+        __overlay__ {
+            // Default pinmux: includes gpio1 in the DPI bus — required for the
+            // interlaced sync line. Safe on rev>=3
+            dpi_mode8_pins: dpi_mode8_pins {
+                function = "dpi";
+                pins = "gpio1", "gpio2", "gpio3",
+                       "gpio4", "gpio5", "gpio6", "gpio7",
+                       "gpio8", "gpio9", "gpio10", "gpio11",
+                       "gpio12", "gpio13", "gpio14", "gpio15",
+                       "gpio16", "gpio17", "gpio18", "gpio19",
+                       "gpio20", "gpio21", "gpio22", "gpio23",
+                       "gpio24", "gpio25", "gpio26", "gpio27";
+                bias-disable;
+            };
+            // Safe pinmux for legacy proto wiring (rev<=2): gpio1 stays a GPIO
+            // because it carries the ESP32 RESET line — pulling it from the DPI
+            // CSYNC would keep the ESP32 in permanent reset.
+            dpi_mode8_pins_safe: dpi_mode8_pins_safe {
+                function = "dpi";
+                pins = "gpio2", "gpio3",
+                       "gpio4", "gpio5", "gpio6", "gpio7",
+                       "gpio8", "gpio9", "gpio10", "gpio11",
+                       "gpio12", "gpio13", "gpio14", "gpio15",
+                       "gpio16", "gpio17", "gpio18", "gpio19",
+                       "gpio20", "gpio21", "gpio22", "gpio23",
+                       "gpio24", "gpio25", "gpio26", "gpio27";
+                bias-disable;
+            };
+        };
+    };
+
+    fragment@5 {
+        target-path = "/";
+
+        __overlay__ {
+            gamepad_proxy: gamepad-proxy {
+                compatible = "recalbox,gamepad-proxy";
+                no-debug;
+                grab;
+                /* Combo modifier: 0=START, 1=MODE, 2=DISABLED */
+                combo-modifier = <0>;
+                /* Filter devices by name (substring match) */
+                device-filter = "RecalboxJVS";
+                /* ===== Timing Settings ===== */
+                /* Long press duration to trigger exit combo (ms), 0 to disable */
+                longpress-ms = <4000>;
+                /* Duration of exit combo press (ms) */
+                exit-combo-release-ms = <50>;
+                /* Delay for modifier tap (ms) */
+                modifier-tap-delay-ms = <100>;
+                /* Button release debounce (ms), 0 to disable */
+                debounce-ms = <10>;
+                /* ===== Feature Toggles ===== */
+                /* SHIFT long press = START+MODE (exit) */
+                no-longpress-exit;
+                /* L3+R3 = START+MODE (exit) */
+                thumbstick-exit;
+                /* SHIFT + button = MODE + button */
+                shift-mode-passthrough;
+                /* SHIFT + Up/Down = Volume */
+                shift-volume;
+                /* SHIFT + SOUTH = SELECT (credit) */
+                shift-credit;
+                /* SHIFT + axis -> SELECT (credit). Triplets <code dir threshold>.
+                 * Used on race cabs so START + accelerator pedal injects a coin. */
+                shift-credit-abs = <0x05 1 128>;
+            };
+        };
+    };
+
+    // DPI pinctrl to the safe variant that leaves gpio1 free.
+    fragment@6 {
+        target = <&dpi>;
+        __dormant__ {
+            pinctrl-0 = <&dpi_mode8_pins_safe>;
+        };
+    };
+
+    fragment@7 {
+        target = <&bridge>;
+        __dormant__ {
+            avoid_interlaced = <1>;
+        };
+    };
+
+    __overrides__ {
+        avoid_interlaced = <0>, "+6+7";
+        rev = <0>, "+6+7";
+    };
+};

@@ -1,0 +1,25 @@
+From 01018fc0b9b40d188d24a0fd87f3616a44dfa84f Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 10 Sep 2025 22:55:31 +0200
+Subject: [PATCH] fix RG353M renaming
+
+---
+ board/anbernic/rgxx3_rk3566/rgxx3-rk3566.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/board/anbernic/rgxx3_rk3566/rgxx3-rk3566.c b/board/anbernic/rgxx3_rk3566/rgxx3-rk3566.c
+index c1d1826fd14..d402374e90e 100644
+--- a/board/anbernic/rgxx3_rk3566/rgxx3-rk3566.c
++++ b/board/anbernic/rgxx3_rk3566/rgxx3-rk3566.c
+@@ -695,7 +695,7 @@ int ft_board_setup(void *blob, struct bd_info *bd)
+ 	if (gd->board_type == RG353M)
+ 		fdt_setprop(blob, 0, "model",
+ 			    rg3xx_model_details[RG353M].board_name,
+-			    sizeof(rg3xx_model_details[RG353M].board_name));
++			    strlen(rg3xx_model_details[RG353M].board_name));
+ 
+ 	if (rg3xx_model_details[gd->board_type].detect_panel) {
+ 		ret = rgxx3_panel_fixup(blob);
+-- 
+2.51.0
+

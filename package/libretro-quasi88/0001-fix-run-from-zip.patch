@@ -1,0 +1,25 @@
+From 0260772e3573a8fad8e466f16a3ea6bea7639fc5 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Mon, 20 Oct 2025 10:43:48 +0200
+Subject: [PATCH] fix run from zip
+
+---
+ src/LIBRETRO/libretro.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/LIBRETRO/libretro.c b/src/LIBRETRO/libretro.c
+index f77a7a5..f81449f 100644
+--- a/src/LIBRETRO/libretro.c
++++ b/src/LIBRETRO/libretro.c
+@@ -738,7 +738,7 @@ void retro_get_system_info(struct retro_system_info *info)
+ #define GIT_VERSION ""
+ #endif
+    info->library_version  = "0.6.4" GIT_VERSION;
+-   info->need_fullpath    = false;
++   info->need_fullpath    = true;
+    info->valid_extensions = "d88|m3u";
+    info->block_extract    = false;
+ }
+-- 
+2.51.1
+

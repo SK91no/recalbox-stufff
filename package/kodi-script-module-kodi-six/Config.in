@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KODI_SCRIPT_MODULE_KODI_SIX
+	bool "kodi-script-kodi-six"
+	default n
+	depends on BR2_PACKAGE_KODI
+	help
+	  Kodi Six script module
+
+	  https://mirrors.kodi.tv/addons/matrix/script.module.kodi-six/

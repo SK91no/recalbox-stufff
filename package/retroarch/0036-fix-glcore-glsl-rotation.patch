@@ -1,0 +1,53 @@
+Fix TATE rotation direction on GLCore with GLSL shaders (issue #18488)
+
+gl3_set_rotation() uses 270 * rotation for everything except hardware
+rendered cores with a bottom-left origin. That direction is meant for the
+Slang path, where the filter chain applies the rotation itself.
+
+The GLSL (.glslp) render chain of the gl3 driver follows the gl2
+conventions instead: the frame is drawn with flipped vertex positions
+(chain.vertex_ptr = gl3_vertexes_flipped) and rotated by gl->mvp, exactly
+like gl2, which always uses 90 * rotation. With 270 * rotation the result
+is off by 180 degrees, so TATE games were displayed upside down as soon as
+a GLSL preset was loaded (the overlay stayed correct, since overlays are
+always drawn with mvp_no_rot).
+
+Use the gl2 rotation direction when the GLSL chain is active, and recompute
+the rotation in gl3_set_shader(), since switching presets at runtime can
+toggle chain.active without going through a driver reinit.
+
+--- a/gfx/drivers/gl3.c
++++ b/gfx/drivers/gl3.c
+@@ -3345,6 +3345,8 @@
+    return false;
+ }
+ 
++static void gl3_set_rotation(void *data, unsigned rotation);
++
+ static bool gl3_set_shader(void *data,
+       enum rarch_shader_type type, const char *path)
+ {
+@@ -3384,6 +3386,10 @@
+    if (!gl3_init_filter_chain_with_path(gl, path))
+       return false;
+ 
++   /* chain.active may have just changed, and the rotation direction depends
++    * on it, so recompute it for the new chain. */
++   gl3_set_rotation(gl, retroarch_get_rotation());
++
+    if (gl->flags & GL3_FLAG_USE_SHARED_CONTEXT)
+       gl->ctx_driver->bind_hw_render(gl->ctx_data, true);
+ 
+@@ -3397,7 +3403,11 @@
+    if (!gl)
+       return;
+ 
+-   if (video_driver_is_hw_context() && (gl->flags & GL3_FLAG_HW_RENDER_BOTTOM_LEFT))
++   /* The GLSL render chain uses the gl2 conventions (flipped vertex positions
++    * plus gl->mvp), so it needs the gl2 rotation direction. The 270 case is
++    * for the Slang path, whose filter chain handles rotation itself. */
++   if (     gl->chain.active
++         || (video_driver_is_hw_context() && (gl->flags & GL3_FLAG_HW_RENDER_BOTTOM_LEFT)))
+       gl->rotation = 90 * rotation;
+    else
+       gl->rotation = 270 * rotation;

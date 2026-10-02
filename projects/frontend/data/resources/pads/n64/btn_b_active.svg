@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="manette_vue_de_haut" data-name="manette vue de haut" xmlns="http://www.w3.org/2000/svg" width="112.5312683" height="116.5308228" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 112.5312683 116.5308228">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        fill: url(#Dégradé_sans_nom_283);
+      }
+
+      .cls-3 {
+        fill: #00ff36;
+      }
+
+      .cls-4 {
+        fill: #1a1a1c;
+      }
+
+      .cls-5 {
+        fill: none;
+        opacity: .84;
+      }
+    </style>
+    <linearGradient id="Dégradé_sans_nom_283" data-name="Dégradé sans nom 283" x1="78.5416107" y1="49.7951628" x2="76.7573965" y2="41.9392614" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#00ff36"/>
+      <stop offset=".1220566" stop-color="#07ff3b" stop-opacity=".9731318"/>
+      <stop offset=".2979237" stop-color="#1dff4c" stop-opacity=".8982783"/>
+      <stop offset=".5063629" stop-color="#41ff67" stop-opacity=".7755695"/>
+      <stop offset=".738202" stop-color="#73ff8c" stop-opacity=".6061551"/>
+      <stop offset=".7459152" stop-color="#75ff8e" stop-opacity=".6"/>
+      <stop offset=".7677669" stop-color="#7cff94" stop-opacity=".6213632"/>
+      <stop offset=".8047815" stop-color="#90ffa4" stop-opacity=".6789738"/>
+      <stop offset=".8524469" stop-color="#b0ffbe" stop-opacity=".7727261"/>
+      <stop offset=".9082821" stop-color="#dcffe3" stop-opacity=".9011759"/>
+      <stop offset=".9472452" stop-color="#fff"/>
+    </linearGradient>
+  </defs>
+  <g id="btn_b_active">
+    <circle class="cls-4" cx="77.6930667" cy="45.9937789" r="4.5309007"/>
+    <circle class="cls-3" cx="77.6930667" cy="45.9937789" r="4.3234549"/>
+    <circle class="cls-2" cx="77.6782492" cy="45.9937789" r="4.0271036"/>
+    <g class="cls-5">
+      <path class="cls-1" d="m75.8445187,48.7587891v-5.6796875h1.0703125v5.6796875h-1.0703125Zm.46875,0v-1.03125h1.8125c.2451172,0,.4345703-.059082.5683594-.1777344s.2011719-.284668.2011719-.4980469v-.0117188c0-.2163086-.0673828-.3833008-.2011719-.5019531s-.3232422-.1777344-.5683594-.1777344h-1.8125v-1.03125h1.8125c.2216797,0,.3925781-.0561523.5136719-.1679688s.1816406-.2695312.1816406-.4726562c0-.1850586-.0605469-.3276367-.1816406-.4277344s-.2919922-.1503906-.5136719-.1503906h-1.8125v-1.03125h1.8476562c.5517578,0,.9794922.1342773,1.2832031.4023438s.4550781.6469727.4550781,1.1367188c0,.3305664-.0966797.6035156-.2910156.8183594s-.4677734.3520508-.8222656.4121094c.3779297.0522461.6699219.1958008.8769531.4316406s.3105469.5424805.3105469.9199219v.0117188c0,.4921875-.1523438.8730469-.4570312,1.1425781s-.734375.4042969-1.2890625.4042969h-1.9140625Z"/>
+    </g>
+  </g>
+</svg>

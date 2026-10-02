@@ -1,0 +1,10 @@
+config BR2_PACKAGE_ADVANCEMAME
+	bool "advancemame"
+	select BR2_PACKAGE_ARCADE_DATS
+	select BR2_PACKAGE_ALSA_LIB
+	select BR2_PACKAGE_FREETYPE
+	select BR2_PACKAGE_RPI_FIRMWARE
+	select BR2_PACKAGE_SDL2
+	help
+	  A MAME 0.106-based emulator
+	  http://www.advancemame.it

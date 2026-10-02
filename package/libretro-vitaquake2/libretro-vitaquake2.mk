@@ -1,0 +1,38 @@
+################################################################################
+#
+# VITAQUAKE2
+#
+################################################################################
+
+# Commit of 2024/06/29
+LIBRETRO_VITAQUAKE2_VERSION = f17824b379b1b43c48b4cffb7b6715758bb6af1c
+LIBRETRO_VITAQUAKE2_SITE = $(call github,libretro,vitaquake2,$(LIBRETRO_VITAQUAKE2_VERSION))
+LIBRETRO_VITAQUAKE2_LICENSE = GPL-2.0
+LIBRETRO_VITAQUAKE2_LICENSE_FILES = LICENSE
+LIBRETRO_VITAQUAKE2_DEPENDENCIES =
+
+ifeq ($(BR2_PACKAGE_RECALBOX_HAS_LIBGLES3),y)
+LIBRETRO_VITAQUAKE2_PLATFORM=recalbox-embedded rpi4
+LIBRETRO_VITAQUAKE2_DEPENDENCIES += libgles
+else ifeq ($(BR2_PACKAGE_RECALBOX_HAS_LIBGLES),y)
+LIBRETRO_VITAQUAKE2_PLATFORM=recalbox-embedded
+LIBRETRO_VITAQUAKE2_DEPENDENCIES += libgles
+else
+LIBRETRO_VITAQUAKE2_PLATFORM=unix
+LIBRETRO_VITAQUAKE2_DEPENDENCIES += libgl
+endif
+
+define LIBRETRO_VITAQUAKE2_BUILD_CMDS
+	$(SED) "s|-O2|-O3|g" $(@D)/Makefile
+	CFLAGS="$(TARGET_CFLAGS) $(COMPILER_COMMONS_CFLAGS_SO) -D_GNU_SOURCE" \
+		CXXFLAGS="$(TARGET_CXXFLAGS) $(COMPILER_COMMONS_CXXFLAGS_SO)" \
+		LDFLAGS="$(TARGET_LDFLAGS) $(COMPILER_COMMONS_LDFLAGS_SO)" \
+		$(MAKE) CXX="$(TARGET_CXX)" CC="$(TARGET_CC)" -C $(@D) -f Makefile platform="$(LIBRETRO_VITAQUAKE2_PLATFORM)"
+endef
+
+define LIBRETRO_VITAQUAKE2_INSTALL_TARGET_CMDS
+	$(INSTALL) -D $(@D)/vitaquake2_libretro.so \
+		$(TARGET_DIR)/usr/lib/libretro/vitaquake2_libretro.so
+endef
+
+$(eval $(generic-package))

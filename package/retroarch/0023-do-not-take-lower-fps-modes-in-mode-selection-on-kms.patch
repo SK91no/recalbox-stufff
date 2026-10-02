@@ -1,0 +1,27 @@
+From 1ed1302a6f57b82cd23254a1984fb6624eb095e3 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Sun, 16 Nov 2025 11:28:39 +0100
+Subject: [PATCH 23/27] do not take lower fps modes in mode selection on kms if
+ fps diff > 2fps
+
+- that fixes MK
+---
+ gfx/drivers_context/drm_ctx.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/gfx/drivers_context/drm_ctx.c b/gfx/drivers_context/drm_ctx.c
+index 5029ddc558..0619e7e07a 100644
+--- a/gfx/drivers_context/drm_ctx.c
++++ b/gfx/drivers_context/drm_ctx.c
+@@ -864,7 +864,7 @@ static bool gfx_ctx_drm_set_video_mode(void *data,
+             mode_vrefresh          = drm_calc_refresh_rate(mode);
+             diff                   = fabsf(refresh_mod * mode_vrefresh - video_refresh_rate);
+ 
+-            if (!g_drm_mode || diff < minimum_fps_diff)
++            if (!g_drm_mode || diff < minimum_fps_diff && (diff < 2 || refresh_mod * mode_vrefresh - video_refresh_rate > 0))
+             {
+                g_drm_mode          = mode;
+                minimum_fps_diff    = diff;
+-- 
+2.51.0
+

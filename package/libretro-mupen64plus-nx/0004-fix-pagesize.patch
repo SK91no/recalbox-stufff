@@ -1,0 +1,21 @@
+From b704c31fbe6c3e3f74ed378d8b7ab5c4d90602af Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Fri, 06 Apr 2025 11:32:23 +0100
+Subject: [PATCH 4/4] fix pagesize
+
+---
+ mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c | 2 +-
+ 1 file changed, 1 insertions(+), 1 deletion(-)
+
+diff --git a//mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c b//mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
+--- a/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
++++ b/mupen64plus-core/src/device/r4300/new_dynarec/new_dynarec.c
+@@ -8632,7 +8632,7 @@ static void pagespan_ds(void)
+ 
+ /**** Recompiler ****/
+ #ifdef HAVE_LIBNX
+-ALIGN(4096, char jit_memory[33554432]) __attribute__((section(".text")));
++ALIGN(16384, char jit_memory[33554432]) __attribute__((section(".text")));
+ #endif
+ void new_dynarec_init(void)
+ {

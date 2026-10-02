@@ -1,0 +1,226 @@
+//
+// Created by bkg2k on 31/12/2019.
+//
+#pragma once
+
+#include <guis/Gui.h>
+#include <bios/Bios.h>
+#include <bios/BiosList.h>
+#include <bios/IBiosScanReporting.h>
+#include <components/TextListComponent.h>
+#include <components/BusyComponent.h>
+#include <components/ButtonComponent.h>
+#include <components/ScrollableContainer.h>
+#include <systems/SystemManager.h>
+#include "components/TextScrollComponent.h"
+#include "components/PictureComponent.h"
+
+class GuiBiosScan : public Gui, public IBiosScanReporting
+{
+  private:
+    //! Text color index
+    static constexpr signed char sColorIndexNormal = 0;
+    //! Half Text color index
+    static constexpr signed char sColorIndexHalf = 1;
+    //! Transparent Red
+    static constexpr signed char sColorIndexRed = 2;
+    //! Transparent Yellow
+    static constexpr signed char sColorIndexYellow = 3;
+    //! Transparent Green
+    static constexpr signed char sColorIndexGreen = 4;
+
+    static HashMap<Bios::ReportStatus, const char*> sSuffixes;
+
+    //! Small structure holding the context of every item
+    struct ListContext
+    {
+      const BiosList* mBiosList;
+      const Bios* mBios;
+      ListContext()
+        : mBiosList(nullptr),
+          mBios(nullptr)
+      {
+      }
+      ListContext(const BiosList* bioslist, const Bios* bios)
+        : mBiosList(bioslist),
+          mBios(bios)
+      {
+      }
+    };
+
+    //! Ubuntu condensed
+    NewFont* mBoldCondensed;
+
+    //! Global component grid for easy positioning
+    ComponentGrid mGrid;
+
+    //! Text title
+    std::shared_ptr<TextComponent> mTitle;
+    //! Header
+    std::shared_ptr<TextScrollComponent> mHeader;
+    //! Footer
+    std::shared_ptr<TextScrollComponent> mFooter;
+    //! Bios list
+    std::shared_ptr<TextListComponent<ListContext>> mList;
+    //! Button grid
+    std::shared_ptr<ComponentGrid> mButtonGrid;
+    //! Button close
+    std::shared_ptr<ButtonComponent> mButtonClose;
+
+    //! Detail: System label
+    std::shared_ptr<TextComponent> mDetailSystemLabel;
+    //! Detail: System name
+    std::shared_ptr<TextScrollComponent> mDetailSystemValue;
+    //! Detail: Core label
+    std::shared_ptr<TextComponent> mDetailCoreLabel;
+    //! Detail: Core names
+    std::shared_ptr<TextScrollComponent> mDetailCoreValue;
+    //! Detail: Path label
+    std::shared_ptr<TextComponent> mDetailPathLabel;
+    //! Detail: Path value
+    std::shared_ptr<TextScrollComponent> mDetailPathValue;
+    //! Detail: Mandatory label
+    std::shared_ptr<TextScrollComponent> mDetailMandatoryLabel;
+    //! Detail: Mandatory yes/no
+    std::shared_ptr<TextComponent> mDetailMandatoryValue;
+    //! Detail: Hash Must Match label
+    std::shared_ptr<TextScrollComponent> mDetailHashMustMatchLabel;
+    //! Detail: Hash Must Match yes/no
+    std::shared_ptr<TextComponent> mDetailHashMustMatchValue;
+    //! Detail: File found label
+    std::shared_ptr<TextScrollComponent> mDetailFileFoundLabel;
+    //! Detail: File found status
+    std::shared_ptr<TextComponent> mDetailFileFoundValue;
+    //! Detail: Hash is matching label
+    std::shared_ptr<TextScrollComponent> mDetailHashIsMatchingLabel;
+    //! Detail: Hash is matching status
+    std::shared_ptr<TextComponent> mDetailHashIsMatchingValue;
+    //! Detail: Free text 1 value (remark / core list)
+    std::shared_ptr<MarkdownText> mDetailText1Value;
+    //! Detail: Free text 2 label (note / core list 2)
+    std::shared_ptr<TextScrollComponent> mDetailText2Label;
+    //! Detail: Free text 2 value (note / core list 2)
+    std::shared_ptr<MarkdownText> mDetailText2Value;
+
+    //! Detail: Bios OK text
+    std::shared_ptr<TextComponent> mDetailBiosOkLabel;
+    //! Detail: Bios OK value
+    std::shared_ptr<TextComponent> mDetailBiosOkValue;
+    //! Detail: Bios unsafe text
+    std::shared_ptr<TextComponent> mDetailBiosUnsafeLabel;
+    //! Detail: Bios unsafe value
+    std::shared_ptr<TextComponent> mDetailBiosUnsafeValue;
+    //! Detail: Bios KO text
+    std::shared_ptr<TextComponent> mDetailBiosKOLabel;
+    //! Detail: Bios KO value
+    std::shared_ptr<TextComponent> mDetailBiosKOValue;
+    //! Detail: Bios Not found label
+    std::shared_ptr<TextComponent> mDetailBiosNotFoundLabel;
+    //! Detail: Bios Not found value
+    std::shared_ptr<TextComponent> mDetailBiosNotFoundValue;
+    //! Detail: Bios Matching text
+    std::shared_ptr<TextComponent> mDetailBiosMatchingLabel;
+    //! Detail: Bios matching value
+    std::shared_ptr<TextComponent> mDetailBiosMatchingValue;
+    //! Detail: Bios not matching text
+    std::shared_ptr<TextComponent> mDetailBiosNotMatchingLabel;
+    //! Detail: Bios not matching value
+    std::shared_ptr<TextComponent> mDetailBiosNotMatchingValue;
+
+    //! Detail: Image
+    std::shared_ptr<PictureComponent> mDetailStatusImage;
+
+    //! Busy animation while scanning
+    BusyComponent mBusyAnim;
+
+    //! System Manager instance
+    SystemManager& mSystemManager;
+
+    //! Scan is running?
+    bool mScanInProgress;
+
+    //! My Systems (false) / All Systems (true)
+    bool mShowAllSystems;
+
+    /*!
+     * @brief Start (re)scanning bios files
+     */
+    void StartRescan();
+
+    /*!
+     * @brief Update visuial bios list
+     */
+    void UpdateBiosList();
+
+    /*!
+     * @brief Check if at least one system in systemNames is a shown system (with valid roms)
+     * @param systemNames systemNames, comma separated
+     * @return True if at least one system is a shown system
+     */
+    bool IsSystemAvailable(const String& systemNames);
+
+    /*!
+     * @brief Update bios details of currently selected bios
+     */
+    void UpdateBiosDetail();
+
+    /*!
+     * @brief Called when sizing window
+     */
+    void onSizeChanged() override;
+
+    /*!
+     * @brief Override rendering to draw custom background
+     * @param parentTrans parent transformation
+     */
+    void Render(const Transform4x4f& parentTrans) override;
+
+    /*!
+     * @brief Update
+     * @param deltaTime Elapsed time since last update
+     */
+    void Update(int deltaTime) override;
+
+    /*!
+     * @brief Process input events
+     * @param event Input event
+     * @return True if the method consumed the event
+     */
+    bool ProcessInput(const InputCompactEvent& event) override;
+
+    /*!
+     * @brief Set help prompts
+     * @param help Help structure to fill in
+     * @return True
+     */
+    bool CollectHelpItems(Help& help) override;
+
+    /*!
+     * @brief Extract unique core list from the given BiosList
+     * @param biosList Source bios list
+     * @return Core list, comma separated
+     */
+    static String GetUniqueCoreList(const BiosList& biosList);
+
+    /*
+     * IBiosScanReporting implementation
+     */
+
+    /*!
+     * @brief Report a new Bios has been scanned
+     * @param bios Newly scanned bios
+     */
+    void ScanProgress(const Bios& bios) override;
+
+    /*!
+     * @brief Report the bios scan is complete
+     */
+    void ScanComplete() override;
+
+  public:
+    /*!
+     * @brief Constructor
+     * @param window Main window
+     */
+    explicit GuiBiosScan(WindowManager& window, SystemManager& systemManager);
+};

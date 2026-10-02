@@ -1,0 +1,33 @@
+From 027cb979e1bfac85a5255a95c457f62184f1160d Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sat, 14 Sep 2024 23:28:38 +0200
+Subject: [PATCH 3/3] add rpi5 platform
+
+---
+ Makefile.libretro | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Makefile.libretro b/Makefile.libretro
+index a1b534b..07d6425 100644
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -145,6 +145,16 @@ else ifeq ($(platform), rpi4_64)
+ 	PLATFORM_DEFINES += -DARM
+ 	HAVE_NEON = 1
+ 
++# Raspberry Pi 5 (64 bits)
++else ifeq ($(platform), rpi5_64)
++	TARGET := $(TARGET_NAME)_libretro.so
++	fpic = -fPIC
++	SHARED := -shared -Wl,-version-script=build/link.T -Wl,-no-undefined
++	PLATFORM_DEFINES += -march=armv8-a+crc+simd -mtune=cortex-a76
++	PLATFORM_DEFINES += -fomit-frame-pointer -ffast-math
++	PLATFORM_DEFINES += -DARM
++	HAVE_NEON = 1
++
+ # Classic Platforms ####################
+ # Platform affix = classic_<ISA>_<µARCH>
+ # Help at https://modmyclassic.com/comp
+-- 
+2.46.0
+

@@ -1,0 +1,169 @@
+diff --git a/src/configuration.c b/src/configuration.c
+index e0ff79c5..95ebe9ac 100644
+--- a/src/configuration.c
++++ b/src/configuration.c
+@@ -108,9 +108,15 @@ static const struct Config_Tag configs_Joystick0[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[0].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[0].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[0].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[0].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[0].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[0].nKeyCodeLeft },
+@@ -126,9 +132,15 @@ static const struct Config_Tag configs_Joystick1[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[1].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[1].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[1].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[1].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[1].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[1].nKeyCodeLeft },
+@@ -144,9 +156,15 @@ static const struct Config_Tag configs_Joystick2[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[2].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[2].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[2].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[2].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[2].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[2].nKeyCodeLeft },
+@@ -162,9 +180,15 @@ static const struct Config_Tag configs_Joystick3[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[3].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[3].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[3].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[3].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[3].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[3].nKeyCodeLeft },
+@@ -180,9 +204,15 @@ static const struct Config_Tag configs_Joystick4[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[4].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[4].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[4].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[4].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[4].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[4].nKeyCodeLeft },
+@@ -198,9 +228,15 @@ static const struct Config_Tag configs_Joystick5[] =
+ 	{ "bEnableAutoFire", Bool_Tag, &ConfigureParams.Joysticks.Joy[5].bEnableAutoFire },
+ 	{ "bEnableJumpOnFire2", Bool_Tag, &ConfigureParams.Joysticks.Joy[5].bEnableJumpOnFire2 },
+ 	{ "nJoyId", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nJoyId },
++  { "nStartKey", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nStartKey },
++  { "nHotKey", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nHotkey },
+ 	{ "nJoyBut1Index", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nJoyButMap[0] },
+ 	{ "nJoyBut2Index", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nJoyButMap[1] },
+ 	{ "nJoyBut3Index", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nJoyButMap[2] },
++  { "nDPadUp", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nDPadUp },
++  { "nDPadRight", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nDPadRight },
++  { "nDPadDown", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nDPadDown },
++  { "nDPadLeft", Int_Tag, &ConfigureParams.Joysticks.Joy[5].nDPadLeft },
+ 	{ "kUp", Key_Tag, &ConfigureParams.Joysticks.Joy[5].nKeyCodeUp },
+ 	{ "kDown", Key_Tag, &ConfigureParams.Joysticks.Joy[5].nKeyCodeDown },
+ 	{ "kLeft", Key_Tag, &ConfigureParams.Joysticks.Joy[5].nKeyCodeLeft },
+@@ -634,6 +670,15 @@ void Configuration_SetDefault(void)
+ 		ConfigureParams.Joysticks.Joy[i].nKeyCodeLeft = SDLK_LEFT;
+ 		ConfigureParams.Joysticks.Joy[i].nKeyCodeRight = SDLK_RIGHT;
+ 		ConfigureParams.Joysticks.Joy[i].nKeyCodeFire = SDLK_RCTRL;
++    ConfigureParams.Joysticks.Joy[i].nStartKey = -1;
++    ConfigureParams.Joysticks.Joy[i].nHotkey = -1;
++    ConfigureParams.Joysticks.Joy[i].nButton1 = 0;
++    ConfigureParams.Joysticks.Joy[i].nButton2 = 1;
++    ConfigureParams.Joysticks.Joy[i].nButton3 = 2;
++    ConfigureParams.Joysticks.Joy[i].nDPadUp = -1;
++    ConfigureParams.Joysticks.Joy[i].nDPadDown = -1;
++    ConfigureParams.Joysticks.Joy[i].nDPadLeft = -1;
++    ConfigureParams.Joysticks.Joy[i].nDPadRight = -1;
+ 	}
+ 	if (SDL_NumJoysticks() > 0)
+ 	{
+diff --git a/src/includes/configuration.h b/src/includes/configuration.h
+index 0b6976c5..c9080bb3 100644
+--- a/src/includes/configuration.h
++++ b/src/includes/configuration.h
+@@ -172,6 +172,9 @@ typedef struct
+   int nJoyId;
+   int nJoyButMap[JOYSTICK_BUTTONS];
+   int nKeyCodeUp, nKeyCodeDown, nKeyCodeLeft, nKeyCodeRight, nKeyCodeFire;
++  int nButton1, nButton2, nButton3;
++  int nDPadUp, nDPadRight, nDPadDown, nDPadLeft;
++  int nStartKey, nHotkey;
+ } JOYSTICK;
+ 
+ enum
+diff --git a/src/joy.c b/src/joy.c
+index 037a5018..41053073 100644
+--- a/src/joy.c
++++ b/src/joy.c
+@@ -211,6 +211,18 @@ static bool Joy_ReadJoystick(int nStJoyId, JOYREADING *pJoyReading)
+ 		pJoyReading->YPos = -32768;
+ 	if (hat & SDL_HAT_DOWN)
+ 		pJoyReading->YPos = 32767;
++  
++  const JOYSTICK *joyConf = &ConfigureParams.Joysticks.Joy[nStJoyId];
++
++  /* Support button DPAD */
++  if (SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nDPadUp))
++    pJoyReading->YPos = -32768;
++  if (SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nDPadDown))
++    pJoyReading->YPos = 32768;
++  if (SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nDPadLeft))
++    pJoyReading->XPos = -32768;
++  if (SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nDPadRight))
++    pJoyReading->XPos = 32768;
+ 
+ 	pJoyReading->Buttons = 0;
+ 	/* Sets bits based on pressed buttons */
+@@ -220,7 +232,14 @@ static bool Joy_ReadJoystick(int nStJoyId, JOYREADING *pJoyReading)
+ 		if (button >= 0 && SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], button))
+ 			pJoyReading->Buttons |= 1 << i;
+ 	}
+-	return true;
++
++  /* Quit? */
++  int start = SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nStartKey);
++  int hotkey = SDL_JoystickGetButton(sdlJoystick[nSdlJoyID], joyConf->nHotkey);
++  if ((start & hotkey) != 0)
++    Main_RequestQuit(0);
++
++  return true;
+ }
+ 
+ 

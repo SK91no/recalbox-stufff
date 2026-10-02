@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# call recalbox-postconfig script
+recallog -s "${INIT_SCRIPT}" -t "CUSTOMIZE" "[1] - POST INSTALL SCRIPT"
+test -e "/boot/user-data" || test -e  "/boot/network-.con" || test -e  "/boot/network-config"  && /recalbox/scripts/recalbox-postconfig

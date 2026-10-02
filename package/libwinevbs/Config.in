@@ -1,0 +1,7 @@
+config BR2_PACKAGE_LIBWINEVBS
+	bool "libwinevbs"
+	help
+	  Wine-based VBScript engine for Visual Pinball on Linux.
+	  Provides windows.h and ATL/MFC headers.
+
+	  https://github.com/vpinball/libwinevbs

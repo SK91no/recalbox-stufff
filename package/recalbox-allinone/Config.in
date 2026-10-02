@@ -1,0 +1,9 @@
+config BR2_PACKAGE_RECALBOX_ALLINONE
+	bool "All In One dts and driver"
+	depends on BR2_LINUX_KERNEL
+	help
+	  Support for digipcb/recalbox All In One
+	  arcade board for Rasbperry Pi 5, 4
+
+comment "allinone needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

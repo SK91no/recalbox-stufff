@@ -1,0 +1,6 @@
+# Taito Trackball & Spinner
+ACTION=="add|change", KERNEL=="mouse[0-9]*", ENV{ID_VENDOR_ID}=="0ae4", ENV{ID_MODEL_ID}=="0701", ENV{ID_INPUT_JOYSTICK}="", ENV{ID_INPUT_MOUSE}="1"
+ACTION=="add|change", KERNEL=="event[0-9]*", ENV{ID_VENDOR_ID}=="0ae4", ENV{ID_MODEL_ID}=="0701", ENV{ID_INPUT_JOYSTICK}="", ENV{ID_INPUT_MOUSE}="1"
+
+# Spinner Baolian
+ACTION=="add|change", KERNEL=="event[0-9]*", ENV{ID_VENDOR_ID}=="32be", ENV{ID_MODEL_ID}=="1101", RUN+="/usr/bin/spinner.sh 4"

@@ -1,0 +1,19 @@
+config BR2_PACKAGE_LIBRETRO_PPSSPP
+	bool "libretro-ppsspp"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_RECALBOX_ROMFS_PSP
+	select BR2_PACKAGE_FFMPEG
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_SNAPPY
+	select BR2_PACKAGE_VULKAN_HEADERS
+	select BR2_PACKAGE_XSERVER_XORG_SERVER if BR2_PACKAGE_RECALBOX_VIDEO_XORG_SERVER
+	select BR2_PACKAGE_ZIP
+	help
+	  A libretro PSP emulator core.
+
+	  http://www.libretro.com
+
+comment "LIBRETRO_PPSSPP needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

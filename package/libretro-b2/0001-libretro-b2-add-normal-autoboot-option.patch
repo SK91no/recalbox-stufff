@@ -1,0 +1,75 @@
+--- a/src/libretro/core.cpp	2025-02-09 14:01:34.000000000 +0100
++++ b/src/libretro/core.cpp	2025-02-25 12:34:01.637576813 +0100
+@@ -155,6 +155,7 @@
+ 
+ 
+ bool autoboot_core=true;
++bool autoboot_core_shift=true;
+ size_t updateCount = 0;
+ size_t updateCount_prevframe = 0;
+ bool sound_ddnoise=false;
+@@ -336,6 +337,19 @@
+       autoboot_core = false;
+   }
+ 
++  var =
++    {
++      .key = "b2_autoboot_shift",
++    };
++  if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var))
++  {
++    if(strcmp(var.value, "true") == 0)
++      autoboot_core = true;
++    else
++      autoboot_core = false;
++  }
++
++
+   for(; iterbm != joypad_buttonmap.cend(); iterbm++) {
+     option_key = "b2_joypad_";
+     option_key += iterbm->first;
+@@ -738,6 +752,12 @@
+   core_vars[i].value = core_var_value[i];
+   i++;
+ 
++  strlcpy(core_var_key[i],"b2_autoboot_shift",50);
++  strlcpy(core_var_value[i],"Automatically boot disk image using shift kay instead of extracting file to boot from image name; true|false",1024);
++  core_vars[i].key = core_var_key[i];
++  core_vars[i].value = core_var_value[i];
++  i++;
++
+   std::string option_key;
+   std::string option_val;
+   std::map<std::string, unsigned>::const_iterator iterbm = joypad_buttonmap.cbegin();
+@@ -1179,17 +1199,21 @@
+ 
+   // Autoboot: if there is [SOMETHING] notice in the filename, use it
+   // otherwise press Shift and hope for autoboot
+-  if (autoboot_core) {
+-    std::string filename(info->path);
+-    std::string autostartName;
+-    size_t ridx = filename.rfind('[');
+-    size_t lidx = filename.rfind(']');
+-    if(ridx != std::string::npos)
++  if (autoboot_core)
++  {
++    if (!autoboot_core_shift)
+     {
+-      autostartName = "CHAIN\""+filename.substr(ridx+1,lidx-ridx-1)+"\"\r";
+-      log_cb(RETRO_LOG_DEBUG, "Autostart name: %s \n",autostartName.c_str());
+-      COPY_BASIC = std::make_shared<const std::string>(autostartName.c_str());
+-      autoStartPaste = true;
++      std::string filename(info->path);
++      std::string autostartName;
++      size_t ridx = filename.rfind('[');
++      size_t lidx = filename.rfind(']');
++      if(ridx != std::string::npos)
++      {
++        autostartName = "CHAIN\""+filename.substr(ridx+1,lidx-ridx-1)+"\"\r";
++        log_cb(RETRO_LOG_DEBUG, "Autostart name: %s \n",autostartName.c_str());
++        COPY_BASIC = std::make_shared<const std::string>(autostartName.c_str());
++        autoStartPaste = true;
++      }
+     }
+     else
+       core->SetKeyState(BeebKey_Shift,true);  

@@ -1,0 +1,43 @@
+Two things kept the joyport mode wrong.
+
+apply_port_device asked for JSEM_MODE_JOYSTICK, a plain 2-button stick, while
+inputdevice.cpp only auto-selects the CD32 pad on JSEM_MODE_DEFAULT (the
+iscd32 test around line 7639) — so on a CD32 the red/blue/green/yellow/play
+buttons were never mapped.
+
+And the "CD32 Pad" / "Joystick" entries the core advertises in
+SET_CONTROLLER_INFO could never take effect: device_from_option fell back to
+the frontend's device only for a NULL option value, which never happens for a
+core option, so the RETRO_DEVICE_SUBCLASS bits were always dropped.
+
+diff --git a/libretro/libretro.cpp b/libretro/libretro.cpp
+--- a/libretro/libretro.cpp
++++ b/libretro/libretro.cpp
+@@ -2192,8 +2192,11 @@
+ 		return fallback;
+ 	if (strcmp(value, "mouse") == 0)
+ 		return RETRO_DEVICE_MOUSE;
+-	if (strcmp(value, "joystick") == 0 || strcmp(value, "joypad") == 0)
+-		return RETRO_DEVICE_JOYPAD;
++	if (strcmp(value, "joystick") == 0 || strcmp(value, "joypad") == 0) {
++		// Keep the subclass the frontend selected for this port (CD32 Pad,
++		// Joystick); the option only says which kind of device sits there.
++		return (fallback & RETRO_DEVICE_MASK) == RETRO_DEVICE_JOYPAD ? fallback : RETRO_DEVICE_JOYPAD;
++	}
+ 	if (strcmp(value, "none") == 0)
+ 		return RETRO_DEVICE_NONE;
+ 	return fallback;
+@@ -2556,7 +2559,12 @@
+ 		TCHAR joy_name[8];
+ 		_sntprintf(joy_name, sizeof joy_name, _T("joy%d"), joy_index);
+ 		name = joy_name;
+-		mode = JSEM_MODE_JOYSTICK;
++		if (device == RETRO_DEVICE_AMIGA_CD32PAD)
++			mode = JSEM_MODE_JOYSTICK_CD32;
++		else if (device == RETRO_DEVICE_AMIGA_JOYSTICK)
++			mode = JSEM_MODE_JOYSTICK;
++		else
++			mode = JSEM_MODE_DEFAULT;
+ 	}
+ 	inputdevice_joyport_config(prefs, name, nullptr, static_cast<int>(port), mode, -1, 0, true);
+ }

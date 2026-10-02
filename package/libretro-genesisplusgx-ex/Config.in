@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_GENESISPLUSGX_EX
+	bool "libretro-genesisplusgx-ex"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  Expanded MAXROMSIZE for Sega Channel Revival.
+
+	  http://github.com/BillyTimeGames/Genesis-Plus-GX-Expanded-Rom-Size
+
+comment "LIBRETRO_GENESISPLUSGX_EX needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

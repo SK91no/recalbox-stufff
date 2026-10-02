@@ -1,0 +1,8 @@
+config BR2_PACKAGE_ARGON40CASE
+	bool "Argon40Case"
+	depends on BR2_PACKAGE_PYTHON3
+	select BR2_PACKAGE_PYTHON_RPI_LGPIO
+	help
+	  Scripts and samples used by Argon40 Cases and HATs 
+	  Scripts support ArgonOne & ArgonEon
+	  Check download-scripts.sh for sources.

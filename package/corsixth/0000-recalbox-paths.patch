@@ -1,0 +1,29 @@
+From 97a805136694c38a94952433c79e1e6c79733d51 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Fri, 21 Feb 2025 22:01:47 +0100
+Subject: [PATCH] recalbox paths
+
+---
+ CorsixTH/Lua/config_finder.lua | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/CorsixTH/Lua/config_finder.lua b/CorsixTH/Lua/config_finder.lua
+index 2a74252d..1ce2a198 100644
+--- a/CorsixTH/Lua/config_finder.lua
++++ b/CorsixTH/Lua/config_finder.lua
+@@ -35,10 +35,10 @@ if pathsep == "\\" then
+   config_path = os.getenv("AppData") or ourpath
+ else
+   -- Linux, OS X, etc.
+-  config_path = os.getenv("XDG_CONFIG_HOME") or pathconcat(os.getenv("HOME") or "~", ".config")
++  config_path = os.getenv("XDG_CONFIG_HOME") or pathconcat(os.getenv("HOME") or "~", "configs")
+ end
+ if config_path ~= ourpath then
+-  config_path = pathconcat(config_path, "CorsixTH")
++  config_path = pathconcat(config_path, "corsixth")
+ end
+ 
+ -- Config filename.
+-- 
+2.48.1
+

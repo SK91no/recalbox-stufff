@@ -1,0 +1,16 @@
+diff --git a/backends/platform/libretro/src/libretro-os-utils.cpp b/backends/platform/libretro/src/libretro-os-utils.cpp
+index 5b4da1bb356..d54ea33fdce 100644
+--- a/backends/platform/libretro/src/libretro-os-utils.cpp
++++ b/backends/platform/libretro/src/libretro-os-utils.cpp
+@@ -57,10 +57,7 @@ void OSystem_libretro::getTimeAndDate(TimeDate &t, bool skipRecord) const {
+ }
+ 
+ Common::Path OSystem_libretro::getDefaultConfigFileName() {
+-	if (s_systemDir.empty())
+-		return Common::Path("scummvm.ini");
+-	else
+-		return Common::Path(s_systemDir).appendComponent("scummvm.ini");
++	return "/recalbox/share/system/configs/scummvm/libretro-scummvm.ini";
+ }
+ 
+ void OSystem_libretro::logMessage(LogMessageType::Type type, const char *message) {

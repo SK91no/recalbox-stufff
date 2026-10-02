@@ -1,0 +1,143 @@
+From 767beb8b04773d0f400cd9009d153f1c2e02af8f Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Wed, 23 Feb 2022 09:31:32 +0100
+Subject: [PATCH 03/27] add command line hash option
+
+---
+ retroarch.c          |  9 ++++++++-
+ runloop.h            |  1 +
+ tasks/task_content.c | 35 ++++++++++++++++++++++++++++-------
+ 3 files changed, 37 insertions(+), 8 deletions(-)
+
+diff --git a/retroarch.c b/retroarch.c
+index b16728310b..cbd8403070 100644
+--- a/retroarch.c
++++ b/retroarch.c
+@@ -289,6 +289,7 @@ enum
+    RA_OPT_EOF_EXIT,
+    RA_OPT_LOG_FILE,
+    RA_OPT_MAX_FRAMES,
++   RA_OPT_HASH,
+    RA_OPT_MAX_FRAMES_SCREENSHOT,
+    RA_OPT_MAX_FRAMES_SCREENSHOT_PATH,
+    RA_OPT_SET_SHADER,
+@@ -6638,6 +6639,8 @@ static void retroarch_print_help(const char *arg0)
+          "Picks a username (for use with netplay). Not mandatory.\n"
+          "      --check-frames=NUMBER      "
+          "Check frames when using netplay.\n"
++         "      --hash=HASH                "
++         "Force a ROM hash. Not mandatory.\n"
+          , sizeof(buf) - _len);
+ #ifdef HAVE_NETWORK_CMD
+    _len += strlcpy(buf + _len,
+@@ -6998,6 +7001,7 @@ static bool retroarch_parse_input_and_config(
+ #endif /* HAVE_XDELTA */
+       { "no-patch",           0, NULL, RA_OPT_NO_PATCH },
+ #endif /* HAVE_PATCH */
++      { "hash",               1, NULL, RA_OPT_HASH },
+       { "detach",             0, NULL, 'D' },
+       { "features",           0, NULL, RA_OPT_FEATURES },
+       { "subsystem",          1, NULL, RA_OPT_SUBSYSTEM },
+@@ -7515,7 +7519,10 @@ static bool retroarch_parse_input_and_config(
+                configuration_set_string(settings,
+                      settings->paths.username, optarg);
+                break;
+-
++            case RA_OPT_HASH:
++               sscanf(optarg, "%8X", &runloop_st->name.hash);
++               RARCH_LOG("Got CRC32 from command line: 0x%x .\n", runloop_st->name.hash);
++               break;
+             case RA_OPT_SIZE:
+                if (sscanf(optarg, "%ux%u",
+                         &rec_st->width, &rec_st->height) != 2)
+diff --git a/runloop.h b/runloop.h
+index e9c72b72dc..8dafd0eca4 100644
+--- a/runloop.h
++++ b/runloop.h
+@@ -297,6 +297,7 @@ struct runloop
+       char ips      [PATH_MAX_LENGTH*2];
+       char xdelta   [PATH_MAX_LENGTH*2];
+       char label    [PATH_MAX_LENGTH*2];
++      uint32_t hash;
+    } name;
+ 
+    bool missing_bios;
+diff --git a/tasks/task_content.c b/tasks/task_content.c
+index 5c0e91f0be..8833a48ff7 100644
+--- a/tasks/task_content.c
++++ b/tasks/task_content.c
+@@ -668,6 +668,7 @@ static size_t content_file_load_into_memory(
+ {
+    uint8_t *content_data = NULL;
+    int64_t content_size  = 0;
++   runloop_state_t *runloop_st                 = runloop_state_get_ptr();
+ 
+    RARCH_LOG("[Content] %s: \"%s\".\n",
+          msg_hash_to_str(MSG_LOADING_CONTENT_FILE), content_path);
+@@ -723,6 +724,7 @@ static size_t content_file_load_into_memory(
+           * actually needed */
+          if (content_compressed || has_patch)
+          {
++            p_content->flags &= ~CONTENT_ST_FLAG_PENDING_ROM_CRC;
+             p_content->rom_crc = encoding_crc32(0, content_data,
+                   (size_t)content_size);
+             RARCH_LOG("[Content] CRC32: 0x%x.\n",
+@@ -739,7 +741,16 @@ static size_t content_file_load_into_memory(
+          }
+       }
+       else
+-         p_content->rom_crc = 0;
++         if(runloop_st) {
++            p_content->flags &= ~CONTENT_ST_FLAG_PENDING_ROM_CRC;
++            p_content->rom_crc = runloop_st->name.hash;
++            RARCH_LOG("[CONTENT LOAD MEMORY]: Got hash from command line - 0x%X", runloop_st->name.hash);
++         }
++         else
++         {
++           p_content->rom_crc = 0;
++           RARCH_LOG("[CONTENT LOAD MEMORY]: NO CRC32 available yet");
++         }
+    }
+ 
+    *data      = content_data;
+@@ -922,6 +933,7 @@ static bool content_file_load(
+ {
+    size_t i;
+    retro_ctx_load_content_info_t load_info;
++   runloop_state_t *runloop_st                 = runloop_state_get_ptr();
+    bool used_vfs_fallback_copy                = false;
+ #ifdef __WINRT__
+    rarch_system_info_t *sys_info              = &runloop_state_get_ptr()->system;
+@@ -1081,14 +1093,23 @@ static bool content_file_load(
+             if (i == 0)
+             {
+                /* If we have a media type, ignore CRC32 calculation. */
+-               if (first_content_type == RARCH_CONTENT_NONE)
+-               {
+-                  strlcpy(p_content->pending_rom_crc_path, content_path,
+-                        sizeof(p_content->pending_rom_crc_path));
+-                  p_content->flags |= CONTENT_ST_FLAG_PENDING_ROM_CRC;
++               if(runloop_st) {
++                  p_content->flags &= ~CONTENT_ST_FLAG_PENDING_ROM_CRC;
++                  p_content->rom_crc = runloop_st->name.hash;
++                  RARCH_LOG("[CONTENT LOAD FILE] Got CRC32 from command line: 0x%X .\n", (unsigned)p_content->rom_crc);
+                }
+                else
+-                  p_content->rom_crc = 0;
++               {
++                  /* If we have a media type, ignore CRC32 calculation. */
++                  if (first_content_type == RARCH_CONTENT_NONE)
++                  {
++                     strlcpy(p_content->pending_rom_crc_path, content_path,
++                           sizeof(p_content->pending_rom_crc_path));
++                     p_content->flags |= CONTENT_ST_FLAG_PENDING_ROM_CRC;
++                  }
++                  else
++                     p_content->rom_crc = 0;
++               }
+             }
+          }
+       }
+-- 
+2.51.0
+

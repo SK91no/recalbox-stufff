@@ -1,0 +1,8 @@
+config BR2_PACKAGE_LIBRETRO_AMIBERRY
+	bool "libretro-Amiberry"
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_ZSTD
+	help
+	  An Amiga emulator
+
+	  https://github.com/midwan/amiberry

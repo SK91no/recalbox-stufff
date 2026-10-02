@@ -1,0 +1,127 @@
+From: Recalbox <contact@recalbox.com>
+Date: Sun, 7 Sep 2026 00:00:00 +0200
+Subject: [PATCH] lightgun: calibrate one player at a time
+
+Two players calibrating at once shared a single phase. The shader is given
+one cal_phase, taken as the max across ports, while targets and cursors are
+per player: as soon as player 2 reached the test phase, his phase drove the
+rendering for both and the targets of player 1, still shooting, took the
+wrong colours.
+
+Players now take their turn, lowest port first. Only the active port advances
+its targets -- a player waiting his turn would otherwise walk through his own
+targets unseen, and arrive already finished. His trigger is already masked
+toward the core, so nothing reaches the game either.
+
+The phase handed to the shader is that of the active port, along with its
+number in a new cal_player parameter, so the overlay can name the player it
+is asking to shoot.
+---
+---
+--- a/input/lightguns.c
++++ b/input/lightguns.c
+@@ -56,6 +56,10 @@
+  * joypad-only binds (START, SELECT, D-pad) are unreadable. */
+ #define GUNCON_CAL_CENTER_PCT 15
+ 
++/* Players calibrate one after the other: the shader shows a single phase. */
++static bool lightgun_port_is_gun(input_driver_state_t *input_st, unsigned port);
++static int  lightgun_cal_active_port(input_driver_state_t *input_st);
++
+ /* True when a captured shot lands close enough to the active target. */
+ static bool guncon_cal_shot_plausible(uint8_t target, int lx, int ly)
+ {
+@@ -460,7 +464,8 @@
+           * Each fresh lock during phase 1 = next target hit.
+           * After 3 captures we compute the bounds and switch to
+           * phase 2 (test). */
+-         if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_state[port] == 0)
++         if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_state[port] == 0
++             && (int)port == lightgun_cal_active_port(input_st))
+          {
+             uint8_t t = input_st->lightgun.cal_target[port];
+             /* Only accept a shot that lands near the target being asked
+@@ -508,7 +513,8 @@
+             }
+          }
+          else if (GUNCON_CAL_ENABLED
+-                  && input_st->lightgun.cal_state[port] == 1)
++                  && input_st->lightgun.cal_state[port] == 1
++                  && (int)port == lightgun_cal_active_port(input_st))
+          {
+             /* Test phase: shooting the centre bullseye validates and starts
+              * the game. Any other shot is just a test, so the user can check
+@@ -662,6 +668,16 @@
+        && cfg->uints.input_libretro_device[port] != RETRO_DEVICE_NONE;
+ }
+ 
++/* Ports 0 and 1 only: the overlay draws two sets of targets. */
++static int lightgun_cal_active_port(input_driver_state_t *input_st)
++{
++   for (unsigned p = 0; p < 2; p++)
++      if (lightgun_port_is_gun(input_st, p)
++          && input_st->lightgun.cal_state[p] != 2)
++         return (int)p;
++   return -1;
++}
++
+ void lightgun_apply_shader_params(input_driver_state_t *input_st,
+       video_driver_state_t *video_st)
+ {
+@@ -674,29 +690,26 @@
+ 
+    float flash_val  = (video_st->lightgun_flash_frames > 0) ? 1.0f : 0.0f;
+ 
+-   /* Cal phase exposed to the shader (max across ports). */
+-   float cal_phase_val = 0.0f;
+-   if (GUNCON_CAL_ENABLED)
+-   for (unsigned p = 0; p < 16; p++)
+-   {
+-      if (!lightgun_port_is_gun(input_st, p))
+-         continue;
+-      uint8_t s = input_st->lightgun.cal_state[p];
+-      if (s == 0 && cal_phase_val < 1.0f)
+-         cal_phase_val = 1.0f;
+-      else if (s == 1 && cal_phase_val < 2.0f)
+-         cal_phase_val = 2.0f;
+-   }
+-
++   /* Phase, target and player of the port being calibrated, one at a time. */
++   float cal_phase_val  = 0.0f;
++   float cal_player_val = 0.0f;
+    /* 3 targets (TL/TR/BL); value 3 = "none active". */
+-   float cal_target_p1 = 3.0f, cal_target_p2 = 3.0f;
++   float cal_target_p1  = 3.0f, cal_target_p2 = 3.0f;
++   if (GUNCON_CAL_ENABLED)
+    {
+-      bool p1_is_gun = lightgun_port_is_gun(input_st, 0);
+-      bool p2_is_gun = lightgun_port_is_gun(input_st, 1);
+-      if (p1_is_gun && input_st->lightgun.cal_state[0] == 0)
+-         cal_target_p1 = (float)input_st->lightgun.cal_target[0];
+-      if (p2_is_gun && input_st->lightgun.cal_state[1] == 0)
+-         cal_target_p2 = (float)input_st->lightgun.cal_target[1];
++      int active = lightgun_cal_active_port(input_st);
++      if (active >= 0)
++      {
++         uint8_t s = input_st->lightgun.cal_state[active];
++         cal_phase_val  = (s == 0) ? 1.0f : 2.0f;
++         cal_player_val = (float)(active + 1);
++         if (s == 0)
++         {
++            float t = (float)input_st->lightgun.cal_target[active];
++            if      (active == 0) cal_target_p1 = t;
++            else if (active == 1) cal_target_p2 = t;
++         }
++      }
+    }
+ 
+    /* Cursor positions: from the last SCREEN_X/Y reported. Apply the
+@@ -741,6 +754,8 @@
+          shader_ctx.data->parameters[i].current = flash_val;
+       else if (!strcmp(pid, "cal_phase"))
+          shader_ctx.data->parameters[i].current = cal_phase_val;
++      else if (!strcmp(pid, "cal_player"))
++         shader_ctx.data->parameters[i].current = cal_player_val;
+       else if (!strcmp(pid, "cal_target_p1"))
+          shader_ctx.data->parameters[i].current = cal_target_p1;
+       else if (!strcmp(pid, "cal_target_p2"))

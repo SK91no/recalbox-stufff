@@ -1,0 +1,17 @@
+config BR2_PACKAGE_HATARI
+	bool "hatari standalon"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_LIBZIP
+	select BR2_PACKAGE_MTOOLS
+	select BR2_PACKAGE_LIBCAPSIMAGE
+	select BR2_PACKAGE_READLINE
+	select BR2_PACKAGE_ZLIB
+
+	help
+	  Atari ST/STE/TT/Falcon emulator.
+
+	  https://hatari.tuxfamily.org/
+
+comment "Emulation station 2 needs a toolchain w/ C++, ALSA and SDL2"
+	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_PACKAGE_SDL2

@@ -1,0 +1,129 @@
+From b44d5029518395b1ad4fd5c78497d016cd027c97 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Sat, 18 Oct 2025 20:42:52 +0200
+Subject: [PATCH 2/2] fix multiarch compilation
+
+---
+ pcsx2/CMakeLists.txt          |  1 +
+ pcsx2/GS/MultiISA.h           |  2 +-
+ pcsx2/SPU2/ReverbResample.cpp | 19 +++++++++++++++----
+ pcsx2/SPU2/ReverbSIMP.cpp     | 34 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 51 insertions(+), 5 deletions(-)
+ create mode 100644 pcsx2/SPU2/ReverbSIMP.cpp
+
+diff --git a/pcsx2/CMakeLists.txt b/pcsx2/CMakeLists.txt
+index f3c0bcd1e..166bf4ee2 100644
+--- a/pcsx2/CMakeLists.txt
++++ b/pcsx2/CMakeLists.txt
+@@ -230,6 +230,7 @@ set(pcsx2SPU2Sources
+ 	SPU2/RegTable.cpp
+ 	SPU2/Reverb.cpp
+ 	SPU2/ReverbResample.cpp
++	SPU2/ReverbSIMP.cpp
+ 	SPU2/spu2freeze.cpp
+ 	SPU2/spu2sys.cpp
+ )
+diff --git a/pcsx2/GS/MultiISA.h b/pcsx2/GS/MultiISA.h
+index 97dbe4c8c..dc585a2ea 100644
+--- a/pcsx2/GS/MultiISA.h
++++ b/pcsx2/GS/MultiISA.h
+@@ -52,7 +52,7 @@
+ 	#define MULTI_ISA_UNSHARED_IMPL using namespace CURRENT_ISA
+ #else
+ 	#define MULTI_ISA_UNSHARED_START static_assert(0, "This file should not be included by multi-isa shared compilation!");
+-	#define MULTI_ISA_UNSHARED_IMPL static_assert(0, "This file should be compiled unshared in multi-isa mode!");
++	#define MULTI_ISA_UNSHARED_IMPL /* static_assert(0, "This file should be compiled unshared in multi-isa mode!"); */
+ 	#define MULTI_ISA_UNSHARED_END
+ #endif
+ 
+diff --git a/pcsx2/SPU2/ReverbResample.cpp b/pcsx2/SPU2/ReverbResample.cpp
+index 9bf223228..197fe9519 100644
+--- a/pcsx2/SPU2/ReverbResample.cpp
++++ b/pcsx2/SPU2/ReverbResample.cpp
+@@ -1,7 +1,7 @@
+ #include "../GS/GSVector.h"
+ #include "Global.h"
+ 
+-MULTI_ISA_UNSHARED_START
++// MULTI_ISA_UNSHARED_START
+ 
+ static constexpr u32 NUM_TAPS = 39;
+ // 39 tap filter, the 0's could be optimized out
+@@ -128,7 +128,7 @@ s32 __forceinline ReverbDownsample_sse(V_Core& core, bool right)
+ 	return acc.I16[0];
+ }
+ 
+-s32 ReverbDownsample(V_Core& core, bool right)
++s32 Internal_ReverbDownsample(V_Core& core, bool right)
+ {
+ #if _M_SSE >= 0x501
+ 	return ReverbDownsample_avx(core, right);
+@@ -239,7 +239,7 @@ StereoOut32 __forceinline ReverbUpsample_sse(V_Core& core)
+ 	return {lacc.I16[0], racc.I16[0]};
+ }
+ 
+-StereoOut32 ReverbUpsample(V_Core& core)
++StereoOut32 Internal_ReverbUpsample(V_Core& core)
+ {
+ #if _M_SSE >= 0x501
+ 	return ReverbUpsample_avx(core);
+@@ -248,4 +248,15 @@ StereoOut32 ReverbUpsample(V_Core& core)
+ #endif
+ }
+ 
+-MULTI_ISA_UNSHARED_END
++// MULTI_ISA_UNSHARED_END
++
++// Add function pointer initialization
++namespace
++{
++	struct FunctionInitializer
++	{
++		FunctionInitializer() { ReverbDownsample = Internal_ReverbDownsample; ReverbUpsample = Internal_ReverbUpsample; }
++	};
++	
++	static FunctionInitializer initializer;
++}
+diff --git a/pcsx2/SPU2/ReverbSIMP.cpp b/pcsx2/SPU2/ReverbSIMP.cpp
+new file mode 100644
+index 000000000..525287de3
+--- /dev/null
++++ b/pcsx2/SPU2/ReverbSIMP.cpp
+@@ -0,0 +1,34 @@
++#include "Global.h"
++
++extern s32 Internal_ReverbDownsample(V_Core& core, bool right);
++extern StereoOut32 Internal_ReverbUpsample(V_Core& core);
++
++namespace isa_avx {
++	s32 ReverbDownsample(V_Core& core, bool right) {
++		return Internal_ReverbDownsample(core, right);
++	}
++
++	StereoOut32 ReverbUpsample(V_Core& core) {
++		return Internal_ReverbUpsample(core);
++	}
++}
++
++namespace isa_avx2 {
++	s32 ReverbDownsample(V_Core& core, bool right) {
++		return Internal_ReverbDownsample(core, right);
++	}
++
++	StereoOut32 ReverbUpsample(V_Core& core) {
++		return Internal_ReverbUpsample(core);
++	}
++}
++
++namespace isa_sse4 {
++	s32 ReverbDownsample(V_Core& core, bool right) {
++		return Internal_ReverbDownsample(core, right);
++	}
++
++	StereoOut32 ReverbUpsample(V_Core& core) {
++		return Internal_ReverbUpsample(core);
++	}
++}
+-- 
+2.51.1
+

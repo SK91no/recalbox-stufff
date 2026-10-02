@@ -1,0 +1,23 @@
+# joycond udev rules - Joy-Cons and Pro Controller ONLY
+# NSO controllers (SNES, N64, Genesis, NES) are excluded as joycond interferes with their LEDs
+
+ACTION!="add", GOTO="joycond_end"
+SUBSYSTEM!="input", GOTO="joycond_end"
+KERNEL!="event*", GOTO="joycond_end"
+
+# Pro Controller (USB and BT)
+ATTRS{id/vendor}=="057e", ATTRS{id/product}=="2009", ATTRS{name}!="*Combined*", ATTRS{name}!="*Virtual*", ATTRS{name}!="*IMU*", TAG+="joycond", MODE="0600"
+
+# Joy-Con (L)
+ATTRS{id/vendor}=="057e", ATTRS{id/product}=="2006", ATTRS{name}!="*Combined*", ATTRS{name}!="*Virtual*", ATTRS{name}!="*IMU*", TAG+="joycond", MODE="0600"
+
+# Joy-Con (R) - exclude NES controllers which share the same product ID
+ATTRS{id/vendor}=="057e", ATTRS{id/product}=="2007", ATTRS{name}!="*Combined*", ATTRS{name}!="*Virtual*", ATTRS{name}!="*IMU*", ATTRS{name}!="*NES*", TAG+="joycond", MODE="0600"
+
+# Charging Grip
+ATTRS{id/vendor}=="057e", ATTRS{id/product}=="200e", ATTRS{name}!="*Combined*", ATTRS{name}!="*Virtual*", ATTRS{name}!="*IMU*", TAG+="joycond", MODE="0600"
+
+# NSO Controllers - NOT tagged for joycond (they work standalone)
+# NES (2007 with NES in name), SNES (2017), N64 (2019), Genesis (201e) - intentionally excluded
+
+LABEL="joycond_end"

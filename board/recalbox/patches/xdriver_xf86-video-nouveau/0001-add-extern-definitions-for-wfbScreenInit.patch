@@ -1,0 +1,33 @@
+diff --git a/src/nv_driver.c b/src/nv_driver.c
+index f9ab4af..de9d151 100644
+--- a/src/nv_driver.c
++++ b/src/nv_driver.c
+@@ -42,6 +42,28 @@
+ #define xorg_list_for_each_entry        list_for_each_entry
+ #endif
+ 
++
++extern _X_EXPORT Bool
++wfbFinishScreenInit(ScreenPtr pScreen,
++                    void *pbits,
++                    int xsize,
++                    int ysize,
++                    int dpix,
++                    int dpiy,
++                    int width,
++                    int bpp,
++                    SetupWrapProcPtr setupWrap, FinishWrapProcPtr finishWrap);
++
++extern _X_EXPORT Bool
++wfbScreenInit(ScreenPtr pScreen,
++              void *pbits,
++              int xsize,
++              int ysize,
++              int dpix,
++              int dpiy,
++              int width,
++              int bpp,
++              SetupWrapProcPtr setupWrap, FinishWrapProcPtr finishWrap);
+ /*
+  * Forward definitions for the functions that make up the driver.
+  */

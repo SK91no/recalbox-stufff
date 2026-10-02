@@ -1,0 +1,49 @@
+From dd5ade3d359800a0339188565ad2336a0a713945 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 26 Mar 2025 21:32:47 +0100
+Subject: [PATCH 4/9] set trigger to class ABS_Z and ABS_RZ events
+
+---
+ drivers/hid/hid-steam.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/hid/hid-steam.c b/drivers/hid/hid-steam.c
+index 0a1a699ce701..511275f2b0a5 100644
+--- a/drivers/hid/hid-steam.c
++++ b/drivers/hid/hid-steam.c
+@@ -778,8 +778,8 @@ static int steam_input_register(struct steam_device *steam)
+ 			STEAM_PAD_FUZZ, 0);
+ 
+ 	if (steam->quirks & STEAM_QUIRK_DECK) {
+-		input_set_abs_params(input, ABS_HAT2Y, 0, 32767, 0, 0);
+-		input_set_abs_params(input, ABS_HAT2X, 0, 32767, 0, 0);
++		input_set_abs_params(input, ABS_Z, 0, 32767, 0, 0);
++		input_set_abs_params(input, ABS_RZ, 0, 32767, 0, 0);
+ 
+ 		input_set_abs_params(input, ABS_RX, -32767, 32767, 0, 0);
+ 		input_set_abs_params(input, ABS_RY, -32767, 32767, 0, 0);
+@@ -795,8 +795,8 @@ static int steam_input_register(struct steam_device *steam)
+ 		input_abs_set_res(input, ABS_RY, STEAM_DECK_JOYSTICK_RESOLUTION);
+ 		input_abs_set_res(input, ABS_HAT1X, STEAM_PAD_RESOLUTION);
+ 		input_abs_set_res(input, ABS_HAT1Y, STEAM_PAD_RESOLUTION);
+-		input_abs_set_res(input, ABS_HAT2Y, STEAM_DECK_TRIGGER_RESOLUTION);
+-		input_abs_set_res(input, ABS_HAT2X, STEAM_DECK_TRIGGER_RESOLUTION);
++		input_abs_set_res(input, ABS_Z, STEAM_DECK_TRIGGER_RESOLUTION);
++		input_abs_set_res(input, ABS_RZ, STEAM_DECK_TRIGGER_RESOLUTION);
+ 	} else {
+ 		input_set_abs_params(input, ABS_HAT2Y, 0, 255, 0, 0);
+ 		input_set_abs_params(input, ABS_HAT2X, 0, 255, 0, 0);
+@@ -1661,8 +1661,8 @@ static void steam_do_deck_input_event(struct steam_device *steam,
+ 	input_report_abs(input, ABS_RX, apply_deadzone(steam_le16(data + 52), 800));
+ 	input_report_abs(input, ABS_RY, apply_deadzone(-steam_le16(data + 54), 800));
+ 
+-	input_report_abs(input, ABS_HAT2Y, steam_le16(data + 44));
+-	input_report_abs(input, ABS_HAT2X, steam_le16(data + 46));
++	input_report_abs(input, ABS_Z, steam_le16(data + 44));
++	input_report_abs(input, ABS_RZ, steam_le16(data + 46));
+ 
+ 	input_event(input, EV_KEY, BTN_TR2, !!(b8 & BIT(0)));
+ 	input_event(input, EV_KEY, BTN_TL2, !!(b8 & BIT(1)));
+-- 
+2.52.0
+

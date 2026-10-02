@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if test "$1" == "start"; then
+  source /recalbox/scripts/recalbox-utils.sh
+  if isRecalboxRGBJamma;then
+    modprobe i2c-dev
+    if isRecalboxRGBJamma2;then ARGS="--rgbjamma2"; fi
+    start-stop-daemon -S -q -m -p /var/run/recalboxrgbjamma_screen.pid  --exec "recalboxrgbjamma_screen" -- "$ARGS" &
+  fi
+fi
+
+if test "$1" == "stop"; then
+  source /recalbox/scripts/recalbox-utils.sh
+  if isRecalboxRGBJamma;then
+    start-stop-daemon -K -p /var/run/recalboxrgbjamma_screen.pid
+    if isRecalboxRGBJamma2;then ARGS="--rgbjamma2"; fi
+    recalboxrgbjamma_screen "$ARGS" --clear
+  fi
+fi

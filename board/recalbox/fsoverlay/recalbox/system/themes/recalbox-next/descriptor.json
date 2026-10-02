@@ -1,0 +1,237 @@
+{
+  "name": "Recalbox-next 2025",
+  "version": 1,
+  "recalbox-version": 10,
+  "author": "Recalbox",
+  "description": "Official default theme for recalbox v.10 >\nCustomizable via theme options",
+  "description.fr": "Thème officiel par defaut de Recalbox v.10 >. \nPersonnalisable via les options de thème",
+  "description.es": "Tema predeterminado oficial para Recalbox v.10 >\nPersonalizable mediante opciones de tema",
+  "description.de": "Offizielles Standarddesign für Recalbox v.10 >\nAnpassbar über Designoptionen",
+  "files": [
+    {
+      "compatibility": "crt,jamma,hdmi,tate",
+      "resolutions": "qvga,vga,hd,fhd",
+      "file": "",
+      "screenshots": [
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "hd",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi,tate",
+          "resolutions": "fhd",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-56-31-562Z.png",
+            "screen/screenshot-2025-11-18T23-54-32-264Z.png",
+            "screen/screenshot-2025-11-18T23-52-29-812Z.png",
+            "screen/screenshot-2025-11-18T23-50-27-070Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-52-52-076Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-50-13-283Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-40-42-722Z.png",
+            "screen/screenshot-2025-11-18T23-39-41-758Z.png",
+            "screen/screenshot-2025-11-18T23-36-56-672Z.png",
+            "screen/screenshot-2025-11-18T23-35-46-394Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-43-03-997Z.png",
+            "screen/screenshot-2025-11-18T23-37-50-713Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-35-41-810Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-40-42-722Z.png",
+            "screen/screenshot-2025-11-18T23-39-41-758Z.png",
+            "screen/screenshot-2025-11-18T23-36-56-672Z.png",
+            "screen/screenshot-2025-11-18T23-35-46-394Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-43-03-997Z.png",
+            "screen/screenshot-2025-11-18T23-37-50-713Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-35-41-810Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-10-21T01-48-21-622Z.png",
+            "screen/screenshot-2025-10-21T01-47-59-073Z.png",
+            "screen/screenshot-2025-10-21T01-47-28-957Z.png",
+            "screen/screenshot-2025-10-21T01-46-45-199Z.png",
+            "screen/screenshot-2025-10-21T01-45-56-939Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-10-02T22-17-24-341Z.png",
+            "screen/screenshot-2025-10-02T20-48-37-442Z.png",
+            "screen/screenshot-2025-10-02T01-33-51-777Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-10-19T21-33-14-457Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-10-21T01-48-21-622Z.png",
+            "screen/screenshot-2025-10-21T01-47-59-073Z.png",
+            "screen/screenshot-2025-10-21T01-47-28-957Z.png",
+            "screen/screenshot-2025-10-21T01-46-45-199Z.png",
+            "screen/screenshot-2025-10-21T01-45-56-939Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-10-02T22-17-24-341Z.png",
+            "screen/screenshot-2025-10-02T20-48-37-442Z.png",
+            "screen/screenshot-2025-10-02T01-33-51-777Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-10-19T21-33-14-457Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "hd",
+          "systems": [
+            "screen/screenshot-2025-10-21T01-48-21-622Z.png",
+            "screen/screenshot-2025-10-21T01-47-59-073Z.png",
+            "screen/screenshot-2025-10-21T01-47-28-957Z.png",
+            "screen/screenshot-2025-10-21T01-46-45-199Z.png",
+            "screen/screenshot-2025-10-21T01-45-56-939Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-10-02T22-17-24-341Z.png",
+            "screen/screenshot-2025-10-02T20-48-37-442Z.png",
+            "screen/screenshot-2025-10-02T01-33-51-777Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-10-19T21-33-14-457Z.png"
+          ],
+          "gameclip": []
+        },
+        {
+          "compatibility": "hdmi",
+          "resolutions": "fhd",
+          "systems": [
+            "screen/screenshot-2025-10-21T01-48-21-622Z.png",
+            "screen/screenshot-2025-10-21T01-47-59-073Z.png",
+            "screen/screenshot-2025-10-21T01-47-28-957Z.png",
+            "screen/screenshot-2025-10-21T01-46-45-199Z.png",
+            "screen/screenshot-2025-10-21T01-45-56-939Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-10-02T22-17-24-341Z.png",
+            "screen/screenshot-2025-10-02T20-48-37-442Z.png",
+            "screen/screenshot-2025-10-02T01-33-51-777Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-10-19T21-33-14-457Z.png"
+          ],
+          "gameclip": []
+        }
+      ]
+    }
+  ]
+}

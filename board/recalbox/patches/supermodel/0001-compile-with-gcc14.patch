@@ -1,0 +1,13 @@
+diff --git a/Src/CPU/68K/Musashi/m68kconf.h b/Src/CPU/68K/Musashi/m68kconf.h
+index b1308fa..c3a37d5 100644
+--- a/Src/CPU/68K/Musashi/m68kconf.h
++++ b/Src/CPU/68K/Musashi/m68kconf.h
+@@ -96,6 +96,8 @@
+  * If off, all interrupts will be autovectored and all interrupt requests will
+  * auto-clear when the interrupt is serviced.
+  */
++extern int M68KIRQCallback(int nIRQ);
++
+ #define M68K_EMULATE_INT_ACK        OPT_ON
+ #define M68K_INT_ACK_CALLBACK(A)    your_int_ack_handler_function(A)
+ 

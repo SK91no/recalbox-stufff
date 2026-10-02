@@ -1,0 +1,51 @@
+From: digitalLumberjack <digitallumberjack@recalbox.com>
+Subject: [PATCH] model3: let View Change cycle the 4 discrete VR views
+
+Racing games with 4 dedicated VR view buttons (Scud Race, Daytona USA 2,
+Le Mans 24 - INPUT_VR4) have no single "change view" input, unlike the games
+using INPUT_VIEWCHANGE which already cycle. On a cabinet without 4 VR buttons
+(a Recalbox JVS race cab, where the only free gesture is a combo), the extra
+views are unreachable.
+
+This makes the single View Change input rotate through the 4 VR views for
+INPUT_VR4 games: each press advances to the next view (held while pressed so
+the game latches it). Direct VR button presses are unaffected.
+
+--- a/Src/Model3/Model3.cpp
++++ b/Src/Model3/Model3.cpp
+@@ -330,10 +330,20 @@
+ 
+     if ((m_game.inputs & Game::INPUT_VR4))
+     {
+-      data &= ~(Inputs->vr[0]->value<<0); // VR1 Red
+-      data &= ~(Inputs->vr[1]->value<<1); // VR2 Blue
+-      data &= ~(Inputs->vr[2]->value<<2); // VR3 Yellow
+-      data &= ~(Inputs->vr[3]->value<<3); // VR4 Green
++      // Recalbox: the single View Change input cycles the 4 discrete VR views,
++      // so a cabinet without 4 VR buttons (JVS race cab) can rotate views. Each
++      // View Change press advances to the next view; direct VR presses still work.
++      static int  s_vrView = 0;
++      static int  s_vrHeld = 0;
++      static bool s_vrPrev = false;
++      bool vc = Inputs->viewChange->value != 0;
++      if (vc && !s_vrPrev) s_vrHeld = s_vrView;
++      if (!vc && s_vrPrev) s_vrView = (s_vrView + 1) & 3;
++      s_vrPrev = vc;
++      UINT8 vrBits = (Inputs->vr[0]->value<<0) | (Inputs->vr[1]->value<<1)
++                   | (Inputs->vr[2]->value<<2) | (Inputs->vr[3]->value<<3);
++      if (vc) vrBits |= (1 << s_vrHeld);
++      data &= ~vrBits;
+     }
+ 
+     if ((m_game.inputs & Game::INPUT_VIEWCHANGE))
+--- a/Src/Inputs/Inputs.cpp
++++ b/Src/Inputs/Inputs.cpp
+@@ -137,7 +137,7 @@
+ 	vr[3]              = AddSwitchInput("VR4", "VR4", Game::INPUT_VR4, "NONE");
+ 
+ 	// Racing Game Single View Change Button
+-	viewChange         = AddSwitchInput("ViewChange", "View Change", Game::INPUT_VIEWCHANGE, "NONE");
++	viewChange         = AddSwitchInput("ViewChange", "View Change", Game::INPUT_VIEWCHANGE | Game::INPUT_VR4, "NONE");
+ 
+ 	// Racing Game Handbrake
+ 	handBrake          = AddSwitchInput("HandBrake",  "Hand Brake",  Game::INPUT_HANDBRAKE, "NONE");

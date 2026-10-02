@@ -1,0 +1,64 @@
+vulkan: always write the texture descriptor (binding 0), even for untextured
+polys and naomi2 modifier volumes.
+
+Leaving binding 0 unwritten while still binding the descriptor set is legal on
+desktop GPUs (the shader doesn't sample it) but the Broadcom V3D driver (Pi5,
+Mesa V3DV) dereferences the NULL descriptor resource and crashes. This happened
+on Initial D (naomi2) as soon as a race starts (3D geometry with modifier-volume
+shadows). Bind the always-valid fog image view as a dummy so binding 0 is never
+NULL.
+
+--- a/core/rend/vulkan/pipeline.h
++++ b/core/rend/vulkan/pipeline.h
+@@ -43,6 +43,7 @@
+ 	{
+ 		perFrameDescSet = perFrameAlloc.alloc();
+ 		perPolyDescSets.clear();
++		emptyImageView = fogImageView;	// dummy for texture binding 0 of untextured polys/modvols
+
+ 		std::vector<vk::DescriptorBufferInfo> bufferInfos;
+ 		bufferInfos.emplace_back(buffer, vertexUniformOffset, sizeof(VertexShaderUniforms));
+@@ -87,10 +88,12 @@
+ 			std::vector<vk::WriteDescriptorSet> writeDescriptorSets;
+
+ 			vk::DescriptorImageInfo imageInfo;
+-			if (poly.texture != nullptr)
+ 			{
++				// always write binding 0 (dummy fog view if untextured) or the V3D driver derefs a NULL descriptor
++				vk::ImageView texView = poly.texture != nullptr
++						? ((Texture *)poly.texture)->GetReadOnlyImageView() : emptyImageView;
+ 				imageInfo = vk::DescriptorImageInfo(samplerManager->GetSampler(poly, punchThrough),
+-						((Texture *)poly.texture)->GetReadOnlyImageView(), vk::ImageLayout::eShaderReadOnlyOptimal);
++						texView, vk::ImageLayout::eShaderReadOnlyOptimal);
+ 				writeDescriptorSets.emplace_back(perPolyDescSet, 0, 0, vk::DescriptorType::eCombinedImageSampler, imageInfo);
+ 			}
+
+@@ -126,13 +129,18 @@
+ 		if (it == perPolyDescSets.end())
+ 		{
+ 			perPolyDescSet = perPolyAlloc.alloc();
++			std::vector<vk::WriteDescriptorSet> writeDescriptorSets;
++
++			// naomi2 modifier volumes are untextured: bind a dummy texture for binding 0 too
++			vk::DescriptorImageInfo imageInfo(samplerManager->GetSampler(TSP{}), emptyImageView, vk::ImageLayout::eShaderReadOnlyOptimal);
++			writeDescriptorSets.emplace_back(perPolyDescSet, 0, 0, vk::DescriptorType::eCombinedImageSampler, imageInfo);
+
+ 			const vk::DeviceSize uniformAlignment = VulkanContext::Instance()->GetUniformBufferAlignment();
+ 			size_t size = sizeof(N2VertexShaderUniforms) + align(sizeof(N2VertexShaderUniforms), uniformAlignment);
+ 			vk::DescriptorBufferInfo uniBufferInfo{ buffer, uniformOffset + polyNumber * size, sizeof(N2VertexShaderUniforms) };
+-			vk::WriteDescriptorSet writeDescriptorSet(perPolyDescSet, 2, 0, vk::DescriptorType::eUniformBuffer, nullptr, uniBufferInfo);
++			writeDescriptorSets.emplace_back(perPolyDescSet, 2, 0, vk::DescriptorType::eUniformBuffer, nullptr, uniBufferInfo);
+
+-			getContext()->GetDevice().updateDescriptorSets(writeDescriptorSet, nullptr);
++			getContext()->GetDevice().updateDescriptorSets(writeDescriptorSets, nullptr);
+ 			perPolyDescSets[&mvParam] = perPolyDescSet;
+ 		}
+ 		else
+@@ -169,6 +177,7 @@
+ 	std::unordered_map<const void *, vk::DescriptorSet> perPolyDescSets;
+
+ 	SamplerManager* samplerManager = nullptr;
++	vk::ImageView emptyImageView;	// dummy image view for texture binding 0
+ };
+
+ class PipelineManager

@@ -1,0 +1,22 @@
+--- a/source/frontends/libretro/diskcontrol.cpp	2025-01-26 22:25:07.000000000 +0100
++++ b/source/frontends/libretro/diskcontrol.cpp	2025-01-27 12:43:21.602067763 +0100
+@@ -99,7 +99,18 @@
+             return true;
+         }
+ 
+-        return insertHardDisk(path);
++        if (insertHardDisk(path))
++        {
++          myIndex = 0;
++          myImages.clear();
++
++          const std::filesystem::path filePath(path);
++          myImages.push_back({filePath.string(), filePath.stem().string(), writeProtected, createIfNecessary});
++          myEjected = false;
++          return true;
++        }
++
++        return false;
+     }
+ 
+     bool DiskControl::insertPlaylist(const std::string &path)

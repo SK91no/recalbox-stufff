@@ -1,0 +1,6946 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2);\n"
+
+msgid "AN UPDATE IS AVAILABLE FOR YOUR RECALBOX"
+msgstr "O noua actualizare este disponibila pentru Recalbox"
+
+msgid "NEW VERSION:"
+msgstr "VERSIUNE NOUA:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "JURNAL DE MODIFICARI:"
+
+msgid "CANCEL"
+msgstr "ANULEAZA"
+
+msgid "Rating"
+msgstr "Evaluare"
+
+msgid "Released"
+msgstr "Lansat"
+
+msgid "Developer"
+msgstr "Developer"
+
+msgid "Publisher"
+msgstr "Editor"
+
+msgid "Genre"
+msgstr "Gen"
+
+msgid "Players"
+msgstr "Jucatori"
+
+msgid "SEARCH"
+msgstr "CAUTA"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "VERIFICARE IN CURS"
+
+msgid "SYSTEM"
+msgstr "SISTEM"
+
+msgid "subtitle text"
+msgstr "text subtitrare"
+
+msgid "STOP"
+msgstr "STOP"
+
+msgid "stop (progress saved)"
+msgstr "stop (progres salvat)"
+
+msgid "ESTIMATED TIME: "
+msgstr "TIMP ESTIMAT: "
+
+msgid "ELAPSED TIME: "
+msgstr "TIMP SCURS: "
+
+msgid "COMPLETE!"
+msgstr "FINALIZAT!"
+
+msgid "PLEASE VISIT"
+msgstr "VA RUGAM VIZITATI"
+
+msgid "ONLY 1 SCRAPPING ENGINE"
+msgid_plural "%i SCRAPPING ENGINES"
+msgstr[0] "DOAR 1 MOTOR DE VERIFICARE"
+msgstr[1] "%i MOTOARE DE VERIFICARE"
+msgstr[2] "%i DE MOTOARE DE VERIFICARE"
+
+msgid ""
+"Scraping complete! {PROCESSED} games processed.\n"
+"\n"
+"{SUCCESS} game(s) scraped or updated\n"
+"{NOTFOUND} game(s) not found...\n"
+"{ERRORS} request/download errors\n"
+"\n"
+"{TEXTINFO} Text information updated\n"
+"{IMAGES} images and {VIDEOS} videos downloaded\n"
+"{MEDIASIZE} of media saved"
+msgstr ""
+"Verificare finalizata! {PROCESSED} jocuri procesate.\n"
+"\n"
+"{SUCCESS} joc(uri) verificat(e) sau actualizat(e)\n"
+"{NOTFOUND} joc(uri) negasit(e)...\n"
+"{ERRORS} erori de cerere/descarcare\n"
+"\n"
+"{TEXTINFO} informatii text actualizate\n"
+"{IMAGES} imagini si {VIDEOS} videoclipuri descarcate\n"
+"{MEDIASIZE} de fisiere media salvate"
+
+msgid ""
+"You reached your daily quota of scraping request.\n"
+"All your today's scrapes have been saved anyway.\n"
+"\n"
+"Start scraping again tomorrow.\n"
+"Dont forget to select 'update' and not 'scrape all'"
+msgstr ""
+"Ati atins limita zilnica de cereri de verificare.\n"
+"Toate verificarile de azi au fost totusi salvate.\n"
+"\n"
+"Reincepeti verificarea maine.\n"
+"Nu uitati sa selectati 'actualizeaza' si nu 'verifica tot'"
+
+msgid ""
+"Your share partition is almost full.\n"
+"The scraper stopped automatically.\n"
+"\n"
+"Remove unused games, media, files to make room before running the scraper "
+"again!"
+msgstr ""
+"Partitia share este aproape plina.\n"
+"Verificatorul s-a oprit automat.\n"
+"\n"
+"Eliminati jocurile, fisierele media si fisierele nefolosite pentru a face "
+"loc inainte de a rula din nou verificatorul!"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "SCRAPE"
+msgstr "VERIFICA"
+
+msgid "SAVE"
+msgstr "Salveaza"
+
+msgid "YES"
+msgstr "DA"
+
+msgid "NO"
+msgstr "NU"
+
+msgid "DELETE"
+msgstr "STERGE"
+
+msgid "BACK"
+msgstr "Inapoi"
+
+msgid "CLOSE"
+msgstr "Inchide"
+
+msgid "MAIN MENU"
+msgstr "Meniu principal"
+
+msgid "KODI MEDIA CENTER"
+msgstr "KODI MEDIA CENTER"
+
+msgid "SYSTEM SETTINGS"
+msgstr "Setari de sistem"
+
+msgid "VERSION"
+msgstr "Versiune"
+
+msgid "LANGUAGE"
+msgstr "Limba"
+
+msgid "OVERCLOCK"
+msgstr "OVERCLOCK"
+
+msgid "NONE"
+msgstr "NIMIC"
+
+msgid "UPDATES"
+msgstr "Actualizari "
+
+msgid "KODI SETTINGS"
+msgstr "SETARI KODI"
+
+msgid "ENABLE KODI"
+msgstr "ACTIVEAZA KODI"
+
+msgid "KODI AT START"
+msgstr "KODI LA PORNIRE"
+
+msgid "START KODI WITH X"
+msgstr "PORNESTE KODI CU X"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "SISTEMUL VA REPORNI ACUM"
+
+msgid "GAME RATIO"
+msgstr "PROPORTIE JOC"
+
+msgid "SMOOTH GAMES"
+msgstr "SMOOTH JOCURI"
+
+msgid "REWIND"
+msgstr "DERULEAZA"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "SALVARE/INCARCARE AUTOMATA"
+
+msgid "PRESS TWICE TO QUIT GAME"
+msgstr "APASATI DE DOUA ORI PENTRU A IESI DIN JOC"
+
+msgid "SHADERS SET"
+msgstr "SETARE SHADERE"
+
+msgid "SCANLINES"
+msgstr "SCANLINES"
+
+msgid "RETRO"
+msgstr "RETRO"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "SETARI RETROACHIEVEMENTS"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "RETROACHIEVEMENTS"
+
+msgid "HARDCORE MODE"
+msgstr "MOD HARDCORE"
+
+msgid "USERNAME"
+msgstr "UTILIZATOR"
+
+msgid "PASSWORD"
+msgstr "PAROLA"
+
+msgid "ADVANCED"
+msgstr "AVANSAT"
+
+msgid "UPDATE GAMES LISTS"
+msgstr "ACTUALIZEAZA LISTA DE JOCURI"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "SETARI CONTROLLERE"
+
+msgid "SCREENSAVER AFTER"
+msgstr "SCREENSAVER DUPA"
+
+msgid "CAROUSEL ANIMATION"
+msgstr "ANIMATIE CARUSEL"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "COMPORTAMENT SCREENSAVER"
+
+msgid "SHOW FRAMERATE"
+msgstr "ARATA FRAMRATE"
+
+msgid "ON-SCREEN HELP"
+msgstr "AJUTOR PE ECRAN"
+
+msgid "THEME SET"
+msgstr "STABILESTE TEMA"
+
+msgid "SOUND SETTINGS"
+msgstr "SETARI SUNET"
+
+msgid "SYSTEM VOLUME"
+msgstr "VOLUM SISTEM"
+
+msgid "OUTPUT DEVICE"
+msgstr "DISPOZITIV IESIRE"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "NETWORK SETTINGS"
+msgstr "SETARI RETEA"
+
+msgid "CONNECTED"
+msgstr "CONECTAT"
+
+msgid "NOT CONNECTED"
+msgstr "DECONTECTAT"
+
+msgid "STATUS"
+msgstr "STATUS"
+
+msgid "IP ADDRESS"
+msgstr "ADRESA IP"
+
+msgid "HOSTNAME"
+msgstr "HOSTNAME"
+
+msgid "ENABLE WIFI"
+msgstr "ACTIVEAZA WIFI"
+
+msgid "WIFI SSID"
+msgstr "SSID WIFI"
+
+msgid "WIFI KEY"
+msgstr "CHEIE WIFI"
+
+msgid "SCRAPER"
+msgstr "VALIDATOR"
+
+msgid "SCRAPE FROM"
+msgstr "VALIDEAZA DIN"
+
+msgid "SCRAPE NOW"
+msgstr "VALIDEAZA ACUM"
+
+msgid "QUIT"
+msgstr "IESI"
+
+msgid "REALLY RESTART?"
+msgstr "SIGUR REPORNESTI?"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "SIGUR INCHIZI?"
+
+msgid "Emulator"
+msgstr "Emulator"
+
+msgid "Core"
+msgstr "Core"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "CONFIGUREAZA UN CONTROLLER"
+
+msgid "CONTROLLER PAIRED"
+msgstr "CONTROLLER CUPLAT"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "CUPLARE CONTROLLER NEREUSITA"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "NICI UN CONTROLLER GASIT"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "LEGATURILE CU CONTROLLERELE AU FOST STERSE"
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "UITA CONTROLLERELE BLUETOOTH"
+
+msgid "INPUT P%i"
+msgstr "INTRARE P%i"
+
+msgid "CHOOSE"
+msgstr "ALEGE"
+
+msgid "SELECT"
+msgstr "SELECTEAZA"
+
+msgid "OPTIONS"
+msgstr "OPTIUNI"
+
+msgid "JUMP TO LETTER"
+msgstr "SARI LA LITERA"
+
+msgid "SORT GAMES BY"
+msgstr "SORTEAZA DUPA JOCURI"
+
+msgid "All Games"
+msgstr "Toate Jocurile"
+
+msgid "Only missing image"
+msgstr "Doar imagini lipsa"
+
+msgid "FILTER"
+msgstr "FILTREAZA"
+
+msgid "SYSTEMS"
+msgstr "SISTEME"
+
+msgid "START"
+msgstr "START"
+
+msgid "Ratio"
+msgstr "Proportie"
+
+msgid "Name"
+msgstr "Nume"
+
+msgid "Description"
+msgstr "Descriere"
+
+msgid "Image"
+msgstr "Imagine"
+
+msgid "Favorite"
+msgstr "Favorit"
+
+msgid "Region"
+msgstr "Regiune"
+
+msgid "Hidden"
+msgstr "Ascuns"
+
+msgid "Last played"
+msgstr "Ultima oara jucat"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "%i JOC DISPONIBIL"
+msgstr[1] "%i JOCURI DISPONIBILE"
+msgstr[2] "%i JOCURI DISPONIBILE"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "%i FAVORIT"
+msgstr[1] "%i FAVORITE"
+msgstr[2] "%i FAVORITE"
+
+msgid "LAUNCH"
+msgstr "LANSEAZA"
+
+msgid "Times played"
+msgstr "Dati jucate"
+
+msgid "MENU"
+msgstr "MENIU"
+
+msgid "START KODI"
+msgstr "PORNESTE KODI"
+
+msgid "WORKING..."
+msgstr "LUCREZ..."
+
+msgid "CHANGE"
+msgstr "SCHIMBA"
+
+msgid "never"
+msgstr "niciodata"
+
+msgid "just now"
+msgstr "chiar acum"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "%i acum o sec"
+msgstr[1] "%i acum doua sec"
+msgstr[2] "%i acum cateva sec"
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "%i acum un min"
+msgstr[1] "%i acum cateva min"
+msgstr[2] "%i acum cateva min"
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "%i acum o ora"
+msgstr[1] "%i acum cateva ore"
+msgstr[2] "%i acum cateva ore"
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "%i acum o zi"
+msgstr[1] "%i acum cateva zile"
+msgstr[2] "%i acum cateva zile"
+
+msgid "unknown"
+msgstr "necunoscut"
+
+msgid "SELECT ALL"
+msgstr "SELECTEAZA TOT"
+
+msgid "SELECT NONE"
+msgstr "DESELECTEAZA TOT"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i SELECTAT"
+msgstr[1] "%i SELECTATE"
+msgstr[2] "%i SELECTATE"
+
+msgid "UP"
+msgstr "SUS"
+
+msgid "DOWN"
+msgstr "JOS"
+
+msgid "LEFT"
+msgstr "STANGA"
+
+msgid "RIGHT"
+msgstr "DREAPTA"
+
+msgid "HOTKEY"
+msgstr "HOTKEY"
+
+msgid "CONFIGURING"
+msgstr "CONFIGURARE"
+
+msgid "KEYBOARD"
+msgstr "TASTATURA"
+
+msgid "GAMEPAD %i"
+msgstr "GAMEOAD %i"
+
+msgid "(skipped)"
+msgstr "(omis)"
+
+msgid "DISCARD CHANGES"
+msgstr "RENUNTA LA SCHIMBARI"
+
+msgid "WELCOME"
+msgstr "BINE AI VENIT"
+
+msgid "CONFIGURE INPUT"
+msgstr "CONFIGUREAZA INTRARE"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "%i GAMEPAD DETECTAT"
+msgstr[1] "%i GAMEPAD-URI DETECTATE"
+msgstr[2] "%i GAMEPAD-URI DETECTATE"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "NICI UN GAMEPAD DETECTAT"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "TINE APASAT UN BUTON PE DISPOZITIVUL TAU PENTRU A-L CONFIGURA"
+
+msgid "PRESS ESC OR THE HOTKEY TO CANCEL."
+msgstr "APASA ESC SAU HOTKEY PENTRU A ANULA"
+
+msgid "LOADING..."
+msgstr "INCARCARE..."
+
+msgid "PLEASE WAIT..."
+msgstr "TE ROG ASTEAPTA..."
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "SIGUR INCHIDEM FARA A SALVA METADATA?"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "SHIFT PENTRU MINUSCULE, MAJUSCULE SI CARACTERE SPECIALE"
+
+msgid "SPACE"
+msgstr "SPATIU"
+
+msgid "DELETE A CHAR"
+msgstr "STERGE UN CARACTER"
+
+msgid "SHIFT"
+msgstr "SHIFT"
+
+msgid "STOP EDITING"
+msgstr "OPRESTE EDITAREA"
+
+msgid "MOVE CURSOR"
+msgstr "MISCA CURSORUL"
+
+msgid "EDIT"
+msgstr "EDITEAZA"
+
+msgid "FILENAME"
+msgstr "NUME FISER"
+
+msgid "RATING"
+msgstr "EVALUARE"
+
+msgid "TIMES PLAYED"
+msgstr "DATI JUCATE"
+
+msgid "LAST PLAYED"
+msgstr "ULTIMA DATA JUCAT"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "NUMAR DE JUCATORI"
+
+msgid "DEVELOPER"
+msgstr "DEZVOLTATOR"
+
+msgid "GENRE"
+msgstr "GEN"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE "
+"THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"MODURILE DE OVERCLOCK TURBO SI EXTREM POT CAUZA INSTABILITATI DE SISTEM, "
+"ASTFEL FOLOSESTE PE PROPRIE RASPUNDERE.\n"
+"DACA CONTINUI, SISTEMUL VA REPORNI ACUM."
+
+msgid "Start kodi media player."
+msgstr "Porneste Kodi Media Player"
+
+msgid ""
+"Select the language for your recalbox, select an external drive to store "
+"your games and configurations, check your current version and the free space "
+"on your drive"
+msgstr ""
+"Selecteaza limba pentru recalbox, selecteaza un drive extern pentru a stoc "
+"jocuri si configuratii, verifica versiunea curenta si spatiul liber pe drive."
+
+msgid "Shows your current recalboxOS version."
+msgstr "Arata versiunea curenta de recalboxOS."
+
+msgid ""
+"Show how much space is used on your SHARE partition, located either on the "
+"SDCARD or on an external drive. The information shows how many GB are used "
+"and how many GB your storage has in total (example 13GB/26GB)."
+msgstr ""
+"Arata cat spatiu este folosit e partitia ta SHARE, localizata fie pe SDCARD, "
+"fie pe un drive extern. Informatia arata cati GB sunt folositi si cati GB "
+"are dispozitivul tau in total (exemplu 13GB/26GB)."
+
+msgid ""
+"Select an external drive to store your roms, saves, configurations etc.\n"
+"Use a FAT32 formatted drive. The system does not format the drive. On first "
+"boot, with this option enabled, recalbox will create a '/recalbox' folder "
+"with all system files inside."
+msgstr ""
+"Selectati o unitate externa pentru a stoca romurile, salvarile, "
+"configuratiile etc.\n"
+"Folositi o unitate formatata FAT32. Sistemul nu formateaza unitatea. La "
+"prima pornire, cu aceasta optiune activata, recalbox va crea un folder '/"
+"recalbox' cu toate fisierele sistemului in interior."
+
+msgid ""
+"Manage your recalbox updates. Select the update type. Activate update check."
+msgstr ""
+"Gestionati actualizarile recalbox. Selectati tipul de actualizare. Activati "
+"verificarea actualizarilor."
+
+msgid "Check if an update is available, and start the update process."
+msgstr ""
+"Verificati daca este disponibila o actualizare si porniti procesul de "
+"actualizare."
+
+msgid ""
+"Configure games display, ratio, filters (shaders), auto save and load and "
+"retroachievement account."
+msgstr ""
+"Configurati afisarea jocurilor, raportul, filtrele (shadere), salvarea/"
+"incarcarea automata si contul retroachievements."
+
+msgid ""
+"The game ratio is the ratio between image width and image height. Use AUTO "
+"to let the emulator choose the original game ratio, that will give you the "
+"best retrogaming experience."
+msgstr ""
+"Raportul jocului este raportul dintre latimea si inaltimea imaginii. "
+"Folositi AUTO pentru a permite emulatorului sa aleaga raportul original al "
+"jocului, care va oferi cea mai buna experienta retrogaming."
+
+msgid ""
+"Smooth the game image. This option makes the image smoother, using bilinear "
+"filtering."
+msgstr ""
+"Netezeste imaginea jocului. Aceasta optiune face imaginea mai neteda, "
+"folosind filtrare biliniara."
+
+msgid ""
+"This option allows you to rewind the game if you get killed by a monster, or "
+"if you make any other mistake. Use the HOTKEY + LEFT command within the game "
+"to rewind."
+msgstr ""
+"Aceasta optiune va permite sa derulati inapoi jocul daca sunteti ucis de un "
+"monstru sau daca faceti orice alta greseala. Folositi comanda HOTKEY + "
+"STANGA in joc pentru a derula inapoi."
+
+msgid ""
+"Auto save the state when you quit a game, and auto load last saved state "
+"when you start a game."
+msgstr ""
+"Salveaza automat starea cand iesiti dintr-un joc si incarca automat ultima "
+"stare salvata cand porniti un joc."
+
+msgid "Press the buttons twice to end the game and go back to the main menu."
+msgstr ""
+"Apasati de doua ori butoanele pentru a incheia jocul si a reveni la meniul "
+"principal."
+
+msgid ""
+"Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, "
+"4x, etc. This option scales the image up to the greatest integer scale below "
+"the set resolution. So for instance, if you set your fullscreen resolution "
+"to 1920x1080 and enable integer scaling, it will only scale a 320x240 image "
+"up to 1280x960, and leave black borders all around. This is to maintain a "
+"1:1 pixel ratio with the original source image, so that pixels are not "
+"unevenly duplicated."
+msgstr ""
+"Scalarea intreaga este scalarea cu un factor numar intreg, precum 2x, 3x, 4x "
+"etc. Aceasta optiune scaleaza imaginea pana la cel mai mare factor intreg "
+"sub rezolutia setata. Astfel, de exemplu, daca setati rezolutia pe ecran "
+"complet la 1920x1080 si activati scalarea intreaga, o imagine de 320x240 va "
+"fi scalata doar pana la 1280x960, lasand margini negre de jur imprejur. "
+"Acest lucru mentine un raport de pixeli 1:1 cu imaginea sursa originala, "
+"astfel incat pixelii sa nu fie duplicati inegal."
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a shader set "
+"here, which is a collection of shaders selected for each system. You can "
+"also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr ""
+"Shaderele sunt ca niste filtre pentru randarea jocului. Puteti selecta aici "
+"un set de shadere, care este o colectie de shadere selectate pentru fiecare "
+"sistem. Puteti schimba de asemenea shaderul in joc cu HOTKEY + L2 sau HOTKEY "
+"+ R2."
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "Activati sau dezactivati RetroAchievements in jocuri."
+
+msgid ""
+"Hardcore mode disables *all* savestate and rewind functions within the "
+"emulator: you will not be able to save and reload at any time. You will have "
+"to complete the game and get the achievements first time, just like on the "
+"original console. In reward for this, you will earn both the standard and "
+"the hardcore achievement, in effect earning double points! A regular game "
+"worth 400 points, is now worth 800 if you complete it on hardcore! For "
+"example: if you complete the game for 400 points, you then have the "
+"opportunity to earn another 400 on hardcore."
+msgstr ""
+"Modul hardcore dezactiveaza *toate* functiile de salvare a starii si "
+"derulare inapoi din emulator: nu veti putea salva si reincarca in niciun "
+"moment. Va trebui sa terminati jocul si sa obtineti realizarile din prima "
+"incercare, exact ca pe consola originala. Ca rasplata, veti castiga atat "
+"realizarea standard cat si cea hardcore, obtinand astfel puncte duble! Un "
+"joc obisnuit care valoreaza 400 de puncte valoreaza acum 800 daca il "
+"terminati pe hardcore! De exemplu: daca terminati jocul pentru 400 de "
+"puncte, aveti apoi ocazia sa castigati inca 400 pe hardcore."
+
+msgid ""
+"Configure an associated controller. Your controller has to be associated / "
+"plugged before."
+msgstr ""
+"Configurati un controller asociat. Controllerul dvs. trebuie sa fie asociat/"
+"conectat in prealabil."
+
+msgid ""
+"Pair a bluetooth controller with your recalbox. Your controller must be in "
+"pairing mode."
+msgstr ""
+"Asociati un controller bluetooth cu recalbox-ul dvs. Controllerul trebuie sa "
+"fie in modul de asociere."
+
+msgid ""
+"Forget all paired bluetooth controllers. You will have to pair your "
+"controllers again, but this option can help if you have issues to reconnect "
+"a controller, which is already paired."
+msgstr ""
+"Uitati toate controllerele bluetooth asociate. Va trebui sa asociati din nou "
+"controllerele, dar aceasta optiune poate ajuta daca aveti probleme la "
+"reconectarea unui controller deja asociat."
+
+msgid ""
+"Configure your EmulationStation experience. Select transition types, help "
+"prompts, screensaver behavior. You can also deactivate the onscreen keyboard "
+"if you have a real keyboard plugged into your recalbox.\n"
+"If you've added games since the last boot, you can also refresh the gamelist "
+"from this menu."
+msgstr ""
+"Configurati experienta EmulationStation. Selectati tipurile de tranzitie, "
+"indicatiile de ajutor, comportamentul economizorului de ecran. Puteti "
+"dezactiva de asemenea tastatura de pe ecran daca aveti o tastatura reala "
+"conectata la recalbox.\n"
+"Daca ati adaugat jocuri de la ultima pornire, puteti de asemenea "
+"reimprospata lista de jocuri din acest meniu."
+
+msgid "Configure screensaver"
+msgstr "Configurati economizorul de ecran"
+
+msgid "Start the screensaver after N minutes."
+msgstr "Porniti economizorul de ecran dupa N minute."
+
+msgid ""
+"Set the screensaver behavior. DIM will reduce the screen light, BLACK will "
+"turn the screen black, DEMO will launch demo mode."
+msgstr ""
+"Setati comportamentul economizorului de ecran. DIM va reduce lumina "
+"ecranului, NEGRU va face ecranul negru, DEMO va lansa modul demo."
+
+msgid ""
+"Shows a help at the bottom of the screen which displays commands you can use."
+msgstr ""
+"Afiseaza un ajutor in partea de jos a ecranului care arata comenzile pe care "
+"le puteti folosi."
+
+msgid ""
+"When enabled, you can switch between systems while browsing a gamelist by "
+"pressing LEFT or RIGHT."
+msgstr ""
+"Cand este activat, puteti comuta intre sisteme in timp ce navigati o lista "
+"de jocuri apasand STANGA sau DREAPTA."
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "Alegeti daca carusel va fi animat sau nu in timpul tranzitiilor"
+
+msgid "Select a theme for your recalbox."
+msgstr "Selectati o tema pentru recalbox-ul dvs."
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr ""
+"Actualizeaza listele de jocuri, daca ati adaugat jocuri de la ultima pornire."
+
+msgid "Configure the sound options of your recalbox."
+msgstr "Configurati optiunile de sunet ale recalbox-ului dvs."
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "Setati volumul iesirii audio pentru interfata si jocuri."
+
+msgid "Select your output device. Only HDMI and JACK are supported."
+msgstr "Selectati dispozitivul de iesire. Sunt suportate doar HDMI si JACK."
+
+msgid ""
+"Configure the network options of your recalbox.\n"
+"Check your network status and IP address, set the hostname and configure the "
+"WIFI."
+msgstr ""
+"Configurati optiunile de retea ale recalbox-ului dvs.\n"
+"Verificati starea retelei si adresa IP, setati numele gazdei si configurati "
+"WIFI."
+
+msgid ""
+"Displays CONNECTED, if you are connected, by checking if your recalbox can "
+"access the recalbox.com update server."
+msgstr ""
+"Afiseaza CONECTAT, daca sunteti conectat, verificand daca recalbox-ul poate "
+"accesa serverul de actualizare recalbox.com."
+
+msgid "The IP address of your recalbox within your local network."
+msgstr "Adresa IP a recalbox-ului dvs. in reteaua locala."
+
+msgid ""
+"Enable or disable WIFI.\n"
+"If you disable WIFI, the SSID and the WIFI passwords are saved and can be "
+"used when you reactivate it"
+msgstr ""
+"Activati sau dezactivati WIFI.\n"
+"Daca dezactivati WIFI, SSID-ul si parolele WIFI sunt salvate si pot fi "
+"folosite cand il reactivati"
+
+msgid "The name of your recalbox in your local network"
+msgstr "Numele recalbox-ului dvs. in reteaua locala"
+
+msgid "SSID (WIFI Name) of your network."
+msgstr "SSID (numele WIFI) al retelei dvs."
+
+msgid "Private key of your WIFI network."
+msgstr "Cheia privata a retelei dvs. WIFI."
+
+msgid ""
+"Get information and visuals for your games. The scraper downloads metadata "
+"and visuals for your games from different servers, and greatly enhances the "
+"user experience in EmulationStation."
+msgstr ""
+"Obtineti informatii si vizualuri pentru jocurile dvs. Verificatorul descarca "
+"metadate si vizualuri pentru jocurile dvs. de pe diferite servere si "
+"imbunatateste complet experienta utilizatorului in EmulationStation."
+
+msgid ""
+"Select a server to scrape from. The SCREENSCRAPER server is recommended and "
+"is based on www.screenscraper.fr and scrapes game data in your language, if "
+"available."
+msgstr ""
+"Selectati un server de pe care sa verificati. Serverul SCREENSCRAPER este "
+"recomandat si se bazeaza pe www.screenscraper.fr si verifica datele "
+"jocurilor in limba dvs., daca este disponibila."
+
+msgid ""
+"Advanced settings. Please make sure you really know what you're doing, "
+"before changing any values in this menu."
+msgstr ""
+"Setari avansate. Va rugam sa va asigurati ca stiti cu adevarat ce faceti, "
+"inainte de a schimba orice valoare din acest meniu."
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind "
+"that overclocking your board can void your warranty."
+msgstr ""
+"Suprasolicitati placa pentru a creste performanta.\n"
+"Setarile de suprasolicitare sunt testate si validate de comunitate. Retineti "
+"ca suprasolicitarea placii poate anula garantia."
+
+msgid ""
+"Select which system to show when the recalbox frontend starts. The default "
+"value is 'favorites'."
+msgstr ""
+"Selectati sistemul care sa fie afisat cand porneste interfata recalbox. "
+"Valoarea implicita este 'favorite'."
+
+msgid ""
+"On boot, recalbox will show the list of games of the selected system rather "
+"than the system view."
+msgstr ""
+"La pornire, recalbox va afisa lista de jocuri a sistemului selectat in loc "
+"de vizualizarea sistemelor."
+
+msgid ""
+"Override global options like emulator, core, ratio and more for each "
+"available system in your recalbox."
+msgstr ""
+"Suprascrieti optiunile globale precum emulatorul, nucleul, raportul si "
+"altele pentru fiecare sistem disponibil in recalbox."
+
+msgid ""
+"Configure boot options that make your recalbox boot straight into a system "
+"or into Kodi, lock a user to a single system, or directly show the gamelist."
+msgstr ""
+"Configurati optiunile de pornire care fac ca recalbox-ul sa porneasca direct "
+"intr-un sistem sau in Kodi, sa blocheze un utilizator la un singur sistem "
+"sau sa afiseze direct lista de jocuri."
+
+msgid ""
+"Enable or disable Kodi. If kodi is disabled, you won't be able to start it "
+"with the X button, or start it automatically at boot. The menu entry will be "
+"removed as well."
+msgstr ""
+"Activati sau dezactivati Kodi. Daca Kodi este dezactivat, nu il veti putea "
+"porni cu butonul X sau porni automat la boot. Intrarea din meniu va fi de "
+"asemenea eliminata."
+
+msgid "Use the X button to start Kodi."
+msgstr "Folositi butonul X pentru a porni Kodi."
+
+msgid "Automatically start into Kodi on boot."
+msgstr "Porneste automat in Kodi la boot."
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "Afiseaza rata de cadre in EmulationStation si in joc."
+
+msgid ""
+"Enable or disable the Recalbox Manager.\n"
+"The Recalbox Manager is a web application available at http://recalbox if "
+"you are on Windows, at http://recalbox.local if you are on Linux or Mac, or "
+"directly with your recalbox IP: http://192.168.1.XX.\n"
+"You can configure many options from within the manager, and even manage "
+"games, saves, and scrapes!"
+msgstr ""
+"Activati sau dezactivati Recalbox Manager.\n"
+"Recalbox Manager este o aplicatie web disponibila la http://recalbox , daca "
+"sunteti pe windows, http://recalbox.local , daca sunteti pe Linux sau Mac, "
+"sau direct cu adresa IP a recalbox-ului: http://192.168.1.XX.\n"
+"Puteti configura multe optiuni din interiorul managerului si puteti chiar "
+"gestiona jocuri, salvari si verificari!"
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr ""
+"Selectati emulatorul de folosit cand porniti un joc pentru acest sistem."
+
+msgid ""
+"Switch between showing only the favorite games and showing them all. To add "
+"a game to the favorite list, select the game and toggle its state with 'Y'."
+msgstr ""
+"Comutati intre a vedea sau nu doar jocurile favorite. Pentru a adauga un joc "
+"la lista de favorite, selectati jocul si comutati starea folosind 'Y'."
+
+msgid ""
+"Switch between seeing the folder structure and seeing all games in a flat "
+"top-level list."
+msgstr ""
+"Comutati intre vizualizarea structurii de foldere si vizualizarea tuturor "
+"jocurilor intr-un nivel superior aplatizat."
+
+msgid "UPDATE TYPE"
+msgstr "TIP ACTUALIZARE"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "SCALARE INTREAGA (PIXEL PERFECT)"
+
+msgid "ADVANCED SETTINGS"
+msgstr "SETARI AVANSATE"
+
+msgid "BOOT SETTINGS"
+msgstr "SETARI PORNIRE"
+
+msgid "BOOT ON SYSTEM"
+msgstr "PORNESTE PE SISTEM"
+
+msgid "BOOT ON GAMELIST"
+msgstr "PORNESTE PE LISTA DE JOCURI"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "ASCUNDE VIZUALIZAREA SISTEMELOR"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "CONFIGURARE AVANSATA EMULATOR"
+
+msgid "HELP"
+msgstr "AJUTOR"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "SISTEMUL ESTE LA ZI"
+
+msgid "Now playing"
+msgstr "Se reda acum"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr "Setati durata ferestrelor de ajutor, 0 inseamna nicio fereastra."
+
+msgid "HELP POPUP DURATION"
+msgstr "DURATA FEREASTRA AJUTOR"
+
+msgid "POPUP SETTINGS"
+msgstr "SETARI FERESTRE"
+
+msgid "Set position and duration of popups."
+msgstr "Setati pozitia si durata ferestrelor."
+
+msgid "NETPLAY"
+msgstr "NETPLAY"
+
+msgid "NETPLAY SETTINGS"
+msgstr "SETARI NETPLAY"
+
+msgid "NETPLAY LOBBY"
+msgstr "LOBBY NETPLAY"
+
+msgid "Enable or disable Netplay in games."
+msgstr "Activati sau dezactivati Netplay in jocuri."
+
+msgid "PORT"
+msgstr "PORT"
+
+msgid "NICKNAME"
+msgstr "PORECLA"
+
+msgid "Enable or disable connections through relay servers."
+msgstr "Activati sau dezactivati conexiunile prin servere releu."
+
+msgid "KODI/NETPLAY"
+msgstr "KODI/NETPLAY"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "NICIUN JOC SAU NICIO CONEXIUNE"
+
+msgid ""
+"Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr ""
+"Adaugati hash-ul romurilor in listele dvs. de jocuri pentru rezultate mai "
+"precise in Netplay."
+
+msgid "HASH ROMS"
+msgstr "HASH ROMURI"
+
+msgid "Username"
+msgstr "Nume utilizator"
+
+msgid "Country"
+msgstr "Tara"
+
+msgid "Latency"
+msgstr "Latenta"
+
+msgid "Host arch."
+msgstr "Arhitectura gazda"
+
+msgid "Core ver."
+msgstr "Versiune nucleu"
+
+msgid "RA ver."
+msgstr "Versiune RA"
+
+msgid "Can join"
+msgstr "Se poate alatura"
+
+msgid "Rom and core match"
+msgstr "Rom si nucleu se potrivesc"
+
+msgid "Rom, hash and core match"
+msgstr "Rom, hash si nucleu se potrivesc"
+
+msgid "No rom match"
+msgstr "Romul nu se potriveste"
+
+msgid "No core match"
+msgstr "Nucleul nu se potriveste"
+
+msgid "Match"
+msgstr "Potrivire"
+
+msgid "No Match"
+msgstr "Nicio potrivire"
+
+msgid "Rom file"
+msgstr "Fisier rom"
+
+msgid "Rom hash"
+msgstr "Hash rom"
+
+msgid "good"
+msgstr "bun"
+
+msgid "bad"
+msgstr "rau"
+
+msgid "medium"
+msgstr "mediu"
+
+msgid "Player"
+msgstr "Jucator"
+
+msgid "Game"
+msgstr "Joc"
+
+msgid "A Recalbox friend has started a Netplay game!"
+msgstr "Un prieten Recalbox a pornit un joc Netplay!"
+
+msgid "EMPTY LIST"
+msgstr "LISTA GOALA"
+
+msgid "Auto"
+msgstr "Automat"
+
+msgid "Square pixel"
+msgstr "Pixel patrat"
+
+msgid "Retroarch Config"
+msgstr "Configuratie Retroarch"
+
+msgid "Retroarch Custom"
+msgstr "Personalizat Retroarch"
+
+msgid "Core provided"
+msgstr "Furnizat de nucleu"
+
+msgid "Do not set"
+msgstr "Nu seta"
+
+msgid "BIOS CHECKING"
+msgstr "VERIFICARE BIOS"
+
+msgid ""
+"Scan and check all your BIOS files and report everything in a comprehensive "
+"way."
+msgstr ""
+"Scaneaza si verifica toate fisierele BIOS si raporteaza totul intr-un mod "
+"cuprinzator."
+
+msgid "RESCAN"
+msgstr "RESCANEAZA"
+
+msgid ""
+"EMULATOR %s MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE AVAILABLE!"
+msgstr ""
+"EMULATORUL %s AR PUTEA SA NU FUNCTIONEZE CORECT PANA CAND TOATE BIOS-URILE "
+"NECESARE SUNT DISPONIBILE!"
+
+msgid ""
+"%i EMULATORS MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE "
+"AVAILABLE!"
+msgstr ""
+"%i EMULATOARE AR PUTEA SA NU FUNCTIONEZE CORECT PANA CAND TOATE BIOS-URILE "
+"NECESARE SUNT DISPONIBILE!"
+
+msgid "CONGRATULATIONS! ALL EMULATORS SHOULD WORK PROPERLY!"
+msgstr "FELICITARI! TOATE EMULATOARELE AR TREBUI SA FUNCTIONEZE CORECT!"
+
+msgid "%i BIOS NOT FOUND"
+msgstr "%i BIOS NEGASIT"
+
+msgid "%i NON-MATCHING BIOS FOUND"
+msgstr "%i BIOS NECORESPUNZATOR GASIT"
+
+msgid "%i GOOD BIOS FOUND!"
+msgstr "%i BIOS BUN GASIT!"
+
+msgid "File Path"
+msgstr "Cale fisier"
+
+msgid "Mandatory"
+msgstr "Obligatoriu"
+
+msgid "Must match MD5"
+msgstr "Trebuie sa se potriveasca MD5"
+
+msgid "File found ?"
+msgstr "Fisier gasit?"
+
+msgid "Matching MD5 ?"
+msgstr "MD5 se potriveste?"
+
+msgid "NOTE"
+msgstr "NOTA"
+
+msgid ""
+"This bios is required in order to run the emulator properly. You won't be "
+"able to run any games with the emulator/core above."
+msgstr ""
+"Acest bios este necesar pentru a rula corect emulatorul. Nu veti putea rula "
+"niciun joc cu emulatorul/nucleul de mai sus."
+
+msgid ""
+"This bios is not mandatory in most cases. The emulator will run properly "
+"unless you want to use features requiring this particular bios file."
+msgstr ""
+"Acest bios nu este obligatoriu in majoritatea cazurilor. Emulatorul va rula "
+"corect, cu exceptia cazului in care doriti sa folositi functii ce necesita "
+"acest fisier bios anume."
+
+msgid ""
+"Your bios file does not match any known MD5. However, there are chances of "
+"getting the emulator running fine."
+msgstr ""
+"Fisierul bios nu se potriveste cu niciun MD5 cunoscut. Totusi, sunt sanse ca "
+"emulatorul sa functioneze bine."
+
+msgid ""
+"Your bios file does not match any known MD5 but this is not required. So "
+"there are strong chances of getting everything running fine."
+msgstr ""
+"Fisierul bios nu se potriveste cu niciun MD5 cunoscut, dar acest lucru nu "
+"este necesar. Deci sunt sanse mari ca totul sa functioneze bine."
+
+msgid ""
+"Your bios file does match one of the known MD5. Everything will run fine!"
+msgstr ""
+"Fisierul bios se potriveste cu unul dintre MD5-urile cunoscute. Totul va "
+"functiona bine!"
+
+msgid "MD5 LIST"
+msgstr "LISTA MD5"
+
+msgid "Congratulation, all cores/emulators listed below will work flawlessly!"
+msgstr ""
+"Felicitari, toate nucleele/emulatoarele de mai jos vor functiona perfect!"
+
+msgid ""
+"Cores/emulators listed below won't probably work until required bios are "
+"made available."
+msgstr ""
+"Nucleele/emulatoarele de mai jos probabil nu vor functiona pana cand bios-"
+"urile necesare sunt disponibile."
+
+msgid ""
+"Cores/emulators listed below may work in most cases, unless you use features "
+"requiring special bios."
+msgstr ""
+"Nucleele/emulatoarele de mai jos ar putea functiona in majoritatea "
+"cazurilor, cu exceptia cazului in care folositi functii ce necesita bios "
+"special."
+
+msgid "BIOS OK"
+msgstr "BIOS OK"
+
+msgid "BIOS UNSAFE"
+msgstr "BIOS NESIGUR"
+
+msgid "BIOS KO"
+msgstr "BIOS DEFECT"
+
+msgid "BIOS NOT FOUND"
+msgstr "BIOS NEGASIT"
+
+msgid "MD5 OK"
+msgstr "MD5 OK"
+
+msgid "MD5 NOT OK"
+msgstr "MD5 INCORECT"
+
+msgid "BROWSE"
+msgstr "RASFOIESTE"
+
+msgid "Your bios' MD5"
+msgstr "MD5-ul bios-ului dvs."
+
+msgid "Known MD5 List"
+msgstr "Lista MD5 cunoscute"
+
+msgid "MY SYSTEMS"
+msgstr "SISTEMELE MELE"
+
+msgid "ALL SYSTEMS"
+msgstr "TOATE SISTEMELE"
+
+msgid ""
+"EmulationStation has detected external changes on a gamelist file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation a detectat modificari externe intr-un fisier de lista de "
+"jocuri.\n"
+"Pentru a evita pierderea datelor, EmulationStation urmeaza sa se relanseze "
+"si sa reincarce toate fisierele."
+
+msgid ""
+"EmulationStation has detected external changes on a theme file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation a detectat modificari externe intr-un fisier de tema.\n"
+"Pentru a evita pierderea datelor, EmulationStation urmeaza sa se relanseze "
+"si sa reincarce toate fisierele."
+
+msgid "VIRTUAL SYSTEMS"
+msgstr "SISTEME VIRTUALE"
+
+msgid "SHOW ALL-GAMES SYSTEM"
+msgstr "AFISEAZA SISTEMUL TOATE JOCURILE"
+
+msgid "SHOW MULTIPLAYER SYSTEM"
+msgstr "AFISEAZA SISTEMUL MULTIPLAYER"
+
+msgid "SHOW LAST-PLAYED SYSTEM"
+msgstr "AFISEAZA SISTEMUL JUCATE RECENT"
+
+msgid "VIRTUAL SYSTEMS PER GENRE"
+msgstr "SISTEME VIRTUALE PE GEN"
+
+msgid "Show a 'all-games' system with all games from all systems."
+msgstr ""
+"Afiseaza un sistem 'toate jocurile' cu toate jocurile din toate sistemele."
+
+msgid "Show multiplayer games (all games playable by two or more players)."
+msgstr ""
+"Afiseaza jocurile multiplayer (toate jocurile jucabile de doi sau mai multi "
+"jucatori)."
+
+msgid "Show last played games."
+msgstr "Afiseaza jocurile jucate recent."
+
+msgid "Select virtual systems per genre to show."
+msgstr "Selectati sistemele virtuale pe gen de afisat."
+
+msgid "HIGHLIGHT GAMES OF REGION..."
+msgstr "EVIDENTIAZA JOCURILE DIN REGIUNEA..."
+
+msgid ""
+"Select the source of your game name. Trust the scraping database or get them "
+"from filename, raw or undecorated (without decoration in () or [] )."
+msgstr ""
+"Selectati sursa numelui jocului. Aveti incredere in baza de date de "
+"verificare sau obtineti-le din numele fisierului, brut sau nedecorat (fara "
+"decoratie in () sau [])."
+
+msgid "GET GAME NAME FROM"
+msgstr "OBTINE NUMELE JOCULUI DIN"
+
+msgid "Scraper results"
+msgstr "Rezultatele verificarii"
+
+msgid "Raw filename"
+msgstr "Nume fisier brut"
+
+msgid "Undecorated filename"
+msgstr "Nume fisier nedecorat"
+
+msgid "OPEN-SOURCE LICENSE"
+msgstr "LICENTA OPEN-SOURCE"
+
+msgid "SELECT IMAGE TYPE"
+msgstr "SELECTEAZA TIPUL DE IMAGINE"
+
+msgid "In-game screenshot"
+msgstr "Captura din joc"
+
+msgid "Title screenshot"
+msgstr "Captura ecran titlu"
+
+msgid "Marquee"
+msgstr "Panou"
+
+msgid "ScreenScraper Mix V1"
+msgstr "ScreenScraper Mix V1"
+
+msgid "ScreenScraper Mix V2"
+msgstr "ScreenScraper Mix V2"
+
+msgid "SELECT VIDEO TYPE"
+msgstr "SELECTEAZA TIPUL DE VIDEO"
+
+msgid "No video"
+msgstr "Fara video"
+
+msgid "Original video"
+msgstr "Video original"
+
+msgid "SELECT FAVORITE REGION"
+msgstr "SELECTEAZA REGIUNEA PREFERATA"
+
+msgid "FAVORITE REGION"
+msgstr "REGIUNE PREFERATA"
+
+msgid "SELECT FAVORITE LANGUAGE"
+msgstr "SELECTEAZA LIMBA PREFERATA"
+
+msgid "SYSTEM NAME"
+msgstr "NUME SISTEM"
+
+msgid "PUBLISHER"
+msgstr "EDITOR"
+
+msgid "DEFAULT"
+msgstr "IMPLICIT"
+
+msgid ""
+"It seems that your game didn't start at all!\n"
+"\n"
+"It's most likely due to either:\n"
+"- bad rom\n"
+"- missing/bad mandatory bios files\n"
+"- missing/bad optional BIOS files (but required for this very game)"
+msgstr ""
+"Se pare ca jocul dvs. nu a pornit deloc!\n"
+"\n"
+"Cel mai probabil este din cauza:\n"
+"- unui rom defect\n"
+"- unor fisiere bios obligatorii lipsa/defecte\n"
+"- unor fisiere BIOS optionale lipsa/defecte (dar necesare pentru acest joc "
+"anume)"
+
+msgid ""
+"At least one mandatory BIOS is missing for %emulator%!\n"
+"Your game '%game%' will very likely not run at all until required BIOS are "
+"put in the expected folder.\n"
+"\n"
+"Do you want to launch the game anyway?"
+msgstr ""
+"Cel putin un BIOS obligatoriu lipseste pentru %emulator%!\n"
+"Jocul dvs. '%game%' probabil nu va rula deloc pana cand BIOS-urile necesare "
+"sunt puse in folderul asteptat.\n"
+"\n"
+"Doriti sa lansati jocul oricum?"
+
+msgid "BACKSPACE"
+msgstr "STERGERE INAPOI"
+
+msgid "FAST WHEEL"
+msgstr "ROATA RAPIDA"
+
+msgid "CHANGE CHARSET"
+msgstr "SCHIMBA SETUL DE CARACTERE"
+
+msgid "MOVE WHEEL"
+msgstr "MISCA ROATA"
+
+msgid "DOWNLOAD GAME MANUALS"
+msgstr "DESCARCA MANUALELE JOCURILOR"
+
+msgid "DOWNLOAD GAME MAPS"
+msgstr "DESCARCA HARTILE JOCURILOR"
+
+msgid "INSTALL PAD-2-KEYBOARD CONFIGURATIONS"
+msgstr "INSTALEAZA CONFIGURATII PAD-2-KEYBOARD"
+
+msgid ""
+"You're strongly recommended to update your Recalbox.\n"
+"No support will be provided for older versions!"
+msgstr ""
+"Va recomandam insistent sa va actualizati Recalbox-ul.\n"
+"Nu se va oferi suport pentru versiunile mai vechi!"
+
+msgid " has been plugged!"
+msgstr " a fost conectat!"
+
+msgid "Ready to play!"
+msgstr "Gata de joc!"
+
+msgid "Not configured yet! Press a button to enter the configuration window."
+msgstr ""
+"Neconfigurat inca! Apasati un buton pentru a intra in fereastra de "
+"configurare."
+
+msgid " has been unplugged!"
+msgstr " a fost deconectat!"
+
+msgid "Remove from favorite"
+msgstr "Elimina din favorite"
+
+msgid "Default output"
+msgstr "Iesire implicita"
+
+msgid "HIDE ORIGINAL SYSTEMS"
+msgstr "ASCUNDE SISTEMELE ORIGINALE"
+
+msgid "PREDEFINED PASSWORDS"
+msgstr "PAROLE PREDEFINITE"
+
+msgid "VALIDATE"
+msgstr "VALIDEAZA"
+
+msgid "CHOOSE PLAYER PASSWORD"
+msgstr "ALEGE PAROLA JUCATORULUI"
+
+msgid "SEARCH IN..."
+msgstr "CAUTA IN..."
+
+msgid "DOWNLOADING UPDATE..."
+msgstr "SE DESCARCA ACTUALIZAREA..."
+
+msgid "REBOOT IN %s"
+msgstr "REPORNIRE IN %s"
+
+msgid "Error downloading Recalbox %s... Please retry later!"
+msgstr ""
+"Eroare la descarcarea Recalbox %s... Va rugam sa reincercati mai tarziu!"
+
+msgid "ALL"
+msgstr "TOATE"
+
+msgid "TYPE AT LEAST 3 CHARACTERS"
+msgstr "INTRODUCETI CEL PUTIN 3 CARACTERE"
+
+msgid "AUTOMATIC WPS CONNECTION"
+msgstr "CONEXIUNE WPS AUTOMATA"
+
+msgid "Connecting to WIFI..."
+msgstr "Se conecteaza la WIFI..."
+
+msgid "Disconnecting from WIFI..."
+msgstr "Se deconecteaza de la WIFI..."
+
+msgid "NO WPS CONFIGURATION FOUND!"
+msgstr "NICIO CONFIGURATIE WPS GASITA!"
+
+msgid "Hostname changes will not be effective until next reboot"
+msgstr ""
+"Modificarile numelui gazdei nu vor avea efect pana la urmatoarea repornire"
+
+msgid "Fetching WIFI parameters"
+msgstr "Se obtin parametrii WIFI"
+
+msgid "NETPLAY MITM"
+msgstr "NETPLAY MITM"
+
+msgid "Reseting WIFI configuration..."
+msgstr "Se reseteaza configuratia WIFI..."
+
+msgid "WPS CONFIGURATION SUCCESSFUL!"
+msgstr "CONFIGURARE WPS REUSITA!"
+
+msgid "Waiting for IP address... (%is)"
+msgstr "Se asteapta adresa IP... (%is)"
+
+msgid "Waiting for WPS configuration..."
+msgstr "Se asteapta configuratia WPS..."
+
+msgid "SCREENSAVER"
+msgstr "ECONOMIZOR DE ECRAN"
+
+msgid "SHADERS"
+msgstr "SHADERE"
+
+msgid "Saving WIFI configuration"
+msgstr "Se salveaza configuratia WIFI"
+
+msgid "THEME"
+msgstr "TEMA"
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a raw shader "
+"file here. This setting may be overridden by the shader set if it is not set "
+"to 'none'."
+msgstr ""
+"Shaderele sunt ca niste filtre pentru randarea jocului. Puteti selecta aici "
+"un fisier shader brut. Aceasta setare poate fi suprascrisa de setul de "
+"shadere daca nu este definita ca 'niciunul'."
+
+msgid "Select your keyboard layout."
+msgstr "Selectati aspectul tastaturii dvs."
+
+msgid "Mute (no sound)"
+msgstr "Fara sunet"
+
+msgid "Internal Speakers"
+msgstr "Difuzoare interne"
+
+msgid "Headphone Jack"
+msgstr "Mufa casti"
+
+msgid "Internal Speakers + Headphone Jack"
+msgstr "Difuzoare interne + mufa casti"
+
+msgid "black"
+msgstr "negru"
+
+msgid "demo"
+msgstr "demo"
+
+msgid "dim"
+msgstr "intunecat"
+
+msgid "gameclip"
+msgstr "clip joc"
+
+msgid "Action (All)"
+msgstr "Actiune (toate)"
+
+msgid "Action RPG"
+msgstr "RPG de actiune"
+
+msgid "Adventure (All)"
+msgstr "Aventura (toate)"
+
+msgid "Artillery"
+msgstr "Artilerie"
+
+msgid "Auto-battler"
+msgstr "Auto-lupta"
+
+msgid "Battle Royale"
+msgstr "Battle Royale"
+
+msgid "Beat'em All"
+msgstr "Bataie"
+
+msgid "Board game"
+msgstr "Joc de societate"
+
+msgid "Build & Management"
+msgstr "Constructie si management"
+
+msgid "Casino"
+msgstr "Cazino"
+
+msgid "Casual game"
+msgstr "Joc casual"
+
+msgid "Competition Sport"
+msgstr "Sport de competitie"
+
+msgid "Demo from Demo Screne"
+msgstr "Demo din scena demo"
+
+msgid "Digital Cards"
+msgstr "Carti digitale"
+
+msgid "Dungeon Crawler"
+msgstr "Explorare de temnite"
+
+msgid "Educative"
+msgstr "Educativ"
+
+msgid "Favorites"
+msgstr "Favorite"
+
+msgid "Fighting"
+msgstr "Lupta"
+
+msgid "Fighting/Violent Sport"
+msgstr "Sport de lupta/violent"
+
+msgid "First Person Shooter"
+msgstr "Shooter la persoana intai"
+
+msgid "Fishing & Hunting"
+msgstr "Pescuit si vanatoare"
+
+msgid "Graphical Adventure"
+msgstr "Aventura grafica"
+
+msgid "Infiltration"
+msgstr "Infiltrare"
+
+msgid "Interactive Movie"
+msgstr "Film interactiv"
+
+msgid "JRPG"
+msgstr "JRPG"
+
+msgid "Life Simulation"
+msgstr "Simulare de viata"
+
+msgid "MMORPG"
+msgstr "MMORPG"
+
+msgid "Multi Game Compilation"
+msgstr "Compilatie de jocuri"
+
+msgid "Multiplayer Online Battle Arena"
+msgstr "Arena de lupta online multiplayer"
+
+msgid "Multiplayer Party Game"
+msgstr "Joc de petrecere multiplayer"
+
+msgid "Party based RPG"
+msgstr "RPG bazat pe grup"
+
+msgid "Pinball"
+msgstr "Pinball"
+
+msgid "Platform Shooter"
+msgstr "Shooter platformer"
+
+msgid "Platform"
+msgstr "Platformer"
+
+msgid "Puzzle & Logic"
+msgstr "Puzzle si logica"
+
+msgid "RPG (All)"
+msgstr "RPG (toate)"
+
+msgid "Racing"
+msgstr "Curse"
+
+msgid "Real Time 3D Adventure"
+msgstr "Aventura 3D in timp real"
+
+msgid "Real Time Strategy"
+msgstr "Strategie in timp real"
+
+msgid "Rythm & Music"
+msgstr "Ritm si muzica"
+
+msgid "Science Fiction Simulation"
+msgstr "Simulare science-fiction"
+
+msgid "Shoot with Gun"
+msgstr "Impuscare cu pistol"
+
+msgid "Shoot'em Up"
+msgstr "Shooter"
+
+msgid "Simulation (All)"
+msgstr "Simulare (toate)"
+
+msgid "Sport Simulation"
+msgstr "Simulare sportiva"
+
+msgid "Sports (All)"
+msgstr "Sport (toate)"
+
+msgid "Strategy (All)"
+msgstr "Strategie (toate)"
+
+msgid "Survival"
+msgstr "Supravietuire"
+
+msgid "Tactical RPG"
+msgstr "RPG tactic"
+
+msgid "Textual Adventure"
+msgstr "Aventura textuala"
+
+msgid "Tower Defense"
+msgstr "Aparare cu turnuri"
+
+msgid "Trivia"
+msgstr "Trivia"
+
+msgid "Turn Based Strategy"
+msgstr "Strategie pe randuri"
+
+msgid "Vehicle Simulation"
+msgstr "Simulare de vehicule"
+
+msgid "Visual Novel"
+msgstr "Roman vizual"
+
+msgid "Wargame"
+msgstr "Joc de razboi"
+
+msgid "eXplore, eXpand, eXploit & eXterminate"
+msgstr "Explorare, expansiune, exploatare si exterminare"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Advance!\n"
+"This little presentation will show you how to use the 6 special buttons "
+"available right under the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Bine ati venit la RECALBOX pentru Odroid Go Advance!\n"
+"Aceasta scurta prezentare va va arata cum sa folositi cele 6 butoane "
+"speciale disponibile chiar sub ecran.\n"
+"\n"
+"Apasati orice buton pentru a incepe!"
+
+msgid ""
+"The leftmost button is the SELECT button, marked with a 'I', also available "
+"on most modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Butonul cel mai din stanga este butonul SELECT, marcat cu 'I', disponibil de "
+"asemenea pe majoritatea controllerelor moderne.\n"
+"Dar este de asemenea butonul HOTKEY pe care il puteti folosi impreuna cu "
+"alte butoane in majoritatea emulatoarelor.\n"
+"De exemplu, puteti folosi HOTKEY+START pentru a iesi din jocul curent.\n"
+"\n"
+"Apasati butonul SELECT."
+
+msgid ""
+"Next to the SELECT button is the START button, marked with an 'II'.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Langa butonul SELECT este butonul START, marcat cu 'II'.\n"
+"Folositi-l pentru a deschide meniul principal in interfata Recalbox si "
+"folositi-l in joc ca butonul START obisnuit disponibil pe majoritatea "
+"consolelor.\n"
+"\n"
+"Va rugam apasati acest buton START."
+
+msgid ""
+"Then, there are 2 buttons marked with a 'III' and a 'IV'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press either volume up or down (III/IV)."
+msgstr ""
+"Apoi, exista 2 butoane marcate cu 'III' si 'IV'.\n"
+"Folositi-le pentru a creste sau scadea volumul oricand in interfata Recalbox "
+"sau in joc.\n"
+"\n"
+" Apasati fie volum sus fie volum jos (III/IV)."
+
+msgid ""
+"The last two buttons marked 'V' and 'VI' are useful to make your screen "
+"darker or brighter.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down (V/VI)."
+msgstr ""
+"Ultimele doua butoane marcate 'V' si 'VI' sunt utile pentru a face ecranul "
+"mai intunecat sau mai luminos.\n"
+"Retineti ca cu cat ecranul este mai luminos, cu atat consuma mai multa "
+"energie!\n"
+"\n"
+"Apasati fie luminozitate sus fie luminozitate jos (V/VI)."
+
+msgid ""
+"Now you're ready to start your RETROGAMING experience with Recalbox! Press "
+"button B to start... and PLAY AGAIN!"
+msgstr ""
+"Acum sunteti gata sa incepeti experienta dvs. RETROGAMING cu Recalbox! "
+"Apasati butonul B pentru a incepe... si JUCATI DIN NOU!"
+
+msgid "WELCOME TO RECALBOX!"
+msgstr "BINE ATI VENIT LA RECALBOX!"
+
+msgid ""
+"Just a few words about the POWER button.\n"
+"Make a short press, just like a mouse click, and your console will enter "
+"sleep mode. Make another short press and your console will restart instanly! "
+"Work in Recalbox interface and in-game!\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Doar cateva cuvinte despre butonul POWER.\n"
+"Apasati scurt, ca un clic de mouse, si consola va intra in modul de repaus. "
+"Apasati din nou scurt si consola va reporni instant! Functioneaza in "
+"interfata Recalbox si in joc!\n"
+"\n"
+"Apasati butonul B pentru a continua."
+
+msgid ""
+"If you push the POWER button more than 2 seconds, this will power-off your "
+"console. If you do so in-game, Recalbox will close the current emulator "
+"gracefully.\n"
+"Just in case, holding the POWER button down more than 5s perform an hard "
+"power-off.\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Daca apasati butonul POWER mai mult de 2 secunde, aceasta va opri consola. "
+"Daca faceti acest lucru in joc, Recalbox va inchide emulatorul curent in mod "
+"elegant.\n"
+"Pentru orice eventualitate, tinerea apasata a butonului POWER mai mult de 5s "
+"efectueaza o oprire fortata.\n"
+"\n"
+"Apasati butonul B pentru a continua."
+
+msgid ""
+"One more thing to know: If you plug in or unplug your headphones in the jack "
+"connector, Recalbox will automatically switch the audio output. Convenient.\n"
+"\n"
+"Press button B, as usual."
+msgstr ""
+"Inca un lucru de stiut: daca conectati sau deconectati castile in mufa jack, "
+"Recalbox va comuta automat iesirea audio. Convenabil.\n"
+"\n"
+"Apasati butonul B, ca de obicei."
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Added to favorites"
+msgstr "Adaugat la favorite"
+
+msgid "Removed from favorites"
+msgstr "Eliminat din favorite"
+
+msgid "Gameclips cannot be played. No video availabe for your selection"
+msgstr ""
+"Clipurile de joc nu pot fi redate. Niciun video disponibil pentru selectia "
+"dvs."
+
+msgid "EmulationStation must relaunch to apply your changes."
+msgstr "EmulationStation trebuie relansat pentru a aplica modificarile dvs."
+
+msgid "PAIRING %s ..."
+msgstr "SE ASOCIAZA %s ..."
+
+msgid "GAME %s"
+msgstr "JOC %s"
+
+msgid "RUN WITH"
+msgstr "RULEAZA CU"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Super!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Bine ati venit la RECALBOX pentru Odroid Go Super!\n"
+"Aceasta scurta prezentare va va arata cum sa folositi toate butoanele "
+"speciale disponibile in jurul ecranului.\n"
+"\n"
+"Apasati orice buton pentru a incepe!"
+
+msgid ""
+"The top-left black button is the SELECT button, also available on most "
+"modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Butonul negru din stanga sus este butonul SELECT, disponibil de asemenea pe "
+"majoritatea controllerelor moderne.\n"
+"Dar este de asemenea butonul HOTKEY pe care il puteti folosi impreuna cu "
+"alte butoane in majoritatea emulatoarelor.\n"
+"De exemplu, puteti folosi HOTKEY+START pentru a iesi din jocul curent.\n"
+"\n"
+"Apasati butonul SELECT."
+
+msgid ""
+"At the opposite side of the SELECT button is the START button.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"De partea opusa a butonului SELECT este butonul START.\n"
+"Folositi-l pentru a deschide meniul principal in interfata Recalbox si "
+"folositi-l in joc ca butonul START obisnuit disponibil pe majoritatea "
+"consolelor.\n"
+"\n"
+"Va rugam apasati acest buton START."
+
+msgid ""
+"Then, on the top of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press any button to continue"
+msgstr ""
+"Apoi, in partea de sus a consolei, exista 2 butoane marcate cu '-' si '+'.\n"
+"Folositi-le pentru a creste sau scadea volumul oricand in interfata Recalbox "
+"sau in joc.\n"
+"\n"
+" Apasati orice buton pentru a continua"
+
+msgid ""
+"The two bottom-left gray buttons control the screen brightness.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down button"
+msgstr ""
+"Cele doua butoane gri din stanga jos controleaza luminozitatea ecranului.\n"
+"Retineti ca cu cat ecranul este mai luminos, cu atat consuma mai multa "
+"energie!\n"
+"\n"
+" Apasati fie butonul de luminozitate sus fie jos"
+
+msgid ""
+"Finally, the two bottom-right gray buttons are third left & right triggers "
+"(L3/R3), only usefull in some emulators or to record videos.\n"
+"\n"
+" Press either L3 or R3"
+msgstr ""
+"In final, cele doua butoane gri din dreapta jos sunt al treilea trigger "
+"stanga si dreapta (L3/R3), utile doar in unele emulatoare sau pentru a "
+"inregistra videoclipuri.\n"
+"\n"
+" Apasati fie L3 fie R3"
+
+msgid ""
+"Change the driver if your pad is not working at all or not working properly "
+"in-game."
+msgstr ""
+"Schimbati driverul daca controllerul dvs. nu functioneaza deloc sau nu "
+"functioneaza corect in joc."
+
+msgid "In Memory!"
+msgstr "In memorie!"
+
+msgid "Internal Share Partition"
+msgstr "Partitie share interna"
+
+msgid "Network Share"
+msgstr "Partajare in retea"
+
+msgid "Device %d - %l (%f)"
+msgstr "Dispozitiv %d - %l (%f)"
+
+msgid "Any External Device"
+msgstr "Orice dispozitiv extern"
+
+msgid "DETECTED REGION"
+msgstr "REGIUNE DETECTATA"
+
+msgid "SELECT REGION PRIORITY"
+msgstr "SELECTEAZA PRIORITATEA REGIUNII"
+
+msgid "LATER"
+msgstr "MAI TARZIU"
+
+msgid "A reboot is required to apply pending changes."
+msgstr "Este necesara o repornire pentru a aplica modificarile in asteptare."
+
+msgid "SHOW LIGHTGUN SYSTEM"
+msgstr "AFISEAZA SISTEMUL PISTOL OPTIC"
+
+msgid "SHOW PORTS SYSTEM"
+msgstr "AFISEAZA SISTEMUL PORTURI"
+
+msgid "Show all available games playable with a lightgun."
+msgstr "Afiseaza toate jocurile disponibile jucabile cu un pistol optic."
+
+msgid "Show a 'ports' system with all ports in the same place."
+msgstr "Afiseaza un sistem 'porturi' cu toate porturile in acelasi loc."
+
+msgid ""
+"WARNING! This option erases all Recalbox and emulator configurations! Use it "
+"carefully!"
+msgstr ""
+"ATENTIE! Aceasta optiune sterge toate configuratiile recalbox si emulator! "
+"Folositi-o cu atentie!"
+
+msgid "RESET TO FACTORY SETTINGS"
+msgstr "RESETARE LA SETARILE DIN FABRICA"
+
+msgid "WARNING!"
+msgstr "ATENTIE!"
+
+msgid ""
+"RESET TO FACTORY SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET RECALBOX AND EMULATOR SETTINGS TO DEFAULT VALUES.\n"
+"ALL YOUR DATA LIKE GAMES, SAVES, MUSIC, SCREENSHOTS AND SO ON, WILL BE "
+"KEPT.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR SETTINGS?"
+msgstr ""
+"RESETARE LA SETARILE DIN FABRICA\n"
+"\n"
+"URMEAZA SA RESETATI SETARILE RECALBOX SI EMULATOR LA VALORILE IMPLICITE.\n"
+"TOATE DATELE DVS. PRECUM JOCURI, SALVARI, MUZICA, CAPTURI DE ECRAN SI ASA "
+"MAI DEPARTE, VOR FI PASTRATE.\n"
+"\n"
+"ACEASTA OPERATIE NU POATE FI ANULATA!\n"
+"SUNTETI SIGUR CA DORITI SA RESETATI TOATE SETARILE DVS.?"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR RECALBOX TO FACTORY SETTINGS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"SUNTETI LA UN CLIC DISTANTA DE A RESETA RECALBOX-UL LA SETARILE DIN "
+"FABRICA!\n"
+"\n"
+"SUNTETI CU ADEVARAT SIGUR CA DORITI SA FACETI ACEST LUCRU?"
+
+msgid "SWAP VALIDATE/CANCEL BUTTONS"
+msgstr "INVERSEAZA BUTOANELE VALIDARE/ANULARE"
+
+msgid "AUDIO MODE"
+msgstr "MOD AUDIO"
+
+msgid "Select sound to play. Musics, videos sound, both or none"
+msgstr ""
+"Selectati sunetul de redat. Muzica, sunetul videoclipurilor, ambele sau "
+"niciunul"
+
+msgid "Musics or videos sound"
+msgstr "Muzica sau sunetul videoclipurilor"
+
+msgid "Musics and videos sound"
+msgstr "Muzica si sunetul videoclipurilor"
+
+msgid "Musics only"
+msgstr "Doar muzica"
+
+msgid "Videos sound only"
+msgstr "Doar sunetul videoclipurilor"
+
+msgid "No sound"
+msgstr "Fara sunet"
+
+msgid "Adult"
+msgstr "Adult"
+
+msgid "Waking up!"
+msgstr "Se trezeste!"
+
+msgid "LightGun Games"
+msgstr "Jocuri pistol optic"
+
+msgid "NEW YORK"
+msgstr "NEW YORK"
+
+msgid "MADRID"
+msgstr "MADRID"
+
+msgid "Swap the validate button (B/X) and the cancel button (B/O)."
+msgstr ""
+"Permite inversarea butonului de validare B/X si butonului de anulare B/O"
+
+msgid "box3d"
+msgstr "box3d"
+
+msgid "P2K CONTROLS"
+msgstr "CONTROALE P2K"
+
+msgid "THE UPGRADE HAS FAILED"
+msgstr "ACTUALIZAREA A ESUAT"
+
+msgid ""
+"The upgrade process has failed. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, and contact the team on https://forum."
+"recalbox.com if the problem persists."
+msgstr ""
+"Procesul de actualizare a esuat. Sunteti inapoi pe Recalbox %s.\n"
+"Va rugam sa reincercati sa actualizati Recalbox-ul si contactati echipa pe "
+"https://forum.recalbox.com daca problema persista."
+
+msgid "RECALBOX OVERLAYS"
+msgstr "SUPRAPUNERI RECALBOX"
+
+msgid ""
+"On wide screens, display system images that wrap around emulated screen."
+msgstr ""
+"Pe ecranele late, afiseaza imagini de sistem care inconjoara ecranul emulat."
+
+msgid "No comment available"
+msgstr "Niciun comentariu disponibil"
+
+msgid "UNKNOWN"
+msgstr "NECUNOSCUT"
+
+msgid "GO TO GAME"
+msgstr "MERGI LA JOC"
+
+msgid "MEDIA FILES"
+msgstr "FISIERE MEDIA"
+
+msgid "CONFIGURATION AND PATCH FILES"
+msgstr "FISIERE DE CONFIGURARE SI PATCH"
+
+msgid "SAVE FILES"
+msgstr "FISIERE DE SALVARE"
+
+msgid "RELEASE DATE"
+msgstr "DATA LANSARII"
+
+msgid "TYPE, THEN NAME"
+msgstr "TIP, APOI NUME"
+
+msgid "TYPE, THEN RELEASE DATE"
+msgstr "TIP, APOI DATA LANSARII"
+
+msgid "MANUFACTURER, THEN NAME"
+msgstr "PRODUCATOR, APOI NUME"
+
+msgid "MANUFACTURER, THEN RELEASE DATE"
+msgstr "PRODUCATOR, APOI DATA LANSARII"
+
+msgid "TYPE, THEN MANUFACTURER, THEN NAME"
+msgstr "TIP, APOI PRODUCATOR, APOI NUME"
+
+msgid "TYPE, THEN MANUFACTURER, THEN RELEASE DATE"
+msgstr "TIP, APOI PRODUCATOR, APOI DATA LANSARII"
+
+msgid "SYSTEM SORTING"
+msgstr "SORTARE SISTEME"
+
+msgid ""
+"Default: use original or custom systemlist.xml order\n"
+"System Type: order by Console/Handheld/Computer/Arcade/Other\n"
+"Release Date: order by release date asc\n"
+"Manufacturer: order by manufacturer (e.g. Sega)\n"
+"Special Blend: Sort by type then Manufacturer then Release Date"
+msgstr ""
+"Implicit: foloseste ordinea originala sau personalizata din systemlist.xml\n"
+"Tip sistem: ordoneaza dupa Consola/Portabil/Computer/Arcade/Altele\n"
+"Data lansarii: ordoneaza dupa data lansarii crescator\n"
+"Producator: ordoneaza dupa producator (ex. Sega)\n"
+"Amestec special: sorteaza dupa tip, apoi producator, apoi data lansarii"
+
+msgid "DELETE ALL FILES"
+msgstr "STERGE TOATE FISIERELE"
+
+msgid "ADVANCED DELETE"
+msgstr "STERGERE AVANSATA"
+
+msgid "DELETE ALL FILES, CONFIRM?"
+msgstr "STERGE TOATE FISIERELE, CONFIRMATI?"
+
+msgid "DELETE SCREENSHOT, CONFIRM?"
+msgstr "STERGE CAPTURA DE ECRAN, CONFIRMATI?"
+
+msgid ""
+"Global resolution is the resolution used by default when specific "
+"resolutions are undefined."
+msgstr ""
+"Rezolutia globala este rezolutia folosita implicit cand rezolutiile "
+"specifice nu sunt definite."
+
+msgid "Select the resolution EmulationStation will use."
+msgstr "Selectati rezolutia pe care o va folosi EmulationStation."
+
+msgid "RESOLUTIONS"
+msgstr "REZOLUTII"
+
+msgid "GLOBAL RESOLUTION"
+msgstr "REZOLUTIE GLOBALA"
+
+msgid "EMULATIONSTATION RESOLUTION"
+msgstr "REZOLUTIE EMULATIONSTATION"
+
+msgid "USE GLOBAL"
+msgstr "FOLOSESTE GLOBALA"
+
+msgid "NATIVE"
+msgstr "NATIVA"
+
+msgid ""
+"No file selected,\n"
+"you must at least choose one."
+msgstr ""
+"Niciun fisier selectat,\n"
+"trebuie sa alegeti cel putin unul."
+
+msgid ""
+"The device %NAME% containing roms has been plugged in! EmulationStation must "
+"relaunch to load new games."
+msgstr ""
+"Dispozitivul %NAME% continand romuri a fost conectat! EmulationStation "
+"trebuie relansat pentru a incarca jocurile noi."
+
+msgid ""
+"A device containing roms has been unplugged! EmulationStation must relaunch "
+"to remove unavailable games."
+msgstr ""
+"Un dispozitiv continand romuri a fost deconectat! EmulationStation trebuie "
+"relansat pentru a elimina jocurile indisponibile."
+
+msgid ""
+"Your USB device has been initialized! You can unplug it and copy your games "
+"on it."
+msgstr ""
+"Dispozitivul dvs. USB a fost initializat! Puteti sa il deconectati si sa "
+"copiati jocurile pe el."
+
+msgid ""
+"Initialization failed! Your USB device is full or contains errors. Please "
+"repair or use another device."
+msgstr ""
+"Initializarea a esuat! Dispozitivul dvs. USB este plin sau contine erori. Va "
+"rugam sa il reparati sau sa folositi alt dispozitiv."
+
+msgid "DISPLAY BY FILENAME"
+msgstr "AFISEAZA DUPA NUMELE FISIERULUI"
+
+msgid "SEARCH GAMES HERE"
+msgstr "CAUTA JOCURI AICI"
+
+msgid "This game is currently updating its metadata. Retry in a few seconds."
+msgstr ""
+"Acest joc isi actualizeaza in prezent metadatele. Reincercati in cateva "
+"secunde."
+
+msgid "SHOW ONLY LATEST VERSION"
+msgstr "AFISEAZA DOAR ULTIMA VERSIUNE"
+
+msgid "SHOW ONLY FAVORITES"
+msgstr "AFISEAZA DOAR FAVORITELE"
+
+msgid "SHOW HIDDEN GAMES"
+msgstr "AFISEAZA JOCURILE ASCUNSE"
+
+msgid "Display game by file name instead of game name."
+msgstr "Afiseaza jocul dupa numele fisierului in loc de numele jocului."
+
+msgid "DISABLE"
+msgstr "DEZACTIVEAZA"
+
+msgid "original"
+msgstr "original"
+
+msgid ""
+"A fatal error occured while scraping your game! It may be related to server "
+"issues or bad login/password.\n"
+"\n"
+"Try again in a few moment or fix your credentials if required."
+msgstr ""
+"A aparut o eroare fatala in timpul verificarii jocului dvs.! Ar putea fi "
+"legata de probleme de server sau autentificare/parola incorecta.\n"
+"\n"
+"Incercati din nou peste cateva momente sau corectati datele de autentificare "
+"daca este necesar."
+
+msgid "Your scraping session completed!"
+msgstr "Sesiunea dvs. de verificare s-a finalizat!"
+
+msgid "Please select one or more systems to scrape!"
+msgstr "Va rugam sa selectati unul sau mai multe sisteme pentru verificare!"
+
+msgid ""
+"Your system has not enough memory to handle %SYSTEMS% systems. You should "
+"not exceed %MAXSYSTEMS% consoles/computers or you may face stability "
+"issues!\n"
+"\n"
+"You can hide preinstalled games in UI SETTINGS menu to decrease active "
+"systems"
+msgstr ""
+"Sistemul dvs. nu are suficienta memorie pentru a gestiona %SYSTEMS% sisteme. "
+"Nu ar trebui sa depasiti %MAXSYSTEMS% console/computere altfel puteti avea "
+"probleme de stabilitate!\n"
+"\n"
+"Puteti ascunde jocurile preinstalate in meniul SETARI UI pentru a reduce "
+"sistemele active"
+
+msgid ""
+"Your system has not enough memory to handle %GAMES% games. You should not "
+"exceed %MAXGAMES% or you may face stability issues!"
+msgstr ""
+"Sistemul dvs. nu are suficienta memorie pentru a gestiona %GAMES% jocuri. Nu "
+"ar trebui sa depasiti %MAXGAMES% altfel puteti avea probleme de stabilitate!"
+
+msgid "WARNING! SYSTEM OVERLOAD!"
+msgstr "ATENTIE! SUPRAINCARCARE SISTEM!"
+
+msgid ""
+"Welcome back %NAME%!\n"
+"Patron level %LEVEL%\n"
+"You are now connected to your recalbox patron account, and all exclusives "
+"features are available!"
+msgstr ""
+"Bine ati revenit %NAME%!\n"
+"Nivel patron %LEVEL%\n"
+"Sunteti acum conectat la contul dvs. de patron recalbox si toate functiile "
+"exclusive sunt disponibile!"
+
+msgid ""
+"Hello %NAME%, your private key is linked to a Patreon account which is no "
+"longer a Recalbox Patron.\n"
+"We still hope to see you back soon as a Recalbox Patron!\n"
+"Delete your private key to suppress this message."
+msgstr ""
+"Buna %NAME%, cheia dvs. privata este legata de un cont Patreon care nu mai "
+"este patron Recalbox.\n"
+"Speram totusi sa va revedem curand ca patron Recalbox!\n"
+"Stergeti cheia privata pentru a elimina acest mesaj."
+
+msgid ""
+"Your private key does not allow to retrieve your Patreon information. Go to "
+"recalbox.com/patreon to generate a new valid key!"
+msgstr ""
+"Cheia dvs. privata nu permite recuperarea informatiilor dvs. Patreon. "
+"Mergeti la recalbox.com/patreon pentru a genera o noua cheie valida!"
+
+msgid ""
+"Sorry we're not able to retrieve your Patron level because no network is "
+"available!"
+msgstr ""
+"Ne pare rau, nu putem recupera nivelul dvs. de patron deoarece nu este "
+"disponibila nicio retea!"
+
+msgid ""
+"We're not able to retrieve your Patron level! Sorry for the inconvenience, "
+"we're already working on a fix!"
+msgstr ""
+"Nu putem recupera nivelul dvs. de patron! Ne cerem scuze pentru neplaceri, "
+"lucram deja la o solutie!"
+
+msgid "CASE MANAGEMENT"
+msgstr "GESTIONARE CARCASA"
+
+msgid ""
+"If you installed a case on your Recalbox, you can install or uninstall it in "
+"this menu. Some cases are detected automatically and will also be reported "
+"here."
+msgstr ""
+"Daca ati instalat o carcasa pe Recalbox-ul dvs., o puteti instala sau "
+"dezinstala aici. Unele carcase sunt detectate automat si vor fi raportate de "
+"asemenea aici."
+
+msgid ""
+"The USB device %NAME% with no rom folder and no share folder has been "
+"plugged in! Would you like to initialize this device?"
+msgstr ""
+"Dispozitivul USB %NAME% fara folder de romuri si fara folder share a fost "
+"conectat! Doriti sa initializati acest dispozitiv?"
+
+msgid "• Choose '%INIT%' to create only all the rom folders"
+msgstr "• Alegeti '%INIT%' pentru a crea doar toate folderele de romuri"
+
+msgid ""
+"• Choose '%MOVE%' to copy all the current share to the new device, "
+"automatically switch to this device, and reboot"
+msgstr ""
+"• Alegeti '%MOVE%' pentru a copia intregul share curent pe noul dispozitiv, "
+"a comuta automat la acest dispozitiv si a reporni"
+
+msgid "• Or just chose '%CANCEL%' to do nothing with this new device"
+msgstr ""
+"• Sau alegeti '%CANCEL%' pentru a nu face nimic cu acest nou dispozitiv"
+
+msgid "INITIALIZE"
+msgstr "INITIALIZEAZA"
+
+msgid "MOVE SHARE"
+msgstr "MUTA SHARE"
+
+msgid "Setting up boot device..."
+msgstr "Se configureaza dispozitivul de pornire..."
+
+msgid ""
+"Your USB device has been initialized! Ready to reboot on your new share "
+"device!"
+msgstr ""
+"Dispozitivul dvs. USB a fost initializat! Gata de repornire pe noul "
+"dispozitiv share!"
+
+msgid "UPDATING..."
+msgstr "SE ACTUALIZEAZA..."
+
+msgid "Video"
+msgstr "Video"
+
+msgid ""
+"For safe shutdown to work, set the SAFE SHUTDOWN switch to ON. You will find "
+"it on the circuit board, inside your Retroflag case."
+msgstr ""
+"Pentru ca oprirea in siguranta sa functioneze, pozitionati comutatorul SAFE "
+"SHUTDOWN pe ON. Il gasiti pe placa electronica, in interiorul carcasei "
+"Retroflag."
+
+msgid "MENU RESOLUTION"
+msgstr "REZOLUTIE MENIU"
+
+msgid "SCREEN TYPE"
+msgstr "TIP ECRAN"
+
+msgid "SELECT GAME REFRESH RATE AT LAUNCH"
+msgstr "SELECTEAZA RATA DE IMPROSPATARE A JOCULUI LA LANSARE"
+
+msgid "Let you choose between 50Hz and 60Hz at launch, for compatible systems."
+msgstr ""
+"Va permite sa alegeti intre 50Hz si 60Hz la lansare, pentru sistemele "
+"compatibile."
+
+msgid "SELECT GAME RESOLUTION AT LAUNCH"
+msgstr "SELECTEAZA REZOLUTIA JOCULUI LA LANSARE"
+
+msgid ""
+"Let you choose between 240p, 480i, or 480p at launch, for compatible systems."
+msgstr ""
+"Va permite sa alegeti intre 240p, 480i sau 480p la lansare, pentru sistemele "
+"compatibile."
+
+msgid "FORCE SOUND ON JACK"
+msgstr "FORTEAZA SUNETUL PE JACK"
+
+msgid "Force sound on jack. Auto-enabled when 31kHz switch is ON"
+msgstr ""
+"Forteaza sunetul pe jack. Activat automat cand comutatorul 31kHz este pe ON"
+
+msgid "MOVE SCREEN"
+msgstr "MUTA ECRANUL"
+
+msgid "Horizontal offset:"
+msgstr "Decalaj orizontal:"
+
+msgid "Vertical offset:"
+msgstr "Decalaj vertical:"
+
+msgid "YOUR LIST IS EMPTY. PRESS START TO CHANGE GAME FILTERS."
+msgstr ""
+"LISTA DVS. ESTE GOALA. APASATI START PENTRU A SCHIMBA FILTRELE JOCURILOR."
+
+msgid "Select a region to filter out games not matching the selected region."
+msgstr ""
+"Selectati o regiune pentru a filtra jocurile care nu se potrivesc cu "
+"regiunea selectata."
+
+msgid "SOFTPATCHING"
+msgstr "SOFTPATCHING"
+
+msgid "AUTOMATIC SCRAPING"
+msgstr "VERIFICARE AUTOMATA"
+
+msgid "RUN IN BACKGROUND"
+msgstr "RULEAZA IN FUNDAL"
+
+msgid "MONTREAL"
+msgstr "MONTREAL"
+
+msgid "SAOPAULO"
+msgstr "SAO PAULO"
+
+msgid "%i Known MD5"
+msgstr "%i MD5 cunoscut"
+
+msgid "Restarting."
+msgstr "Se reporneste."
+
+msgid "Entering standby..."
+msgstr "Se intra in asteptare..."
+
+msgid "PAD TO KEYBOARD CONTROLS"
+msgstr "CONTROALE PAD TO KEYBOARD"
+
+msgid "You are about to delete this files, confirm ?"
+msgstr "Sunteti pe cale sa stergeti aceste fisiere, confirmati?"
+
+msgid "Preparing Games..."
+msgstr "Se pregatesc jocurile..."
+
+msgid "Free"
+msgstr "Liber"
+
+msgid "FADE"
+msgstr "ESTOMPARE"
+
+msgid "SLIDE"
+msgstr "GLISARE"
+
+msgid "INSTANT"
+msgstr "INSTANT"
+
+msgid "You must have at least %dGB free on 'SHARE' partition!"
+msgstr "Trebuie sa aveti cel putin %dGB liberi pe partitia 'SHARE'!"
+
+msgid "60Hz (US)"
+msgstr "60Hz (US)"
+
+msgid "60Hz (JP)"
+msgstr "60Hz (JP)"
+
+msgid "50Hz (EU)"
+msgstr "50Hz (EU)"
+
+msgid "60Hz"
+msgstr "60Hz"
+
+msgid "50Hz"
+msgstr "50Hz"
+
+msgid "Recalbox RGB Dual options and configuration."
+msgstr "Optiuni si configurare Recalbox RGB Dual."
+
+msgid "Select system, frontend and emulator resolutions."
+msgstr "Selectati rezolutiile sistemului, interfetei si emulatorului."
+
+msgid "PAIR BLUETOOTH CONTROLLERS"
+msgstr "ASOCIAZA CONTROLLERE BLUETOOTH"
+
+msgid ""
+"The bluetooth pairing will start and run for several minutes.\n"
+"During this time, you just have to apply the pairing procedure on any "
+"bluetooth controller you want to pair.\n"
+"The next window will display all detected bluetooth devices and their status "
+"for information purposes only.\n"
+"You can close it at any time, while continuing to pair your bluetooth "
+"devices for as long as the bluetooth icon is blinking on the top left."
+msgstr ""
+"Asocierea bluetooth va incepe si va rula timp de cateva minute.\n"
+"In acest timp, trebuie doar sa aplicati procedura de asociere pe orice "
+"controller bluetooth doriti sa asociati.\n"
+"Fereastra urmatoare va afisa toate dispozitivele bluetooth detectate si "
+"starea lor doar in scop informativ.\n"
+"O puteti inchide oricand, continuand sa asociati dispozitivele bluetooth "
+"atata timp cat pictograma bluetooth clipeste in stanga sus."
+
+msgid "START DOWNLOADING..."
+msgstr "INCEPE DESCARCAREA..."
+
+msgid ""
+"Pair a bluetooth audio device. Put your device in discovery mode before "
+"starting."
+msgstr ""
+"Asociati un dispozitiv audio bluetooth. Puneti dispozitivul in modul de "
+"descoperire inainte de a incepe."
+
+msgid "PAIR A BLUETOOTH AUDIO DEVICE"
+msgstr "ASOCIAZA UN DISPOZITIV AUDIO BLUETOOTH"
+
+msgid "J1 UP"
+msgstr "J1 SUS"
+
+msgid "J1 DOWN"
+msgstr "J1 JOS"
+
+msgid "J1 LEFT"
+msgstr "J1 STANGA"
+
+msgid "J1 RIGHT"
+msgstr "J1 DREAPTA"
+
+msgid "J2 UP"
+msgstr "J2 SUS"
+
+msgid "J2 DOWN"
+msgstr "J2 JOS"
+
+msgid "J2 LEFT"
+msgstr "J2 STANGA"
+
+msgid "J2 RIGHT"
+msgstr "J2 DREAPTA"
+
+msgid "Alias: **"
+msgstr "Alias: **"
+
+msgid "MAC: "
+msgstr "MAC: "
+
+msgid "Connected: "
+msgstr "Conectat: "
+
+msgid "Trusted: "
+msgstr "De incredere: "
+
+msgid "Paired: "
+msgstr "Asociat: "
+
+msgid "Blocked: "
+msgstr "Blocat: "
+
+msgid "NO DEVICE"
+msgstr "NICIUN DISPOZITIV"
+
+msgid "SEARCH BY"
+msgstr "CAUTA DUPA"
+
+msgid "NO RESULTS"
+msgstr "NICIUN REZULTAT"
+
+msgid "PRIORITY TO HDMI"
+msgstr "PRIORITATE PENTRU HDMI"
+
+msgid "ON"
+msgstr "ACTIVAT"
+
+msgid "OFF"
+msgstr "DEZACTIVAT"
+
+msgid "60Hz Only"
+msgstr "Doar 60Hz"
+
+msgid "50Hz Only"
+msgstr "Doar 50Hz"
+
+msgid "DISCOVERING BLUETOOTH AUDIO DEVICES..."
+msgstr "SE DESCOPERA DISPOZITIVE AUDIO BLUETOOTH..."
+
+msgid "NO AUDIO DEVICE FOUND"
+msgstr "NICIUN DISPOZITIV AUDIO GASIT"
+
+msgid "KODI RESOLUTION"
+msgstr "REZOLUTIE KODI"
+
+msgid "AUDIO DEVICE PAIRED"
+msgstr "DISPOZITIV AUDIO ASOCIAT"
+
+msgid "UNABLE TO PAIR AUDIO DEVICE"
+msgstr "IMPOSIBIL DE ASOCIAT DISPOZITIVUL AUDIO"
+
+msgid "BRIGHTNESS"
+msgstr "LUMINOZITATE"
+
+msgid "NAME"
+msgstr "NUME"
+
+msgid "suspend"
+msgstr "suspendare"
+
+msgid "NEXT RESOLUTION"
+msgstr "REZOLUTIA URMATOARE"
+
+msgid "Game refresh rate"
+msgstr "Rata de improspatare a jocului"
+
+msgid "Game resolution"
+msgstr "Rezolutia jocului"
+
+msgid "CHANGELOG"
+msgstr "JURNAL DE MODIFICARI"
+
+msgid "Copying %s folder..."
+msgstr "Se copiaza folderul %s..."
+
+msgid "B"
+msgstr "B"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "SAVE STATES"
+msgstr "STARI SALVATE"
+
+msgid "SHOW SAVE STATES ON START"
+msgstr "AFISEAZA STARILE SALVATE LA PORNIRE"
+
+msgid "You are about to delete this state, confirm ?"
+msgstr "Sunteti pe cale sa stergeti aceasta stare, confirmati?"
+
+msgid "DELETE STATE, CONFIRM?"
+msgstr "STERGE STAREA, CONFIRMATI?"
+
+msgid "CHANGE ORDER"
+msgstr "SCHIMBA ORDINEA"
+
+msgid "LAUNCH GAME FROM STATE"
+msgstr "LANSEAZA JOCUL DIN STARE"
+
+msgid "DELETE STATE SLOT"
+msgstr "STERGE SLOTUL DE STARE"
+
+msgid "Display the available save states before launching a game."
+msgstr ""
+"Afisarea starilor salvate la pornire va arata starile salvate disponibile "
+"inainte de a lansa un joc."
+
+msgid "DOWNLOADING GAMES FOR %s"
+msgstr "SE DESCARCA JOCURI PENTRU %s"
+
+msgid "Downloading WASM4 games from the official site. Please wait..."
+msgstr "Se descarca jocuri WASM4 de pe site-ul oficial. Va rugam asteptati..."
+
+msgid "Downloading... Estimated time: %s"
+msgstr "Se descarca... Timp estimat: %s"
+
+msgid "Extracting... found %s games"
+msgstr "Se extrage... %s jocuri gasite"
+
+msgid "Updating metadata..."
+msgstr "Se actualizeaza metadatele..."
+
+msgid "Refreshing gamelist..."
+msgstr "Se reimprospateaza lista de jocuri..."
+
+msgid ""
+"Scrap running in background.\n"
+"Return to the scrap menu to get the progression."
+msgstr ""
+"Verificarea ruleaza in fundal.\n"
+"Reveniti la meniul de verificare pentru a vedea progresul."
+
+msgid "ADVANCED SHADERS"
+msgstr "SHADERE AVANSATE"
+
+msgid "GAME BOY MODE"
+msgstr "MOD GAME BOY"
+
+msgid "GAME BOY"
+msgstr "GAME BOY"
+
+msgid "SUPER GAME BOY"
+msgstr "SUPER GAME BOY"
+
+msgid "ASK AT LAUNCH"
+msgstr "INTREABA LA LANSARE"
+
+msgid "CRT CURVED"
+msgstr "CRT CURBAT"
+
+msgid ""
+"YOU JUST ACTIVATED THE SHADERS FOR ALL SYSTEMS. FOR A BETTER RENDERING, IT "
+"IS ADVISED TO DISABLE GAME SMOOTHING. DO YOU WANT TO CHANGE THIS OPTION "
+"AUTOMATICALLY?"
+msgstr ""
+"TOCMAI ATI ACTIVAT SHADERELE PENTRU TOATE SISTEMELE. PENTRU O RANDARE MAI "
+"BUNA, SE RECOMANDA DEZACTIVAREA NETEZIRII JOCULUI. DORITI SA SCHIMBATI "
+"AUTOMAT ACEASTA OPTIUNE?"
+
+msgid "Optimized video"
+msgstr "Video optimizat"
+
+msgid "RECOMMENDED"
+msgstr "RECOMANDAT"
+
+msgid "TATE SETTINGS"
+msgstr "SETARI TATE"
+
+msgid "ENABLE TATE VIRTUAL SYSTEM"
+msgstr "ACTIVEAZA SISTEMUL VIRTUAL TATE"
+
+msgid "GAMES ROTATION"
+msgstr "ROTATIE JOCURI"
+
+msgid "COMPLETE SYSTEM ROTATION"
+msgstr "ROTATIE COMPLETA A SISTEMULUI"
+
+msgid ""
+"Welcome to RECALBOX for Anbernic RG!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Bine ati venit la RECALBOX pentru Anbernic RG!\n"
+"Aceasta scurta prezentare va va arata cum sa folositi toate butoanele "
+"speciale disponibile in jurul ecranului.\n"
+"\n"
+"Apasati orice buton pentru a incepe!"
+
+msgid ""
+"On the left side of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+"Press button B to continue"
+msgstr ""
+"Pe partea stanga a consolei, exista 2 butoane marcate cu '-' si '+'.\n"
+"Folositi-le pentru a creste sau scadea volumul oricand in interfata Recalbox "
+"sau in joc.\n"
+"\n"
+"Apasati butonul B pentru a continua"
+
+msgid ""
+"On the top side of the console, there is a button marked 'F'.\n"
+"This is the Hotkey button\n"
+"To quit a game press both F + START\n"
+"Press button B to continue"
+msgstr ""
+"In partea de sus a consolei, exista un buton marcat 'F'.\n"
+"Acesta este butonul Hotkey\n"
+"Pentru a iesi dintr-un joc apasati F + START\n"
+"Apasati butonul B pentru a continua"
+
+msgid ""
+"Use the function F button and a volume button to adjust brightness\n"
+"Press button B to continue"
+msgstr ""
+"Folositi butonul de functie F si un buton de volum pentru a ajusta "
+"luminozitatea\n"
+"Apasati butonul B pentru a continua"
+
+msgid "GameBoy Mode"
+msgstr "Mod GameBoy"
+
+msgid "Rotation"
+msgstr "Rotatie"
+
+msgid "Full Screen"
+msgstr "Ecran complet"
+
+msgid "DOWNLOAD CONTENTS"
+msgstr "DESCARCA CONTINUT"
+
+msgid "Start downloading..."
+msgstr "Se incepe descarcarea..."
+
+msgid "none"
+msgstr "niciunul"
+
+msgid "Games"
+msgstr "Jocuri"
+
+msgid "Downloading free games from Recalbox repositories. Please wait..."
+msgstr ""
+"Se descarca jocuri gratuite din repozitoriile Recalbox. Va rugam asteptati..."
+
+msgid "Installing %s games"
+msgstr "Se instaleaza %s jocuri"
+
+msgid "SLOT"
+msgstr "SLOT"
+
+msgid "ENABLE ENHANCED VIEW"
+msgstr "ACTIVEAZA VIZUALIZAREA IMBUNATATITA"
+
+msgid "FOLD CLONES BY DEFAULT"
+msgstr "PLIAZA CLONELE IMPLICIT"
+
+msgid "HIDE BIOS"
+msgstr "ASCUNDE BIOS"
+
+msgid "HIDE NON-WORKING GAMES"
+msgstr "ASCUNDE JOCURILE NEFUNCTIONALE"
+
+msgid "ALWAYS USE OFFICIAL NAMES"
+msgstr "FOLOSESTE INTOTDEAUNA NUMELE OFICIALE"
+
+msgid "MANUFACTURER VIRTUAL SYSTEMS"
+msgstr "SISTEME VIRTUALE PRODUCATOR"
+
+msgid "HD MODE"
+msgstr "MOD HD"
+
+msgid "WIDESCREEN (16/9)"
+msgstr "ECRAN LAT (16/9)"
+
+msgid "LAUNCH LAST"
+msgstr "LANSEAZA ULTIMUL"
+
+msgid "BOOTLOADER UPDATE"
+msgstr "ACTUALIZARE BOOTLOADER"
+
+msgid ""
+"If no configured controller is detected at boot, Recalbox will run as usual "
+"and display the system list."
+msgstr ""
+"Daca niciun controller configurat nu este detectat la pornire, recalbox va "
+"rula ca de obicei si va afisa lista de sisteme."
+
+msgid "Could not get bootloader status. Something went wrong"
+msgstr "Nu s-a putut obtine starea bootloader-ului. Ceva a mers gresit"
+
+msgid "An update is available :\n"
+msgstr "O actualizare este disponibila:\n"
+
+msgid "Current version: \n"
+msgstr "Versiunea curenta: \n"
+
+msgid ""
+"\n"
+"Latest version: \n"
+msgstr ""
+"\n"
+"Ultima versiune: \n"
+
+msgid "Update success. The bootloader is up to date."
+msgstr "Actualizare reusita. Bootloader-ul este la zi."
+
+msgid ""
+"Your bootloader is up to date.\n"
+"The bootloader version is:\n"
+msgstr ""
+"Bootloader-ul dvs. este la zi.\n"
+"Versiunea bootloader-ului este:\n"
+
+msgid "AUTO PAIR ON BOOT"
+msgstr "ASOCIERE AUTOMATA LA PORNIRE"
+
+msgid "ALWAYS SHOW PAD OSD"
+msgstr "AFISEAZA INTOTDEAUNA OSD CONTROLLER"
+
+msgid "PAD OSD TYPE"
+msgstr "TIP OSD CONTROLLER"
+
+msgid "REDUCED LATENCY (EXPERIMENTAL)"
+msgstr "LATENTA REDUSA (EXPERIMENTAL)"
+
+msgid "RUN AHEAD (EXPERIMENTAL)"
+msgstr "RUN AHEAD (EXPERIMENTAL)"
+
+msgid "MONO AMP BOOST"
+msgstr "AMPLIFICARE MONO"
+
+msgid "PANEL TYPE"
+msgstr "TIP PANOU"
+
+msgid "4 PLAYERS MODE"
+msgstr "MOD 4 JUCATORI"
+
+msgid "START+BTN1 = CREDIT"
+msgstr "START+BTN1 = CREDIT"
+
+msgid "START+BTN = HK+BTN"
+msgstr "START+BTN = HK+BTN"
+
+msgid "START 3SEC = EXIT"
+msgstr "START 3SEC = IESIRE"
+
+msgid "START+BTN 5SEC = AUTO FIRE"
+msgstr "START+BTN 5SEC = FOC AUTOMAT"
+
+msgid "PIN E/27 AS GND"
+msgstr "PIN E/27 CA GND"
+
+msgid "RESET JAMMA CONFIGURATION"
+msgstr "RESETEAZA CONFIGURATIA JAMMA"
+
+msgid ""
+"You will now calibrate different resolutions for the frontend. Select the "
+"refresh rate according to what your TV supports.\n"
+"During the calibration, press B to validate, and A to cancel."
+msgstr ""
+"Acum veti calibra diferite rezolutii pentru interfata. Selectati rata de "
+"improspatare in functie de ce suporta televizorul dvs.\n"
+"In timpul calibrarii, apasati B pentru a valida si A pentru a anula."
+
+msgid "Are you sure you want to reset JAMMA configuration?"
+msgstr "Sunteti sigur ca doriti sa resetati configuratia JAMMA?"
+
+msgid "BOOT ON THIS GAME"
+msgstr "PORNESTE PE ACEST JOC"
+
+msgid "DOWNLOAD GAMES"
+msgstr "DESCARCA JOCURI"
+
+msgid "DISPLAY ONLY TATE GAMES IN GAMELISTS"
+msgstr "AFISEAZA DOAR JOCURILE TATE IN LISTELE DE JOCURI"
+
+msgid "TIME PLAYED"
+msgstr "TIMP JUCAT"
+
+msgid "DID YOU KNOW?"
+msgstr "STIATI CA?"
+
+msgid ""
+"Last operation removed all systems!\n"
+"\n"
+"They have been restored to allow normal operations, regardless of the "
+"current filters."
+msgstr ""
+"Ultima operatie a eliminat toate sistemele!\n"
+"\n"
+"Au fost restaurate pentru a permite operatiile normale, indiferent de "
+"filtrele curente."
+
+msgid ""
+"{0} reports the emulation status of this game is 'preliminary'. You should "
+"expect issues such as bugs or even crashes!"
+msgstr ""
+"{0} raporteaza ca starea de emulare a acestui joc este 'preliminara'. Ar "
+"trebui sa va asteptati la probleme precum erori sau chiar blocari!"
+
+msgid "Start the game standard Game Boy mode"
+msgstr "Porneste jocul in modul Game Boy standard"
+
+msgid "Start the game in Super Game Boy mode"
+msgstr "Porneste jocul in modul Super Game Boy"
+
+msgid "INITIALIZING SYSTEM {0}"
+msgid_plural "INITIALIZING SYSTEMS..."
+msgstr[0] "SE INITIALIZEAZA SISTEMUL {0}"
+msgstr[1] "SE INITIALIZEAZA SISTEMELE..."
+msgstr[2] "SE INITIALIZEAZA SISTEMELE..."
+
+msgid "LOADING SYSTEMS..."
+msgstr "SE INCARCA SISTEMELE..."
+
+msgid "LOADING VIRTUAL SYSTEMS..."
+msgstr "SE INCARCA SISTEMELE VIRTUALE..."
+
+msgid "INITIALIZING INTERFACE..."
+msgstr "SE INITIALIZEAZA INTERFATA..."
+
+msgid ""
+"One or more files are corrupted. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, check your Recalbox storage (SD Card, "
+"USB Key or hard drive).\n"
+"Contact the team on https://forum.recalbox.com if the problem persists."
+msgstr ""
+"Unul sau mai multe fisiere sunt corupte. Sunteti inapoi pe Recalbox %s.\n"
+"Va rugam sa reincercati sa actualizati Recalbox-ul, verificati stocarea "
+"Recalbox-ului (card SD, cheie USB sau hard disk).\n"
+"Contactati echipa pe https://forum.recalbox.com daca problema persista."
+
+msgid "THE UPGRADE IS CORRUPTED"
+msgstr "ACTUALIZAREA ESTE COMPROMISA"
+
+msgid "An undervoltage has been detected, the system may slow down.\n"
+msgstr "A fost detectata o subtensiune, sistemul se poate incetini.\n"
+
+msgid ""
+"We recommend adjusting your JAMMA cabinet power supply to increase the "
+"voltage to between 5.05V and 5.2V"
+msgstr ""
+"Va recomandam sa ajustati sursa de alimentare a cabinetului JAMMA pentru a "
+"creste tensiunea intre 5.05V si 5.2V"
+
+msgid ""
+"We recommend that you purchase an official USB-C power supply designed for "
+"your Raspberry Pi"
+msgstr ""
+"Va recomandam sa achizitionati o sursa de alimentare USB-C oficiala "
+"conceputa pentru Raspberry Pi-ul dvs."
+
+msgid ""
+"The temperature of your system is high.\n"
+"The system may slow down. Try cooling your Raspberry Pi with a fan or "
+"disable overclock if it's enabled."
+msgstr ""
+"Temperatura sistemului dvs. este ridicata.\n"
+"Sistemul se poate incetini. Incercati sa raciti Raspberry Pi-ul cu un "
+"ventilator sau dezactivati suprasolicitarea daca este activata."
+
+msgid ""
+"Choose strategy\n"
+"\n"
+"AUTO: auto apply default patch\n"
+"\n"
+"LAUNCH LAST: always launch the last one (can be modified in edit game menu)\n"
+"\n"
+"SELECT: choose manually which patch to apply. Default one or patches in "
+"[ROM_NAME]-patches directory\n"
+"\n"
+"DISABLED: never apply patch"
+msgstr ""
+"Alegeti strategia\n"
+"\n"
+"AUTO: aplica automat patch-ul implicit\n"
+"\n"
+"LANSEAZA ULTIMUL: lanseaza mereu ultimul (poate fi modificat in meniul de "
+"editare a jocului)\n"
+"\n"
+"SELECTEAZA: alegeti manual ce patch sa aplicati. Cel implicit sau patch-"
+"urile din directorul [ROM_NAME]-patches\n"
+"\n"
+"DEZACTIVAT: nu aplica niciodata patch"
+
+msgid "Set the Super GameBoy mode for GameBoy games."
+msgstr "Seteaza modul Super GameBoy pentru jocurile GameBoy."
+
+msgid ""
+"Improves resolution on compatible 3d emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+msgstr ""
+"Imbunatateste rezolutia pe emulatoarele 3d compatibile. Poate avea un impact "
+"asupra performantei. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+
+msgid ""
+"Enables 16:9 hacks for compatible emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+msgstr ""
+"Activeaza hack-uri 16:9 pentru emulatoarele compatibile. Poate avea un "
+"impact asupra performantei. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+
+msgid "Always display Pad OSD whether you are in pad menus or not."
+msgstr ""
+"Afiseaza intotdeauna OSD controller indiferent daca sunteti in meniurile "
+"controllerului sau nu."
+
+msgid "Change the icon used to display pad OSD."
+msgstr "Schimba pictograma folosita pentru afisarea OSD controller."
+
+msgid "Activates Bluetooth pairing automatically each time you boot."
+msgstr "Activeaza asocierea Bluetooth automat de fiecare data cand porniti."
+
+msgid ""
+"Enable the new arcade view, with parents and clones sorted hierarchically."
+msgstr "Activeaza noua vizualizare arcade cu parinte/clone sortate ierarhic."
+
+msgid "Hide clones and orphaned games"
+msgstr "Ascunde clonele si jocurile orfane"
+
+msgid "Hide bios files"
+msgstr "Ascunde fisierele bios"
+
+msgid "Hide unknown and non-working games"
+msgstr "Ascunde jocurile necunoscute si nefunctionale"
+
+msgid "Manage screen and game rotation options"
+msgstr "Gestioneaza optiunile de rotatie a ecranului si jocului"
+
+msgid "Proceed to a complete screen rotation, for frontend and games."
+msgstr "Efectueaza o rotatie completa a ecranului, pentru interfata si jocuri."
+
+msgid "Configure emulators to reduce latency."
+msgstr "Configureaza emulatoarele pentru a reduce latenta."
+
+msgid ""
+"Use run ahead to reduce latency. Can have undesired effect on some emulators."
+msgstr ""
+"Foloseste run ahead pentru a reduce latenta. Poate avea efecte nedorite pe "
+"unele emulatoare."
+
+msgid "When a HDMI cable is connected, use HDMI output in priority."
+msgstr ""
+"Cand un cablu HDMI este conectat, foloseste iesirea HDMI cu prioritate."
+
+msgid "Superrez can increase image quality depending on your CRT."
+msgstr "Superrez poate creste calitatea imaginii in functie de CRT-ul dvs."
+
+msgid "Number of buttons on your arcade cab panel."
+msgstr "Numarul de butoane de pe panoul cabinetului arcade."
+
+msgid "Boost mono amp power. Use only if the sound level is too low."
+msgstr ""
+"Amplifica puterea amplificatorului mono. Folositi doar daca nivelul "
+"sunetului este prea scazut."
+
+msgid "Define the NEOGEO layout when playing NEOGEO games."
+msgstr "Definiti aspectul NEOGEO cand jucati jocuri NEOGEO."
+
+msgid "Add a credit in game, pressing START + BTN1. Works for all players."
+msgstr ""
+"Adauga un credit in joc, apasand START + BTN1. Functioneaza pentru toti "
+"jucatorii."
+
+msgid ""
+"START + any button will send the HK+BTN event, so you can use special hotkey "
+"controls in emulators."
+msgstr ""
+"START + orice buton va trimite evenimentul HK+BTN, astfel puteti folosi "
+"controale hotkey speciale in emulatoare."
+
+msgid ""
+"Pressing START for 3sec will exit the game. If you disable this option, you "
+"will have to exit the game with SERVICE + TEST."
+msgstr ""
+"Apasarea START timp de 3sec va iesi din joc. Daca dezactivati aceasta "
+"optiune, va trebui sa iesiti din joc cu SERVICE + TEST."
+
+msgid ""
+"Select the type of your screen. If you don't know what you are doing, do not "
+"change this value."
+msgstr ""
+"Selectati tipul ecranului dvs. Daca nu stiti ce faceti, nu schimbati aceasta "
+"valoare."
+
+msgid "4-player mode, with players 2 and 3 on the CPS2 kick harness."
+msgstr "Mod 4 jucatori, cu jucatorii 2 si 3 pe kickharness CPS2."
+
+msgid "Set auto fire for a button by pressing START + a button for 5 seconds"
+msgstr ""
+"Seteaza foc automat pentru un buton apasand START + un buton timp de 5 "
+"secunde"
+
+msgid ""
+"On some cabs, the pins E/27 of the JAMMA are the common ground for controls. "
+"Enable this option if you have this configuration."
+msgstr ""
+"Pe unele cabinete, pinii E/27 ai JAMMA sunt masa comuna pentru controale. "
+"Activati aceasta optiune daca aveti aceasta configuratie."
+
+msgid "Refreshing systems..."
+msgstr "Se reimprospateaza sistemele..."
+
+msgid "Your scraping session completed. Press OK to show the results."
+msgstr ""
+"Sesiunea dvs. de verificare s-a finalizat. Apasati OK pentru a vedea "
+"rezultatele."
+
+msgid ""
+"There is no game to show after this filter is changed! No change recorded."
+msgstr ""
+"Nu exista niciun joc de afisat dupa schimbarea acestui filtru! Nicio "
+"modificare inregistrata."
+
+msgid "ENABLE VULKAN DRIVER"
+msgstr "ACTIVEAZA DRIVERUL VULKAN"
+
+msgid "UPDATE"
+msgstr "ACTUALIZEAZA"
+
+msgid "Could not update bootloader. Something went wrong"
+msgstr "Nu s-a putut actualiza bootloader-ul. Ceva a mers gresit"
+
+msgid "BOOT VIDEOS"
+msgstr "VIDEOCLIPURI PORNIRE"
+
+msgid "There is no favorite games in any system!"
+msgstr "Nu exista jocuri favorite in niciun sistem!"
+
+msgid "FORCED"
+msgstr "FORTAT"
+
+msgid "SYSTEM DEFAULT"
+msgstr "IMPLICIT SISTEM"
+
+msgid "SOUND"
+msgstr "SUNET"
+
+msgid "UPSIDEDOWN"
+msgstr "RASTURNAT"
+
+msgid "There is no TATE game to show!No change recorded."
+msgstr "Nu exista niciun joc TATE de afisat! Nicio modificare inregistrata."
+
+msgid "REGION"
+msgstr "REGIUNE"
+
+msgid "Europe"
+msgstr "Europa"
+
+msgid "USA"
+msgstr "SUA"
+
+msgid "Japan"
+msgstr "Japonia"
+
+msgid "You display {0} is not in the list of this theme's supported displays:"
+msgstr ""
+"Afisajul dvs. {0} nu este in lista afisajelor suportate de aceasta tema:"
+
+msgid ""
+"You current resolution {0} is not in the list of this theme's supported "
+"resolutions:"
+msgstr ""
+"Rezolutia dvs. curenta {0} nu este in lista rezolutiilor suportate de "
+"aceasta tema:"
+
+msgid "You're in TATE mode and this theme does not seem to support TATE."
+msgstr "Sunteti in modul TATE si aceasta tema nu pare sa suporte TATE."
+
+msgid ""
+"This theme may have one or more compatibility issues with your current "
+"display:\n"
+msgstr ""
+"Aceasta tema poate avea una sau mai multe probleme de compatibilitate cu "
+"afisajul dvs. curent:\n"
+
+msgid "NEXT"
+msgstr "URMATOR"
+
+msgid "UPDATE NOW"
+msgstr "ACTUALIZEAZA ACUM"
+
+msgid "PAGE UP/DOWN"
+msgstr "PAGINA SUS/JOS"
+
+msgid "{0} reports the emulation status of this game is 'imperfect'."
+msgstr "{0} raporteaza ca starea de emulare a acestui joc este 'imperfecta'."
+
+msgid ""
+"System \"{0}\" has no visible game yet!\n"
+"\n"
+"It will show up automatically as soon as it has visible games."
+msgstr ""
+"Sistemul \"{0}\" nu are inca niciun joc vizibil!\n"
+"\n"
+"Va aparea automat de indata ce are jocuri vizibile."
+
+msgid ""
+"With regard to the new BIOS folder structure, some of your bios files have "
+"been moved automatically to their new path."
+msgstr ""
+"In legatura cu noua structura a folderelor BIOS, unele fisiere bios au fost "
+"mutate automat la noua lor cale."
+
+msgid "This move is applied only once. No additional operation required."
+msgstr ""
+"Aceasta mutare este aplicata o singura data. Nicio operatie suplimentara "
+"necesara."
+
+msgid ""
+"However, some files failed to move. You should run the BIOS Checker and move "
+"some files manually."
+msgstr ""
+"Totusi, unele fisiere nu au putut fi mutate. Ar trebui sa rulati "
+"Verificatorul BIOS si sa mutati manual unele fisiere."
+
+msgid ""
+"However, all files failed to move. You should:\n"
+"- either run the BIOS Checker and move the required files manually.\n"
+"- or if your bios files are on a read-only device or remote share, change it "
+"to read-write, reboot your recalbox, wait until all files are moved, then "
+"protect it again."
+msgstr ""
+"Totusi, toate fisierele nu au putut fi mutate. Ar trebui:\n"
+"- fie sa rulati Verificatorul BIOS si sa mutati manual fisierele necesare.\n"
+"- fie daca fisierele bios sunt pe un dispozitiv doar-citire sau share la "
+"distanta, schimbati-l in citire-scriere, reporniti recalbox-ul, asteptati "
+"pana cand toate fisierele sunt mutate, apoi protejati-l din nou."
+
+msgid "Updating current theme..."
+msgstr "Se actualizeaza tema curenta..."
+
+msgid "Loading new theme {0}"
+msgstr "Se incarca noua tema {0}"
+
+msgid "Shows the Recalbox license."
+msgstr "Afiseaza licenta Recalbox."
+
+msgid "Shows the quit menu to reboot or shutdown Recalbox."
+msgstr "Afiseaza meniul de iesire pentru a reporni sau opri Recalbox."
+
+msgid ""
+"Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, "
+"and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running."
+msgstr ""
+"Activeaza driverul vulkan cand este disponibil. Activat implicit pe RPi4, "
+"RPi5 si PC. Setati pe OFF daca Dreamcast, Naomi sau Atomiswave se opresc din "
+"functionare."
+
+msgid "Sets the rating of the game."
+msgstr "Seteaza evaluarea jocului."
+
+msgid "Sets the genre of the game."
+msgstr "Seteaza genul jocului."
+
+msgid "Sets the description of the game."
+msgstr "Seteaza descrierea jocului."
+
+msgid "Defines the screen rotation of the game for tate usage."
+msgstr "Defineste rotatia ecranului jocului pentru utilizare tate."
+
+msgid "Retroachievements user name."
+msgstr "Nume utilizator Retroachievements."
+
+msgid "Retroachievements password."
+msgstr "Parola Retroachievements."
+
+msgid "Netplay user name. Do not use special characters!"
+msgstr "Nume utilizator Netplay. Nu folositi caractere speciale!"
+
+msgid ""
+"Local port other players will connect to when hosting a Netplay session."
+msgstr ""
+"Portul local la care se vor conecta ceilalti jucatori cand gazduiti o "
+"sesiune Netplay."
+
+msgid ""
+"List of predefined passwords to use to protect access to your Netplay "
+"sessions."
+msgstr ""
+"Lista de parole predefinite pentru a proteja accesul la sesiunile dvs. "
+"Netplay."
+
+msgid "Choose systems to use for demo and gameclip screensavers."
+msgstr ""
+"Alegeti sistemele de folosit pentru economizoarele de ecran demo si clip de "
+"joc."
+
+msgid "Select the region for theme supporting regionalized assets or texts"
+msgstr ""
+"Selectati regiunea pentru tema care suporta resurse sau texte regionalizate"
+
+msgid "Shows the Arcade virtual system in the systems list."
+msgstr "Afiseaza sistemul virtual Arcade in lista de sisteme."
+
+msgid ""
+"Hides the original arcade systems when the Arcade virtual system is enabled."
+msgstr ""
+"Ascunde sistemele arcade originale cand sistemul virtual Arcade este activat."
+
+msgid "Shows the Tate virtual system in the systems list."
+msgstr "Afiseaza sistemul virtual Tate in lista de sisteme."
+
+msgid "Shows only games playable in tate mode in gamelists."
+msgstr "Afiseaza doar jocurile jucabile in modul tate in listele de jocuri."
+
+msgid "Proceed to a screen rotation in games tate compatible."
+msgstr "Efectueaza o rotatie a ecranului in jocurile compatibile tate."
+
+msgid ""
+"Sets whether the auto scraper is available or not. Auto scraping lets you "
+"scrape games just by moving onto them in gamelists."
+msgstr ""
+"Seteaza daca verificarea automata este disponibila sau nu. Verificarea "
+"automata va permite sa verificati jocuri doar navigand peste ele in listele "
+"de jocuri."
+
+msgid "Allows you to scrape only non-scraped games, or to scrape all games."
+msgstr ""
+"Va permite sa verificati doar jocurile neverificate sau sa verificati toate "
+"jocurile."
+
+msgid "Allows you to choose which systems you would like to scrape."
+msgstr "Va permite sa alegeti ce sisteme doriti sa verificati."
+
+msgid "Selects the image type to scrape for your games."
+msgstr "Selecteaza tipul de imagine de verificat pentru jocurile dvs."
+
+msgid "Selects the video type to scrape for your games."
+msgstr "Selecteaza tipul de video de verificat pentru jocurile dvs."
+
+msgid "Selects the game region to use when you scrape your games."
+msgstr "Selecteaza regiunea jocului de folosit cand va verificati jocurile."
+
+msgid "Selects the preferred region to scrape for your games."
+msgstr "Selecteaza regiunea preferata de verificat pentru jocurile dvs."
+
+msgid "Selects the preferred language to scrape for your games."
+msgstr "Selecteaza limba preferata de verificat pentru jocurile dvs."
+
+msgid ""
+"Selects if you would like to download manuals with the scraped data if "
+"available."
+msgstr ""
+"Selecteaza daca doriti sa descarcati manualul odata cu datele verificate, "
+"daca este disponibil."
+
+msgid ""
+"Selects if you would like to download maps with the scraped data if "
+"available."
+msgstr ""
+"Selecteaza daca doriti sa descarcati hartile odata cu datele verificate, "
+"daca sunt disponibile."
+
+msgid ""
+"Selects if you would like to download pad2keyboard files with the scraped "
+"data if available."
+msgstr ""
+"Selecteaza daca doriti sa descarcati fisierele pad2keyboard odata cu datele "
+"verificate, daca sunt disponibile."
+
+msgid "Enable or disable videos on boot."
+msgstr "Activeaza sau dezactiveaza videoclipurile la pornire."
+
+msgid ""
+"This option allows you to select the current game to boot on it directly "
+"when you turn on your Recalbox. Don't forget to enable the boot on game "
+"option!"
+msgstr ""
+"Aceasta optiune va permite sa selectati jocul curent pentru a porni direct "
+"pe el cand porniti Recalbox-ul. Nu uitati sa activati optiunea de pornire pe "
+"joc!"
+
+msgid "This option allows you to download games for the current system."
+msgstr ""
+"Aceasta optiune va permite sa descarcati jocuri pentru sistemul curent."
+
+msgid ""
+"This option allows you to search games specifically in the current system "
+"only."
+msgstr ""
+"Aceasta optiune va permite sa cautati jocuri specific doar in sistemul "
+"curent."
+
+msgid "Select sound output: JACK/MONO or JACK/JST. Jack always takes priority."
+msgstr ""
+"Selectati iesirea audio: JACK/MONO sau JACK/JST. Jack are intotdeauna "
+"prioritate."
+
+msgid "Set the volume of the music in the frontend"
+msgstr "Seteaza volumul muzicii in interfata"
+
+msgid "MUSIC VOLUME"
+msgstr "VOLUM MUZICA"
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON HD-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX VA SELECTA AUTOMAT EMULATOARE PENTRU A RULA PE SISTEME COMPATIBILE "
+"HD. UNELE JOCURI POT SA NU FIE 100% COMPATIBILE, ASA CA NU UITATI SA "
+"DEZACTIVATI ACEASTA OPTIUNE DACA APAR PROBLEME DE EMULARE SAU PERFORMANTA."
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON WIDESCREEN-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX VA SELECTA AUTOMAT EMULATOARE PENTRU A RULA PE SISTEME COMPATIBILE "
+"ECRAN LAT. UNELE JOCURI POT SA NU FIE 100% COMPATIBILE, ASA CA NU UITATI SA "
+"DEZACTIVATI ACEASTA OPTIUNE DACA APAR PROBLEME DE EMULARE SAU PERFORMANTA."
+
+msgid "BOOT ON GAME"
+msgstr "PORNESTE PE JOC"
+
+msgid "Add a menu in game option to boot on a specific game on startup."
+msgstr ""
+"Adauga o optiune in meniul jocului pentru a porni pe un joc specific la "
+"pornire."
+
+msgid "SHOW ONLY 3+ PLAYERS GAMES"
+msgstr "AFISEAZA DOAR JOCURILE CU 3+ JUCATORI"
+
+msgid "Deprecated"
+msgstr "Invechit"
+
+msgid "QUICK JUMP"
+msgstr "SALT RAPID"
+
+msgid "FOLD/UNFOLD"
+msgstr "PLIAZA/DESPLIAZA"
+
+msgid "FAST MOVE"
+msgstr "MISCARE RAPIDA"
+
+msgid "BOTTOM"
+msgstr "JOS"
+
+msgid "TOP"
+msgstr "SUS"
+
+msgid "UNFOLD"
+msgstr "DESPLIAZA"
+
+msgid "ADD CHARACTER"
+msgstr "ADAUGA CARACTER"
+
+msgid "GAMELIST MODIFIED!"
+msgstr "LISTA DE JOCURI MODIFICATA!"
+
+msgid "ROM FOLDERS MODIFIED!"
+msgstr "FOLDERE ROM MODIFICATE!"
+
+msgid "TOTAL PLAYING TIME"
+msgstr "TIMP TOTAL DE JOC"
+
+msgid "OPTION NOT AVAILABLE"
+msgstr "OPTIUNE INDISPONIBILA"
+
+msgid "Screen calibration only available in YOKO mode."
+msgstr "Calibrarea ecranului este disponibila doar in modul YOKO."
+
+msgid "REALLY UPDATE {0}'S GAME LIST ?"
+msgstr "ACTUALIZATI CU ADEVARAT LISTA DE JOCURI A {0}?"
+
+msgid ""
+"REALLY UPDATE ALL GAME LISTS ?\n"
+"\n"
+"IT MAY TAKE A LONG TIME DEPENDING OF YOUR STORAGE SPEED AND THE NUMBER OF "
+"GAMES."
+msgstr ""
+"ACTUALIZATI CU ADEVARAT TOATE LISTELE DE JOCURI?\n"
+"\n"
+"POATE DURA MULT TIMP IN FUNCTIE DE VITEZA STOCARII DVS. SI NUMARUL DE JOCURI."
+
+msgid "Do you want to enable the 3+ player filter for all the games ?"
+msgstr "Doriti sa activati filtrul 3+ jucatori pentru toate jocurile?"
+
+msgid "Do you want to disable the 3+ player filter for all the games ?"
+msgstr "Doriti sa dezactivati filtrul 3+ jucatori pentru toate jocurile?"
+
+msgid ""
+"Make sure to check the compatibility of your hardware before changing the "
+"recalbox refresh rate. Are you sure you want to switch the display mode to "
+msgstr ""
+"Asigurati-va ca verificati compatibilitatea hardware-ului inainte de a "
+"schimba rata de improspatare recalbox. Sunteti sigur ca doriti sa schimbati "
+"modul de afisare la"
+
+msgid "PAIR"
+msgstr "ASOCIAZA"
+
+msgid "JOIN GAME"
+msgstr "ALATURA-TE JOCULUI"
+
+msgid "RUN"
+msgstr "RULEAZA"
+
+msgid "DON'T DELETE ANYTHING!"
+msgstr "NU STERGE NIMIC!"
+
+msgid "SHOW FAVORITES FIRST"
+msgstr "AFISEAZA FAVORITELE PRIMELE"
+
+msgid ""
+"Shutdown Recalbox. All pending operations are completed before Recalbox is "
+"switched off"
+msgstr ""
+"Opreste Recalbox. Toate operatiile in asteptare sunt finalizate inainte ca "
+"Recalbox sa fie oprit"
+
+msgid ""
+"Quickly shutdown Recalbox. All pending operations are ignored and no change "
+"is saved!"
+msgstr ""
+"Opreste rapid Recalbox. Toate operatiile in asteptare sunt ignorate si nicio "
+"modificare nu este salvata!"
+
+msgid ""
+"Reboot Recalbox. All pending operations are completed before Recalbox "
+"restarts"
+msgstr ""
+"Reporneste Recalbox. Toate operatiile in asteptare sunt finalizate inainte "
+"ca Recalbox sa reporneasca"
+
+msgid "START GAME"
+msgstr "PORNESTE JOCUL"
+
+msgid "CONNECT"
+msgstr "CONECTEAZA"
+
+msgid "Run the original, unpatched game"
+msgstr "Ruleaza jocul original, neaplicat cu patch"
+
+msgid "Run the game, patched with the selected patch"
+msgstr "Ruleaza jocul, aplicat cu patch-ul selectat"
+
+msgid "USER SCRIPTS"
+msgstr "SCRIPTURI UTILIZATOR"
+
+msgid "CHECK FOR UPDATE NOW"
+msgstr "VERIFICA ACTUALIZARI ACUM"
+
+msgid "Username not required for the selected scraper"
+msgstr "Numele de utilizator nu este necesar pentru verificatorul selectat"
+
+msgid "Password not required for the selected scraper"
+msgstr "Parola nu este necesara pentru verificatorul selectat"
+
+msgid "NEOGEO/PGM LAYOUT P1"
+msgstr "ASPECT NEOGEO/PGM J1"
+
+msgid "NEOGEO/PGM LAYOUT P2"
+msgstr "ASPECT NEOGEO/PGM J2"
+
+msgid "START+UP/DOWN = VOLUME"
+msgstr "START+SUS/JOS = VOLUM"
+
+msgid "DUAL JOYSTICKS"
+msgstr "JOYSTICKURI DUALE"
+
+msgid "RESET"
+msgstr "RESETEAZA"
+
+msgid "FRONTEND SCREEN CALIBRATION"
+msgstr "CALIBRARE ECRAN INTERFATA"
+
+msgid "Calibrate screen on frontend."
+msgstr "Calibreaza ecranul in interfata."
+
+msgid "CLOCK OSD"
+msgstr "OSD CEAS"
+
+msgid "Script {0} started successfully!"
+msgstr "Scriptul {0} a pornit cu succes!"
+
+msgid "Running {0}..."
+msgstr "Se ruleaza {0}..."
+
+msgid "Script execution complete"
+msgstr "Executia scriptului finalizata"
+
+msgid "Script {0} has failed!"
+msgstr "Scriptul {0} a esuat!"
+
+msgid "With the following Error output:"
+msgstr "Cu urmatoarea iesire de eroare:"
+
+msgid "Script {0} executed successfully!"
+msgstr "Scriptul {0} a fost executat cu succes!"
+
+msgid "With the following output:"
+msgstr "Cu urmatoarea iesire:"
+
+msgid "SEARCH OTHER VERSIONS"
+msgstr "CAUTA ALTE VERSIUNI"
+
+msgid "SEARCH BY LICENCE"
+msgstr "CAUTA DUPA LICENTA"
+
+msgid "DECORATIONS"
+msgstr "DECORATIUNI"
+
+msgid "UNSET"
+msgstr "DEZACTIVEAZA"
+
+msgid "RUMBLE"
+msgstr "VIBRATIE"
+
+msgid "Search games by licence"
+msgstr "Cauta jocuri dupa licenta"
+
+msgid ""
+"There is no TATE game available in your gamelists. Add TATE games and/or run "
+"the scraper to update TATE information"
+msgstr ""
+"Nu exista niciun joc TATE disponibil in listele dvs. de jocuri. Adaugati "
+"jocuri TATE si/sau rulati verificatorul pentru a actualiza informatiile TATE"
+
+msgid "ALL YOUR EMULATOR SETTINGS HAVE BEEN RESET TO THEIR FACTORY DEFAULTS."
+msgstr ""
+"TOATE SETARILE EMULATOARELOR DVS. AU FOST RESETATE LA VALORILE IMPLICITE DIN "
+"FABRICA."
+
+msgid ""
+"SOME ERROR OCCURRED WHILE RESETING ALL YOUR EMULATOR SETTINGS.\n"
+"\n"
+"IF YOU STILL HAVE ISSUES WITH SOME EMULATORS, REBOOT YOUR RECALBOX AND TRY "
+"RESETING EMULATOR SETTINGS AGAIN."
+msgstr ""
+"A APARUT O EROARE LA RESETAREA TUTUROR SETARILOR EMULATOARELOR DVS.\n"
+"\n"
+"DACA MAI AVETI PROBLEME CU UNELE EMULATOARE, REPORNITI RECALBOX-UL SI "
+"INCERCATI SA RESETATI DIN NOU SETARILE EMULATOARELOR."
+
+msgid "CHECKING UPDATE..."
+msgstr "SE VERIFICA ACTUALIZAREA..."
+
+msgid "FACTORY RESET IN PROGRESS"
+msgstr "RESETARE DIN FABRICA IN CURS"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR EMULATOR SETTINGS TO FACTORY "
+"DEFAULTS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"SUNTETI LA UN CLIC DISTANTA DE A RESETA SETARILE EMULATOARELOR LA VALORILE "
+"IMPLICITE DIN FABRICA!\n"
+"\n"
+"SUNTETI CU ADEVARAT SIGUR CA DORITI SA FACETI ACEST LUCRU?"
+
+msgid ""
+"RESET EMULATOR SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET ALL EMULATOR SETTINGS TO THEIR DEFAULT VALUES.\n"
+"YOU RECALBOX SETTINGS AND FILES WON'T BE AFFECTED.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR EMULATOR SETTINGS?"
+msgstr ""
+"RESETEAZA SETARILE EMULATOARELOR\n"
+"\n"
+"URMEAZA SA RESETATI TOATE SETARILE EMULATOARELOR LA VALORILE LOR IMPLICITE.\n"
+"SETARILE SI FISIERELE RECALBOX NU VOR FI AFECTATE.\n"
+"\n"
+"ACEASTA OPERATIE NU POATE FI ANULATA!\n"
+"SUNTETI SIGUR CA DORITI SA RESETATI TOATE SETARILE EMULATOARELOR DVS.?"
+
+msgid "EMULATOR SETTINGS RESET IN PROGRESS"
+msgstr "RESETARE SETARI EMULATOR IN CURS"
+
+msgid "Refreshing gamelists..."
+msgstr "Se reimprospateaza listele de jocuri..."
+
+msgid "Preparing gamelists..."
+msgstr "Se pregatesc listele de jocuri..."
+
+msgid "Scan completed for system {0}."
+msgstr "Scanare finalizata pentru sistemul {0}."
+
+msgid "Scan completed for all your systems."
+msgstr "Scanare finalizata pentru toate sistemele dvs."
+
+msgid "No game has been removed from your gamelists"
+msgstr "Niciun joc nu a fost eliminat din listele dvs. de jocuri"
+
+msgid "No game has been added to your gamelists"
+msgstr "Niciun joc nu a fost adaugat la listele dvs. de jocuri"
+
+msgid ""
+"Would you like to scrape newly added games now, using your current scraper "
+"configuration?"
+msgstr ""
+"Doriti sa verificati acum jocurile nou adaugate, folosind configuratia "
+"curenta a verificatorului?"
+
+msgid "GAMELIST UPDATE COMPLETED"
+msgstr "ACTUALIZARE LISTA DE JOCURI FINALIZATA"
+
+msgid "Scanning {0} - 0 Added  - 0 Removed"
+msgstr "Se scaneaza {0} - 0 adaugate - 0 eliminate"
+
+msgid "Scanning {0}... {1} Added - {2} Removed"
+msgstr "Se scaneaza {0}... {1} adaugate - {2} eliminate"
+
+msgid "Saving gamelist for {0}..."
+msgstr "Se salveaza lista de jocuri pentru {0}..."
+
+msgid "Added games: {0} - Removed games: {1}"
+msgstr "Jocuri adaugate: {0} - Jocuri eliminate: {1}"
+
+msgid "WIFI CONNECTION OK!"
+msgstr "CONEXIUNE WIFI OK!"
+
+msgid "Initializing roms folders on device "
+msgstr "Se initializeaza folderele de romuri pe dispozitivul "
+
+msgid "Moving share to device "
+msgstr "Se muta share pe dispozitivul "
+
+msgid "A new version {0} is available!"
+msgstr "O noua versiune {0} este disponibila!"
+
+msgid "No new version available yet."
+msgstr "Nicio versiune noua disponibila inca."
+
+msgid "Reloading {0} gamelist..."
+msgstr "Se reincarca lista de jocuri {0}..."
+
+msgid "Recalbox interface must restart to apply your changes."
+msgstr "Interfata Recalbox trebuie repornita pentru a aplica modificarile dvs."
+
+msgid "TESTING CONNECTION..."
+msgstr "SE TESTEAZA CONEXIUNEA..."
+
+msgid "UNAVAILABLE"
+msgstr "INDISPONIBIL"
+
+msgid "NO WIFI ACCESS POINT"
+msgstr "NICIUN PUNCT DE ACCES WIFI"
+
+msgid "NO ACCESS"
+msgstr "NICIUN ACCES"
+
+msgid "YES, BUT NOT RECOMMENDED"
+msgstr "DA, DAR NU ESTE RECOMANDAT"
+
+msgid "CANCEL SELECTION"
+msgstr "ANULEAZA SELECTIA"
+
+msgid "MOVE"
+msgstr "MUTA"
+
+msgid "MIN/MAX"
+msgstr "MIN/MAX"
+
+msgid "TOGGLE"
+msgstr "COMUTA"
+
+msgid "SELECTED"
+msgstr "SELECTAT"
+
+msgid "OPEN"
+msgstr "DESCHIDE"
+
+msgid "RECALBOX (DEFAULT)"
+msgstr "RECALBOX (IMPLICIT)"
+
+msgid "LICENCE"
+msgstr "LICENTA"
+
+msgid "GAME {0} OF {1}"
+msgstr "JOCUL {0} DIN {1}"
+
+msgid "Saving gamelists..."
+msgstr "Se salveaza listele de jocuri..."
+
+msgid "DOWNLOADING GAME FOR %s"
+msgstr "SE DESCARCA JOC PENTRU %s"
+
+msgid ""
+"Downloading Theme Hospital demo game from the official site. Please wait..."
+msgstr ""
+"Se descarca jocul demo Theme Hospital de pe site-ul oficial. Va rugam "
+"asteptati..."
+
+msgid "Extracting... found 1 game"
+msgstr "Se extrage... 1 joc gasit"
+
+msgid ""
+"There is no network available.\n"
+"Please connect your recalbox and try again."
+msgstr ""
+"Nu exista nicio retea disponibila.\n"
+"Va rugam sa conectati recalbox-ul si sa incercati din nou."
+
+msgid "In alphabetical order"
+msgstr "In ordine alfabetica"
+
+msgid "RATED {0} / 10"
+msgstr "EVALUAT {0} / 10"
+
+msgid "NOT RATED"
+msgstr "NEEVALUAT"
+
+msgid "Never played"
+msgstr "Niciodata jucat"
+
+msgid "Just a few minutes"
+msgstr "Doar cateva minute"
+
+msgid "Less than an hour"
+msgstr "Mai putin de o ora"
+
+msgid "{0} hours"
+msgstr "{0} ore"
+
+msgid "One player"
+msgid_plural "{0} Players"
+msgstr[0] "Un jucator"
+msgstr[1] "{0} jucatori"
+msgstr[2] "{0} de jucatori"
+
+msgid "Unknown developer"
+msgstr "Dezvoltator necunoscut"
+
+msgid "Unknown publisher"
+msgstr "Editor necunoscut"
+
+msgid "Release date unknown"
+msgstr "Data lansarii necunoscuta"
+
+msgid "Year {0}"
+msgstr "Anul {0}"
+
+msgid "NO REGION"
+msgstr "NICIO REGIUNE"
+
+msgid ""
+"Game are now sorted\n"
+"by {0}"
+msgstr ""
+"Jocurile sunt acum sortate\n"
+"dupa {0}"
+
+msgid "{0} Years ago..."
+msgstr "Acum {0} ani..."
+
+msgid "{0} Month ago..."
+msgstr "Acum {0} luni..."
+
+msgid "{0} Days ago..."
+msgstr "Acum {0} zile..."
+
+msgid "{0} Hours ago..."
+msgstr "Acum {0} ore..."
+
+msgid "A short while ago"
+msgstr "Acum putin timp"
+
+msgid ""
+"The emulator selected to launch {0} does not support file '{1}'. Would you "
+"like to run the game anyway, even though there's a high chance it will not "
+"work?"
+msgstr ""
+"Emulatorul selectat pentru a lansa {0} nu suporta fisierul '{1}'. Doriti sa "
+"rulati jocul oricum, chiar daca exista o sansa mare sa nu functioneze?"
+
+msgid ""
+"The emulator selected to launch {0} does not support zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatorul selectat pentru a lansa {0} nu suporta fisiere/romuri arhivate "
+"zip. Doriti sa rulati jocul oricum, chiar daca exista o sansa mare sa nu "
+"functioneze?"
+
+msgid ""
+"This zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Acest joc arhivat zip nu contine niciun fisier suportat de emulatorul "
+"selectat. Doriti sa rulati jocul oricum, chiar daca exista o sansa mare sa "
+"nu functioneze?"
+
+msgid ""
+"The emulator selected to launch {0} does not support 7zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatorul selectat pentru a lansa {0} nu suporta fisiere/romuri arhivate "
+"7zip. Doriti sa rulati jocul oricum, chiar daca exista o sansa mare sa nu "
+"functioneze?"
+
+msgid ""
+"This 7zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Acest joc arhivat 7zip nu contine niciun fisier suportat de emulatorul "
+"selectat. Doriti sa rulati jocul oricum, chiar daca exista o sansa mare sa "
+"nu functioneze?"
+
+msgid ""
+"The emulator selected to launch {0} does not support file extension '{1}'. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatorul selectat pentru a lansa {0} nu suporta extensia de fisier '{1}'. "
+"Doriti sa rulati jocul oricum, chiar daca exista o sansa mare sa nu "
+"functioneze?"
+
+msgid "Signal"
+msgstr "Semnal"
+
+msgid "MOVE 5 BY 5"
+msgstr "MUTA CATE 5"
+
+msgid ""
+"We're downloading __Recalbox__ version **%s**!\n"
+"\n"
+"Once the download is complete, Recalbox will reboot and start installing the "
+"new version.\n"
+"Typical installations take about 5-10mn. **DO NOT reboot or power off "
+"Recalbox** until the installation is complete."
+msgstr ""
+"Descarcam versiunea __Recalbox__ **%s**!\n"
+"\n"
+"Odata ce descarcarea este finalizata, Recalbox va reporni si va incepe "
+"instalarea noii versiuni.\n"
+"Instalarile tipice dureaza aproximativ 5-10 min. **NU repornit sau opriti "
+"Recalbox** pana la finalizarea instalarii."
+
+msgid "ZOOM"
+msgstr "ZOOM"
+
+msgid "SCANNING..."
+msgstr "SE SCANEAZA..."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Disabling WIFI..."
+msgstr "Se dezactiveaza WIFI..."
+
+msgid "Enabling WIFI..."
+msgstr "Se activeaza WIFI..."
+
+msgid ""
+"CONNECTION ERROR !\n"
+"Please check your SSID and Password."
+msgstr ""
+"EROARE DE CONEXIUNE!\n"
+"Va rugam verificati SSID-ul si parola dvs."
+
+msgid "FAVORITES FIRST"
+msgstr "FAVORITELE PRIMELE"
+
+msgid "SUPERREZ MULTIPLIER"
+msgstr "MULTIPLICATOR SUPERREZ"
+
+msgid "CALIBRATE"
+msgstr "CALIBREAZA"
+
+msgid "DELETE SELECTED FILES"
+msgstr "STERGE FISIERELE SELECTATE"
+
+msgid "**YES**"
+msgstr "**DA**"
+
+msgid "Press any button for 5s to cancel !"
+msgstr "Apasati orice buton timp de 5s pentru a anula!"
+
+msgid "Cancelling..."
+msgstr "Se anuleaza..."
+
+msgid "CANCELLED! Please release all buttons."
+msgstr "ANULAT! Va rugam eliberati toate butoanele."
+
+msgid "NEVER"
+msgstr "NICIODATA"
+
+msgid "THEME'S COLORSET"
+msgstr "SET DE CULORI AL TEMEI"
+
+msgid "Select a colorset from this theme."
+msgstr "Selectati un set de culori din aceasta tema."
+
+msgid "THEME'S ICONSET"
+msgstr "SET DE PICTOGRAME AL TEMEI"
+
+msgid "Select an iconset from this theme."
+msgstr "Selectati un set de pictograme din aceasta tema."
+
+msgid "THEME'S MENU STYLE"
+msgstr "STIL MENIU AL TEMEI"
+
+msgid "Select menu style from this theme."
+msgstr "Selectati stilul de meniu din aceasta tema."
+
+msgid "THEME'S SYSTEMVIEW LAYOUT"
+msgstr "ASPECT VIZUALIZARE SISTEME AL TEMEI"
+
+msgid "Select system view layout from this theme."
+msgstr "Selectati aspectul vizualizarii sistemelor din aceasta tema."
+
+msgid "THEME'S GAMELISTVIEW LAYOUT"
+msgstr "ASPECT VIZUALIZARE LISTA JOCURI AL TEMEI"
+
+msgid "Select gamelist view layout from this theme."
+msgstr "Selectati aspectul vizualizarii listei de jocuri din aceasta tema."
+
+msgid "THEME'S GAMECLIPVIEW LAYOUT"
+msgstr "ASPECT VIZUALIZARE CLIP JOC AL TEMEI"
+
+msgid "Select gameclip view layout from this theme."
+msgstr "Selectati aspectul vizualizarii clipului de joc din aceasta tema."
+
+msgid "Libretro HatariB Settings"
+msgstr "Setari Libretro HatariB"
+
+msgid "Machine Type"
+msgstr "Tip masina"
+
+msgid ""
+"Choose the machine model to emulate. STE is a good choice for most games."
+msgstr ""
+"Alegeti modelul de masina de emulat. STE este o alegere buna pentru "
+"majoritatea jocurilor."
+
+msgid "Memory Size"
+msgstr "Dimensiune memorie"
+
+msgid "Select the amount of memory. 1 MB is enough for gaming."
+msgstr "Selectati cantitatea de memorie. 1 MB este suficient pentru jocuri."
+
+msgid "Fast Floppy"
+msgstr "Dischete rapide"
+
+msgid ""
+"Set ON to accelerate the floppy disc emulation. May cause some games to fail!"
+msgstr ""
+"Setati pe ON pentru a accelera emularea dischetei. Poate cauza esecul unor "
+"jocuri!"
+
+msgid "Libretro Fuse Settings"
+msgstr "Setari Libretro Fuse"
+
+msgid ""
+"Choose the Sinclair machine (or clone) to emulate. The original Spectrum "
+"128k is a good way to start."
+msgstr ""
+"Alegeti masina Sinclair (sau clona) de emulat. Spectrum 128k original este "
+"un mod bun de a incepe."
+
+msgid "Set ON to accelerate the tape emulation. May cause some games to fail!"
+msgstr ""
+"Setati pe ON pentru a accelera emularea casetei. Poate cauza esecul unor "
+"jocuri!"
+
+msgid "Libretro PX68K Settings"
+msgstr "Setari Libretro PX68K"
+
+msgid "Model/CPU Speed"
+msgstr "Model/Viteza CPU"
+
+msgid ""
+"Choose the CPU frequency to emulate. 10Mhz is the basic machine and will "
+"work for most of the games."
+msgstr ""
+"Alegeti frecventa CPU de emulat. 10Mhz este masina de baza si va functiona "
+"pentru majoritatea jocurilor."
+
+msgid "Memory Size (in MB)"
+msgstr "Dimensiune memorie (in MB)"
+
+msgid ""
+"Choose the amount of memory available. Most of the games will work with 2MB "
+"but some games may require 4MB."
+msgstr ""
+"Alegeti cantitatea de memorie disponibila. Majoritatea jocurilor vor "
+"functiona cu 2MB dar unele jocuri pot necesita 4MB."
+
+msgid "Dolphin / Dolphin-GUI Settings"
+msgstr "Setari Dolphin / Dolphin-GUI"
+
+msgid "Resolution"
+msgstr "Rezolutie"
+
+msgid "Choose the internal resolution."
+msgstr "Alegeti rezolutia interna."
+
+msgid "Dual CPU"
+msgstr "CPU dual"
+
+msgid ""
+"May improve performance on a few rare games, at the expense of others that "
+"are incompatible."
+msgstr ""
+"Alegeti sa activati aceasta optiune daca poate imbunatati performanta unor "
+"jocuri rare, dar in detrimentul altora care sunt incompatibile."
+
+msgid "Sync GPU"
+msgstr "Sincronizare GPU"
+
+msgid "Enable this speed hack for dual core mode to fix some glitches."
+msgstr ""
+"Alegeti sa activati acest hack de viteza pentru modul dual core pentru a "
+"rezolva unele erori."
+
+msgid "Anti-aliasing"
+msgstr "Anti-aliasing"
+
+msgid "Enable or disable anti-aliasing."
+msgstr "Alegeti sa activati sau dezactivati anti-aliasing."
+
+msgid "VSync"
+msgstr "VSync"
+
+msgid "Enable or disable vsync."
+msgstr ""
+"Alegeti sa activati aceasta optiune pentru a activa sau dezactiva vsync."
+
+msgid "Real Gamecube controllers"
+msgstr "Controllere Gamecube reale"
+
+msgid "Enable this option to play with real GameCube controllers."
+msgstr ""
+"Alegeti sa activati aceasta optiune pentru a juca cu controllere GameCube "
+"reale."
+
+msgid "Real Wiimotes"
+msgstr "Wiimote-uri reale"
+
+msgid "Enable this option to play with real Wiimotes."
+msgstr ""
+"Alegeti sa activati aceasta optiune pentru a juca cu Wiimote-uri reale."
+
+msgid "Emulated Wiimote"
+msgstr "Wiimote emulat"
+
+msgid "Enable this option to play with emulated Wiimotes."
+msgstr "Alegeti sa activati pentru a juca cu Wiimote-uri emulate."
+
+msgid "Dolphinbar position"
+msgstr "Pozitie Dolphinbar"
+
+msgid "Choose the position of the Dolphin bar."
+msgstr "Alegeti pozitia barei Dolphin."
+
+msgid "Show on-screen information"
+msgstr "Afiseaza informatii pe ecran"
+
+msgid "PPSSPP Settings"
+msgstr "Setari PPSSPP"
+
+msgid "Choose the internal resolution of the PSP."
+msgstr "Alegeti rezolutia interna a PSP-ului."
+
+msgid "SCUMMVM Settings"
+msgstr "Setari SCUMMVM"
+
+msgid "Subtitles"
+msgstr "Subtitrari"
+
+msgid "Enable subtitles"
+msgstr "Activeaza subtitrarile"
+
+msgid "Supermodel Settings - Controllers"
+msgstr "Setari Supermodel - Controllere"
+
+msgid "Sensitivity"
+msgstr "Sensibilitate"
+
+msgid ""
+"Choose the rate at which analog control values increase/decrease when "
+"controlled by a key, between 1 to 100. Default is 25."
+msgstr ""
+"Alegeti rata cu care valorile de control analogic cresc/scad cand sunt "
+"controlate de o tasta, intre 1 si 100. Implicit este 25."
+
+msgid "Saturation"
+msgstr "Saturatie"
+
+msgid ""
+"Choose the position at which the joystick is interpreted as being in its "
+"most extreme position, between 0% to 200%. Default is 100%."
+msgstr ""
+"Alegeti pozitia la care joystick-ul este interpretat ca fiind in pozitia sa "
+"cea mai extrema, intre 0% si 200%. Implicit este 100%."
+
+msgid "Deadzone"
+msgstr "Zona moarta"
+
+msgid "Choose the dead zone as a percentage, between 0% to 99%. Default is 2%."
+msgstr "Alegeti zona moarta ca procentaj, intre 0% si 99%. Implicit este 2%."
+
+msgid "Supermodel Settings - Audio"
+msgstr "Setari Supermodel - Audio"
+
+msgid "Sound volume"
+msgstr "Volum sunet"
+
+msgid ""
+"Choose the master volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Alegeti volumul general ca procentaj, intre 0% si 100%. Implicit este 100%."
+
+msgid "Music volume"
+msgstr "Volum muzica"
+
+msgid ""
+"Choose the music volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Alegeti volumul muzicii ca procentaj, intre 0% si 100%. Implicit este 100%."
+
+msgid "Balance"
+msgstr "Balans"
+
+msgid ""
+"Choose the relative front/rear balance in percentage, between 0% to 100%. "
+"Default is 0%."
+msgstr ""
+"Alegeti balansul relativ fata/spate ca procentaj, intre 0% si 100%. Implicit "
+"este 0%."
+
+msgid "Channels"
+msgstr "Canale"
+
+msgid "Choose the number of sound channels to use on host. Default is 2."
+msgstr "Alegeti numarul de canale audio de folosit pe gazda. Implicit este 2."
+
+msgid "Flip stereo"
+msgstr "Inverseaza stereo"
+
+msgid "Swap the left and right audio channels."
+msgstr "Alegeti daca inversati canalele audio stanga si dreapta."
+
+msgid "Sound"
+msgstr "Sunet"
+
+msgid ""
+"Choose if you disable sound board emulation sound effects. Default is "
+"disabled."
+msgstr ""
+"Alegeti daca dezactivati efectele sonore ale emularii placii de sunet. "
+"Implicit este dezactivat."
+
+msgid "No Digital Sound Board (DSB)"
+msgstr "Fara placa de sunet digitala (DSB)"
+
+msgid "Enable or disable Digital Sound Board MPEG music. Default is disabled."
+msgstr ""
+"Alegeti sa activati sau dezactivati muzica MPEG a placii de sunet digitale. "
+"Implicit este dezactivat."
+
+msgid "Sound engine"
+msgstr "Motor de sunet"
+
+msgid ""
+"Choose between the legacy and new sound engines. Default is MAME engine."
+msgstr ""
+"Alegeti intre motorul de sunet vechi si cel nou. Implicit este motorul MAME."
+
+msgid "Supermodel Settings - Video"
+msgstr "Setari Supermodel - Video"
+
+msgid "Supersampling"
+msgstr "Supersampling"
+
+msgid "Supersampling. Not enabled yet. Default is 1."
+msgstr "Supersampling. Inca neactivat. Implicit este 1."
+
+msgid "Upscale"
+msgstr "Marire"
+
+msgid "Choose the 2D layer upscaling filter mode. Default is 0."
+msgstr "Alegeti modul filtrului de marire a stratului 2D. Implicit este 0."
+
+msgid "Disable no throttle"
+msgstr "Dezactiveaza limitarea"
+
+msgid "Enable or disable the 60Hz frame rate lock. Default is disabled."
+msgstr ""
+"Alegeti daca preferati sa activati sau dezactivati blocarea ratei de cadre "
+"la 60Hz. Implicit este dezactivat."
+
+msgid "Lock the vertical refresh rate. Default is enabled."
+msgstr ""
+"Alegeti sa blocati rata de improspatare verticala. Implicit este activat."
+
+msgid "True Hz"
+msgstr "Hz real"
+
+msgid "Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled."
+msgstr ""
+"Alegeti sa folositi rata reala de improspatare Model 3 de 57,524 Hz. "
+"Implicit este dezactivat."
+
+msgid "Crosshairs"
+msgstr "Reticule"
+
+msgid "Show crosshairs. Default is disabled."
+msgstr ""
+"Alegeti daca preferati sa afisati reticulele. Implicit este dezactivat."
+
+msgid "Multi texture"
+msgstr "Multi-textura"
+
+msgid "Use 8 texture maps for decoding. Default is disabled."
+msgstr ""
+"Alegeti daca preferati sa folositi 8 harti de textura pentru decodare. "
+"Implicit este dezactivat."
+
+msgid "Quad rendering"
+msgstr "Randare quad"
+
+msgid "Enable proper quad rendering. Default is disabled."
+msgstr ""
+"Alegeti daca preferati sa activati randarea quad corecta. Implicit este "
+"dezactivat."
+
+msgid "Supermodel Settings - Core"
+msgstr "Setari Supermodel - Nucleu"
+
+msgid "GPU multi threading"
+msgstr "Multi-threading GPU"
+
+msgid ""
+"Set to ON to run GPU in its own thread instead of sharing the CPU thread. "
+"Faster but may cause bugs, depending on the game."
+msgstr ""
+"Setați pe ON pentru a rula GPU-ul în propriul fir de execuție în loc să îl "
+"partajați cu firul CPU-ului. Mai rapid, dar poate cauza erori în funcție de "
+"joc."
+
+msgid "PPC Frequency"
+msgstr "Frecventa PPC"
+
+msgid "Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70."
+msgstr "Alegeti frecventa PowerPC in MHz, intre 1 si 1000. Implicit este 70."
+
+msgid "Service button"
+msgstr "Buton de service"
+
+msgid ""
+"Enable or disable the service menu in games (L3 = test, R3 = service). "
+"Default is enabled."
+msgstr ""
+"Alegeti sa activati sau dezactivati meniul de service in jocuri (L3 = test, "
+"R3 = service). Implicit este activat."
+
+msgid "Log level"
+msgstr "Nivel jurnal"
+
+msgid "Choose the level of detail in the log file. Default is Information."
+msgstr ""
+"Alegeti nivelul de informatii din fisierul jurnal. Implicit este informatii."
+
+msgid "Xemu Settings"
+msgstr "Setari Xemu"
+
+msgid "Choose the internal resolution of the Xbox."
+msgstr "Alegeti rezolutia interna a Xbox-ului."
+
+msgid "Show menu bar"
+msgstr "Afiseaza bara de meniu"
+
+msgid "Show the menu bar."
+msgstr "Alegeti daca doriti sa afisati bara de meniu."
+
+msgid "Skip boot animation"
+msgstr "Omite animatia de pornire"
+
+msgid "Skip the boot animation."
+msgstr "Alegeti daca doriti sa omiteti animatia de pornire."
+
+msgid "Show notifications"
+msgstr "Afiseaza notificarile"
+
+msgid "Show the notifications displayed in the top-right corner of the screen."
+msgstr "Afiseaza notificarile din coltul din dreapta sus al ecranului."
+
+msgid "Display mode"
+msgstr "Mod afisare"
+
+msgid "Choose how the framebuffer should fit or scale."
+msgstr ""
+"Alegeti cum ar trebui sa se potriveasca sau sa se scaleze framebuffer-ul."
+
+msgid "Aspect Ratio"
+msgstr "Raport de aspect"
+
+msgid "Choose the aspect ratio of the Xbox."
+msgstr "Alegeti raportul de aspect al Xbox-ului."
+
+msgid "Xemu - EEPROM General Settings"
+msgstr "Xemu - Setari generale EEPROM"
+
+msgid "Choose the region to use on Xbox."
+msgstr "Alegeti regiunea de folosit pe Xbox."
+
+msgid "Video Standard"
+msgstr "Standard video"
+
+msgid "Choose the video standard to use on Xbox."
+msgstr "Alegeti standardul video de folosit pe Xbox."
+
+msgid "Timezone"
+msgstr "Fus orar"
+
+msgid ""
+"Choose the timezone to use on Xbox. If your country is using DST, don't take "
+"it into account when you are setting this."
+msgstr ""
+"Alegeti fusul orar de folosit pe Xbox. Daca tara dvs. foloseste ora de vara, "
+"nu o luati in considerare cand setati aceasta."
+
+msgid "Disable automatic daylight saving time"
+msgstr "Dezactiveaza ora de vara automata"
+
+msgid "Choose if you want to disable automatic daylight saving time."
+msgstr "Alegeti daca doriti sa dezactivati ora de vara automata."
+
+msgid "DVD Region"
+msgstr "Regiune DVD"
+
+msgid "Choose the DVD region to use on Xbox."
+msgstr "Alegeti regiunea DVD de folosit pe Xbox."
+
+msgid "Language"
+msgstr "Limba"
+
+msgid "Choose the language to use on Xbox."
+msgstr "Alegeti limba de folosit pe Xbox."
+
+msgid "Xemu - EEPROM Video Settings"
+msgstr "Xemu - Setari video EEPROM"
+
+msgid "Enable 480p resolution on Xbox."
+msgstr "Alegeti sa activati rezolutia 480p pe Xbox."
+
+msgid "720p"
+msgstr "720p"
+
+msgid "Enable 720p resolution on Xbox."
+msgstr "Alegeti sa activati rezolutia 720p pe Xbox."
+
+msgid "1080i"
+msgstr "1080i"
+
+msgid "Enable 1080i resolution on Xbox."
+msgstr "Alegeti sa activati rezolutia 1080i pe Xbox."
+
+msgid "Video Mode"
+msgstr "Mod video"
+
+msgid "Choose the video mode to use on Xbox."
+msgstr "Alegeti modul video de folosit pe Xbox."
+
+msgid "Refresh rate"
+msgstr "Rata de improspatare"
+
+msgid "Set the refresh rate to 60Hz on Xbox."
+msgstr "Alegeti sa activati rata de improspatare la 60Hz pe Xbox."
+
+msgid "Xemu - EEPROM Audio Settings"
+msgstr "Xemu - Setari audio EEPROM"
+
+msgid "Audio Output"
+msgstr "Iesire audio"
+
+msgid "Choose the audio output to use on Xbox."
+msgstr "Alegeti iesirea audio de folosit pe Xbox."
+
+msgid "AC3"
+msgstr "AC3"
+
+msgid "Enable Dolby Digital (AC3) on Xbox."
+msgstr "Alegeti sa activati Dolby Digital (AC3) pe Xbox."
+
+msgid "DTS"
+msgstr "DTS"
+
+msgid "Enable Dolby Surround (DTS) on Xbox."
+msgstr "Alegeti sa activati Dolby Surround (DTS) pe Xbox."
+
+msgid "SHUTDOWN RECALBOX"
+msgstr "OPRESTE RECALBOX"
+
+msgid "FAST SHUTDOWN RECALBOX"
+msgstr "OPRESTE RAPID RECALBOX"
+
+msgid "RESTART RECALBOX"
+msgstr "REPORNESTE RECALBOX"
+
+msgid "EDIT NETPLAY PASSWORDS"
+msgstr "EDITEAZA PAROLELE NETPLAY"
+
+msgid "PASSWORD #{INDEX}"
+msgstr "PAROLA #{INDEX}"
+
+msgid "SHARE USAGE"
+msgstr "UTILIZARE SHARE"
+
+msgid "SHARE PARTITION"
+msgstr "PARTITIE SHARE"
+
+msgid "Exit the password edition."
+msgstr "Iesiti din editarea parolei."
+
+msgid "AVAILABLE STORAGES"
+msgstr "STOCARI DISPONIBILE"
+
+msgid ""
+"Show a list of storage available on your system. Select a storage to access "
+"extra information and available actions."
+msgstr ""
+"Afiseaza o lista de stocari disponibile pe sistemul dvs. Selectati o stocare "
+"pentru a accesa informatii suplimentare si actiuni disponibile."
+
+msgid "Get information about {DEVICE.NAME}"
+msgstr "Obtine informatii despre {DEVICE.NAME}"
+
+msgid "FREE SPACE"
+msgstr "SPATIU LIBER"
+
+msgid "Display free space available on the device"
+msgstr "Afiseaza spatiul liber disponibil pe dispozitiv"
+
+msgid "STORAGE NAME"
+msgstr "NUME STOCARE"
+
+msgid "Display real device name"
+msgstr "Afiseaza numele real al dispozitivului"
+
+msgid "NETWORK ACCESS"
+msgstr "ACCES RETEA"
+
+msgid "Access to this storage through your local network."
+msgstr "Acces la aceasta stocare prin reteaua dvs. locala."
+
+msgid "FILE SYSTEM"
+msgstr "SISTEM DE FISIERE"
+
+msgid "FileSystem"
+msgstr "Sistem de fisiere"
+
+msgid "COMPATIBLE WITH RECALBOX?"
+msgstr "COMPATIBIL CU RECALBOX?"
+
+msgid "Show if this storage is compatible with recalbox"
+msgstr "Afiseaza daca aceasta stocare este compatibila cu recalbox"
+
+msgid "INSTALL RECALBOX ROM FOLDERS"
+msgstr "INSTALEAZA FOLDERELE ROM RECALBOX"
+
+msgid "INITIALIZE!"
+msgstr "INITIALIZEAZA!"
+
+msgid ""
+"Create rom structure so that this storage will be used by Recalbox on next "
+"boots."
+msgstr ""
+"Creeaza structura de romuri astfel incat aceasta stocare sa fie folosita de "
+"Recalbox la urmatoarele porniri."
+
+msgid ""
+"You cannot initialize this storage, because either it is already initialized "
+"or it is not compatible."
+msgstr ""
+"Nu puteti initializa aceasta stocare, deoarece fie este deja initializata, "
+"fie nu este compatibila."
+
+msgid ""
+"Select your language. A reboot is required to set this configuration active."
+msgstr ""
+"Selectati limba dvs. Este necesara o repornire pentru a activa aceasta "
+"configurare."
+
+msgid "TIMEZONE"
+msgstr "FUS ORAR"
+
+msgid ""
+"Select the timezone used to display dates and times in their local format."
+msgstr ""
+"Permite selectarea fusului orar pentru a afisa datele si orele in formatul "
+"lor local."
+
+msgid "Shows available update version."
+msgstr "Afiseaza versiunea de actualizare disponibila."
+
+msgid "CHECK UPDATES PERIODICALLY"
+msgstr "VERIFICA ACTUALIZARILE PERIODIC"
+
+msgid ""
+"Automatically check if an update is available. If so, it notifies you with a "
+"message."
+msgstr ""
+"Verifica automat daca este disponibila o actualizare. Daca da, va notifica "
+"cu un mesaj."
+
+msgid "Select update type"
+msgstr "Selectati tipul de actualizare"
+
+msgid "CHECK"
+msgstr "VERIFICA"
+
+msgid "Check if an update is available, right now."
+msgstr "Verifica daca este disponibila o actualizare, chiar acum."
+
+msgid "SHOW NEW VERSION CHANGELOG"
+msgstr "AFISEAZA JURNALUL DE MODIFICARI AL NOII VERSIUNI"
+
+msgid "SHOW"
+msgstr "AFISEAZA"
+
+msgid "Shows available update changelog."
+msgstr "Afiseaza jurnalul de modificari al actualizarii disponibile."
+
+msgid "DOWNLOAD AND UPDATE MY RECALBOX"
+msgstr "DESCARCA SI ACTUALIZEAZA RECALBOX-UL MEU"
+
+msgid "GO!"
+msgstr "PORNESTE!"
+
+msgid "No update available yet."
+msgstr "Nicio actualizare disponibila inca."
+
+msgid "RECALBOX RGB DUAL SETTINGS"
+msgstr "SETARI RECALBOX RGB DUAL"
+
+msgid ""
+"Select Recalbox's interface resolution. 480i is recommended for better "
+"details."
+msgstr ""
+"Selectati rezolutia interfetei Recalbox. 480i este recomandat pentru detalii "
+"mai bune."
+
+msgid "AVOID INTERLACED MODES"
+msgstr "EVITA MODURILE INTERLINIATE"
+
+msgid "Avoid interlaced mode for all games."
+msgstr "Evita modul interliniat pentru toate jocurile."
+
+msgid "AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS"
+msgstr ""
+"EVITA MODURILE INTERLINIATE PENTRU JOCURILE TATE PE YOKO SI CONSOLE PORTABILE"
+
+msgid "31 KHZ"
+msgstr "31 KHZ"
+
+msgid "You're not in 31khz mode"
+msgstr "Nu sunteti in modul 31khz"
+
+msgid "RUN DEMOS AND AUTOBOOT GAMES IN 240P@120"
+msgstr "RULEAZA DEMO-URI SI JOCURI AUTOBOOT IN 240P@120"
+
+msgid ""
+"Run the demos and autoboot games in 240p resolution on your 31kHz monitor."
+msgstr ""
+"Ruleaza demo-urile si jocurile autoboot in rezolutie 240p pe monitorul dvs. "
+"31kHz."
+
+msgid "EXPERIMENTAL"
+msgstr "EXPERIMENTAL"
+
+msgid "RECALBOX RGB JAMMA SETTINGS"
+msgstr "SETARI RECALBOX RGB JAMMA"
+
+msgid "Recalbox RGB Jamma options and configuration."
+msgstr "Optiuni si configurare Recalbox RGB Jamma."
+
+msgid ""
+"Avoid interlaced mode for tate (vertical) games on yoko (horizontal) "
+"screens, and for handheld consoles."
+msgstr ""
+"Evita modul interliniat pentru jocurile tate (verticale) pe ecrane yoko "
+"(orizontale) si pentru consolele portabile."
+
+msgid "JAMMA OPTIONS"
+msgstr "OPTIUNI JAMMA"
+
+msgid "START + UP and DOWN change the volume in frontend and in games."
+msgstr "START + SUS si JOS schimba volumul in interfata si in jocuri."
+
+msgid "Load the dual joystick configuration on compatible games!"
+msgstr "Incarca configuratia joystick dual pe jocurile compatibile!"
+
+msgid "Reset all previous options to their default values"
+msgstr "Reseteaza toate optiunile anterioare la valorile lor implicite"
+
+msgid "RECALBOX RGB DUAL 2 SETTINGS"
+msgstr "SETARI RECALBOX RGB DUAL 2"
+
+msgid "Recalbox RGB Dual 2 options and configuration."
+msgstr "Optiuni si configurare Recalbox RGB Dual 2."
+
+msgid "Select Recalbox's interface resolution."
+msgstr "Selectati rezolutia interfetei Recalbox."
+
+msgid "FORCE COMPOSITE"
+msgstr "FORTEAZA COMPOZIT"
+
+msgid "Force composite output (On SCART, RCA and JACK)."
+msgstr "Forteaza iesirea compozit (pe SCART, RCA si JACK)."
+
+msgid "COMPOSITE SIGNAL STANDARD"
+msgstr "STANDARD SEMNAL COMPOZIT"
+
+msgid ""
+"When using composite, selects the composite signal standard for your region."
+msgstr ""
+"Cand folositi compozit, selecteaza standardul de semnal compozit pentru "
+"regiunea dvs."
+
+msgid "16/9 CRT TV"
+msgstr "TV CRT 16/9"
+
+msgid "Activate if you have a 16/9 CRT TV."
+msgstr "Activati daca aveti un TV CRT 16/9."
+
+msgid "SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH"
+msgstr "SELECTEAZA SEMNAL (RGB/COMPOZIT) LA LANSARE"
+
+msgid ""
+"Let you choose between RGB Signal and composite signal at launch, for "
+"compatible systems."
+msgstr ""
+"Va permite sa alegeti intre semnalul RGB si semnalul compozit la lansare, "
+"pentru sistemele compatibile."
+
+msgid "DIP SWITCHES"
+msgstr "COMUTATOARE DIP"
+
+msgid "FORCED 50HZ DIP SWITCH"
+msgstr "COMUTATOR DIP FORTAT 50HZ"
+
+msgid "FORCED 31kHz/MULTISYNC DIP SWITCH"
+msgstr "COMUTATOR DIP FORTAT 31kHz/MULTISYNC"
+
+msgid "FORCED COMPOSITE DIP SWITCH"
+msgstr "COMUTATOR DIP FORTAT COMPOZIT"
+
+msgid "IN-GAME SETTINGS"
+msgstr "SETARI IN JOC"
+
+msgid "FEATURES"
+msgstr "FUNCTII"
+
+msgid "GAMES RENDERING"
+msgstr "RANDARE JOCURI"
+
+msgid "AUTO BLITTER (FBNEO/MAME)"
+msgstr "BLITTER AUTOMAT (FBNEO/MAME)"
+
+msgid ""
+"Enables automatic blitter and CPU settings for fbneo and mame games. Can "
+"enhance emulation precision on games like Cave."
+msgstr ""
+"Activeaza blitter automat si setari CPU pentru jocurile fbneo si mame. Poate "
+"imbunatati precizia emularii la jocuri precum Cave."
+
+msgid "SYSTEM-LISTS & GAMELISTS SETTINGS"
+msgstr "SETARI LISTE SISTEME SI LISTE JOCURI"
+
+msgid "Configure system and gamelist filters and options"
+msgstr "Configurati filtrele si optiunile sistemului si listei de jocuri"
+
+msgid "SYSTEM LISTS"
+msgstr "LISTE SISTEME"
+
+msgid "SHOW SYSTEMS"
+msgstr "AFISEAZA SISTEMELE"
+
+msgid "Show or hide systems individually"
+msgstr "Afiseaza sau ascunde sistemele individual"
+
+msgid "GAMES"
+msgstr "JOCURI"
+
+msgid "ENABLE ADDING/REMOVING FAVORITES"
+msgstr "ACTIVEAZA ADAUGAREA/ELIMINAREA FAVORITELOR"
+
+msgid ""
+"Enable or disable adding/removing favorites in gamelist, search and other "
+"various places."
+msgstr ""
+"Activeaza sau dezactiveaza adaugarea/eliminarea favoritelor in lista de "
+"jocuri, cautare si alte locuri diverse."
+
+msgid ""
+"Show only favorites. May hide all systems with no favorite at all until you "
+"switch off this option."
+msgstr ""
+"Afiseaza doar favoritele. Poate ascunde toate sistemele fara niciun favorit "
+"pana dezactivati aceasta optiune."
+
+msgid "Display all favorites at the top of the game list."
+msgstr "Afiseaza toate favoritele in partea de sus a listei de jocuri."
+
+msgid "Force hidden game to show in gamelists."
+msgstr "Forteaza afisarea jocului ascuns in listele de jocuri."
+
+msgid "SHOW MAHJONG AND CASINO GAMES"
+msgstr "AFISEAZA JOCURILE MAHJONG SI CAZINO"
+
+msgid ""
+"Show or hide asian casino and mahjong games. You must scrape your game for "
+"this option to work."
+msgstr ""
+"Afiseaza sau ascunde jocurile de cazino asiatic si mahjong. Trebuie sa "
+"verificati jocul pentru ca aceasta optiune sa functioneze."
+
+msgid "SHOW ADULT GAMES"
+msgstr "AFISEAZA JOCURILE PENTRU ADULTI"
+
+msgid ""
+"Show or hide adult games. You must scrape your game for this option to work."
+msgstr ""
+"Afiseaza sau ascunde jocurile pentru adulti. Trebuie sa verificati jocul "
+"pentru ca aceasta optiune sa functioneze."
+
+msgid "SHOW PREINSTALLED GAMES"
+msgstr "AFISEAZA JOCURILE PREINSTALATE"
+
+msgid ""
+"Show or hide games distributed with Recalbox. But you don't want to do this: "
+"they are all excellent games!"
+msgstr ""
+"Afiseaza sau ascunde jocurile distribuite cu Recalbox. Dar nu doriti sa "
+"faceti asta: sunt toate jocuri excelente!"
+
+msgid "Show only games playable with 3 or more players"
+msgstr "Afiseaza doar jocurile jucabile cu 3 sau mai multi jucatori"
+
+msgid "SHOW ONLY YOKO (HORIZONTAL) GAMES"
+msgstr "AFISEAZA DOAR JOCURILE YOKO (ORIZONTALE)"
+
+msgid ""
+"Show only YOKO (horizontal) games. Mutually exclusive with the option to "
+"show only TATE games."
+msgstr ""
+"Afiseaza doar jocurile YOKO (orizontale). Se exclude reciproc cu optiunea de "
+"a afisa doar jocurile TATE."
+
+msgid "SHOW ONLY TATE (VERTICAL) GAMES"
+msgstr "AFISEAZA DOAR JOCURILE TATE (VERTICALE)"
+
+msgid ""
+"Show only TATE (vertical) games. Mutually exclusive with the option to show "
+"only YOKO games."
+msgstr ""
+"Afiseaza doar jocurile TATE (verticale). Se exclude reciproc cu optiunea de "
+"a afisa doar jocurile YOKO."
+
+msgid "SHOW ROMS MARKED AS NON-GAMES"
+msgstr "AFISEAZA ROMURILE MARCATE CA NON-JOCURI"
+
+msgid ""
+"Show or hide roms that are explicitly marked as non-game (application, "
+"utilities, ...). You must scrape your game for this option to work."
+msgstr ""
+"Afiseaza sau ascunde romurile marcate explicit ca non-joc (aplicatie, "
+"utilitare, ...). Trebuie sa verificati jocul pentru ca aceasta optiune sa "
+"functioneze."
+
+msgid "ENABLE ONE GAME ONE ROM (1G1R)"
+msgstr "ACTIVEAZA UN JOC UN ROM (1G1R)"
+
+msgid "Display only one rom|disk image for a game from your preferred region."
+msgstr ""
+"Afiseaza doar un rom|imagine de disc pentru un joc din regiunea dvs. "
+"preferata."
+
+msgid "PRIORITY REGION (1G1R)"
+msgstr "REGIUNE PRIORITARA (1G1R)"
+
+msgid "Choose your preferred region for 1G1R filtering."
+msgstr "Alegeti regiunea preferata pentru filtrarea 1G1R"
+
+msgid "SECOND PRIORITY REGION (1G1R)"
+msgstr "A DOUA REGIUNE PRIORITARA (1G1R)"
+
+msgid "Choose your second preferred region for 1G1R filtering."
+msgstr "Alegeti a doua regiune preferata pentru filtrarea 1G1R"
+
+msgid "THIRD PRIORITY REGIONS (1G1R)"
+msgstr "A TREIA REGIUNE PRIORITARA (1G1R)"
+
+msgid ""
+"Choose your preferred regions priority when there is no match with first and "
+"second regions"
+msgstr ""
+"Alegeti prioritatea regiunilor preferate cand nu exista potrivire cu prima "
+"si a doua regiune"
+
+msgid "ARCADE SYSTEMS"
+msgstr "SISTEME ARCADE"
+
+msgid "ENABLE AGGREGATED ARCADE SYSTEM"
+msgstr "ACTIVEAZA SISTEMUL ARCADE AGREGAT"
+
+msgid "Available only when aggregated arcade system is on"
+msgstr "Disponibil doar cand sistemul arcade agregat este activat"
+
+msgid ""
+"Select manufacturer virtual system to show in the system view (like "
+"CPS1/2/3, SEGA, TAITO, ...)"
+msgstr ""
+"Selectati sistemul virtual de producator de afisat in vizualizarea "
+"sistemelor (precum CPS1/2/3, SEGA, TAITO, ...)"
+
+msgid "ARCADE GAMES"
+msgstr "JOCURI ARCADE"
+
+msgid ""
+"Always use arcade names from official databases. Overwrites manual edits and "
+"scraper results."
+msgstr ""
+"Foloseste intotdeauna numele arcade din bazele de date oficiale. Suprascrie "
+"editarea manuala si rezultatele verificarii."
+
+msgid "USER INTERFACE SETTINGS"
+msgstr "SETARI INTERFATA UTILIZATOR"
+
+msgid "SYSTEMS TO SHOW IN DEMO/GAMECLIP"
+msgstr "SISTEME DE AFISAT IN DEMO/CLIP JOC"
+
+msgid "Adjust the screen brightness"
+msgstr "Ajusteaza luminozitatea ecranului"
+
+msgid "Change the look of your Recalbox!"
+msgstr "Schimba aspectul Recalbox-ului dvs.!"
+
+msgid "DEFAULT TRANSITION STYLE"
+msgstr "STIL TRANZITIE IMPLICIT"
+
+msgid ""
+"Select the type of transition between system. INSTANT will do nothing, FADE "
+"will fade to dark, and SLIDE will slide the entire screen"
+msgstr ""
+"Selectati tipul de tranzitie intre sisteme. INSTANT nu va face nimic, "
+"ESTOMPARE va estompa spre intuneric si GLISARE va glisa intregul ecran"
+
+msgid "Select {THEME.OPTION.NAME}"
+msgstr "Selectati {THEME.OPTION.NAME}"
+
+msgid "GAME LAUNCH TRANSITION STYLE"
+msgstr "STIL TRANZITIE LANSARE JOC"
+
+msgid ""
+"Select the type of transition when you launch a game. INSTANT will do "
+"nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover."
+msgstr ""
+"Selectati tipul de tranzitie cand lansati un joc. INSTANT nu va face nimic, "
+"ESTOMPARE va estompa spre intuneric si GLISARE va face zoom pe coperta "
+"jocului."
+
+msgid "ENABLE FAST MOVE IN GAMELIST"
+msgstr "ACTIVEAZA MISCAREA RAPIDA IN LISTA DE JOCURI"
+
+msgid ""
+"When enabled, holding up or down for a few seconds makes the list scroll "
+"very fast."
+msgstr ""
+"Cand este activat, tinerea sus/jos timp de cateva secunde face lista sa "
+"deruleze foarte rapid"
+
+msgid "Display the current time in a corner of the screen."
+msgstr "Afiseaza ora curenta intr-un colt al ecranului."
+
+msgid "SHOW MUSIC POPUPS"
+msgstr "AFISEAZA FERESTRE MUZICA"
+
+msgid "When enabled, show music information every time a new music starts."
+msgstr ""
+"Cand este activat, afiseaza informatii despre muzica de fiecare data cand "
+"incepe o noua muzica."
+
+msgid "SHOW NETPLAY POPUPS"
+msgstr "AFISEAZA FERESTRE NETPLAY"
+
+msgid ""
+"When enabled, show netplay information every time a user starts a new game "
+"over internet."
+msgstr ""
+"Cand este activat, afiseaza informatii netplay de fiecare data cand un "
+"utilizator porneste un joc nou pe internet."
+
+msgid "CONTROLLER SETTINGS"
+msgstr "SETARI CONTROLLER"
+
+msgid "Add and configure all your controllers."
+msgstr "Adaugati si configurati toate controllerele dvs."
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "CONNECT AUTOMATICALLY"
+msgstr "CONECTEAZA AUTOMAT"
+
+msgid ""
+"Automatically connect on startup if the WIFI network is available and "
+"properly configured!"
+msgstr ""
+"Se conecteaza automat la pornire daca reteaua WIFI este disponibila si "
+"configurata corect!"
+
+msgid "WIFI is disabled!"
+msgstr "WIFI este dezactivat!"
+
+msgid "SELECT SSID"
+msgstr "SELECTEAZA SSID"
+
+msgid "Select an available SSID."
+msgstr "Selectati un SSID disponibil."
+
+msgid "If your Internet box has a WPS system, activate it and then click here!"
+msgstr ""
+"Daca router-ul dvs. de internet are un sistem WPS, activati-l si apoi "
+"apasati aici!"
+
+msgid ""
+"Run the scraper! The operation may take a while, however you can make it a "
+"background task and keep using Recalbox."
+msgstr ""
+"Rulati verificatorul! Operatia poate dura ceva timp, totusi o puteti face o "
+"sarcina de fundal si continua sa folositi Recalbox."
+
+msgid "PATRON OPTIONS"
+msgstr "OPTIUNI PATRON"
+
+msgid "user name for the selected scraper"
+msgstr "nume de utilizator pentru verificatorul selectat"
+
+msgid "password for the selected scraper"
+msgstr "parola pentru verificatorul selectat"
+
+msgid "Download various free games and free contents!"
+msgstr "Descarcati diverse jocuri gratuite si continut gratuit!"
+
+msgid "Download games for {SYSTEM.NAME}"
+msgstr "Descarca jocuri pentru {SYSTEM.NAME}"
+
+msgid ""
+"Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}"
+msgstr ""
+"Descarca un pachet de jocuri gratuite, demo-uri si homebrew pentru {SYSTEM."
+"NAME}"
+
+msgid "No content available yet for {SYSTEM.NAME}!"
+msgstr "Niciun continut disponibil inca pentru {SYSTEM.NAME}!"
+
+msgid "ACTIVATE DEBUG/VERBOSE LOGS"
+msgstr "ACTIVEAZA JURNALE DEBUG/DETALIATE"
+
+msgid "Activate debug and verbose logs in Recalbox and Emulators."
+msgstr ""
+"Activeaza jurnalele de depanare si detaliate in Recalbox si emulatoare."
+
+msgid "You cannot set up Kodi on boot when Kodi is disabled."
+msgstr "Nu puteti configura Kodi la pornire cand Kodi este dezactivat."
+
+msgid "DO NOT SCAN NEW GAMES"
+msgstr "NU SCANA JOCURI NOI"
+
+msgid ""
+"Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not "
+"scanning new files. Use it if your romsets are rarely updated."
+msgstr ""
+"Numit anterior 'DOAR LISTA DE JOCURI', poate accelera considerabil timpul de "
+"pornire prin neprescanarea fisierelor noi. Folositi-l daca romset-urile dvs. "
+"sunt rareori actualizate."
+
+msgid "ALLOW BOOT ON GAME"
+msgstr "PERMITE PORNIREA PE JOC"
+
+msgid ""
+"When activated, Recalbox boots into the gamelist and does not allow moving "
+"back to the system list."
+msgstr ""
+"Cand este activat, Recalbox porneste pe lista de jocuri si nu permite "
+"revenirea la lista de sisteme."
+
+msgid "SYSTEM SPECIFIC RESOLUTIONS"
+msgstr "REZOLUTII SPECIFICE SISTEMULUI"
+
+msgid "FOR {SYSTEM.NAME}"
+msgstr "PENTRU {SYSTEM.NAME}"
+
+msgid "Select the resolution used by the emulator '{SYSTEM.NAME}'."
+msgstr "Selectati rezolutia folosita de emulatorul '{SYSTEM.NAME}'."
+
+msgid "Set options for system {SYSTEM.NAME}"
+msgstr "Seteaza optiunile pentru sistemul {SYSTEM.NAME}"
+
+msgid "Set the way you want to use Kodi mediaplayer."
+msgstr "Setati modul in care doriti sa folositi playerul media Kodi."
+
+msgid "RUN KODI ON STARTUP"
+msgstr "RULEAZA KODI LA PORNIRE"
+
+msgid "START KODI WITH X BUTTON"
+msgstr "PORNESTE KODI CU BUTONUL X"
+
+msgid "Run your own scripts in shell or python"
+msgstr "Rulati propriile scripturi in shell sau python"
+
+msgid "Run custom script {SCRIPT.NAME}"
+msgstr "Ruleaza scriptul personalizat {SCRIPT.NAME}"
+
+msgid "ENABLE WEB MANAGER"
+msgstr "ACTIVEAZA MANAGERUL WEB"
+
+msgid "RESET EMULATOR SETTINGS"
+msgstr "RESETEAZA SETARILE EMULATORULUI"
+
+msgid "RESET!"
+msgstr "RESETEAZA!"
+
+msgid ""
+"This option resets all emulator settings to their factory defaults. It does "
+"not affect any Recalbox setting."
+msgstr ""
+"Aceasta optiune reseteaza toate setarile emulatorului la valorile implicite "
+"din fabrica. Nu afecteaza nicio setare Recalbox."
+
+msgid "HARDWARE"
+msgstr "HARDWARE"
+
+msgid "UPDATE!"
+msgstr "ACTUALIZEAZA!"
+
+msgid "Update Pi4 / Pi400 or Pi5 bootloader if required."
+msgstr "Actualizati bootloader-ul Pi4 / Pi400 sau Pi5 daca este necesar."
+
+msgid "Recalbox does not support overclocking for your board."
+msgstr "Recalbox nu suporta suprasolicitarea pentru placa dvs."
+
+msgid "CONTEXTUAL OPTIONS"
+msgstr "OPTIUNI CONTEXTUALE"
+
+msgid "EDIT GAME {GAME.NAME}"
+msgstr "EDITEAZA JOCUL {GAME.NAME}"
+
+msgid "Show options related to {GAME.NAME} and allow editing game metadata."
+msgstr ""
+"Afiseaza optiunile legate de {GAME.NAME} si permite editarea metadatelor "
+"jocului."
+
+msgid ""
+"You cannot edit this game because it is a pre-installed game or it is stored "
+"on a read-only device"
+msgstr ""
+"Nu puteti edita acest joc deoarece este un joc preinstalat sau este stocat "
+"pe un dispozitiv doar-citire"
+
+msgid "Select the emulator to use to run {GAME.NAME}"
+msgstr "Selectati emulatorul de folosit pentru a rula {GAME.NAME}"
+
+msgid "SET PATCH"
+msgstr "SETEAZA PATCH"
+
+msgid "Select patch to use when running an emulator supporting softpatching."
+msgstr ""
+"Selectati patch-ul de folosit cand rulati un emulator care suporta "
+"softpatching."
+
+msgid ""
+"Either the game has no patch or the emulator selected to run this game is "
+"not supporting softpatching."
+msgstr ""
+"Fie jocul nu are patch, fie emulatorul selectat pentru a rula acest joc nu "
+"suporta softpatching."
+
+msgid "Sets the name of the game or folder."
+msgstr "Seteaza numele jocului sau folderului."
+
+msgid "Set this game as favorite or not."
+msgstr "Seteaza acest joc ca favorit sau nu."
+
+msgid "Editing favorites is not enabled."
+msgstr "Editarea favoritelor nu este activata."
+
+msgid "Hide or show this game."
+msgstr "Ascunde sau afiseaza acest joc."
+
+msgid "Defines this game as an adult game or not."
+msgstr "Defineste acest joc ca joc pentru adulti sau nu."
+
+msgid "Scraping"
+msgstr "Verificare"
+
+msgid "Scrape this game and fill in all metadata at once!"
+msgstr "Verificati acest joc si completati toate metadatele deodata!"
+
+msgid "Statistics"
+msgstr "Statistici"
+
+msgid "Show the total time you played this game"
+msgstr "Afiseaza timpul total in care ati jucat acest joc"
+
+msgid "PLAY COUNT"
+msgstr "NUMAR JOCURI"
+
+msgid "Show the number of times you played this game"
+msgstr "Afiseaza numarul de ori in care ati jucat acest joc"
+
+msgid "Show the last date/time you played this game"
+msgstr "Afiseaza ultima data/ora in care ati jucat acest joc"
+
+msgid "DELETE GAME {GAME.NAME}"
+msgstr "STERGE JOCUL {GAME.NAME}"
+
+msgid "DELETE {ICON.WARNING}"
+msgstr "STERGE {ICON.WARNING}"
+
+msgid ""
+"Delete game or screenshot physically on the storage. Allow keeping save, "
+"metadata and other related files individually."
+msgstr ""
+"Sterge jocul sau captura de ecran fizic pe stocare. Permite pastrarea "
+"individuala a salvarilor, metadatelor si altor fisiere aferente."
+
+msgid ""
+"You cannot delete this game because it is a pre-installed game or it is "
+"stored on a read-only device or it is a folder."
+msgstr ""
+"Nu puteti sterge acest joc deoarece este un joc preinstalat, este stocat pe "
+"un dispozitiv doar-citire sau este un folder."
+
+msgid ""
+"Boot on game is not enabled. To set a game to boot on, enable the "
+"appropriate option first."
+msgstr ""
+"Pornirea pe joc nu este activata. Pentru a seta un joc de pornit, activati "
+"mai intai optiunea corespunzatoare."
+
+msgid "RUN SAVE STATE"
+msgstr "RULEAZA STAREA SALVATA"
+
+msgid "Select, restore and run game in the selected save state."
+msgstr "Selectati, restaurati si rulati jocul in starea salvata selectata."
+
+msgid ""
+"No save state has been detected for the currently selected game, or the "
+"currently selected item is not a game."
+msgstr ""
+"Nicio stare salvata nu a fost detectata pentru jocul selectat curent, sau "
+"elementul selectat curent nu este un joc."
+
+msgid "JUMP"
+msgstr "SALT"
+
+msgid "Open the Quick Jump selector."
+msgstr "Deschide selectorul de salt rapid."
+
+msgid "This option allows you to search for other versions of a game."
+msgstr "Aceasta optiune permite cautarea altor versiuni ale unui joc."
+
+msgid "This option allows you to search for other games with the same licence."
+msgstr "Aceasta optiune permite cautarea altor jocuri cu aceeasi licenta."
+
+msgid ""
+"Select the way the game list is sorted (alphabetically, by rating, ...)."
+msgstr ""
+"Selectati modul in care este sortata lista de jocuri (alfabetic, dupa "
+"notare...)."
+
+msgid "This list has a natural order and can't be sorted."
+msgstr "Aceasta lista are o ordine naturala si nu poate fi sortata."
+
+msgid ""
+"Select what kind of information you want to see on the right of your "
+"gamelist: regions flags, players or game genre."
+msgstr ""
+"Selectati ce tip de informatie doriti sa vedeti in dreapta listei de jocuri: "
+"steaguri regiuni, jucatori sau gen de joc."
+
+msgid "FLATTEN FOLDERS"
+msgstr "APLATIZEAZA FOLDERELE"
+
+msgid "This system is either always flattened or cannot be flattened!"
+msgstr ""
+"Acest sistem este fie intotdeauna aplatizat, fie nu poate fi aplatizat!"
+
+msgid "You can't hide favorites in the Favorite system!"
+msgstr "Nu puteti ascunde favoritele in sistemul Favorite!"
+
+msgid "Display favorites at the top of gamelists."
+msgstr "Afiseaza favoritele in partea de sus a listelor de jocuri."
+
+msgid "Favorites are always first in the Favorite system!"
+msgstr "Favoritele sunt intotdeauna primele in sistemul Favorite!"
+
+msgid "Virtual systems cannot be updated. Update real systems instead."
+msgstr ""
+"Sistemele virtuale nu pot fi actualizate. Actualizati in schimb sistemele "
+"reale."
+
+msgid "Advanced system settings"
+msgstr "Setari avansate sistem"
+
+msgid "Set advanced settings for system {SYSTEM.NAME}"
+msgstr "Seteaza setarile avansate pentru sistemul {SYSTEM.NAME}"
+
+msgid "DELETE {GAME.NAME}"
+msgstr "STERGE {GAME.NAME}"
+
+msgid "GAME FILES (ROM, DISK IMAGE, TAPE, ...)"
+msgstr "FISIERE JOC (ROM, IMAGINE DISC, CASETA, ...)"
+
+msgid "Number of game files that are to be deleted."
+msgstr "Numarul de fisiere joc care urmeaza sa fie sterse."
+
+msgid ""
+"Number of media files (images, video, ...) that will be deleted along with "
+"game files."
+msgstr ""
+"Numarul de fisiere media (imagini, video, ...) care vor fi sterse impreuna "
+"cu fisierele jocului."
+
+msgid "There is no media file associated with this game"
+msgstr "Nu exista niciun fisier media asociat acestui joc"
+
+msgid ""
+"Number of extra files associated with this game: configurations, overrides, "
+"patches, ..."
+msgstr ""
+"Numarul de fisiere suplimentare asociate acestui joc: configuratii, "
+"suprascrieri, patch-uri, ..."
+
+msgid "There is no extra file associated with this game"
+msgstr "Nu exista niciun fisier suplimentar asociat acestui joc"
+
+msgid "Number of save games and save states of {GAME.NAME}"
+msgstr "Numarul de jocuri salvate si stari salvate ale {GAME.NAME}"
+
+msgid "There is no save game or save state for this game"
+msgstr "Nu exista niciun joc salvat sau stare salvata pentru acest joc"
+
+msgid "Select files to delete one by one."
+msgstr "Selectati fisierele de sters unul cate unul."
+
+msgid "Select game files that are to be deleted one by one."
+msgstr "Selectati fisierele jocului care urmeaza sa fie sterse unul cate unul."
+
+msgid ""
+"Select media files (images, video, ...) that will be deleted along with game "
+"files."
+msgstr ""
+"Selectati fisierele media (imagini, video, ...) care vor fi sterse impreuna "
+"cu fisierele jocului."
+
+msgid "Select extra files to delete: configurations, overrides, patches, ..."
+msgstr ""
+"Selectati fisierele suplimentare de sters: configuratii, suprascrieri, patch-"
+"uri, ..."
+
+msgid "Select save games and save states of {GAME.NAME} to delete"
+msgstr "Selectati jocurile salvate si starile salvate ale {GAME.NAME} de sters"
+
+msgid "Delete all files selected below"
+msgstr "Sterge toate fisierele selectate mai jos"
+
+msgid "Cancel operation. Do not delete anything"
+msgstr "Anuleaza operatia. Nu sterge nimic"
+
+msgid "Delete all files listed below"
+msgstr "Sterge toate fisierele listate mai jos"
+
+msgid "SOFTPATCHING {GAME.NAME}"
+msgstr "SOFTPATCHING {GAME.NAME}"
+
+msgid "ORIGINAL GAME"
+msgstr "JOC ORIGINAL"
+
+msgid "PATCHED GAME"
+msgstr "JOC CU PATCH"
+
+msgid "SELECT PATCH TO APPLY"
+msgstr "SELECTEAZA PATCH-UL DE APLICAT"
+
+msgid "Select the patch to apply."
+msgstr "Selectati patch-ul de aplicat."
+
+msgid "INITIATE {GAME.NAME} NETPLAY GAME"
+msgstr "INITIAZA JOCUL NETPLAY {GAME.NAME}"
+
+msgid "Launch the game and wait for other player to join"
+msgstr "Lanseaza jocul si asteapta ca alt jucator sa se alature"
+
+msgid "Select password other player will have to use to join the game"
+msgstr ""
+"Selectati parola pe care alt jucator va trebui sa o foloseasca pentru a se "
+"alatura jocului"
+
+msgid "CHOOSE VIEWER PASSWORD"
+msgstr "ALEGE PAROLA SPECTATOR"
+
+msgid "Select password other player will have to use to watch the game"
+msgstr ""
+"Selectati parola pe care alt jucator va trebui sa o foloseasca pentru a "
+"viziona jocul"
+
+msgid "Do not initiate this game."
+msgstr "Nu initia acest joc."
+
+msgid "JOIN {GAME.NAME} NETPLAY GAME"
+msgstr "ALATURA-TE JOCULUI NETPLAY {GAME.NAME}"
+
+msgid "JOIN AS PLAYER"
+msgstr "ALATURA-TE CA JUCATOR"
+
+msgid "JOIN"
+msgstr "ALATURA-TE"
+
+msgid "Join the game as a player."
+msgstr "Alaturati-va jocului ca jucator."
+
+msgid "WATCH"
+msgstr "VIZIONEAZA"
+
+msgid "Join the game as a viewer. You can watch the game, but not participate."
+msgstr ""
+"Alaturati-va jocului ca spectator. Puteti viziona jocul, dar nu puteti "
+"participa."
+
+msgid "USE PASSWORD"
+msgstr "FOLOSESTE PAROLA"
+
+msgid "Use the selected password to join the game."
+msgstr "Folositi parola selectata pentru a va alatura jocului."
+
+msgid "Do not join this game."
+msgstr "Nu va alaturati acestui joc."
+
+msgid "{0} free of {1}"
+msgstr "{0} liber din {1}"
+
+msgid "{0} FREE"
+msgstr "{0} LIBER"
+
+msgid "No vulkan driver is available on your hardware."
+msgstr "Niciun driver vulkan nu este disponibil pe hardware-ul dvs."
+
+msgid "Enable rumble with compatible controllers."
+msgstr "Activeaza vibratia cu controllerele compatibile."
+
+msgid "EDIT FOLDER {GAME.NAME}"
+msgstr "EDITEAZA FOLDERUL {GAME.NAME}"
+
+msgid "%i MINUTE"
+msgid_plural "%i MINUTES"
+msgstr[0] "%i MINUT"
+msgstr[1] "%i MINUTE"
+msgstr[2] "%i DE MINUTE"
+
+msgid "%i TIME"
+msgid_plural "%i TIMES"
+msgstr[0] "%i DATA"
+msgstr[1] "%i DE ORI"
+msgstr[2] "%i DE ORI"
+
+msgid ""
+"Show only the very latest version of a given game, hiding all previous "
+"versions/releases. Particularly useful in TOSEC romsets."
+msgstr ""
+"Afiseaza doar cea mai recenta versiune a unui joc dat, ascunzand toate "
+"versiunile/lansarile anterioare. Deosebit de util in romset-urile TOSEC."
+
+msgid "{THEME.OPTION.HELP}"
+msgstr "{THEME.OPTION.HELP}"
+
+msgid "Fast Tape"
+msgstr "Caseta rapida"
+
+msgid "LIGHT"
+msgstr "USOR"
+
+msgid "MEDIUM"
+msgstr "MEDIU"
+
+msgid "HEAVY"
+msgstr "GREU"
+
+msgid "X6 (DEFAULT)"
+msgstr "X6 (IMPLICIT)"
+
+msgid "Region flags"
+msgstr "Steaguri regiuni"
+
+msgid "Genres"
+msgstr "Genuri"
+
+msgid "Support numbers"
+msgstr "Numere de suport"
+
+msgid "Support types"
+msgstr "Tipuri de suport"
+
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} fisier"
+msgstr[1] "{0} fisiere"
+msgstr[2] "{0} de fisiere"
+
+msgid "THEME MANAGER"
+msgstr "MANAGER TEME"
+
+msgid "LOADING THEME LIST..."
+msgstr "SE INCARCA LISTA DE TEME..."
+
+msgid "Loading theme list..."
+msgstr "Se incarca lista de teme..."
+
+msgid "Unexpected error while retrieving theme list ! Please retry later."
+msgstr ""
+"Eroare neasteptata la obtinerea listei de teme! Va rugam reincercati mai "
+"tarziu."
+
+msgid "Installed"
+msgstr "Instalata"
+
+msgid "Not Installed"
+msgstr "Neinstalata"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Version"
+msgstr "Versiune"
+
+msgid "Compatible with"
+msgstr "Compatibil cu"
+
+msgid "Download Size"
+msgstr "Dimensiune descarcare"
+
+msgid "BROWSE PREVIEWS"
+msgstr "RASFOIESTE PREVIZUALIZARI"
+
+msgid "BROWSE THEMES"
+msgstr "RASFOIESTE TEME"
+
+msgid "INSTALL"
+msgstr "INSTALEAZA"
+
+msgid "Please confirm. Do you want to update the theme {0}?"
+msgstr "Va rugam confirmati. Doriti sa actualizati tema {0}?"
+
+msgid "Please confirm. Do you want to install the theme {0}?"
+msgstr "Va rugam confirmati. Doriti sa instalati tema {0}?"
+
+msgid "Please confirm. Do you really want to delete the theme {0}?"
+msgstr "Va rugam confirmati. Doriti cu adevarat sa stergeti tema {0}?"
+
+msgid "Preparing theme installation..."
+msgstr "Se pregateste instalarea temei..."
+
+msgid "Downloading theme {0}"
+msgstr "Se descarca tema {0}"
+
+msgid "Installing theme {0}"
+msgstr "Se instaleaza tema {0}"
+
+msgid "Installed {0}%"
+msgstr "Instalat {0}%"
+
+msgid "Cleaning..."
+msgstr "Se curata..."
+
+msgid ""
+"Error installing theme {0}\n"
+"Reason: {1}"
+msgstr ""
+"Eroare la instalarea temei {0}\n"
+"Motiv: {1}"
+
+msgid "Do you want to switch to the newly installed theme {0} ?"
+msgstr "Doriti sa comutati la tema nou instalata {0}?"
+
+msgid "Failed to download theme file. Please check your internet connection."
+msgstr ""
+"Descarcarea fisierului de tema a esuat. Va rugam verificati conexiunea la "
+"internet."
+
+msgid ""
+"Failed to install required files. Please check you've enough free space on "
+"your storage !"
+msgstr ""
+"Instalarea fisierelor necesare a esuat. Va rugam verificati daca aveti "
+"suficient spatiu liber pe stocare!"
+
+msgid "Unknown failure."
+msgstr "Esec necunoscut."
+
+msgid "Downloaded {0}%"
+msgstr "Descarcat {0}%"
+
+msgid ""
+"Browse, download, install, update or remove themes from Recalbox's theme "
+"repository!"
+msgstr ""
+"Rasfoiti, descarcati, instalati, actualizati sau eliminati teme din "
+"repozitoriul de teme Recalbox!"
+
+msgid "Loading theme information..."
+msgstr "Se incarca informatiile temei..."
+
+msgid "{THEME.NAME}"
+msgstr "{THEME.NAME}"
+
+msgid "SWITCH TO"
+msgstr "COMUTA LA"
+
+msgid "DESCRIPTION"
+msgstr "DESCRIERE"
+
+msgid "and later versions"
+msgstr "si versiuni ulterioare"
+
+msgid "The theme version is too old and the theme may not work properly."
+msgstr ""
+"Versiunea temei este prea veche si tema poate sa nu functioneze corect."
+
+msgid "REGIONS"
+msgstr "REGIUNI"
+
+msgid "SET THIS GAME FOR THE CURRENT CARD"
+msgstr "SETEAZA ACEST JOC PENTRU CARDUL CURENT"
+
+msgid "This option allows you to select the current game for the current card."
+msgstr ""
+"Aceasta optiune va permite sa selectati jocul curent pentru cardul curent."
+
+msgid ""
+"A gamelist file has been altered manually or by an application external to "
+"Recalbox.\n"
+"\n"
+"In order not to lose any data, this file will be reloaded as soon as you "
+"click on the 'update' button.\n"
+"If several files have been modified when you click on 'update', all the "
+"systems concerned will be updated. No reboot is required."
+msgstr ""
+"Un fisier de lista de jocuri a fost modificat manual sau de o aplicatie "
+"externa Recalbox.\n"
+"\n"
+"Pentru a nu pierde date, acest fisier va fi reincarcat imediat ce apasati pe "
+"butonul 'actualizeaza'.\n"
+"Daca mai multe fisiere au fost modificate cand apasati pe 'actualizeaza', "
+"toate sistemele vizate vor fi actualizate. Nicio repornire nu este necesara."
+
+msgid ""
+"Changes have been detected in a roms directory on system {0}.\n"
+"\n"
+"Wait for your file operations to finish, then click on the 'update' button "
+"to update your roms in Recalbox.\n"
+"No restart is required, and if you've added roms, you'll be able to scrape "
+"them at the end of the update.\n"
+"\n"
+"If you add roms to several systems, they will all be updated when you click "
+"on the 'update' button."
+msgstr ""
+"Au fost detectate modificari intr-un director de romuri pe sistemul {0}.\n"
+"\n"
+"Asteptati sa se termine operatiile dvs. cu fisiere, apoi apasati pe butonul "
+"'actualizeaza' pentru a actualiza romurile in Recalbox.\n"
+"Nicio repornire nu este necesara si daca ati adaugat romuri, veti putea sa "
+"le verificati la sfarsitul actualizarii.\n"
+"\n"
+"Daca adaugati romuri in mai multe sisteme, toate vor fi actualizate cand "
+"apasati pe butonul 'actualizeaza'."
+
+msgid "Powering off."
+msgstr "Se opreste."
+
+msgid "{0} game has been removed from your gamelists"
+msgid_plural "{0} games have been removed from your gamelists"
+msgstr[0] "{0} joc a fost eliminat din listele dvs. de jocuri"
+msgstr[1] "{0} jocuri au fost eliminate din listele dvs. de jocuri"
+msgstr[2] "{0} de jocuri au fost eliminate din listele dvs. de jocuri"
+
+msgid "{0} game has been added to your gamelists"
+msgid_plural "{0} games have been added to your gamelists"
+msgstr[0] "{0} joc a fost adaugat la listele dvs. de jocuri"
+msgstr[1] "{0} jocuri au fost adaugate la listele dvs. de jocuri"
+msgstr[2] "{0} de jocuri au fost adaugate la listele dvs. de jocuri"
+
+msgid "FULLSCREEN"
+msgstr "ECRAN COMPLET"
+
+msgid "ORIGINAL"
+msgstr "ORIGINAL"
+
+msgid ""
+"The card could not be read.\n"
+"This problem can probably be fixed by blowing on the card's contacts!"
+msgstr ""
+"Cardul nu a putut fi citit.\n"
+"Aceasta problema poate fi probabil rezolvata sufland pe contactele cardului!"
+
+msgid ""
+"A card has been detected but is not yet associated with a game. Use START "
+"menu on a game to associate."
+msgstr ""
+"Un card a fost detectat dar nu este inca asociat cu un joc. Folositi meniul "
+"START pe un joc pentru a-l asocia."
+
+msgid "Arcade"
+msgstr "Arcade"
+
+msgid ""
+"The Recalbox team thanks you for your trust!\n"
+"\n"
+"Let's take advantage of this first launch to discover together how to use:\n"
+"- your Recalbox"
+msgstr ""
+"Echipa Recalbox va multumeste pentru increderea acordata!\n"
+"\n"
+"Sa profitam de aceasta prima lansare pentru a descoperi impreuna cum sa "
+"folositi:\n"
+"- Recalbox-ul dvs."
+
+msgid "and its Recaltower"
+msgstr "si Recaltower-ul sau"
+
+msgid "- your controller"
+msgstr "- controllerul dvs."
+
+msgid "- your Recalbox RGB DUAL 2"
+msgstr "- Recalbox RGB DUAL 2 al dvs."
+
+msgid "- your Recalbox RGB JAMMA 2"
+msgstr "- Recalbox RGB JAMMA 2 al dvs."
+
+msgid "- your Recalbox Card Reader"
+msgstr "- cititorul de carduri Recalbox al dvs."
+
+msgid "Please connect your controller via USB and press X to continue."
+msgstr ""
+"Va rugam conectati controllerul via USB si apasati X pentru a continua."
+
+msgid "Controller"
+msgstr "Controller"
+
+msgid ""
+"You can navigate through the menus using the directional pad, **select a "
+"system**, or start a game with the **B button**. The **A button** allows you "
+"to exit a menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To exit a game, press the SELECT and START buttons simultaneously."
+msgstr ""
+"Puteti naviga prin meniuri folosind crucea directionala, **selectati un "
+"sistem**, sau porniti un joc cu **butonul B**. **Butonul A** va permite sa "
+"iesiti dintr-un meniu sau lista de jocuri.\n"
+"\n"
+"Accesati **meniul principal** folosind **butonul START**.\n"
+"Pentru a iesi dintr-un joc, apasati simultan butoanele SELECT si START."
+
+msgid "RGB JAMMA 2"
+msgstr "RGB JAMMA 2"
+
+msgid ""
+"You can navigate through the menus using the joystick, **select a system**, "
+"or start a game with the **button 1**. The **button 2** allows you to exit a "
+"menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To **exit a game**, **press and hold START** for 4 seconds and release."
+msgstr ""
+"Puteti naviga prin meniuri folosind joystick-ul, **selectati un sistem**, "
+"sau porniti un joc cu **butonul 1**. **Butonul 2** va permite sa iesiti "
+"dintr-un meniu sau lista de jocuri.\n"
+"\n"
+"Accesati **meniul principal** folosind **butonul START**.\n"
+"Pentru a **iesi dintr-un joc**, **apasati si tineti START** timp de 4 "
+"secunde si eliberati."
+
+msgid "RGB DUAL 2"
+msgstr "RGB DUAL 2"
+
+msgid ""
+"Your Recalbox RGB DUAL 2 has been detected and installed automatically! You "
+"can now enjoy **all your games** on Recalbox with **perfect pixels and "
+"frequency**!"
+msgstr ""
+"Recalbox RGB DUAL 2 al dvs. a fost detectat si instalat automat! Puteti acum "
+"sa va bucurati de **toate jocurile dvs.** pe Recalbox cu **pixeli si "
+"frecventa perfecte**!"
+
+msgid ""
+"\n"
+"\n"
+"Consider this: you can automatically switch back to **HDMI mode** by "
+"connecting an HDMI cable and restarting Recalbox!"
+msgstr ""
+"\n"
+"\n"
+"Retineti: puteti reveni automat la **modul HDMI** conectand un cablu HDMI si "
+"repornind Recalbox!"
+
+msgid ""
+"\n"
+"\n"
+"An HDMI cable has been detected and the “HDMI priority” mode is enabled in "
+"the options. To switch back to CRT mode, disconnect the HDMI cable and "
+"restart, or disable the HDMI priority option in the Recalbox RGB DUAL 2 "
+"(START) menu options."
+msgstr ""
+"\n"
+"\n"
+"Un cablu HDMI a fost detectat si modul “prioritate HDMI” este activat in "
+"optiuni. Pentru a reveni la modul CRT, deconectati cablul HDMI si reporniti, "
+"sau dezactivati optiunea de prioritate HDMI in optiunile meniului Recalbox "
+"RGB DUAL 2 (START)."
+
+msgid "Recalbox Card Reader"
+msgstr "Cititor de carduri Recalbox"
+
+msgid ""
+"Your Recalbox Card Reader has been detected and **installed automatically!"
+"**\n"
+"\n"
+"You can start using it right away by **inserting a card** into the reader "
+"and going to the game of your choice to **associate the game and card** "
+"using the **menu** available with the **START** button."
+msgstr ""
+"Cititorul de carduri Recalbox al dvs. a fost detectat si **instalat automat!"
+"**\n"
+"\n"
+"Puteti incepe sa il folositi imediat **introducand un card** in cititor si "
+"mergand la jocul ales pentru a **asocia jocul si cardul** folosind "
+"**meniul** disponibil cu butonul **START**."
+
+msgid "Add games"
+msgstr "Adauga jocuri"
+
+msgid ""
+"Recalbox shares its ROM, BIOS, and save files folders on the local network. "
+"Adding your ROMs couldn't be easier: on your computer, search for your "
+"“recalbox” in the network shares.\n"
+"Go to the ROMs folder, then copy your game to the folder corresponding to "
+"its system. For example, to add a “NES” game, copy it to the ‘roms/nes’ "
+"folder."
+msgstr ""
+"Recalbox partajeaza folderele sale de ROM, BIOS si fisiere de salvare in "
+"reteaua locala. Adaugarea ROM-urilor nu poate fi mai usoara: pe computerul "
+"dvs., cautati “recalbox” in partajarile de retea.\n"
+"Mergeti la folderul ROM-uri, apoi copiati jocul in folderul corespunzator "
+"sistemului sau. De exemplu, pentru a adauga un joc “NES”, copiati-l in "
+"folderul ‘roms/nes’."
+
+msgid ""
+"Remember to connect your Recalbox to the internet to enjoy all its "
+"features!\n"
+msgstr ""
+"Nu uitati sa conectati Recalbox-ul la internet pentru a va bucura de toate "
+"functiile sale!\n"
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Actualizarile va vor fi oferite automat.\n"
+"\n"
+"Gasiti informatii utile si tutoriale pe recalbox.com, sau pe wiki-ul "
+"recalbox scanand codul QR."
+
+msgid "Update"
+msgstr "Actualizeaza"
+
+msgid "Are you sure to activate this theme?"
+msgstr "Sunteti sigur ca doriti sa activati aceasta tema?"
+
+msgid "Can't write game to share!"
+msgid_plural "Can't write games to share!"
+msgstr[0] "Nu se poate scrie jocul pe share!"
+msgstr[1] "Nu se pot scrie jocurile pe share!"
+msgstr[2] "Nu se pot scrie jocurile pe share!"
+
+msgid "Error downloading game! Retry later."
+msgid_plural "Error downloading games! Retry later."
+msgstr[0] "Eroare la descarcarea jocului! Reincercati mai tarziu."
+msgstr[1] "Eroare la descarcarea jocurilor! Reincercati mai tarziu."
+msgstr[2] "Eroare la descarcarea jocurilor! Reincercati mai tarziu."
+
+msgid "Button "
+msgstr "Buton "
+
+msgid "Axis "
+msgstr "Ax "
+
+msgid "pressed"
+msgstr "apasat"
+
+msgid "released"
+msgstr "eliberat"
+
+msgid " {0} Fps ({1}%) "
+msgstr " {0} Fps ({1}%) "
+
+msgid ""
+"Scraping game %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Se verifica jocul %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Scraper starting..."
+msgstr "Verificatorul porneste..."
+
+msgid "Scraping completed!"
+msgstr "Verificare finalizata!"
+
+msgid "All games scraped successfully."
+msgstr "Toate jocurile au fost verificate cu succes."
+
+msgid "You reached your daily quota. Retry tomorrow."
+msgstr "Ati atins limita zilnica. Reincercati maine."
+
+msgid "Your disk is full Pleas make room before trying again."
+msgstr ""
+"Discul dvs. este plin. Va rugam faceti loc inainte de a incerca din nou."
+
+msgid ""
+"Errors occurred and prevented some games to get their metadata. Retry later."
+msgstr ""
+"Au aparut erori care au impiedicat unele jocuri sa isi obtina metadatele. "
+"Reincercati mai tarziu."
+
+msgid ""
+"Scraping game... %COUNT% yet to go.\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Se verifica jocul... mai raman %COUNT%.\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Starting background scraper..."
+msgstr "Se porneste verificatorul de fundal..."
+
+msgid " by "
+msgstr " de "
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"The filters will be reset and recalbox will be reloaded."
+msgstr ""
+"Preferintele dvs. de filtre ascund toate jocurile!\n"
+"Filtrele vor fi resetate si recalbox va fi reincarcat."
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"All filters have been reset."
+msgstr ""
+"Preferintele dvs. de filtre ascund toate jocurile!\n"
+"Toate filtrele au fost resetate."
+
+msgid ""
+"Free space on device %NAME% has gone under %LIMIT%!\n"
+"You should try to free some space quickly!"
+msgstr ""
+"Spatiul liber pe dispozitivul %NAME% a scazut sub %LIMIT%!\n"
+"Ar trebui sa incercati sa eliberati rapid ceva spatiu!"
+
+msgid "Running script..."
+msgstr "Se ruleaza scriptul..."
+
+msgid "Passwords cannot be empty ! Replaced with default value."
+msgstr "Parolele nu pot fi goale! Inlocuite cu valoarea implicita."
+
+msgid "%i SECOND"
+msgid_plural "%i SECONDS"
+msgstr[0] "%i SECUNDA"
+msgstr[1] "%i SECUNDE"
+msgstr[2] "%i DE SECUNDE"
+
+msgid "%i HOUR"
+msgid_plural "%i HOURS"
+msgstr[0] "%i ORA"
+msgstr[1] "%i ORE"
+msgstr[2] "%i DE ORE"
+
+msgid ""
+"\n"
+"WARNING: You device may not have been properly unplugged and has consistency "
+"errors. As a result, it's been mounted as read-only. You should plug your "
+"device in a Window PC and use the repair tool."
+msgstr ""
+"\n"
+"ATENTIE: Dispozitivul dvs. e posibil sa nu fi fost deconectat corect si are "
+"erori de consistenta. Ca rezultat, a fost montat doar-citire. Ar trebui sa "
+"conectati dispozitivul la un PC Windows si sa folositi instrumentul de "
+"reparare."
+
+msgid "{THEME.NAME} CONFIGURATION"
+msgstr "CONFIGURARE {THEME.NAME}"
+
+msgid "ENABLE SIDE NAVIGATION IN GAME LISTS"
+msgstr "ACTIVEAZA NAVIGAREA LATERALA IN LISTELE DE JOCURI"
+
+msgid "JOIN AS VIEWER"
+msgstr "ALATURA-TE CA SPECTATOR"
+
+msgid "RECALCARDS SETTINGS"
+msgstr "SETARI RECALCARDS"
+
+msgid "Recalbox Card Reader options and configuration."
+msgstr "Optiuni si configurare cititor de carduri Recalbox."
+
+msgid "CARD READER"
+msgstr "CITITOR CARDURI"
+
+msgid "Card Reader Version and status."
+msgstr "Versiune si stare cititor de carduri."
+
+msgid "BOOT ON CARD"
+msgstr "PORNESTE PE CARD"
+
+msgid "Boot on the card when inserted at Recalbox boot."
+msgstr "Porneste pe card cand este introdus la pornirea Recalbox."
+
+msgid "RECALBOX BOOT VIDEOS"
+msgstr "VIDEOCLIPURI DE PORNIRE RECALBOX"
+
+msgid "Enable or disable recalbox videos on boot."
+msgstr "Activeaza sau dezactiveaza videoclipurile recalbox la pornire."
+
+msgid "Console Mode (cards only)"
+msgstr "Mod consola (doar carduri)"
+
+msgid "Start Recalbox in console mode, where only cards can be played."
+msgstr "Porneste Recalbox in modul consola, unde pot fi jucate doar cardurile."
+
+msgid "Console Mode exit buttons"
+msgstr "Butoane de iesire mod consola"
+
+msgid "Select how to exit console mode."
+msgstr "Selectati cum sa iesiti din modul consola."
+
+msgid "Console Mode video"
+msgstr "Video mod consola"
+
+msgid "Select the video to run in console mode."
+msgstr "Selectati videoclipul de rulat in modul consola."
+
+msgid "Console Mode sound"
+msgstr "Sunet mod consola"
+
+msgid "Switch between recalbox music and bios sound."
+msgstr "Comutati intre muzica recalbox si sunetul bios."
+
+msgid "({0} AVAILABLE)"
+msgstr "({0} DISPONIBIL)"
+
+msgid "UP TO DATE"
+msgstr "LA ZI"
+
+msgid ""
+"The game associated with the card was not found on your Recalbox, the card "
+"association has been cleared."
+msgstr ""
+"Jocul asociat cardului nu a fost gasit pe Recalbox-ul dvs., asocierea "
+"cardului a fost eliminata."
+
+msgid "Unable to start on the game, could not find the game."
+msgstr "Imposibil de pornit pe joc, jocul nu a putut fi gasit."
+
+msgid "Unable to start on the game, no controllers found."
+msgstr "Imposibil de pornit pe joc, niciun controller gasit."
+
+msgid "GLOBAL CONFIGURATION"
+msgstr "CONFIGURARE GLOBALA"
+
+msgid "Board"
+msgstr "Placa"
+
+msgid "Shows your current board."
+msgstr "Afiseaza placa dvs. curenta."
+
+msgid "Show release notes"
+msgstr "Afiseaza notele de lansare"
+
+msgid "Shows current version's release notes."
+msgstr "Afiseaza notele de lansare ale versiunii curente."
+
+msgid "RELEASE NOTES"
+msgstr "NOTE DE LANSARE"
+
+msgid "Scroll manually"
+msgstr "Derulare manuala"
+
+msgid "AVAILABLE UPDATE"
+msgstr "ACTUALIZARE DISPONIBILA"
+
+msgid "DOWNLOAD"
+msgstr "DESCARCA"
+
+msgid "Libretro Geolith Settings"
+msgstr "Setari Libretro Geolith"
+
+msgid "System Type"
+msgstr "Tip sistem"
+
+msgid "Specify the System Type: AES, MVS or Universe BIOS System."
+msgstr "Specificati tipul de sistem: AES, MVS sau Universe BIOS System."
+
+msgid "480p"
+msgstr "480p"
+
+msgid "Select the resolution for Kodi interface and videos"
+msgstr "Selectati rezolutia pentru interfata Kodi si videoclipuri"
+
+msgid ""
+"You are currently running a preview version of **Recalbox 10**. An update to "
+"the public version will be offered automatically when it becomes available "
+"for download."
+msgstr ""
+"Rulati in prezent o versiune preview a **Recalbox 10**. O actualizare la "
+"versiunea publica va fi oferita automat cand devine disponibila pentru "
+"descarcare."
+
+msgid ""
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Gasiti informatii utile si tutoriale pe recalbox.com, sau pe wiki-ul "
+"recalbox scanand codul QR."
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+msgstr ""
+"Actualizarile va vor fi oferite automat.\n"
+"\n"
+
+msgid ""
+"Cannot check update ! Ensure your Recalbox is connected to the Internet, and "
+"try later."
+msgstr ""
+"Nu se poate verifica actualizarea! Asigurati-va ca Recalbox-ul este conectat "
+"la Internet si incercati mai tarziu."
+
+msgid "Libretro MelonDS Settings"
+msgstr "Setari Libretro MelonDS"
+
+msgid "Touch Mode"
+msgstr "Mod atingere"
+
+msgid "Choose mode for interactions with the touch screen."
+msgstr "Alegeti modul pentru interactiunile cu ecranul tactil."
+
+msgid "Swap Screen Mode"
+msgstr "Mod inversare ecran"
+
+msgid "Choose if the 'Swap screens' button should work on press or on hold."
+msgstr ""
+"Alegeti daca butonul 'Inverseaza ecranele' ar trebui sa functioneze la "
+"apasare sau la tinere."
+
+msgid "Screen Layout"
+msgstr "Aspect ecran"
+
+msgid ""
+"Choose how many screens should be displayed, and how they should be arranged."
+msgstr "Alegeti cate ecrane ar trebui afisate si cum ar trebui afisate."
+
+msgid "Enabled (GPU)"
+msgstr "Activat (GPU)"
+
+msgid "Run in main thread (CPU)"
+msgstr "Ruleaza in firul principal (CPU)"
+
+msgid "Disabled"
+msgstr "Dezactivat"
+
+msgid "Center"
+msgstr "Centru"
+
+msgid "Stretch"
+msgstr "Intinde"
+
+msgid "Scale"
+msgstr "Scaleaza"
+
+msgid "North America"
+msgstr "America de Nord"
+
+msgid "Europe and Australia"
+msgstr "Europa si Australia"
+
+msgid "Manufacturing plant"
+msgstr "Fabrica de productie"
+
+msgid "NTSC-M (North America)"
+msgstr "NTSC-M (America de Nord)"
+
+msgid "NTSC-J (Japan)"
+msgstr "NTSC-J (Japonia)"
+
+msgid "PAL-I (Europe and Australia)"
+msgstr "PAL-I (Europa si Australia)"
+
+msgid "PAL-M (Brazil)"
+msgstr "PAL-M (Brazilia)"
+
+msgid "Stereo"
+msgstr "Stereo"
+
+msgid "Legacy sound engine"
+msgstr "Motor de sunet vechi"
+
+msgid "New sound engine based on MAME"
+msgstr "Motor de sunet nou bazat pe MAME"
+
+msgid "Enable for 1 player"
+msgstr "Activeaza pentru 1 jucator"
+
+msgid "Enable for 2 players"
+msgstr "Activeaza pentru 2 jucatori"
+
+msgid "MOUSE"
+msgstr "MOUSE"
+
+msgid "TOUCH"
+msgstr "ATINGERE"
+
+msgid "HOLD"
+msgstr "TINERE"
+
+msgid "Top/Bottom"
+msgstr "Sus/Jos"
+
+msgid "Bottom/Top"
+msgstr "Jos/Sus"
+
+msgid "Left/Right"
+msgstr "Stanga/Dreapta"
+
+msgid "Right/Left"
+msgstr "Dreapta/Stanga"
+
+msgid "Top Only"
+msgstr "Doar sus"
+
+msgid "Bottom Only"
+msgstr "Doar jos"
+
+msgid "Hybrid Top"
+msgstr "Hibrid sus"
+
+msgid "Hybrid Bottom"
+msgstr "Hibrid jos"
+
+msgid "Downloading Quake 3 demo game from the official site. Please wait..."
+msgstr ""
+"Se descarca jocul demo Quake 3 de pe site-ul oficial. Va rugam asteptati..."
+
+msgid ""
+"Downloading Tomb Raider demo game from the official site. Please wait..."
+msgstr ""
+"Se descarca jocul demo Tomb Raider de pe site-ul oficial. Va rugam "
+"asteptati..."
+
+msgid "AVOID LOW FREQUENCY MODES"
+msgstr "EVITA MODURILE DE FRECVENTA JOASA"
+
+msgid "Avoid modes under 57Hz for non-compatible TVs."
+msgstr "Evita modurile sub 57Hz pentru TV-uri incompatibile."
+
+msgid "HANDHELDS RATIO"
+msgstr "RAPORT CONSOLE PORTABILE"
+
+msgid ""
+"Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full "
+"image, or ORIGINAL to get original and pixel perfect resolution."
+msgstr ""
+"Raport video pe CRT pentru consolele portabile. Selectati ECRAN COMPLET "
+"pentru o imagine completa, sau ORIGINAL pentru rezolutie originala si pixel "
+"perfect."
+
+#: GuiInputConfig — phase messages
+msgid "Press %LABEL%"
+msgstr "APASATI %LABEL%"
+
+msgid "Release to confirm"
+msgstr "Eliberati pentru a confirma"
+
+msgid "Press **HOTKEY + START** to validate"
+msgstr "Apasati **HOTKEY + START** pentru a valida"
+
+msgid "ALREADY USED"
+msgstr "DEJA FOLOSIT"
+
+msgid "ALREADY USED BY {0}"
+msgstr "DEJA FOLOSIT DE {0}"
+
+msgid "Button combination"
+msgstr "Combinatie de butoane"
+
+msgid ""
+"Your controller has __no SELECT or HOTKEY button__. The START button will be "
+"used for special actions:\n"
+"- **Long press on START** = quit the game (START + HOTKEY)\n"
+"- **START + Validate** = SELECT (insert credit in arcade games)\n"
+"- **START + any other button** = HOTKEY + that button"
+msgstr ""
+"Controllerul dvs. __nu are buton SELECT sau HOTKEY__. Butonul START va fi "
+"folosit pentru actiuni speciale:\n"
+"- **Apasare lunga pe START** = iesire din joc (START + HOTKEY)\n"
+"- **START + Validare** = SELECT (introducere credit in jocurile arcade)\n"
+"- **START + orice alt buton** = HOTKEY + acel buton"
+
+msgid "**Long-press START** to validate"
+msgstr "**Apasati lung START** pentru a valida"
+
+msgid "SAME AS SELECT"
+msgstr "ACELASI CA SELECT"
+
+msgid "DPAD RIGHT to skip"
+msgstr "DPAD DREAPTA pentru a omite"
+
+msgid "DPAD LEFT to go back"
+msgstr "DPAD STANGA pentru a reveni"
+
+#: GuiInputConfig — DPAD / hat
+msgid "DPAD UP"
+msgstr "DPAD SUS"
+
+msgid "DPAD RIGHT"
+msgstr "DPAD DREAPTA"
+
+msgid "DPAD DOWN"
+msgstr "DPAD JOS"
+
+msgid "DPAD LEFT"
+msgstr "DPAD STANGA"
+
+#: GuiInputConfig — left stick
+msgid "LEFT STICK UP"
+msgstr "STICK STANGA SUS"
+
+msgid "LEFT STICK RIGHT"
+msgstr "STICK STANGA DREAPTA"
+
+msgid "LEFT STICK DOWN"
+msgstr "STICK STANGA JOS"
+
+msgid "LEFT STICK LEFT"
+msgstr "STICK STANGA STANGA"
+
+#: GuiInputConfig — right stick
+msgid "RIGHT STICK UP"
+msgstr "STICK DREAPTA SUS"
+
+msgid "RIGHT STICK RIGHT"
+msgstr "STICK DREAPTA DREAPTA"
+
+msgid "RIGHT STICK DOWN"
+msgstr "STICK DREAPTA JOS"
+
+msgid "RIGHT STICK LEFT"
+msgstr "STICK DREAPTA STANGA"
+
+#: GuiInputConfig — Gamecube main stick
+msgid "MAIN STICK UP"
+msgstr "STICK PRINCIPAL SUS"
+
+msgid "MAIN STICK RIGHT"
+msgstr "STICK PRINCIPAL DREAPTA"
+
+msgid "MAIN STICK DOWN"
+msgstr "STICK PRINCIPAL JOS"
+
+msgid "MAIN STICK LEFT"
+msgstr "STICK PRINCIPAL STANGA"
+
+#: GuiInputConfig — Gamecube C-stick
+msgid "C-STICK UP"
+msgstr "C-STICK SUS"
+
+msgid "C-STICK RIGHT"
+msgstr "C-STICK DREAPTA"
+
+msgid "C-STICK DOWN"
+msgstr "C-STICK JOS"
+
+msgid "C-STICK LEFT"
+msgstr "C-STICK STANGA"
+
+#: GuiInputConfig — N64 C buttons
+msgid "C UP"
+msgstr "C SUS"
+
+msgid "C RIGHT"
+msgstr "C DREAPTA"
+
+msgid "C DOWN"
+msgstr "C JOS"
+
+msgid "C LEFT"
+msgstr "C STANGA"
+
+#: GuiInputConfig — arcade single stick
+msgid "STICK UP"
+msgstr "STICK SUS"
+
+msgid "STICK RIGHT"
+msgstr "STICK DREAPTA"
+
+msgid "STICK DOWN"
+msgstr "STICK JOS"
+
+msgid "STICK LEFT"
+msgstr "STICK STANGA"
+
+#: GuiInputConfig — Sony face buttons
+msgid "CIRCLE"
+msgstr "CERC"
+
+msgid "CROSS"
+msgstr "CRUCE"
+
+msgid "TRIANGLE"
+msgstr "TRIUNGHI"
+
+msgid "SQUARE"
+msgstr "PATRAT"
+
+#: GuiInputConfig — arcade 4 button labels
+msgid "BUTTON 1"
+msgstr "BUTON 1"
+
+msgid "BUTTON 2"
+msgstr "BUTON 2"
+
+msgid "BUTTON 3"
+msgstr "BUTON 3"
+
+msgid "BUTTON 4"
+msgstr "BUTON 4"
+
+#: GuiInputConfig — arcade row labels
+msgid "TOP ROW 1"
+msgstr "RAND SUS 1"
+
+msgid "TOP ROW 2"
+msgstr "RAND SUS 2"
+
+msgid "TOP ROW 3"
+msgstr "RAND SUS 3"
+
+msgid "TOP ROW 4"
+msgstr "RAND SUS 4"
+
+msgid "BOTTOM ROW 1"
+msgstr "RAND JOS 1"
+
+msgid "BOTTOM ROW 2"
+msgstr "RAND JOS 2"
+
+msgid "BOTTOM ROW 3"
+msgstr "RAND JOS 3"
+
+msgid "BOTTOM ROW 4"
+msgstr "RAND JOS 4"
+
+#: GuiInputConfig — shoulders / triggers stick clicks
+msgid "L1 (Left Shoulder)"
+msgstr "L1 (umar stang)"
+
+msgid "R1 (Right Shoulder)"
+msgstr "R1 (umar drept)"
+
+msgid "L2 (Left Trigger)"
+msgstr "L2 (trigger stang)"
+
+msgid "R2 (Right Trigger)"
+msgstr "R2 (trigger drept)"
+
+msgid "L3 (Left Joystick Click)"
+msgstr "L3 (click joystick stang)"
+
+msgid "R3 (Right Joystick Click)"
+msgstr "R3 (click joystick drept)"
+
+#: GuiInputConfig — XBox shoulders / triggers
+msgid "LB (Left Shoulder)"
+msgstr "LB (umar stang)"
+
+msgid "RB (Right Shoulder)"
+msgstr "RB (umar drept)"
+
+msgid "LT (Left Trigger)"
+msgstr "LT (trigger stang)"
+
+msgid "RT (Right Trigger)"
+msgstr "RT (trigger drept)"
+
+#: GuiInputConfig — Gamecube / Megadrive N64 shoulders
+msgid "L (Left Shoulder)"
+msgstr "L (umar stang)"
+
+msgid "R (Right Shoulder)"
+msgstr "R (umar drept)"
+
+msgid "Z (Trigger)"
+msgstr "Z (trigger)"
+
+#: GuiInputConfig — Sony Start/Select/Hotkey
+msgid "OPTIONS (Start)"
+msgstr "OPTIONS (Start)"
+
+msgid "SHARE"
+msgstr "SHARE"
+
+msgid "SHARE (Select)"
+msgstr "SHARE (Select)"
+
+msgid "PS BUTTON (Hotkey)"
+msgstr "BUTON PS (Hotkey)"
+
+#: GuiInputConfig — XBox Start/Select/Hotkey
+msgid "MENU (Start)"
+msgstr "MENU (Start)"
+
+msgid "VIEW"
+msgstr "VIEW"
+
+msgid "VIEW (Select)"
+msgstr "VIEW (Select)"
+
+msgid "GUIDE (Hotkey)"
+msgstr "GUIDE (Hotkey)"
+
+msgid "HEART (Hotkey)"
+msgstr "INIMA (Hotkey)"
+
+#: GuiInputConfig — skippable Select/Hotkey 2-line hints
+msgid "Skip if absent"
+msgstr "Omite daca lipseste"
+
+msgid "Skip if physically absent"
+msgstr "Omite daca lipseste fizic"
+
+msgid "Unable to update"
+msgstr "Nu se poate actualiza"
+
+msgid ""
+"Recalbox adds many new features with each new version, which gradually "
+"increases the size of the system.\n"
+"The system partition on your installation is too small to accommodate "
+"version {0}.\n"
+"\n"
+"To continue receiving updates, you must reinstall Recalbox by downloading "
+"the latest image from www.recalbox.com."
+msgstr ""
+"Recalbox adaugă multe caracteristici noi cu fiecare versiune nouă, ceea ce "
+"crește treptat dimensiunea sistemului.\n"
+"Partiția de sistem din instalarea dvs. este prea mică pentru a se încadra "
+"versiunea {0}.\n"
+"\n"
+"Pentru a continua să primiți actualizări, trebuie să reinstalați Recalbox "
+"descărcând cea mai recentă imagine de la www.recalbox.com."
+
+msgid ""
+"Unable to verify that there is enough space left on the boot partition. The "
+"update may not complete successfully."
+msgstr ""
+"Nu se poate verifica dacă pe partiția de pornire rămâne suficient spațiu. "
+"Actualizarea s-ar putea să nu se finalizeze cu succes."
+
+msgid "PLAY"
+msgstr "REDARE"
+
+msgid "ENABLE/DISABLE"
+msgstr "ACTIVEAZA/DEZACTIVEAZA"
+
+msgid "Downloading"
+msgstr "Se descarca"
+
+msgid "SEEK"
+msgstr "CAUTA"
+
+msgid "FOLLOW"
+msgstr "URMEAZA"
+
+msgid "SWITCH TO LINEAR PLAY"
+msgstr "COMUTA LA REDARE LINIARA"
+
+msgid "SWITCH TO RANDOM PLAY"
+msgstr "COMUTA LA REDARE ALEATORIE"
+
+msgid "JUKEBOX"
+msgstr "JUKEBOX"
+
+#: MenuProvider.cpp InstallDevice — first warning title (destructive)
+msgid "WARNING ! DESTRUCTIVE OPERATION !"
+msgstr "ATENTIE! OPERATIUNE DISTRUCTIVA!"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: AND data
+msgid ""
+"**{DEVICE}** contains **partitions with existing data**.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly**:\n"
+"\n"
+"- Erase **all partitions** on this disk\n"
+"- **Destroy all data** present on those partitions\n"
+"\n"
+"**There is no going back.** Once confirmed, there is absolutely no way to "
+"recover your files or partitions.\n"
+"\n"
+"Are you **absolutely sure** you want to continue?"
+msgstr ""
+"**{DEVICE}** contine **partitii cu date existente**.\n"
+"\n"
+"Daca confirmi, Recalbox va face urmatoarele in mod **permanent si "
+"ireversibil**:\n"
+"\n"
+"- Va sterge **toate partitiile** de pe acest disc\n"
+"- Va **distruge toate datele** prezente pe acele partitii\n"
+"\n"
+"**Nu exista cale de intoarcere.** Odata confirmat, nu exista absolut nicio "
+"modalitate de a recupera fisierele sau partitiile tale.\n"
+"\n"
+"Esti **absolut sigur** ca vrei sa continui?"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: but no detected data
+msgid ""
+"**{DEVICE}** already has partitions.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly erase all "
+"existing partitions** on this disk.\n"
+"\n"
+"**There is no going back.**\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"**{DEVICE}** are deja partitii.\n"
+"\n"
+"Daca confirmi, Recalbox va **sterge in mod permanent si ireversibil toate "
+"partitiile existente** de pe acest disc.\n"
+"\n"
+"**Nu exista cale de intoarcere.**\n"
+"\n"
+"Esti sigur ca vrei sa continui?"
+
+#: MenuProvider.cpp InstallDevice — second confirmation title
+msgid "LAST WARNING BEFORE INSTALLATION"
+msgstr "ULTIMA ATENTIONARE INAINTE DE INSTALARE"
+
+#: MenuProvider.cpp InstallDevice — second confirmation body
+msgid ""
+"The installation of Recalbox on **{DEVICE}** may take **several minutes**.\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation.\n"
+"If the process is interrupted, the disk may be left in an unusable state.\n"
+"\n"
+"You can still change your mind and **cancel right now**."
+msgstr ""
+"Instalarea Recalbox pe **{DEVICE}** poate dura **cateva minute**.\n"
+"\n"
+"⚠ NU opri si NU reporni Recalbox in timpul instalarii.\n"
+"Daca procesul este intrerupt, discul poate ramane intr-o stare "
+"inutilizabila.\n"
+"\n"
+"Inca te poti razgandi si **anula chiar acum**."
+
+#: GuiInstallRecalbox.cpp — window title
+msgid "INSTALLATION IN PROGRESS..."
+msgstr "INSTALARE IN CURS..."
+
+#: GuiInstallRecalbox.cpp — body text shown during installation
+msgid ""
+"Installing Recalbox on **{DEVICE}**...\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation process.\n"
+"If the installation is interrupted, the disk may be left in an unusable "
+"state.\n"
+"\n"
+"Please wait — this may take **several minutes**."
+msgstr ""
+"Se instaleaza Recalbox pe **{DEVICE}**...\n"
+"\n"
+"⚠ NU opri si NU reporni Recalbox in timpul procesului de instalare.\n"
+"Daca instalarea este intrerupta, discul poate ramane intr-o stare "
+"inutilizabila.\n"
+"\n"
+"Te rugam sa astepti — acest lucru poate dura **cateva minute**."
+
+#: GuiInstallRecalbox.cpp — initial status line
+msgid "Starting installation..."
+msgstr "Se porneste instalarea..."
+
+#: GuiInstallRecalbox.cpp — status line on success
+msgid "Installation complete! Press any button to reboot."
+msgstr "Instalare finalizata! Apasa orice buton pentru a reporni."
+
+#: GuiInstallRecalbox.cpp — help bar label when installation is complete
+msgid "REBOOT"
+msgstr "REPORNESTE"
+
+#: GuiInstallRecalbox.cpp — status line on failure
+msgid "Installation failed! Check the logs for details."
+msgstr "Instalarea a esuat! Verifica jurnalele pentru detalii."
+
+#: GuiInstallRecalbox.cpp — partition step status strings
+msgid "Unmounting existing partitions..."
+msgstr "Se demonteaza partitiile existente..."
+
+msgid "Wiping existing partitions..."
+msgstr "Se sterg partitiile existente..."
+
+msgid "Creating RECALBOX partition (FAT32, 6 GB)..."
+msgstr "Se creeaza partitia RECALBOX (FAT32, 6 GB)..."
+
+msgid "Creating SHARE partition (exFAT)..."
+msgstr "Se creeaza partitia SHARE (exFAT)..."
+
+msgid "Creating OVERLAY partition (ext4, 1 GB)..."
+msgstr "Se creeaza partitia OVERLAY (ext4, 1 GB)..."
+
+msgid "Reloading partition table..."
+msgstr "Se reincarca tabela de partitii..."
+
+msgid "Formatting RECALBOX partition (FAT32)..."
+msgstr "Se formateaza partitia RECALBOX (FAT32)..."
+
+msgid "Formatting SHARE partition (exFAT)..."
+msgstr "Se formateaza partitia SHARE (exFAT)..."
+
+msgid "Formatting OVERLAY partition (ext4)..."
+msgstr "Se formateaza partitia OVERLAY (ext4)..."
+
+#: GuiInstallRecalbox.cpp — pre-flight size check
+msgid "Checking available disk space..."
+msgstr "Se verifica spatiul disponibil pe disc..."
+
+msgid ""
+"Not enough space on the target disk.\n"
+"\n"
+"The content of **/recalbox/share** ({SIZE_SHARE}) does not fit in the "
+"available SHARE partition ({SIZE_AVAIL}).\n"
+"\n"
+"Please use a larger disk or free up space on /recalbox/share first."
+msgstr ""
+"Spatiu insuficient pe discul tinta.\n"
+"\n"
+"Continutul din **/recalbox/share** ({SIZE_SHARE}) nu incape in partitia "
+"SHARE disponibila ({SIZE_AVAIL}).\n"
+"\n"
+"Foloseste un disc mai mare sau elibereaza mai intai spatiu pe /recalbox/"
+"share."
+
+#: GuiInstallRecalbox.cpp — mount and measure steps
+msgid "Mounting partitions..."
+msgstr "Se monteaza partitiile..."
+
+msgid "Measuring data to copy..."
+msgstr "Se masoara datele de copiat..."
+
+msgid "{COUNT} files copied ({DONE}/{TOTAL})"
+msgstr "{COUNT} fisiere copiate ({DONE}/{TOTAL})"
+
+#: GuiInstallRecalbox.cpp — final step
+msgid "Finalizing installation..."
+msgstr "Se finalizeaza instalarea..."
+
+msgid "GUIDE"
+msgstr "GUIDE"
+
+#: GuiInputConfig — 8bitdo Hotkey
+msgid "HEART"
+msgstr "INIMA"
+
+msgid "PS BUTTON"
+msgstr "BUTON PS"
+
+msgid "Text list"
+msgstr "Lista text"
+
+msgid "Logo list"
+msgstr "Lista de logo-uri"
+
+msgid "Carousel"
+msgstr "Carusel"
+
+msgid "Grid"
+msgstr "Grila"
+
+msgid "Gamelist layout"
+msgstr "Aspectul listei de jocuri"
+
+msgid "Game list layout"
+msgstr "Aspectul listei de jocuri"
+
+msgid ""
+"Select the way your games are shown. Text list, logo list, carousel, "
+"grid, ..."
+msgstr ""
+"Selectati modul in care sunt afisate jocurile. Lista text, lista de logo-"
+"uri, carusel, grila, ..."

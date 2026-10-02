@@ -1,0 +1,14 @@
+diff --git a/src/vm/lua_bridge.cpp b/src/vm/lua_bridge.cpp
+index 25299bc..dc71b49 100755
+--- a/src/vm/lua_bridge.cpp
++++ b/src/vm/lua_bridge.cpp
+@@ -1142,7 +1142,8 @@ void Code::printError(const char* where)
+       std::cout << message << std::endl;
+     }
+   }
+-  getchar();
++  exit(1);
++  //getchar();
+ }
+ 
+ void Code::initFromSource(const std::string& code)

@@ -1,0 +1,59 @@
+From dd2482dd270802675342971783113bee02b94750 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 26 Jun 2024 10:07:12 +0200
+Subject: [PATCH 7/8] feat: add retroflag gpi2w dpi panel for kms driver
+
+---
+ drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+ 1 file changed, 29 insertions(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index a9314ab48a9f..26a9a632d811 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -2197,6 +2197,32 @@ static const struct panel_desc auo_a030vvn01 = {
+ 	.connector_type = DRM_MODE_CONNECTOR_DPI,
+ };
+ 
++static const struct display_timing retroflag_gpi2w_timing = {
++	.pixelclock = { 19200000, 19200000, 19200000},
++	.hactive = { 640, 640, 640 },
++	.hfront_porch = { 1, 1, 1 },
++	.hback_porch = { 20, 20, 20 },
++	.hsync_len = { 1, 1, 1},
++	.vactive = { 480, 480, 480 },
++	.vfront_porch = { 1, 1, 1},
++	.vback_porch = { 2, 2, 2 },
++	.vsync_len = { 1, 1, 1 },
++	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
++};
++
++static const struct panel_desc retroflag_gpi2w = {
++	.timings = &retroflag_gpi2w_timing,
++	.num_timings = 1,
++	.bpc = 6,
++	.size = {
++		.width = 60,
++		.height = 45,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB666_1X24_CPADHI,
++	.bus_flags = DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
++	.connector_type = DRM_MODE_CONNECTOR_DPI,
++};
++
+ static const struct display_timing innolux_at056tn53v1_timing = {
+ 	.pixelclock = { 39700000, 39700000, 39700000},
+ 	.hactive = { 640, 640, 640 },
+@@ -4242,6 +4268,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "auo,a030vvn01",
+ 		.data = &auo_a030vvn01,
++	}, {
++		.compatible = "retroflag,gpi2w",
++		.data = &retroflag_gpi2w,
+ 	}, {
+ 		.compatible = "innolux,at056tn53v1",
+ 		.data = &innolux_at056tn53v1,
+-- 
+2.45.2
+

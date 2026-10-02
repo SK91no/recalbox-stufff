@@ -1,0 +1,67 @@
+Fix DMD rendering as a black rectangle on the OpenGL renderer (BW_FP32 textures).
+
+The RED32F color format was never added to the format tables of the OpenGL
+Sampler, in either CreateTexture() or UpdateTexture(). It therefore falls
+through to the defaults of both ternary chains:
+
+    const GLuint col_type = ((format == RGBA32F) || (format == RGB32F)) ? GL_FLOAT
+                          : ...
+                          : GL_UNSIGNED_BYTE;              // <- RED32F lands here
+    const GLuint col_format = ((format == GREY8) || (format == RED16F)) ? GL_RED
+                          : ...
+                          : GL_RGBA;                       // <- and here
+
+so a BW_FP32 image, whose texture is allocated as GL_R32F by glTexStorage2D,
+gets uploaded with:
+
+    glTexSubImage2D(..., GL_RGBA, GL_UNSIGNED_BYTE, data);
+
+GL requires GL_RED/GL_FLOAT for an R32F texture and rejects the call with
+INVALID_OPERATION. Nothing checks glGetError here, so the upload silently does
+nothing and the texture keeps the zeroes left by glTexStorage2D. Sampling it
+returns 0, and the DMD shader multiplies it out to black.
+
+BW_FP32 is the format used for luminance DMD frames, so any display source
+publishing CTLPI_DISPLAY_FORMAT_LUM32F -- PinMAME's DMD, notably -- renders as
+a black rectangle: correctly sized and positioned, with a valid texture and the
+right tint, but empty. Sources publishing sRGB frames (FlexDMD and friends) take
+another branch of the table and are unaffected, which is what makes this look
+like a ScoreView or a PinMAME problem rather than a texture upload one.
+
+Note RED16F is present in the GL_RED list but RED32F is not, which suggests it
+was simply missed when the format was introduced. col_is_linear has the same
+omission: a float format is always linear.
+
+Only the OpenGL renderer is affected, the BGFX backend has its own upload path.
+
+Signed-off-by: Adrien Beudin <beudbeud@gmail.com>
+
+--- a/src/renderer/Sampler.cpp
++++ b/src/renderer/Sampler.cpp
+@@ -485,8 +485,8 @@
+       else if (format == colorFormat::SRGBA)
+          format = colorFormat::RGBA;
+    }
+-   const GLuint col_type = ((format == RGBA32F) || (format == RGB32F)) ? GL_FLOAT : ((format == RGB16F) || (format == RGBA16F)) ? GL_HALF_FLOAT : (format == RGB5) ? GL_UNSIGNED_SHORT_5_6_5 : GL_UNSIGNED_BYTE;
+-   const GLuint col_format = ((format == GREY8) || (format == RED16F))                                                                                                      ? GL_RED
++   const GLuint col_type = ((format == RGBA32F) || (format == RGB32F) || (format == RED32F)) ? GL_FLOAT : ((format == RGB16F) || (format == RGBA16F)) ? GL_HALF_FLOAT : (format == RGB5) ? GL_UNSIGNED_SHORT_5_6_5 : GL_UNSIGNED_BYTE;
++   const GLuint col_format = ((format == GREY8) || (format == RED16F) || (format == RED32F))                                                                                                      ? GL_RED
+       : ((format == GREY_ALPHA) || (format == RG16F))                                                                                                                       ? GL_RG
+       : ((format == RGB) || (format == RGB8) || (format == SRGB) || (format == SRGB8) || (format == RGB5) || (format == RGB10) || (format == RGB16F) || (format == RGB32F)) ? GL_RGB
+                                                                                                                                                                             : GL_RGBA;
+@@ -520,12 +520,12 @@
+    const unsigned int Width = surf->width();
+    const unsigned int Height = surf->height();
+ 
+-   const GLuint col_type = ((Format == RGBA32F) || (Format == RGB32F)) ? GL_FLOAT : ((Format == RGB16F) || (Format == RGBA16F)) ? GL_HALF_FLOAT : GL_UNSIGNED_BYTE;
+-   const GLuint col_format = ((Format == GREY8) || (Format == RED16F))                                                                                                      ? GL_RED
++   const GLuint col_type = ((Format == RGBA32F) || (Format == RGB32F) || (Format == RED32F)) ? GL_FLOAT : ((Format == RGB16F) || (Format == RGBA16F)) ? GL_HALF_FLOAT : GL_UNSIGNED_BYTE;
++   const GLuint col_format = ((Format == GREY8) || (Format == RED16F) || (Format == RED32F))                                                                                                      ? GL_RED
+       : ((Format == GREY_ALPHA) || (Format == RG16F))                                                                                                                       ? GL_RG
+       : ((Format == RGB) || (Format == RGB8) || (Format == SRGB) || (Format == SRGB8) || (Format == RGB5) || (Format == RGB10) || (Format == RGB16F) || (Format == RGB32F)) ? GL_RGB
+                                                                                                                                                                             : GL_RGBA;
+-   const bool col_is_linear = (Format == GREY8) || (Format == RED16F) || (Format == GREY_ALPHA) || (Format == RG16F) || (Format == RGB5) || (Format == RGB) || (Format == RGB8)
++   const bool col_is_linear = (Format == GREY8) || (Format == RED16F) || (Format == RED32F) || (Format == GREY_ALPHA) || (Format == RG16F) || (Format == RGB5) || (Format == RGB) || (Format == RGB8)
+       || (Format == RGB10) || (Format == RGB16F) || (Format == RGB32F) || (Format == RGBA16F) || (Format == RGBA32F) || (Format == RGBA) || (Format == RGBA8) || (Format == RGBA10)
+       || (Format == DXT5) || (Format == BC6U) || (Format == BC6S) || (Format == BC7);
+ 

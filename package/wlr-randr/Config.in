@@ -1,0 +1,10 @@
+config BR2_PACKAGE_WLR_RANDR
+	bool "wlr-randr"
+	depends on BR2_PACKAGE_DWL
+	select BR2_PACKAGE_WAYLAND
+	select BR2_PACKAGE_WAYLAND_PROTOCOLS
+	# Runtime dependencies
+	help
+	  wlr-randr allow to change dwl resolution
+
+	  https://github.com/emersion/wlr-randr

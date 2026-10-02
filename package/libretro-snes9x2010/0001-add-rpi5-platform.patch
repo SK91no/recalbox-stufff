@@ -1,0 +1,33 @@
+From d23fc32c4158dc73f8f8fe9739a08ad87a8f7377 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 28 Aug 2024 23:33:28 +0200
+Subject: [PATCH] add rpi5 platform
+
+---
+ Makefile.libretro | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/Makefile.libretro b/Makefile.libretro
+index fd2e904..5755f8d 100644
+--- a/Makefile.libretro
++++ b/Makefile.libretro
+@@ -320,6 +320,16 @@ else ifeq ($(platform), rpi4_64)
+         CFLAGS += -fomit-frame-pointer -ffast-math
+         HAVE_NEON = 1
+ 
++# Raspberry Pi 5 (64-bit)
++else ifeq ($(platform), rpi5_64)
++        TARGET := $(TARGET_NAME)_libretro.so
++        fpic := -fPIC
++        SHARED := -shared -Wl,--version-script=libretro/link.T -Wl,--no-undefined
++        CFLAGS += -DARM
++        CFLAGS += -mcpu=cortex-a76 -mtune=cortex-a76 -funsafe-math-optimizations
++        CFLAGS += -fomit-frame-pointer -ffast-math
++        HAVE_NEON = 1
++
+ # ODROIDN2
+ else ifneq (,$(findstring CortexA73_G12B,$(platform)))
+ 	TARGET := $(TARGET_NAME)_libretro.so
+-- 
+2.46.0
+

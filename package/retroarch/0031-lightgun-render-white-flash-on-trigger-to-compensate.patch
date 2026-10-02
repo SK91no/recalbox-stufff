@@ -1,0 +1,1060 @@
+diff -urN a/gfx/video_driver.c b/gfx/video_driver.c
+--- a/gfx/video_driver.c	2026-05-27 01:15:36.698127782 +0200
++++ b/gfx/video_driver.c	2026-05-27 01:15:43.498186049 +0200
+@@ -31,6 +31,7 @@
+ #include "../config.def.h"
+ 
+ #include "video_driver.h"
++#include "../input/lightguns.h"
+ #include "video_filter.h"
+ #include "video_display_server.h"
+ 
+@@ -3784,6 +3785,48 @@
+    video_st->frame_cache_height  = height;
+    video_st->frame_cache_pitch   = pitch;
+ 
++   /* Lightgun trigger flash: when the input layer detected a rising edge on
++    * a lightgun trigger, drive a "lightgun_flash_intensity" shader parameter
++    * to 1.0 for a couple of frames so the active shader can render a full
++    * white frame on top of the core's output. This compensates for the
++    * display pipeline lag (KMS/DPI/DAC) that would otherwise make the
++    * in-game flash arrive at the CRT *after* the core has already read
++    * the gun's position.
++    *
++    * Driving the flash through a shader (rather than memset-ing the
++    * core's framebuffer in place) avoids the full DPI/KMS pipe reset
++    * (rp1dpi_pipe_disable/enable) that Mesa triggers when the framebuffer
++    * content changes drastically. The shader render path treats the flash
++    * as a normal visual effect, so the swap chain stays stable. */
++   /* Lightgun trigger flash: when the input layer detected a rising edge on
++    * a lightgun trigger, fill the core's framebuffer with full white for a
++    * couple of frames so the gun's photodiode has a guaranteed strong
++    * signal to lock on. This compensates for the display pipeline lag
++    * (KMS/DPI/DAC) that would otherwise make the in-game flash arrive at
++    * the CRT *after* the core has already read the gun's position.
++    *
++    * 0xff fills give white in every supported pix_fmt (XRGB8888, RGB565,
++    * 0RGB1555). HW-rendered frames (RETRO_HW_FRAME_BUFFER_VALID) are
++    * skipped - we can't touch GPU-owned memory from here. */
++   if (video_st->lightgun_flash_frames > 0
++       && data != NULL
++       && data != RETRO_HW_FRAME_BUFFER_VALID
++       && pitch > 0
++       && height > 0)
++   {
++      memset((void *)data, 0xff, (size_t)pitch * (size_t)height);
++   }
++
++   /* Lightgun shader params + per-frame counter ticks.
++    * Implementation in input/lightguns.c — kept here only as two
++    * one-line hooks so video_driver.c stays out of the lightgun
++    * pipeline. */
++   {
++      input_driver_state_t *input_st = input_state_get_ptr();
++      lightgun_apply_shader_params(input_st, video_st);
++      lightgun_tick_frame(input_st, video_st);
++   }
++
+    if (
+             video_st->scaler_ptr
+          && data
+diff -urN a/gfx/video_driver.h b/gfx/video_driver.h
+--- a/gfx/video_driver.h	2026-05-27 01:15:36.645892882 +0200
++++ b/gfx/video_driver.h	2026-05-27 01:15:43.498382375 +0200
+@@ -884,6 +884,12 @@
+    bool frame_delay_pause;
+ 
+    bool threaded;
++
++   /* Lightgun white-flash burst countdown. Set to 2 by the input
++    * lightgun FSM at FLASH_BURST, decremented by the video frame loop.
++    * While > 0, the frame is rendered fully white (SW cores) or the
++    * shader receives flash_active = 1.0 (HW cores). */
++   uint8_t lightgun_flash_frames;
+ } video_driver_state_t;
+ 
+ typedef struct video_frame_delay_auto
+diff -urN a/input/input_driver.c b/input/input_driver.c
+--- a/input/input_driver.c	2026-05-27 01:15:36.636872609 +0200
++++ b/input/input_driver.c	2026-05-27 01:15:43.496993430 +0200
+@@ -33,6 +33,19 @@
+ #include "input_remapping.h"
+ #include "input_osk.h"
+ #include "input_types.h"
++#include "../runloop.h"
++#include "../command.h"
++
++#include "lightguns.h"
++
++/* Forward decl: defined later in this file. Passed to
++ * lightgun_handle_trigger() so the lightgun module can force-poll
++ * AUX_A/AUX_B for cores that never read them on their own. */
++static int16_t input_state_internal(
++      input_driver_state_t *input_st,
++      settings_t *settings,
++      unsigned port, unsigned device,
++      unsigned idx, unsigned id);
+ 
+ #ifdef HAVE_BSV_MOVIE
+ #include "bsv/bsvmovie.h"
+@@ -1826,6 +1839,41 @@
+             }
+          }
+ 
++         /* Lightgun read filters (impl in input/lightguns.c):
++          *   - SCREEN_X/Y: track latest sample, replay locked
++          *     position during post-flash window, apply cal remap
++          *   - IS_OFFSCREEN: force 0 while serving a locked
++          *     on-screen shot (unless lock = sentinel)
++          *   - SCREEN_X stat: per-shot "fresh sample" counter for
++          *     the auto-tune deliver-frame heuristic
++          *   - AUX_A/AUX_B: cal restart (A) and commit/skip (B),
++          *     masked toward the core during cal */
++         if (device == RETRO_DEVICE_LIGHTGUN && port < 16)
++         {
++            if (   id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X
++                || id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_Y)
++               res = lightgun_filter_screen_axis(input_st, port, id, res);
++            else if (id == RETRO_DEVICE_ID_LIGHTGUN_IS_OFFSCREEN)
++               res = lightgun_filter_is_offscreen(input_st, port, id, res);
++
++            if (id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X)
++               lightgun_track_screen_x_for_stats(input_st, port, id, res);
++
++            if (   id == RETRO_DEVICE_ID_LIGHTGUN_AUX_A
++                || id == RETRO_DEVICE_ID_LIGHTGUN_AUX_B)
++               res = lightgun_handle_aux_button(input_st, port, id, res);
++         }
++
++         /* Lightgun TRIGGER read: full FSM lives in
++          * input/lightguns.c. We pass input_state_internal() down
++          * so the lightgun code can force-poll AUX_A/AUX_B for
++          * cores that never read them on their own. */
++         if (     device == RETRO_DEVICE_LIGHTGUN
++               && id     == RETRO_DEVICE_ID_LIGHTGUN_TRIGGER
++               && port   <  16)
++            res = lightgun_handle_trigger(input_st, settings, port,
++                  res, input_state_internal);
++
+          break;
+    }
+ 
+diff -urN a/input/input_driver.h b/input/input_driver.h
+--- a/input/input_driver.h	2025-11-20 01:17:08.000000000 +0100
++++ b/input/input_driver.h	2026-05-27 01:15:43.497674228 +0200
+@@ -49,6 +49,7 @@
+ #include "include/hid_driver.h"
+ #endif
+ #include "include/gamepad.h"
++#include "lightgun_state.h"
+ #include "../configuration.h"
+ #include "../performance_counters.h"
+ 
+@@ -646,6 +647,12 @@
+    bool analog_requested[MAX_USERS];
+    retro_bits_512_t keyboard_mapping_bits;    /* bool alignment */
+    input_game_focus_state_t game_focus_state; /* bool alignment */
++
++   /* All GunCon / firmware-locked lightgun runtime state lives
++    * here. Definitions in input/lightgun_state.h, logic in
++    * input/lightguns.c. input_driver.h knows nothing about the
++    * lightgun pipeline beyond this single member. */
++   lightgun_state_t lightgun;
+ } input_driver_state_t;
+ 
+ 
+diff -urN a/input/lightguns.c b/input/lightguns.c
+--- a/input/lightguns.c	1970-01-01 01:00:00.000000000 +0100
++++ b/input/lightguns.c	2026-05-27 01:19:24.001690018 +0200
+@@ -0,0 +1,668 @@
++/* RetroArch lightgun helpers (shared by input_driver.c and
++ * video_driver.c). See lightguns.h for the contract. */
++
++#include "lightguns.h"
++
++#include <stdio.h>
++#include <string.h>
++#include <stdbool.h>
++
++#include "../configuration.h"
++#include "../paths.h"
++#include "../runloop.h"
++#include "../gfx/video_driver.h"
++#include "input_driver.h"
++#include <libretro.h>
++#include <queues/message_queue.h>
++
++/* GunCon launch-time on-screen calibration is gated off for now.
++ * Flip to true to restore the full cal flow (capture + OSD + remap);
++ * all the cal code below stays in place, this is the single switch. */
++static const bool GUNCON_CAL_ENABLED = true;
++
++/* --- Per-core detection (cached on first call) --- */
++
++static int8_t s_service_frames_cached = 0;  /* 0 = not yet detected */
++static int8_t s_y_flip_cached         = -1; /* -1 = not yet detected */
++
++static void detect_core_once(void)
++{
++   if (s_service_frames_cached > 0 && s_y_flip_cached >= 0)
++      return;
++   const char *cp = path_get(RARCH_PATH_CORE);
++   if (!cp || !*cp)
++      return;
++   bool flycast = (strstr(cp, "flycast") != NULL)
++               || (strstr(cp, "reicast") != NULL);
++   if (s_service_frames_cached == 0)
++      s_service_frames_cached = flycast ? 4 : 2;
++   if (s_y_flip_cached < 0)
++      s_y_flip_cached = flycast ? 1 : 0;
++}
++
++int lightgun_service_frames(void)
++{
++   detect_core_once();
++   return (s_service_frames_cached > 0) ? s_service_frames_cached : 2;
++}
++
++bool lightgun_core_y_flip(void)
++{
++   detect_core_once();
++   return s_y_flip_cached == 1;
++}
++
++/* SCREEN_X / SCREEN_Y read filter. Tracks the latest sample, replays
++ * the locked value during the post-flash window, then applies the
++ * cal linear remap. Mirrors the logic that previously lived inline
++ * in input_driver.c. */
++int16_t lightgun_filter_screen_axis(input_driver_state_t *input_st,
++      unsigned port, unsigned id, int16_t res)
++{
++   if (id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X)
++      input_st->lightgun.last_screen_x[port] = res;
++   else
++      input_st->lightgun.last_screen_y[port] = res;
++   if (   input_st->lightgun.position_locked[port]
++       && input_st->lightgun.post_flash_window[port] > 0)
++   {
++      /* Override the value sent to the core with the frozen
++       * post-flash position, but only for the duration of
++       * post_flash_window. After it expires the core gets the live
++       * position back so cross-hairs/cursors track normally. */
++      if (id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X)
++         res = input_st->lightgun.lock_x[port];
++      else
++         res = input_st->lightgun.lock_y[port];
++   }
++   /* Manual GunCon cal linear remap (after any lock override).
++    * Targets sit at UV (0.06, 0.94), i.e. libretro [-28836, +28836].
++    * We map [cal_min, cal_max] to that range so a corner shot lands
++    * on the corner target instead of the screen edge. Outside the
++    * calibrated range we still allow up to the [-32768, +32767]
++    * edges. */
++   if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_valid[port])
++   {
++      int v   = (int)res;
++      int mn  = (id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X)
++                ? input_st->lightgun.cal_x_min[port]
++                : input_st->lightgun.cal_y_min[port];
++      int mx  = (id == RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X)
++                ? input_st->lightgun.cal_x_max[port]
++                : input_st->lightgun.cal_y_max[port];
++      int den = mx - mn;
++      const int LIBRETRO_TARGET_HALF_RANGE = 28836;
++      if (den > 0 && v != -32768)
++      {
++         long mapped = ((long)(v - mn)
++                        * (2L * LIBRETRO_TARGET_HALF_RANGE))
++                       / den - LIBRETRO_TARGET_HALF_RANGE;
++         if (mapped < -32768) mapped = -32768;
++         if (mapped >  32767) mapped =  32767;
++         res = (int16_t)mapped;
++      }
++   }
++   return res;
++}
++
++/* IS_OFFSCREEN read filter. While a lock is active, force 0 (=
++ * on-screen) so the core uses our locked SCREEN_X/Y, unless the
++ * locked position is the -32768 sentinel — meaning the user
++ * voluntarily aimed off-screen for a duck/reload. */
++int16_t lightgun_filter_is_offscreen(input_driver_state_t *input_st,
++      unsigned port, unsigned id, int16_t res)
++{
++   if (   id != RETRO_DEVICE_ID_LIGHTGUN_IS_OFFSCREEN
++       || !input_st->lightgun.position_locked[port]
++       ||  input_st->lightgun.post_flash_window[port] <= 0)
++      return res;
++   int16_t lx = input_st->lightgun.lock_x[port];
++   int16_t ly = input_st->lightgun.lock_y[port];
++   return (lx == -32768 || ly == -32768) ? 1 : 0;
++}
++
++/* SCREEN_X stat tracker. Bumps the per-shot "fresh sample seen"
++ * counter used by the auto-tune deliver-frame heuristic. No log on
++ * the hot path. */
++void lightgun_track_screen_x_for_stats(input_driver_state_t *input_st,
++      unsigned port, unsigned id, int16_t res)
++{
++   if (   id != RETRO_DEVICE_ID_LIGHTGUN_SCREEN_X
++       || input_st->lightgun.post_flash_window[port] <= 0
++       || input_st->lightgun.post_flash_window[port] > 2
++       || res <= -0x7fff || res == 0x7fff
++       || input_st->lightgun.current_shot_pos_seen[port])
++      return;
++   input_st->lightgun.current_shot_pos_seen[port] = true;
++   input_st->lightgun.shots_pos_valid++;
++}
++
++/* AUX_A / AUX_B read handler.
++ *   AUX_A rising edge → restart cal phase 1 (target=0)
++ *   AUX_B rising edge → commit/skip, exit cal
++ * START shares the AUX_B rising-edge tracker so whichever the core
++ * polls first wins. We mask the value toward the core during cal so
++ * these buttons don't double-act as in-game inputs.
++ * NOTE: we deliberately do NOT bind LIGHTGUN_START here — RetroArch
++ * polls START internally for hotkey handling outside the core's
++ * update_input, which would let stray internal polls validate the
++ * cal. The TRIGGER block calls this AUX path explicitly. */
++int16_t lightgun_handle_aux_button(input_driver_state_t *input_st,
++      unsigned port, unsigned id, int16_t res)
++{
++   if (!GUNCON_CAL_ENABLED)
++      return res;
++   bool now = (res != 0);
++   if (id == RETRO_DEVICE_ID_LIGHTGUN_AUX_A)
++   {
++      if (now && !input_st->lightgun.cal_aux_a_was_pressed[port]
++          && input_st->lightgun.cal_state[port] == 1)
++      {
++         input_st->lightgun.cal_state[port]  = 0;
++         input_st->lightgun.cal_target[port] = 0;
++         input_st->lightgun.cal_valid[port]  = false;
++      }
++      input_st->lightgun.cal_aux_a_was_pressed[port] = now;
++   }
++   else
++   {
++      /* Rising-edge guarded for the first 60 frames so a stuck-on
++       * input at boot can't auto-skip the calibration. */
++      video_driver_state_t *vs_btn = video_state_get_ptr();
++      unsigned fcount_btn          =
++         vs_btn ? (unsigned)vs_btn->frame_count : 0;
++      if (now && !input_st->lightgun.cal_start_was_pressed[port]
++          && fcount_btn > 60)
++      {
++         uint8_t cs = input_st->lightgun.cal_state[port];
++         bool may_act = (cs == 0) || (cs == 1);
++         if (may_act)
++         {
++            bool was_phase1 = (cs == 0);
++            /* Phase 1 = skip (no cal applied).
++             * Phase 2 = validate (cal already computed at capture). */
++            if (was_phase1)
++               input_st->lightgun.cal_valid[port] = false;
++            input_st->lightgun.cal_state[port] = 2; /* DONE */
++         }
++      }
++      input_st->lightgun.cal_start_was_pressed[port] = now;
++   }
++   /* Mask these buttons toward the core during cal. */
++   if (input_st->lightgun.cal_state[port] != 2)
++      return 0;
++   return res;
++}
++
++/* Trigger read FSM (see lightguns.h header for the full contract).
++ * Was previously inlined in input/input_driver.c; pulled out so that
++ * the lightgun pipeline lives in one file. The only reason it takes
++ * an `input_state_fn` rather than calling input_state_internal()
++ * directly is that input_state_internal() is static to
++ * input_driver.c and recursion is needed to force-poll AUX_A/AUX_B
++ * for cores that never read them themselves (e.g. fbneo Point
++ * Blank, pcsx_rearmed). */
++
++#define LG_IDLE             0
++#define LG_PRE_FLASH        1
++#define LG_FLASH_BURST      2  /* fires the 1-frame flash */
++#define LG_FLASH_WAIT       3  /* waits remaining frames */
++#define LG_FLASH_DELIVER    4
++#define LG_RELEASE_HOLD1    5
++#define LG_RELEASE_HOLD2    6
++#define LG_RELEASE_HOLD3    7
++
++#define LIGHTGUN_SERVICE_FRAMES (lightgun_service_frames())
++
++int16_t lightgun_handle_trigger(
++      input_driver_state_t *input_st,
++      settings_t *settings,
++      unsigned port, int16_t res,
++      lightgun_input_state_fn input_state_fn)
++{
++   video_driver_state_t *video_st = video_state_get_ptr();
++   bool real_pressed              = (res != 0);
++
++   /* Force-poll AUX_A and AUX_B from inside the TRIGGER read so the
++    * cal validate/retry buttons work even with cores that never
++    * poll them (e.g. fbneo Point Blank only reads TRIGGER +
++    * SCREEN_X/Y in lightgun mode). The recursive
++    * input_state_fn() calls re-enter input_state_internal() which
++    * passes through the AUX_A/AUX_B rising-edge handler. Skipped
++    * once cal is DONE so we don't add input cost during normal
++    * gameplay. */
++   {
++      static __thread bool s_cal_force_poll_active = false;
++      if (GUNCON_CAL_ENABLED
++          && !s_cal_force_poll_active
++          && input_st->lightgun.cal_state[port] != 2
++          && input_state_fn)
++      {
++         s_cal_force_poll_active = true;
++         (void)input_state_fn(input_st, settings, port,
++            RETRO_DEVICE_LIGHTGUN, 0,
++            RETRO_DEVICE_ID_LIGHTGUN_AUX_A);
++         (void)input_state_fn(input_st, settings, port,
++            RETRO_DEVICE_LIGHTGUN, 0,
++            RETRO_DEVICE_ID_LIGHTGUN_AUX_B);
++         s_cal_force_poll_active = false;
++      }
++   }
++
++   unsigned frame_now    = (unsigned)video_st->frame_count;
++   int      incoming_res = res;
++
++   /* Auto-calibrated deliver count.
++    *   Starts at 5. Bumped up by 1 (toward 10) each time 3
++    *   consecutive shots end without a SHOT_POS_VALID reaching the
++    *   DELIVER/HOLD3 window — meaning the post-flash sample is
++    *   consistently arriving too late.
++    *   /recalbox/share/system/lightgun_deliver_frames overrides
++    *   the auto value if present. */
++   static int s_df_auto      = 5;
++   static int s_recent_stale = 0;
++   static int s_recent_fresh = 0;
++
++   uint8_t st = input_st->lightgun.fsm_state[port];
++
++   if (real_pressed && !input_st->lightgun.trigger_was_pressed[port]
++       && st == LG_IDLE)
++   {
++      int df = -1;
++      FILE *f = fopen("/recalbox/share/system/lightgun_deliver_frames", "r");
++      if (f)
++      {
++         int v;
++         if (fscanf(f, "%d", &v) == 1 && v >= 2 && v <= 15)
++            df = v;
++         fclose(f);
++      }
++      if (df < 0) df = s_df_auto;
++
++      /* Auto-cal evaluates the PREVIOUS shot:
++       *   pos_seen=true  -> fresh, reset stale, count fresh.
++       *                     5 fresh in a row -> df-- (tighten).
++       *   pos_seen=false -> stale, reset fresh, count stale.
++       *                     3 stale in a row -> df++ (loosen).
++       * Hysteresis (3 up vs 5 down) prevents oscillation. */
++      if (input_st->lightgun.shots_total > 0)
++      {
++         if (input_st->lightgun.current_shot_pos_seen[port])
++         {
++            s_recent_stale = 0;
++            s_recent_fresh++;
++            if (s_recent_fresh >= 5 && s_df_auto > 4)
++            {
++               s_df_auto--;
++               s_recent_fresh = 0;
++            }
++         }
++         else
++         {
++            s_recent_fresh = 0;
++            s_recent_stale++;
++            if (s_recent_stale >= 3 && s_df_auto < 10)
++            {
++               s_df_auto++;
++               s_recent_stale = 0;
++            }
++         }
++      }
++
++      st = LG_PRE_FLASH;
++      input_st->lightgun.flash_wait[port] = (int8_t)(df - 2);
++      /* PSX cores (pcsx_rearmed, swanstation) poll the lightgun
++       * position later in their cycle than other cores, so the
++       * locked-position window must be longer. Window covers two
++       * phases:
++       *   - lock wait (up to LIGHTGUN_LOCK_WAIT_MAX frames)
++       *   - serve (LIGHTGUN_SERVICE_FRAMES frames of res=1 with
++       *     locked X/Y + IS_OFFSCREEN forced) */
++      input_st->lightgun.post_flash_window[port] =
++         (int8_t)(LIGHTGUN_LOCK_WAIT_MAX + LIGHTGUN_SERVICE_FRAMES);
++      input_st->lightgun.current_shot_pos_seen[port] = false;
++      input_st->lightgun.press_frame[port]           = frame_now;
++      input_st->lightgun.shots_total++;
++      /* Snap pre-press X and Y so we can detect when a fresh
++       * post-flash sample arrives in WAIT. We track BOTH axes
++       * because if the user shoots twice at the same X,
++       * last_screen_x may not change while last_screen_y does —
++       * checking only X would miss those shots. */
++      input_st->lightgun.pre_press_x[port] =
++         input_st->lightgun.last_screen_x[port];
++      input_st->lightgun.pre_press_y[port] =
++         input_st->lightgun.last_screen_y[port];
++      input_st->lightgun.position_locked[port] = false;
++   }
++   else if (!real_pressed
++            && input_st->lightgun.trigger_was_pressed[port]
++            && st == LG_IDLE)
++   {
++      st = LG_RELEASE_HOLD1;
++   }
++   input_st->lightgun.trigger_was_pressed[port] = real_pressed;
++
++   /* Capture post-flash position: lock the first valid (X, Y)
++    * sample seen during the window so subsequent SCREEN_X/Y reads
++    * return the frozen value, no matter when the core polls
++    * TRIGGER. Done OUTSIDE the LG_FLASH_WAIT case so it also
++    * catches samples that arrive at DELIVER frame or in the IDLE
++    * pass-through that follows.
++    *
++    * Reject "stuck-at-min" reads (driver retains the libretro
++    * sentinel -32768 = raw 0 when photodiode misses sync) but
++    * ACCEPT anything above raw ~8 because the user can legitimately
++    * aim near the top edge. cal_valid override: tighten to
++    * cal_min - 2000 when a calibration is active. */
++   {
++      int x_floor = -32500;
++      int y_floor = -32500;
++      if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_valid[port])
++      {
++         int xm = (int)input_st->lightgun.cal_x_min[port] - 2000;
++         int ym = (int)input_st->lightgun.cal_y_min[port] - 2000;
++         if (xm > x_floor) x_floor = xm;
++         if (ym > y_floor) y_floor = ym;
++      }
++      int lx     = input_st->lightgun.last_screen_x[port];
++      int ly     = input_st->lightgun.last_screen_y[port];
++      bool x_ok  = (lx == -32768) || (lx > x_floor);
++      bool y_ok  = (ly == -32768) || (ly > y_floor);
++      /* Require at least one of X / Y to have moved since the
++       * rising edge — otherwise the driver is just serving the
++       * cached value it already had before the press. */
++      bool fresh =
++         (lx != input_st->lightgun.pre_press_x[port])
++      || (ly != input_st->lightgun.pre_press_y[port]);
++      unsigned _sr = frame_now - input_st->lightgun.press_frame[port];
++      if (   !input_st->lightgun.position_locked[port]
++          &&  input_st->lightgun.post_flash_window[port] > 0
++          && _sr >= LIGHTGUN_LOCK_WAIT_MIN
++          && _sr <= LIGHTGUN_LOCK_WAIT_MAX
++          && x_ok && y_ok && fresh)
++      {
++         input_st->lightgun.lock_x[port] = (int16_t)lx;
++         input_st->lightgun.lock_y[port] = (int16_t)ly;
++         input_st->lightgun.position_locked[port] = true;
++         /* GunCon manual calibration capture (phase 1).
++          * Each fresh lock during phase 1 = next target hit.
++          * After 3 captures we compute the bounds and switch to
++          * phase 2 (test). */
++         if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_state[port] == 0)
++         {
++            uint8_t t = input_st->lightgun.cal_target[port];
++            if (t < 3)
++            {
++               input_st->lightgun.cal_pts_x[port][t] =
++                  input_st->lightgun.lock_x[port];
++               input_st->lightgun.cal_pts_y[port][t] =
++                  input_st->lightgun.lock_y[port];
++               input_st->lightgun.cal_target[port] = t + 1;
++            }
++            if (input_st->lightgun.cal_target[port] >= 3)
++            {
++               /* Linear bbox mapping from 3 corners (TL, TR, BL).
++                * Order-independent min/max. */
++               int xs[3] = {
++                  input_st->lightgun.cal_pts_x[port][0],
++                  input_st->lightgun.cal_pts_x[port][1],
++                  input_st->lightgun.cal_pts_x[port][2]
++               };
++               int ys[3] = {
++                  input_st->lightgun.cal_pts_y[port][0],
++                  input_st->lightgun.cal_pts_y[port][1],
++                  input_st->lightgun.cal_pts_y[port][2]
++               };
++               int xl = xs[0], xr = xs[0], yt = ys[0], yb = ys[0];
++               for (int j = 1; j < 3; j++) {
++                  if (xs[j] < xl) xl = xs[j];
++                  if (xs[j] > xr) xr = xs[j];
++                  if (ys[j] < yt) yt = ys[j];
++                  if (ys[j] > yb) yb = ys[j];
++               }
++               input_st->lightgun.cal_x_min[port] = (int16_t)xl;
++               input_st->lightgun.cal_x_max[port] = (int16_t)xr;
++               input_st->lightgun.cal_y_min[port] = (int16_t)yt;
++               input_st->lightgun.cal_y_max[port] = (int16_t)yb;
++               input_st->lightgun.cal_valid[port] = true;
++               input_st->lightgun.cal_state[port] = 1; /* phase2 */
++            }
++         }
++      }
++   }
++
++   switch (st)
++   {
++   case LG_PRE_FLASH:
++      res = 0;
++      input_st->lightgun.fsm_state[port] = LG_FLASH_BURST;
++      break;
++   case LG_FLASH_BURST:
++      res = 0;
++      video_st->lightgun_flash_frames = 2;
++      if (input_st->lightgun.flash_wait[port] > 0)
++         input_st->lightgun.fsm_state[port] = LG_FLASH_WAIT;
++      else
++         input_st->lightgun.fsm_state[port] = LG_FLASH_DELIVER;
++      break;
++   case LG_FLASH_WAIT:
++      if (video_st->lightgun_flash_frames > 0)
++         video_st->lightgun_flash_frames--;
++      {
++         /* Same-frame deliver: as soon as POSITION_LOCKED is
++          * captured (= firmware sent its post-flash X/Y and we
++          * cached it), return res=1 immediately and jump to the
++          * first HOLD frame. Saves one frame of latency vs.
++          * transitioning into the dedicated DELIVER state, where
++          * res=0 would still be returned this frame.
++          * Fallback at frame > MAX: lock a sentinel (= voluntary
++          * off-screen / reload) so we still deliver a click. */
++         unsigned since_rising =
++            frame_now - input_st->lightgun.press_frame[port];
++         bool deliver_now =
++            since_rising >= LIGHTGUN_LOCK_WAIT_MIN
++            && since_rising <= LIGHTGUN_LOCK_WAIT_MAX
++            && input_st->lightgun.position_locked[port];
++         bool wait_expired = since_rising > LIGHTGUN_LOCK_WAIT_MAX;
++         if (deliver_now)
++         {
++            res = 1;
++            input_st->lightgun.fsm_state[port] = LG_RELEASE_HOLD1;
++            /* Restart the window so the locked position +
++             * IS_OFFSCREEN=0 are served for exactly
++             * service_frames frames in total. */
++            input_st->lightgun.post_flash_window[port] =
++               (int8_t)LIGHTGUN_SERVICE_FRAMES;
++         }
++         else if (wait_expired)
++         {
++            /* No lock during the wait: voluntary off-screen
++             * (duck/reload). Lock a sentinel so SCREEN_X/Y read
++             * -32768 and IS_OFFSCREEN stays 1. */
++            input_st->lightgun.lock_x[port] = -32768;
++            input_st->lightgun.lock_y[port] = -32768;
++            input_st->lightgun.position_locked[port] = true;
++            res = 1;
++            input_st->lightgun.fsm_state[port] = LG_RELEASE_HOLD1;
++            input_st->lightgun.post_flash_window[port] =
++               (int8_t)LIGHTGUN_SERVICE_FRAMES;
++         }
++         else
++            res = 0;
++      }
++      break;
++   case LG_FLASH_DELIVER:
++      /* Service phase: stay in HOLD1 with res=1 as long as the
++       * post_flash_window has frames left. Window is initialised
++       * to LIGHTGUN_SERVICE_FRAMES at the DELIVER call site and
++       * decremented once per frame by video_driver.c. */
++      res = 1;
++      input_st->lightgun.fsm_state[port] = LG_RELEASE_HOLD1;
++      break;
++   case LG_RELEASE_HOLD1:
++      if (input_st->lightgun.post_flash_window[port] > 0)
++         res = 1; /* stay in HOLD1 */
++      else
++      {
++         /* End of service: do NOT force res=0, let incoming_res
++          * (= real_pressed) flow through. If the user is still
++          * holding the trigger, res stays 1 (no spurious release
++          * seen by the core, no double-tap). If the user has
++          * released, res becomes 0 cleanly. */
++         res = incoming_res;
++         input_st->lightgun.fsm_state[port] = LG_IDLE;
++      }
++      break;
++   case LG_RELEASE_HOLD2:
++   case LG_RELEASE_HOLD3:
++      /* Unused: kept for ABI compatibility with old builds.
++       * Treat as IDLE. */
++      input_st->lightgun.fsm_state[port] = LG_IDLE;
++      break;
++   case LG_IDLE:
++   default:
++      input_st->lightgun.fsm_state[port] = LG_IDLE;
++      break;
++   }
++
++   /* Mask the trigger toward the core while calibrating: the core
++    * must not start the game while the user is shooting cal
++    * targets, nor during the test phase before the user commits
++    * with B. We still let the FSM run so POSITION_LOCKED captures
++    * still happen for cal. */
++   if (GUNCON_CAL_ENABLED && input_st->lightgun.cal_state[port] != 2)
++      res = 0;
++
++   return res;
++}
++
++/* --- Per-frame video hooks --- */
++
++void lightgun_apply_shader_params(input_driver_state_t *input_st,
++      video_driver_state_t *video_st)
++{
++   video_shader_ctx_t shader_ctx;
++   shader_ctx.data = NULL;
++   if (!video_shader_driver_get_current_shader(&shader_ctx)
++       || !shader_ctx.data
++       || shader_ctx.data->num_parameters == 0)
++      return;
++
++   settings_t *cfg  = config_get_ptr();
++   float flash_val  = (video_st->lightgun_flash_frames > 0) ? 1.0f : 0.0f;
++
++   /* Cal phase exposed to the shader (max across ports). */
++   float cal_phase_val = 0.0f;
++   if (GUNCON_CAL_ENABLED)
++   for (unsigned p = 0; p < 16; p++)
++   {
++      /* Mask with RETRO_DEVICE_MASK so subclassed lightguns
++       * (e.g. pcsx_rearmed GunCon) match too. */
++      if (cfg && (cfg->uints.input_libretro_device[p]
++                   & RETRO_DEVICE_MASK) != RETRO_DEVICE_LIGHTGUN)
++         continue;
++      uint8_t s = input_st->lightgun.cal_state[p];
++      if (s == 0 && cal_phase_val < 1.0f)
++         cal_phase_val = 1.0f;
++      else if (s == 1 && cal_phase_val < 2.0f)
++         cal_phase_val = 2.0f;
++   }
++
++   /* 3 targets (TL/TR/BL); value 3 = "none active". */
++   float cal_target_p1 = 3.0f, cal_target_p2 = 3.0f;
++   {
++      bool p1_is_gun = cfg &&
++         (cfg->uints.input_libretro_device[0] & RETRO_DEVICE_MASK)
++            == RETRO_DEVICE_LIGHTGUN;
++      bool p2_is_gun = cfg &&
++         (cfg->uints.input_libretro_device[1] & RETRO_DEVICE_MASK)
++            == RETRO_DEVICE_LIGHTGUN;
++      if (p1_is_gun && input_st->lightgun.cal_state[0] == 0)
++         cal_target_p1 = (float)input_st->lightgun.cal_target[0];
++      if (p2_is_gun && input_st->lightgun.cal_state[1] == 0)
++         cal_target_p2 = (float)input_st->lightgun.cal_target[1];
++   }
++
++   /* Cursor positions: from the last SCREEN_X/Y reported. Apply the
++    * cal linear remap if valid so the cursor lands on the targets
++    * the user just calibrated, not on the screen edge. UV
++    * convention: y=0 top, y=1 bottom (matches libretro SCREEN_Y
++    * where -32768 is top). */
++   float cur_x_p1 = 0.5f, cur_y_p1 = 0.5f;
++   float cur_x_p2 = 0.5f, cur_y_p2 = 0.5f;
++   {
++      const float TARGET_HALF = 28836.0f; /* matches input_driver */
++      for (int p = 0; p < 2; p++)
++      {
++         float fx = (float)input_st->lightgun.last_screen_x[p];
++         float fy = (float)input_st->lightgun.last_screen_y[p];
++         if (input_st->lightgun.cal_valid[p])
++         {
++            int mn  = input_st->lightgun.cal_x_min[p];
++            int mx  = input_st->lightgun.cal_x_max[p];
++            int den = mx - mn;
++            if (den > 0)
++               fx = ((fx - (float)mn) * (2.0f * TARGET_HALF))
++                    / (float)den - TARGET_HALF;
++            mn  = input_st->lightgun.cal_y_min[p];
++            mx  = input_st->lightgun.cal_y_max[p];
++            den = mx - mn;
++            if (den > 0)
++               fy = ((fy - (float)mn) * (2.0f * TARGET_HALF))
++                    / (float)den - TARGET_HALF;
++         }
++         float ux = (fx + 32768.0f) / 65535.0f;
++         float uy = (fy + 32768.0f) / 65535.0f;
++         if (p == 0) { cur_x_p1 = ux; cur_y_p1 = uy; }
++         else        { cur_x_p2 = ux; cur_y_p2 = uy; }
++      }
++   }
++
++   for (unsigned i = 0; i < shader_ctx.data->num_parameters; i++)
++   {
++      const char *pid = shader_ctx.data->parameters[i].id;
++      if      (!strcmp(pid, "flash_active"))
++         shader_ctx.data->parameters[i].current = flash_val;
++      else if (!strcmp(pid, "cal_phase"))
++         shader_ctx.data->parameters[i].current = cal_phase_val;
++      else if (!strcmp(pid, "cal_target_p1"))
++         shader_ctx.data->parameters[i].current = cal_target_p1;
++      else if (!strcmp(pid, "cal_target_p2"))
++         shader_ctx.data->parameters[i].current = cal_target_p2;
++      else if (!strcmp(pid, "cursor_x_p1"))
++         shader_ctx.data->parameters[i].current = cur_x_p1;
++      else if (!strcmp(pid, "cursor_y_p1"))
++         shader_ctx.data->parameters[i].current = cur_y_p1;
++      else if (!strcmp(pid, "cursor_x_p2"))
++         shader_ctx.data->parameters[i].current = cur_x_p2;
++      else if (!strcmp(pid, "cursor_y_p2"))
++         shader_ctx.data->parameters[i].current = cur_y_p2;
++      else if (!strcmp(pid, "cal_y_flip"))
++         shader_ctx.data->parameters[i].current =
++            lightgun_core_y_flip() ? 1.0f : 0.0f;
++   }
++}
++
++void lightgun_tick_frame(input_driver_state_t *input_st,
++      video_driver_state_t *video_st)
++{
++   /* Tick the flash counter once per frame. Without this it stays
++    * > 0 forever on HW cores (the framebuffer memset path is
++    * skipped) and the trigger is permanently withheld. */
++   if (video_st->lightgun_flash_frames > 0)
++      video_st->lightgun_flash_frames--;
++
++   /* Tick the post-flash observation window per port. */
++   for (unsigned p = 0; p < 16; p++)
++      if (input_st->lightgun.post_flash_window[p] > 0)
++         input_st->lightgun.post_flash_window[p]--;
++
++   /* Tick down per-port release queues only AFTER the flash has
++    * finished. Otherwise the queue is consumed while the trigger
++    * is still being withheld from the core, wasting frames where
++    * the core wasn't even allowed to see TRIGGER=1. */
++   if (video_st->lightgun_flash_frames == 0)
++      for (unsigned p = 0; p < 16; p++)
++         if (input_st->lightgun.trigger_release_pending[p] > 0)
++            input_st->lightgun.trigger_release_pending[p]--;
++}
+diff -urN a/input/lightguns.h b/input/lightguns.h
+--- a/input/lightguns.h	1970-01-01 01:00:00.000000000 +0100
++++ b/input/lightguns.h	2026-05-27 01:19:40.299950964 +0200
+@@ -0,0 +1,109 @@
++/* RetroArch lightgun helpers (shared by input_driver.c and
++ * video_driver.c). Encapsulates GunCon-style firmware-locked
++ * lightgun handling: white-flash trigger pulse, post-flash lock
++ * window, per-core service duration, manual on-screen 3-target
++ * calibration, OSD overrides during cal phases. */
++
++#ifndef RETROARCH_LIGHTGUNS_H
++#define RETROARCH_LIGHTGUNS_H
++
++#include <stdbool.h>
++#include <stdint.h>
++
++#include "input_driver.h"
++#include "../gfx/video_driver.h"
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/* Lock-acceptance window after the rising edge: only samples that
++ * arrive between [LOCK_WAIT_MIN, LOCK_WAIT_MAX] frames after the
++ * trigger press are accepted as the locked post-flash position.
++ * Earlier = the firmware hasn't finished scanning; later = timeout
++ * → the press is delivered as voluntary off-screen (duck/reload). */
++#define LIGHTGUN_LOCK_WAIT_MIN  2
++#define LIGHTGUN_LOCK_WAIT_MAX  6
++
++/* Number of consecutive frames the core must see res=1 + locked
++ * X/Y + IS_OFFSCREEN=0 once the lock arrives. Detected once from
++ * the loaded core path. PSX, fbneo and the default = 2 frames;
++ * Flycast/Reicast = 4 (Dreamcast cores poll trigger on a wider
++ * time window). */
++int  lightgun_service_frames(void);
++
++/* Whether the active core renders the framebuffer Y-flipped vs.
++ * UV.y (Flycast / Reicast). Detected once and pushed to the
++ * cal_y_flip shader parameter so the cal targets and the cursor
++ * land on the right half of the screen. */
++bool lightgun_core_y_flip(void);
++
++/* --- Per-read filters called from input_state_internal --- */
++
++/* SCREEN_X / SCREEN_Y read: track latest sample, replay locked
++ * value during post-flash window, apply cal linear remap. Returns
++ * the value to report to the core. */
++int16_t lightgun_filter_screen_axis(input_driver_state_t *st,
++      unsigned port, unsigned id, int16_t res);
++
++/* IS_OFFSCREEN read: if a lock is active, force 0 (= on-screen)
++ * unless the locked X or Y is the libretro -32768 sentinel
++ * (= user voluntarily aimed off-screen for a duck/reload). */
++int16_t lightgun_filter_is_offscreen(input_driver_state_t *st,
++      unsigned port, unsigned id, int16_t res);
++
++/* SCREEN_X stat tracking: bumps the per-shot "fresh sample seen"
++ * counter used by the auto-tune deliver-frame heuristic. */
++void lightgun_track_screen_x_for_stats(input_driver_state_t *st,
++      unsigned port, unsigned id, int16_t res);
++
++/* AUX_A / AUX_B read: handle cal phase 2 control buttons (restart
++ * with AUX_A, validate/skip with AUX_B). Mask the value toward
++ * the core during cal so the buttons don't double-act as in-game
++ * inputs. Returns the (possibly masked) value to report. */
++int16_t lightgun_handle_aux_button(input_driver_state_t *st,
++      unsigned port, unsigned id, int16_t res);
++
++/* Trigger read: full state machine + auto-tune deliver, OSD push
++ * for cal phase 1/2, post-flash position lock, manual cal capture
++ * and bbox computation. Returns the value to report to the core
++ * for this LIGHTGUN_TRIGGER read.
++ *
++ * `input_state_fn` is a recursion-friendly handle on the caller's
++ * input_state_internal() so that we can force-poll AUX_A/AUX_B
++ * for cores that never read them (e.g. fbneo Point Blank). It must
++ * not be NULL — the cal flow relies on it. */
++typedef int16_t (*lightgun_input_state_fn)(
++      input_driver_state_t *input_st,
++      settings_t *settings,
++      unsigned port, unsigned device, unsigned idx, unsigned id);
++
++int16_t lightgun_handle_trigger(
++      input_driver_state_t *input_st,
++      settings_t *settings,
++      unsigned port, int16_t res,
++      lightgun_input_state_fn input_state_fn);
++
++/* --- Hooks called from gfx/video_driver.c, once per frame --- */
++
++/* Compute the lightgun shader parameters (flash_active, cal_phase,
++ * cal_target_p1/p2, cursor_x_p1/p2, cursor_y_p1/p2, cal_y_flip)
++ * from the current input + cal state and push them into the
++ * currently active shader, if any. Called by video_driver.c once
++ * per frame, after the core has rendered. No-op when no shader is
++ * active or none of its parameters match. */
++void lightgun_apply_shader_params(input_driver_state_t *input_st,
++      video_driver_state_t *video_st);
++
++/* Tick the per-frame countdown counters: video_st->flash_frames,
++ * input_st->lightgun.post_flash_window[16], and (when the flash
++ * has stopped) input_st->lightgun.trigger_release_pending[16].
++ * Called by video_driver.c once per frame. */
++void lightgun_tick_frame(input_driver_state_t *input_st,
++      video_driver_state_t *video_st);
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* RETROARCH_LIGHTGUNS_H */
+diff -urN a/input/lightgun_state.h b/input/lightgun_state.h
+--- a/input/lightgun_state.h	1970-01-01 01:00:00.000000000 +0100
++++ b/input/lightgun_state.h	2026-05-27 01:15:43.497729778 +0200
+@@ -0,0 +1,95 @@
++/* GunCon-style lightgun runtime state, per-port, plus a couple
++ * of session counters. Embedded as a single member inside
++ * input_driver_state_t so input_driver.h doesn't grow a new
++ * field every time the lightgun pipeline learns a new trick.
++ *
++ * Logic is in input/lightguns.c — the struct definition lives in
++ * its own header to break the include cycle (input_driver.h needs
++ * the type for its member, and lightguns.h needs forward decls of
++ * input_driver_state_t / settings_t for the function signatures). */
++
++#ifndef RETROARCH_LIGHTGUN_STATE_H
++#define RETROARCH_LIGHTGUN_STATE_H
++
++#include <stdint.h>
++#include <stdbool.h>
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++typedef struct lightgun_state
++{
++   /* Trigger flash state (per port). The video subsystem owns the
++    * active flash counter; we track the previous trigger state to
++    * detect rising edges, and a release queue so the trigger event
++    * is guaranteed to reach the core for at least one frame even
++    * if the user released it during the flash. */
++   bool     trigger_was_pressed[16];
++   int8_t   trigger_release_pending[16];
++   /* FSM state per port for the trigger flash logic.
++    * See input/lightguns.c for state transitions. */
++   uint8_t  fsm_state[16];
++   /* Frames remaining to wait in LG_FLASH_WAIT before delivering
++    * the press. Loaded at rising edge from
++    * /recalbox/share/system/lightgun_deliver_frames. */
++   int8_t   flash_wait[16];
++   /* Post-flash observation window: counts down each frame from
++    * the value set on a trigger rising edge. While > 0, every
++    * SCREEN_X/Y read is replayed from the locked position so the
++    * core sees the frozen post-flash sample regardless of when
++    * it polls. */
++   int8_t   post_flash_window[16];
++   /* Per-shot tracking: did this shot get a valid SCREEN_X read
++    * already? Used by the auto-tune deliver-frame heuristic. */
++   bool     current_shot_pos_seen[16];
++   /* Session-wide shot counters. */
++   unsigned shots_total;
++   unsigned shots_pos_valid;
++   /* video frame_count snapshot at the trigger rising edge per
++    * port, used to compute since_rising = frame_now - press_frame. */
++   unsigned press_frame[16];
++   /* Position lock: at rising edge we snap pre_press_x/y; while
++    * the FSM is waiting, we look for a fresh SCREEN_X/Y sample
++    * (different from pre_press) inside [LOCK_WAIT_MIN,
++    * LOCK_WAIT_MAX]. When detected we lock that position and
++    * serve it back to the core for every SCREEN_X/Y read until
++    * the service window expires. Decouples delivery timing from
++    * the core's polling pattern. */
++   int16_t  last_screen_x[16];
++   int16_t  last_screen_y[16];
++   int16_t  pre_press_x[16];
++   int16_t  pre_press_y[16];
++   int16_t  lock_x[16];
++   int16_t  lock_y[16];
++   bool     position_locked[16];
++   /* GunCon manual calibration: 3-target capture (TL, TR, BL) at
++    * retroarch boot, then a test phase. State per port:
++    *   0 = PHASE1: capture, awaiting 3 corner shots
++    *   1 = PHASE2: test phase, cursors live, AUX_B/START commits,
++    *               AUX_A restarts the calibration
++    *   2 = DONE: cal applied, normal lightgun path
++    * cal_pts_x/y holds the SCREEN_X/Y the driver reported at each
++    * of the 3 targets. After capture we derive the linear bbox
++    *   cal_x_min/x_max = min/max of the 3 target X values
++    *   cal_y_min/y_max = min/max of the 3 target Y values
++    * and apply a linear remap on subsequent SCREEN_X/Y reads. */
++   uint8_t  cal_state[16];
++   uint8_t  cal_target[16];
++   int16_t  cal_pts_x[16][3];
++   int16_t  cal_pts_y[16][3];
++   int16_t  cal_x_min[16];
++   int16_t  cal_x_max[16];
++   int16_t  cal_y_min[16];
++   int16_t  cal_y_max[16];
++   bool     cal_valid[16];
++   /* Edge-tracking of phase-2 control buttons (commit/restart). */
++   bool     cal_aux_a_was_pressed[16];
++   bool     cal_start_was_pressed[16];
++} lightgun_state_t;
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* RETROARCH_LIGHTGUN_STATE_H */
+diff -urN a/Makefile.common b/Makefile.common
+--- a/Makefile.common	2026-05-27 01:15:36.630922891 +0200
++++ b/Makefile.common	2026-05-27 01:15:43.498522489 +0200
+@@ -337,6 +337,7 @@
+        $(LIBRETRO_COMM_DIR)/hash/lrc_hash.o \
+        audio/audio_driver.o \
+        input/input_driver.o \
++       input/lightguns.o \
+        input/common/input_hid_common.o \
+        led/led_driver.o \
+        gfx/video_driver.o \

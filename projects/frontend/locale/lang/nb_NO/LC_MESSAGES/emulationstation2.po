@@ -1,0 +1,6833 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "AN UPDATE IS AVAILABLE FOR YOUR RECALBOX"
+msgstr "EN OPPDATERING ER TILGJENGELIG FOR DIN RECALBOX"
+
+msgid "NEW VERSION:"
+msgstr "NY VERSJON:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "ENDRINGSLOGG FOR OPPDATERING:"
+
+msgid "CANCEL"
+msgstr "AVBRYT"
+
+msgid "Rating"
+msgstr "Rangering"
+
+msgid "Released"
+msgstr "Utgitt"
+
+msgid "Developer"
+msgstr "Utvikler"
+
+msgid "Publisher"
+msgstr "Utgiver"
+
+msgid "Genre"
+msgstr "Sjanger"
+
+msgid "Players"
+msgstr "Spillere"
+
+msgid "SEARCH"
+msgstr "SØK"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "SØKER ETTER SPILL"
+
+msgid "SYSTEM"
+msgstr "SYSTEM"
+
+msgid "subtitle text"
+msgstr "undertittel"
+
+msgid "STOP"
+msgstr "STOPP"
+
+msgid "stop (progress saved)"
+msgstr "stopp (fremdrift lagret)"
+
+msgid "ESTIMATED TIME: "
+msgstr "ESTIMERT TID: "
+
+msgid "ELAPSED TIME: "
+msgstr "FORLØPT TID: "
+
+msgid "COMPLETE!"
+msgstr "FULLFØRT!"
+
+msgid "PLEASE VISIT"
+msgstr "VENNLIGST BESØK"
+
+msgid "ONLY 1 SCRAPPING ENGINE"
+msgid_plural "%i SCRAPPING ENGINES"
+msgstr[0] "KUN 1 SKRAPEMOTOR"
+msgstr[1] "%i SKRAPEMOTORER"
+
+msgid ""
+"Scraping complete! {PROCESSED} games processed.\n"
+"\n"
+"{SUCCESS} game(s) scraped or updated\n"
+"{NOTFOUND} game(s) not found...\n"
+"{ERRORS} request/download errors\n"
+"\n"
+"{TEXTINFO} Text information updated\n"
+"{IMAGES} images and {VIDEOS} videos downloaded\n"
+"{MEDIASIZE} of media saved"
+msgstr ""
+"Skraping fullført! {PROCESSED} spill behandlet.\n"
+"\n"
+"{SUCCESS} spill hentet eller oppdatert\n"
+"{NOTFOUND} spill ikke funnet...\n"
+"{ERRORS} feil ved forespørsel/nedlasting\n"
+"\n"
+"{TEXTINFO} tekstinformasjon oppdatert\n"
+"{IMAGES} bilder og {VIDEOS} videoer lastet ned\n"
+"{MEDIASIZE} medier lagret"
+
+msgid ""
+"You reached your daily quota of scraping request.\n"
+"All your today's scrapes have been saved anyway.\n"
+"\n"
+"Start scraping again tomorrow.\n"
+"Dont forget to select 'update' and not 'scrape all'"
+msgstr ""
+"Du har nådd din daglige kvote for skrapeforespørsler.\n"
+"Alle dagens skraper er likevel lagret.\n"
+"\n"
+"Start skraping igjen i morgen.\n"
+"Ikke glem å velge «oppdater» og ikke «skrap alle»"
+
+msgid ""
+"Your share partition is almost full.\n"
+"The scraper stopped automatically.\n"
+"\n"
+"Remove unused games, media, files to make room before running the scraper "
+"again!"
+msgstr ""
+"Din share-partisjon er nesten full.\n"
+"Skraperen stoppet automatisk.\n"
+"\n"
+"Fjern ubrukte spill, medier og filer for å frigjøre plass før du kjører "
+"skraperen igjen!"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "SCRAPE"
+msgstr "SØK"
+
+msgid "SAVE"
+msgstr "LAGRE"
+
+msgid "YES"
+msgstr "JA"
+
+msgid "NO"
+msgstr "NEI"
+
+msgid "DELETE"
+msgstr "SLETT"
+
+msgid "BACK"
+msgstr "TILBAKE"
+
+msgid "CLOSE"
+msgstr "LUKK"
+
+msgid "MAIN MENU"
+msgstr "HOVEDMENY"
+
+msgid "KODI MEDIA CENTER"
+msgstr "KODI MEDIA CENTER"
+
+msgid "SYSTEM SETTINGS"
+msgstr "SYSTEM INSTILLINGER"
+
+msgid "VERSION"
+msgstr "VERSJON"
+
+msgid "LANGUAGE"
+msgstr "SPRÅK"
+
+msgid "OVERCLOCK"
+msgstr "OVERKLOKKING"
+
+msgid "NONE"
+msgstr "INGEN"
+
+msgid "UPDATES"
+msgstr "OPPDATERINGER"
+
+msgid "KODI SETTINGS"
+msgstr "KODI INSTILLINGER"
+
+msgid "ENABLE KODI"
+msgstr "AKTIVER KODI"
+
+msgid "KODI AT START"
+msgstr "KODI VED OPPSTART"
+
+msgid "START KODI WITH X"
+msgstr "START KODI MED X"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "SYSTEMET VIL STARTES PÅ NYTT"
+
+msgid "GAME RATIO"
+msgstr "SPILL FORHOLD"
+
+msgid "SMOOTH GAMES"
+msgstr "SPILL SOM KJØRER FINT"
+
+msgid "REWIND"
+msgstr "SPOL TILBAKE"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "AUTO LAGRE/LASTE"
+
+msgid "PRESS TWICE TO QUIT GAME"
+msgstr "TRYKK TO GANGER FOR Å AVSLUTTE SPILLET"
+
+msgid "SHADERS SET"
+msgstr "SKYGGELEGGER SETT"
+
+msgid "SCANLINES"
+msgstr "LINJESKAN"
+
+msgid "RETRO"
+msgstr "RETRO"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "RETROUTMERKELSES INNSTILLINGER"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "RETROUTMERKELSER"
+
+msgid "HARDCORE MODE"
+msgstr "HARDCORE MODUS"
+
+msgid "USERNAME"
+msgstr "BRUKERNAVN"
+
+msgid "PASSWORD"
+msgstr "PASSORD"
+
+msgid "ADVANCED"
+msgstr "AVANSERT"
+
+msgid "UPDATE GAMES LISTS"
+msgstr "OPPDATER SPILLISTER"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "KONTROLL INSTILLINGER"
+
+msgid "SCREENSAVER AFTER"
+msgstr "SKJERMSPARER ETTER"
+
+msgid "CAROUSEL ANIMATION"
+msgstr "KARUSELLANIMASJON"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "SKJERMSPARER OPPFØRSEL"
+
+msgid "SHOW FRAMERATE"
+msgstr "VIS BILDEFREKVENS"
+
+msgid "ON-SCREEN HELP"
+msgstr "OVERLEGGSHJELP"
+
+msgid "THEME SET"
+msgstr "TEMA INSTILLINGER"
+
+msgid "SOUND SETTINGS"
+msgstr "LYDINSTILINGER"
+
+msgid "SYSTEM VOLUME"
+msgstr "SYSTEM VOLUM"
+
+msgid "OUTPUT DEVICE"
+msgstr "UTENHET"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "NETWORK SETTINGS"
+msgstr "NETTVERKSINSTILLINGER"
+
+msgid "CONNECTED"
+msgstr "TILKOBLET"
+
+msgid "NOT CONNECTED"
+msgstr "FRAKOBLET"
+
+msgid "STATUS"
+msgstr "STATUS"
+
+msgid "IP ADDRESS"
+msgstr "IP ADRESSE"
+
+msgid "HOSTNAME"
+msgstr "ENHETSNAVN"
+
+msgid "ENABLE WIFI"
+msgstr "AKTIVER WIFI"
+
+msgid "WIFI SSID"
+msgstr "NETTVERKSNAVN"
+
+msgid "WIFI KEY"
+msgstr "NETTVERKSPASSORD"
+
+msgid "SCRAPER"
+msgstr "INFODATABASE"
+
+msgid "SCRAPE FROM"
+msgstr "SØK I"
+
+msgid "SCRAPE NOW"
+msgstr "SØK NÅ"
+
+msgid "QUIT"
+msgstr "SLUTT"
+
+msgid "REALLY RESTART?"
+msgstr "VIL DU VIRKELIG STARTE PÅ NYTT?"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "VIL DU VIRKELIG SLÅ AV?"
+
+msgid "Emulator"
+msgstr "Emulator"
+
+msgid "Core"
+msgstr "Kjerne"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "KONFIGUER EN KONTROLLER"
+
+msgid "CONTROLLER PAIRED"
+msgstr "KONTROLLER PARET"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "KAN IKKE PARE KONTROLLER"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "INGEN KONTROLLERE FUNNET"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "KONTROLLER PARINGER HAR BLITT SLETTET."
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "GLEM BLUETOOTH KONTROLLERE"
+
+msgid "INPUT P%i"
+msgstr "SETT IN P%i"
+
+msgid "CHOOSE"
+msgstr "VELG"
+
+msgid "SELECT"
+msgstr "VELG"
+
+msgid "OPTIONS"
+msgstr "VALG"
+
+msgid "JUMP TO LETTER"
+msgstr "HOPP TIL"
+
+msgid "SORT GAMES BY"
+msgstr "SORTER SPILL ETTER"
+
+msgid "All Games"
+msgstr "Alle spill"
+
+msgid "Only missing image"
+msgstr "Bare manglene bilde"
+
+msgid "FILTER"
+msgstr "FILTRER"
+
+msgid "SYSTEMS"
+msgstr "KONSOLLER"
+
+msgid "START"
+msgstr "START"
+
+msgid "Ratio"
+msgstr "Forhold"
+
+msgid "Name"
+msgstr "Navn"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Image"
+msgstr "Bilde"
+
+msgid "Favorite"
+msgstr "Favoritt"
+
+msgid "Region"
+msgstr "Region"
+
+msgid "Hidden"
+msgstr "Skjult"
+
+msgid "Last played"
+msgstr "Sist spilt"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "%i SPILL TILGJENGELIG"
+msgstr[1] "%i SPILL TILGJENGELIG"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "%i FAVORITT"
+msgstr[1] "%i FAVORITTER"
+
+msgid "LAUNCH"
+msgstr "START"
+
+msgid "Times played"
+msgstr "Ganger spilt"
+
+msgid "MENU"
+msgstr "MENY"
+
+msgid "START KODI"
+msgstr "START KODI"
+
+msgid "WORKING..."
+msgstr "ARBEIDER..."
+
+msgid "CHANGE"
+msgstr "ENDRE"
+
+msgid "never"
+msgstr "aldri"
+
+msgid "just now"
+msgstr "akkurat nå"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "%i sekund siden"
+msgstr[1] "%i sekunder siden"
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "%i minutt siden"
+msgstr[1] "%i minutter siden"
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "%i time siden"
+msgstr[1] "%i timer siden"
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "%i en dag siden"
+msgstr[1] "%i dager siden"
+
+msgid "unknown"
+msgstr "ukjent"
+
+msgid "SELECT ALL"
+msgstr "VELG ALLE"
+
+msgid "SELECT NONE"
+msgstr "VELG INGEN"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i valgt"
+msgstr[1] "%i valgt"
+
+msgid "UP"
+msgstr "OPP"
+
+msgid "DOWN"
+msgstr "NED"
+
+msgid "LEFT"
+msgstr "VENSTRE"
+
+msgid "RIGHT"
+msgstr "HØYRE"
+
+msgid "HOTKEY"
+msgstr "HURTIGTAST"
+
+msgid "CONFIGURING"
+msgstr "KONFIGUERER"
+
+msgid "KEYBOARD"
+msgstr "TASTATUR"
+
+msgid "GAMEPAD %i"
+msgstr "KONTROLLER %i"
+
+msgid "(skipped)"
+msgstr "(hoppet over)"
+
+msgid "DISCARD CHANGES"
+msgstr "FORKAST ENDRINGER"
+
+msgid "WELCOME"
+msgstr "VELKOMMEN"
+
+msgid "CONFIGURE INPUT"
+msgstr "KONFIGUER INNDATA"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "%i KONTROLLER OPPDAGET"
+msgstr[1] "%i KONTROLLERE OPPDAGET"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "INGEN KONTROLLERE OPPDAGET"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "HOLD EN KNAPP PÅ ENHETEN DIN FOR Å KONFIGUERE DEN."
+
+msgid "PRESS ESC OR THE HOTKEY TO CANCEL."
+msgstr "TRYKK ESC ELLER HURTIGTASTEN FOR Å AVBRYTE."
+
+msgid "LOADING..."
+msgstr "LASTER..."
+
+msgid "PLEASE WAIT..."
+msgstr "VENNLIGST VENT..."
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "VIL DU VIRKELIG SLÅ AV UTEN Å LAGRE METADATA?"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "SKIFT TEGN"
+
+msgid "SPACE"
+msgstr "Mellomrom"
+
+msgid "DELETE A CHAR"
+msgstr "SLETT ET TEGN"
+
+msgid "SHIFT"
+msgstr "SHIFT"
+
+msgid "STOP EDITING"
+msgstr "STOPP ENDRING"
+
+msgid "MOVE CURSOR"
+msgstr "FLYTT MUSEPEKER"
+
+msgid "EDIT"
+msgstr "ENDRE"
+
+msgid "FILENAME"
+msgstr "FILNAVN"
+
+msgid "RATING"
+msgstr "RANGERING"
+
+msgid "TIMES PLAYED"
+msgstr "GANGER SPILLT"
+
+msgid "LAST PLAYED"
+msgstr "SIST SPILLT"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "ANTALL SPILLERE"
+
+msgid "DEVELOPER"
+msgstr "UTVIKLER"
+
+msgid "GENRE"
+msgstr "SJANGER"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE "
+"THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"TURBO- OG EKSTREM-OVERKLOKKINGSFORHÅNDSINNSTILLINGER KAN FORÅRSAKE "
+"SYSTEMUSTABILITET, SÅ BRUK DEM PÅ EGEN RISIKO.\n"
+"HVIS DU FORTSETTER, VIL SYSTEMET STARTE PÅ NYTT NÅ."
+
+msgid "Start kodi media player."
+msgstr "Start Kodi mediespiller."
+
+msgid ""
+"Select the language for your recalbox, select an external drive to store "
+"your games and configurations, check your current version and the free space "
+"on your drive"
+msgstr ""
+"Velg språk for din recalbox, velg en ekstern stasjon for å lagre spill og "
+"konfigurasjoner, sjekk gjeldende versjon og ledig plass på stasjonen din"
+
+msgid "Shows your current recalboxOS version."
+msgstr "Viser din nåværende recalboxOS-versjon."
+
+msgid ""
+"Show how much space is used on your SHARE partition, located either on the "
+"SDCARD or on an external drive. The information shows how many GB are used "
+"and how many GB your storage has in total (example 13GB/26GB)."
+msgstr ""
+"Viser hvor mye plass som brukes på SHARE-partisjonen, enten på SD-kortet "
+"eller på en ekstern stasjon. Informasjonen viser hvor mange GB som er brukt "
+"og hvor mange GB lagringen din har totalt (eksempel 13GB/26GB)."
+
+msgid ""
+"Select an external drive to store your roms, saves, configurations etc.\n"
+"Use a FAT32 formatted drive. The system does not format the drive. On first "
+"boot, with this option enabled, recalbox will create a '/recalbox' folder "
+"with all system files inside."
+msgstr ""
+"Velg en ekstern stasjon for å lagre romene, lagringene, konfigurasjonene "
+"osv.\n"
+"Bruk en FAT32-formatert stasjon. Systemet formaterer ikke stasjonen. Ved "
+"første oppstart, med dette valget aktivert, vil recalbox opprette en '/"
+"recalbox'-mappe med alle systemfiler inni."
+
+msgid ""
+"Manage your recalbox updates. Select the update type. Activate update check."
+msgstr ""
+"Administrer oppdateringene til recalbox-en din. Velg oppdateringstype. "
+"Aktiver kontroll for oppdateringer."
+
+msgid "Check if an update is available, and start the update process."
+msgstr "Sjekk om det finnes en oppdatering, og start oppdateringsprosessen."
+
+msgid ""
+"Configure games display, ratio, filters (shaders), auto save and load and "
+"retroachievement account."
+msgstr ""
+"Konfigurer spillvisning, forhold, filtre (shaders), automatisk lagring og "
+"lasting, og retroachievements-konto."
+
+msgid ""
+"The game ratio is the ratio between image width and image height. Use AUTO "
+"to let the emulator choose the original game ratio, that will give you the "
+"best retrogaming experience."
+msgstr ""
+"Spillforholdet er forholdet mellom bildebredde og bildehøyde. Bruk AUTO for "
+"å la emulatoren velge det originale spillforholdet, som gir deg den beste "
+"retrogaming-opplevelsen."
+
+msgid ""
+"Smooth the game image. This option makes the image smoother, using bilinear "
+"filtering."
+msgstr ""
+"Glatt ut spillbildet. Dette valget gjør bildet jevnere ved hjelp av bilineær "
+"filtrering."
+
+msgid ""
+"This option allows you to rewind the game if you get killed by a monster, or "
+"if you make any other mistake. Use the HOTKEY + LEFT command within the game "
+"to rewind."
+msgstr ""
+"Dette valget lar deg spole tilbake spillet hvis du blir drept av et monster, "
+"eller hvis du gjør en annen feil. Bruk kommandoen HOTKEY + VENSTRE i spillet "
+"for å spole tilbake."
+
+msgid ""
+"Auto save the state when you quit a game, and auto load last saved state "
+"when you start a game."
+msgstr ""
+"Lagre automatisk tilstanden når du avslutter et spill, og last automatisk "
+"inn sist lagrede tilstand når du starter et spill."
+
+msgid "Press the buttons twice to end the game and go back to the main menu."
+msgstr ""
+"Trykk to ganger på knappene for å avslutte spillet og gå tilbake til "
+"hovedmenyen."
+
+msgid ""
+"Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, "
+"4x, etc. This option scales the image up to the greatest integer scale below "
+"the set resolution. So for instance, if you set your fullscreen resolution "
+"to 1920x1080 and enable integer scaling, it will only scale a 320x240 image "
+"up to 1280x960, and leave black borders all around. This is to maintain a "
+"1:1 pixel ratio with the original source image, so that pixels are not "
+"unevenly duplicated."
+msgstr ""
+"Heltallsskalering er skalering med en faktor på et helt tall, slik som 2x, "
+"3x, 4x osv. Dette valget skalerer bildet opp til den største "
+"heltallsfaktoren under den innstilte oppløsningen. Hvis du for eksempel "
+"setter fullskjermoppløsningen til 1920x1080 og aktiverer heltallsskalering, "
+"vil et 320x240-bilde bare skaleres opp til 1280x960, med svarte kanter "
+"rundt. Dette er for å opprettholde et 1:1-pikselforhold med det originale "
+"kildebildet, slik at piksler ikke dupliseres ujevnt."
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a shader set "
+"here, which is a collection of shaders selected for each system. You can "
+"also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr ""
+"Shaders er som filtre for spillrenderingen. Du kan velge et shader-sett her, "
+"som er en samling shadere valgt for hvert system. Du kan også endre shaderen "
+"i spillet med HOTKEY + L2 eller HOTKEY + R2."
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "Aktiver eller deaktiver RetroAchievements i spill."
+
+msgid ""
+"Hardcore mode disables *all* savestate and rewind functions within the "
+"emulator: you will not be able to save and reload at any time. You will have "
+"to complete the game and get the achievements first time, just like on the "
+"original console. In reward for this, you will earn both the standard and "
+"the hardcore achievement, in effect earning double points! A regular game "
+"worth 400 points, is now worth 800 if you complete it on hardcore! For "
+"example: if you complete the game for 400 points, you then have the "
+"opportunity to earn another 400 on hardcore."
+msgstr ""
+"Hardcore-modus deaktiverer *alle* lagringstilstand- og "
+"tilbakespolingsfunksjoner i emulatoren: du vil ikke kunne lagre og laste inn "
+"når som helst. Du må fullføre spillet og få prestasjonene på første forsøk, "
+"akkurat som på den originale konsollen. Som belønning for dette får du både "
+"standard- og hardcore-prestasjonen, noe som gir deg dobbelt poengsum! Et "
+"vanlig spill verdt 400 poeng er nå verdt 800 hvis du fullfører det på "
+"hardcore! For eksempel: hvis du fullfører spillet for 400 poeng, har du "
+"deretter muligheten til å tjene 400 til på hardcore."
+
+msgid ""
+"Configure an associated controller. Your controller has to be associated / "
+"plugged before."
+msgstr ""
+"Konfigurer en tilknyttet kontroller. Kontrolleren din må være tilknyttet/"
+"tilkoblet først."
+
+msgid ""
+"Pair a bluetooth controller with your recalbox. Your controller must be in "
+"pairing mode."
+msgstr ""
+"Par en Bluetooth-kontroller med recalbox-en din. Kontrolleren må være i "
+"paringsmodus."
+
+msgid ""
+"Forget all paired bluetooth controllers. You will have to pair your "
+"controllers again, but this option can help if you have issues to reconnect "
+"a controller, which is already paired."
+msgstr ""
+"Glem alle parede Bluetooth-kontrollere. Du må pare kontrollerne dine på "
+"nytt, men dette valget kan hjelpe hvis du har problemer med å koble til en "
+"kontroller som allerede er paret."
+
+msgid ""
+"Configure your EmulationStation experience. Select transition types, help "
+"prompts, screensaver behavior. You can also deactivate the onscreen keyboard "
+"if you have a real keyboard plugged into your recalbox.\n"
+"If you've added games since the last boot, you can also refresh the gamelist "
+"from this menu."
+msgstr ""
+"Konfigurer EmulationStation-opplevelsen din. Velg overgangstyper, "
+"hjelpetekster, skjermsparer-oppførsel. Du kan også deaktivere "
+"skjermtastaturet hvis du har et ekte tastatur koblet til recalbox-en din.\n"
+"Hvis du har lagt til spill siden siste oppstart, kan du også oppdatere "
+"spillisten fra denne menyen."
+
+msgid "Configure screensaver"
+msgstr "Konfigurer skjermsparer"
+
+msgid "Start the screensaver after N minutes."
+msgstr "Start skjermspareren etter N minutter."
+
+msgid ""
+"Set the screensaver behavior. DIM will reduce the screen light, BLACK will "
+"turn the screen black, DEMO will launch demo mode."
+msgstr ""
+"Angi skjermsparerens oppførsel. DIM reduserer skjermlyset, SVART gjør "
+"skjermen svart, DEMO starter demomodus."
+
+msgid ""
+"Shows a help at the bottom of the screen which displays commands you can use."
+msgstr "Viser en hjelp nederst på skjermen som viser kommandoer du kan bruke."
+
+msgid ""
+"When enabled, you can switch between systems while browsing a gamelist by "
+"pressing LEFT or RIGHT."
+msgstr ""
+"Når aktivert, kan du bytte mellom systemer mens du blar i en spilliste ved å "
+"trykke VENSTRE eller HØYRE."
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "Velg om karusellen skal animeres eller ikke under overganger"
+
+msgid "Select a theme for your recalbox."
+msgstr "Velg et tema for recalbox-en din."
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr ""
+"Oppdaterer spillistene hvis du har lagt til spill siden siste oppstart."
+
+msgid "Configure the sound options of your recalbox."
+msgstr "Konfigurer lydvalgene til recalbox-en din."
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "Angi volumet for lydutgangen til frontenden og spillene."
+
+msgid "Select your output device. Only HDMI and JACK are supported."
+msgstr "Velg utgangsenheten din. Kun HDMI og JACK støttes."
+
+msgid ""
+"Configure the network options of your recalbox.\n"
+"Check your network status and IP address, set the hostname and configure the "
+"WIFI."
+msgstr ""
+"Konfigurer nettverksvalgene til recalbox-en din.\n"
+"Sjekk nettverksstatus og IP-adresse, angi vertsnavn og konfigurer WIFI."
+
+msgid ""
+"Displays CONNECTED, if you are connected, by checking if your recalbox can "
+"access the recalbox.com update server."
+msgstr ""
+"Viser TILKOBLET hvis du er tilkoblet, ved å sjekke om recalbox-en din har "
+"tilgang til oppdateringsserveren recalbox.com."
+
+msgid "The IP address of your recalbox within your local network."
+msgstr "IP-adressen til recalbox-en din i det lokale nettverket."
+
+msgid ""
+"Enable or disable WIFI.\n"
+"If you disable WIFI, the SSID and the WIFI passwords are saved and can be "
+"used when you reactivate it"
+msgstr ""
+"Aktiver eller deaktiver WIFI.\n"
+"Hvis du deaktiverer WIFI, lagres SSID og WIFI-passord og kan brukes når du "
+"aktiverer det igjen"
+
+msgid "The name of your recalbox in your local network"
+msgstr "Navnet på recalbox-en din i det lokale nettverket"
+
+msgid "SSID (WIFI Name) of your network."
+msgstr "SSID (WIFI-navn) til nettverket ditt."
+
+msgid "Private key of your WIFI network."
+msgstr "Privat nøkkel til WIFI-nettverket ditt."
+
+msgid ""
+"Get information and visuals for your games. The scraper downloads metadata "
+"and visuals for your games from different servers, and greatly enhances the "
+"user experience in EmulationStation."
+msgstr ""
+"Få informasjon og visuelt innhold til spillene dine. Skraperen laster ned "
+"metadata og visuelt innhold til spillene dine fra forskjellige servere og "
+"forbedrer brukeropplevelsen i EmulationStation fullstendig."
+
+msgid ""
+"Select a server to scrape from. The SCREENSCRAPER server is recommended and "
+"is based on www.screenscraper.fr and scrapes game data in your language, if "
+"available."
+msgstr ""
+"Velg en server å skrape fra. SCREENSCRAPER-serveren anbefales og er basert "
+"på www.screenscraper.fr og skraper spilldata på ditt språk, hvis "
+"tilgjengelig."
+
+msgid ""
+"Advanced settings. Please make sure you really know what you're doing, "
+"before changing any values in this menu."
+msgstr ""
+"Avanserte innstillinger. Vennligst sørg for at du virkelig vet hva du gjør, "
+"før du endrer noen verdier i denne menyen."
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind "
+"that overclocking your board can void your warranty."
+msgstr ""
+"Overklokk kortet ditt for å øke ytelsen.\n"
+"Overklokkingsinnstillingene er testet og validert av fellesskapet. Husk at "
+"overklokking av kortet ditt kan gjøre garantien ugyldig."
+
+msgid ""
+"Select which system to show when the recalbox frontend starts. The default "
+"value is 'favorites'."
+msgstr ""
+"Velg hvilket system som skal vises når recalbox-frontenden starter. "
+"Standardverdien er 'favoritter'."
+
+msgid ""
+"On boot, recalbox will show the list of games of the selected system rather "
+"than the system view."
+msgstr ""
+"Ved oppstart vil recalbox vise spillisten til det valgte systemet i stedet "
+"for systemvisningen."
+
+msgid ""
+"Override global options like emulator, core, ratio and more for each "
+"available system in your recalbox."
+msgstr ""
+"Overstyr globale valg som emulator, kjerne, forhold og mer for hvert "
+"tilgjengelige system i recalbox-en din."
+
+msgid ""
+"Configure boot options that make your recalbox boot straight into a system "
+"or into Kodi, lock a user to a single system, or directly show the gamelist."
+msgstr ""
+"Konfigurer oppstartsvalg som gjør at recalbox-en din starter direkte inn i "
+"et system eller inn i Kodi, låser en bruker til ett enkelt system, eller "
+"viser spillisten direkte."
+
+msgid ""
+"Enable or disable Kodi. If kodi is disabled, you won't be able to start it "
+"with the X button, or start it automatically at boot. The menu entry will be "
+"removed as well."
+msgstr ""
+"Aktiver eller deaktiver Kodi. Hvis Kodi er deaktivert, kan du ikke starte "
+"det med X-knappen, eller starte det automatisk ved oppstart. Menyoppføringen "
+"vil også fjernes."
+
+msgid "Use the X button to start Kodi."
+msgstr "Bruk X-knappen for å starte Kodi."
+
+msgid "Automatically start into Kodi on boot."
+msgstr "Start automatisk inn i Kodi ved oppstart."
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "Vis bildefrekvensen i EmulationStation og i spillet."
+
+msgid ""
+"Enable or disable the Recalbox Manager.\n"
+"The Recalbox Manager is a web application available at http://recalbox if "
+"you are on Windows, at http://recalbox.local if you are on Linux or Mac, or "
+"directly with your recalbox IP: http://192.168.1.XX.\n"
+"You can configure many options from within the manager, and even manage "
+"games, saves, and scrapes!"
+msgstr ""
+"Aktiver eller deaktiver Recalbox Manager.\n"
+"Recalbox Manager er en webapplikasjon tilgjengelig på http://recalbox , hvis "
+"du bruker Windows, http://recalbox.local , hvis du bruker Linux eller Mac, "
+"eller direkte med recalbox-IP-en din: http://192.168.1.XX.\n"
+"Du kan konfigurere mange valg fra manageren, og til og med administrere "
+"spill, lagringer og skraper!"
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr ""
+"Velg hvilken emulator som skal brukes når du starter et spill for dette "
+"systemet."
+
+msgid ""
+"Switch between showing only the favorite games and showing them all. To add "
+"a game to the favorite list, select the game and toggle its state with 'Y'."
+msgstr ""
+"Bytt mellom å vise eller ikke vise kun favorittspillene. For å legge til et "
+"spill i favorittlisten, velg spillet og veksle status med 'Y'."
+
+msgid ""
+"Switch between seeing the folder structure and seeing all games in a flat "
+"top-level list."
+msgstr ""
+"Bytt mellom å se mappestrukturen og å se alle spill flatt på øverste nivå."
+
+msgid "UPDATE TYPE"
+msgstr "OPPDATERINGSTYPE"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "HELTALLSSKALERING (PIKSELPERFEKT)"
+
+msgid "ADVANCED SETTINGS"
+msgstr "AVANSERTE INNSTILLINGER"
+
+msgid "BOOT SETTINGS"
+msgstr "OPPSTARTSINNSTILLINGER"
+
+msgid "BOOT ON SYSTEM"
+msgstr "START PÅ SYSTEM"
+
+msgid "BOOT ON GAMELIST"
+msgstr "START PÅ SPILLISTE"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "SKJUL SYSTEMVISNING"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "AVANSERT EMULATORKONFIGURASJON"
+
+msgid "HELP"
+msgstr "HJELP"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "SYSTEMET ER OPPDATERT"
+
+msgid "Now playing"
+msgstr "Spiller nå"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr "Angi varighet for hjelpevinduer, 0 betyr ingen hjelpevindu."
+
+msgid "HELP POPUP DURATION"
+msgstr "VARIGHET FOR HJELPEVINDU"
+
+msgid "POPUP SETTINGS"
+msgstr "INNSTILLINGER FOR SPRETTOPPVINDU"
+
+msgid "Set position and duration of popups."
+msgstr "Angi posisjon og varighet for sprettoppvinduer."
+
+msgid "NETPLAY"
+msgstr "NETTVERKSSPILL"
+
+msgid "NETPLAY SETTINGS"
+msgstr "INNSTILLINGER FOR NETTVERKSSPILL"
+
+msgid "NETPLAY LOBBY"
+msgstr "LOBBY FOR NETTVERKSSPILL"
+
+msgid "Enable or disable Netplay in games."
+msgstr "Aktiver eller deaktiver nettverksspill i spill."
+
+msgid "PORT"
+msgstr "PORT"
+
+msgid "NICKNAME"
+msgstr "KALLENAVN"
+
+msgid "Enable or disable connections through relay servers."
+msgstr "Aktiver eller deaktiver tilkoblinger via relé-servere."
+
+msgid "KODI/NETPLAY"
+msgstr "KODI/NETTVERKSSPILL"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "INGEN SPILL ELLER INGEN TILKOBLING"
+
+msgid ""
+"Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr ""
+"Legg til hash av romer i spillistene dine for mer nøyaktige resultater i "
+"nettverksspill."
+
+msgid "HASH ROMS"
+msgstr "HASH ROMER"
+
+msgid "Username"
+msgstr "Brukernavn"
+
+msgid "Country"
+msgstr "Land"
+
+msgid "Latency"
+msgstr "Ventetid"
+
+msgid "Host arch."
+msgstr "Vert arkit."
+
+msgid "Core ver."
+msgstr "Kjerneversjon"
+
+msgid "RA ver."
+msgstr "RA-versjon"
+
+msgid "Can join"
+msgstr "Kan bli med"
+
+msgid "Rom and core match"
+msgstr "Rom og kjerne stemmer"
+
+msgid "Rom, hash and core match"
+msgstr "Rom, hash og kjerne stemmer"
+
+msgid "No rom match"
+msgstr "Ingen rom-treff"
+
+msgid "No core match"
+msgstr "Ingen kjerne-treff"
+
+msgid "Match"
+msgstr "Treff"
+
+msgid "No Match"
+msgstr "Ikke treff"
+
+msgid "Rom file"
+msgstr "Rom-fil"
+
+msgid "Rom hash"
+msgstr "Rom-hash"
+
+msgid "good"
+msgstr "god"
+
+msgid "bad"
+msgstr "dårlig"
+
+msgid "medium"
+msgstr "middels"
+
+msgid "Player"
+msgstr "Spiller"
+
+msgid "Game"
+msgstr "Spill"
+
+msgid "A Recalbox friend has started a Netplay game!"
+msgstr "En Recalbox-venn har startet et nettverksspill!"
+
+msgid "EMPTY LIST"
+msgstr "TOM LISTE"
+
+msgid "Auto"
+msgstr "Auto"
+
+msgid "Square pixel"
+msgstr "Kvadratisk piksel"
+
+msgid "Retroarch Config"
+msgstr "Retroarch-konfigurasjon"
+
+msgid "Retroarch Custom"
+msgstr "Retroarch tilpasset"
+
+msgid "Core provided"
+msgstr "Levert av kjerne"
+
+msgid "Do not set"
+msgstr "Ikke angi"
+
+msgid "BIOS CHECKING"
+msgstr "BIOS-KONTROLL"
+
+msgid ""
+"Scan and check all your BIOS files and report everything in a comprehensive "
+"way."
+msgstr ""
+"Skann og kontroller alle BIOS-filene dine og få en fullstendig rapport."
+
+msgid "RESCAN"
+msgstr "SKANN PÅ NYTT"
+
+msgid ""
+"EMULATOR %s MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE AVAILABLE!"
+msgstr ""
+"EMULATOR %s VIL KANSKJE IKKE FUNGERE RIKTIG FØR ALLE NØDVENDIGE BIOS ER "
+"GJORT TILGJENGELIGE!"
+
+msgid ""
+"%i EMULATORS MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE "
+"AVAILABLE!"
+msgstr ""
+"%i EMULATORER VIL KANSKJE IKKE FUNGERE RIKTIG FØR ALLE NØDVENDIGE BIOS ER "
+"GJORT TILGJENGELIGE!"
+
+msgid "CONGRATULATIONS! ALL EMULATORS SHOULD WORK PROPERLY!"
+msgstr "GRATULERER! ALLE EMULATORER SKAL FUNGERE RIKTIG!"
+
+msgid "%i BIOS NOT FOUND"
+msgstr "%i BIOS IKKE FUNNET"
+
+msgid "%i NON-MATCHING BIOS FOUND"
+msgstr "%i BIOS SOM IKKE STEMMER FUNNET"
+
+msgid "%i GOOD BIOS FOUND!"
+msgstr "%i GODE BIOS FUNNET!"
+
+msgid "File Path"
+msgstr "Filbane"
+
+msgid "Mandatory"
+msgstr "Obligatorisk"
+
+msgid "Must match MD5"
+msgstr "Må stemme med MD5"
+
+msgid "File found ?"
+msgstr "Fil funnet?"
+
+msgid "Matching MD5 ?"
+msgstr "MD5 stemmer?"
+
+msgid "NOTE"
+msgstr "MERK"
+
+msgid ""
+"This bios is required in order to run the emulator properly. You won't be "
+"able to run any games with the emulator/core above."
+msgstr ""
+"Denne BIOS-en er nødvendig for at emulatoren skal fungere riktig. Du vil "
+"ikke kunne kjøre noen spill med emulatoren/kjernen over."
+
+msgid ""
+"This bios is not mandatory in most cases. The emulator will run properly "
+"unless you want to use features requiring this particular bios file."
+msgstr ""
+"Denne BIOS-en er ikke obligatorisk i de fleste tilfeller. Emulatoren vil "
+"fungere riktig med mindre du vil bruke funksjoner som krever denne "
+"spesifikke BIOS-filen."
+
+msgid ""
+"Your bios file does not match any known MD5. However, there are chances of "
+"getting the emulator running fine."
+msgstr ""
+"BIOS-filen din stemmer ikke med noen kjent MD5. Det er likevel sjanser for "
+"at emulatoren fungerer fint."
+
+msgid ""
+"Your bios file does not match any known MD5 but this is not required. So "
+"there are strong chances of getting everything running fine."
+msgstr ""
+"BIOS-filen din stemmer ikke med noen kjent MD5, men dette er ikke nødvendig. "
+"Det er derfor stor sjanse for at alt fungerer fint."
+
+msgid ""
+"Your bios file does match one of the known MD5. Everything will run fine!"
+msgstr ""
+"BIOS-filen din stemmer med en av de kjente MD5-ene. Alt vil fungere fint!"
+
+msgid "MD5 LIST"
+msgstr "MD5-LISTE"
+
+msgid "Congratulation, all cores/emulators listed below will work flawlessly!"
+msgstr ""
+"Gratulerer, alle kjerner/emulatorer listet under vil fungere feilfritt!"
+
+msgid ""
+"Cores/emulators listed below won't probably work until required bios are "
+"made available."
+msgstr ""
+"Kjerner/emulatorer listet under vil sannsynligvis ikke fungere før "
+"nødvendige BIOS er gjort tilgjengelige."
+
+msgid ""
+"Cores/emulators listed below may work in most cases, unless you use features "
+"requiring special bios."
+msgstr ""
+"Kjerner/emulatorer listet under kan fungere i de fleste tilfeller, med "
+"mindre du bruker funksjoner som krever spesiell BIOS."
+
+msgid "BIOS OK"
+msgstr "BIOS OK"
+
+msgid "BIOS UNSAFE"
+msgstr "BIOS USIKKER"
+
+msgid "BIOS KO"
+msgstr "BIOS FEIL"
+
+msgid "BIOS NOT FOUND"
+msgstr "BIOS IKKE FUNNET"
+
+msgid "MD5 OK"
+msgstr "MD5 OK"
+
+msgid "MD5 NOT OK"
+msgstr "MD5 IKKE OK"
+
+msgid "BROWSE"
+msgstr "BLA GJENNOM"
+
+msgid "Your bios' MD5"
+msgstr "MD5 til BIOS-en din"
+
+msgid "Known MD5 List"
+msgstr "Liste over kjente MD5"
+
+msgid "MY SYSTEMS"
+msgstr "MINE SYSTEMER"
+
+msgid "ALL SYSTEMS"
+msgstr "ALLE SYSTEMER"
+
+msgid ""
+"EmulationStation has detected external changes on a gamelist file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation har oppdaget eksterne endringer i en spillistefil.\n"
+"For å unngå tap av data, vil EmulationStation nå starte på nytt og laste inn "
+"alle filer igjen."
+
+msgid ""
+"EmulationStation has detected external changes on a theme file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation har oppdaget eksterne endringer i en temafil.\n"
+"For å unngå tap av data, vil EmulationStation nå starte på nytt og laste inn "
+"alle filer igjen."
+
+msgid "VIRTUAL SYSTEMS"
+msgstr "VIRTUELLE SYSTEMER"
+
+msgid "SHOW ALL-GAMES SYSTEM"
+msgstr "VIS SYSTEMET 'ALLE SPILL'"
+
+msgid "SHOW MULTIPLAYER SYSTEM"
+msgstr "VIS FLERSPILLERSYSTEM"
+
+msgid "SHOW LAST-PLAYED SYSTEM"
+msgstr "VIS 'SIST SPILT'-SYSTEM"
+
+msgid "VIRTUAL SYSTEMS PER GENRE"
+msgstr "VIRTUELLE SYSTEMER PER SJANGER"
+
+msgid "Show a 'all-games' system with all games from all systems."
+msgstr "Vis et 'alle spill'-system med alle spill fra alle systemer."
+
+msgid "Show multiplayer games (all games playable by two or more players)."
+msgstr ""
+"Vis flerspillerspill (alle spill som kan spilles av to eller flere spillere)."
+
+msgid "Show last played games."
+msgstr "Vis sist spilte spill."
+
+msgid "Select virtual systems per genre to show."
+msgstr "Velg virtuelle systemer per sjanger som skal vises."
+
+msgid "HIGHLIGHT GAMES OF REGION..."
+msgstr "FREMHEV SPILL FRA REGION..."
+
+msgid ""
+"Select the source of your game name. Trust the scraping database or get them "
+"from filename, raw or undecorated (without decoration in () or [] )."
+msgstr ""
+"Velg kilden for spillnavnet ditt. Stol på skrapedatabasen eller hent dem fra "
+"filnavnet, rått eller udekorert (uten dekorasjon i () eller [])."
+
+msgid "GET GAME NAME FROM"
+msgstr "HENT SPILLNAVN FRA"
+
+msgid "Scraper results"
+msgstr "Skraperesultater"
+
+msgid "Raw filename"
+msgstr "Rått filnavn"
+
+msgid "Undecorated filename"
+msgstr "Udekorert filnavn"
+
+msgid "OPEN-SOURCE LICENSE"
+msgstr "ÅPEN KILDEKODE-LISENS"
+
+msgid "SELECT IMAGE TYPE"
+msgstr "VELG BILDETYPE"
+
+msgid "In-game screenshot"
+msgstr "Skjermbilde fra spillet"
+
+msgid "Title screenshot"
+msgstr "Skjermbilde av tittel"
+
+msgid "Marquee"
+msgstr "Marquee"
+
+msgid "ScreenScraper Mix V1"
+msgstr "ScreenScraper Mix V1"
+
+msgid "ScreenScraper Mix V2"
+msgstr "ScreenScraper Mix V2"
+
+msgid "SELECT VIDEO TYPE"
+msgstr "VELG VIDEOTYPE"
+
+msgid "No video"
+msgstr "Ingen video"
+
+msgid "Original video"
+msgstr "Original video"
+
+msgid "SELECT FAVORITE REGION"
+msgstr "VELG FAVORITTREGION"
+
+msgid "FAVORITE REGION"
+msgstr "FAVORITTREGION"
+
+msgid "SELECT FAVORITE LANGUAGE"
+msgstr "VELG FAVORITTSPRÅK"
+
+msgid "SYSTEM NAME"
+msgstr "SYSTEMNAVN"
+
+msgid "PUBLISHER"
+msgstr "UTGIVER"
+
+msgid "DEFAULT"
+msgstr "STANDARD"
+
+msgid ""
+"It seems that your game didn't start at all!\n"
+"\n"
+"It's most likely due to either:\n"
+"- bad rom\n"
+"- missing/bad mandatory bios files\n"
+"- missing/bad optional BIOS files (but required for this very game)"
+msgstr ""
+"Det ser ut til at spillet ditt ikke startet i det hele tatt!\n"
+"\n"
+"Dette skyldes mest sannsynlig enten:\n"
+"- dårlig rom\n"
+"- manglende/dårlige obligatoriske BIOS-filer\n"
+"- manglende/dårlige valgfrie BIOS-filer (men nødvendige for akkurat dette "
+"spillet)"
+
+msgid ""
+"At least one mandatory BIOS is missing for %emulator%!\n"
+"Your game '%game%' will very likely not run at all until required BIOS are "
+"put in the expected folder.\n"
+"\n"
+"Do you want to launch the game anyway?"
+msgstr ""
+"Minst én obligatorisk BIOS mangler for %emulator%!\n"
+"Spillet ditt '%game%' vil sannsynligvis ikke fungere i det hele tatt før "
+"nødvendige BIOS er lagt i den forventede mappen.\n"
+"\n"
+"Vil du starte spillet likevel?"
+
+msgid "BACKSPACE"
+msgstr "BACKSPACE"
+
+msgid "FAST WHEEL"
+msgstr "RASKT HJUL"
+
+msgid "CHANGE CHARSET"
+msgstr "BYTT TEGNSETT"
+
+msgid "MOVE WHEEL"
+msgstr "FLYTT HJUL"
+
+msgid "DOWNLOAD GAME MANUALS"
+msgstr "LAST NED SPILLMANUALER"
+
+msgid "DOWNLOAD GAME MAPS"
+msgstr "LAST NED SPILLKART"
+
+msgid "INSTALL PAD-2-KEYBOARD CONFIGURATIONS"
+msgstr "INSTALLER PAD-TIL-TASTATUR-KONFIGURASJONER"
+
+msgid ""
+"You're strongly recommended to update your Recalbox.\n"
+"No support will be provided for older versions!"
+msgstr ""
+"Det anbefales sterkt at du oppdaterer Recalbox-en din.\n"
+"Ingen støtte vil bli gitt for eldre versjoner!"
+
+msgid " has been plugged!"
+msgstr " er koblet til!"
+
+msgid "Ready to play!"
+msgstr "Klar til å spille!"
+
+msgid "Not configured yet! Press a button to enter the configuration window."
+msgstr ""
+"Ikke konfigurert ennå! Trykk på en knapp for å åpne konfigurasjonsvinduet."
+
+msgid " has been unplugged!"
+msgstr " er koblet fra!"
+
+msgid "Remove from favorite"
+msgstr "Fjern fra favoritter"
+
+msgid "Default output"
+msgstr "Standardutgang"
+
+msgid "HIDE ORIGINAL SYSTEMS"
+msgstr "SKJUL ORIGINALE SYSTEMER"
+
+msgid "PREDEFINED PASSWORDS"
+msgstr "FORHÅNDSDEFINERTE PASSORD"
+
+msgid "VALIDATE"
+msgstr "BEKREFT"
+
+msgid "CHOOSE PLAYER PASSWORD"
+msgstr "VELG SPILLERPASSORD"
+
+msgid "SEARCH IN..."
+msgstr "SØK I..."
+
+msgid "DOWNLOADING UPDATE..."
+msgstr "LASTER NED OPPDATERING..."
+
+msgid "REBOOT IN %s"
+msgstr "OMSTART OM %s"
+
+msgid "Error downloading Recalbox %s... Please retry later!"
+msgstr "Feil ved nedlasting av Recalbox %s... Prøv igjen senere!"
+
+msgid "ALL"
+msgstr "ALLE"
+
+msgid "TYPE AT LEAST 3 CHARACTERS"
+msgstr "SKRIV MINST 3 TEGN"
+
+msgid "AUTOMATIC WPS CONNECTION"
+msgstr "AUTOMATISK WPS-TILKOBLING"
+
+msgid "Connecting to WIFI..."
+msgstr "Kobler til WIFI..."
+
+msgid "Disconnecting from WIFI..."
+msgstr "Kobler fra WIFI..."
+
+msgid "NO WPS CONFIGURATION FOUND!"
+msgstr "INGEN WPS-KONFIGURASJON FUNNET!"
+
+msgid "Hostname changes will not be effective until next reboot"
+msgstr "Endringer i vertsnavn trer ikke i kraft før neste omstart"
+
+msgid "Fetching WIFI parameters"
+msgstr "Henter WIFI-parametere"
+
+msgid "NETPLAY MITM"
+msgstr "NETTVERKSSPILL MITM"
+
+msgid "Reseting WIFI configuration..."
+msgstr "Tilbakestiller WIFI-konfigurasjon..."
+
+msgid "WPS CONFIGURATION SUCCESSFUL!"
+msgstr "WPS-KONFIGURASJON VELLYKKET!"
+
+msgid "Waiting for IP address... (%is)"
+msgstr "Venter på IP-adresse... (%is)"
+
+msgid "Waiting for WPS configuration..."
+msgstr "Venter på WPS-konfigurasjon..."
+
+msgid "SCREENSAVER"
+msgstr "SKJERMSPARER"
+
+msgid "SHADERS"
+msgstr "SHADERE"
+
+msgid "Saving WIFI configuration"
+msgstr "Lagrer WIFI-konfigurasjon"
+
+msgid "THEME"
+msgstr "TEMA"
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a raw shader "
+"file here. This setting may be overridden by the shader set if it is not set "
+"to 'none'."
+msgstr ""
+"Shadere er som filtre for spillrenderingen. Du kan velge en rå shader-fil "
+"her. Denne innstillingen kan overstyres av shader-sett hvis den ikke er satt "
+"til 'ingen'."
+
+msgid "Select your keyboard layout."
+msgstr "Velg tastaturoppsett."
+
+msgid "Mute (no sound)"
+msgstr "Demp (ingen lyd)"
+
+msgid "Internal Speakers"
+msgstr "Interne høyttalere"
+
+msgid "Headphone Jack"
+msgstr "Hodetelefonutgang"
+
+msgid "Internal Speakers + Headphone Jack"
+msgstr "Interne høyttalere + hodetelefonutgang"
+
+msgid "black"
+msgstr "svart"
+
+msgid "demo"
+msgstr "demo"
+
+msgid "dim"
+msgstr "dim"
+
+msgid "gameclip"
+msgstr "spillklipp"
+
+msgid "Action (All)"
+msgstr "Action (Alle)"
+
+msgid "Action RPG"
+msgstr "Action-RPG"
+
+msgid "Adventure (All)"
+msgstr "Eventyr (Alle)"
+
+msgid "Artillery"
+msgstr "Artilleri"
+
+msgid "Auto-battler"
+msgstr "Auto-battler"
+
+msgid "Battle Royale"
+msgstr "Battle Royale"
+
+msgid "Beat'em All"
+msgstr "Beat'em All"
+
+msgid "Board game"
+msgstr "Brettspill"
+
+msgid "Build & Management"
+msgstr "Bygging & styring"
+
+msgid "Casino"
+msgstr "Kasino"
+
+msgid "Casual game"
+msgstr "Avslappet spill"
+
+msgid "Competition Sport"
+msgstr "Konkurransesport"
+
+msgid "Demo from Demo Screne"
+msgstr "Demo fra demoscenen"
+
+msgid "Digital Cards"
+msgstr "Digitale kort"
+
+msgid "Dungeon Crawler"
+msgstr "Dungeon crawler"
+
+msgid "Educative"
+msgstr "Lærerikt"
+
+msgid "Favorites"
+msgstr "Favoritter"
+
+msgid "Fighting"
+msgstr "Slåssing"
+
+msgid "Fighting/Violent Sport"
+msgstr "Slåssing/voldelig sport"
+
+msgid "First Person Shooter"
+msgstr "Førstepersonsskytespill"
+
+msgid "Fishing & Hunting"
+msgstr "Fiske & jakt"
+
+msgid "Graphical Adventure"
+msgstr "Grafisk eventyr"
+
+msgid "Infiltration"
+msgstr "Infiltrasjon"
+
+msgid "Interactive Movie"
+msgstr "Interaktiv film"
+
+msgid "JRPG"
+msgstr "JRPG"
+
+msgid "Life Simulation"
+msgstr "Livssimulering"
+
+msgid "MMORPG"
+msgstr "MMORPG"
+
+msgid "Multi Game Compilation"
+msgstr "Multi-spillsamling"
+
+msgid "Multiplayer Online Battle Arena"
+msgstr "Flerspiller nettbasert kamparena"
+
+msgid "Multiplayer Party Game"
+msgstr "Flerspiller festspill"
+
+msgid "Party based RPG"
+msgstr "Gruppebasert RPG"
+
+msgid "Pinball"
+msgstr "Flipperspill"
+
+msgid "Platform Shooter"
+msgstr "Plattform-skytespill"
+
+msgid "Platform"
+msgstr "Plattform"
+
+msgid "Puzzle & Logic"
+msgstr "Puslespill & logikk"
+
+msgid "RPG (All)"
+msgstr "RPG (Alle)"
+
+msgid "Racing"
+msgstr "Racing"
+
+msgid "Real Time 3D Adventure"
+msgstr "Sanntid 3D-eventyr"
+
+msgid "Real Time Strategy"
+msgstr "Sanntidsstrategi"
+
+msgid "Rythm & Music"
+msgstr "Rytme & musikk"
+
+msgid "Science Fiction Simulation"
+msgstr "Science fiction-simulering"
+
+msgid "Shoot with Gun"
+msgstr "Skyt med pistol"
+
+msgid "Shoot'em Up"
+msgstr "Shoot'em up"
+
+msgid "Simulation (All)"
+msgstr "Simulering (Alle)"
+
+msgid "Sport Simulation"
+msgstr "Sportssimulering"
+
+msgid "Sports (All)"
+msgstr "Sport (Alle)"
+
+msgid "Strategy (All)"
+msgstr "Strategi (Alle)"
+
+msgid "Survival"
+msgstr "Overlevelse"
+
+msgid "Tactical RPG"
+msgstr "Taktisk RPG"
+
+msgid "Textual Adventure"
+msgstr "Teksteventyr"
+
+msgid "Tower Defense"
+msgstr "Tower defense"
+
+msgid "Trivia"
+msgstr "Quiz"
+
+msgid "Turn Based Strategy"
+msgstr "Turbasert strategi"
+
+msgid "Vehicle Simulation"
+msgstr "Kjøretøysimulering"
+
+msgid "Visual Novel"
+msgstr "Visual novel"
+
+msgid "Wargame"
+msgstr "Krigsspill"
+
+msgid "eXplore, eXpand, eXploit & eXterminate"
+msgstr "eXplore, eXpand, eXploit & eXterminate"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Advance!\n"
+"This little presentation will show you how to use the 6 special buttons "
+"available right under the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Velkommen til RECALBOX for Odroid Go Advance!\n"
+"Denne lille presentasjonen viser deg hvordan du bruker de 6 spesialknappene "
+"rett under skjermen.\n"
+"\n"
+"Trykk på en hvilken som helst knapp for å starte!"
+
+msgid ""
+"The leftmost button is the SELECT button, marked with a 'I', also available "
+"on most modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Knappen lengst til venstre er SELECT-knappen, merket med en 'I', også "
+"tilgjengelig på de fleste moderne kontrollere.\n"
+"Men det er også HOTKEY-knappen som du kan bruke sammen med andre knapper i "
+"de fleste emulatorer.\n"
+"For eksempel kan du bruke HOTKEY+START for å avslutte det gjeldende "
+"spillet.\n"
+"\n"
+"Trykk på SELECT-knappen."
+
+msgid ""
+"Next to the SELECT button is the START button, marked with an 'II'.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Ved siden av SELECT-knappen er START-knappen, merket med en 'II'.\n"
+"Bruk den til å åpne hovedmenyen i Recalbox-grensesnittet, og bruk den i "
+"spillet som den vanlige START-knappen tilgjengelig på de fleste konsoller.\n"
+"\n"
+"Vennligst trykk på denne START-knappen."
+
+msgid ""
+"Then, there are 2 buttons marked with a 'III' and a 'IV'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press either volume up or down (III/IV)."
+msgstr ""
+"Deretter er det 2 knapper merket med 'III' og 'IV'.\n"
+"Bruk dem til å øke eller redusere volumet når som helst i Recalbox-"
+"grensesnittet eller i spillet.\n"
+"\n"
+" Trykk på volum opp eller ned (III/IV)."
+
+msgid ""
+"The last two buttons marked 'V' and 'VI' are useful to make your screen "
+"darker or brighter.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down (V/VI)."
+msgstr ""
+"De to siste knappene merket 'V' og 'VI' er nyttige for å gjøre skjermen "
+"mørkere eller lysere.\n"
+"Merk at jo lysere skjermen er, jo mer strøm bruker den!\n"
+"\n"
+"Trykk på lysstyrke opp eller ned (V/VI)."
+
+msgid ""
+"Now you're ready to start your RETROGAMING experience with Recalbox! Press "
+"button B to start... and PLAY AGAIN!"
+msgstr ""
+"Nå er du klar til å starte RETROGAMING-opplevelsen din med Recalbox! Trykk "
+"på knapp B for å starte... og SPILL IGJEN!"
+
+msgid "WELCOME TO RECALBOX!"
+msgstr "VELKOMMEN TIL RECALBOX!"
+
+msgid ""
+"Just a few words about the POWER button.\n"
+"Make a short press, just like a mouse click, and your console will enter "
+"sleep mode. Make another short press and your console will restart instanly! "
+"Work in Recalbox interface and in-game!\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Bare noen få ord om POWER-knappen.\n"
+"Gjør et kort trykk, akkurat som et museklikk, og konsollen din går i "
+"hvilemodus. Gjør et nytt kort trykk, og konsollen starter umiddelbart på "
+"nytt! Fungerer i Recalbox-grensesnittet og i spillet!\n"
+"\n"
+"Trykk på knapp B for å fortsette."
+
+msgid ""
+"If you push the POWER button more than 2 seconds, this will power-off your "
+"console. If you do so in-game, Recalbox will close the current emulator "
+"gracefully.\n"
+"Just in case, holding the POWER button down more than 5s perform an hard "
+"power-off.\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Hvis du holder inne POWER-knappen i mer enn 2 sekunder, vil dette slå av "
+"konsollen din. Hvis du gjør dette i spillet, vil Recalbox lukke den "
+"gjeldende emulatoren på en ordentlig måte.\n"
+"Bare i tilfelle: å holde POWER-knappen inne i mer enn 5 sekunder utfører en "
+"hard avslåing.\n"
+"\n"
+"Trykk på knapp B for å fortsette."
+
+msgid ""
+"One more thing to know: If you plug in or unplug your headphones in the jack "
+"connector, Recalbox will automatically switch the audio output. Convenient.\n"
+"\n"
+"Press button B, as usual."
+msgstr ""
+"En ting til du bør vite: hvis du kobler til eller fra hodetelefonene i jack-"
+"kontakten, vil Recalbox automatisk bytte lydutgang. Praktisk.\n"
+"\n"
+"Trykk på knapp B, som vanlig."
+
+msgid "System"
+msgstr "System"
+
+msgid "Added to favorites"
+msgstr "Lagt til i favoritter"
+
+msgid "Removed from favorites"
+msgstr "Fjernet fra favoritter"
+
+msgid "Gameclips cannot be played. No video availabe for your selection"
+msgstr ""
+"Spillklipp kan ikke spilles av. Ingen video tilgjengelig for valget ditt"
+
+msgid "EmulationStation must relaunch to apply your changes."
+msgstr "EmulationStation må starte på nytt for å bruke endringene dine."
+
+msgid "PAIRING %s ..."
+msgstr "PARER %s ..."
+
+msgid "GAME %s"
+msgstr "SPILL %s"
+
+msgid "RUN WITH"
+msgstr "KJØR MED"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Super!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Velkommen til RECALBOX for Odroid Go Super!\n"
+"Denne lille presentasjonen viser deg hvordan du bruker alle spesialknappene "
+"rundt skjermen.\n"
+"\n"
+"Trykk på en hvilken som helst knapp for å starte!"
+
+msgid ""
+"The top-left black button is the SELECT button, also available on most "
+"modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Den svarte knappen øverst til venstre er SELECT-knappen, også tilgjengelig "
+"på de fleste moderne kontrollere.\n"
+"Men det er også HOTKEY-knappen som du kan bruke sammen med andre knapper i "
+"de fleste emulatorer.\n"
+"For eksempel kan du bruke HOTKEY+START for å avslutte det gjeldende "
+"spillet.\n"
+"\n"
+"Trykk på SELECT-knappen."
+
+msgid ""
+"At the opposite side of the SELECT button is the START button.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"På motsatt side av SELECT-knappen er START-knappen.\n"
+"Bruk den til å åpne hovedmenyen i Recalbox-grensesnittet, og bruk den i "
+"spillet som den vanlige START-knappen tilgjengelig på de fleste konsoller.\n"
+"\n"
+"Vennligst trykk på denne START-knappen."
+
+msgid ""
+"Then, on the top of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press any button to continue"
+msgstr ""
+"Deretter, øverst på konsollen, er det 2 knapper merket med '-' og '+'.\n"
+"Bruk dem til å øke eller redusere volumet når som helst i Recalbox-"
+"grensesnittet eller i spillet.\n"
+"\n"
+" Trykk på en hvilken som helst knapp for å fortsette"
+
+msgid ""
+"The two bottom-left gray buttons control the screen brightness.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down button"
+msgstr ""
+"De to grå knappene nederst til venstre kontrollerer skjermens lysstyrke.\n"
+"Merk at jo lysere skjermen er, jo mer strøm bruker den!\n"
+"\n"
+" Trykk på knappen for lysstyrke opp eller ned"
+
+msgid ""
+"Finally, the two bottom-right gray buttons are third left & right triggers "
+"(L3/R3), only usefull in some emulators or to record videos.\n"
+"\n"
+" Press either L3 or R3"
+msgstr ""
+"Til slutt er de to grå knappene nederst til høyre den tredje venstre og "
+"høyre triggeren (L3/R3), kun nyttig i noen emulatorer eller for å spille inn "
+"videoer.\n"
+"\n"
+" Trykk på L3 eller R3"
+
+msgid ""
+"Change the driver if your pad is not working at all or not working properly "
+"in-game."
+msgstr ""
+"Bytt driver hvis kontrolleren din ikke fungerer i det hele tatt eller ikke "
+"fungerer riktig i spillet."
+
+msgid "In Memory!"
+msgstr "I minnet!"
+
+msgid "Internal Share Partition"
+msgstr "Intern share-partisjon"
+
+msgid "Network Share"
+msgstr "Nettverksdeling"
+
+msgid "Device %d - %l (%f)"
+msgstr "Enhet %d - %l (%f)"
+
+msgid "Any External Device"
+msgstr "Enhver ekstern enhet"
+
+msgid "DETECTED REGION"
+msgstr "OPPDAGET REGION"
+
+msgid "SELECT REGION PRIORITY"
+msgstr "VELG REGIONPRIORITET"
+
+msgid "LATER"
+msgstr "SENERE"
+
+msgid "A reboot is required to apply pending changes."
+msgstr "En omstart er nødvendig for å bruke ventende endringer."
+
+msgid "SHOW LIGHTGUN SYSTEM"
+msgstr "VIS LIGHTGUN-SYSTEM"
+
+msgid "SHOW PORTS SYSTEM"
+msgstr "VIS PORTS-SYSTEM"
+
+msgid "Show all available games playable with a lightgun."
+msgstr "Vis alle tilgjengelige spill som kan spilles med en lightgun."
+
+msgid "Show a 'ports' system with all ports in the same place."
+msgstr "Vis et 'ports'-system med alle porter på samme sted."
+
+msgid ""
+"WARNING! This option erases all Recalbox and emulator configurations! Use it "
+"carefully!"
+msgstr ""
+"ADVARSEL! Dette valget sletter alle recalbox- og emulatorkonfigurasjoner! "
+"Bruk med forsiktighet!"
+
+msgid "RESET TO FACTORY SETTINGS"
+msgstr "TILBAKESTILL TIL FABRIKKINNSTILLINGER"
+
+msgid "WARNING!"
+msgstr "ADVARSEL!"
+
+msgid ""
+"RESET TO FACTORY SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET RECALBOX AND EMULATOR SETTINGS TO DEFAULT VALUES.\n"
+"ALL YOUR DATA LIKE GAMES, SAVES, MUSIC, SCREENSHOTS AND SO ON, WILL BE "
+"KEPT.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR SETTINGS?"
+msgstr ""
+"TILBAKESTILL TIL FABRIKKINNSTILLINGER\n"
+"\n"
+"DU ER I FERD MED Å TILBAKESTILLE RECALBOX- OG EMULATORINNSTILLINGENE TIL "
+"STANDARDVERDIER.\n"
+"ALLE DATAENE DINE SOM SPILL, LAGRINGER, MUSIKK, SKJERMBILDER OSV., VIL BLI "
+"BEHOLDT.\n"
+"\n"
+"DENNE OPERASJONEN KAN IKKE ANGRES!\n"
+"ER DU SIKKER PÅ AT DU VIL TILBAKESTILLE ALLE INNSTILLINGENE DINE?"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR RECALBOX TO FACTORY SETTINGS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"DU ER ETT KLIKK UNNA Å TILBAKESTILLE RECALBOX-EN TIL FABRIKKINNSTILLINGER!\n"
+"\n"
+"ER DU HELT SIKKER PÅ AT DU VIL GJØRE DETTE?"
+
+msgid "SWAP VALIDATE/CANCEL BUTTONS"
+msgstr "BYTT BEKREFT-/AVBRYT-KNAPPER"
+
+msgid "AUDIO MODE"
+msgstr "LYDMODUS"
+
+msgid "Select sound to play. Musics, videos sound, both or none"
+msgstr "Velg lyd som skal spilles av. Musikk, videolyd, begge eller ingen"
+
+msgid "Musics or videos sound"
+msgstr "Musikk eller videolyd"
+
+msgid "Musics and videos sound"
+msgstr "Musikk og videolyd"
+
+msgid "Musics only"
+msgstr "Kun musikk"
+
+msgid "Videos sound only"
+msgstr "Kun videolyd"
+
+msgid "No sound"
+msgstr "Ingen lyd"
+
+msgid "Adult"
+msgstr "Voksen"
+
+msgid "Waking up!"
+msgstr "Våkner opp!"
+
+msgid "LightGun Games"
+msgstr "LightGun-spill"
+
+msgid "NEW YORK"
+msgstr "NEW YORK"
+
+msgid "MADRID"
+msgstr "MADRID"
+
+msgid "Swap the validate button (B/X) and the cancel button (B/O)."
+msgstr "Tillat bytte av bekreft-knapp B/X og avbryt-knapp B/O"
+
+msgid "box3d"
+msgstr "box3d"
+
+msgid "P2K CONTROLS"
+msgstr "P2K-KONTROLLER"
+
+msgid "THE UPGRADE HAS FAILED"
+msgstr "OPPGRADERINGEN MISLYKTES"
+
+msgid ""
+"The upgrade process has failed. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, and contact the team on https://forum."
+"recalbox.com if the problem persists."
+msgstr ""
+"Oppgraderingsprosessen mislyktes. Du er tilbake på Recalbox %s.\n"
+"Vennligst prøv å oppgradere Recalbox-en din igjen, og kontakt teamet på "
+"https://forum.recalbox.com hvis problemet vedvarer."
+
+msgid "RECALBOX OVERLAYS"
+msgstr "RECALBOX-OVERLEGG"
+
+msgid ""
+"On wide screens, display system images that wrap around emulated screen."
+msgstr ""
+"På brede skjermer, vis systembilder som omslutter den emulerte skjermen."
+
+msgid "No comment available"
+msgstr "Ingen kommentar tilgjengelig"
+
+msgid "UNKNOWN"
+msgstr "UKJENT"
+
+msgid "GO TO GAME"
+msgstr "GÅ TIL SPILL"
+
+msgid "MEDIA FILES"
+msgstr "MEDIEFILER"
+
+msgid "CONFIGURATION AND PATCH FILES"
+msgstr "KONFIGURASJONS- OG PATCH-FILER"
+
+msgid "SAVE FILES"
+msgstr "LAGRINGSFILER"
+
+msgid "RELEASE DATE"
+msgstr "UTGIVELSESDATO"
+
+msgid "TYPE, THEN NAME"
+msgstr "TYPE, DERETTER NAVN"
+
+msgid "TYPE, THEN RELEASE DATE"
+msgstr "TYPE, DERETTER UTGIVELSESDATO"
+
+msgid "MANUFACTURER, THEN NAME"
+msgstr "PRODUSENT, DERETTER NAVN"
+
+msgid "MANUFACTURER, THEN RELEASE DATE"
+msgstr "PRODUSENT, DERETTER UTGIVELSESDATO"
+
+msgid "TYPE, THEN MANUFACTURER, THEN NAME"
+msgstr "TYPE, DERETTER PRODUSENT, DERETTER NAVN"
+
+msgid "TYPE, THEN MANUFACTURER, THEN RELEASE DATE"
+msgstr "TYPE, DERETTER PRODUSENT, DERETTER UTGIVELSESDATO"
+
+msgid "SYSTEM SORTING"
+msgstr "SYSTEMSORTERING"
+
+msgid ""
+"Default: use original or custom systemlist.xml order\n"
+"System Type: order by Console/Handheld/Computer/Arcade/Other\n"
+"Release Date: order by release date asc\n"
+"Manufacturer: order by manufacturer (e.g. Sega)\n"
+"Special Blend: Sort by type then Manufacturer then Release Date"
+msgstr ""
+"Standard: bruk original eller tilpasset rekkefølge fra systemlist.xml\n"
+"Systemtype: sorter etter Konsoll/Håndholdt/Datamaskin/Arcade/Annet\n"
+"Utgivelsesdato: sorter stigende etter utgivelsesdato\n"
+"Produsent: sorter etter produsent (f.eks. Sega)\n"
+"Spesialblanding: sorter etter type, deretter produsent, deretter "
+"utgivelsesdato"
+
+msgid "DELETE ALL FILES"
+msgstr "SLETT ALLE FILER"
+
+msgid "ADVANCED DELETE"
+msgstr "AVANSERT SLETTING"
+
+msgid "DELETE ALL FILES, CONFIRM?"
+msgstr "SLETT ALLE FILER, BEKREFT?"
+
+msgid "DELETE SCREENSHOT, CONFIRM?"
+msgstr "SLETT SKJERMBILDE, BEKREFT?"
+
+msgid ""
+"Global resolution is the resolution used by default when specific "
+"resolutions are undefined."
+msgstr ""
+"Global oppløsning er oppløsningen som brukes som standard når spesifikke "
+"oppløsninger ikke er definert."
+
+msgid "Select the resolution EmulationStation will use."
+msgstr "Velg oppløsningen EmulationStation skal bruke."
+
+msgid "RESOLUTIONS"
+msgstr "OPPLØSNINGER"
+
+msgid "GLOBAL RESOLUTION"
+msgstr "GLOBAL OPPLØSNING"
+
+msgid "EMULATIONSTATION RESOLUTION"
+msgstr "EMULATIONSTATION-OPPLØSNING"
+
+msgid "USE GLOBAL"
+msgstr "BRUK GLOBAL"
+
+msgid "NATIVE"
+msgstr "NATIV"
+
+msgid ""
+"No file selected,\n"
+"you must at least choose one."
+msgstr ""
+"Ingen fil valgt,\n"
+"du må velge minst én."
+
+msgid ""
+"The device %NAME% containing roms has been plugged in! EmulationStation must "
+"relaunch to load new games."
+msgstr ""
+"Enheten %NAME% som inneholder romer er koblet til! EmulationStation må "
+"starte på nytt for å laste inn nye spill."
+
+msgid ""
+"A device containing roms has been unplugged! EmulationStation must relaunch "
+"to remove unavailable games."
+msgstr ""
+"En enhet som inneholder romer er koblet fra! EmulationStation må starte på "
+"nytt for å fjerne utilgjengelige spill."
+
+msgid ""
+"Your USB device has been initialized! You can unplug it and copy your games "
+"on it."
+msgstr ""
+"USB-enheten din er initialisert! Du kan koble den fra og kopiere spillene "
+"dine på den."
+
+msgid ""
+"Initialization failed! Your USB device is full or contains errors. Please "
+"repair or use another device."
+msgstr ""
+"Initialisering mislyktes! USB-enheten din er full eller inneholder feil. "
+"Vennligst reparer eller bruk en annen enhet."
+
+msgid "DISPLAY BY FILENAME"
+msgstr "VIS ETTER FILNAVN"
+
+msgid "SEARCH GAMES HERE"
+msgstr "SØK ETTER SPILL HER"
+
+msgid "This game is currently updating its metadata. Retry in a few seconds."
+msgstr ""
+"Dette spillet oppdaterer for øyeblikket metadataene sine. Prøv igjen om noen "
+"sekunder."
+
+msgid "SHOW ONLY LATEST VERSION"
+msgstr "VIS KUN NYESTE VERSJON"
+
+msgid "SHOW ONLY FAVORITES"
+msgstr "VIS KUN FAVORITTER"
+
+msgid "SHOW HIDDEN GAMES"
+msgstr "VIS SKJULTE SPILL"
+
+msgid "Display game by file name instead of game name."
+msgstr "Vis spill etter filnavn i stedet for spillnavn."
+
+msgid "DISABLE"
+msgstr "DEAKTIVER"
+
+msgid "original"
+msgstr "original"
+
+msgid ""
+"A fatal error occured while scraping your game! It may be related to server "
+"issues or bad login/password.\n"
+"\n"
+"Try again in a few moment or fix your credentials if required."
+msgstr ""
+"En kritisk feil oppstod under skraping av spillet ditt! Det kan være "
+"relatert til serverproblemer eller feil brukernavn/passord.\n"
+"\n"
+"Prøv igjen om litt eller rett opp innloggingsinformasjonen din hvis "
+"nødvendig."
+
+msgid "Your scraping session completed!"
+msgstr "Skrapeøkten din er fullført!"
+
+msgid "Please select one or more systems to scrape!"
+msgstr "Vennligst velg ett eller flere systemer å skrape!"
+
+msgid ""
+"Your system has not enough memory to handle %SYSTEMS% systems. You should "
+"not exceed %MAXSYSTEMS% consoles/computers or you may face stability "
+"issues!\n"
+"\n"
+"You can hide preinstalled games in UI SETTINGS menu to decrease active "
+"systems"
+msgstr ""
+"Systemet ditt har ikke nok minne til å håndtere %SYSTEMS% systemer. Du bør "
+"ikke overskride %MAXSYSTEMS% konsoller/datamaskiner, ellers kan du oppleve "
+"stabilitetsproblemer!\n"
+"\n"
+"Du kan skjule forhåndsinstallerte spill i menyen GRENSESNITTINNSTILLINGER "
+"for å redusere antall aktive systemer"
+
+msgid ""
+"Your system has not enough memory to handle %GAMES% games. You should not "
+"exceed %MAXGAMES% or you may face stability issues!"
+msgstr ""
+"Systemet ditt har ikke nok minne til å håndtere %GAMES% spill. Du bør ikke "
+"overskride %MAXGAMES%, ellers kan du oppleve stabilitetsproblemer!"
+
+msgid "WARNING! SYSTEM OVERLOAD!"
+msgstr "ADVARSEL! SYSTEMOVERBELASTNING!"
+
+msgid ""
+"Welcome back %NAME%!\n"
+"Patron level %LEVEL%\n"
+"You are now connected to your recalbox patron account, and all exclusives "
+"features are available!"
+msgstr ""
+"Velkommen tilbake %NAME%!\n"
+"Patron-nivå %LEVEL%\n"
+"Du er nå tilkoblet din recalbox patron-konto, og alle eksklusive funksjoner "
+"er tilgjengelige!"
+
+msgid ""
+"Hello %NAME%, your private key is linked to a Patreon account which is no "
+"longer a Recalbox Patron.\n"
+"We still hope to see you back soon as a Recalbox Patron!\n"
+"Delete your private key to suppress this message."
+msgstr ""
+"Hei %NAME%, den private nøkkelen din er koblet til en Patreon-konto som ikke "
+"lenger er en Recalbox-patron.\n"
+"Vi håper fortsatt å se deg tilbake snart som en Recalbox-patron!\n"
+"Slett den private nøkkelen din for å fjerne denne meldingen."
+
+msgid ""
+"Your private key does not allow to retrieve your Patreon information. Go to "
+"recalbox.com/patreon to generate a new valid key!"
+msgstr ""
+"Den private nøkkelen din tillater ikke henting av Patreon-informasjonen din. "
+"Gå til recalbox.com/patreon for å generere en ny gyldig nøkkel!"
+
+msgid ""
+"Sorry we're not able to retrieve your Patron level because no network is "
+"available!"
+msgstr ""
+"Beklager, vi kan ikke hente patron-nivået ditt fordi det ikke er noe "
+"nettverk tilgjengelig!"
+
+msgid ""
+"We're not able to retrieve your Patron level! Sorry for the inconvenience, "
+"we're already working on a fix!"
+msgstr ""
+"Vi kan ikke hente patron-nivået ditt! Beklager ulempen, vi jobber allerede "
+"med en løsning!"
+
+msgid "CASE MANAGEMENT"
+msgstr "KABINETTHÅNDTERING"
+
+msgid ""
+"If you installed a case on your Recalbox, you can install or uninstall it in "
+"this menu. Some cases are detected automatically and will also be reported "
+"here."
+msgstr ""
+"Hvis du har installert et kabinett på Recalbox-en din, kan du installere "
+"eller avinstallere det her. Noen kabinetter oppdages automatisk og vil også "
+"rapporteres her."
+
+msgid ""
+"The USB device %NAME% with no rom folder and no share folder has been "
+"plugged in! Would you like to initialize this device?"
+msgstr ""
+"USB-enheten %NAME% uten rom-mappe og uten share-mappe er koblet til! Vil du "
+"initialisere denne enheten?"
+
+msgid "• Choose '%INIT%' to create only all the rom folders"
+msgstr "• Velg '%INIT%' for å kun opprette alle rom-mappene"
+
+msgid ""
+"• Choose '%MOVE%' to copy all the current share to the new device, "
+"automatically switch to this device, and reboot"
+msgstr ""
+"• Velg '%MOVE%' for å kopiere hele den nåværende share-en til den nye "
+"enheten, bytte automatisk til denne enheten og starte på nytt"
+
+msgid "• Or just chose '%CANCEL%' to do nothing with this new device"
+msgstr ""
+"• Eller bare velg '%CANCEL%' for å ikke gjøre noe med denne nye enheten"
+
+msgid "INITIALIZE"
+msgstr "INITIALISER"
+
+msgid "MOVE SHARE"
+msgstr "FLYTT SHARE"
+
+msgid "Setting up boot device..."
+msgstr "Setter opp oppstartsenhet..."
+
+msgid ""
+"Your USB device has been initialized! Ready to reboot on your new share "
+"device!"
+msgstr ""
+"USB-enheten din er initialisert! Klar til å starte på nytt på den nye share-"
+"enheten din!"
+
+msgid "UPDATING..."
+msgstr "OPPDATERER..."
+
+msgid "Video"
+msgstr "Video"
+
+msgid ""
+"For safe shutdown to work, set the SAFE SHUTDOWN switch to ON. You will find "
+"it on the circuit board, inside your Retroflag case."
+msgstr ""
+"For at trygg avslåing skal fungere, sett SAFE SHUTDOWN-bryteren til ON. Du "
+"finner den på kretskortet, inni Retroflag-kabinettet ditt."
+
+msgid "MENU RESOLUTION"
+msgstr "MENYOPPLØSNING"
+
+msgid "SCREEN TYPE"
+msgstr "SKJERMTYPE"
+
+msgid "SELECT GAME REFRESH RATE AT LAUNCH"
+msgstr "VELG OPPDATERINGSFREKVENS FOR SPILL VED OPPSTART"
+
+msgid "Let you choose between 50Hz and 60Hz at launch, for compatible systems."
+msgstr ""
+"Lar deg velge mellom 50Hz og 60Hz ved oppstart, for kompatible systemer."
+
+msgid "SELECT GAME RESOLUTION AT LAUNCH"
+msgstr "VELG SPILLOPPLØSNING VED OPPSTART"
+
+msgid ""
+"Let you choose between 240p, 480i, or 480p at launch, for compatible systems."
+msgstr ""
+"Lar deg velge mellom 240p, 480i eller 480p ved oppstart, for kompatible "
+"systemer."
+
+msgid "FORCE SOUND ON JACK"
+msgstr "TVING LYD PÅ JACK"
+
+msgid "Force sound on jack. Auto-enabled when 31kHz switch is ON"
+msgstr "Tving lyd på jack. Aktiveres automatisk når 31kHz-bryteren er ON"
+
+msgid "MOVE SCREEN"
+msgstr "FLYTT SKJERM"
+
+msgid "Horizontal offset:"
+msgstr "Horisontal forskyvning:"
+
+msgid "Vertical offset:"
+msgstr "Vertikal forskyvning:"
+
+msgid "YOUR LIST IS EMPTY. PRESS START TO CHANGE GAME FILTERS."
+msgstr "LISTEN DIN ER TOM. TRYKK START FOR Å ENDRE SPILLFILTRE."
+
+msgid "Select a region to filter out games not matching the selected region."
+msgstr ""
+"Velg en region for å filtrere bort spill som ikke samsvarer med den valgte "
+"regionen."
+
+msgid "SOFTPATCHING"
+msgstr "SOFTPATCHING"
+
+msgid "AUTOMATIC SCRAPING"
+msgstr "AUTOMATISK SKRAPING"
+
+msgid "RUN IN BACKGROUND"
+msgstr "KJØR I BAKGRUNNEN"
+
+msgid "MONTREAL"
+msgstr "MONTREAL"
+
+msgid "SAOPAULO"
+msgstr "SÃO PAULO"
+
+msgid "%i Known MD5"
+msgstr "%i kjente MD5"
+
+msgid "Restarting."
+msgstr "Starter på nytt."
+
+msgid "Entering standby..."
+msgstr "Går inn i hvilemodus..."
+
+msgid "PAD TO KEYBOARD CONTROLS"
+msgstr "PAD-TIL-TASTATUR-KONTROLLER"
+
+msgid "You are about to delete this files, confirm ?"
+msgstr "Du er i ferd med å slette disse filene, bekreft?"
+
+msgid "Preparing Games..."
+msgstr "Klargjør spill..."
+
+msgid "Free"
+msgstr "Ledig"
+
+msgid "FADE"
+msgstr "TON UT"
+
+msgid "SLIDE"
+msgstr "SKYV"
+
+msgid "INSTANT"
+msgstr "UMIDDELBART"
+
+msgid "You must have at least %dGB free on 'SHARE' partition!"
+msgstr "Du må ha minst %dGB ledig plass på 'SHARE'-partisjonen!"
+
+msgid "60Hz (US)"
+msgstr "60Hz (USA)"
+
+msgid "60Hz (JP)"
+msgstr "60Hz (JP)"
+
+msgid "50Hz (EU)"
+msgstr "50Hz (EU)"
+
+msgid "60Hz"
+msgstr "60Hz"
+
+msgid "50Hz"
+msgstr "50Hz"
+
+msgid "Recalbox RGB Dual options and configuration."
+msgstr "Valg og konfigurasjon for Recalbox RGB Dual."
+
+msgid "Select system, frontend and emulator resolutions."
+msgstr "Velg oppløsninger for system, frontend og emulator."
+
+msgid "PAIR BLUETOOTH CONTROLLERS"
+msgstr "PAR BLUETOOTH-KONTROLLERE"
+
+msgid ""
+"The bluetooth pairing will start and run for several minutes.\n"
+"During this time, you just have to apply the pairing procedure on any "
+"bluetooth controller you want to pair.\n"
+"The next window will display all detected bluetooth devices and their status "
+"for information purposes only.\n"
+"You can close it at any time, while continuing to pair your bluetooth "
+"devices for as long as the bluetooth icon is blinking on the top left."
+msgstr ""
+"Bluetooth-paringen starter og kjører i flere minutter.\n"
+"I løpet av denne tiden må du bare utføre paringsprosedyren på enhver "
+"Bluetooth-kontroller du vil pare.\n"
+"Det neste vinduet vil vise alle oppdagede Bluetooth-enheter og statusen "
+"deres kun til informasjonsformål.\n"
+"Du kan lukke det når som helst, mens du fortsetter å pare Bluetooth-enhetene "
+"dine så lenge Bluetooth-ikonet blinker øverst til venstre."
+
+msgid "START DOWNLOADING..."
+msgstr "START NEDLASTING..."
+
+msgid ""
+"Pair a bluetooth audio device. Put your device in discovery mode before "
+"starting."
+msgstr ""
+"Par en Bluetooth-lydenhet. Sett enheten din i oppdagelsesmodus før du "
+"starter."
+
+msgid "PAIR A BLUETOOTH AUDIO DEVICE"
+msgstr "PAR EN BLUETOOTH-LYDENHET"
+
+msgid "J1 UP"
+msgstr "J1 OPP"
+
+msgid "J1 DOWN"
+msgstr "J1 NED"
+
+msgid "J1 LEFT"
+msgstr "J1 VENSTRE"
+
+msgid "J1 RIGHT"
+msgstr "J1 HØYRE"
+
+msgid "J2 UP"
+msgstr "J2 OPP"
+
+msgid "J2 DOWN"
+msgstr "J2 NED"
+
+msgid "J2 LEFT"
+msgstr "J2 VENSTRE"
+
+msgid "J2 RIGHT"
+msgstr "J2 HØYRE"
+
+msgid "Alias: **"
+msgstr "Alias: **"
+
+msgid "MAC: "
+msgstr "MAC: "
+
+msgid "Connected: "
+msgstr "Tilkoblet: "
+
+msgid "Trusted: "
+msgstr "Klarert: "
+
+msgid "Paired: "
+msgstr "Paret: "
+
+msgid "Blocked: "
+msgstr "Blokkert: "
+
+msgid "NO DEVICE"
+msgstr "INGEN ENHET"
+
+msgid "SEARCH BY"
+msgstr "SØK ETTER"
+
+msgid "NO RESULTS"
+msgstr "INGEN RESULTATER"
+
+msgid "PRIORITY TO HDMI"
+msgstr "PRIORITET TIL HDMI"
+
+msgid "ON"
+msgstr "PÅ"
+
+msgid "OFF"
+msgstr "AV"
+
+msgid "60Hz Only"
+msgstr "Kun 60Hz"
+
+msgid "50Hz Only"
+msgstr "Kun 50Hz"
+
+msgid "DISCOVERING BLUETOOTH AUDIO DEVICES..."
+msgstr "OPPDAGER BLUETOOTH-LYDENHETER..."
+
+msgid "NO AUDIO DEVICE FOUND"
+msgstr "INGEN LYDENHET FUNNET"
+
+msgid "KODI RESOLUTION"
+msgstr "KODI-OPPLØSNING"
+
+msgid "AUDIO DEVICE PAIRED"
+msgstr "LYDENHET PARET"
+
+msgid "UNABLE TO PAIR AUDIO DEVICE"
+msgstr "KAN IKKE PARE LYDENHET"
+
+msgid "BRIGHTNESS"
+msgstr "LYSSTYRKE"
+
+msgid "NAME"
+msgstr "NAVN"
+
+msgid "suspend"
+msgstr "hvilemodus"
+
+msgid "NEXT RESOLUTION"
+msgstr "NESTE OPPLØSNING"
+
+msgid "Game refresh rate"
+msgstr "Oppdateringsfrekvens for spill"
+
+msgid "Game resolution"
+msgstr "Spilloppløsning"
+
+msgid "CHANGELOG"
+msgstr "ENDRINGSLOGG"
+
+msgid "Copying %s folder..."
+msgstr "Kopierer mappen %s..."
+
+msgid "B"
+msgstr "B"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "SAVE STATES"
+msgstr "LAGRINGSTILSTANDER"
+
+msgid "SHOW SAVE STATES ON START"
+msgstr "VIS LAGRINGSTILSTANDER VED START"
+
+msgid "You are about to delete this state, confirm ?"
+msgstr "Du er i ferd med å slette denne tilstanden, bekreft?"
+
+msgid "DELETE STATE, CONFIRM?"
+msgstr "SLETT TILSTAND, BEKREFT?"
+
+msgid "CHANGE ORDER"
+msgstr "ENDRE REKKEFØLGE"
+
+msgid "LAUNCH GAME FROM STATE"
+msgstr "START SPILL FRA TILSTAND"
+
+msgid "DELETE STATE SLOT"
+msgstr "SLETT LAGRINGSPLASS"
+
+msgid "Display the available save states before launching a game."
+msgstr ""
+"Vis lagringstilstander ved start viser tilgjengelige lagringstilstander før "
+"spillet startes."
+
+msgid "DOWNLOADING GAMES FOR %s"
+msgstr "LASTER NED SPILL FOR %s"
+
+msgid "Downloading WASM4 games from the official site. Please wait..."
+msgstr ""
+"Laster ned WASM4-spill fra det offisielle nettstedet. Vennligst vent..."
+
+msgid "Downloading... Estimated time: %s"
+msgstr "Laster ned... Estimert tid: %s"
+
+msgid "Extracting... found %s games"
+msgstr "Pakker ut... fant %s spill"
+
+msgid "Updating metadata..."
+msgstr "Oppdaterer metadata..."
+
+msgid "Refreshing gamelist..."
+msgstr "Oppdaterer spilliste..."
+
+msgid ""
+"Scrap running in background.\n"
+"Return to the scrap menu to get the progression."
+msgstr ""
+"Skraping kjører i bakgrunnen.\n"
+"Gå tilbake til skrapemenyen for å se fremgangen."
+
+msgid "ADVANCED SHADERS"
+msgstr "AVANSERTE SHADERE"
+
+msgid "GAME BOY MODE"
+msgstr "GAME BOY-MODUS"
+
+msgid "GAME BOY"
+msgstr "GAME BOY"
+
+msgid "SUPER GAME BOY"
+msgstr "SUPER GAME BOY"
+
+msgid "ASK AT LAUNCH"
+msgstr "SPØR VED OPPSTART"
+
+msgid "CRT CURVED"
+msgstr "CRT BUET"
+
+msgid ""
+"YOU JUST ACTIVATED THE SHADERS FOR ALL SYSTEMS. FOR A BETTER RENDERING, IT "
+"IS ADVISED TO DISABLE GAME SMOOTHING. DO YOU WANT TO CHANGE THIS OPTION "
+"AUTOMATICALLY?"
+msgstr ""
+"DU HAR NETTOPP AKTIVERT SHADERE FOR ALLE SYSTEMER. FOR BEDRE RENDERING "
+"ANBEFALES DET Å DEAKTIVERE SPILLUTJEVNING. VIL DU ENDRE DETTE VALGET "
+"AUTOMATISK?"
+
+msgid "Optimized video"
+msgstr "Optimalisert video"
+
+msgid "RECOMMENDED"
+msgstr "ANBEFALT"
+
+msgid "TATE SETTINGS"
+msgstr "TATE-INNSTILLINGER"
+
+msgid "ENABLE TATE VIRTUAL SYSTEM"
+msgstr "AKTIVER VIRTUELT TATE-SYSTEM"
+
+msgid "GAMES ROTATION"
+msgstr "SPILLROTASJON"
+
+msgid "COMPLETE SYSTEM ROTATION"
+msgstr "FULLSTENDIG SYSTEMROTASJON"
+
+msgid ""
+"Welcome to RECALBOX for Anbernic RG!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Velkommen til RECALBOX for Anbernic RG!\n"
+"Denne lille presentasjonen viser deg hvordan du bruker alle spesialknappene "
+"rundt skjermen.\n"
+"\n"
+"Trykk på en hvilken som helst knapp for å starte!"
+
+msgid ""
+"On the left side of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+"Press button B to continue"
+msgstr ""
+"På venstre side av konsollen er det 2 knapper merket med '-' og '+'.\n"
+"Bruk dem til å øke eller redusere volumet når som helst i Recalbox-"
+"grensesnittet eller i spillet.\n"
+"\n"
+"Trykk på knapp B for å fortsette"
+
+msgid ""
+"On the top side of the console, there is a button marked 'F'.\n"
+"This is the Hotkey button\n"
+"To quit a game press both F + START\n"
+"Press button B to continue"
+msgstr ""
+"På oversiden av konsollen er det en knapp merket 'F'.\n"
+"Dette er Hotkey-knappen\n"
+"For å avslutte et spill, trykk på F + START samtidig\n"
+"Trykk på knapp B for å fortsette"
+
+msgid ""
+"Use the function F button and a volume button to adjust brightness\n"
+"Press button B to continue"
+msgstr ""
+"Bruk funksjonsknappen F og en volumknapp for å justere lysstyrken\n"
+"Trykk på knapp B for å fortsette"
+
+msgid "GameBoy Mode"
+msgstr "GameBoy-modus"
+
+msgid "Rotation"
+msgstr "Rotasjon"
+
+msgid "Full Screen"
+msgstr "Fullskjerm"
+
+msgid "DOWNLOAD CONTENTS"
+msgstr "LAST NED INNHOLD"
+
+msgid "Start downloading..."
+msgstr "Starter nedlasting..."
+
+msgid "none"
+msgstr "ingen"
+
+msgid "Games"
+msgstr "Spill"
+
+msgid "Downloading free games from Recalbox repositories. Please wait..."
+msgstr "Laster ned gratis spill fra Recalbox-arkiver. Vennligst vent..."
+
+msgid "Installing %s games"
+msgstr "Installerer %s spill"
+
+msgid "SLOT"
+msgstr "PLASS"
+
+msgid "ENABLE ENHANCED VIEW"
+msgstr "AKTIVER FORBEDRET VISNING"
+
+msgid "FOLD CLONES BY DEFAULT"
+msgstr "FOLD SAMMEN KLONER SOM STANDARD"
+
+msgid "HIDE BIOS"
+msgstr "SKJUL BIOS"
+
+msgid "HIDE NON-WORKING GAMES"
+msgstr "SKJUL IKKE-FUNGERENDE SPILL"
+
+msgid "ALWAYS USE OFFICIAL NAMES"
+msgstr "BRUK ALLTID OFFISIELLE NAVN"
+
+msgid "MANUFACTURER VIRTUAL SYSTEMS"
+msgstr "VIRTUELLE SYSTEMER ETTER PRODUSENT"
+
+msgid "HD MODE"
+msgstr "HD-MODUS"
+
+msgid "WIDESCREEN (16/9)"
+msgstr "BREDSKJERM (16/9)"
+
+msgid "LAUNCH LAST"
+msgstr "START SISTE"
+
+msgid "BOOTLOADER UPDATE"
+msgstr "OPPDATERING AV OPPSTARTSLASTER"
+
+msgid ""
+"If no configured controller is detected at boot, Recalbox will run as usual "
+"and display the system list."
+msgstr ""
+"Hvis ingen konfigurert kontroller oppdages ved oppstart, vil recalbox kjøre "
+"som vanlig og vise systemlisten."
+
+msgid "Could not get bootloader status. Something went wrong"
+msgstr "Kunne ikke hente status for oppstartslaster. Noe gikk galt"
+
+msgid "An update is available :\n"
+msgstr "En oppdatering er tilgjengelig:\n"
+
+msgid "Current version: \n"
+msgstr "Gjeldende versjon: \n"
+
+msgid ""
+"\n"
+"Latest version: \n"
+msgstr ""
+"\n"
+"Nyeste versjon: \n"
+
+msgid "Update success. The bootloader is up to date."
+msgstr "Oppdatering vellykket. Oppstartslasteren er oppdatert."
+
+msgid ""
+"Your bootloader is up to date.\n"
+"The bootloader version is:\n"
+msgstr ""
+"Oppstartslasteren din er oppdatert.\n"
+"Oppstartslaster-versjonen er:\n"
+
+msgid "AUTO PAIR ON BOOT"
+msgstr "AUTOMATISK PARING VED OPPSTART"
+
+msgid "ALWAYS SHOW PAD OSD"
+msgstr "VIS ALLTID PAD-OSD"
+
+msgid "PAD OSD TYPE"
+msgstr "PAD-OSD-TYPE"
+
+msgid "REDUCED LATENCY (EXPERIMENTAL)"
+msgstr "REDUSERT VENTETID (EKSPERIMENTELL)"
+
+msgid "RUN AHEAD (EXPERIMENTAL)"
+msgstr "RUN AHEAD (EKSPERIMENTELL)"
+
+msgid "MONO AMP BOOST"
+msgstr "MONO-FORSTERKNING"
+
+msgid "PANEL TYPE"
+msgstr "PANELTYPE"
+
+msgid "4 PLAYERS MODE"
+msgstr "4-SPILLERMODUS"
+
+msgid "START+BTN1 = CREDIT"
+msgstr "START+KNAPP1 = KREDITT"
+
+msgid "START+BTN = HK+BTN"
+msgstr "START+KNAPP = HK+KNAPP"
+
+msgid "START 3SEC = EXIT"
+msgstr "START 3SEK = AVSLUTT"
+
+msgid "START+BTN 5SEC = AUTO FIRE"
+msgstr "START+KNAPP 5SEK = AUTOSKYTING"
+
+msgid "PIN E/27 AS GND"
+msgstr "PIN E/27 SOM GND"
+
+msgid "RESET JAMMA CONFIGURATION"
+msgstr "TILBAKESTILL JAMMA-KONFIGURASJON"
+
+msgid ""
+"You will now calibrate different resolutions for the frontend. Select the "
+"refresh rate according to what your TV supports.\n"
+"During the calibration, press B to validate, and A to cancel."
+msgstr ""
+"Du skal nå kalibrere forskjellige oppløsninger for frontenden. Velg "
+"oppdateringsfrekvens i henhold til hva TV-en din støtter.\n"
+"Under kalibreringen, trykk B for å bekrefte, og A for å avbryte."
+
+msgid "Are you sure you want to reset JAMMA configuration?"
+msgstr "Er du sikker på at du vil tilbakestille JAMMA-konfigurasjonen?"
+
+msgid "BOOT ON THIS GAME"
+msgstr "START PÅ DETTE SPILLET"
+
+msgid "DOWNLOAD GAMES"
+msgstr "LAST NED SPILL"
+
+msgid "DISPLAY ONLY TATE GAMES IN GAMELISTS"
+msgstr "VIS KUN TATE-SPILL I SPILLISTER"
+
+msgid "TIME PLAYED"
+msgstr "SPILLETID"
+
+msgid "DID YOU KNOW?"
+msgstr "VISSTE DU?"
+
+msgid ""
+"Last operation removed all systems!\n"
+"\n"
+"They have been restored to allow normal operations, regardless of the "
+"current filters."
+msgstr ""
+"Siste operasjon fjernet alle systemer!\n"
+"\n"
+"De har blitt gjenopprettet for å muliggjøre normal drift, uavhengig av "
+"gjeldende filtre."
+
+msgid ""
+"{0} reports the emulation status of this game is 'preliminary'. You should "
+"expect issues such as bugs or even crashes!"
+msgstr ""
+"{0} rapporterer at emuleringsstatusen for dette spillet er 'foreløpig'. Du "
+"bør forvente problemer som feil eller til og med krasj!"
+
+msgid "Start the game standard Game Boy mode"
+msgstr "Start spillet i vanlig Game Boy-modus"
+
+msgid "Start the game in Super Game Boy mode"
+msgstr "Start spillet i Super Game Boy-modus"
+
+msgid "INITIALIZING SYSTEM {0}"
+msgid_plural "INITIALIZING SYSTEMS..."
+msgstr[0] "INITIALISERER SYSTEM {0}"
+msgstr[1] "INITIALISERER SYSTEMER..."
+
+msgid "LOADING SYSTEMS..."
+msgstr "LASTER SYSTEMER..."
+
+msgid "LOADING VIRTUAL SYSTEMS..."
+msgstr "LASTER VIRTUELLE SYSTEMER..."
+
+msgid "INITIALIZING INTERFACE..."
+msgstr "INITIALISERER GRENSESNITT..."
+
+msgid ""
+"One or more files are corrupted. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, check your Recalbox storage (SD Card, "
+"USB Key or hard drive).\n"
+"Contact the team on https://forum.recalbox.com if the problem persists."
+msgstr ""
+"En eller flere filer er skadet. Du er tilbake på Recalbox %s.\n"
+"Vennligst prøv å oppgradere Recalbox-en din igjen, sjekk lagringsplassen til "
+"Recalbox-en (SD-kort, USB-pinne eller harddisk).\n"
+"Kontakt teamet på https://forum.recalbox.com hvis problemet vedvarer."
+
+msgid "THE UPGRADE IS CORRUPTED"
+msgstr "OPPGRADERINGEN ER SKADET"
+
+msgid "An undervoltage has been detected, the system may slow down.\n"
+msgstr "En underspenning er oppdaget, systemet kan bli tregere.\n"
+
+msgid ""
+"We recommend adjusting your JAMMA cabinet power supply to increase the "
+"voltage to between 5.05V and 5.2V"
+msgstr ""
+"Vi anbefaler å justere strømforsyningen til JAMMA-kabinettet ditt for å øke "
+"spenningen til mellom 5.05V og 5.2V"
+
+msgid ""
+"We recommend that you purchase an official USB-C power supply designed for "
+"your Raspberry Pi"
+msgstr ""
+"Vi anbefaler at du kjøper en offisiell USB-C-strømforsyning designet for "
+"Raspberry Pi-en din"
+
+msgid ""
+"The temperature of your system is high.\n"
+"The system may slow down. Try cooling your Raspberry Pi with a fan or "
+"disable overclock if it's enabled."
+msgstr ""
+"Temperaturen på systemet ditt er høy.\n"
+"Systemet kan bli tregere. Prøv å kjøle ned Raspberry Pi-en med en vifte "
+"eller deaktiver overklokking hvis den er aktivert."
+
+msgid ""
+"Choose strategy\n"
+"\n"
+"AUTO: auto apply default patch\n"
+"\n"
+"LAUNCH LAST: always launch the last one (can be modified in edit game menu)\n"
+"\n"
+"SELECT: choose manually which patch to apply. Default one or patches in "
+"[ROM_NAME]-patches directory\n"
+"\n"
+"DISABLED: never apply patch"
+msgstr ""
+"Velg strategi\n"
+"\n"
+"AUTO: bruker automatisk standardpatchen\n"
+"\n"
+"START SISTE: starter alltid den sist brukte (kan endres i rediger spill-"
+"menyen)\n"
+"\n"
+"VELG: velg manuelt hvilken patch som skal brukes. Standard eller patcher i "
+"mappen [ROM_NAME]-patches\n"
+"\n"
+"DEAKTIVERT: bruk aldri patch"
+
+msgid "Set the Super GameBoy mode for GameBoy games."
+msgstr "Angi Super GameBoy-modus for GameBoy-spill."
+
+msgid ""
+"Improves resolution on compatible 3d emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+msgstr ""
+"Forbedrer oppløsningen på kompatible 3D-emulatorer. Kan påvirke ytelsen. "
+"(Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+
+msgid ""
+"Enables 16:9 hacks for compatible emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+msgstr ""
+"Aktiverer 16:9-hack for kompatible emulatorer. Kan påvirke ytelsen. "
+"(Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+
+msgid "Always display Pad OSD whether you are in pad menus or not."
+msgstr "Vis alltid Pad-OSD enten du er i kontrollermenyer eller ikke."
+
+msgid "Change the icon used to display pad OSD."
+msgstr "Endre ikonet som brukes til å vise pad-OSD."
+
+msgid "Activates Bluetooth pairing automatically each time you boot."
+msgstr "Aktiverer Bluetooth-paring automatisk hver gang du starter opp."
+
+msgid ""
+"Enable the new arcade view, with parents and clones sorted hierarchically."
+msgstr "Aktiverer ny arcade-visning med hoved-/klonespill sortert hierarkisk."
+
+msgid "Hide clones and orphaned games"
+msgstr "Skjul kloner og foreldreløse spill"
+
+msgid "Hide bios files"
+msgstr "Skjul bios-filer"
+
+msgid "Hide unknown and non-working games"
+msgstr "Skjul ukjente og ikke-fungerende spill"
+
+msgid "Manage screen and game rotation options"
+msgstr "Administrer valg for skjerm- og spillrotasjon"
+
+msgid "Proceed to a complete screen rotation, for frontend and games."
+msgstr "Utfør en fullstendig skjermrotasjon for frontend og spill."
+
+msgid "Configure emulators to reduce latency."
+msgstr "Konfigurer emulatorer for å redusere ventetid."
+
+msgid ""
+"Use run ahead to reduce latency. Can have undesired effect on some emulators."
+msgstr ""
+"Bruk run ahead for å redusere ventetid. Kan ha uønsket effekt på noen "
+"emulatorer."
+
+msgid "When a HDMI cable is connected, use HDMI output in priority."
+msgstr "Når en HDMI-kabel er tilkoblet, bruk HDMI-utgang som prioritet."
+
+msgid "Superrez can increase image quality depending on your CRT."
+msgstr "Superrez kan øke bildekvaliteten avhengig av CRT-en din."
+
+msgid "Number of buttons on your arcade cab panel."
+msgstr "Antall knapper på arcade-kabinettpanelet ditt."
+
+msgid "Boost mono amp power. Use only if the sound level is too low."
+msgstr "Øk mono-forsterkerens effekt. Bruk kun hvis lydnivået er for lavt."
+
+msgid "Define the NEOGEO layout when playing NEOGEO games."
+msgstr "Definer NEOGEO-oppsettet når du spiller NEOGEO-spill."
+
+msgid "Add a credit in game, pressing START + BTN1. Works for all players."
+msgstr ""
+"Legg til en kreditt i spillet ved å trykke START + KNAPP1. Fungerer for alle "
+"spillere."
+
+msgid ""
+"START + any button will send the HK+BTN event, so you can use special hotkey "
+"controls in emulators."
+msgstr ""
+"START + hvilken som helst knapp vil sende HK+KNAPP-hendelsen, slik at du kan "
+"bruke spesielle hurtigtastkontroller i emulatorer."
+
+msgid ""
+"Pressing START for 3sec will exit the game. If you disable this option, you "
+"will have to exit the game with SERVICE + TEST."
+msgstr ""
+"Å trykke START i 3 sekunder vil avslutte spillet. Hvis du deaktiverer dette "
+"valget, må du avslutte spillet med SERVICE + TEST."
+
+msgid ""
+"Select the type of your screen. If you don't know what you are doing, do not "
+"change this value."
+msgstr ""
+"Velg skjermtypen din. Hvis du ikke vet hva du gjør, ikke endre denne verdien."
+
+msgid "4-player mode, with players 2 and 3 on the CPS2 kick harness."
+msgstr "4-spillermodus, med spiller 2 og 3 på CPS2-kickharness."
+
+msgid "Set auto fire for a button by pressing START + a button for 5 seconds"
+msgstr ""
+"Angi autoskyting for en knapp ved å trykke START + en knapp i 5 sekunder"
+
+msgid ""
+"On some cabs, the pins E/27 of the JAMMA are the common ground for controls. "
+"Enable this option if you have this configuration."
+msgstr ""
+"På noen kabinetter er pinnene E/27 på JAMMA den felles jordingen for "
+"kontroller. Aktiver dette valget hvis du har denne konfigurasjonen."
+
+msgid "Refreshing systems..."
+msgstr "Oppdaterer systemer..."
+
+msgid "Your scraping session completed. Press OK to show the results."
+msgstr "Skrapeøkten din er fullført. Trykk OK for å vise resultatene."
+
+msgid ""
+"There is no game to show after this filter is changed! No change recorded."
+msgstr ""
+"Det er ingen spill å vise etter at dette filteret er endret! Ingen endring "
+"registrert."
+
+msgid "ENABLE VULKAN DRIVER"
+msgstr "AKTIVER VULKAN-DRIVER"
+
+msgid "UPDATE"
+msgstr "OPPDATER"
+
+msgid "Could not update bootloader. Something went wrong"
+msgstr "Kunne ikke oppdatere oppstartslaster. Noe gikk galt"
+
+msgid "BOOT VIDEOS"
+msgstr "OPPSTARTSVIDEOER"
+
+msgid "There is no favorite games in any system!"
+msgstr "Det er ingen favorittspill i noe system!"
+
+msgid "FORCED"
+msgstr "TVUNGET"
+
+msgid "SYSTEM DEFAULT"
+msgstr "SYSTEMSTANDARD"
+
+msgid "SOUND"
+msgstr "LYD"
+
+msgid "UPSIDEDOWN"
+msgstr "OPP NED"
+
+msgid "There is no TATE game to show!No change recorded."
+msgstr "Det er ingen TATE-spill å vise! Ingen endring registrert."
+
+msgid "REGION"
+msgstr "REGION"
+
+msgid "Europe"
+msgstr "Europa"
+
+msgid "USA"
+msgstr "USA"
+
+msgid "Japan"
+msgstr "Japan"
+
+msgid "You display {0} is not in the list of this theme's supported displays:"
+msgstr ""
+"Skjermen din {0} er ikke i listen over skjermer som støttes av dette temaet:"
+
+msgid ""
+"You current resolution {0} is not in the list of this theme's supported "
+"resolutions:"
+msgstr ""
+"Gjeldende oppløsning {0} er ikke i listen over oppløsninger som støttes av "
+"dette temaet:"
+
+msgid "You're in TATE mode and this theme does not seem to support TATE."
+msgstr "Du er i TATE-modus og dette temaet ser ikke ut til å støtte TATE."
+
+msgid ""
+"This theme may have one or more compatibility issues with your current "
+"display:\n"
+msgstr ""
+"Dette temaet kan ha ett eller flere kompatibilitetsproblemer med gjeldende "
+"skjerm:\n"
+
+msgid "NEXT"
+msgstr "NESTE"
+
+msgid "UPDATE NOW"
+msgstr "OPPDATER NÅ"
+
+msgid "PAGE UP/DOWN"
+msgstr "SIDE OPP/NED"
+
+msgid "{0} reports the emulation status of this game is 'imperfect'."
+msgstr ""
+"{0} rapporterer at emuleringsstatusen for dette spillet er 'ufullkommen'."
+
+msgid ""
+"System \"{0}\" has no visible game yet!\n"
+"\n"
+"It will show up automatically as soon as it has visible games."
+msgstr ""
+"Systemet «{0}» har ingen synlige spill ennå!\n"
+"\n"
+"Det vil vises automatisk så snart det har synlige spill."
+
+msgid ""
+"With regard to the new BIOS folder structure, some of your bios files have "
+"been moved automatically to their new path."
+msgstr ""
+"På grunn av den nye BIOS-mappestrukturen har noen av BIOS-filene dine blitt "
+"flyttet automatisk til den nye banen deres."
+
+msgid "This move is applied only once. No additional operation required."
+msgstr ""
+"Denne flyttingen utføres kun én gang. Ingen ytterligere handling kreves."
+
+msgid ""
+"However, some files failed to move. You should run the BIOS Checker and move "
+"some files manually."
+msgstr ""
+"Noen filer kunne imidlertid ikke flyttes. Du bør kjøre BIOS-kontrolløren og "
+"flytte noen filer manuelt."
+
+msgid ""
+"However, all files failed to move. You should:\n"
+"- either run the BIOS Checker and move the required files manually.\n"
+"- or if your bios files are on a read-only device or remote share, change it "
+"to read-write, reboot your recalbox, wait until all files are moved, then "
+"protect it again."
+msgstr ""
+"Alle filer kunne imidlertid ikke flyttes. Du bør:\n"
+"- enten kjøre BIOS-kontrolløren og flytte de nødvendige filene manuelt.\n"
+"- eller, hvis BIOS-filene dine er på en skrivebeskyttet enhet eller ekstern "
+"deling, endre den til lese-skrive, starte recalbox-en din på nytt, vente til "
+"alle filer er flyttet, og deretter beskytte den igjen."
+
+msgid "Updating current theme..."
+msgstr "Oppdaterer gjeldende tema..."
+
+msgid "Loading new theme {0}"
+msgstr "Laster nytt tema {0}"
+
+msgid "Shows the Recalbox license."
+msgstr "Viser Recalbox-lisensen."
+
+msgid "Shows the quit menu to reboot or shutdown Recalbox."
+msgstr "Viser avslutningsmenyen for å starte på nytt eller slå av Recalbox."
+
+msgid ""
+"Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, "
+"and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running."
+msgstr ""
+"Aktiver Vulkan-driveren når tilgjengelig. Aktivert som standard på RPi4, "
+"RPi5 og PC. Sett på AV hvis Dreamcast, Naomi eller Atomiswave slutter å "
+"fungere."
+
+msgid "Sets the rating of the game."
+msgstr "Angir vurderingen av spillet."
+
+msgid "Sets the genre of the game."
+msgstr "Angir sjangeren til spillet."
+
+msgid "Sets the description of the game."
+msgstr "Angir beskrivelsen av spillet."
+
+msgid "Defines the screen rotation of the game for tate usage."
+msgstr "Definerer skjermrotasjonen til spillet for tate-bruk."
+
+msgid "Retroachievements user name."
+msgstr "Retroachievements-brukernavn."
+
+msgid "Retroachievements password."
+msgstr "Retroachievements-passord."
+
+msgid "Netplay user name. Do not use special characters!"
+msgstr "Brukernavn for nettverksspill. Ikke bruk spesialtegn!"
+
+msgid ""
+"Local port other players will connect to when hosting a Netplay session."
+msgstr ""
+"Lokal port andre spillere vil koble til når de er vert for en nettverksspill-"
+"økt."
+
+msgid ""
+"List of predefined passwords to use to protect access to your Netplay "
+"sessions."
+msgstr ""
+"Liste over forhåndsdefinerte passord for å beskytte tilgangen til "
+"nettverksspill-øktene dine."
+
+msgid "Choose systems to use for demo and gameclip screensavers."
+msgstr "Velg systemer å bruke for demo- og spillklipp-skjermsparere."
+
+msgid "Select the region for theme supporting regionalized assets or texts"
+msgstr ""
+"Velg regionen for temaer som støtter regionaliserte ressurser eller tekster"
+
+msgid "Shows the Arcade virtual system in the systems list."
+msgstr "Viser det virtuelle Arcade-systemet i systemlisten."
+
+msgid ""
+"Hides the original arcade systems when the Arcade virtual system is enabled."
+msgstr ""
+"Skjuler de originale arcade-systemene når det virtuelle Arcade-systemet er "
+"aktivert."
+
+msgid "Shows the Tate virtual system in the systems list."
+msgstr "Viser det virtuelle Tate-systemet i systemlisten."
+
+msgid "Shows only games playable in tate mode in gamelists."
+msgstr "Viser kun spill som kan spilles i tate-modus i spillister."
+
+msgid "Proceed to a screen rotation in games tate compatible."
+msgstr "Utfør en skjermrotasjon i tate-kompatible spill."
+
+msgid ""
+"Sets whether the auto scraper is available or not. Auto scraping lets you "
+"scrape games just by moving onto them in gamelists."
+msgstr ""
+"Angir om automatisk skraping er tilgjengelig eller ikke. Automatisk skraping "
+"lar deg skrape spill bare ved å bevege deg over dem i spillister."
+
+msgid "Allows you to scrape only non-scraped games, or to scrape all games."
+msgstr "Lar deg skrape kun ikke-skrapede spill eller skrape alle spill."
+
+msgid "Allows you to choose which systems you would like to scrape."
+msgstr "Lar deg velge hvilke systemer du vil skrape."
+
+msgid "Selects the image type to scrape for your games."
+msgstr "Velger bildetypen som skal skrapes for spillene dine."
+
+msgid "Selects the video type to scrape for your games."
+msgstr "Velger videotypen som skal skrapes for spillene dine."
+
+msgid "Selects the game region to use when you scrape your games."
+msgstr "Velger spillregionen som skal brukes når du skraper spillene dine."
+
+msgid "Selects the preferred region to scrape for your games."
+msgstr "Velger den foretrukne regionen som skal skrapes for spillene dine."
+
+msgid "Selects the preferred language to scrape for your games."
+msgstr "Velger det foretrukne språket som skal skrapes for spillene dine."
+
+msgid ""
+"Selects if you would like to download manuals with the scraped data if "
+"available."
+msgstr "Velger om du vil laste ned manual med skrapedataene hvis tilgjengelig."
+
+msgid ""
+"Selects if you would like to download maps with the scraped data if "
+"available."
+msgstr "Velger om du vil laste ned kart med skrapedataene hvis tilgjengelig."
+
+msgid ""
+"Selects if you would like to download pad2keyboard files with the scraped "
+"data if available."
+msgstr ""
+"Velger om du vil laste ned pad2keyboard-filer med skrapedataene hvis "
+"tilgjengelig."
+
+msgid "Enable or disable videos on boot."
+msgstr "Aktiver eller deaktiver videoer ved oppstart."
+
+msgid ""
+"This option allows you to select the current game to boot on it directly "
+"when you turn on your Recalbox. Don't forget to enable the boot on game "
+"option!"
+msgstr ""
+"Dette valget lar deg velge det gjeldende spillet for å starte direkte på det "
+"når du slår på Recalbox-en din. Ikke glem å aktivere valget for oppstart på "
+"spill!"
+
+msgid "This option allows you to download games for the current system."
+msgstr "Dette valget lar deg laste ned spill for det gjeldende systemet."
+
+msgid ""
+"This option allows you to search games specifically in the current system "
+"only."
+msgstr ""
+"Dette valget lar deg søke etter spill spesifikt kun i det gjeldende systemet."
+
+msgid "Select sound output: JACK/MONO or JACK/JST. Jack always takes priority."
+msgstr "Velg lydutgang: JACK/MONO eller JACK/JST. Jack har alltid prioritet."
+
+msgid "Set the volume of the music in the frontend"
+msgstr "Angi volumet for musikken i frontenden"
+
+msgid "MUSIC VOLUME"
+msgstr "MUSIKKVOLUM"
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON HD-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX VIL AUTOMATISK VELGE EMULATORER SOM SKAL KJØRE PÅ HD-KOMPATIBLE "
+"SYSTEMER. NOEN SPILL ER KANSKJE IKKE 100% KOMPATIBLE, SÅ IKKE GLEM Å "
+"DEAKTIVERE DETTE VALGET HVIS EMULERINGS- ELLER YTELSESPROBLEMER OPPSTÅR."
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON WIDESCREEN-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX VIL AUTOMATISK VELGE EMULATORER SOM SKAL KJØRE PÅ BREDSKJERM-"
+"KOMPATIBLE SYSTEMER. NOEN SPILL ER KANSKJE IKKE 100% KOMPATIBLE, SÅ IKKE "
+"GLEM Å DEAKTIVERE DETTE VALGET HVIS EMULERINGS- ELLER YTELSESPROBLEMER "
+"OPPSTÅR."
+
+msgid "BOOT ON GAME"
+msgstr "START PÅ SPILL"
+
+msgid "Add a menu in game option to boot on a specific game on startup."
+msgstr ""
+"Legg til en menyoppføring i spillvalg for å starte på et bestemt spill ved "
+"oppstart."
+
+msgid "SHOW ONLY 3+ PLAYERS GAMES"
+msgstr "VIS KUN SPILL FOR 3+ SPILLERE"
+
+msgid "Deprecated"
+msgstr "Utdatert"
+
+msgid "QUICK JUMP"
+msgstr "HURTIGHOPP"
+
+msgid "FOLD/UNFOLD"
+msgstr "FOLD SAMMEN/UT"
+
+msgid "FAST MOVE"
+msgstr "RASK FLYTTING"
+
+msgid "BOTTOM"
+msgstr "BUNN"
+
+msgid "TOP"
+msgstr "TOPP"
+
+msgid "UNFOLD"
+msgstr "FOLD UT"
+
+msgid "ADD CHARACTER"
+msgstr "LEGG TIL TEGN"
+
+msgid "GAMELIST MODIFIED!"
+msgstr "SPILLISTE ENDRET!"
+
+msgid "ROM FOLDERS MODIFIED!"
+msgstr "ROM-MAPPER ENDRET!"
+
+msgid "TOTAL PLAYING TIME"
+msgstr "TOTAL SPILLETID"
+
+msgid "OPTION NOT AVAILABLE"
+msgstr "VALG IKKE TILGJENGELIG"
+
+msgid "Screen calibration only available in YOKO mode."
+msgstr "Skjermkalibrering kun tilgjengelig i YOKO-modus."
+
+msgid "REALLY UPDATE {0}'S GAME LIST ?"
+msgstr "VIL DU VIRKELIG OPPDATERE SPILLISTEN TIL {0}?"
+
+msgid ""
+"REALLY UPDATE ALL GAME LISTS ?\n"
+"\n"
+"IT MAY TAKE A LONG TIME DEPENDING OF YOUR STORAGE SPEED AND THE NUMBER OF "
+"GAMES."
+msgstr ""
+"VIL DU VIRKELIG OPPDATERE ALLE SPILLISTENE?\n"
+"\n"
+"DETTE KAN TA LANG TID AVHENGIG AV LAGRINGSHASTIGHETEN DIN OG ANTALL SPILL."
+
+msgid "Do you want to enable the 3+ player filter for all the games ?"
+msgstr "Vil du aktivere 3+ spiller-filteret for alle spillene?"
+
+msgid "Do you want to disable the 3+ player filter for all the games ?"
+msgstr "Vil du deaktivere 3+ spiller-filteret for alle spillene?"
+
+msgid ""
+"Make sure to check the compatibility of your hardware before changing the "
+"recalbox refresh rate. Are you sure you want to switch the display mode to "
+msgstr ""
+"Sørg for å sjekke kompatibiliteten til maskinvaren din før du endrer "
+"recalbox-oppdateringsfrekvensen. Er du sikker på at du vil bytte "
+"visningsmodus til"
+
+msgid "PAIR"
+msgstr "PAR"
+
+msgid "JOIN GAME"
+msgstr "BLI MED I SPILL"
+
+msgid "RUN"
+msgstr "KJØR"
+
+msgid "DON'T DELETE ANYTHING!"
+msgstr "IKKE SLETT NOE!"
+
+msgid "SHOW FAVORITES FIRST"
+msgstr "VIS FAVORITTER FØRST"
+
+msgid ""
+"Shutdown Recalbox. All pending operations are completed before Recalbox is "
+"switched off"
+msgstr ""
+"Slå av Recalbox. Alle ventende operasjoner fullføres før Recalbox slås av"
+
+msgid ""
+"Quickly shutdown Recalbox. All pending operations are ignored and no change "
+"is saved!"
+msgstr ""
+"Slå raskt av Recalbox. Alle ventende operasjoner ignoreres og ingen "
+"endringer lagres!"
+
+msgid ""
+"Reboot Recalbox. All pending operations are completed before Recalbox "
+"restarts"
+msgstr ""
+"Start Recalbox på nytt. Alle ventende operasjoner fullføres før Recalbox "
+"starter på nytt"
+
+msgid "START GAME"
+msgstr "START SPILL"
+
+msgid "CONNECT"
+msgstr "KOBLE TIL"
+
+msgid "Run the original, unpatched game"
+msgstr "Kjør det originale, upatchede spillet"
+
+msgid "Run the game, patched with the selected patch"
+msgstr "Kjør spillet, patchet med den valgte patchen"
+
+msgid "USER SCRIPTS"
+msgstr "BRUKERSKRIPT"
+
+msgid "CHECK FOR UPDATE NOW"
+msgstr "SE ETTER OPPDATERING NÅ"
+
+msgid "Username not required for the selected scraper"
+msgstr "Brukernavn ikke nødvendig for den valgte skraperen"
+
+msgid "Password not required for the selected scraper"
+msgstr "Passord ikke nødvendig for den valgte skraperen"
+
+msgid "NEOGEO/PGM LAYOUT P1"
+msgstr "NEOGEO/PGM-OPPSETT S1"
+
+msgid "NEOGEO/PGM LAYOUT P2"
+msgstr "NEOGEO/PGM-OPPSETT S2"
+
+msgid "START+UP/DOWN = VOLUME"
+msgstr "START+OPP/NED = VOLUM"
+
+msgid "DUAL JOYSTICKS"
+msgstr "DOBBEL JOYSTICK"
+
+msgid "RESET"
+msgstr "TILBAKESTILL"
+
+msgid "FRONTEND SCREEN CALIBRATION"
+msgstr "SKJERMKALIBRERING FOR FRONTEND"
+
+msgid "Calibrate screen on frontend."
+msgstr "Kalibrer skjermen på frontenden."
+
+msgid "CLOCK OSD"
+msgstr "KLOKKE-OSD"
+
+msgid "Script {0} started successfully!"
+msgstr "Skript {0} startet vellykket!"
+
+msgid "Running {0}..."
+msgstr "Kjører {0}..."
+
+msgid "Script execution complete"
+msgstr "Skriptkjøring fullført"
+
+msgid "Script {0} has failed!"
+msgstr "Skript {0} mislyktes!"
+
+msgid "With the following Error output:"
+msgstr "Med følgende feilutdata:"
+
+msgid "Script {0} executed successfully!"
+msgstr "Skript {0} kjørt vellykket!"
+
+msgid "With the following output:"
+msgstr "Med følgende utdata:"
+
+msgid "SEARCH OTHER VERSIONS"
+msgstr "SØK ETTER ANDRE VERSJONER"
+
+msgid "SEARCH BY LICENCE"
+msgstr "SØK ETTER LISENS"
+
+msgid "DECORATIONS"
+msgstr "DEKORASJONER"
+
+msgid "UNSET"
+msgstr "FJERN"
+
+msgid "RUMBLE"
+msgstr "VIBRASJON"
+
+msgid "Search games by licence"
+msgstr "Søk etter spill etter lisens"
+
+msgid ""
+"There is no TATE game available in your gamelists. Add TATE games and/or run "
+"the scraper to update TATE information"
+msgstr ""
+"Det er ingen TATE-spill tilgjengelig i spillistene dine. Legg til TATE-spill "
+"og/eller kjør skraperen for å oppdatere TATE-informasjon"
+
+msgid "ALL YOUR EMULATOR SETTINGS HAVE BEEN RESET TO THEIR FACTORY DEFAULTS."
+msgstr ""
+"ALLE EMULATORINNSTILLINGENE DINE ER TILBAKESTILT TIL FABRIKKSTANDARDENE."
+
+msgid ""
+"SOME ERROR OCCURRED WHILE RESETING ALL YOUR EMULATOR SETTINGS.\n"
+"\n"
+"IF YOU STILL HAVE ISSUES WITH SOME EMULATORS, REBOOT YOUR RECALBOX AND TRY "
+"RESETING EMULATOR SETTINGS AGAIN."
+msgstr ""
+"EN FEIL OPPSTOD UNDER TILBAKESTILLING AV ALLE EMULATORINNSTILLINGENE DINE.\n"
+"\n"
+"HVIS DU FORTSATT HAR PROBLEMER MED NOEN EMULATORER, START RECALBOX-EN DIN PÅ "
+"NYTT OG PRØV Å TILBAKESTILLE EMULATORINNSTILLINGENE IGJEN."
+
+msgid "CHECKING UPDATE..."
+msgstr "SJEKKER OPPDATERING..."
+
+msgid "FACTORY RESET IN PROGRESS"
+msgstr "FABRIKKTILBAKESTILLING PÅGÅR"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR EMULATOR SETTINGS TO FACTORY "
+"DEFAULTS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"DU ER ETT KLIKK UNNA Å TILBAKESTILLE EMULATORINNSTILLINGENE DINE TIL "
+"FABRIKKSTANDARDER!\n"
+"\n"
+"ER DU HELT SIKKER PÅ AT DU VIL GJØRE DETTE?"
+
+msgid ""
+"RESET EMULATOR SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET ALL EMULATOR SETTINGS TO THEIR DEFAULT VALUES.\n"
+"YOU RECALBOX SETTINGS AND FILES WON'T BE AFFECTED.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR EMULATOR SETTINGS?"
+msgstr ""
+"TILBAKESTILL EMULATORINNSTILLINGER\n"
+"\n"
+"DU ER I FERD MED Å TILBAKESTILLE ALLE EMULATORINNSTILLINGENE TIL "
+"STANDARDVERDIENE.\n"
+"RECALBOX-INNSTILLINGENE OG -FILENE DINE VIL IKKE PÅVIRKES.\n"
+"\n"
+"DENNE OPERASJONEN KAN IKKE ANGRES!\n"
+"ER DU SIKKER PÅ AT DU VIL TILBAKESTILLE ALLE EMULATORINNSTILLINGENE DINE?"
+
+msgid "EMULATOR SETTINGS RESET IN PROGRESS"
+msgstr "TILBAKESTILLING AV EMULATORINNSTILLINGER PÅGÅR"
+
+msgid "Refreshing gamelists..."
+msgstr "Oppdaterer spillister..."
+
+msgid "Preparing gamelists..."
+msgstr "Klargjør spillister..."
+
+msgid "Scan completed for system {0}."
+msgstr "Skanning fullført for system {0}."
+
+msgid "Scan completed for all your systems."
+msgstr "Skanning fullført for alle systemene dine."
+
+msgid "No game has been removed from your gamelists"
+msgstr "Ingen spill er fjernet fra spillistene dine"
+
+msgid "No game has been added to your gamelists"
+msgstr "Ingen spill er lagt til i spillistene dine"
+
+msgid ""
+"Would you like to scrape newly added games now, using your current scraper "
+"configuration?"
+msgstr ""
+"Vil du skrape nylig tillagte spill nå, ved hjelp av din nåværende "
+"skraperkonfigurasjon?"
+
+msgid "GAMELIST UPDATE COMPLETED"
+msgstr "OPPDATERING AV SPILLISTE FULLFØRT"
+
+msgid "Scanning {0} - 0 Added  - 0 Removed"
+msgstr "Skanner {0} - 0 lagt til - 0 fjernet"
+
+msgid "Scanning {0}... {1} Added - {2} Removed"
+msgstr "Skanner {0}... {1} lagt til - {2} fjernet"
+
+msgid "Saving gamelist for {0}..."
+msgstr "Lagrer spilliste for {0}..."
+
+msgid "Added games: {0} - Removed games: {1}"
+msgstr "Tillagte spill: {0} - Fjernede spill: {1}"
+
+msgid "WIFI CONNECTION OK!"
+msgstr "WIFI-TILKOBLING OK!"
+
+msgid "Initializing roms folders on device "
+msgstr "Initialiserer rom-mapper på enheten "
+
+msgid "Moving share to device "
+msgstr "Flytter share til enheten "
+
+msgid "A new version {0} is available!"
+msgstr "En ny versjon {0} er tilgjengelig!"
+
+msgid "No new version available yet."
+msgstr "Ingen ny versjon tilgjengelig ennå."
+
+msgid "Reloading {0} gamelist..."
+msgstr "Laster inn spillisten for {0} på nytt..."
+
+msgid "Recalbox interface must restart to apply your changes."
+msgstr "Recalbox-grensesnittet må starte på nytt for å bruke endringene dine."
+
+msgid "TESTING CONNECTION..."
+msgstr "TESTER TILKOBLING..."
+
+msgid "UNAVAILABLE"
+msgstr "IKKE TILGJENGELIG"
+
+msgid "NO WIFI ACCESS POINT"
+msgstr "INGEN WIFI-TILGANGSPUNKT"
+
+msgid "NO ACCESS"
+msgstr "INGEN TILGANG"
+
+msgid "YES, BUT NOT RECOMMENDED"
+msgstr "JA, MEN IKKE ANBEFALT"
+
+msgid "CANCEL SELECTION"
+msgstr "AVBRYT VALG"
+
+msgid "MOVE"
+msgstr "FLYTT"
+
+msgid "MIN/MAX"
+msgstr "MIN/MAKS"
+
+msgid "TOGGLE"
+msgstr "VEKSLE"
+
+msgid "SELECTED"
+msgstr "VALGT"
+
+msgid "OPEN"
+msgstr "ÅPNE"
+
+msgid "RECALBOX (DEFAULT)"
+msgstr "RECALBOX (STANDARD)"
+
+msgid "LICENCE"
+msgstr "LISENS"
+
+msgid "GAME {0} OF {1}"
+msgstr "SPILL {0} AV {1}"
+
+msgid "Saving gamelists..."
+msgstr "Lagrer spillister..."
+
+msgid "DOWNLOADING GAME FOR %s"
+msgstr "LASTER NED SPILL FOR %s"
+
+msgid ""
+"Downloading Theme Hospital demo game from the official site. Please wait..."
+msgstr ""
+"Laster ned Theme Hospital-demospillet fra det offisielle nettstedet. "
+"Vennligst vent..."
+
+msgid "Extracting... found 1 game"
+msgstr "Pakker ut... fant 1 spill"
+
+msgid ""
+"There is no network available.\n"
+"Please connect your recalbox and try again."
+msgstr ""
+"Det er ikke noe nettverk tilgjengelig.\n"
+"Vennligst koble til recalbox-en din og prøv igjen."
+
+msgid "In alphabetical order"
+msgstr "I alfabetisk rekkefølge"
+
+msgid "RATED {0} / 10"
+msgstr "VURDERT {0} / 10"
+
+msgid "NOT RATED"
+msgstr "IKKE VURDERT"
+
+msgid "Never played"
+msgstr "Aldri spilt"
+
+msgid "Just a few minutes"
+msgstr "Bare noen få minutter"
+
+msgid "Less than an hour"
+msgstr "Mindre enn en time"
+
+msgid "{0} hours"
+msgstr "{0} timer"
+
+msgid "One player"
+msgid_plural "{0} Players"
+msgstr[0] "Én spiller"
+msgstr[1] "{0} spillere"
+
+msgid "Unknown developer"
+msgstr "Ukjent utvikler"
+
+msgid "Unknown publisher"
+msgstr "Ukjent utgiver"
+
+msgid "Release date unknown"
+msgstr "Utgivelsesdato ukjent"
+
+msgid "Year {0}"
+msgstr "År {0}"
+
+msgid "NO REGION"
+msgstr "INGEN REGION"
+
+msgid ""
+"Game are now sorted\n"
+"by {0}"
+msgstr ""
+"Spill er nå sortert\n"
+"etter {0}"
+
+msgid "{0} Years ago..."
+msgstr "{0} år siden..."
+
+msgid "{0} Month ago..."
+msgstr "{0} måneder siden..."
+
+msgid "{0} Days ago..."
+msgstr "{0} dager siden..."
+
+msgid "{0} Hours ago..."
+msgstr "{0} timer siden..."
+
+msgid "A short while ago"
+msgstr "For litt siden"
+
+msgid ""
+"The emulator selected to launch {0} does not support file '{1}'. Would you "
+"like to run the game anyway, even though there's a high chance it will not "
+"work?"
+msgstr ""
+"Emulatoren som er valgt for å starte {0} støtter ikke filen '{1}'. Vil du "
+"kjøre spillet likevel, selv om det er stor sjanse for at det ikke vil "
+"fungere?"
+
+msgid ""
+"The emulator selected to launch {0} does not support zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatoren som er valgt for å starte {0} støtter ikke zippede filer/romer. "
+"Vil du kjøre spillet likevel, selv om det er stor sjanse for at det ikke vil "
+"fungere?"
+
+msgid ""
+"This zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Dette zippede spillet inneholder ingen filer som støttes av den valgte "
+"emulatoren. Vil du kjøre spillet likevel, selv om det er stor sjanse for at "
+"det ikke vil fungere?"
+
+msgid ""
+"The emulator selected to launch {0} does not support 7zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatoren som er valgt for å starte {0} støtter ikke 7zippede filer/romer. "
+"Vil du kjøre spillet likevel, selv om det er stor sjanse for at det ikke vil "
+"fungere?"
+
+msgid ""
+"This 7zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Dette 7zippede spillet inneholder ingen filer som støttes av den valgte "
+"emulatoren. Vil du kjøre spillet likevel, selv om det er stor sjanse for at "
+"det ikke vil fungere?"
+
+msgid ""
+"The emulator selected to launch {0} does not support file extension '{1}'. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Emulatoren som er valgt for å starte {0} støtter ikke filtypen '{1}'. Vil du "
+"kjøre spillet likevel, selv om det er stor sjanse for at det ikke vil "
+"fungere?"
+
+msgid "Signal"
+msgstr "Signal"
+
+msgid "MOVE 5 BY 5"
+msgstr "FLYTT 5 OM GANGEN"
+
+msgid ""
+"We're downloading __Recalbox__ version **%s**!\n"
+"\n"
+"Once the download is complete, Recalbox will reboot and start installing the "
+"new version.\n"
+"Typical installations take about 5-10mn. **DO NOT reboot or power off "
+"Recalbox** until the installation is complete."
+msgstr ""
+"Vi laster ned __Recalbox__ versjon **%s**!\n"
+"\n"
+"Når nedlastingen er fullført, vil Recalbox starte på nytt og begynne å "
+"installere den nye versjonen.\n"
+"Typiske installasjoner tar rundt 5-10 min. **IKKE start på nytt eller slå av "
+"Recalbox** før installasjonen er fullført."
+
+msgid "ZOOM"
+msgstr "ZOOM"
+
+msgid "SCANNING..."
+msgstr "SKANNER..."
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Disabling WIFI..."
+msgstr "Deaktiverer WIFI..."
+
+msgid "Enabling WIFI..."
+msgstr "Aktiverer WIFI..."
+
+msgid ""
+"CONNECTION ERROR !\n"
+"Please check your SSID and Password."
+msgstr ""
+"TILKOBLINGSFEIL!\n"
+"Vennligst sjekk SSID og passord."
+
+msgid "FAVORITES FIRST"
+msgstr "FAVORITTER FØRST"
+
+msgid "SUPERREZ MULTIPLIER"
+msgstr "SUPERREZ-MULTIPLIKATOR"
+
+msgid "CALIBRATE"
+msgstr "KALIBRER"
+
+msgid "DELETE SELECTED FILES"
+msgstr "SLETT VALGTE FILER"
+
+msgid "**YES**"
+msgstr "**JA**"
+
+msgid "Press any button for 5s to cancel !"
+msgstr "Trykk på en hvilken som helst knapp i 5 sekunder for å avbryte!"
+
+msgid "Cancelling..."
+msgstr "Avbryter..."
+
+msgid "CANCELLED! Please release all buttons."
+msgstr "AVBRUTT! Vennligst slipp alle knappene."
+
+msgid "NEVER"
+msgstr "ALDRI"
+
+msgid "THEME'S COLORSET"
+msgstr "TEMAETS FARGESETT"
+
+msgid "Select a colorset from this theme."
+msgstr "Velg et fargesett fra dette temaet."
+
+msgid "THEME'S ICONSET"
+msgstr "TEMAETS IKONSETT"
+
+msgid "Select an iconset from this theme."
+msgstr "Velg et ikonsett fra dette temaet."
+
+msgid "THEME'S MENU STYLE"
+msgstr "TEMAETS MENYSTIL"
+
+msgid "Select menu style from this theme."
+msgstr "Velg menystil fra dette temaet."
+
+msgid "THEME'S SYSTEMVIEW LAYOUT"
+msgstr "TEMAETS SYSTEMVISNING-OPPSETT"
+
+msgid "Select system view layout from this theme."
+msgstr "Velg systemvisning-oppsett fra dette temaet."
+
+msgid "THEME'S GAMELISTVIEW LAYOUT"
+msgstr "TEMAETS SPILLISTEVISNING-OPPSETT"
+
+msgid "Select gamelist view layout from this theme."
+msgstr "Velg spillistevisning-oppsett fra dette temaet."
+
+msgid "THEME'S GAMECLIPVIEW LAYOUT"
+msgstr "TEMAETS SPILLKLIPPVISNING-OPPSETT"
+
+msgid "Select gameclip view layout from this theme."
+msgstr "Velg spillklippvisning-oppsett fra dette temaet."
+
+msgid "Libretro HatariB Settings"
+msgstr "Libretro HatariB-innstillinger"
+
+msgid "Machine Type"
+msgstr "Maskintype"
+
+msgid ""
+"Choose the machine model to emulate. STE is a good choice for most games."
+msgstr ""
+"Velg maskinmodellen som skal emuleres. STE er et godt valg for de fleste "
+"spill."
+
+msgid "Memory Size"
+msgstr "Minnestørrelse"
+
+msgid "Select the amount of memory. 1 MB is enough for gaming."
+msgstr "Velg minnemengden. 1 MB er nok for spilling."
+
+msgid "Fast Floppy"
+msgstr "Rask diskett"
+
+msgid ""
+"Set ON to accelerate the floppy disc emulation. May cause some games to fail!"
+msgstr ""
+"Sett til PÅ for å akselerere diskett-emuleringen. Kan føre til at noen spill "
+"feiler!"
+
+msgid "Libretro Fuse Settings"
+msgstr "Libretro Fuse-innstillinger"
+
+msgid ""
+"Choose the Sinclair machine (or clone) to emulate. The original Spectrum "
+"128k is a good way to start."
+msgstr ""
+"Velg Sinclair-maskinen (eller klonen) som skal emuleres. Den originale "
+"Spectrum 128k er en god måte å starte på."
+
+msgid "Set ON to accelerate the tape emulation. May cause some games to fail!"
+msgstr ""
+"Sett til PÅ for å akselerere kassett-emuleringen. Kan føre til at noen spill "
+"feiler!"
+
+msgid "Libretro PX68K Settings"
+msgstr "Libretro PX68K-innstillinger"
+
+msgid "Model/CPU Speed"
+msgstr "Modell/CPU-hastighet"
+
+msgid ""
+"Choose the CPU frequency to emulate. 10Mhz is the basic machine and will "
+"work for most of the games."
+msgstr ""
+"Velg CPU-frekvensen som skal emuleres. 10Mhz er grunnmaskinen og vil fungere "
+"for de fleste spillene."
+
+msgid "Memory Size (in MB)"
+msgstr "Minnestørrelse (i MB)"
+
+msgid ""
+"Choose the amount of memory available. Most of the games will work with 2MB "
+"but some games may require 4MB."
+msgstr ""
+"Velg tilgjengelig minnemengde. De fleste spillene vil fungere med 2MB, men "
+"noen spill kan kreve 4MB."
+
+msgid "Dolphin / Dolphin-GUI Settings"
+msgstr "Dolphin / Dolphin-GUI-innstillinger"
+
+msgid "Resolution"
+msgstr "Oppløsning"
+
+msgid "Choose the internal resolution."
+msgstr "Velg den interne oppløsningen."
+
+msgid "Dual CPU"
+msgstr "Dobbel CPU"
+
+msgid ""
+"May improve performance on a few rare games, at the expense of others that "
+"are incompatible."
+msgstr ""
+"Aktiver dette valget hvis det kan forbedre ytelsen til noen sjeldne spill, "
+"men på bekostning av andre som blir inkompatible."
+
+msgid "Sync GPU"
+msgstr "Synkroniser GPU"
+
+msgid "Enable this speed hack for dual core mode to fix some glitches."
+msgstr ""
+"Aktiver dette hastighetshacket for dobbeltkjerne-modus for å fikse noen feil."
+
+msgid "Anti-aliasing"
+msgstr "Kantutjevning"
+
+msgid "Enable or disable anti-aliasing."
+msgstr "Aktiver eller deaktiver kantutjevning."
+
+msgid "VSync"
+msgstr "VSync"
+
+msgid "Enable or disable vsync."
+msgstr "Aktiver dette valget for å aktivere eller deaktivere vsync."
+
+msgid "Real Gamecube controllers"
+msgstr "Ekte Gamecube-kontrollere"
+
+msgid "Enable this option to play with real GameCube controllers."
+msgstr "Aktiver dette valget for å spille med ekte GameCube-kontrollere."
+
+msgid "Real Wiimotes"
+msgstr "Ekte Wiimotes"
+
+msgid "Enable this option to play with real Wiimotes."
+msgstr "Aktiver dette valget for å spille med ekte Wiimotes."
+
+msgid "Emulated Wiimote"
+msgstr "Emulert Wiimote"
+
+msgid "Enable this option to play with emulated Wiimotes."
+msgstr "Aktiver for å spille med emulerte Wiimotes."
+
+msgid "Dolphinbar position"
+msgstr "Dolphinbar-posisjon"
+
+msgid "Choose the position of the Dolphin bar."
+msgstr "Velg posisjonen til Dolphin-baren."
+
+msgid "Show on-screen information"
+msgstr "Vis informasjon på skjermen"
+
+msgid "PPSSPP Settings"
+msgstr "PPSSPP-innstillinger"
+
+msgid "Choose the internal resolution of the PSP."
+msgstr "Velg den interne oppløsningen til PSP-en."
+
+msgid "SCUMMVM Settings"
+msgstr "SCUMMVM-innstillinger"
+
+msgid "Subtitles"
+msgstr "Undertekster"
+
+msgid "Enable subtitles"
+msgstr "Aktiver undertekster"
+
+msgid "Supermodel Settings - Controllers"
+msgstr "Supermodel-innstillinger - Kontrollere"
+
+msgid "Sensitivity"
+msgstr "Følsomhet"
+
+msgid ""
+"Choose the rate at which analog control values increase/decrease when "
+"controlled by a key, between 1 to 100. Default is 25."
+msgstr ""
+"Velg hastigheten som analoge kontrollverdier øker/reduseres med når de "
+"kontrolleres av en tast, mellom 1 og 100. Standard er 25."
+
+msgid "Saturation"
+msgstr "Metning"
+
+msgid ""
+"Choose the position at which the joystick is interpreted as being in its "
+"most extreme position, between 0% to 200%. Default is 100%."
+msgstr ""
+"Velg posisjonen der joysticken tolkes som å være i sin mest ekstreme "
+"posisjon, mellom 0% og 200%. Standard er 100%."
+
+msgid "Deadzone"
+msgstr "Dødsone"
+
+msgid "Choose the dead zone as a percentage, between 0% to 99%. Default is 2%."
+msgstr "Velg dødsonen som prosentandel, mellom 0% og 99%. Standard er 2%."
+
+msgid "Supermodel Settings - Audio"
+msgstr "Supermodel-innstillinger - Lyd"
+
+msgid "Sound volume"
+msgstr "Lydvolum"
+
+msgid ""
+"Choose the master volume in percentage, between 0% to 100%. Default is 100%."
+msgstr "Velg hovedvolumet i prosent, mellom 0% og 100%. Standard er 100%."
+
+msgid "Music volume"
+msgstr "Musikkvolum"
+
+msgid ""
+"Choose the music volume in percentage, between 0% to 100%. Default is 100%."
+msgstr "Velg musikkvolumet i prosent, mellom 0% og 100%. Standard er 100%."
+
+msgid "Balance"
+msgstr "Balanse"
+
+msgid ""
+"Choose the relative front/rear balance in percentage, between 0% to 100%. "
+"Default is 0%."
+msgstr ""
+"Velg den relative foran/bak-balansen i prosent, mellom 0% og 100%. Standard "
+"er 0%."
+
+msgid "Channels"
+msgstr "Kanaler"
+
+msgid "Choose the number of sound channels to use on host. Default is 2."
+msgstr "Velg antall lydkanaler som skal brukes på vert. Standard er 2."
+
+msgid "Flip stereo"
+msgstr "Bytt stereokanaler"
+
+msgid "Swap the left and right audio channels."
+msgstr "Velg om du vil bytte venstre og høyre lydkanal."
+
+msgid "Sound"
+msgstr "Lyd"
+
+msgid ""
+"Choose if you disable sound board emulation sound effects. Default is "
+"disabled."
+msgstr ""
+"Velg om du vil deaktivere lydeffektene fra lydkortemuleringen. Standard er "
+"deaktivert."
+
+msgid "No Digital Sound Board (DSB)"
+msgstr "Ingen digital lydplate (DSB)"
+
+msgid "Enable or disable Digital Sound Board MPEG music. Default is disabled."
+msgstr ""
+"Aktiver eller deaktiver MPEG-musikk for digital lydplate. Standard er "
+"deaktivert."
+
+msgid "Sound engine"
+msgstr "Lydmotor"
+
+msgid ""
+"Choose between the legacy and new sound engines. Default is MAME engine."
+msgstr "Velg mellom den gamle og den nye lydmotoren. Standard er MAME-motoren."
+
+msgid "Supermodel Settings - Video"
+msgstr "Supermodel-innstillinger - Video"
+
+msgid "Supersampling"
+msgstr "Supersampling"
+
+msgid "Supersampling. Not enabled yet. Default is 1."
+msgstr "Supersampling. Ikke aktivert ennå. Standard er 1."
+
+msgid "Upscale"
+msgstr "Oppskalering"
+
+msgid "Choose the 2D layer upscaling filter mode. Default is 0."
+msgstr "Velg filtermodus for oppskalering av 2D-laget. Standard er 0."
+
+msgid "Disable no throttle"
+msgstr "Deaktiver ingen begrensning"
+
+msgid "Enable or disable the 60Hz frame rate lock. Default is disabled."
+msgstr ""
+"Velg om du foretrekker å aktivere eller deaktivere 60Hz bildefrekvenslås. "
+"Standard er deaktivert."
+
+msgid "Lock the vertical refresh rate. Default is enabled."
+msgstr ""
+"Velg å låse den vertikale oppdateringsfrekvensen. Standard er aktivert."
+
+msgid "True Hz"
+msgstr "Ekte Hz"
+
+msgid "Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled."
+msgstr ""
+"Velg å bruke ekte Model 3-oppdateringsfrekvens på 57,524 Hz. Standard er "
+"deaktivert."
+
+msgid "Crosshairs"
+msgstr "Sikte"
+
+msgid "Show crosshairs. Default is disabled."
+msgstr "Velg om du foretrekker å vise sikte. Standard er deaktivert."
+
+msgid "Multi texture"
+msgstr "Multitekstur"
+
+msgid "Use 8 texture maps for decoding. Default is disabled."
+msgstr ""
+"Velg om du foretrekker å bruke 8 teksturkart for dekoding. Standard er "
+"deaktivert."
+
+msgid "Quad rendering"
+msgstr "Quad-rendering"
+
+msgid "Enable proper quad rendering. Default is disabled."
+msgstr ""
+"Velg om du foretrekker å aktivere korrekt quad-rendering. Standard er "
+"deaktivert."
+
+msgid "Supermodel Settings - Core"
+msgstr "Supermodel-innstillinger - Kjerne"
+
+msgid "GPU multi threading"
+msgstr "GPU-multitrådhåndtering"
+
+msgid ""
+"Set to ON to run GPU in its own thread instead of sharing the CPU thread. "
+"Faster but may cause bugs, depending on the game."
+msgstr ""
+"Sett til PÅ for å kjøre GPU-en i sin egen tråd i stedet for å dele CPU-"
+"tråden. Raskere, men kan forårsake feil avhengig av spillet."
+
+msgid "PPC Frequency"
+msgstr "PPC-frekvens"
+
+msgid "Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70."
+msgstr "Velg PowerPC-frekvensen i MHz, mellom 1 og 1000. Standard er 70."
+
+msgid "Service button"
+msgstr "Serviceknapp"
+
+msgid ""
+"Enable or disable the service menu in games (L3 = test, R3 = service). "
+"Default is enabled."
+msgstr ""
+"Aktiver eller deaktiver servicemenyen i spill (L3 = test, R3 = service). "
+"Standard er aktivert."
+
+msgid "Log level"
+msgstr "Loggnivå"
+
+msgid "Choose the level of detail in the log file. Default is Information."
+msgstr "Velg informasjonsnivået i loggfilen. Standard er informasjon."
+
+msgid "Xemu Settings"
+msgstr "Xemu-innstillinger"
+
+msgid "Choose the internal resolution of the Xbox."
+msgstr "Velg den interne oppløsningen til Xbox-en."
+
+msgid "Show menu bar"
+msgstr "Vis menylinje"
+
+msgid "Show the menu bar."
+msgstr "Velg om du vil vise menylinjen."
+
+msgid "Skip boot animation"
+msgstr "Hopp over oppstartsanimasjon"
+
+msgid "Skip the boot animation."
+msgstr "Velg om du vil hoppe over oppstartsanimasjonen."
+
+msgid "Show notifications"
+msgstr "Vis varsler"
+
+msgid "Show the notifications displayed in the top-right corner of the screen."
+msgstr "Vis varslene som vises øverst til høyre på skjermen."
+
+msgid "Display mode"
+msgstr "Visningsmodus"
+
+msgid "Choose how the framebuffer should fit or scale."
+msgstr "Velg hvordan framebufferen skal tilpasses eller skaleres."
+
+msgid "Aspect Ratio"
+msgstr "Bildeforhold"
+
+msgid "Choose the aspect ratio of the Xbox."
+msgstr "Velg bildeforholdet til Xbox-en."
+
+msgid "Xemu - EEPROM General Settings"
+msgstr "Xemu - Generelle EEPROM-innstillinger"
+
+msgid "Choose the region to use on Xbox."
+msgstr "Velg regionen som skal brukes på Xbox-en."
+
+msgid "Video Standard"
+msgstr "Videostandard"
+
+msgid "Choose the video standard to use on Xbox."
+msgstr "Velg videostandarden som skal brukes på Xbox-en."
+
+msgid "Timezone"
+msgstr "Tidssone"
+
+msgid ""
+"Choose the timezone to use on Xbox. If your country is using DST, don't take "
+"it into account when you are setting this."
+msgstr ""
+"Velg tidssonen som skal brukes på Xbox-en. Hvis landet ditt bruker "
+"sommertid, ikke ta det med i betraktning når du angir dette."
+
+msgid "Disable automatic daylight saving time"
+msgstr "Deaktiver automatisk sommertid"
+
+msgid "Choose if you want to disable automatic daylight saving time."
+msgstr "Velg om du vil deaktivere automatisk sommertid."
+
+msgid "DVD Region"
+msgstr "DVD-region"
+
+msgid "Choose the DVD region to use on Xbox."
+msgstr "Velg DVD-regionen som skal brukes på Xbox-en."
+
+msgid "Language"
+msgstr "Språk"
+
+msgid "Choose the language to use on Xbox."
+msgstr "Velg språket som skal brukes på Xbox-en."
+
+msgid "Xemu - EEPROM Video Settings"
+msgstr "Xemu - EEPROM-videoinnstillinger"
+
+msgid "Enable 480p resolution on Xbox."
+msgstr "Aktiver 480p-oppløsning på Xbox-en."
+
+msgid "720p"
+msgstr "720p"
+
+msgid "Enable 720p resolution on Xbox."
+msgstr "Aktiver 720p-oppløsning på Xbox-en."
+
+msgid "1080i"
+msgstr "1080i"
+
+msgid "Enable 1080i resolution on Xbox."
+msgstr "Aktiver 1080i-oppløsning på Xbox-en."
+
+msgid "Video Mode"
+msgstr "Videomodus"
+
+msgid "Choose the video mode to use on Xbox."
+msgstr "Velg videomodusen som skal brukes på Xbox-en."
+
+msgid "Refresh rate"
+msgstr "Oppdateringsfrekvens"
+
+msgid "Set the refresh rate to 60Hz on Xbox."
+msgstr "Aktiver oppdateringsfrekvens på 60Hz på Xbox-en."
+
+msgid "Xemu - EEPROM Audio Settings"
+msgstr "Xemu - EEPROM-lydinnstillinger"
+
+msgid "Audio Output"
+msgstr "Lydutgang"
+
+msgid "Choose the audio output to use on Xbox."
+msgstr "Velg lydutgangen som skal brukes på Xbox-en."
+
+msgid "AC3"
+msgstr "AC3"
+
+msgid "Enable Dolby Digital (AC3) on Xbox."
+msgstr "Aktiver Dolby Digital (AC3) på Xbox-en."
+
+msgid "DTS"
+msgstr "DTS"
+
+msgid "Enable Dolby Surround (DTS) on Xbox."
+msgstr "Aktiver Dolby Surround (DTS) på Xbox-en."
+
+msgid "SHUTDOWN RECALBOX"
+msgstr "SLÅ AV RECALBOX"
+
+msgid "FAST SHUTDOWN RECALBOX"
+msgstr "SLÅ RASKT AV RECALBOX"
+
+msgid "RESTART RECALBOX"
+msgstr "START RECALBOX PÅ NYTT"
+
+msgid "EDIT NETPLAY PASSWORDS"
+msgstr "REDIGER PASSORD FOR NETTVERKSSPILL"
+
+msgid "PASSWORD #{INDEX}"
+msgstr "PASSORD #{INDEX}"
+
+msgid "SHARE USAGE"
+msgstr "SHARE-BRUK"
+
+msgid "SHARE PARTITION"
+msgstr "SHARE-PARTISJON"
+
+msgid "Exit the password edition."
+msgstr "Avslutt passordredigering."
+
+msgid "AVAILABLE STORAGES"
+msgstr "TILGJENGELIGE LAGRINGSENHETER"
+
+msgid ""
+"Show a list of storage available on your system. Select a storage to access "
+"extra information and available actions."
+msgstr ""
+"Vis en liste over lagringsenheter tilgjengelig på systemet ditt. Velg en "
+"lagringsenhet for å få tilgang til ekstra informasjon og tilgjengelige "
+"handlinger."
+
+msgid "Get information about {DEVICE.NAME}"
+msgstr "Få informasjon om {DEVICE.NAME}"
+
+msgid "FREE SPACE"
+msgstr "LEDIG PLASS"
+
+msgid "Display free space available on the device"
+msgstr "Vis ledig plass tilgjengelig på enheten"
+
+msgid "STORAGE NAME"
+msgstr "LAGRINGSNAVN"
+
+msgid "Display real device name"
+msgstr "Vis det virkelige enhetsnavnet"
+
+msgid "NETWORK ACCESS"
+msgstr "NETTVERKSTILGANG"
+
+msgid "Access to this storage through your local network."
+msgstr "Tilgang til denne lagringsenheten gjennom det lokale nettverket ditt."
+
+msgid "FILE SYSTEM"
+msgstr "FILSYSTEM"
+
+msgid "FileSystem"
+msgstr "Filsystem"
+
+msgid "COMPATIBLE WITH RECALBOX?"
+msgstr "KOMPATIBEL MED RECALBOX?"
+
+msgid "Show if this storage is compatible with recalbox"
+msgstr "Vis om denne lagringsenheten er kompatibel med recalbox"
+
+msgid "INSTALL RECALBOX ROM FOLDERS"
+msgstr "INSTALLER RECALBOX ROM-MAPPER"
+
+msgid "INITIALIZE!"
+msgstr "INITIALISER!"
+
+msgid ""
+"Create rom structure so that this storage will be used by Recalbox on next "
+"boots."
+msgstr ""
+"Opprett rom-struktur slik at denne lagringsenheten brukes av Recalbox ved "
+"neste oppstart."
+
+msgid ""
+"You cannot initialize this storage, because either it is already initialized "
+"or it is not compatible."
+msgstr ""
+"Du kan ikke initialisere denne lagringsenheten, fordi den enten allerede er "
+"initialisert eller ikke er kompatibel."
+
+msgid ""
+"Select your language. A reboot is required to set this configuration active."
+msgstr ""
+"Velg språket ditt. En omstart er nødvendig for å aktivere denne "
+"konfigurasjonen."
+
+msgid "TIMEZONE"
+msgstr "TIDSSONE"
+
+msgid ""
+"Select the timezone used to display dates and times in their local format."
+msgstr ""
+"Tillat valg av tidssone for å vise datoer og klokkeslett i lokalt format."
+
+msgid "Shows available update version."
+msgstr "Viser tilgjengelig oppdateringsversjon."
+
+msgid "CHECK UPDATES PERIODICALLY"
+msgstr "SJEKK OPPDATERINGER PERIODISK"
+
+msgid ""
+"Automatically check if an update is available. If so, it notifies you with a "
+"message."
+msgstr ""
+"Sjekk automatisk om en oppdatering er tilgjengelig. Hvis så er tilfelle, "
+"varsler den deg med en melding."
+
+msgid "Select update type"
+msgstr "Velg oppdateringstype"
+
+msgid "CHECK"
+msgstr "SJEKK"
+
+msgid "Check if an update is available, right now."
+msgstr "Sjekk om en oppdatering er tilgjengelig, akkurat nå."
+
+msgid "SHOW NEW VERSION CHANGELOG"
+msgstr "VIS ENDRINGSLOGG FOR NY VERSJON"
+
+msgid "SHOW"
+msgstr "VIS"
+
+msgid "Shows available update changelog."
+msgstr "Viser endringslogg for tilgjengelig oppdatering."
+
+msgid "DOWNLOAD AND UPDATE MY RECALBOX"
+msgstr "LAST NED OG OPPDATER RECALBOX-EN MIN"
+
+msgid "GO!"
+msgstr "START!"
+
+msgid "No update available yet."
+msgstr "Ingen oppdatering tilgjengelig ennå."
+
+msgid "RECALBOX RGB DUAL SETTINGS"
+msgstr "INNSTILLINGER FOR RECALBOX RGB DUAL"
+
+msgid ""
+"Select Recalbox's interface resolution. 480i is recommended for better "
+"details."
+msgstr ""
+"Velg oppløsningen til Recalbox-grensesnittet. 480i anbefales for bedre "
+"detaljer."
+
+msgid "AVOID INTERLACED MODES"
+msgstr "UNNGÅ INTERLACE-MODUSER"
+
+msgid "Avoid interlaced mode for all games."
+msgstr "Unngå interlace-modus for alle spill."
+
+msgid "AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS"
+msgstr "UNNGÅ INTERLACE-MODUSER FOR TATE-SPILL PÅ YOKO OG HÅNDHOLDTE"
+
+msgid "31 KHZ"
+msgstr "31 KHZ"
+
+msgid "You're not in 31khz mode"
+msgstr "Du er ikke i 31khz-modus"
+
+msgid "RUN DEMOS AND AUTOBOOT GAMES IN 240P@120"
+msgstr "KJØR DEMOER OG AUTOSTARTSPILL I 240P@120"
+
+msgid ""
+"Run the demos and autoboot games in 240p resolution on your 31kHz monitor."
+msgstr ""
+"Kjør demoene og autostartspillene i 240p-oppløsning på 31kHz-skjermen din."
+
+msgid "EXPERIMENTAL"
+msgstr "EKSPERIMENTELL"
+
+msgid "RECALBOX RGB JAMMA SETTINGS"
+msgstr "INNSTILLINGER FOR RECALBOX RGB JAMMA"
+
+msgid "Recalbox RGB Jamma options and configuration."
+msgstr "Valg og konfigurasjon for Recalbox RGB Jamma."
+
+msgid ""
+"Avoid interlaced mode for tate (vertical) games on yoko (horizontal) "
+"screens, and for handheld consoles."
+msgstr ""
+"Unngå interlace-modus for tate-spill (vertikale) på yoko-skjermer "
+"(horisontale), og for håndholdte konsoller."
+
+msgid "JAMMA OPTIONS"
+msgstr "JAMMA-VALG"
+
+msgid "START + UP and DOWN change the volume in frontend and in games."
+msgstr "START + OPP og NED endrer volumet i frontenden og i spill."
+
+msgid "Load the dual joystick configuration on compatible games!"
+msgstr "Last inn konfigurasjonen for dobbel joystick på kompatible spill!"
+
+msgid "Reset all previous options to their default values"
+msgstr "Tilbakestill alle tidligere valg til standardverdiene"
+
+msgid "RECALBOX RGB DUAL 2 SETTINGS"
+msgstr "INNSTILLINGER FOR RECALBOX RGB DUAL 2"
+
+msgid "Recalbox RGB Dual 2 options and configuration."
+msgstr "Valg og konfigurasjon for Recalbox RGB Dual 2."
+
+msgid "Select Recalbox's interface resolution."
+msgstr "Velg oppløsningen til Recalbox-grensesnittet."
+
+msgid "FORCE COMPOSITE"
+msgstr "TVING KOMPOSITT"
+
+msgid "Force composite output (On SCART, RCA and JACK)."
+msgstr "Tving komposittutgang (på SCART, RCA og JACK)."
+
+msgid "COMPOSITE SIGNAL STANDARD"
+msgstr "KOMPOSITT-SIGNALSTANDARD"
+
+msgid ""
+"When using composite, selects the composite signal standard for your region."
+msgstr ""
+"Ved bruk av komposittsignal, velg komposittsignalstandarden for regionen din."
+
+msgid "16/9 CRT TV"
+msgstr "16/9 CRT-TV"
+
+msgid "Activate if you have a 16/9 CRT TV."
+msgstr "Aktiver hvis du har en 16/9 CRT-TV."
+
+msgid "SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH"
+msgstr "VELG SIGNAL (RGB/KOMPOSITT) VED OPPSTART"
+
+msgid ""
+"Let you choose between RGB Signal and composite signal at launch, for "
+"compatible systems."
+msgstr ""
+"Lar deg velge mellom RGB-signal og komposittsignal ved oppstart, for "
+"kompatible systemer."
+
+msgid "DIP SWITCHES"
+msgstr "DIP-BRYTERE"
+
+msgid "FORCED 50HZ DIP SWITCH"
+msgstr "TVUNGET 50HZ DIP-BRYTER"
+
+msgid "FORCED 31kHz/MULTISYNC DIP SWITCH"
+msgstr "TVUNGET 31kHz/MULTISYNC DIP-BRYTER"
+
+msgid "FORCED COMPOSITE DIP SWITCH"
+msgstr "TVUNGET KOMPOSITT DIP-BRYTER"
+
+msgid "IN-GAME SETTINGS"
+msgstr "INNSTILLINGER I SPILLET"
+
+msgid "FEATURES"
+msgstr "FUNKSJONER"
+
+msgid "GAMES RENDERING"
+msgstr "SPILLRENDERING"
+
+msgid "AUTO BLITTER (FBNEO/MAME)"
+msgstr "AUTO BLITTER (FBNEO/MAME)"
+
+msgid ""
+"Enables automatic blitter and CPU settings for fbneo and mame games. Can "
+"enhance emulation precision on games like Cave."
+msgstr ""
+"Aktiverer automatiske blitter- og CPU-innstillinger for fbneo- og mame-"
+"spill. Kan forbedre emuleringspresisjonen på spill som Cave."
+
+msgid "SYSTEM-LISTS & GAMELISTS SETTINGS"
+msgstr "INNSTILLINGER FOR SYSTEMLISTER OG SPILLISTER"
+
+msgid "Configure system and gamelist filters and options"
+msgstr "Konfigurer filtre og valg for systemer og spillister"
+
+msgid "SYSTEM LISTS"
+msgstr "SYSTEMLISTER"
+
+msgid "SHOW SYSTEMS"
+msgstr "VIS SYSTEMER"
+
+msgid "Show or hide systems individually"
+msgstr "Vis eller skjul systemer individuelt"
+
+msgid "GAMES"
+msgstr "SPILL"
+
+msgid "ENABLE ADDING/REMOVING FAVORITES"
+msgstr "AKTIVER LEGG TIL/FJERN FAVORITTER"
+
+msgid ""
+"Enable or disable adding/removing favorites in gamelist, search and other "
+"various places."
+msgstr ""
+"Aktiver eller deaktiver legge til/fjerne favoritter i spilliste, søk og "
+"andre steder."
+
+msgid ""
+"Show only favorites. May hide all systems with no favorite at all until you "
+"switch off this option."
+msgstr ""
+"Vis kun favoritter. Kan skjule alle systemer uten noen favoritter i det hele "
+"tatt inntil du slår av dette valget."
+
+msgid "Display all favorites at the top of the game list."
+msgstr "Vis alle favoritter øverst i spillisten."
+
+msgid "Force hidden game to show in gamelists."
+msgstr "Tving skjulte spill til å vises i spillister."
+
+msgid "SHOW MAHJONG AND CASINO GAMES"
+msgstr "VIS MAHJONG- OG KASINOSPILL"
+
+msgid ""
+"Show or hide asian casino and mahjong games. You must scrape your game for "
+"this option to work."
+msgstr ""
+"Vis eller skjul asiatiske kasino- og mahjong-spill. Du må skrape spillet "
+"ditt for at dette valget skal fungere."
+
+msgid "SHOW ADULT GAMES"
+msgstr "VIS VOKSENSPILL"
+
+msgid ""
+"Show or hide adult games. You must scrape your game for this option to work."
+msgstr ""
+"Vis eller skjul voksenspill. Du må skrape spillet ditt for at dette valget "
+"skal fungere."
+
+msgid "SHOW PREINSTALLED GAMES"
+msgstr "VIS FORHÅNDSINSTALLERTE SPILL"
+
+msgid ""
+"Show or hide games distributed with Recalbox. But you don't want to do this: "
+"they are all excellent games!"
+msgstr ""
+"Vis eller skjul spill distribuert med Recalbox. Men det vil du ikke gjøre: "
+"de er alle utmerkede spill!"
+
+msgid "Show only games playable with 3 or more players"
+msgstr "Vis kun spill som kan spilles med 3 eller flere spillere"
+
+msgid "SHOW ONLY YOKO (HORIZONTAL) GAMES"
+msgstr "VIS KUN YOKO-SPILL (HORISONTALE)"
+
+msgid ""
+"Show only YOKO (horizontal) games. Mutually exclusive with the option to "
+"show only TATE games."
+msgstr ""
+"Vis kun YOKO-spill (horisontale). Gjensidig utelukkende med valget om å vise "
+"kun TATE-spill."
+
+msgid "SHOW ONLY TATE (VERTICAL) GAMES"
+msgstr "VIS KUN TATE-SPILL (VERTIKALE)"
+
+msgid ""
+"Show only TATE (vertical) games. Mutually exclusive with the option to show "
+"only YOKO games."
+msgstr ""
+"Vis kun TATE-spill (vertikale). Gjensidig utelukkende med valget om å vise "
+"kun YOKO-spill."
+
+msgid "SHOW ROMS MARKED AS NON-GAMES"
+msgstr "VIS ROMER MERKET SOM IKKE-SPILL"
+
+msgid ""
+"Show or hide roms that are explicitly marked as non-game (application, "
+"utilities, ...). You must scrape your game for this option to work."
+msgstr ""
+"Vis eller skjul romer som eksplisitt er merket som ikke-spill (applikasjon, "
+"verktøy, ...). Du må skrape spillet ditt for at dette valget skal fungere."
+
+msgid "ENABLE ONE GAME ONE ROM (1G1R)"
+msgstr "AKTIVER ETT SPILL ÉN ROM (1G1R)"
+
+msgid "Display only one rom|disk image for a game from your preferred region."
+msgstr "Vis kun én rom|diskbilde for et spill fra din foretrukne region."
+
+msgid "PRIORITY REGION (1G1R)"
+msgstr "PRIORITETSREGION (1G1R)"
+
+msgid "Choose your preferred region for 1G1R filtering."
+msgstr "Velg din foretrukne region for 1G1R-filtrering"
+
+msgid "SECOND PRIORITY REGION (1G1R)"
+msgstr "ANDRE PRIORITETSREGION (1G1R)"
+
+msgid "Choose your second preferred region for 1G1R filtering."
+msgstr "Velg din andre foretrukne region for 1G1R-filtrering"
+
+msgid "THIRD PRIORITY REGIONS (1G1R)"
+msgstr "TREDJE PRIORITETSREGIONER (1G1R)"
+
+msgid ""
+"Choose your preferred regions priority when there is no match with first and "
+"second regions"
+msgstr ""
+"Velg prioriteten til dine foretrukne regioner når det ikke er noe treff med "
+"første og andre region"
+
+msgid "ARCADE SYSTEMS"
+msgstr "ARCADE-SYSTEMER"
+
+msgid "ENABLE AGGREGATED ARCADE SYSTEM"
+msgstr "AKTIVER SAMLET ARCADE-SYSTEM"
+
+msgid "Available only when aggregated arcade system is on"
+msgstr "Tilgjengelig kun når samlet arcade-system er på"
+
+msgid ""
+"Select manufacturer virtual system to show in the system view (like "
+"CPS1/2/3, SEGA, TAITO, ...)"
+msgstr ""
+"Velg virtuelle systemer etter produsent som skal vises i systemvisningen "
+"(som CPS1/2/3, SEGA, TAITO, ...)"
+
+msgid "ARCADE GAMES"
+msgstr "ARCADE-SPILL"
+
+msgid ""
+"Always use arcade names from official databases. Overwrites manual edits and "
+"scraper results."
+msgstr ""
+"Bruk alltid arcadenavn fra offisielle databaser. Overskriver manuell "
+"redigering og skraperresultater."
+
+msgid "USER INTERFACE SETTINGS"
+msgstr "INNSTILLINGER FOR BRUKERGRENSESNITT"
+
+msgid "SYSTEMS TO SHOW IN DEMO/GAMECLIP"
+msgstr "SYSTEMER SOM SKAL VISES I DEMO/SPILLKLIPP"
+
+msgid "Adjust the screen brightness"
+msgstr "Juster skjermens lysstyrke"
+
+msgid "Change the look of your Recalbox!"
+msgstr "Endre utseendet på Recalbox-en din!"
+
+msgid "DEFAULT TRANSITION STYLE"
+msgstr "STANDARD OVERGANGSSTIL"
+
+msgid ""
+"Select the type of transition between system. INSTANT will do nothing, FADE "
+"will fade to dark, and SLIDE will slide the entire screen"
+msgstr ""
+"Velg overgangstypen mellom systemer. UMIDDELBART gjør ingenting, TON UT "
+"toner ned til mørkt, og SKYV skyver hele skjermen"
+
+msgid "Select {THEME.OPTION.NAME}"
+msgstr "Velg {THEME.OPTION.NAME}"
+
+msgid "GAME LAUNCH TRANSITION STYLE"
+msgstr "OVERGANGSSTIL VED SPILLSTART"
+
+msgid ""
+"Select the type of transition when you launch a game. INSTANT will do "
+"nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover."
+msgstr ""
+"Velg overgangstypen når du starter et spill. UMIDDELBART gjør ingenting, TON "
+"UT toner ned til mørkt, og SKYV zoomer inn på spillomslaget."
+
+msgid "ENABLE FAST MOVE IN GAMELIST"
+msgstr "AKTIVER RASK FLYTTING I SPILLISTE"
+
+msgid ""
+"When enabled, holding up or down for a few seconds makes the list scroll "
+"very fast."
+msgstr ""
+"Når aktivert, vil det å holde inne opp/ned i noen sekunder få listen til å "
+"bla svært raskt"
+
+msgid "Display the current time in a corner of the screen."
+msgstr "Vis gjeldende klokkeslett i et hjørne av skjermen."
+
+msgid "SHOW MUSIC POPUPS"
+msgstr "VIS MUSIKK-SPRETTOPPVINDUER"
+
+msgid "When enabled, show music information every time a new music starts."
+msgstr "Når aktivert, vis musikkinformasjon hver gang ny musikk starter."
+
+msgid "SHOW NETPLAY POPUPS"
+msgstr "VIS SPRETTOPPVINDUER FOR NETTVERKSSPILL"
+
+msgid ""
+"When enabled, show netplay information every time a user starts a new game "
+"over internet."
+msgstr ""
+"Når aktivert, vis nettverksspill-informasjon hver gang en bruker starter et "
+"nytt spill over internett."
+
+msgid "CONTROLLER SETTINGS"
+msgstr "KONTROLLERINNSTILLINGER"
+
+msgid "Add and configure all your controllers."
+msgstr "Legg til og konfigurer alle kontrollerne dine."
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "CONNECT AUTOMATICALLY"
+msgstr "KOBLE TIL AUTOMATISK"
+
+msgid ""
+"Automatically connect on startup if the WIFI network is available and "
+"properly configured!"
+msgstr ""
+"Koble til automatisk ved oppstart hvis WIFI-nettverket er tilgjengelig og "
+"riktig konfigurert!"
+
+msgid "WIFI is disabled!"
+msgstr "WIFI er deaktivert!"
+
+msgid "SELECT SSID"
+msgstr "VELG SSID"
+
+msgid "Select an available SSID."
+msgstr "Velg en tilgjengelig SSID."
+
+msgid "If your Internet box has a WPS system, activate it and then click here!"
+msgstr ""
+"Hvis internettboksen din har et WPS-system, aktiver det og klikk deretter "
+"her!"
+
+msgid ""
+"Run the scraper! The operation may take a while, however you can make it a "
+"background task and keep using Recalbox."
+msgstr ""
+"Kjør skraperen! Operasjonen kan ta en stund, men du kan gjøre den til en "
+"bakgrunnsoppgave og fortsette å bruke Recalbox."
+
+msgid "PATRON OPTIONS"
+msgstr "PATRON-VALG"
+
+msgid "user name for the selected scraper"
+msgstr "brukernavn for den valgte skraperen"
+
+msgid "password for the selected scraper"
+msgstr "passord for den valgte skraperen"
+
+msgid "Download various free games and free contents!"
+msgstr "Last ned ulike gratis spill og gratis innhold!"
+
+msgid "Download games for {SYSTEM.NAME}"
+msgstr "Last ned spill for {SYSTEM.NAME}"
+
+msgid ""
+"Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}"
+msgstr ""
+"Last ned en pakke med gratis spill, speldemoer og homebrew for {SYSTEM.NAME}"
+
+msgid "No content available yet for {SYSTEM.NAME}!"
+msgstr "Ingen innhold tilgjengelig ennå for {SYSTEM.NAME}!"
+
+msgid "ACTIVATE DEBUG/VERBOSE LOGS"
+msgstr "AKTIVER FEILSØKINGS-/DETALJERTE LOGGER"
+
+msgid "Activate debug and verbose logs in Recalbox and Emulators."
+msgstr "Aktiver feilsøkings- og detaljerte logger i Recalbox og emulatorer."
+
+msgid "You cannot set up Kodi on boot when Kodi is disabled."
+msgstr "Du kan ikke sette opp Kodi ved oppstart når Kodi er deaktivert."
+
+msgid "DO NOT SCAN NEW GAMES"
+msgstr "IKKE SKANN NYE SPILL"
+
+msgid ""
+"Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not "
+"scanning new files. Use it if your romsets are rarely updated."
+msgstr ""
+"Tidligere kalt 'KUN SPILLISTE', kan dette betydelig øke oppstartshastigheten "
+"ved å ikke skanne nye filer. Bruk det hvis romsettene dine sjelden "
+"oppdateres."
+
+msgid "ALLOW BOOT ON GAME"
+msgstr "TILLAT OPPSTART PÅ SPILL"
+
+msgid ""
+"When activated, Recalbox boots into the gamelist and does not allow moving "
+"back to the system list."
+msgstr ""
+"Når aktivert, starter Recalbox på spillisten og tillater ikke å gå tilbake "
+"til systemlisten."
+
+msgid "SYSTEM SPECIFIC RESOLUTIONS"
+msgstr "SYSTEMSPESIFIKKE OPPLØSNINGER"
+
+msgid "FOR {SYSTEM.NAME}"
+msgstr "FOR {SYSTEM.NAME}"
+
+msgid "Select the resolution used by the emulator '{SYSTEM.NAME}'."
+msgstr "Velg oppløsningen som brukes av emulatoren '{SYSTEM.NAME}'."
+
+msgid "Set options for system {SYSTEM.NAME}"
+msgstr "Angi valg for systemet {SYSTEM.NAME}"
+
+msgid "Set the way you want to use Kodi mediaplayer."
+msgstr "Angi hvordan du vil bruke Kodi mediespiller."
+
+msgid "RUN KODI ON STARTUP"
+msgstr "KJØR KODI VED OPPSTART"
+
+msgid "START KODI WITH X BUTTON"
+msgstr "START KODI MED X-KNAPPEN"
+
+msgid "Run your own scripts in shell or python"
+msgstr "Kjør dine egne skript i shell eller python"
+
+msgid "Run custom script {SCRIPT.NAME}"
+msgstr "Kjør tilpasset skript {SCRIPT.NAME}"
+
+msgid "ENABLE WEB MANAGER"
+msgstr "AKTIVER WEBBEHANDLING"
+
+msgid "RESET EMULATOR SETTINGS"
+msgstr "TILBAKESTILL EMULATORINNSTILLINGER"
+
+msgid "RESET!"
+msgstr "TILBAKESTILL!"
+
+msgid ""
+"This option resets all emulator settings to their factory defaults. It does "
+"not affect any Recalbox setting."
+msgstr ""
+"Dette valget tilbakestiller alle emulatorinnstillinger til fabrikkstandard. "
+"Det påvirker ikke noen Recalbox-innstilling."
+
+msgid "HARDWARE"
+msgstr "MASKINVARE"
+
+msgid "UPDATE!"
+msgstr "OPPDATER!"
+
+msgid "Update Pi4 / Pi400 or Pi5 bootloader if required."
+msgstr "Oppdater Pi4 / Pi400- eller Pi5-oppstartslaster hvis nødvendig."
+
+msgid "Recalbox does not support overclocking for your board."
+msgstr "Recalbox støtter ikke overklokking for kortet ditt."
+
+msgid "CONTEXTUAL OPTIONS"
+msgstr "KONTEKSTUELLE VALG"
+
+msgid "EDIT GAME {GAME.NAME}"
+msgstr "REDIGER SPILL {GAME.NAME}"
+
+msgid "Show options related to {GAME.NAME} and allow editing game metadata."
+msgstr ""
+"Vis valg relatert til {GAME.NAME} og tillat redigering av spillmetadata."
+
+msgid ""
+"You cannot edit this game because it is a pre-installed game or it is stored "
+"on a read-only device"
+msgstr ""
+"Du kan ikke redigere dette spillet fordi det er et forhåndsinstallert spill "
+"eller er lagret på en skrivebeskyttet enhet"
+
+msgid "Select the emulator to use to run {GAME.NAME}"
+msgstr "Velg emulatoren som skal brukes til å kjøre {GAME.NAME}"
+
+msgid "SET PATCH"
+msgstr "ANGI PATCH"
+
+msgid "Select patch to use when running an emulator supporting softpatching."
+msgstr ""
+"Velg patch som skal brukes når du kjører en emulator som støtter "
+"softpatching."
+
+msgid ""
+"Either the game has no patch or the emulator selected to run this game is "
+"not supporting softpatching."
+msgstr ""
+"Enten har spillet ingen patch, eller den valgte emulatoren for å kjøre dette "
+"spillet støtter ikke softpatching."
+
+msgid "Sets the name of the game or folder."
+msgstr "Angir navnet på spillet eller mappen."
+
+msgid "Set this game as favorite or not."
+msgstr "Angi dette spillet som favoritt eller ikke."
+
+msgid "Editing favorites is not enabled."
+msgstr "Redigering av favoritter er ikke aktivert."
+
+msgid "Hide or show this game."
+msgstr "Skjul eller vis dette spillet."
+
+msgid "Defines this game as an adult game or not."
+msgstr "Definerer dette spillet som et voksenspill eller ikke."
+
+msgid "Scraping"
+msgstr "Skraping"
+
+msgid "Scrape this game and fill in all metadata at once!"
+msgstr "Skrap dette spillet og fyll inn all metadata på én gang!"
+
+msgid "Statistics"
+msgstr "Statistikk"
+
+msgid "Show the total time you played this game"
+msgstr "Vis den totale tiden du har spilt dette spillet"
+
+msgid "PLAY COUNT"
+msgstr "ANTALL GANGER SPILT"
+
+msgid "Show the number of times you played this game"
+msgstr "Vis antall ganger du har spilt dette spillet"
+
+msgid "Show the last date/time you played this game"
+msgstr "Vis siste dato/klokkeslett du spilte dette spillet"
+
+msgid "DELETE GAME {GAME.NAME}"
+msgstr "SLETT SPILL {GAME.NAME}"
+
+msgid "DELETE {ICON.WARNING}"
+msgstr "SLETT {ICON.WARNING}"
+
+msgid ""
+"Delete game or screenshot physically on the storage. Allow keeping save, "
+"metadata and other related files individually."
+msgstr ""
+"Slett spillet eller skjermbildet fysisk fra lagringsenheten. Tillater å "
+"beholde lagringer, metadata og andre relaterte filer individuelt."
+
+msgid ""
+"You cannot delete this game because it is a pre-installed game or it is "
+"stored on a read-only device or it is a folder."
+msgstr ""
+"Du kan ikke slette dette spillet fordi det er et forhåndsinstallert spill, "
+"er lagret på en skrivebeskyttet enhet, eller er en mappe."
+
+msgid ""
+"Boot on game is not enabled. To set a game to boot on, enable the "
+"appropriate option first."
+msgstr ""
+"Oppstart på spill er ikke aktivert. For å angi et spill å starte på, aktiver "
+"det aktuelle valget først."
+
+msgid "RUN SAVE STATE"
+msgstr "KJØR LAGRINGSTILSTAND"
+
+msgid "Select, restore and run game in the selected save state."
+msgstr "Velg, gjenopprett og kjør spillet i den valgte lagringstilstanden."
+
+msgid ""
+"No save state has been detected for the currently selected game, or the "
+"currently selected item is not a game."
+msgstr ""
+"Ingen lagringstilstand er oppdaget for det gjeldende valgte spillet, eller "
+"det gjeldende valgte elementet er ikke et spill."
+
+msgid "JUMP"
+msgstr "HOPP"
+
+msgid "Open the Quick Jump selector."
+msgstr "Åpne velgeren for hurtighopp."
+
+msgid "This option allows you to search for other versions of a game."
+msgstr "Dette valget lar deg søke etter andre versjoner av et spill."
+
+msgid "This option allows you to search for other games with the same licence."
+msgstr "Dette valget lar deg søke etter andre spill med samme lisens."
+
+msgid ""
+"Select the way the game list is sorted (alphabetically, by rating, ...)."
+msgstr "Velg måten spillisten er sortert på (alfabetisk, etter vurdering...)."
+
+msgid "This list has a natural order and can't be sorted."
+msgstr "Denne listen har en naturlig rekkefølge og kan ikke sorteres."
+
+msgid ""
+"Select what kind of information you want to see on the right of your "
+"gamelist: regions flags, players or game genre."
+msgstr ""
+"Velg hva slags informasjon du vil se til høyre for spillisten din: "
+"regionflagg, spillere eller spillsjanger."
+
+msgid "FLATTEN FOLDERS"
+msgstr "FLAT UT MAPPER"
+
+msgid "This system is either always flattened or cannot be flattened!"
+msgstr "Dette systemet er enten alltid flatet ut eller kan ikke flates ut!"
+
+msgid "You can't hide favorites in the Favorite system!"
+msgstr "Du kan ikke skjule favoritter i favorittsystemet!"
+
+msgid "Display favorites at the top of gamelists."
+msgstr "Vis favoritter øverst i spillister."
+
+msgid "Favorites are always first in the Favorite system!"
+msgstr "Favoritter er alltid først i favorittsystemet!"
+
+msgid "Virtual systems cannot be updated. Update real systems instead."
+msgstr ""
+"Virtuelle systemer kan ikke oppdateres. Oppdater ekte systemer i stedet."
+
+msgid "Advanced system settings"
+msgstr "Avanserte systeminnstillinger"
+
+msgid "Set advanced settings for system {SYSTEM.NAME}"
+msgstr "Angi avanserte innstillinger for systemet {SYSTEM.NAME}"
+
+msgid "DELETE {GAME.NAME}"
+msgstr "SLETT {GAME.NAME}"
+
+msgid "GAME FILES (ROM, DISK IMAGE, TAPE, ...)"
+msgstr "SPILLFILER (ROM, DISKBILDE, KASSETT, ...)"
+
+msgid "Number of game files that are to be deleted."
+msgstr "Antall spillfiler som skal slettes."
+
+msgid ""
+"Number of media files (images, video, ...) that will be deleted along with "
+"game files."
+msgstr ""
+"Antall mediefiler (bilder, video, ...) som vil bli slettet sammen med "
+"spillfilene."
+
+msgid "There is no media file associated with this game"
+msgstr "Det er ingen mediefil knyttet til dette spillet"
+
+msgid ""
+"Number of extra files associated with this game: configurations, overrides, "
+"patches, ..."
+msgstr ""
+"Antall ekstra filer knyttet til dette spillet: konfigurasjoner, "
+"overstyringer, patcher, ..."
+
+msgid "There is no extra file associated with this game"
+msgstr "Det er ingen ekstra fil knyttet til dette spillet"
+
+msgid "Number of save games and save states of {GAME.NAME}"
+msgstr "Antall lagrede spill og lagringstilstander for {GAME.NAME}"
+
+msgid "There is no save game or save state for this game"
+msgstr "Det er verken lagret spill eller lagringstilstand for dette spillet"
+
+msgid "Select files to delete one by one."
+msgstr "Velg filer å slette én etter én."
+
+msgid "Select game files that are to be deleted one by one."
+msgstr "Velg spillfiler som skal slettes én etter én."
+
+msgid ""
+"Select media files (images, video, ...) that will be deleted along with game "
+"files."
+msgstr ""
+"Velg mediefiler (bilder, video, ...) som vil bli slettet sammen med "
+"spillfilene."
+
+msgid "Select extra files to delete: configurations, overrides, patches, ..."
+msgstr ""
+"Velg ekstra filer å slette: konfigurasjoner, overstyringer, patcher, ..."
+
+msgid "Select save games and save states of {GAME.NAME} to delete"
+msgstr "Velg lagrede spill og lagringstilstander for {GAME.NAME} å slette"
+
+msgid "Delete all files selected below"
+msgstr "Slett alle filer valgt under"
+
+msgid "Cancel operation. Do not delete anything"
+msgstr "Avbryt operasjon. Ikke slett noe"
+
+msgid "Delete all files listed below"
+msgstr "Slett alle filer listet under"
+
+msgid "SOFTPATCHING {GAME.NAME}"
+msgstr "SOFTPATCHING {GAME.NAME}"
+
+msgid "ORIGINAL GAME"
+msgstr "ORIGINALT SPILL"
+
+msgid "PATCHED GAME"
+msgstr "PATCHET SPILL"
+
+msgid "SELECT PATCH TO APPLY"
+msgstr "VELG PATCH SOM SKAL BRUKES"
+
+msgid "Select the patch to apply."
+msgstr "Velg patchen som skal brukes"
+
+msgid "INITIATE {GAME.NAME} NETPLAY GAME"
+msgstr "START {GAME.NAME} NETTVERKSSPILL"
+
+msgid "Launch the game and wait for other player to join"
+msgstr "Start spillet og vent på at andre spillere blir med"
+
+msgid "Select password other player will have to use to join the game"
+msgstr "Velg passord som andre spillere må bruke for å bli med i spillet"
+
+msgid "CHOOSE VIEWER PASSWORD"
+msgstr "VELG PASSORD FOR TILSKUER"
+
+msgid "Select password other player will have to use to watch the game"
+msgstr "Velg passord som andre spillere må bruke for å se spillet"
+
+msgid "Do not initiate this game."
+msgstr "Ikke start dette spillet."
+
+msgid "JOIN {GAME.NAME} NETPLAY GAME"
+msgstr "BLI MED I {GAME.NAME} NETTVERKSSPILL"
+
+msgid "JOIN AS PLAYER"
+msgstr "BLI MED SOM SPILLER"
+
+msgid "JOIN"
+msgstr "BLI MED"
+
+msgid "Join the game as a player."
+msgstr "Bli med i spillet som spiller."
+
+msgid "WATCH"
+msgstr "SE PÅ"
+
+msgid "Join the game as a viewer. You can watch the game, but not participate."
+msgstr "Bli med i spillet som tilskuer. Du kan se på spillet, men ikke delta."
+
+msgid "USE PASSWORD"
+msgstr "BRUK PASSORD"
+
+msgid "Use the selected password to join the game."
+msgstr "Bruk det valgte passordet for å bli med i spillet."
+
+msgid "Do not join this game."
+msgstr "Ikke bli med i dette spillet."
+
+msgid "{0} free of {1}"
+msgstr "{0} ledig av {1}"
+
+msgid "{0} FREE"
+msgstr "{0} LEDIG"
+
+msgid "No vulkan driver is available on your hardware."
+msgstr "Ingen Vulkan-driver er tilgjengelig på maskinvaren din."
+
+msgid "Enable rumble with compatible controllers."
+msgstr "Aktiver vibrasjon med kompatible kontrollere."
+
+msgid "EDIT FOLDER {GAME.NAME}"
+msgstr "REDIGER MAPPE {GAME.NAME}"
+
+msgid "%i MINUTE"
+msgid_plural "%i MINUTES"
+msgstr[0] "%i MINUTT"
+msgstr[1] "%i MINUTTER"
+
+msgid "%i TIME"
+msgid_plural "%i TIMES"
+msgstr[0] "%i GANG"
+msgstr[1] "%i GANGER"
+
+msgid ""
+"Show only the very latest version of a given game, hiding all previous "
+"versions/releases. Particularly useful in TOSEC romsets."
+msgstr ""
+"Vis kun den aller nyeste versjonen av et gitt spill, og skjul alle tidligere "
+"versjoner/utgivelser. Spesielt nyttig i TOSEC-romsett."
+
+msgid "{THEME.OPTION.HELP}"
+msgstr "{THEME.OPTION.HELP}"
+
+msgid "Fast Tape"
+msgstr "Rask kassett"
+
+msgid "LIGHT"
+msgstr "LETT"
+
+msgid "MEDIUM"
+msgstr "MIDDELS"
+
+msgid "HEAVY"
+msgstr "TUNG"
+
+msgid "X6 (DEFAULT)"
+msgstr "X6 (STANDARD)"
+
+msgid "Region flags"
+msgstr "Regionflagg"
+
+msgid "Genres"
+msgstr "Sjangere"
+
+msgid "Support numbers"
+msgstr "Antall støttede spillere"
+
+msgid "Support types"
+msgstr "Støttetyper"
+
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} fil"
+msgstr[1] "{0} filer"
+
+msgid "THEME MANAGER"
+msgstr "TEMABEHANDLING"
+
+msgid "LOADING THEME LIST..."
+msgstr "LASTER TEMALISTE..."
+
+msgid "Loading theme list..."
+msgstr "Laster temaliste..."
+
+msgid "Unexpected error while retrieving theme list ! Please retry later."
+msgstr "Uventet feil under henting av temaliste! Vennligst prøv igjen senere."
+
+msgid "Installed"
+msgstr "Installert"
+
+msgid "Not Installed"
+msgstr "Ikke installert"
+
+msgid "Author"
+msgstr "Forfatter"
+
+msgid "Version"
+msgstr "Versjon"
+
+msgid "Compatible with"
+msgstr "Kompatibel med"
+
+msgid "Download Size"
+msgstr "Nedlastingsstørrelse"
+
+msgid "BROWSE PREVIEWS"
+msgstr "BLA GJENNOM FORHÅNDSVISNINGER"
+
+msgid "BROWSE THEMES"
+msgstr "BLA GJENNOM TEMAER"
+
+msgid "INSTALL"
+msgstr "INSTALLER"
+
+msgid "Please confirm. Do you want to update the theme {0}?"
+msgstr "Vennligst bekreft. Vil du oppdatere temaet {0}?"
+
+msgid "Please confirm. Do you want to install the theme {0}?"
+msgstr "Vennligst bekreft. Vil du installere temaet {0}?"
+
+msgid "Please confirm. Do you really want to delete the theme {0}?"
+msgstr "Vennligst bekreft. Vil du virkelig slette temaet {0}?"
+
+msgid "Preparing theme installation..."
+msgstr "Forbereder temainstallasjon..."
+
+msgid "Downloading theme {0}"
+msgstr "Laster ned tema {0}"
+
+msgid "Installing theme {0}"
+msgstr "Installerer tema {0}"
+
+msgid "Installed {0}%"
+msgstr "Installert {0}%"
+
+msgid "Cleaning..."
+msgstr "Rydder opp..."
+
+msgid ""
+"Error installing theme {0}\n"
+"Reason: {1}"
+msgstr ""
+"Feil ved installasjon av tema {0}\n"
+"Årsak: {1}"
+
+msgid "Do you want to switch to the newly installed theme {0} ?"
+msgstr "Vil du bytte til det nylig installerte temaet {0}?"
+
+msgid "Failed to download theme file. Please check your internet connection."
+msgstr ""
+"Kunne ikke laste ned temafil. Vennligst sjekk internettforbindelsen din."
+
+msgid ""
+"Failed to install required files. Please check you've enough free space on "
+"your storage !"
+msgstr ""
+"Kunne ikke installere nødvendige filer. Vennligst sjekk at du har nok ledig "
+"plass på lagringsenheten din!"
+
+msgid "Unknown failure."
+msgstr "Ukjent feil."
+
+msgid "Downloaded {0}%"
+msgstr "Lastet ned {0}%"
+
+msgid ""
+"Browse, download, install, update or remove themes from Recalbox's theme "
+"repository!"
+msgstr ""
+"Bla gjennom, last ned, installer, oppdater eller fjern temaer fra Recalbox "
+"sitt temaarkiv!"
+
+msgid "Loading theme information..."
+msgstr "Laster temainformasjon..."
+
+msgid "{THEME.NAME}"
+msgstr "{THEME.NAME}"
+
+msgid "SWITCH TO"
+msgstr "BYTT TIL"
+
+msgid "DESCRIPTION"
+msgstr "BESKRIVELSE"
+
+msgid "and later versions"
+msgstr "og senere versjoner"
+
+msgid "The theme version is too old and the theme may not work properly."
+msgstr "Temaversjonen er for gammel og temaet fungerer kanskje ikke riktig."
+
+msgid "REGIONS"
+msgstr "REGIONER"
+
+msgid "SET THIS GAME FOR THE CURRENT CARD"
+msgstr "ANGI DETTE SPILLET FOR GJELDENDE KORT"
+
+msgid "This option allows you to select the current game for the current card."
+msgstr ""
+"Dette valget lar deg velge det gjeldende spillet for det gjeldende kortet."
+
+msgid ""
+"A gamelist file has been altered manually or by an application external to "
+"Recalbox.\n"
+"\n"
+"In order not to lose any data, this file will be reloaded as soon as you "
+"click on the 'update' button.\n"
+"If several files have been modified when you click on 'update', all the "
+"systems concerned will be updated. No reboot is required."
+msgstr ""
+"En spillistefil er endret manuelt eller av en applikasjon utenfor Recalbox.\n"
+"\n"
+"For å ikke miste data, vil denne filen lastes inn på nytt så snart du "
+"klikker på 'oppdater'-knappen.\n"
+"Hvis flere filer er endret når du klikker på 'oppdater', vil alle berørte "
+"systemer oppdateres. Ingen omstart er nødvendig."
+
+msgid ""
+"Changes have been detected in a roms directory on system {0}.\n"
+"\n"
+"Wait for your file operations to finish, then click on the 'update' button "
+"to update your roms in Recalbox.\n"
+"No restart is required, and if you've added roms, you'll be able to scrape "
+"them at the end of the update.\n"
+"\n"
+"If you add roms to several systems, they will all be updated when you click "
+"on the 'update' button."
+msgstr ""
+"Endringer er oppdaget i en rom-mappe på systemet {0}.\n"
+"\n"
+"Vent til filoperasjonene dine er fullført, klikk deretter på 'oppdater'-"
+"knappen for å oppdatere romene dine i Recalbox.\n"
+"Ingen omstart er nødvendig, og hvis du har lagt til romer, vil du kunne "
+"skrape dem ved slutten av oppdateringen.\n"
+"\n"
+"Hvis du legger til romer i flere systemer, vil de alle oppdateres når du "
+"klikker på 'oppdater'-knappen."
+
+msgid "Powering off."
+msgstr "Slår av."
+
+msgid "{0} game has been removed from your gamelists"
+msgid_plural "{0} games have been removed from your gamelists"
+msgstr[0] "{0} spill er fjernet fra spillistene dine"
+msgstr[1] "{0} spill er fjernet fra spillistene dine"
+
+msgid "{0} game has been added to your gamelists"
+msgid_plural "{0} games have been added to your gamelists"
+msgstr[0] "{0} spill er lagt til i spillistene dine"
+msgstr[1] "{0} spill er lagt til i spillistene dine"
+
+msgid "FULLSCREEN"
+msgstr "FULLSKJERM"
+
+msgid "ORIGINAL"
+msgstr "ORIGINAL"
+
+msgid ""
+"The card could not be read.\n"
+"This problem can probably be fixed by blowing on the card's contacts!"
+msgstr ""
+"Kortet kunne ikke leses.\n"
+"Dette problemet kan sannsynligvis løses ved å blåse på kortets kontakter!"
+
+msgid ""
+"A card has been detected but is not yet associated with a game. Use START "
+"menu on a game to associate."
+msgstr ""
+"Et kort er oppdaget, men er ennå ikke knyttet til et spill. Bruk START-"
+"menyen på et spill for å knytte det."
+
+msgid "Arcade"
+msgstr "Arcade"
+
+msgid ""
+"The Recalbox team thanks you for your trust!\n"
+"\n"
+"Let's take advantage of this first launch to discover together how to use:\n"
+"- your Recalbox"
+msgstr ""
+"Recalbox-teamet takker deg for tilliten!\n"
+"\n"
+"La oss benytte denne første oppstarten til å oppdage sammen hvordan du "
+"bruker:\n"
+"- Recalbox-en din"
+
+msgid "and its Recaltower"
+msgstr "og Recaltower-en"
+
+msgid "- your controller"
+msgstr "- kontrolleren din"
+
+msgid "- your Recalbox RGB DUAL 2"
+msgstr "- din Recalbox RGB DUAL 2"
+
+msgid "- your Recalbox RGB JAMMA 2"
+msgstr "- din Recalbox RGB JAMMA 2"
+
+msgid "- your Recalbox Card Reader"
+msgstr "- din Recalbox Card Reader"
+
+msgid "Please connect your controller via USB and press X to continue."
+msgstr ""
+"Vennligst koble til kontrolleren din via USB og trykk X for å fortsette."
+
+msgid "Controller"
+msgstr "Kontroller"
+
+msgid ""
+"You can navigate through the menus using the directional pad, **select a "
+"system**, or start a game with the **B button**. The **A button** allows you "
+"to exit a menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To exit a game, press the SELECT and START buttons simultaneously."
+msgstr ""
+"Du kan navigere gjennom menyene ved hjelp av retningskrysset, **velge et "
+"system**, eller starte et spill med **B-knappen**. **A-knappen** lar deg gå "
+"ut av en meny eller spilliste.\n"
+"\n"
+"Åpne **hovedmenyen** ved hjelp av **START-knappen**.\n"
+"For å avslutte et spill, trykk på SELECT- og START-knappene samtidig."
+
+msgid "RGB JAMMA 2"
+msgstr "RGB JAMMA 2"
+
+msgid ""
+"You can navigate through the menus using the joystick, **select a system**, "
+"or start a game with the **button 1**. The **button 2** allows you to exit a "
+"menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To **exit a game**, **press and hold START** for 4 seconds and release."
+msgstr ""
+"Du kan navigere gjennom menyene ved hjelp av joysticken, **velge et "
+"system**, eller starte et spill med **knapp 1**. **Knapp 2** lar deg gå ut "
+"av en meny eller spilliste.\n"
+"\n"
+"Åpne **hovedmenyen** ved hjelp av **START-knappen**.\n"
+"For å **avslutte et spill**, **hold inne START** i 4 sekunder og slipp."
+
+msgid "RGB DUAL 2"
+msgstr "RGB DUAL 2"
+
+msgid ""
+"Your Recalbox RGB DUAL 2 has been detected and installed automatically! You "
+"can now enjoy **all your games** on Recalbox with **perfect pixels and "
+"frequency**!"
+msgstr ""
+"Din Recalbox RGB DUAL 2 er oppdaget og installert automatisk! Du kan nå nyte "
+"**alle spillene dine** på Recalbox med **perfekte piksler og frekvens**!"
+
+msgid ""
+"\n"
+"\n"
+"Consider this: you can automatically switch back to **HDMI mode** by "
+"connecting an HDMI cable and restarting Recalbox!"
+msgstr ""
+"\n"
+"\n"
+"Tenk over dette: du kan automatisk bytte tilbake til **HDMI-modus** ved å "
+"koble til en HDMI-kabel og starte Recalbox på nytt!"
+
+msgid ""
+"\n"
+"\n"
+"An HDMI cable has been detected and the “HDMI priority” mode is enabled in "
+"the options. To switch back to CRT mode, disconnect the HDMI cable and "
+"restart, or disable the HDMI priority option in the Recalbox RGB DUAL 2 "
+"(START) menu options."
+msgstr ""
+"\n"
+"\n"
+"En HDMI-kabel er oppdaget og modusen «HDMI-prioritet» er aktivert i valgene. "
+"For å bytte tilbake til CRT-modus, koble fra HDMI-kabelen og start på nytt, "
+"eller deaktiver valget for HDMI-prioritet i Recalbox RGB DUAL 2 (START) "
+"menyvalgene."
+
+msgid "Recalbox Card Reader"
+msgstr "Recalbox Card Reader"
+
+msgid ""
+"Your Recalbox Card Reader has been detected and **installed automatically!"
+"**\n"
+"\n"
+"You can start using it right away by **inserting a card** into the reader "
+"and going to the game of your choice to **associate the game and card** "
+"using the **menu** available with the **START** button."
+msgstr ""
+"Din Recalbox Card Reader er oppdaget og **installert automatisk!**\n"
+"\n"
+"Du kan begynne å bruke den med en gang ved å **sette inn et kort** i leseren "
+"og gå til spillet du ønsker for å **knytte spillet og kortet** ved hjelp av "
+"**menyen** tilgjengelig med **START**-knappen."
+
+msgid "Add games"
+msgstr "Legg til spill"
+
+msgid ""
+"Recalbox shares its ROM, BIOS, and save files folders on the local network. "
+"Adding your ROMs couldn't be easier: on your computer, search for your "
+"“recalbox” in the network shares.\n"
+"Go to the ROMs folder, then copy your game to the folder corresponding to "
+"its system. For example, to add a “NES” game, copy it to the ‘roms/nes’ "
+"folder."
+msgstr ""
+"Recalbox deler ROM-, BIOS- og lagringsfilmappene sine på det lokale "
+"nettverket. Å legge til ROM-ene dine kunne ikke vært enklere: søk på "
+"datamaskinen din etter «recalbox» i nettverksdelingene.\n"
+"Gå til ROM-mappen, kopier deretter spillet ditt til mappen som tilsvarer "
+"systemet dets. For eksempel, for å legge til et «NES»-spill, kopier det til "
+"mappen 'roms/nes'."
+
+msgid ""
+"Remember to connect your Recalbox to the internet to enjoy all its "
+"features!\n"
+msgstr ""
+"Husk å koble Recalbox-en din til internett for å nyte alle funksjonene!\n"
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Oppdateringer vil bli tilbudt deg automatisk.\n"
+"\n"
+"Finn nyttig informasjon og veiledninger på recalbox.com, eller på recalbox-"
+"wikien ved å skanne QR-koden."
+
+msgid "Update"
+msgstr "Oppdater"
+
+msgid "Are you sure to activate this theme?"
+msgstr "Er du sikker på at du vil aktivere dette temaet?"
+
+msgid "Can't write game to share!"
+msgid_plural "Can't write games to share!"
+msgstr[0] "Kan ikke skrive spillet til share!"
+msgstr[1] "Kan ikke skrive spillene til share!"
+
+msgid "Error downloading game! Retry later."
+msgid_plural "Error downloading games! Retry later."
+msgstr[0] "Feil ved nedlasting av spillet! Prøv igjen senere."
+msgstr[1] "Feil ved nedlasting av spillene! Prøv igjen senere."
+
+msgid "Button "
+msgstr "Knapp "
+
+msgid "Axis "
+msgstr "Akse "
+
+msgid "pressed"
+msgstr "trykket"
+
+msgid "released"
+msgstr "sluppet"
+
+msgid " {0} Fps ({1}%) "
+msgstr " {0} bilder/sek ({1}%) "
+
+msgid ""
+"Scraping game %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Skraper spill %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Scraper starting..."
+msgstr "Skraper starter..."
+
+msgid "Scraping completed!"
+msgstr "Skraping fullført!"
+
+msgid "All games scraped successfully."
+msgstr "Alle spill skrapet vellykket."
+
+msgid "You reached your daily quota. Retry tomorrow."
+msgstr "Du har nådd din daglige kvote. Prøv igjen i morgen."
+
+msgid "Your disk is full Pleas make room before trying again."
+msgstr "Disken din er full. Vennligst frigjør plass før du prøver igjen."
+
+msgid ""
+"Errors occurred and prevented some games to get their metadata. Retry later."
+msgstr ""
+"Det oppstod feil som hindret noen spill i å få metadataene sine. Prøv igjen "
+"senere."
+
+msgid ""
+"Scraping game... %COUNT% yet to go.\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Skraper spill... %COUNT% gjenstår.\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Starting background scraper..."
+msgstr "Starter bakgrunnsskraper..."
+
+msgid " by "
+msgstr " av "
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"The filters will be reset and recalbox will be reloaded."
+msgstr ""
+"Filterinnstillingene dine skjuler alle spillene dine!\n"
+"Filtrene vil bli tilbakestilt og recalbox vil bli lastet inn på nytt."
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"All filters have been reset."
+msgstr ""
+"Filterinnstillingene dine skjuler alle spillene dine!\n"
+"Alle filtre er tilbakestilt."
+
+msgid ""
+"Free space on device %NAME% has gone under %LIMIT%!\n"
+"You should try to free some space quickly!"
+msgstr ""
+"Ledig plass på enheten %NAME% har gått under %LIMIT%!\n"
+"Du bør prøve å frigjøre plass raskt!"
+
+msgid "Running script..."
+msgstr "Kjører skript..."
+
+msgid "Passwords cannot be empty ! Replaced with default value."
+msgstr "Passord kan ikke være tomme! Erstattet med standardverdi."
+
+msgid "%i SECOND"
+msgid_plural "%i SECONDS"
+msgstr[0] "%i SEKUND"
+msgstr[1] "%i SEKUNDER"
+
+msgid "%i HOUR"
+msgid_plural "%i HOURS"
+msgstr[0] "%i TIME"
+msgstr[1] "%i TIMER"
+
+msgid ""
+"\n"
+"WARNING: You device may not have been properly unplugged and has consistency "
+"errors. As a result, it's been mounted as read-only. You should plug your "
+"device in a Window PC and use the repair tool."
+msgstr ""
+"\n"
+"ADVARSEL: Enheten din er kanskje ikke koblet fra riktig og har "
+"konsistensfeil. Som et resultat er den montert som skrivebeskyttet. Du bør "
+"koble enheten til en Windows-PC og bruke reparasjonsverktøyet."
+
+msgid "{THEME.NAME} CONFIGURATION"
+msgstr "KONFIGURASJON AV {THEME.NAME}"
+
+msgid "ENABLE SIDE NAVIGATION IN GAME LISTS"
+msgstr "AKTIVER SIDENAVIGERING I SPILLISTER"
+
+msgid "JOIN AS VIEWER"
+msgstr "BLI MED SOM TILSKUER"
+
+msgid "RECALCARDS SETTINGS"
+msgstr "INNSTILLINGER FOR RECALCARDS"
+
+msgid "Recalbox Card Reader options and configuration."
+msgstr "Valg og konfigurasjon for Recalbox Card Reader."
+
+msgid "CARD READER"
+msgstr "KORTLESER"
+
+msgid "Card Reader Version and status."
+msgstr "Versjon og status for kortleser."
+
+msgid "BOOT ON CARD"
+msgstr "START PÅ KORT"
+
+msgid "Boot on the card when inserted at Recalbox boot."
+msgstr "Start på kortet når det settes inn ved Recalbox-oppstart."
+
+msgid "RECALBOX BOOT VIDEOS"
+msgstr "OPPSTARTSVIDEOER FOR RECALBOX"
+
+msgid "Enable or disable recalbox videos on boot."
+msgstr "Aktiver eller deaktiver recalbox-videoer ved oppstart."
+
+msgid "Console Mode (cards only)"
+msgstr "Konsollmodus (kun kort)"
+
+msgid "Start Recalbox in console mode, where only cards can be played."
+msgstr "Start Recalbox i konsollmodus, der kun kort kan spilles."
+
+msgid "Console Mode exit buttons"
+msgstr "Avslutningsknapper for konsollmodus"
+
+msgid "Select how to exit console mode."
+msgstr "Velg hvordan du vil gå ut av konsollmodus."
+
+msgid "Console Mode video"
+msgstr "Video for konsollmodus"
+
+msgid "Select the video to run in console mode."
+msgstr "Velg videoen som skal kjøres i konsollmodus."
+
+msgid "Console Mode sound"
+msgstr "Lyd for konsollmodus"
+
+msgid "Switch between recalbox music and bios sound."
+msgstr "Bytt mellom recalbox-musikk og bios-lyd."
+
+msgid "({0} AVAILABLE)"
+msgstr "({0} TILGJENGELIG)"
+
+msgid "UP TO DATE"
+msgstr "OPPDATERT"
+
+msgid ""
+"The game associated with the card was not found on your Recalbox, the card "
+"association has been cleared."
+msgstr ""
+"Spillet knyttet til kortet ble ikke funnet på Recalbox-en din, kortkoblingen "
+"er fjernet."
+
+msgid "Unable to start on the game, could not find the game."
+msgstr "Kan ikke starte på spillet, fant ikke spillet."
+
+msgid "Unable to start on the game, no controllers found."
+msgstr "Kan ikke starte på spillet, ingen kontrollere funnet."
+
+msgid "GLOBAL CONFIGURATION"
+msgstr "GLOBAL KONFIGURASJON"
+
+msgid "Board"
+msgstr "Kort"
+
+msgid "Shows your current board."
+msgstr "Viser ditt gjeldende kort."
+
+msgid "Show release notes"
+msgstr "Vis utgivelsesnotater"
+
+msgid "Shows current version's release notes."
+msgstr "Viser gjeldende versjons utgivelsesnotater."
+
+msgid "RELEASE NOTES"
+msgstr "UTGIVELSESNOTATER"
+
+msgid "Scroll manually"
+msgstr "Bla manuelt"
+
+msgid "AVAILABLE UPDATE"
+msgstr "TILGJENGELIG OPPDATERING"
+
+msgid "DOWNLOAD"
+msgstr "LAST NED"
+
+msgid "Libretro Geolith Settings"
+msgstr "Libretro Geolith-innstillinger"
+
+msgid "System Type"
+msgstr "Systemtype"
+
+msgid "Specify the System Type: AES, MVS or Universe BIOS System."
+msgstr "Angi systemtypen: AES, MVS eller Universe BIOS System."
+
+msgid "480p"
+msgstr "480p"
+
+msgid "Select the resolution for Kodi interface and videos"
+msgstr "Velg oppløsningen for Kodi-grensesnittet og videoer"
+
+msgid ""
+"You are currently running a preview version of **Recalbox 10**. An update to "
+"the public version will be offered automatically when it becomes available "
+"for download."
+msgstr ""
+"Du kjører for øyeblikket en forhåndsversjon av **Recalbox 10**. En "
+"oppdatering til den offentlige versjonen vil bli tilbudt automatisk når den "
+"blir tilgjengelig for nedlasting."
+
+msgid ""
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Finn nyttig informasjon og veiledninger på recalbox.com, eller på recalbox-"
+"wikien ved å skanne QR-koden."
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+msgstr ""
+"Oppdateringer vil bli tilbudt deg automatisk.\n"
+"\n"
+
+msgid ""
+"Cannot check update ! Ensure your Recalbox is connected to the Internet, and "
+"try later."
+msgstr ""
+"Kan ikke sjekke oppdatering! Sørg for at Recalbox-en din er koblet til "
+"internett, og prøv igjen senere."
+
+msgid "Libretro MelonDS Settings"
+msgstr "Libretro MelonDS-innstillinger"
+
+msgid "Touch Mode"
+msgstr "Berøringsmodus"
+
+msgid "Choose mode for interactions with the touch screen."
+msgstr "Velg modus for interaksjon med berøringsskjermen."
+
+msgid "Swap Screen Mode"
+msgstr "Byttemodus for skjermer"
+
+msgid "Choose if the 'Swap screens' button should work on press or on hold."
+msgstr ""
+"Velg om knappen 'Bytt skjermer' skal fungere ved trykk eller ved å holde "
+"inne."
+
+msgid "Screen Layout"
+msgstr "Skjermoppsett"
+
+msgid ""
+"Choose how many screens should be displayed, and how they should be arranged."
+msgstr "Velg hvor mange skjermer som skal vises og hvordan de skal vises."
+
+msgid "Enabled (GPU)"
+msgstr "Aktivert (GPU)"
+
+msgid "Run in main thread (CPU)"
+msgstr "Kjør i hovedtråd (CPU)"
+
+msgid "Disabled"
+msgstr "Deaktivert"
+
+msgid "Center"
+msgstr "Sentrer"
+
+msgid "Stretch"
+msgstr "Strekk"
+
+msgid "Scale"
+msgstr "Skaler"
+
+msgid "North America"
+msgstr "Nord-Amerika"
+
+msgid "Europe and Australia"
+msgstr "Europa og Australia"
+
+msgid "Manufacturing plant"
+msgstr "Produksjonssted"
+
+msgid "NTSC-M (North America)"
+msgstr "NTSC-M (Nord-Amerika)"
+
+msgid "NTSC-J (Japan)"
+msgstr "NTSC-J (Japan)"
+
+msgid "PAL-I (Europe and Australia)"
+msgstr "PAL-I (Europa og Australia)"
+
+msgid "PAL-M (Brazil)"
+msgstr "PAL-M (Brasil)"
+
+msgid "Stereo"
+msgstr "Stereo"
+
+msgid "Legacy sound engine"
+msgstr "Gammel lydmotor"
+
+msgid "New sound engine based on MAME"
+msgstr "Ny lydmotor basert på MAME"
+
+msgid "Enable for 1 player"
+msgstr "Aktiver for 1 spiller"
+
+msgid "Enable for 2 players"
+msgstr "Aktiver for 2 spillere"
+
+msgid "MOUSE"
+msgstr "MUS"
+
+msgid "TOUCH"
+msgstr "BERØRING"
+
+msgid "HOLD"
+msgstr "HOLD"
+
+msgid "Top/Bottom"
+msgstr "Topp/bunn"
+
+msgid "Bottom/Top"
+msgstr "Bunn/topp"
+
+msgid "Left/Right"
+msgstr "Venstre/høyre"
+
+msgid "Right/Left"
+msgstr "Høyre/venstre"
+
+msgid "Top Only"
+msgstr "Kun topp"
+
+msgid "Bottom Only"
+msgstr "Kun bunn"
+
+msgid "Hybrid Top"
+msgstr "Hybrid topp"
+
+msgid "Hybrid Bottom"
+msgstr "Hybrid bunn"
+
+msgid "Downloading Quake 3 demo game from the official site. Please wait..."
+msgstr ""
+"Laster ned Quake 3-demospillet fra det offisielle nettstedet. Vennligst "
+"vent..."
+
+msgid ""
+"Downloading Tomb Raider demo game from the official site. Please wait..."
+msgstr ""
+"Laster ned Tomb Raider-demospillet fra det offisielle nettstedet. Vennligst "
+"vent..."
+
+msgid "AVOID LOW FREQUENCY MODES"
+msgstr "UNNGÅ LAVFREKVENSMODUSER"
+
+msgid "Avoid modes under 57Hz for non-compatible TVs."
+msgstr "Unngå moduser under 57Hz for ikke-kompatible TV-er."
+
+msgid "HANDHELDS RATIO"
+msgstr "FORHOLD FOR HÅNDHOLDTE"
+
+msgid ""
+"Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full "
+"image, or ORIGINAL to get original and pixel perfect resolution."
+msgstr ""
+"Videoforhold på CRT for håndholdte konsoller. Velg FULLSKJERM for å få et "
+"fullt bilde, eller ORIGINAL for å få original og pikselperfekt oppløsning."
+
+#: GuiInputConfig — phase messages
+msgid "Press %LABEL%"
+msgstr "Trykk %LABEL%"
+
+msgid "Release to confirm"
+msgstr "Slipp for å bekrefte"
+
+msgid "Press **HOTKEY + START** to validate"
+msgstr "Trykk **HOTKEY + START** for å bekrefte"
+
+msgid "ALREADY USED"
+msgstr "ALLEREDE BRUKT"
+
+msgid "ALREADY USED BY {0}"
+msgstr "ALLEREDE BRUKT AV {0}"
+
+msgid "Button combination"
+msgstr "Knappekombinasjon"
+
+msgid ""
+"Your controller has __no SELECT or HOTKEY button__. The START button will be "
+"used for special actions:\n"
+"- **Long press on START** = quit the game (START + HOTKEY)\n"
+"- **START + Validate** = SELECT (insert credit in arcade games)\n"
+"- **START + any other button** = HOTKEY + that button"
+msgstr ""
+"Kontrolleren din har __ingen SELECT- eller HOTKEY-knapp__. START-knappen vil "
+"bli brukt til spesielle handlinger:\n"
+"- **Langt trykk på START** = avslutt spillet (START + HOTKEY)\n"
+"- **START + Bekreft** = SELECT (sett inn kreditt i arcadespill)\n"
+"- **START + hvilken som helst annen knapp** = HOTKEY + den knappen"
+
+msgid "**Long-press START** to validate"
+msgstr "**Langt trykk på START** for å bekrefte"
+
+msgid "SAME AS SELECT"
+msgstr "SAMME SOM SELECT"
+
+msgid "DPAD RIGHT to skip"
+msgstr "RETNINGSKORS HØYRE for å hoppe over"
+
+msgid "DPAD LEFT to go back"
+msgstr "RETNINGSKORS VENSTRE for å gå tilbake"
+
+#: GuiInputConfig — DPAD / hat
+msgid "DPAD UP"
+msgstr "RETNINGSKORS OPP"
+
+msgid "DPAD RIGHT"
+msgstr "RETNINGSKORS HØYRE"
+
+msgid "DPAD DOWN"
+msgstr "RETNINGSKORS NED"
+
+msgid "DPAD LEFT"
+msgstr "RETNINGSKORS VENSTRE"
+
+#: GuiInputConfig — left stick
+msgid "LEFT STICK UP"
+msgstr "VENSTRE SPAK OPP"
+
+msgid "LEFT STICK RIGHT"
+msgstr "VENSTRE SPAK HØYRE"
+
+msgid "LEFT STICK DOWN"
+msgstr "VENSTRE SPAK NED"
+
+msgid "LEFT STICK LEFT"
+msgstr "VENSTRE SPAK VENSTRE"
+
+#: GuiInputConfig — right stick
+msgid "RIGHT STICK UP"
+msgstr "HØYRE SPAK OPP"
+
+msgid "RIGHT STICK RIGHT"
+msgstr "HØYRE SPAK HØYRE"
+
+msgid "RIGHT STICK DOWN"
+msgstr "HØYRE SPAK NED"
+
+msgid "RIGHT STICK LEFT"
+msgstr "HØYRE SPAK VENSTRE"
+
+#: GuiInputConfig — Gamecube main stick
+msgid "MAIN STICK UP"
+msgstr "HOVEDSPAK OPP"
+
+msgid "MAIN STICK RIGHT"
+msgstr "HOVEDSPAK HØYRE"
+
+msgid "MAIN STICK DOWN"
+msgstr "HOVEDSPAK NED"
+
+msgid "MAIN STICK LEFT"
+msgstr "HOVEDSPAK VENSTRE"
+
+#: GuiInputConfig — Gamecube C-stick
+msgid "C-STICK UP"
+msgstr "C-SPAK OPP"
+
+msgid "C-STICK RIGHT"
+msgstr "C-SPAK HØYRE"
+
+msgid "C-STICK DOWN"
+msgstr "C-SPAK NED"
+
+msgid "C-STICK LEFT"
+msgstr "C-SPAK VENSTRE"
+
+#: GuiInputConfig — N64 C buttons
+msgid "C UP"
+msgstr "C OPP"
+
+msgid "C RIGHT"
+msgstr "C HØYRE"
+
+msgid "C DOWN"
+msgstr "C NED"
+
+msgid "C LEFT"
+msgstr "C VENSTRE"
+
+#: GuiInputConfig — arcade single stick
+msgid "STICK UP"
+msgstr "SPAK OPP"
+
+msgid "STICK RIGHT"
+msgstr "SPAK HØYRE"
+
+msgid "STICK DOWN"
+msgstr "SPAK NED"
+
+msgid "STICK LEFT"
+msgstr "SPAK VENSTRE"
+
+#: GuiInputConfig — Sony face buttons
+msgid "CIRCLE"
+msgstr "SIRKEL"
+
+msgid "CROSS"
+msgstr "KRYSS"
+
+msgid "TRIANGLE"
+msgstr "TREKANT"
+
+msgid "SQUARE"
+msgstr "FIRKANT"
+
+#: GuiInputConfig — arcade 4 button labels
+msgid "BUTTON 1"
+msgstr "KNAPP 1"
+
+msgid "BUTTON 2"
+msgstr "KNAPP 2"
+
+msgid "BUTTON 3"
+msgstr "KNAPP 3"
+
+msgid "BUTTON 4"
+msgstr "KNAPP 4"
+
+#: GuiInputConfig — arcade row labels
+msgid "TOP ROW 1"
+msgstr "ØVERSTE RAD 1"
+
+msgid "TOP ROW 2"
+msgstr "ØVERSTE RAD 2"
+
+msgid "TOP ROW 3"
+msgstr "ØVERSTE RAD 3"
+
+msgid "TOP ROW 4"
+msgstr "ØVERSTE RAD 4"
+
+msgid "BOTTOM ROW 1"
+msgstr "NEDERSTE RAD 1"
+
+msgid "BOTTOM ROW 2"
+msgstr "NEDERSTE RAD 2"
+
+msgid "BOTTOM ROW 3"
+msgstr "NEDERSTE RAD 3"
+
+msgid "BOTTOM ROW 4"
+msgstr "NEDERSTE RAD 4"
+
+#: GuiInputConfig — shoulders / triggers stick clicks
+msgid "L1 (Left Shoulder)"
+msgstr "L1 (venstre skulderknapp)"
+
+msgid "R1 (Right Shoulder)"
+msgstr "R1 (høyre skulderknapp)"
+
+msgid "L2 (Left Trigger)"
+msgstr "L2 (venstre trigger)"
+
+msgid "R2 (Right Trigger)"
+msgstr "R2 (høyre trigger)"
+
+msgid "L3 (Left Joystick Click)"
+msgstr "L3 (trykk på venstre spak)"
+
+msgid "R3 (Right Joystick Click)"
+msgstr "R3 (trykk på høyre spak)"
+
+#: GuiInputConfig — XBox shoulders / triggers
+msgid "LB (Left Shoulder)"
+msgstr "LB (venstre skulderknapp)"
+
+msgid "RB (Right Shoulder)"
+msgstr "RB (høyre skulderknapp)"
+
+msgid "LT (Left Trigger)"
+msgstr "LT (venstre trigger)"
+
+msgid "RT (Right Trigger)"
+msgstr "RT (høyre trigger)"
+
+#: GuiInputConfig — Gamecube / Megadrive N64 shoulders
+msgid "L (Left Shoulder)"
+msgstr "L (venstre skulderknapp)"
+
+msgid "R (Right Shoulder)"
+msgstr "R (høyre skulderknapp)"
+
+msgid "Z (Trigger)"
+msgstr "Z (trigger)"
+
+#: GuiInputConfig — Sony Start/Select/Hotkey
+msgid "OPTIONS (Start)"
+msgstr "OPTIONS (Start)"
+
+msgid "SHARE"
+msgstr "SHARE"
+
+msgid "SHARE (Select)"
+msgstr "SHARE (Select)"
+
+msgid "PS BUTTON (Hotkey)"
+msgstr "PS-KNAPP (Hotkey)"
+
+#: GuiInputConfig — XBox Start/Select/Hotkey
+msgid "MENU (Start)"
+msgstr "MENU (Start)"
+
+msgid "VIEW"
+msgstr "VIEW"
+
+msgid "VIEW (Select)"
+msgstr "VIEW (Select)"
+
+msgid "GUIDE (Hotkey)"
+msgstr "GUIDE (Hotkey)"
+
+msgid "HEART (Hotkey)"
+msgstr "HJERTE (Hotkey)"
+
+#: GuiInputConfig — skippable Select/Hotkey 2-line hints
+msgid "Skip if absent"
+msgstr "Hopp over hvis fraværende"
+
+msgid "Skip if physically absent"
+msgstr "Hopp over hvis fysisk fraværende"
+
+msgid "Unable to update"
+msgstr "Kan ikke oppdatere"
+
+msgid ""
+"Recalbox adds many new features with each new version, which gradually "
+"increases the size of the system.\n"
+"The system partition on your installation is too small to accommodate "
+"version {0}.\n"
+"\n"
+"To continue receiving updates, you must reinstall Recalbox by downloading "
+"the latest image from www.recalbox.com."
+msgstr ""
+"Recalbox legger til mange nye funksjoner med hver ny versjon, noe som "
+"gradvis øker størrelsen på systemet.\n"
+"Systempartisjonen på installasjonen din er for liten til å romme versjon "
+"{0}.\n"
+"\n"
+"For å fortsette å motta oppdateringer, må du installere Recalbox på nytt ved "
+"å laste ned det nyeste bildet fra www.recalbox.com."
+
+msgid ""
+"Unable to verify that there is enough space left on the boot partition. The "
+"update may not complete successfully."
+msgstr ""
+"Kan ikke bekrefte at det er nok plass igjen på oppstartspartisjonen. "
+"Oppdateringen blir kanskje ikke fullført."
+
+msgid "PLAY"
+msgstr "SPILL AV"
+
+msgid "ENABLE/DISABLE"
+msgstr "AKTIVER/DEAKTIVER"
+
+msgid "Downloading"
+msgstr "Laster ned"
+
+msgid "SEEK"
+msgstr "SØK"
+
+msgid "FOLLOW"
+msgstr "FØLG"
+
+msgid "SWITCH TO LINEAR PLAY"
+msgstr "BYTT TIL LINEÆR AVSPILLING"
+
+msgid "SWITCH TO RANDOM PLAY"
+msgstr "BYTT TIL TILFELDIG AVSPILLING"
+
+msgid "JUKEBOX"
+msgstr "JUKEBOKS"
+
+#: MenuProvider.cpp InstallDevice — first warning title (destructive)
+msgid "WARNING ! DESTRUCTIVE OPERATION !"
+msgstr "ADVARSEL! DESTRUKTIV HANDLING!"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: AND data
+msgid ""
+"**{DEVICE}** contains **partitions with existing data**.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly**:\n"
+"\n"
+"- Erase **all partitions** on this disk\n"
+"- **Destroy all data** present on those partitions\n"
+"\n"
+"**There is no going back.** Once confirmed, there is absolutely no way to "
+"recover your files or partitions.\n"
+"\n"
+"Are you **absolutely sure** you want to continue?"
+msgstr ""
+"**{DEVICE}** inneholder **partisjoner med eksisterende data**.\n"
+"\n"
+"Hvis du bekrefter, vil Recalbox **permanent og ugjenkallelig**:\n"
+"\n"
+"- Slette **alle partisjoner** på denne disken\n"
+"- **Ødelegge alle data** som finnes på disse partisjonene\n"
+"\n"
+"**Det er ingen vei tilbake.** Når det er bekreftet, finnes det absolutt "
+"ingen måte å gjenopprette filene eller partisjonene dine på.\n"
+"\n"
+"Er du **helt sikker** på at du vil fortsette?"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: but no detected data
+msgid ""
+"**{DEVICE}** already has partitions.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly erase all "
+"existing partitions** on this disk.\n"
+"\n"
+"**There is no going back.**\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"**{DEVICE}** har allerede partisjoner.\n"
+"\n"
+"Hvis du bekrefter, vil Recalbox **permanent og ugjenkallelig slette alle "
+"eksisterende partisjoner** på denne disken.\n"
+"\n"
+"**Det er ingen vei tilbake.**\n"
+"\n"
+"Er du sikker på at du vil fortsette?"
+
+#: MenuProvider.cpp InstallDevice — second confirmation title
+msgid "LAST WARNING BEFORE INSTALLATION"
+msgstr "SISTE ADVARSEL FØR INSTALLASJONEN"
+
+#: MenuProvider.cpp InstallDevice — second confirmation body
+msgid ""
+"The installation of Recalbox on **{DEVICE}** may take **several minutes**.\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation.\n"
+"If the process is interrupted, the disk may be left in an unusable state.\n"
+"\n"
+"You can still change your mind and **cancel right now**."
+msgstr ""
+"Installasjonen av Recalbox på **{DEVICE}** kan ta **flere minutter**.\n"
+"\n"
+"⚠ **IKKE** slå av eller start Recalbox på nytt under installasjonen.\n"
+"Hvis prosessen blir avbrutt, kan disken bli liggende i en ubrukelig "
+"tilstand.\n"
+"\n"
+"Du kan fortsatt ombestemme deg og **avbryte akkurat nå**."
+
+#: GuiInstallRecalbox.cpp — window title
+msgid "INSTALLATION IN PROGRESS..."
+msgstr "INSTALLASJON PÅGÅR..."
+
+#: GuiInstallRecalbox.cpp — body text shown during installation
+msgid ""
+"Installing Recalbox on **{DEVICE}**...\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation process.\n"
+"If the installation is interrupted, the disk may be left in an unusable "
+"state.\n"
+"\n"
+"Please wait — this may take **several minutes**."
+msgstr ""
+"Installerer Recalbox på **{DEVICE}**...\n"
+"\n"
+"⚠ **IKKE** slå av eller start Recalbox på nytt under "
+"installasjonsprosessen.\n"
+"Hvis installasjonen blir avbrutt, kan disken bli liggende i en ubrukelig "
+"tilstand.\n"
+"\n"
+"Vennligst vent — dette kan ta **flere minutter**."
+
+#: GuiInstallRecalbox.cpp — initial status line
+msgid "Starting installation..."
+msgstr "Starter installasjonen..."
+
+#: GuiInstallRecalbox.cpp — status line on success
+msgid "Installation complete! Press any button to reboot."
+msgstr ""
+"Installasjonen er fullført! Trykk på en hvilken som helst knapp for å starte "
+"på nytt."
+
+#: GuiInstallRecalbox.cpp — help bar label when installation is complete
+msgid "REBOOT"
+msgstr "START PÅ NYTT"
+
+#: GuiInstallRecalbox.cpp — status line on failure
+msgid "Installation failed! Check the logs for details."
+msgstr "Installasjonen mislyktes! Sjekk loggene for detaljer."
+
+#: GuiInstallRecalbox.cpp — partition step status strings
+msgid "Unmounting existing partitions..."
+msgstr "Avmonterer eksisterende partisjoner..."
+
+msgid "Wiping existing partitions..."
+msgstr "Sletter eksisterende partisjoner..."
+
+msgid "Creating RECALBOX partition (FAT32, 6 GB)..."
+msgstr "Oppretter RECALBOX-partisjon (FAT32, 6 GB)..."
+
+msgid "Creating SHARE partition (exFAT)..."
+msgstr "Oppretter SHARE-partisjon (exFAT)..."
+
+msgid "Creating OVERLAY partition (ext4, 1 GB)..."
+msgstr "Oppretter OVERLAY-partisjon (ext4, 1 GB)..."
+
+msgid "Reloading partition table..."
+msgstr "Laster inn partisjonstabellen på nytt..."
+
+msgid "Formatting RECALBOX partition (FAT32)..."
+msgstr "Formaterer RECALBOX-partisjon (FAT32)..."
+
+msgid "Formatting SHARE partition (exFAT)..."
+msgstr "Formaterer SHARE-partisjon (exFAT)..."
+
+msgid "Formatting OVERLAY partition (ext4)..."
+msgstr "Formaterer OVERLAY-partisjon (ext4)..."
+
+#: GuiInstallRecalbox.cpp — pre-flight size check
+msgid "Checking available disk space..."
+msgstr "Sjekker tilgjengelig diskplass..."
+
+msgid ""
+"Not enough space on the target disk.\n"
+"\n"
+"The content of **/recalbox/share** ({SIZE_SHARE}) does not fit in the "
+"available SHARE partition ({SIZE_AVAIL}).\n"
+"\n"
+"Please use a larger disk or free up space on /recalbox/share first."
+msgstr ""
+"Ikke nok plass på måldisken.\n"
+"\n"
+"Innholdet i **/recalbox/share** ({SIZE_SHARE}) får ikke plass i den "
+"tilgjengelige SHARE-partisjonen ({SIZE_AVAIL}).\n"
+"\n"
+"Bruk en større disk, eller frigjør plass på /recalbox/share først."
+
+#: GuiInstallRecalbox.cpp — mount and measure steps
+msgid "Mounting partitions..."
+msgstr "Monterer partisjoner..."
+
+msgid "Measuring data to copy..."
+msgstr "Måler data som skal kopieres..."
+
+msgid "{COUNT} files copied ({DONE}/{TOTAL})"
+msgstr "{COUNT} filer kopiert ({DONE}/{TOTAL})"
+
+#: GuiInstallRecalbox.cpp — final step
+msgid "Finalizing installation..."
+msgstr "Fullfører installasjonen..."
+
+msgid "GUIDE"
+msgstr "GUIDE"
+
+#: GuiInputConfig — 8bitdo Hotkey
+msgid "HEART"
+msgstr "HJERTE"
+
+msgid "PS BUTTON"
+msgstr "PS-KNAPP"
+
+msgid "Text list"
+msgstr "Tekstliste"
+
+msgid "Logo list"
+msgstr "Logoliste"
+
+msgid "Carousel"
+msgstr "Karusell"
+
+msgid "Grid"
+msgstr "Rutenett"
+
+msgid "Gamelist layout"
+msgstr "Spillisteoppsett"
+
+msgid "Game list layout"
+msgstr "Spillisteoppsett"
+
+msgid ""
+"Select the way your games are shown. Text list, logo list, carousel, "
+"grid, ..."
+msgstr ""
+"Velg hvordan spillene dine vises. Tekstliste, logoliste, karusell, "
+"rutenett, ..."

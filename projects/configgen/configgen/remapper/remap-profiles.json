@@ -1,0 +1,234 @@
+{
+  "_comment": {
+    "crazy_taxi": "Cabinet physical controls = wheel + 2 pedals (accel->r2, brake->l2) + gear lever (up/down) + START. There are NO face/action buttons, so every extra game function must be reached through a START + lever up/down combo.",
+    "combos": "A combo with a 'modifier' is gated by it; a combo with no modifier is a plain remap (mod-code 0). Trigger/emit names are the cab controller-config names available on crazy_taxi: up, down, l2, r2, start, and (as combo emit targets) a, b, x, y, l1, r1.",
+    "_rotate": "Applied when the game rotates controls (TATE / vertical screen): a 90-degree face-button rotation (remaps), the analog-stick remap (axes) and its sign flips (invertAxes). D-pad is not rotated (a rotated cab's stick is physically rotated)."
+  },
+  "_rotate": {
+    "remaps": { "east": "b", "south": "y", "north": "a", "west": "x" },
+    "axes": { "joystick1up": "r_y", "joystick1left": "r_x", "joystick2up": "l_x", "joystick2left": "l_y" },
+    "invertAxes": ["joystick2up"]
+  },
+  "naomi": {
+    "18wheelr": {
+      "match": ["18wheelr", "18wheelro", "18wheelrt", "18wheels", "18wheelu"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["18_wheeler"] },
+          {
+            "cabTypes": ["crazy_taxi", "jambo_safari"],
+            "remaps": { "up": "a", "down": "y", "north": "down" },
+            "combos": [
+              { "modifier": "start", "trigger": "up",   "emit": "south" },
+              { "modifier": "start", "trigger": "down", "emit": "north" }
+            ]
+          }
+        ]
+      }
+    },
+    "jambo": {
+      "match": ["jambo"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "a", "down": "b" } }
+        ]
+      }
+    },
+    "f355": {
+      "match": ["f355"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "up": "a", "down": "b" }
+          }
+        ]
+      }
+    }
+  },
+  "naomi2": {
+    "initd": {
+      "match": ["initd", "initdo", "initdexp", "initdexpo",
+                "initdv2j", "initdv2jo", "initdv2ja", "initdv2e",
+                "initdv3j", "initdv3jb", "initdv3e", "inidv3cy", "inidv3ca"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "up": "b", "down": "a", "west": "down" },
+            "combos": [
+              { "modifier": "start", "trigger": "down", "emit": "west" }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "atomiswave": {
+    "ftspeed": {
+      "match": ["ftspeed"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race"], "remaps": { "up": "b", "down": "down" } },
+          {
+            "cabTypes": ["crazy_taxi", "jambo_safari"],
+            "combos": [
+              { "modifier": "start", "trigger": "up", "emit": "south" }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "fbneo": {
+    "abcop": {
+      "match": ["abcop"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "b", "down": "a" } }
+        ]
+      }
+    },
+    "bigrun": {
+      "match": ["bigrun"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "b", "down": "a" } }
+        ]
+      }
+    },
+    "pwheels": {
+      "match": ["pwheels"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "l2": "b", "r2": "a", "up": "y", "down": "r" } }
+        ]
+      }
+    },
+    "superchs": {
+      "match": ["superchs"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "l2": "a", "r2": "b", "up": "y", "down": "x" } }
+        ]
+      }
+    },
+    "f1en": {
+      "match": ["f1en", "smgp", "f1lap"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "r", "down": "l" } }
+        ]
+      }
+    },
+    "outrun": {
+      "match": ["outrun", "toutrun"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "r2": "b", "l2": "a", "up": "y" }
+          }
+        ]
+      }
+    },
+    "orunners": {
+      "match": ["orunners"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "r2": "b", "l2": "a", "up": "y", "down": "x" },
+            "combos": [
+              { "modifier": "start", "trigger": "up",   "emit": "r1" },
+              { "modifier": "start", "trigger": "down", "emit": "l1" }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "mame": {
+    "polepos": {
+      "match": ["polepos", "topracer", "ppspeed", "grally"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "y" } }
+        ]
+      }
+    },
+    "finalap": {
+      "match": ["finalap3", "fourtrax"],
+      "jvs": {
+        "byCabType": [
+          { "cabTypes": ["race", "crazy_taxi", "jambo_safari"], "remaps": { "up": "y" } }
+        ]
+      }
+    }
+  },
+  "model3": {
+    "scud": {
+      "match": ["scud", "daytona2", "dayto2pe", "lemans24"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "InputViewChange": "x" },
+            "combos": [ { "modifier": "start", "trigger": "down", "emit": "north" } ]
+          }
+        ]
+      }
+    },
+    "srally2": {
+      "match": ["srally2", "dirtdvls"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "InputHandBrake": "x", "InputViewChange": "y" },
+            "combos": [
+              { "modifier": "start", "trigger": "up",   "emit": "north" },
+              { "modifier": "start", "trigger": "down", "emit": "west" }
+            ]
+          }
+        ]
+      }
+    },
+    "eca": {
+      "match": ["eca"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "InputViewChange": "x" },
+            "combos": [ { "modifier": "start", "trigger": "down", "emit": "north" } ]
+          }
+        ]
+      }
+    }
+  },
+  "snes": {
+    "smk": {
+      "match": ["Super Mario Kart", "smk"],
+      "matchHeader": ["SUPER MARIO KART"],
+      "jvs": {
+        "byCabType": [
+          {
+            "cabTypes": ["race", "crazy_taxi", "jambo_safari"],
+            "remaps": { "r2": "b", "l2": "y" },
+            "ramwatch": { "busAddr": "7e0148", "sysramOffset": "148", "menuValue": 0 },
+            "states": {
+              "menu": { "combos": [] },
+              "race": {
+                "combos": [
+                  { "trigger": "up",   "emit": "east" },
+                  { "trigger": "down", "emit": "r1" }
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

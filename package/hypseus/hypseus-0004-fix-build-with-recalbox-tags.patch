@@ -1,0 +1,33 @@
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index faaef4f..9a28cf9 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -69,11 +69,26 @@ if("${VER_TAG}" MATCHES "-NOTFOUND")
+ else()
+     git_revlist(VER_GIT_COUNT --count ${VER_TAG}..HEAD)
+ endif()
++
+ string(REGEX REPLACE "^v" "" RESULT ${VER_TAG})
+ string(REGEX REPLACE "[-\\.]" ";" RESULT ${RESULT})
++
++list(LENGTH RESULT RESULT_LEN)
++
+ list(GET RESULT 0 VER_MAJOR)
+-list(GET RESULT 1 VER_MINOR)
+-list(GET RESULT 2 VER_PATCH)
++
++if(RESULT_LEN GREATER 1)
++    list(GET RESULT 1 VER_MINOR)
++else()
++    set(VER_MINOR "0")
++endif()
++
++if(RESULT_LEN GREATER 2)
++    list(GET RESULT 2 VER_PATCH)
++else()
++    set(VER_PATCH "0")
++endif()
++
+ if(NOT "${VER_GIT_COUNT}" EQUAL "0")
+     set(VER_TAG "${VER_TAG}-${VER_GIT_COUNT}")
+ endif()

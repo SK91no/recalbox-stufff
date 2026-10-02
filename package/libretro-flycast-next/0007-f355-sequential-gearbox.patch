@@ -1,0 +1,89 @@
+From: digitalLumberjack <digitallumberjack@recalbox.com>
+Date: Sat, 11 Jul 2026 00:00:00 +0000
+Subject: [PATCH] f355: clean sequential shifting on the wing paddles
+
+Ferrari F355 Challenge (deluxe) has a native sequential shifter on its
+wing-shift paddles: the game advances one gear per WING SHIFT press.
+arcade-profiles routes the cab up/down lever onto those paddles (up -> A
+-> WING SHIFT R, down -> B -> WING SHIFT L), but the lever is a held HAT,
+so a plain mapping keeps the paddle asserted and the game repeat-shifts.
+
+Add a dedicated JVS I/O board for F355 that turns each paddle press into a
+single one-frame pulse on its rising edge and forces the paddle released
+while the lever stays held, so one flick shifts exactly one gear. The P2
+D-pad / H-pattern bits are left untouched. F355-only.
+
+Signed-off-by: Recalbox <recalbox@recalbox.com>
+---
+diff --git a/core/hw/maple/maple_jvs.cpp b/core/hw/maple/maple_jvs.cpp
+index d01240f94..ebd67e29b 100644
+--- a/core/hw/maple/maple_jvs.cpp
++++ b/core/hw/maple/maple_jvs.cpp
+@@ -1022,6 +1022,47 @@ public:
+ 	}
+ };
+ 
++// F355 Challenge: clean sequential shifting on the wing paddles.
++// The deluxe cabinet's wing-shift paddles are a native sequential shifter:
++// the game itself advances one gear per WING SHIFT press. arcade-profiles
++// routes the cab up/down lever onto those paddles (up -> A -> WING SHIFT R
++// -> BTN1, down -> B -> WING SHIFT L -> BTN0), but the lever is a held HAT,
++// so a plain mapping keeps the paddle asserted and the game repeat-shifts.
++// Fix: emit a single one-frame pulse on each rising edge and force the
++// paddle released while it stays held -> exactly one shift per flick.
++// P2 D-pad / H-pattern bits are deliberately left untouched.
++class jvs_837_13844_f355 : public jvs_837_13844_racing
++{
++public:
++	jvs_837_13844_f355(u8 node_id, MIEImpl *parent, int first_player = 0)
++		: jvs_837_13844_racing(node_id, parent, first_player)
++	{
++	}
++
++protected:
++	void read_digital_in(const u32 *buttons, u32 *v) override
++	{
++		jvs_837_13844_racing::read_digital_in(buttons, v);
++
++		const bool upNow = (buttons[0] & NAOMI_BTN1_KEY) != 0;	// WING SHIFT R = shift up
++		const bool downNow = (buttons[0] & NAOMI_BTN0_KEY) != 0;	// WING SHIFT L = shift down
++
++		// Replace the held paddle bits with a one-frame pulse on rising edge.
++		// (base cross-maps P1 BTN1->P2 BTN0 and P1 BTN0->P2 BTN1)
++		v[1] &= ~(NAOMI_BTN0_KEY | NAOMI_BTN1_KEY);
++		if (upNow && !upPrev)
++			v[1] |= NAOMI_BTN0_KEY;
++		if (downNow && !downPrev)
++			v[1] |= NAOMI_BTN1_KEY;
++		upPrev = upNow;
++		downPrev = downNow;
++	}
++
++private:
++	bool upPrev = false;
++	bool downPrev = false;
++};
++
+ // Ninja assault
+ class jvs_namco_jyu : public jvs_io_board
+ {
+@@ -1577,12 +1618,16 @@ MIEImpl::MIEImpl()
+ 			INFO_LOG(MAPLE, "Enabling specific JVS setup for game %s", gameId.c_str());
+ 			io_boards.push_back(std::make_unique<jvs_837_13844_18wheeler>(1, this));
+ 		}
+-		else if (gameId == "F355 CHALLENGE JAPAN" || gameId == "TOKYO BUS GUIDE")
++		else if (gameId == "F355 CHALLENGE JAPAN")
++		{
++			INFO_LOG(MAPLE, "Enabling specific JVS setup for game %s", gameId.c_str());
++			io_boards.push_back(std::make_unique<jvs_837_13844_f355>(1, this));
++		}
++		else if (gameId == "TOKYO BUS GUIDE")
+ 		{
+ 			INFO_LOG(MAPLE, "Enabling specific JVS setup for game %s", gameId.c_str());
+ 			io_boards.push_back(std::make_unique<jvs_837_13844_racing>(1, this));
+-			if (gameId == "TOKYO BUS GUIDE")
+-				static_cast<jvs_837_13844_racing *>(io_boards.back().get())->setTokyoBusMode(true);
++			static_cast<jvs_837_13844_racing *>(io_boards.back().get())->setTokyoBusMode(true);
+ 		}
+ 		else if (gameId.substr(0, 8) == "MKG TKOB"
+ 				|| gameId.substr(0, 9) == "MUSHIKING"

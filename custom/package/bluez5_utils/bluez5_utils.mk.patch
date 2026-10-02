@@ -1,0 +1,57 @@
+diff --git a/package/bluez5_utils/bluez5_utils.mk b/package/bluez5_utils/bluez5_utils.mk
+index da10f95a05..e29267a3c2 100644
+--- a/package/bluez5_utils/bluez5_utils.mk
++++ b/package/bluez5_utils/bluez5_utils.mk
+@@ -5,7 +5,7 @@
+ ################################################################################
+ 
+ # Keep the version and patches in sync with bluez5_utils-headers
+-BLUEZ5_UTILS_VERSION = 5.75
++BLUEZ5_UTILS_VERSION = 5.79
+ BLUEZ5_UTILS_SOURCE = bluez-$(BLUEZ5_UTILS_VERSION).tar.xz
+ BLUEZ5_UTILS_SITE = $(BR2_KERNEL_MIRROR)/linux/bluetooth
+ # 0001-configure.ac-Fix-disable-cups.patch
+@@ -25,12 +25,12 @@ BLUEZ5_UTILS_DEPENDENCIES = \
+ BLUEZ5_UTILS_CONF_OPTS = \
+ 	--enable-library \
+ 	--disable-cups \
+-	--disable-datafiles \
+ 	--disable-manpages \
+ 	--disable-asan \
+ 	--disable-lsan \
+ 	--disable-ubsan \
+ 	--disable-pie \
++	--localstatedir=/overlay/.configs/ \
+ 	--with-dbusconfdir=/etc
+ 
+ ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_OBEX),y)
+@@ -70,15 +70,19 @@ endif
+ ifeq ($(BR2_PACKAGE_BLUEZ5_UTILS_PLUGINS_AUDIO),y)
+ BLUEZ5_UTILS_CONF_OPTS += \
+ 	--enable-a2dp \
++	--enable-asha \
+ 	--enable-avrcp \
+ 	--enable-bap \
++	--enable-bass \
+ 	--enable-mcp \
+ 	--enable-vcp
+ else
+ BLUEZ5_UTILS_CONF_OPTS += \
+ 	--disable-a2dp \
++	--disable-asha \
+ 	--disable-avrcp \
+ 	--disable-bap \
++	--disable-bass \
+ 	--disable-mcp \
+ 	--disable-vcp
+ endif
+@@ -197,9 +201,4 @@ else
+ BLUEZ5_UTILS_CONF_OPTS += --disable-systemd
+ endif
+ 
+-define BLUEZ5_UTILS_INSTALL_INIT_SYSV
+-	$(INSTALL) -m 0755 -D package/bluez5_utils/S40bluetoothd \
+-		$(TARGET_DIR)/etc/init.d/S40bluetoothd
+-endef
+-
+ $(eval $(autotools-package))

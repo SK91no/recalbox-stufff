@@ -1,0 +1,29 @@
+From 57db634d8a36eded6bd719867b31a56b0d55ac54 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Tue, 11 Mar 2025 09:07:01 +0100
+Subject: [PATCH 2/9] steamdeck use quick access button to switch input mode
+
+---
+ drivers/hid/hid-steam.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/hid/hid-steam.c b/drivers/hid/hid-steam.c
+index aa8965251a2e..76a70635f29d 100644
+--- a/drivers/hid/hid-steam.c
++++ b/drivers/hid/hid-steam.c
+@@ -1616,10 +1616,10 @@ static void steam_do_deck_input_event(struct steam_device *steam,
+ 	b13 = data[13];
+ 	b14 = data[14];
+ 
+-	if (!(b9 & BIT(6)) && steam->did_mode_switch) {
++	if (!(b14 & BIT(2)) && steam->did_mode_switch) {
+ 		steam->did_mode_switch = false;
+ 		cancel_delayed_work(&steam->mode_switch);
+-	} else if (!steam->client_opened && (b9 & BIT(6)) && !steam->did_mode_switch) {
++	} else if (!steam->client_opened && (b14 & BIT(2)) && !steam->did_mode_switch) {
+ 		steam->did_mode_switch = true;
+ 		schedule_delayed_work(&steam->mode_switch, 45 * HZ / 100);
+ 	}
+-- 
+2.52.0
+

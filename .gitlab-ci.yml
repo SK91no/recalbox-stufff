@@ -1,0 +1,1047 @@
+# GitLab CI configuration file
+#
+# To run this locally (requires `gitlab-runner`):
+#   $ gitlab-runner exec docker <job_name>
+
+image: docker:latest
+
+# Auto-cancel stops applying as soon as one non-interruptible job has started.
+default:
+  interruptible: true
+
+workflow:
+  auto_cancel:
+    on_new_commit: interruptible
+
+.only-default: &only-default
+  only:
+    - master
+    - merge_requests
+    - tags
+
+stages:
+  - lint
+  - package-validation
+  - build
+  - release
+
+variables:
+  GIT_SUBMODULE_STRATEGY: none
+  GIT_CHECKOUT: "true"
+  GIT_CLEAN_FLAGS: none
+  # Cache retention. host-cache/pkg-cache tarballs are keyed by content hash, so
+  # every buildroot bump or package edit mints a new file and the old one would
+  # otherwise live forever (found at 157 GB + 219 GB of stale entries). Restores
+  # `touch` the tarballs they hit, so this is an LRU: a cache still being used
+  # stays alive, one whose hash nobody asks for anymore dies after N days.
+  CACHE_RETENTION_DAYS: "30"
+  # Interrupted `zstd` runs (interruptible: true cancels mid-archive) leave
+  # <cache>.tmp files behind; .cache-save only removes the one for the arch it
+  # is about to rewrite. Anything older than this is orphaned — no single
+  # archive write comes close (master-cache tops out around 20 min).
+  CACHE_TMP_STALE_HOURS: "6"
+  # Heavy/rarely-changing target packages cached individually by the build
+  # template (one tarball per package per arch). Defined at top-level rather
+  # than in .build_template's variables: because YAML merge (`<<:`) does not
+  # recursively merge sub-mappings — each per-arch job redefines `variables`
+  # with just `ARCH`, which would wipe this list otherwise.
+  PKG_CACHE_LIST: "advancemame libretro-mame0258 libretro-mame0278 libretro-mame2000 libretro-mame2003 libretro-mame2003-plus libretro-mame2010 libretro-mame2015 libretro-mame2016 libretro-dolphin dolphin-emu libretro-flycast libretro-flycast-next qt6base clang llvm kodi boost libopenssl vice libretro-vice libretro-fbneo libpinmame libretro-kronos recalbox-emulationstation2"
+
+# Central place for the GitLab tokens
+.docker-token-envs:
+  script:
+    - DOCKER_TOKEN_ENVS="-e GITLAB_TOKEN_THEMES=${GITLAB_TOKEN_THEMES} -e GITLAB_TOKEN_RB5000=${GITLAB_TOKEN_RB5000} -e GITLAB_TOKEN_RECALBOX_CORES=${GITLAB_TOKEN_RECALBOX_CORES}"
+    # When set, authenticate build-time github clones with GITHUB_TOKEN to dodge the anonymous rate-limit.
+    - |
+      if [ -n "${GITHUB_TOKEN}" ]; then
+        DOCKER_TOKEN_ENVS="${DOCKER_TOKEN_ENVS} -e GIT_CONFIG_COUNT=1 -e GIT_CONFIG_KEY_0=url.https://${GITHUB_TOKEN}@github.com/.insteadOf -e GIT_CONFIG_VALUE_0=https://github.com/"
+      fi
+
+# Lint
+
+.lint_template: &lint_definition
+  stage: lint
+  variables:
+    GIT_SUBMODULE_STRATEGY: none
+  <<: *only-default
+
+lint package license:
+  <<: *lint_definition
+  image: "docker:latest"
+  script:
+    - apk update && apk add bash
+    - bash test/lint/package-licenses.sh
+
+lint config-files:
+  <<: *lint_definition
+  before_script:
+    - apk add --update --no-cache libxml2-utils
+  script: test/lint/config-files
+
+lint buildroot:
+  <<: *lint_definition
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  image: python:3-alpine
+  before_script:
+    - pip install six
+    - pip install python-magic
+    - pip install flake8
+    - apk update && apk add libmagic
+  script: test/lint/buildroot
+
+lint commits:
+  <<: *lint_definition
+  image: node:18
+  before_script:
+    - npm install -g @commitlint/cli@17.0.0 @commitlint/config-conventional@17.0.0 @commitlint/types@17.0.0 @commitlint/read@17.0.0 @commitlint/load@17.0.0 @commitlint/lint@17.0.0 @commitlint/format@17.0.0
+  script: test/lint/commits
+
+# Test
+tests configgen:
+  <<: *lint_definition
+  stage: lint
+  image: python:3.11
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - projects/configgen/**/*
+  script:
+    - apt update && apt -y install libevdev2
+    - cd projects/configgen
+    - echo "Installing dependencies"
+    - pip install -r requirements.txt
+    - echo "Running unittests"
+    - export PYTHONPATH=$PYTHONPATH:$(pwd) && pytest --cov=configgen
+    - echo "Building configgen"
+    - python setup.py install
+
+tests ci scripts:
+  <<: *lint_definition
+  stage: lint
+  image: python:3.11
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - scripts/ci/**/*
+      - .gitlab-ci.yml
+  script:
+    - pip install pytest
+    - pytest scripts/ci/tests -q
+
+tests emulationstation:
+  <<: *lint_definition
+  stage: lint
+  image: docker:latest
+  tags:
+    - lintstage
+  services:
+    - docker:dind
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - projects/frontend/**/*
+  script:
+    - cd projects/frontend
+    # Always tag the build. The runner mounts the host's /var/run/docker.sock,
+    # so this `docker build` lands on the host daemon and its final image
+    # persists there. Untagged, every run left a ~2.8 GB dangling image behind
+    # (123 of them = ~344 GB when this was found). CI_JOB_ID keeps concurrent
+    # jobs from stealing each other's tag; after_script drops it either way.
+    - docker build -t "recalbox-es-tests:${CI_JOB_ID}" .
+  after_script:
+    - docker rmi -f "recalbox-es-tests:${CI_JOB_ID}" 2>/dev/null || true
+  artifacts:
+    reports:
+      junit: ./**/report.xml
+
+tests buildroot patches:
+  stage: lint
+  variables:
+    GIT_SUBMODULE_STRATEGY: recursive
+  tags:
+    - lintstage
+  only:
+    refs:
+      - merge_requests
+    changes:
+      - package/*/*.patch
+      - board/recalbox/patches/*/*.patch
+  before_script:
+    - !reference [.docker-token-envs, script]
+    - apk update && apk add git
+  script:
+    - export ARCH=rpi5_64
+    - git remote show target || git remote add target "${CI_MERGE_REQUEST_PROJECT_URL}" || exit 0
+    - git fetch target "${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}"
+    - docker build -t "recalbox-${ARCH}" .
+    - export WORKDIR="$(pwd)" OUTPUTDIR="$(pwd)/output"
+    - docker run --rm --tmpfs /tmp:exec -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" -v "/recalbox-builds/dl:/share/dl" -e "ARCH=${ARCH}" $DOCKER_TOKEN_ENVS "recalbox-${ARCH}" make recalbox-${ARCH}_defconfig 2>&1
+    - |
+      for PKG in $(git diff --name-only "target/${CI_MERGE_REQUEST_TARGET_BRANCH_NAME}" | grep -E '^(board/recalbox/patches|package/)' | sed -E 's#board/recalbox/patches/([^/]+)/.*#\1#;s#package/([^/]+)/.*#\1#' | sort | uniq); do
+        if [ -f "package/$PKG/Config.in" ] || [ -f "buildroot/package/$PKG/Config.in" ]; then
+          echo "Testing patches for $PKG"
+          docker run --rm --tmpfs /tmp:exec -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" \
+                                          -v "/recalbox-builds/dl:/share/dl" -e "ARCH=${ARCH}" \
+                                          $DOCKER_TOKEN_ENVS \
+                                          -e "FORCE_UNSAFE_CONFIGURE=1" \
+                                          "recalbox-${ARCH}" sh -c "make BR2_DL_DIR=/share/dl $PKG-patch 2>&1" || exit 1
+        fi
+        if [ -f "package/$PKG/Config.in.host" ] || [ -f "buildroot/package/$PKG/Config.in.host" ]; then
+          echo "Testing patches for host $PKG"
+          docker run --rm --tmpfs /tmp:exec -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" \
+                                          -v "/recalbox-builds/dl:/share/dl" -e "ARCH=${ARCH}" \
+                                          $DOCKER_TOKEN_ENVS \
+                                          -e "FORCE_UNSAFE_CONFIGURE=1" \
+                                          "recalbox-${ARCH}" sh -c "make BR2_DL_DIR=/share/dl "host-${PKG}-patch" 2>&1" || exit 1
+        fi
+      done
+
+tests nvidia:
+  <<: *lint_definition
+  stage: lint
+  image: python:3.9-slim
+  only:
+    refs:
+      - master
+      - merge_requests
+      - tags
+    changes:
+      - projects/recalbox-hardware/videocard/**/*
+  script:
+    - cd projects/recalbox-hardware/videocard
+    - echo "Installing dependencies"
+    - pip install -r requirements-dev.txt
+    - echo "Running unittests"
+    - export PYTHONPATH=$PYTHONPATH:$(pwd) && pytest --cov
+
+tests webmanager:
+    <<: *lint_definition
+    stage: lint
+    image: node:22
+    only:
+      refs:
+        - master
+        - merge_requests
+        - tags
+      changes:
+        - projects/manager3/**/*
+    script:
+      - cd projects/manager3
+      - yarn global add @quasar/cli
+      - yarn
+      - node_modules/eslint/bin/eslint.js .
+      - node_modules/jest/bin/jest.js Translations.spec.ts
+      - quasar build
+
+# Manual cache wipe
+#
+# Triggered only from the GitLab pipeline UI with WIPE_CACHES=true. Runs in
+# the lint stage so it completes before any build job starts. Removes both
+# the host-cache (toolchain/host packages) and the pkg-cache (heavy target
+# packages) for every arch — use only when a change requires invalidating
+# everything (e.g. cache logic changes, suspected poisoning).
+wipe caches:
+  stage: lint
+  tags:
+    - build
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "web" && $WIPE_CACHES == "true"
+  script:
+    - echo ">>> Wiping /recalbox-builds/host-cache and /recalbox-builds/pkg-cache"
+    - rm -rf /recalbox-builds/host-cache /recalbox-builds/pkg-cache
+    - echo ">>> Done"
+
+# Package validation
+#
+# For every MR, detect which buildroot packages are touched (directly via
+# package/<pkg>/, custom/package/<pkg>/, buildroot/package/<pkg>/, or
+# transitively via projects/<sub>/ referenced from a package .mk) and rebuild
+# each impacted package on every board where it is enabled. Boards are
+# determined per-package by running `make recalbox-<arch>_defconfig` and
+# checking BR2_PACKAGE_<PKG>=y in the resulting .config — this captures
+# transitive `select` chains.
+#
+# Caches are restored via .cache-restore so unchanged dependencies come back
+# from the host-cache/pkg-cache. Only the changed package and anything
+# downstream of the cache miss actually rebuilds.
+
+.validate_template: &validate_definition
+  stage: package-validation
+  rules:
+    # Not in a merge train. The train re-validates the very packages the
+    # merge-result pipeline already validated when the MR was pushed, and behind
+    # `resource_group` there is one validate per arch for the whole project — so
+    # every car of the train queues behind the one in front of it. What a train
+    # catches that an MR pipeline cannot is two queued MRs whose packages only
+    # clash once merged together; the build jobs are manual here anyway, so the
+    # train was never going to compile that pair either.
+    - if: $CI_MERGE_REQUEST_EVENT_TYPE == "merge_train"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  # Cap concurrency to 1 job per arch on the project (max 6 concurrent
+  # validate jobs total). A second push on the same MR queues behind, and
+  # `interruptible: true` lets GitLab cancel the in-flight one when a
+  # newer commit lands on the same MR.
+  resource_group: validate-${ARCH}
+  interruptible: true
+  before_script:
+    - !reference [.docker-token-envs, script]
+    - apk update && apk add bash zstd tar findutils coreutils git
+    # Need buildroot/ for `make recalbox-<arch>_defconfig`. Done here rather
+    # than via GIT_SUBMODULE_STRATEGY because YAML `<<:` overwrites variables:
+    # whole, so per-arch jobs (which redefine ARCH) would lose any setting
+    # placed in the template's variables: block.
+    - git submodule update --init --depth 1 buildroot
+    # Wipe buildroot working tree before mergeToBR. With GIT_CLEAN_FLAGS=none
+    # and a persistent runner, a previous job's mergeToBR can leave patches
+    # applied. If the MR modifies a patch, the old version sits on disk and
+    # mergeToBR's check phase rejects the new one. The build template gets
+    # this for free via Dockerfile CMD; validate calls make directly so we
+    # do it here.
+    - ( cd buildroot && git reset --hard HEAD && git clean -fdx )
+    - source scripts/release/functions.sh
+  script:
+    - export WORKDIR="$(pwd)" OUTPUTDIR="$(pwd)/output"
+    - PKGS=$(bash scripts/ci/detect-changed-packages.sh)
+    - |
+      if [ -z "$PKGS" ]; then
+        echo ">>> No package changes detected — skipping ${ARCH}"
+        exit 0
+      fi
+      echo ">>> Modified packages:"
+      echo "$PKGS"
+    - rm -rf "${OUTPUTDIR}" build.log failed-*.log failed-*-state.tar.gz
+    - mkdir -p "${OUTPUTDIR}"
+    - docker build -t "recalbox-${ARCH}-${CI_JOB_ID}" .
+    # Try the master-cache first (full output/ snapshot from last successful
+    # master build). If present, every package's stamps come back, so
+    # `make <pkg>-dirclean <pkg>` only rebuilds what we ask for. Master-cache
+    # restore is gated to validate jobs only — build jobs always go through
+    # host-cache + pkg-cache so we don't recursively reuse our own output.
+    - |
+      printf '\033[0Ksection_start:%s:master_cache[collapsed=true]\r\033[0K>>> master-cache restore\n' "$(date +%s)"
+      MASTER_CACHE="/recalbox-builds/master-cache/${ARCH}/output.tar.zst"
+      if [ -f "${MASTER_CACHE}" ]; then
+        echo ">>> Master cache HIT — restoring full output ($(du -h "${MASTER_CACHE}" | cut -f1))"
+        zstd -dc -T0 "${MASTER_CACHE}" | tar -xf - -C "${OUTPUTDIR}"
+        # Same .la pruning as host-cache: paths reference /work/output/build/<pkg>
+        # which won't survive a round-trip. Staging libs are intact, autotools
+        # consumers fall back to pkg-config.
+        BROKEN_LA=0
+        for f in $(find "${OUTPUTDIR}"/staging "${OUTPUTDIR}"/host -name '*.la' 2>/dev/null); do
+          if grep -q '/work/output/build/' "$f"; then
+            rm "$f"
+            BROKEN_LA=$((BROKEN_LA + 1))
+          fi
+        done
+        [ "${BROKEN_LA}" -gt 0 ] && echo ">>> Pruned ${BROKEN_LA} broken .la files"
+        # Flag tells .cache-restore to skip its work (master-cache is a superset).
+        touch "${OUTPUTDIR}/.master-cache-used"
+      else
+        echo ">>> No master cache — falling back to host-cache + pkg-cache"
+      fi
+      printf '\033[0Ksection_end:%s:master_cache\r\033[0K\n' "$(date +%s)"
+    # Run cache-restore: it will skip itself if the master-cache flag is set,
+    # otherwise it does the standard host-cache + pkg-cache restore.
+    - !reference [.cache-restore, script]
+    # Generate this arch's .config to capture which packages are enabled
+    # (directly or via transitive `select`). A pkg may be off here — skip it.
+    - docker run --rm --tmpfs /tmp:exec -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" -v "/recalbox-builds/dl:/share/dl" -e "ARCH=${ARCH}" $DOCKER_TOKEN_ENVS "recalbox-${ARCH}-${CI_JOB_ID}" make recalbox-${ARCH}_defconfig 2>&1 | tail -20
+    - |
+      RELEVANT=""
+      for pkg in $PKGS; do
+        pkg_upper=$(echo "$pkg" | tr 'a-z-' 'A-Z_')
+        if grep -qE "^BR2_PACKAGE_${pkg_upper}=y$" "${OUTPUTDIR}/.config"; then
+          RELEVANT="$RELEVANT $pkg"
+        fi
+      done
+      if [ -z "$RELEVANT" ]; then
+        echo ">>> None of the modified packages are enabled on ${ARCH} — skipping"
+        exit 0
+      fi
+      echo ">>> Will validate on ${ARCH}:$RELEVANT"
+      # Build all impacted packages in a single docker run. Two-phase:
+      # dirclean targets first (sequential, fast) to force fresh builds of
+      # the modified packages, then the build targets — Buildroot top-level
+      # may parallelize independent packages (BR2_PER_PACKAGE_DIRECTORIES is
+      # active in CI). On failure, the last `>>> <pkg> <ver> <step>` line in
+      # the log identifies the package that broke.
+      DIRCLEAN_TARGETS=""
+      BUILD_TARGETS=""
+      for pkg in $RELEVANT; do
+        DIRCLEAN_TARGETS="$DIRCLEAN_TARGETS ${pkg}-dirclean"
+        BUILD_TARGETS="$BUILD_TARGETS ${pkg}"
+      done
+      # Wipe host-<pkg> too: cmake's up-to-date install can keep a generated
+      # file from the version the master cache restored.
+      if docker run --rm --tmpfs /tmp:exec --security-opt seccomp=unconfined \
+            -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" \
+            -v "/recalbox-builds/dl:/share/dl" \
+            -v "/recalbox-builds/ccaches/ccache-${ARCH}:/share/ccache" \
+            -e "ARCH=${ARCH}" $DOCKER_TOKEN_ENVS \
+            -e "RECALBOX_CCACHE_ENABLED=true" -e "FORCE_UNSAFE_CONFIGURE=1" \
+            -e "RECALBOX_VERSION=alpha" \
+            "recalbox-${ARCH}-${CI_JOB_ID}" sh -c "make BR2_DL_DIR=/share/dl${DIRCLEAN_TARGETS} && for p in${RELEVANT}; do make BR2_DL_DIR=/share/dl host-\$p-dirclean 2>/dev/null || true; done && make BR2_DL_DIR=/share/dl BR2_INSTRUMENTATION_SCRIPTS=/work/scripts/ci/gitlab-section-instrumentation.sh${BUILD_TARGETS}" \
+            >build.log 2>&1; then
+        echo ">>> All packages validated on ${ARCH}:$RELEVANT"
+        # Keep section_end too so GitLab folds stay balanced.
+        grep -aE '>>>|section_end' build.log || true
+      else
+        echo ">>> Validation FAILED on ${ARCH}"
+        sh scripts/ci/diagnose-failure.sh
+        exit 1
+      fi
+  after_script:
+    - !reference [.cleanup-output, script]
+    - docker rmi -f "recalbox-${ARCH}-${CI_JOB_ID}" 2>/dev/null || true
+  artifacts:
+    name: validate-${ARCH}-${CI_PIPELINE_ID}
+    when: always
+    paths:
+      - build.log
+      - failed-*.log
+      - failed-*-state.tar.gz
+    expire_in: 2 weeks
+  tags:
+    - validate
+    - arch-${ARCH}
+
+validate x86_64:
+  <<: *validate_definition
+  variables:
+    ARCH: 'x86_64'
+validate rpi4_64:
+  <<: *validate_definition
+  variables:
+    ARCH: 'rpi4_64'
+validate odroidgo2:
+  <<: *validate_definition
+  variables:
+    ARCH: 'odroidgo2'
+validate rpi3:
+  <<: *validate_definition
+  variables:
+    ARCH: 'rpi3'
+validate rg353x:
+  <<: *validate_definition
+  variables:
+    ARCH: 'rg353x'
+validate rpi5_64:
+  <<: *validate_definition
+  variables:
+    ARCH: 'rpi5_64'
+
+# Build
+
+appimage-amd64:
+  image: beudbeud/appimage-builder:latest
+  stage: build
+  script:
+    - cd projects/frontend
+    - appimage-builder --skip-test
+  rules:
+    - if: $CI_COMMIT_BRANCH && $FORCE_APPIMAGE == "true"
+      when: always
+    - when: never
+  artifacts:
+      paths:
+        - 'projects/frontend/*.AppImage*'
+      expire_in: 1 week
+
+
+# Cache restore steps (referenced from .build_template via !reference). Two
+# tarball families:
+#   * host-cache: cross-toolchain + ~140 host packages, keyed on a hash of
+#     the toolchain/glibc/buildroot config. One entry per arch.
+#   * pkg-cache: heavy/rarely-changing target packages (MAME forks, kodi,
+#     qt6base, llvm, ...). One entry per package per arch, keyed by
+#     scripts/ci/compute-pkg-cache-keys.sh over the resolved .config and the
+#     package's whole dependency closure — an archive holds per-package/<pkg>/,
+#     which is the package *and* everything it was built against.
+#
+# A third "master-cache" (full output snapshot) is restored separately only
+# inside .validate_template — see there. When master-cache was restored, the
+# validate template touches a `.master-cache-used` flag in OUTPUTDIR so the
+# steps below skip their work (master-cache is a strict superset).
+.cache-restore:
+  script:
+    - |
+      printf '\033[0Ksection_start:%s:cache_restore[collapsed=true]\r\033[0K>>> host-cache + pkg-cache restore\n' "$(date +%s)"
+      # Sweep orphaned .tmp archives from cancelled jobs. Done on restore (start
+      # of every build) rather than on save, because a job killed mid-archive
+      # never reaches .cache-save at all — that is exactly how these pile up.
+      STALE_MIN=$(( ${CACHE_TMP_STALE_HOURS:-6} * 60 ))
+      ORPHANS=$(find /recalbox-builds -name '*.tar.zst.tmp*' -mmin "+${STALE_MIN}" 2>/dev/null)
+      if [ -n "${ORPHANS}" ]; then
+        echo ">>> Removing orphaned .tmp archives older than ${CACHE_TMP_STALE_HOURS:-6}h:"
+        echo "${ORPHANS}" | while read -r f; do
+          [ -n "$f" ] || continue
+          echo "      $(du -h "$f" 2>/dev/null | cut -f1)  $f"
+        done
+        find /recalbox-builds -name '*.tar.zst.tmp*' -mmin "+${STALE_MIN}" -exec rm -f {} + 2>/dev/null || true
+      fi
+      if [ -f "${OUTPUTDIR}/.master-cache-used" ]; then
+        echo ">>> Master cache already restored — skipping host-cache"
+        echo "HOST_CACHE_HIT=master" > .host-cache.env
+      else
+        HOST_CACHE_HASH=$(
+          {
+            grep -E '^BR2_(TOOLCHAIN|GCC|BINUTILS|GLIBC|PACKAGE_HOST_LINUX_HEADERS|ARM64_PAGE_SIZE|aarch64|arm)' \
+              "configs/recalbox-${ARCH}_defconfig" | sort
+            find custom/package -type f 2>/dev/null | sort | xargs -r sha256sum
+            git ls-tree HEAD buildroot
+          } | sha256sum | cut -c1-12
+        )
+        HOST_CACHE="/recalbox-builds/host-cache/${ARCH}/${HOST_CACHE_HASH}.tar.zst"
+        mkdir -p "$(dirname "${HOST_CACHE}")"
+        echo ">>> Host cache hash: ${HOST_CACHE_HASH}"
+        if [ -f "${HOST_CACHE}" ]; then
+          echo ">>> Host cache HIT — restoring ($(du -h "${HOST_CACHE}" | cut -f1))"
+          # Mark as recently used so the retention sweep in .cache-save spares it.
+          touch "${HOST_CACHE}"
+          zstd -dc -T0 "${HOST_CACHE}" | tar -xf - -C "${OUTPUTDIR}"
+          # Poison guard, symmetric to the "<30 entries" check on save. A cache
+          # written by the old busybox-ash glob bug restores host/ + staging/ but
+          # NO per-package/<pkg> content, so the build fails much later with "No
+          # such file" on host tools (gcc/pkg-config/sdl2-config). The save-side
+          # check stops NEW poisoned caches from being written; this stops an
+          # already-stored one from re-breaking every build forever. Discard it
+          # and fall through to a MISS so a clean cache gets rebuilt.
+          if [ ! -e "${OUTPUTDIR}/per-package/toolchain" ] && [ -z "$(ls -d "${OUTPUTDIR}"/per-package/host-* 2>/dev/null)" ]; then
+            echo ">>> Host cache POISONED (no per-package content) — discarding ${HOST_CACHE} and rebuilding"
+            rm -f "${HOST_CACHE}"
+            rm -rf "${OUTPUTDIR}/host" "${OUTPUTDIR}/staging" "${OUTPUTDIR}/per-package" "${OUTPUTDIR}/build"
+            HOST_CACHE_HIT=0
+          else
+            # Post-restore: prune .la files that reference a build dir (e.g.
+            # /work/output/build/webp-1.3.2/sharpyuv/libsharpyuv.la). Those paths
+            # only exist during a single build and don't survive the cache
+            # round-trip. The cached build is complete, so the corresponding
+            # libraries are already in staging — autotools consumers fall back
+            # to pkg-config when the .la is gone.
+            BROKEN_LA=0
+            for f in $(find "${OUTPUTDIR}"/staging "${OUTPUTDIR}"/host -name '*.la' 2>/dev/null); do
+              if grep -q '/work/output/build/' "$f"; then
+                rm "$f"
+                BROKEN_LA=$((BROKEN_LA + 1))
+              fi
+            done
+            if [ "${BROKEN_LA}" -gt 0 ]; then
+              echo ">>> Pruned ${BROKEN_LA} broken .la files referencing build dirs"
+            fi
+            HOST_CACHE_HIT=1
+          fi
+        else
+          echo ">>> Host cache MISS — will build and store"
+          HOST_CACHE_HIT=0
+        fi
+        # Persist vars for subsequent `script:` entries (each one is its own shell)
+        {
+          echo "HOST_CACHE_HASH=${HOST_CACHE_HASH}"
+          echo "HOST_CACHE=${HOST_CACHE}"
+          echo "HOST_CACHE_HIT=${HOST_CACHE_HIT}"
+        } > .host-cache.env
+      fi
+    - |
+      if [ -f "${OUTPUTDIR}/.master-cache-used" ]; then
+        echo ">>> Master cache covers pkg-cache — skipping per-package restore"
+      else
+        # Keys are computed once here and read again by .cache-save: writing
+        # under one key and reading under another is how a cache goes missing.
+        bash scripts/ci/compute-pkg-cache-keys.sh "recalbox-${ARCH}-${CI_JOB_ID}"
+        for pkg in $PKG_CACHE_LIST; do
+          hash=$(awk -v p="$pkg" '$1 == p { print $2 }' "${OUTPUTDIR}/.pkg-cache-keys" 2>/dev/null || true)
+          if [ -z "${hash}" ]; then
+            echo ">>> Package cache MISS for ${pkg} (no key — not selected on ${ARCH}, or key computation failed)"
+            continue
+          fi
+          cache="/recalbox-builds/pkg-cache/${ARCH}/${pkg}-${hash}.tar.zst"
+          mkdir -p "$(dirname "${cache}")"
+          if [ -f "${cache}" ]; then
+            echo ">>> Package cache HIT for ${pkg} ($(du -h "${cache}" | cut -f1))"
+            # Mark as recently used so the retention sweep in .cache-save spares it.
+            touch "${cache}"
+            zstd -dc -T0 "${cache}" | tar -xf - -C "${OUTPUTDIR}"
+          else
+            echo ">>> Package cache MISS for ${pkg} (hash ${hash})"
+          fi
+        done
+      fi
+      printf '\033[0Ksection_end:%s:cache_restore\r\033[0K\n' "$(date +%s)"
+
+# Cache save steps (referenced from .build_template via !reference). Run after
+# the build so we capture only successfully-built packages. Each tarball is
+# written to a .tmp path then atomically renamed to avoid concurrent saves
+# clobbering each other.
+#
+# Two save paths:
+#   1. host-cache + pkg-cache: written on every successful build (when MISS).
+#   2. master-cache: full output snapshot, written only on master pushes or
+#      when FORCE_MASTER_CACHE=true (web-triggered manual seed).
+.cache-save:
+  script:
+    - |
+      printf '\033[0Ksection_start:%s:cache_save[collapsed=true]\r\033[0K>>> Saving caches\n' "$(date +%s)"
+      . ./.host-cache.env
+      if [ "${HOST_CACHE_HIT}" != "1" ] && [ ! -f "${HOST_CACHE}" ]; then
+        # Build the list of dirs to archive in OUTPUTDIR. Use `find` (POSIX,
+        # robust) instead of shell globs — under busybox ash, the second
+        # `for d in per-package/*` glob block silently expanded to nothing in
+        # past runs, leaving caches without any per-package content.
+        # Captured: host/, staging/, plus toolchain/host/skeleton/glibc/
+        # linux-headers entries under both build/ and per-package/.
+        ( cd "${OUTPUTDIR}" && {
+            [ -d host ]    && echo host
+            [ -d staging ] && echo staging
+            for parent in build per-package; do
+              [ -d "$parent" ] || continue
+              find "$parent" -maxdepth 1 -mindepth 1 -type d \( \
+                  -name 'host-*' \
+                  -o -name 'toolchain' \
+                  -o -name 'toolchain-buildroot' \
+                  -o -name 'glibc' -o -name 'glibc-*' \
+                  -o -name 'linux-headers' -o -name 'linux-headers-*' \
+                  -o -name 'skeleton' -o -name 'skeleton-*' \
+                \) 2>/dev/null
+            done
+          } ) > /tmp/host-cache-files.lst
+        N=$(wc -l < /tmp/host-cache-files.lst)
+        # Sanity check: a normal cache list should have host + staging + many
+        # build/ and per-package/ entries (~30+). Refuse to save a small list
+        # — that's the symptom that poisoned previous caches.
+        if [ "$N" -lt 30 ]; then
+          echo ">>> Host cache save SKIPPED: file list too short ($N entries)"
+          cat /tmp/host-cache-files.lst
+        else
+          echo ">>> Saving host cache to ${HOST_CACHE} ($N entries)"
+          # CI_JOB_ID: two jobs of the same arch would share a fixed name.
+          TMP="${HOST_CACHE}.tmp.${CI_JOB_ID}"
+          rm -f "${TMP}"
+          ( cd "${OUTPUTDIR}" && tar -cf - --files-from=/tmp/host-cache-files.lst ) \
+            | zstd -T0 -3 -f -o "${TMP}"
+          mv -f "${TMP}" "${HOST_CACHE}"
+          echo ">>> Host cache saved ($(du -h "${HOST_CACHE}" | cut -f1))"
+        fi
+      fi
+    - |
+      # Same keys the restore read, from the same file. An unreadable file means
+      # no save at all: an archive stored under a guessed key is what poisons a
+      # cache, and a missing archive only costs a rebuild.
+      if [ ! -s "${OUTPUTDIR}/.pkg-cache-keys" ]; then
+        echo ">>> No package cache keys — skipping package cache save"
+      fi
+      for pkg in $PKG_CACHE_LIST; do
+        hash=$(awk -v p="$pkg" '$1 == p { print $2 }' "${OUTPUTDIR}/.pkg-cache-keys" 2>/dev/null || true)
+        [ -z "${hash}" ] && continue
+        cache="/recalbox-builds/pkg-cache/${ARCH}/${pkg}-${hash}.tar.zst"
+        [ -f "${cache}" ] && continue
+        # The glob ${pkg}-* is greedy: for pkg=kodi it also matches
+        # kodi-audiodecoder-modplug-* and every other addon sharing the
+        # prefix. Build a list of sibling packages (longer prefix than
+        # ${pkg}) so we can filter their build dirs out — saving them under
+        # ${pkg}'s cache poisons it (the addons' stamps come back on
+        # restore but their per-package entries do not, breaking
+        # host-finalize).
+        sub_pkgs=$(ls package/ buildroot/package/ 2>/dev/null | grep -E "^${pkg}-" | sort -u || true)
+        own_build_dir=
+        for d in "${OUTPUTDIR}/build/${pkg}-"*; do
+          [ -d "$d" ] || continue
+          bname=$(basename "$d")
+          skip=
+          for sub in $sub_pkgs; do
+            case "$bname" in "${sub}-"*) skip=1; break;; esac
+          done
+          [ -n "$skip" ] && continue
+          [ -f "$d/.stamp_target_installed" ] && own_build_dir="$d"
+        done
+        if [ -z "$own_build_dir" ]; then
+          continue
+        fi
+        echo ">>> Saving package cache for ${pkg} to ${cache}"
+        TMP="${cache}.tmp.${CI_JOB_ID}"
+        rm -f "${TMP}"
+        (
+          cd "${OUTPUTDIR}"
+          {
+            echo "${own_build_dir#${OUTPUTDIR}/}"
+            [ -d "per-package/${pkg}" ] && echo "per-package/${pkg}"
+          } > "/tmp/pkg-${pkg}-files.lst"
+          tar -cf - --files-from="/tmp/pkg-${pkg}-files.lst"
+        ) | zstd -T0 -3 -f -o "${TMP}"
+        mv -f "${TMP}" "${cache}"
+        echo ">>> ${pkg} cache saved ($(du -h "${cache}" | cut -f1))"
+      done
+    - |
+      # Master cache: full output snapshot, used by validate jobs.
+      # Written only on master pushes or when FORCE_MASTER_CACHE=true
+      # (web-triggered manual seed).
+      # Use CI_COMMIT_REF_NAME (always set) instead of CI_COMMIT_BRANCH which
+      # is empty on merge_request_event pipelines.
+      if [ "${CI_COMMIT_REF_NAME:-}" = "master" ] || [ "${FORCE_MASTER_CACHE:-}" = "true" ]; then
+        MASTER_CACHE="/recalbox-builds/master-cache/${ARCH}/output.tar.zst"
+        mkdir -p "$(dirname "${MASTER_CACHE}")"
+        TMP="${MASTER_CACHE}.tmp.${CI_JOB_ID}"
+        rm -f "${TMP}"
+        echo ">>> Saving master cache to ${MASTER_CACHE} (excluding images/)"
+        # Exclude images/ — that's the final .img/.tar artifacts (~4-8 GB),
+        # not needed by validate or partial rebuilds. Everything else
+        # (host/, staging/, build/, per-package/, target/, .config, ...) is
+        # archived so Buildroot sees all stamps and skips unchanged work.
+        # The key file describes this job's config, not the snapshot's: a
+        # validate job restoring this cache must never find one to trust.
+        ( cd "${OUTPUTDIR}" && tar --exclude='images' --exclude='images/*' \
+            --exclude='.pkg-cache-keys*' --exclude='.pkg-graph.json' -cf - . ) \
+          | zstd -T0 -3 -f -o "${TMP}"
+        mv -f "${TMP}" "${MASTER_CACHE}"
+        echo ">>> Master cache saved ($(du -h "${MASTER_CACHE}" | cut -f1))"
+      fi
+    - |
+      # Retention sweep. Runs after the saves above so a tarball written or hit
+      # by this very job always has a fresh mtime and is never a candidate.
+      # Restores touch what they hit (see .cache-restore), so mtime is a
+      # last-used stamp, not a creation date: this evicts hashes nobody asks
+      # for anymore, not merely old ones.
+      #
+      # Scoped to host-cache + pkg-cache. master-cache is deliberately excluded:
+      # it is one fixed-name file per arch, overwritten in place, and an arch
+      # that simply had no master push for a while must not lose it.
+      RETENTION="${CACHE_RETENTION_DAYS:-30}"
+      FREED=0
+      for family in host-cache pkg-cache; do
+        for f in $(find "/recalbox-builds/${family}" -name '*.tar.zst' -mtime "+${RETENTION}" 2>/dev/null); do
+          SZ=$(du -m "$f" 2>/dev/null | cut -f1)
+          echo ">>> Evicting stale cache ($(du -h "$f" | cut -f1), unused ${RETENTION}d+): ${f#/recalbox-builds/}"
+          rm -f "$f" && FREED=$((FREED + ${SZ:-0}))
+        done
+      done
+      [ "${FREED}" -gt 0 ] && echo ">>> Retention sweep freed ${FREED} MB"
+      printf '\033[0Ksection_end:%s:cache_save\r\033[0K\n' "$(date +%s)"
+
+# Frees output/ at job end. Earlier versions detached the rm with setsid+nohup
+# so the job could finish fast, but GitLab Runner Docker executor kills the
+# job container as soon as after_script returns — the detached rm went with
+# it, leaving output.gone-* directories piling up until / was full.
+# So: rm synchronously, parallelised, and sweep prior orphans too.
+.cleanup-output:
+  script:
+    - |
+      printf '\033[0Ksection_start:%s:cleanup_output[collapsed=true]\r\033[0K>>> output cleanup\n' "$(date +%s)"
+      OUTPUTDIR="${CI_PROJECT_DIR}/output"
+      if [ -d "${OUTPUTDIR}" ]; then
+        GARBAGE="${OUTPUTDIR}.gone-${CI_JOB_ID:-$$}"
+        if mv -- "${OUTPUTDIR}" "${GARBAGE}" 2>/dev/null; then
+          echo ">>> Renamed output/ → $(basename "${GARBAGE}"); rm now"
+          find "${GARBAGE}" -mindepth 1 -maxdepth 1 -print0 \
+            | xargs -0 -r -P 8 -n 4 rm -rf
+          rmdir "${GARBAGE}" 2>/dev/null || true
+        else
+          rm -rf -- "${OUTPUTDIR}" 2>/dev/null || true
+        fi
+      fi
+      # Sweep orphans from prior jobs (defensive — should be empty now).
+      find "${CI_PROJECT_DIR}" -maxdepth 1 -name 'output.gone-*' -print0 2>/dev/null \
+        | xargs -0 -r -P 4 -n 1 rm -rf
+      rm -rf dist 2>/dev/null || true
+      printf '\033[0Ksection_end:%s:cleanup_output\r\033[0K\n' "$(date +%s)"
+
+.build_template: &build_definition
+  stage: build
+  variables:
+    ARCH: arch  # to build (no default)
+    # PKG_CACHE_LIST is defined at top-level variables (see top of file).
+  # No resource_group: the two builders may build the same arch at once.
+  interruptible: true
+  rules:
+    # Auto-build on every push to master — this also refreshes the master-cache
+    # (see .cache-save, which keys on CI_COMMIT_REF_NAME == master).
+    - if: '$CI_COMMIT_BRANCH == "master"'
+      when: on_success
+    # Releases (tags) and merge requests: kept manual (opt-in).
+    # allow_failure: true → manual jobs are optional; pipeline status stays
+    # "passed" instead of "blocked" when they're not triggered.
+    - if: '$CI_COMMIT_TAG'
+      when: manual
+      allow_failure: true
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+      allow_failure: true
+    - when: never
+  before_script:
+    - !reference [.docker-token-envs, script]
+    - apk update && apk add git bash zstd tar findutils coreutils
+    - source scripts/release/functions.sh
+  script:
+    # Version generation
+    - set -euo pipefail
+    - export RECALBOX_VERSION="${CI_COMMIT_TAG:-$(date '+%Y/%m/%d') ${CI_COMMIT_REF_SLUG} (${CI_PIPELINE_ID})}"
+    - cp "${YOUTUBE_API_KEYS}" "./api_keys.json"
+    # Release Note generation
+    - echo -e "Recalbox ${RECALBOX_VERSION}\n" > /tmp/RELEASE-NOTES-${ARCH}.md
+    - cp RELEASE-NOTES.md RELEASE-NOTES-FULL.md
+    - awk '/^## Version/ { flag=!flag; count+=1; next } flag && count < 2 {print}' RELEASE-NOTES.md >> /tmp/RELEASE-NOTES-${ARCH}.md
+    - mv /tmp/RELEASE-NOTES-${ARCH}.md RELEASE-NOTES.md
+    - cat RELEASE-NOTES.md
+    # Updates type
+    - |
+      if echo "${CI_COMMIT_TAG:-""}" | grep -qi "patron";then
+        sed -i "s/^updates.type=.*/updates.type=patron/g" package/recalbox-system/*/recalbox.conf
+      fi
+      if echo "${CI_COMMIT_TAG:-""}" | grep -qi "alpha";then
+        sed -i "s/^updates.type=.*/updates.type=patron-alpha/g" package/recalbox-system/*/recalbox.conf
+      fi
+      if echo "${CI_COMMIT_TAG:-""}" | grep -qi "jamma";then
+        sed -i "s/^updates.type=.*/updates.type=jamma/g" package/recalbox-system/*/recalbox.conf
+      fi
+      if echo "${CI_COMMIT_TAG:-""}" | grep -qi "rrgbd2";then
+        sed -i "s/^updates.type=.*/updates.type=rrgbd2/g" package/recalbox-system/*/recalbox.conf
+      fi
+      if echo "${CI_COMMIT_TAG:-""}" | grep -qi "jvs";then
+        sed -i "s/^updates.type=.*/updates.type=jvs/g" package/recalbox-system/*/recalbox.conf
+      fi
+    # Build
+    - export WORKDIR="$(pwd)" CCACHE="true" OUTPUTDIR="$(pwd)/output"
+    # Clean dist/ up front: the runner is persistent, and a previous failed
+    # job for another arch can leave behind an empty dist/<other-arch>/ that
+    # would later trip uploadFolderToBucket ("Nothing to upload").
+    - rm -rf dist
+    - rm -rf ${OUTPUTDIR}
+    - mkdir -p ${OUTPUTDIR}
+    # Wipe leftover build.log/failed-*.log/dist from a prior run on the same
+    # persistent runner. Without this, a job that fails before reaching
+    # `tee build.log` (e.g. host-cache restore error) ends up uploading the
+    # previous run's logs as its artifact, masking the real failure.
+    - rm -f build.log failed-*.log failed-*-state.tar.gz
+    - rm -rf dist
+    - docker build -t "recalbox-${ARCH}-${CI_JOB_ID}" .
+    # Restore host-cache (toolchain + host packages) and pkg-cache (heavy
+    # target packages from $PKG_CACHE_LIST). See .cache-restore above.
+    - !reference [.cache-restore, script]
+    - |
+      if [ "${ARCH}" = "rpi3" ];then
+        echo "Building rpizero2 image"
+        echo "Create a configs/recalbox-rpizero2_defconfig"
+        cp "configs/recalbox-rpi3_defconfig" "configs/recalbox-rpizero2_defconfig"
+        sed -i "s/BR2_PACKAGE_RECALBOX_TARGET_RPI3=y/BR2_PACKAGE_RECALBOX_TARGET_RPIZERO2=y/g" configs/recalbox-rpizero2_defconfig
+        # `tee | grep '>>>' || tac ...` used to swallow docker run's exit code,
+        # making a failed Buildroot defconfig look like Job succeeded. Capture
+        # docker run's status via /tmp/docker_rc and propagate it explicitly
+        # ($PIPESTATUS is a bashism, runner shell is /bin/sh).
+        rm -f /tmp/docker_rc
+        ( docker run --rm --tmpfs /tmp:exec --security-opt seccomp=unconfined -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" -v "/recalbox-builds/dl:/share/dl" -v "/recalbox-builds/ccaches/ccache-${ARCH}:/share/ccache" -e "ARCH=rpizero2" $DOCKER_TOKEN_ENVS -e "RECALBOX_VERSION=${RECALBOX_VERSION}" -e "RECALBOX_CCACHE_ENABLED=${CCACHE}" -e "FORCE_UNSAFE_CONFIGURE=1" "recalbox-${ARCH}-${CI_JOB_ID}"; echo $? > /tmp/docker_rc ) 2>&1 | tee build.log | grep -aE '>>>|section_end' || true
+        rc=$(cat /tmp/docker_rc)
+        if [ "$rc" -ne 0 ]; then
+          sh scripts/ci/diagnose-failure.sh
+          exit "$rc"
+        fi
+        export DIST_DIR="dist/rpizero2"
+        mkdir -p "${DIST_DIR}"
+        cp ${OUTPUTDIR}/images/recalbox/* "${DIST_DIR}"
+        echo "${RECALBOX_VERSION}" > "${DIST_DIR}/recalbox.version"
+        xz --robot --list "${DIST_DIR}/recalbox-rpizero2.tar.xz" | tail -1 | cut -f 5 > "${DIST_DIR}/recalbox.boot.size"
+        cp ${WORKDIR}/CHANGELOG.md "${DIST_DIR}/recalbox.changelog"
+        cp ${WORKDIR}/RELEASE-NOTES.md "${DIST_DIR}/recalbox.releasenotes"
+        cp ${WORKDIR}/RELEASE-NOTES-FULL.md "${DIST_DIR}/RELEASE-NOTES-FULL.md"
+      fi
+    # Same exit-code-propagation guard as the rpi3→rpizero2 path above:
+    # `... | tee | grep '>>>'` ends in grep which exits 1 when nothing matches,
+    # and the original `||` fallback always succeeded — so a failing build was
+    # silently turning into "Job succeeded". Capture docker's rc via a tmp
+    # file (PIPESTATUS is a bashism, runner shell is /bin/sh) and re-raise.
+    - |
+      rm -f /tmp/docker_rc
+      ( docker run --rm --tmpfs /tmp:exec --security-opt seccomp=unconfined -v "${WORKDIR}:/work" -v "${OUTPUTDIR}:/work/output" -v "/recalbox-builds/dl:/share/dl" -v "/recalbox-builds/ccaches/ccache-${ARCH}:/share/ccache" -e "ARCH=${ARCH}" $DOCKER_TOKEN_ENVS -e "RECALBOX_VERSION=${RECALBOX_VERSION}" -e "RECALBOX_CCACHE_ENABLED=${CCACHE}" -e "FORCE_UNSAFE_CONFIGURE=1" "recalbox-${ARCH}-${CI_JOB_ID}"; echo $? > /tmp/docker_rc ) 2>&1 | tee build.log | grep -aE '>>>|section_end' || true
+      rc=$(cat /tmp/docker_rc)
+      if [ "$rc" -ne 0 ]; then
+        sh scripts/ci/diagnose-failure.sh
+        exit "$rc"
+      fi
+    # Save host-cache and pkg-cache on MISS. See .cache-save above.
+    - !reference [.cache-save, script]
+    # Dist
+    - export DIST_DIR="dist/${ARCH}"
+    - mkdir -p "${DIST_DIR}"
+    - cp ${OUTPUTDIR}/images/recalbox/* "${DIST_DIR}"
+    - echo "${RECALBOX_VERSION}" > "${DIST_DIR}/recalbox.version"
+    - xz --robot --list "${DIST_DIR}/recalbox-${ARCH}.tar.xz" | tail -1 | cut -f 5 > "${DIST_DIR}/recalbox.boot.size"
+    - cp ${WORKDIR}/CHANGELOG.md "${DIST_DIR}/recalbox.changelog"
+    - cp ${WORKDIR}/RELEASE-NOTES.md "${DIST_DIR}/recalbox.releasenotes"
+    - cp ${WORKDIR}/RELEASE-NOTES-FULL.md "${DIST_DIR}/RELEASE-NOTES-FULL.md"
+    - uploadFolderToBucket "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "recalbox-builds-artifacts" "dist" "${CI_PIPELINE_ID}"
+  after_script:
+    - !reference [.cleanup-output, script]
+    - docker rmi -f "recalbox-${ARCH}-${CI_JOB_ID}" 2>/dev/null || true
+  artifacts:
+    name: dist-${ARCH}-${CI_PIPELINE_ID}
+    when: always
+    paths:
+      - build.log
+      - failed-*.log
+      - failed-*-state.tar.gz
+    expire_in: 2 mos
+  tags:
+    - build
+    - arch-${ARCH}
+
+
+build x86_64:
+  <<: *build_definition
+  variables:
+    ARCH: 'x86_64'
+build rpi4_64:
+  <<: *build_definition
+  variables:
+    ARCH: 'rpi4_64'
+build odroidgo2:
+  <<: *build_definition
+  variables:
+    ARCH: 'odroidgo2'
+build rpi3-zero2:
+  <<: *build_definition
+  variables:
+    ARCH: 'rpi3'
+build rg353x:
+  <<: *build_definition
+  variables:
+    ARCH: 'rg353x'
+build rpi5_64:
+  <<: *build_definition
+  variables:
+    ARCH: 'rpi5_64'
+
+### Release
+
+.release_prod_template: &release_prod_definition
+  stage: release
+  interruptible: false
+  tags:
+    - release
+  variables:
+    DEPLOY_TYPE: type of the deployment (prod, review)
+    BUCKET: Bucket to deploy to
+  before_script:
+    - source scripts/release/functions.sh
+    - apk add --update-cache --no-cache xz bash
+  script:
+    - downloadBucketFolderTo "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "recalbox-builds-artifacts" "builds" "${CI_PIPELINE_ID}"
+    - mkdir release
+    - ./scripts/release/generate_external_installer_assets.sh --images-dir builds --destination-dir release
+    - echo "Releasing files"
+    - mv builds/* release
+    - uploadFolderToBucket "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "${BUCKET}" "release" "latest"
+    - copyFolder "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "${BUCKET}/latest/" "recalbox-archive-save/${BUCKET}/${CI_COMMIT_TAG}/"
+
+.release_template: &release_definition
+  stage: release
+  interruptible: false
+  tags:
+    - release
+  variables:
+    DEPLOY_TYPE: type of the deployment (prod, review)
+    BUCKET: Bucket to deploy to
+  before_script:
+    - source scripts/release/functions.sh
+    - apk add --update-cache --no-cache xz bash
+  script:
+    - copyFolder "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "recalbox-builds-artifacts/${CI_PIPELINE_ID}/" "${BUCKET}/latest/"
+    - copyFolder "${AWS_ACCESS_KEY_ID}" "${AWS_SECRET_ACCESS_TOKEN}" "${BUCKET}/latest/" "recalbox-archive-save/${BUCKET}/${CI_COMMIT_TAG}/"
+
+release prod:
+  <<: *release_prod_definition
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG !~ /alpha/i && $CI_COMMIT_TAG !~ /patron/i
+  when: manual
+  variables:
+    DEPLOY_TYPE: prod
+    BUCKET: recalbox-archive-stable
+  environment:
+    name: prod
+    url: https://www.recalbox.com/download/
+
+release alpha:
+  <<: *release_definition
+  only:
+    - tags
+  when: manual
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-alpha
+  environment:
+    name: alpha/${CI_COMMIT_REF_SLUG}
+
+release patron alpha:
+  <<: *release_definition
+  only:
+    - tags
+  when: manual
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-patron-alpha
+  environment:
+    name: patron-alpha/${CI_COMMIT_REF_SLUG}
+
+release patron:
+  <<: *release_definition
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /patron/i
+  when: manual
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-patron
+  environment:
+    name: patron/${CI_COMMIT_REF_SLUG}
+    
+release rrgbd2:
+  <<: *release_definition
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /rrgbd2/i
+  when: manual
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-rrgbd2
+  environment:
+    name: rrgbd2/${CI_COMMIT_REF_SLUG}
+
+release jvs:
+  <<: *release_definition
+  only:
+    refs:
+      - tags
+    variables:
+      - $CI_COMMIT_TAG =~ /jvs/i
+  when: manual
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-jvs
+  environment:
+    name: jvs/${CI_COMMIT_REF_SLUG}
+
+release branch:
+  <<: *release_definition
+  <<: *only-default
+  when: manual
+  only:
+    - merge_requests
+  variables:
+    DEPLOY_TYPE: review
+    BUCKET: recalbox-archive-branch
+  environment:
+    name: branch/${CI_COMMIT_REF_SLUG}

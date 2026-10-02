@@ -1,0 +1,9 @@
+config BR2_PACKAGE_KODI_PLUGIN_VIDEO_FREEBOX
+	bool "kodi-plugin-video-netflix"
+	default y
+	depends on BR2_PACKAGE_KODI
+	select BR2_PACKAGE_JSON_FOR_MODERN_CPP
+	help
+	  Kodi + Freebox TV
+
+	  https://github.com/aassif/pvr.freebox

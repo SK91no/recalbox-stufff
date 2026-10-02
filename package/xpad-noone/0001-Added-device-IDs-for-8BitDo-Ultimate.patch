@@ -1,0 +1,33 @@
+From 13e85fb0521ba46f2c84a7422918b537afd04b2e Mon Sep 17 00:00:00 2001
+From: btegs <5166649+btegs@users.noreply.github.com>
+Date: Sun, 18 Dec 2022 15:05:55 -0500
+Subject: [PATCH] Added device IDs for 8BitDo Ultimate
+
+Referenced from https://github.com/paroj/xpad/commit/1821d2822783e8c24733b05138e06d9a9f4d309d
+---
+ xpad.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/xpad.c b/xpad.c
+index d284050..6fe6886 100644
+--- a/xpad.c
++++ b/xpad.c
+@@ -311,6 +311,7 @@ static const struct xpad_device {
+ 	{ 0x31e3, 0x1310, "Wooting 60HE (ARM)", 0, XTYPE_XBOX360 },
+ 	{ 0x3285, 0x0607, "Nacon GC-100", 0, XTYPE_XBOX360 },
+ 	{ 0x3537, 0x1004, "GameSir T4 Kaleid", 0, XTYPE_XBOX360 },
++	{ 0x2dc8, 0x3106, "8BitDo Ultimate Wireless Controller", 0, XTYPE_XBOX360 },
+ 	{ 0x3767, 0x0101, "Fanatec Speedster 3 Forceshock Wheel", 0, XTYPE_XBOX },
+ 	{ 0xffff, 0xffff, "Chinese-made Xbox Controller", 0, XTYPE_XBOX },
+ 	{ 0x0000, 0x0000, "Generic X-Box pad", 0, XTYPE_UNKNOWN }
+@@ -420,6 +421,7 @@ static const struct usb_device_id xpad_table[] = {
+ 	XPAD_XBOX360_VENDOR(0x31e3),		/* Wooting Keyboards */
+ 	XPAD_XBOX360_VENDOR(0x3285),		/* Nacon GC-100 */
+ 	XPAD_XBOX360_VENDOR(0x3537),		/* GameSir Controllers */
++	XPAD_XBOX360_VENDOR(0x2dc8),		/* 8BitDo Ultimate Wireless Controller */
+ 	{ }
+ };
+ 
+-- 
+2.44.0
+

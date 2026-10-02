@@ -1,0 +1,781 @@
+name|description|type|sourcefile|rotate|width|height|refresh|bios|parent|status|manufacter
+getstar|Guardian [Protection MCU not emulated]|parent|toaplan/slapfght.cpp|0|||||||Taito
+gprider|GP Rider (set 2, World, FD1094 317-0163)|parent|sega/segaxbd.cpp|0|||||||Sega
+opwolf|Operation Wolf (World) [Protection C-Chip not emulated]|parent|taito/opwolf.cpp|0|||||||Taito
+1941j|1941 - Counter Attack (Japan)|clone|capcom/cps1.cpp|270|||||1941||Capcom
+1941|1941 - Counter Attack (World)|parent|capcom/cps1.cpp|270|||||||Capcom
+1944j|1944 - the loop master (000620 Japan)|clone|capcom/cps2.cpp|0|||||1944||Capcom / 8ing / Raizing
+1944|1944 - the loop master (000620 USA)|parent|capcom/cps2.cpp|0|||||||Capcom / 8ing / Raizing
+19xxa|19XX - the war against destiny (951207 Asia)|clone|capcom/cps2.cpp|270|||||19xx||Capcom
+19xxjr1|19XX - the war against destiny (951207 Japan)|clone|capcom/cps2.cpp|270|||||19xx||Capcom
+19xx|19XX - the war against destiny (951207 USA)|parent|capcom/cps2.cpp|270|||||||Capcom
+19xxh|19XX - the war against destiny (951218 Hispanic)|clone|capcom/cps2.cpp|270|||||19xx||Capcom
+19xxj|19XX - the war against destiny (951225 Japan)|clone|capcom/cps2.cpp|270|||||19xx||Capcom
+2020bb|2020 Super Baseball (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK / Pallas
+2020bba|2020 Super Baseball (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|2020bb||SNK / Pallas
+2020bbh|2020 Super Baseball (set 3)|clone|neogeo/neogeo.cpp|0||||neogeo|2020bb||SNK / Pallas
+3countb|3 Count Bout|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+abcop|A.B. Cop (FD1094 317-0169b)|parent|sega/segaxbd.cpp|0|||||||Sega
+afighter|Action Fighter, FD1089A 317-0018|parent|sega/segas16a.cpp|270|||||||Sega
+sonicwi2|Aero Fighters 2|parent|neogeo/neogeo.cpp|0||||neogeo|||Video System Co.
+sonicwi3|Aero Fighters 3|parent|neogeo/neogeo.cpp|0||||neogeo|||Video System Co.
+aburner|After Burner (Japan)|clone|sega/segaxbd.cpp|0|||||aburner2||Sega
+aburner2|After Burner II|parent|sega/segaxbd.cpp|0|||||||Sega
+aodk|Aggressors of Dark Kombat|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK / SNK
+agallet|Air Gallet|parent|misc/cave.cpp|270|||||||BanPresto / Gazelle
+alexkid1|Alex Kidd: The Lost Stars (set 1, FD1089A 317-unknown) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||alexkidd||Sega
+alexkidd|Alex Kidd: The Lost Stars (set 2, unprotected) [Incomplete Sound]|parent|sega/segas16a.cpp|0|||||||Sega
+aliensy1|Alien Syndrome (set 1, System 16A, FD1089A 317-0033) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||aliensyn||Sega
+aliensy2|Alien Syndrome (set 2, System 16A, FD1089A 317-0033) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||aliensyn||Sega
+aliensy3|Alien Syndrome (set 3, System 16B, FD1089A 317-0033) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||aliensyn||Sega
+aliensyn|Alien Syndrome (set 4, System 16B, unprotected) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega
+avspa|Alien vs Predator (940520 Asia)|clone|capcom/cps2.cpp|0|||||avsp||Capcom
+avsp|Alien vs Predator (940520 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+avsph|Alien vs Predator (940520 Hispanic)|clone|capcom/cps2.cpp|0|||||avsp||Capcom
+avspj|Alien vs Predator (940520 Japan)|clone|capcom/cps2.cpp|0|||||avsp||Capcom
+avspu|Alien vs Predator (940520 USA)|clone|capcom/cps2.cpp|0|||||avsp||Capcom
+alpham2|Alpha Mission II|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+altbeas2|Altered Beast (set 2, MC-8123B 317-0066) [No Sound]|clone|sega/segas16b.cpp|0|||||altbeast||Sega
+altbeas4|Altered Beast (set 4, MC-8123B 317-0066) [No Sound]|clone|sega/segas16b.cpp|0|||||altbeast||Sega
+altbeas5|Altered Beast (set 5, 8751 317-0076) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||altbeast||Sega
+altbeast|Altered Beast (set 7, 8751 317-0078) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega
+androdun|Andro Dunos|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+area88|Area 88 (Japan)|clone|capcom/cps1.cpp|0|||||unsquad||Daipro / Capcom
+batrider|Armed police Batrider (Batrider ver. Fri Feb 13 1998, Japan)|parent|toaplan/toaplan2.cpp|270|||||||Raizing / 8ing
+batridrk|Armed police Batrider (Batrider ver. Fri Feb 13 1998, Korea)|clone|toaplan/toaplan2.cpp|270|||||batrider||Raizing / 8ing
+batridra|Armed police Batrider (Batrider ver. Mon Dec 22 1997, Japan)|clone|toaplan/toaplan2.cpp|270|||||batrider||Raizing / 8ing
+armwara|Armored Warriors (940920 Asia)|clone|capcom/cps2.cpp|0|||||armwar||Capcom
+armwarr1|Armored Warriors (941011 Europe)|clone|capcom/cps2.cpp|0|||||armwar||Capcom
+armwar|Armored Warriors (941024 Europe)|parent|capcom/cps2.cpp|0|||||||Capcom
+armwaru|Armored Warriors (941024 USA)|clone|capcom/cps2.cpp|0|||||armwar||Capcom
+aof2|Art of Fighting 2 (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+aof2a|Art of Fighting 2 (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|aof2||SNK
+aof3k|Art of Fighting 3 - the path of the warrior (korean release)|clone|neogeo/neogeo.cpp|0||||neogeo|aof3||SNK
+aof3|Art of Fighting 3 - the path of the warrior|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+aof|Art of Fighting|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+aurailj|Aurail (set 1, Japan, FD1089A 317-0167) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||aurail||Sega / Westone
+aurail1|Aurail (set 2, World, FD1089B 317-0168) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||aurail||Sega / Westone
+aurail|Aurail (set 3, US, unprotected) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega / Westone
+bakatono|Bakatonosama Mahjong Manyuki|parent|neogeo/neogeo.cpp|0||||neogeo|||Monolith Corp.
+bangbead|Bang Bead|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+bstars2|Baseball Stars 2|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+bstars|Baseball Stars Professional|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+batsugun|Batsugun (set 1) [No sound (sound MCU not dumped)]|parent|toaplan/toaplan2.cpp|270|||||||Toaplan
+batsugna|Batsugun (set 2) [No sound (sound MCU not dumped)]|clone|toaplan/toaplan2.cpp|270|||||batsugun||Dual Toaplan
+batugnsp|Batsugun Special Ver. [No sound (sound MCU not dumped)]|clone|toaplan/toaplan2.cpp|270|||||batsugun||Dual Toaplan
+bbakraid|Battle Bakraid (ver. Wed Apr 7 1999)|parent|toaplan/toaplan2.cpp|270|||||||Eighting
+bbakradu|Battle Bakraid - Unlimited Version (ver. Tue Jun 8 1999)|clone|toaplan/toaplan2.cpp|270|||||bbakraid||Eighting
+batcira|Battle Circuit (970319 Asia)|clone|capcom/cps2.cpp|0|||||batcir||Capcom
+batcir|Battle Circuit (970319 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+batcirj|Battle Circuit (970319 Japan)|clone|capcom/cps2.cpp|0|||||batcir||Capcom
+flipshot|Battle Flip Shot|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+battlegc|Battle Garegga (Austria / Hong Kong) (ver. Sat Feb 3 1996)|clone|toaplan/toaplan2.cpp|270|||||battleg||Raizing / 8ing
+battlegb|Battle Garegga (Austria / Hong Kong) (ver. Sat Mar 2 1996)|clone|toaplan/toaplan2.cpp|270|||||battleg||Raizing / 8ing
+battleg|Battle Garegga (Denmark / China) (ver. Tue Apr 2 1996)|parent|toaplan/toaplan2.cpp|270|||||||Raizing / 8ing
+battlega|Battle Garegga (Europe / USA / Japan / Asia) (ver. Sat Feb 3 1996)|clone|toaplan/toaplan2.cpp|270|||||battleg||Raizing / 8ing
+btlkroad|Battle K-Road|parent|psikyo/psikyo.cpp|0|||||||Psikyo
+bayrout1|Bay Route (set 1, US, unprotected) [No Sound, Missing Z80 Program ROM]|clone|sega/segas16b.cpp|0|||||bayroute||Sunsoft / Sega
+bayroutj|Bay Route (set 2, Japan, FD1094 317-0115) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||bayroute||Sunsoft / Sega
+bayroute|Bay Route (set 3, World, FD1094 317-0116) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sunsoft / Sega
+biomtoy|Biomechanical Toy (unprotected)|parent|gaelco/gaelco.cpp|0|||||||Zeus
+blazstar|Blazing Star|parent|neogeo/neogeo.cpp|0||||neogeo|||Yumekobo
+bjourney|Blue's Journey|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+bodyslam|Body Slam (8751 317-0015)|parent|sega/segas16a.cpp|0|||||||Sega
+bombjack|Bomb Jack (set 1)|parent|tecmo/bombjack.cpp|90|||||||Tehkan
+bombjac2|Bomb Jack (set 2)|clone|tecmo/bombjack.cpp|90|||||bombjack||Tehkan
+breakers|Breakers|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+breakrev|Breakers Revenge|clone|neogeo/neogeo.cpp|0||||neogeo|breakers||Visco
+burningf|Burning Fight (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+burningh|Burning Fight (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|burningf||SNK
+dino|Cadillacs & Dinosaurs (930201 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+dinou|Cadillacs & Dinosaurs (930201 USA)|clone|capcom/cps1.cpp|0|||||dino||Capcom
+dinoj|Cadillacs Kyouryuu-Shinseiki (Cadillacs 930201 Japan)|clone|capcom/cps1.cpp|0|||||dino||Capcom
+cscluba|Capcom Sports Club (970722 Asia)|clone|capcom/cps2.cpp|0|||||csclub||Capcom
+csclub|Capcom Sports Club (970722 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+csclubh|Capcom Sports Club (970722 Hispanic)|clone|capcom/cps2.cpp|0|||||csclub||Capcom
+csclubj|Capcom Sports Club (970722 Japan)|clone|capcom/cps2.cpp|0|||||csclub||Capcom
+cworld2j|Capcom World 2 (920611 Japan)|parent|capcom/cps1.cpp|0|||||||Capcom
+captcomu|Captain Commando (910928 USA)|clone|capcom/cps1.cpp|0|||||captcomm||Capcom
+captcomm|Captain Commando (911014 other country)|parent|capcom/cps1.cpp|0|||||||Capcom
+captcomj|Captain Commando (911202 Japan)|clone|capcom/cps1.cpp|0|||||captcomm||Capcom
+ctomaday|Captain Tomaday|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+cawingr1|Carrier Air Wing (U.S. navy 901009 etc)|clone|capcom/cps1.cpp|0|||||cawing||Capcom
+cawing|Carrier Air Wing (U.S. navy 901012 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+cawingu|Carrier Air Wing (U.S. navy 901012 USA)|clone|capcom/cps1.cpp|0|||||cawing||Capcom
+marukodq|Chibi Marukochan Deluxe Quiz|parent|neogeo/neogeo.cpp|0||||neogeo|||Takara
+chikij|Chiki Chiki Boys (900619 Japan)|clone|capcom/cps1.cpp|0|||||mtwins||Capcom
+choko|Choko (010820 Japan)|parent|capcom/cps2.cpp|0|||||||Mitchell
+cookbib2|Cookie & Bibi 2|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+cookbib3|Cookie & Bibi 3|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+cottonj|Cotton (set 1, Japan, FD1094 317-0179a)) [No Sound]|clone|sega/segas16b.cpp|0|||||cotton||Sega / Success
+cottonu|Cotton (set 2, US, FD1094 317-0180) [No Sound]|clone|sega/segas16b.cpp|0|||||cotton||Sega / Success
+cotton|Cotton (set 3, World, FD1094 317-0181a) [No Sound]|parent|sega/segas16b.cpp|0|||||||Sega / Success
+crsword|Crossed Swords|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+cthd2003|Crouching Tiger Hidden Dragon 2003 (bootleg) [Bootleg, Hack of The King of Fighters 2001]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2001||Phenixsoft
+ct2k3sp|Crouching Tiger Hidden Dragon 2003 Super Plus (bootleg) [Bootleg, Hack of The King of Fighters 2001]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2001||Phenixsoft
+cyberlip|Cyber-Lip|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+cybotsj|Cyberbots - fullmetal madness (950420 Japan)|clone|capcom/cps2.cpp|0|||||cybots||Capcom
+cybots|Cyberbots - fullmetal madness (950424 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+cybotsu|Cyberbots - fullmetal madness (950424 USA)|clone|capcom/cps2.cpp|0|||||cybots||Capcom
+daimakai|Dai Makai-Mura (Japan)|clone|capcom/cps1.cpp|0|||||ghouls||Capcom
+daisenpu|Daisenpu (Japan)|clone|taito/taito_x.cpp|270|||||twinhawk||Taito
+dfeveron|Dangun Feveron (Japan ver. Thu Sep 17 1998)|parent|misc/cave.cpp|270|||||||Cave / Nihon System inc.
+dstlka|Darkstalkers - the night warriors (940705 Asia)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+dstlk|Darkstalkers - the night warriors (940705 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+dstlkur1|Darkstalkers - the night warriors (940705 USA)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+dstlku|Darkstalkers - the night warriors (940818 USA)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+defense|Defense (System 16B, FD1089A 317-0028)|clone|sega/segas16b.cpp|0|||||sdi||Sega
+diggerma|Digger Man [Prototype]|parent|neogeo/neogeo.cpp|0||||neogeo|||Face
+dimahoo|Dimahoo (000121 USA)|parent|capcom/cps2.cpp|270|||||||8ing / Raizing / Capcom
+ddonpach|DoDonPachi (1997 2/5 master ver, international)|parent|misc/cave.cpp|270|||||||Atlus / Cave
+ddonpchj|DoDonPachi (1997 2/5 master ver, Japan)|clone|misc/cave.cpp|270|||||ddonpach||Atlus / Cave
+dogyuun|Dogyuun [No sound (sound MCU not dumped)]|parent|toaplan/toaplan2.cpp|270|||||||Toaplan
+donpacjp|DonPachi (ver. 1.01 1995/05/11, Japan)|clone|misc/cave.cpp|270|||||donpachi||Atlus / Cave
+donpachi|DonPachi (ver. 1.01 1995/05/11, U.S.A)|parent|misc/cave.cpp|270|||||||Atlus / Cave
+donpachk|DonPachi (ver. 1.12 1995/05/2x, Hong Kong)|clone|misc/cave.cpp|270|||||donpachi||Atlus / Cave
+donpackr|DonPachi (ver. 1.12 1995/05/2x, Korea)|clone|misc/cave.cpp|270|||||donpachi||Atlus / Cave
+doubledr|Double Dragon|parent|neogeo/neogeo.cpp|0||||neogeo|||Technos
+dumpmtmt|Dump Matsumoto (Japan, 8751 317-unknown)|clone|sega/segas16a.cpp|0|||||bodyslam||Sega
+ddsomjr1|Dungeons & Dragons - shadow over mystara (960206 Japan)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomr3|Dungeons & Dragons - shadow over mystara (960208 Euro)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomr2|Dungeons & Dragons - shadow over mystara (960209 Euro)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomur1|Dungeons & Dragons - shadow over mystara (960209 USA)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomb|Dungeons & Dragons - shadow over mystara (960223 Brazil)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomr1|Dungeons & Dragons - shadow over mystara (960223 Euro)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsoma|Dungeons & Dragons - shadow over mystara (960619 Asia)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsom|Dungeons & Dragons - shadow over mystara (960619 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+ddsomj|Dungeons & Dragons - shadow over mystara (960619 Japan)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddsomu|Dungeons & Dragons - shadow over mystara (960619 USA)|clone|capcom/cps2.cpp|0|||||ddsom||Capcom
+ddtoda|Dungeons & Dragons - tower of doom (940113 Asia)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodr1|Dungeons & Dragons - tower of doom (940113 Euro)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodjr1|Dungeons & Dragons - tower of doom (940113 Japan)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodur1|Dungeons & Dragons - tower of doom (940113 USA)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodh|Dungeons & Dragons - tower of doom (940125 Hispanic)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodj|Dungeons & Dragons - tower of doom (940125 Japan)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtodu|Dungeons & Dragons - tower of doom (940125 USA)|clone|capcom/cps2.cpp|0|||||ddtod||Capcom
+ddtod|Dungeons & Dragons - tower of doom (940412 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+dunkshot|Dunk Shot (FD1089 317-0022)|parent|sega/segas16b.cpp|0|||||||Sega
+ddux1|Dynamite Dux (set 1, 8751 317-0095)|clone|sega/segas16b.cpp|0|||||ddux||Sega
+ddux|Dynamite Dux (set 2, FD1094 317-0096)|parent|sega/segas16b.cpp|0|||||||Sega
+dynwar|Dynasty Wars (World)|parent|capcom/cps1.cpp|0|||||||Capcom
+eswatj|E-Swat - Cyber Police (set 1, Japan, FD1094 317-0128) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||eswat||Sega
+eswatu|E-Swat - Cyber Police (set 2, US, FD1094 317-0129) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||eswat||Sega
+eswat|E-Swat - Cyber Police (set 3, World, FD1094 317-0130) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega
+ecofghta|Eco Fighters (931203 Asia)|clone|capcom/cps2.cpp|0|||||ecofghtr||Capcom
+ecofghtr|Eco Fighters (931203 etc)|parent|capcom/cps2.cpp|0|||||||Capcom
+ecofghtu|Eco Fighters (931203 USA)|clone|capcom/cps2.cpp|0|||||ecofghtr||Capcom
+eightman|Eight Man|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK / Pallas
+endurobl|Enduro Racer (bootleg set 1) [Bootleg]|clone|sega/segahang.cpp|0|||||enduror||bootleg
+enduror|Enduro Racer (YM2151, FD1089B 317-0013A) [Problem with PCM samples]|parent|sega/segahang.cpp|0|||||||Sega
+enduror1|Enduro Racer (YM2203, FD1089B 317-0013A)|clone|sega/segahang.cpp|0|||||enduror||Sega
+esprade|ESP Ra.De. (1998 4/22 international ver.)|parent|misc/cave.cpp|270|||||||Atlus / Cave
+espradeo|ESP Ra.De. (Japan, 1998 4/14 master ver.)|clone|misc/cave.cpp|270|||||esprade||Atlus / Cave
+espradej|ESP Ra.De. (Japan, 1998 4/21 master ver.)|clone|misc/cave.cpp|270|||||esprade||Atlus / Cave
+fantzon1|Fantasy Zone (set 1, unprotected)|clone|sega/segas16a.cpp|0|||||fantzone||Sega
+fantzone|Fantasy Zone (set 2, unprotected)|parent|sega/segas16a.cpp|0|||||||Sega
+fatfury1|Fatal Fury - king of fighters|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+fatfury2|Fatal Fury 2|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+fatfury3|Fatal Fury 3 - road to the final victory|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+fatfursp|Fatal Fury Special (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+fatfursa|Fatal Fury Special (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|fatfursp||SNK
+feversos|Fever SOS (International ver. Fri Sep 25 1998)|clone|misc/cave.cpp|270|||||dfeveron||Cave / Nihon System inc.
+fightfev|Fight Fever (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Viccom
+fightfva|Fight Fever (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|fightfev||Viccom
+fswords|Fighters Swords (bootleg) [Bootleg, Korean version of Samurai Shodown III]|clone|neogeo/neogeo.cpp|0||||neogeo|samsho3||SNK
+ffightu|Final Fight (900112 USA)|clone|capcom/cps1.cpp|0|||||ffight||Capcom
+ffightj1|Final Fight (900305 Japan)|clone|capcom/cps1.cpp|0|||||ffight||Capcom
+ffightua|Final Fight (900613 USA)|clone|capcom/cps1.cpp|0|||||ffight||Capcom
+ffightj|Final Fight (Japan)|clone|capcom/cps1.cpp|0|||||ffight||Capcom
+ffight|Final Fight (World)|parent|capcom/cps1.cpp|0|||||||Capcom
+fstarfrc|Final Star Force (US)|parent|tecmo/tecmo16.cpp|90|||||||Tecmo
+finalttr|Final Tetris|parent|kaneko/snowbros.cpp|0|||||||Jeil Computer System
+fpoint1|Flash Point (set 1, Japan, FD1094 317-0127A)|clone|sega/segas16b.cpp|0|||||fpoint||Sega
+fpoint|Flash Point (set 2, Japan, FD1094 317-0127A)|parent|sega/segas16b.cpp|0|||||||Sega
+fbfrenzy|Football Frenzy|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+forgottn|Forgotten Worlds (US)|parent|capcom/cps1.cpp|0|||||||Capcom
+gloc|G-LOC Air Battle (US)|parent|sega/segaybd.cpp|0|||||||Sega
+glocr360|G-LOC R360|clone|sega/segaybd.cpp|0|||||gloc||Sega
+gaia|Gaia Crusaders|parent|misc/cave.cpp|0|||||||Noise Factory
+galaxyfg|Galaxy Fight - universal warriors|parent|neogeo/neogeo.cpp|0||||neogeo|||Sunsoft
+gforce2|Galaxy Force 2|parent|sega/segaybd.cpp|0|||||||Sega
+gforce2j|Galaxy Force 2 (Japan)|clone|sega/segaybd.cpp|0|||||gforce2||Sega
+ganryu|Ganryu|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+garoubl|Garou - mark of the wolves (bootleg) [Bootleg]|clone|neogeo/neogeo.cpp|0||||neogeo|garou||bootleg
+garoup|Garou - mark of the wolves (prototype) [Prototype]|clone|neogeo/neogeo.cpp|0||||neogeo|garou||SNK
+garou|Garou - mark of the wolves (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+garouo|Garou - mark of the wolves (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|garou||SNK
+gensitou|Genshi-Tou 1930's (Japan) [Incomplete Sound]|clone|snk/prehisle.cpp|0|||||prehisle||SNK
+getstarb|Get Star (bootleg, set 1) [Bootleg]|clone|toaplan/slapfght.cpp|0|||||getstar||Taito
+gtstarba|Get Star (bootleg, set 2) [Bootleg]|clone|toaplan/slapfght.cpp|0|||||getstar||Taito
+gpilots|Ghost Pilots|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ghostlop|Ghostlop [Prototype]|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+ghoulsu|Ghouls'n Ghosts (US)|clone|capcom/cps1.cpp|0|||||ghouls||Capcom
+ghouls|Ghouls'n Ghosts (World)|parent|capcom/cps1.cpp|0|||||||Capcom
+gwinga|Giga Wing (990222 Asia)|clone|capcom/cps2.cpp|0|||||gigawing||Capcom
+gigawing|Giga Wing (990222 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+gwingj|Giga Wing (990223 Japan)|clone|capcom/cps2.cpp|0|||||gigawing||Capcom
+goalx3|Goal! Goal! Goal!|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+goldnax1|Golden Axe (set 1, World, FD1094 317-0110) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||goldnaxe||Sega
+goldnax2|Golden Axe (set 2, US, 8751 317-0112) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||goldnaxe||Sega
+goldnax3|Golden Axe (set 3, World, FD1094 317-0120) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||goldnaxe||Sega
+goldnaxj|Golden Axe (set 4, Japan, FD1094 317-0121) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||goldnaxe||Sega
+goldnaxu|Golden Axe (set 5, US, FD1094 317-0122) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||goldnaxe||Sega
+goldnaxe|Golden Axe (set 6, US, 8751 317-123A) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega
+gprider1|GP Rider (set 1, US, FD1094 317-0162)|clone|sega/segaxbd.cpp|0|||||gprider||Sega
+gmahou|Great Mahou Daisakusen (000121 Japan)|clone|capcom/cps2.cpp|270|||||dimahoo||8ing / Raizing / Capcom
+grindsta|Grind Stormer (older set) [No sound (sound MCU not dumped)]|clone|toaplan/toaplan2.cpp|270|||||vfive||Toaplan GP9001 based
+grindstm|Grind Stormer [No sound (sound MCU not dumped)]|clone|toaplan/toaplan2.cpp|270|||||vfive||Toaplan
+gunbirdj|Gunbird (Japan)|clone|psikyo/psikyo.cpp|270|||||gunbird||Psikyo
+gunbirdk|Gunbird (Korea)|clone|psikyo/psikyo.cpp|270|||||gunbird||Psikyo
+gunbird|Gunbird (World)|parent|psikyo/psikyo.cpp|270|||||||Psikyo
+gururin|Gururin|parent|neogeo/neogeo.cpp|0||||neogeo|||Face
+guwange|Guwange (Japan, 1999 6/24 master ver.)|parent|misc/cave.cpp|270|||||||Atlus / Cave
+hangon|Hang-On|parent|sega/segahang.cpp|0|||||||Sega
+hwchamp|Heavyweight Champ|parent|sega/segas16b.cpp|0|||||||Sega
+hellfir1|Hellfire (1P Ver.)|clone|toaplan/toaplan1.cpp|0|||||hellfire||Toaplan (Taito License)
+hellfire|Hellfire (2P Ver.)|parent|toaplan/toaplan1.cpp|0|||||||Toaplan (Taito License)
+hellfir2|Hellfire (2P Ver., first edition)|clone|toaplan/toaplan1.cpp|0|||||hellfire||Toaplan (Taito License)
+hyperpac|Hyper Pacman|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+hyperpcb|Hyper Pacman (bootleg) [Bootleg]|clone|kaneko/snowbros.cpp|0|||||hyperpac||SemiCom
+hsf2j|Hyper Street Fighter 2: The Anniversary Edition (031222 Japan)|clone|capcom/cps2.cpp|0|||||hsf2||Capcom
+hsf2|Hyper Street Fighter 2: The Anniversary Edition (040202 Asia)|parent|capcom/cps2.cpp|0|||||||Capcom
+jockeygp|Jockey Grand Prix|parent|neogeo/neogeo.cpp|0||||neogeo|||Sun Amazement / Brezzasoft
+altbeaj3|Juuouki (set 3, Japan, FD1094 317-0068) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||altbeast||Sega
+altbeasj|Juuouki (set 6, Japan, 8751 317-0077) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||altbeast||Sega
+jyangoku|Jyangokushi -Haoh no Saihai- (990527 Japan)|parent|capcom/cps2.cpp|0|||||||Mitchell
+janshin|Jyanshin Densetsu - quest of jongmaster|parent|neogeo/neogeo.cpp|0||||neogeo|||Aicom
+kabukikl|Kabuki Klash - far east of eden|parent|neogeo/neogeo.cpp|0||||neogeo|||Hudson Soft
+karnovr|Karnov's Revenge|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+kog|King of Gladiator (bootleg) [Bootleg, bootleg of The King of Fighters '97]|clone|neogeo/neogeo.cpp|0||||neogeo|kof97||bootleg
+kotm|King of the Monsters (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kotmh|King of the Monsters (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kotm||SNK
+kotm2|King of the Monsters 2 - the next thing|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kingdmgp|Kingdom Grandprix (World)|clone|toaplan/toaplan2.cpp|270|||||shippumd||Raizing / 8ing
+kizuna|Kizuna Encounter - super tag battle|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+knights|Knights of the Round (911127 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+knightsj|Knights of the Round (911127 Japan)|clone|capcom/cps1.cpp|0|||||knights||Capcom
+knightsu|Knights of the Round (911127 USA)|clone|capcom/cps1.cpp|0|||||knights||Capcom
+kbash|Knuckle Bash [No sound (sound MCU not emulated)]|parent|toaplan/toaplan2.cpp|0|||||||Toaplan
+lans2004|Lansquenet 2004 (bootleg) [Bootleg, bootleg of Shock Troopers - 2nd squad]|clone|neogeo/neogeo.cpp|0||||neogeo|shocktr2||bootleg
+lresort|Last Resort|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+lbowling|League Bowling|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+legendos|Legend of Success Joe|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+shangnle|Limited Edition Hang-On|clone|sega/segaorun.cpp|0|||||shangon||Sega
+loffirej|Line of Fire / Bakudan Yarou (Japan, FD1094 317-0134)|clone|sega/segaxbd.cpp|0|||||loffire||Sega
+loffireu|Line of Fire / Bakudan Yarou (US, FD1094 317-0135)|clone|sega/segaxbd.cpp|0|||||loffire||Sega
+loffire|Line of Fire / Bakudan Yarou (World, FD1094 317-0136)|parent|sega/segaxbd.cpp|0|||||||Sega
+lostwrld|Lost Worlds (Japan)|clone|capcom/cps1.cpp|0|||||forgottn||Capcom
+mswordj|Magic Sword (23.06.1990 Japan)|clone|capcom/cps1.cpp|0|||||msword||Capcom
+msword|Magic Sword - heroic fantasy (25.07.1990 other country)|parent|capcom/cps1.cpp|0|||||||Capcom
+mswordu|Magic Sword - heroic fantasy (25.07.1990 USA)|clone|capcom/cps1.cpp|0|||||msword||Capcom
+mswordr1|Magic Sword - heroic fantasy (90.06.23 other country)|clone|capcom/cps1.cpp|0|||||msword||Capcom
+magdrop2|Magical Drop II|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+magdrop3|Magical Drop III|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+maglord|Magician Lord (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+maglordh|Magician Lord (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|maglord||Alpha Denshi Co.
+mahretsu|Mahjong Kyoretsuden - real mah-jong game|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+mahoudai|Mahou Daisakusen (Japan)|parent|toaplan/toaplan2.cpp|270|||||||Raizing
+mjleague|Major League [Incomplete Sound]|parent|sega/segas16a.cpp|270|||||||Sega
+mmatrixj|Mars Matrix (000412 Japan)|clone|capcom/cps2.cpp|0|||||mmatrix||Capcom / Takumi
+mmatrix|Mars Matrix (000412 USA)|parent|capcom/cps2.cpp|0|||||||Capcom / Takumi
+msha|Marvel Super Heroes (951024 Asia)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+msh|Marvel Super Heroes (951024 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+mshjr1|Marvel Super Heroes (951024 Japan)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+mshu|Marvel Super Heroes (951024 USA)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+mshb|Marvel Super Heroes (951117 Brazil)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+mshh|Marvel Super Heroes (951117 Hispanic)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+mshj|Marvel Super Heroes (951117 Japan)|clone|capcom/cps2.cpp|0|||||msh||Capcom
+mshvsfa1|Marvel Super Heroes vs Street Fighter (970620 Asia)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfa|Marvel Super Heroes vs Street Fighter (970625 Asia)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfb1|Marvel Super Heroes vs Street Fighter (970625 Brazil)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsf|Marvel Super Heroes vs Street Fighter (970625 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+mshvsfh|Marvel Super Heroes vs Street Fighter (970625 Hispanic)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfj2|Marvel Super Heroes vs Street Fighter (970625 Japan)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfu1|Marvel Super Heroes vs Street Fighter (970625 USA)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfj1|Marvel Super Heroes vs Street Fighter (970702 Japan)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfj|Marvel Super Heroes vs Street Fighter (970707 Japan)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfb|Marvel Super Heroes vs Street Fighter (970827 Brazil)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mshvsfu|Marvel Super Heroes vs Street Fighter (970827 USA)|clone|capcom/cps2.cpp|0|||||mshvsf||Capcom
+mvscar1|Marvel vs Capcom - clash of super heroes (980112 Asia)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvsc|Marvel vs Capcom - clash of super heroes (980112 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+mvscjr1|Marvel vs Capcom - clash of super heroes (980112 Japan)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvsca|Marvel vs Capcom - clash of super heroes (980123 Asia)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvscb|Marvel vs Capcom - clash of super heroes (980123 Brazil)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvsch|Marvel vs Capcom - clash of super heroes (980123 Hispanic)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvscj|Marvel vs Capcom - clash of super heroes (980123 Japan)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+mvscu|Marvel vs Capcom - clash of super heroes (980123 USA)|clone|capcom/cps2.cpp|0|||||mvsc||Capcom
+megaman|Mega Man - the power battle (951006 Asia)|parent|capcom/cps1.cpp|0|||||||Capcom
+megamn2a|Mega Man 2 - the power fighters (960708 Asia)|clone|capcom/cps2.cpp|0|||||megaman2||Capcom
+megaman2|Mega Man 2 - the power fighters (960708 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+mtwins|Mega Twins (chiki chiki boys 900619 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+mercs|Mercs (900302 etc)|parent|capcom/cps1.cpp|270|||||||Capcom
+mercsu|Mercs (900302 USA)|clone|capcom/cps1.cpp|270|||||mercs||Capcom
+mercsua|Mercs (900608 USA)|clone|capcom/cps1.cpp|270|||||mercs||Capcom
+mslug|Metal Slug - super vehicle-001|parent|neogeo/neogeo.cpp|0||||neogeo|||Nazca
+mslug2|Metal Slug 2 - super vehicle-001/II|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+mslug3|Metal Slug 3|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+mslug3n|Metal Slug 3 (not encrypted)|clone|neogeo/neogeo.cpp|0||||neogeo|mslug3||SNK
+mslug4|Metal Slug 4|parent|neogeo/neogeo.cpp|0||||neogeo|||Playmore Corporation / Mega Enterprise
+ms4plus|Metal Slug 4 Plus (bootleg) [Bootleg, bootleg of Metal Slug 4]|clone|neogeo/neogeo.cpp|0||||neogeo|mslug4||bootleg
+mslug5|Metal Slug 5|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK Playmore
+ms5pcb|Metal Slug 5 (JAMMA PCB)|parent|neogeo/neopcb.cpp|0|||||||SNK Playmore
+ms5plus|Metal Slug 5 Plus (bootleg) [Bootleg, bootleg of Metal Slug 5]|clone|neogeo/neogeo.cpp|0||||neogeo|mslug5||bootleg
+mslug3b6|Metal Slug 6 [Bootleg, bootleg of Metal Slug 3]|clone|neogeo/neogeo.cpp|0||||neogeo|mslug3||bootleg
+mslugx|Metal Slug X - super vehicle-001|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+mpang|Mighty! Pang (001010 USA)|parent|capcom/cps2.cpp|0|||||||Mitchell
+mpangj|Mighty! Pang (001011 Japan)|clone|capcom/cps2.cpp|0|||||mpang||Mitchell
+minasan|Minnasanno Okagesamadesu|parent|neogeo/neogeo.cpp|0||||neogeo|||Monolith Corp.
+miexchng|Money Puzzle Exchanger|parent|neogeo/neogeo.cpp|0||||neogeo|||Face
+moremore|More More|parent|kaneko/snowbros.cpp|0|||||||SemiCom / Exit
+moremorp|More More Plus|parent|kaneko/snowbros.cpp|0|||||||SemiCom / Exit
+mbomberj|Muscle Bomber - the body explosion (930713 Japan)|clone|capcom/cps1.cpp|0|||||slammast||Capcom
+mbombrdj|Muscle Bomber Duo - heat up warriors (931206 Japan)|clone|capcom/cps1.cpp|0|||||slammast||Capcom
+mbombrd|Muscle Bomber Duo - ultimate team battle (931206 etc)|clone|capcom/cps1.cpp|0|||||slammast||Capcom
+mutnat|Mutation Nation|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+mvpj|MVP (set 1, Japan, FD1094 317-0142) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||mvp||Sega
+mvp|MVP (set 2, US, FD1094 317-0143) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega
+nam1975|NAM - 1975|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+nemoj|Nemo (90 11 20 Japan)|clone|capcom/cps1.cpp|0|||||nemo||Capcom
+nemo|Nemo (90 11 30 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+neobombe|Neo Bomberman|parent|neogeo/neogeo.cpp|0||||neogeo|||Hudson Soft
+neodrift|Neo Drift Out - new technology|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+neomrdo|Neo Mr. Do!|parent|neogeo/neogeo.cpp|0||||neogeo|||Visco
+turfmast|Neo Turf Masters|parent|neogeo/neogeo.cpp|0||||neogeo|||Nazca
+neocup98|Neo-Geo Cup '98 - the road to the victory|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+news|News (set 1)|parent|misc/news.cpp|0|||||||Poby / Virus
+newsa|News (set 2)|clone|misc/news.cpp|0|||||news||Poby / Virus
+nwarrb|Night Warriors - darkstalkers' revenge (950403 Brazil)|clone|capcom/cps2.cpp|0|||||nwarr||Capcom
+nwarrh|Night Warriors - darkstalkers' revenge (950403 Hispanic)|clone|capcom/cps2.cpp|0|||||nwarr||Capcom
+nwarr|Night Warriors - darkstalkers' revenge (950406 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+nitd|Nightmare in the Dark|parent|neogeo/neogeo.cpp|0||||neogeo|||Eleven / Gavaking
+ncombat|Ninja Combat (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+ncombata|Ninja Combat (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|ncombat||Alpha Denshi Co.
+ncommand|Ninja Commando|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+ninjamas|Ninja Master's haoh ninpo cho|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK / SNK
+ohmygod|Oh My God!|parent|atlus/ohmygod.cpp|0|||||||Atlus
+opwolfb|Operation Bear (bootleg) [Bootleg]|clone|taito/opwolf.cpp|0|||||opwolf||Bear
+ragnagrd|Operation Ragnagard|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+outrunb|Out Run (bootleg) [Bootleg]|clone|sega/segaorun.cpp|0|||||outrun||bootleg
+outrun1|Out Run (deluxe sitdown)|clone|sega/segaorun.cpp|0|||||outrun||Sega
+outrun2|Out Run (sitdown/upright, Rev A)|clone|sega/segaorun.cpp|0|||||outrun||Sega
+outrun|Out Run (sitdown/upright, Rev B)|parent|sega/segaorun.cpp|0|||||||Sega
+outzone|Out Zone (set 1)|parent|toaplan/toaplan1.cpp|270|||||||Toaplan
+outzonea|Out Zone (set 2)|clone|toaplan/toaplan1.cpp|270|||||outzone||Toaplan
+outzoneb|Out Zone (set 3, prototype?)|clone|toaplan/toaplan1.cpp|270|||||outzone||Toaplan
+outzonec|Out Zone (set 4)|clone|toaplan/toaplan1.cpp|270|||||outzone||Toaplan
+overtop|OverTop|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK
+pang3|Pang! 3 (950511 Euro)|parent|capcom/cps1.cpp|0|||||||Mitchell
+pang3j|Pang! 3 (950511 Japan)|clone|capcom/cps1.cpp|0|||||pang3||Mitchell
+panicbom|Panic Bomber|parent|neogeo/neogeo.cpp|0||||neogeo|||Hudson Soft
+passshtj|Passing Shot (Japan, 4 Players, FD1094 317-0070) [Incomplete Sound]|clone|sega/segas16b.cpp|270|||||passsht||Sega
+passsht|Passing Shot (World, 2 Players, FD1094 317-0080) [Incomplete Sound]|parent|sega/segas16b.cpp|270|||||||Sega
+passshta|Passing Shot (World, 4 Players, FD1094 317-0074) [Incomplete Sound]|clone|sega/segas16b.cpp|270|||||passsht||Sega
+pgoal|Pleasure Goal - 5 on 5 mini soccer|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+pnickj|Pnickies (940608 Japan)|parent|capcom/cps1.cpp|0|||||||Compile (Capcom license)
+pnyaa|Pochi and Nyaa|parent|neogeo/neogeo.cpp|0||||neogeo|||Aiky / Taito
+pfghtj|Pocket Fighter (970904 Japan)|clone|capcom/cps2.cpp|0|||||sgemf||Capcom
+popbounc|Pop 'n Bounce|parent|neogeo/neogeo.cpp|0||||neogeo|||Video System Co.
+pdriftj|Power Drift (Japan)|clone|sega/segaybd.cpp|0|||||pdrift||Sega
+pdrifta|Power Drift (World)|clone|sega/segaybd.cpp|0|||||pdrift||Sega
+pdrifte|Power Drift (World, Earlier)|clone|sega/segaybd.cpp|0|||||pdrift||Sega
+pdrift|Power Drift (World, Rev A)|parent|sega/segaybd.cpp|0|||||||Sega
+pspikes2|Power Spikes II|parent|neogeo/neogeo.cpp|0||||neogeo|||Video System Co.
+pgearr1|Powered Gear - strategic variant armor equipment (940916 Japan)|clone|capcom/cps2.cpp|0|||||armwar||Capcom
+pgear|Powered Gear - strategic variant armor equipment (941024 Japan)|clone|capcom/cps2.cpp|0|||||armwar||Capcom
+preisle2|Prehistoric Isle 2|parent|neogeo/neogeo.cpp|0||||neogeo|||Yumekobo / Saurus
+prehislu|Prehistoric Isle in 1930 (US) [Incomplete Sound]|clone|snk/prehisle.cpp|0|||||prehisle||SNK of America
+prehisle|Prehistoric Isle in 1930 (World) [Incomplete Sound]|parent|snk/prehisle.cpp|0|||||||SNK
+sailormo|Pretty Soldier Sailor Moon (version 95/03/22)|clone|misc/cave.cpp|0|||||sailormn||BanPresto / Gazelle
+sailormn|Pretty Soldier Sailor Moon (version 95/03/22B)|parent|misc/cave.cpp|0|||||||BanPresto / Gazelle
+progeara|Progear (010117 Asia)|clone|capcom/cps2.cpp|0|||||progear||Capcom / Cave
+progear|Progear (010117 USA)|parent|capcom/cps2.cpp|0|||||||Capcom / Cave
+progearj|Progear No Arashi (010117 Japan)|clone|capcom/cps2.cpp|0|||||progear||Capcom / Cave
+pulstar|Pulstar|parent|neogeo/neogeo.cpp|0||||neogeo|||Aicom
+pzloop2j|Puzz Loop 2 (010205 Japan)|clone|capcom/cps2.cpp|0|||||pzloop2||Mitchell, distritued by Capcom
+pzloop2|Puzz Loop 2 (010302 Euro)|parent|capcom/cps2.cpp|0|||||||Mitchell, distritued by Capcom
+pbobblen|Puzzle Bobble (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Taito
+pbobblna|Puzzle Bobble (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|pbobblen||Taito
+pbobbl2n|Puzzle Bobble 2|parent|neogeo/neogeo.cpp|0||||neogeo|||Taito
+puzzledp|Puzzle De Pon|parent|neogeo/neogeo.cpp|0||||neogeo|||Taito (Visco license)
+puzzldpr|Puzzle De Pon R|clone|neogeo/neogeo.cpp|0||||neogeo|puzzledp||Taito (Visco license)
+4in1boot|Puzzle King [Bootleg]|parent|kaneko/snowbros.cpp|0|||||||K1 Soft
+uopoko|Puzzle Uo Poko (International)|parent|misc/cave.cpp|0|||||||Cave / Jaleco
+joyjoy|Puzzled|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+quartet1|Quartet (8751 315-5194) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||quartet||Sega
+quartet|Quartet (Rev A, 8751 317-unknown) [Incomplete Sound]|parent|sega/segas16a.cpp|0|||||||Sega
+quart21|Quartet 2 (8751 317-0010) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||quartet||Sega
+quart2|Quartet 2 (unprotected) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||quartet||Sega
+qadj|Quiz & Dragons (940921 Japan)|clone|capcom/cps1.cpp|0|||||qad||Capcom
+qad|Quiz & Dragons (capcom quiz game 920701 USA)|parent|capcom/cps1.cpp|0|||||||Capcom
+quizdais|Quiz Daisousa Sen - the last count down|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+quizkof|Quiz King of Fighters|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+quizdai2|Quiz Meintantei Neo Geo - quiz daisousa sen part 2|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+qndream|Quiz Nanairo Dreams - nijiirochou no kiseki (nanairo dreams 960826 Japan)|parent|capcom/cps2.cpp|0|||||||Capcom
+qtono2|Quiz Tonosama no Yabou 2 Zenkoku-ban (tonosama 2 950123 Japan)|parent|capcom/cps1.cpp|0|||||||Capcom
+rachero|Racing Hero (FD1094 317-0144)|parent|sega/segaxbd.cpp|0|||||||Sega
+rotd|Rage of the Dragons|parent|neogeo/neogeo.cpp|0||||neogeo|||Evoga / Playmore
+rchase|Rail Chase (Japan)|parent|sega/segaybd.cpp|0|||||||Sega
+rainbowe|Rainbow Islands (Extra)|clone|dec/rainbow.cpp|0|||||rainbow||Taito
+rainbow|Rainbow Islands (new version)|parent|dec/rainbow.cpp|0|||||||Taito
+rainbowo|Rainbow Islands (old version)|clone|dec/rainbow.cpp|0|||||rainbow||Taito
+rastanu|Rastan (US set 1)|clone|taito/rastan.cpp|0|||||rastan||Taito
+rastanu2|Rastan (US set 2)|clone|taito/rastan.cpp|0|||||rastan||Taito
+rastan|Rastan (World)|parent|taito/rastan.cpp|0|||||||Taito
+rastsag1|Rastan Saga (Japan rev 1)|clone|taito/rastan.cpp|0|||||rastan||Taito
+rastsaga|Rastan Saga (Japan)|clone|taito/rastan.cpp|0|||||rastan||Taito
+rbff2k|Real Bout Fatal Fury 2 - the newcomers (Korean Release)|clone|neogeo/neogeo.cpp|0||||neogeo|rbff2||SNK
+rbff2|Real Bout Fatal Fury 2 - the newcomers (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+rbff2h|Real Bout Fatal Fury 2 - the newcomers (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|rbff2||SNK
+rbffspec|Real Bout Fatal Fury Special|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+rbff1|Real Bout Fatal Fury|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ridhero|Riding Hero (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ridheroh|Riding Hero (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|ridhero||SNK
+ringdest|Ring of Destruction - slammasters II (940902 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+riotcity|Riot City (Japan) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega / Westone
+roboarmy|Robo Army (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+roboarma|Robo Army (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|roboarmy||SNK
+rockmanj|Rockman - the power battle (950922 Japan)|clone|capcom/cps1.cpp|0|||||megaman||Capcom
+rckman2j|Rockman 2 - the power fighters (960708 Japan)|clone|capcom/cps2.cpp|0|||||megaman2||Capcom
+ryukyu|RyuKyu (Japan, FD1094 317-5023) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Success / Sega
+samuraia|Samurai Aces (World)|parent|psikyo/psikyo.cpp|270|||||||Psikyo / Banpresto
+samsho2|Samurai Shodown II|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+samsho3|Samurai Shodown III (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+samsho3a|Samurai Shodown III (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|samsho3||SNK
+samsho4|Samurai Shodown IV - Amakusa's revenge|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+samsho5b|Samurai Shodown V (bootleg) [Bootleg]|clone|neogeo/neogeo.cpp|0||||neogeo|samsho5||bootleg
+samsho5|Samurai Shodown V (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Yuki Enterprise / SNK Playmore
+samsho5h|Samurai Shodown V (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|samsho5||Yuki Enterprise / SNK Playmore
+samsh5sp|Samurai Shodown V Special (set 1, uncensored)|parent|neogeo/neogeo.cpp|0||||neogeo|||Yuki Enterprise / SNK Playmore
+samsh5sh|Samurai Shodown V Special (set 2, censored)|clone|neogeo/neogeo.cpp|0||||neogeo|samsh5sp||Yuki Enterprise / SNK Playmore
+samsh5sn|Samurai Shodown V Special (set 3, less censored)|clone|neogeo/neogeo.cpp|0||||neogeo|samsh5sp||Yuki Enterprise / SNK Playmore
+samsho|Samurai Shodown|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+wofa|Sangokushi II (921005 Asia)|clone|capcom/cps1.cpp|0|||||wof||Capcom
+slammast|Saturday Night Slam Masters (Slam Masters 930713 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+slammasu|Saturday Night Slam Masters (slam masters 930713 USA)|clone|capcom/cps1.cpp|0|||||slammast||Capcom
+savagere|Savage Reign|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+sdibl|SDI - Strategic Defense Initiative (bootleg)|clone|sega/segas16b.cpp|0|||||sdi||Sega
+sdi|SDI - Strategic Defense Initiative (Europe, System 16A, FD1089B 317-0027)|parent|sega/segas16a.cpp|0|||||||Sega
+sdib|SDI - Strategic Defense Initiative (System 16B, FD1089A 317-0028)|clone|sega/segas16b.cpp|0|||||sdi||Sega
+sengoku|Sengoku (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+sengokh|Sengoku (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|sengoku||SNK
+sengoku2|Sengoku 2|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+sengoku3|Sengoku 3|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+sngkace|Sengoku Ace (Japan)|clone|psikyo/psikyo.cpp|270|||||samuraia||Psikyo / Banpresto
+mercsj|Senjo no Ookami II (Ookami 2 900302 Japan)|clone|capcom/cps1.cpp|270|||||mercs||Capcom
+matrim|Shin gouketsuzi ichizoku - Toukon|parent|neogeo/neogeo.cpp|0||||neogeo|||Playmore / Noise Factory / Atlus
+shinobi1|Shinobi (set 1, System 16A, FD1094 317-0050) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||shinobi||Sega
+shinobi2|Shinobi (set 2, System 16B, FD1094 317-0049) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||shinobi||Sega
+shinobi3|Shinobi (set 3, System 16B, MC-8123B 317-0054) [No Sound]|clone|sega/segas16b.cpp|0|||||shinobi||Sega
+shinobi4|Shinobi (set 4, System 16B, unprotected) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||shinobi||Sega
+shinobi|Shinobi (set 5, System 16A, unprotected) [Incomplete Sound]|parent|sega/segas16a.cpp|0|||||||Sega
+shippumd|Shippu Mahou Daisakusen - kingdom grandprix (Japan)|parent|toaplan/toaplan2.cpp|270|||||||Raizing / 8ing
+shocktro|Shock Troopers (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+shocktra|Shock Troopers (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|shocktro||Saurus
+shocktr2|Shock Troopers - 2nd squad|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+slapfgtr|Slap Fight (bootleg) [Bootleg]|clone|toaplan/slapfght.cpp|270|||||slapfigh||Taito
+slapbtuk|Slap Fight (English bootleg) [Bootleg]|clone|toaplan/slapfght.cpp|270|||||slapfigh||Taito
+slapbtjp|Slap Fight (Japan bootleg) [Bootleg]|clone|toaplan/slapfght.cpp|270|||||slapfigh||Taito
+slapfigh|Slap Fight (set 1) [Protection MCU not emulated]|parent|toaplan/slapfght.cpp|270|||||||Taito
+snowbroj|Snow Bros. - Nick & Tom (Japan)|clone|kaneko/snowbros.cpp|0|||||snowbros||Toaplan
+snowbros|Snow Bros. - Nick & Tom (set 1)|parent|kaneko/snowbros.cpp|0|||||||Toaplan
+snowbroa|Snow Bros. - Nick & Tom (set 2)|clone|kaneko/snowbros.cpp|0|||||snowbros||Toaplan
+snowbrob|Snow Bros. - Nick & Tom (set 3)|clone|kaneko/snowbros.cpp|0|||||snowbros||Toaplan
+snowbroc|Snow Bros. - Nick & Tom (set 4)|clone|kaneko/snowbros.cpp|0|||||snowbros||Toaplan
+snowbro2|Snow Bros. 2 - with new elves|parent|toaplan/toaplan2.cpp|0|||||||[Toaplan] Hanafram
+socbrawl|Soccer Brawl|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+solomonj|Solomon's Key (Japan)|clone|tecmo/solomon.cpp|0|||||solomon||Tecmo
+solomon|Solomon's Key (US)|parent|tecmo/solomon.cpp|0|||||||Tecmo
+sonicbom|Sonic Boom (FD1094 317-0053) [Incomplete Sound]|parent|sega/segas16b.cpp|270|||||||Sega
+sstriker|Sorcer Striker (World)|clone|toaplan/toaplan2.cpp|270|||||mahoudai||Raizing
+sstrikra|Sorcer Striker (World, alt)|clone|toaplan/toaplan2.cpp|270|||||mahoudai||Raizing
+sharrir1|Space Harrier (8751 315-5163)|clone|sega/segahang.cpp|0|||||sharrier||Sega
+sharrier|Space Harrier (Rev A, 8751 315-5163A)|parent|sega/segahang.cpp|0|||||||Sega
+spinmast|Spin Master|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+stakwin|Stakes Winner|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+stakwin2|Stakes Winner 2|parent|neogeo/neogeo.cpp|0||||neogeo|||Saurus
+sfach|Street Fighter Alpha (950727 CPS Changer)|clone|capcom/cps1.cpp|0|||||sfzch||Capcom
+sfar3|Street Fighter Alpha - warriors' dreams (950605 Euro)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfar2|Street Fighter Alpha - warriors' dreams (950627 Euro)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfau|Street Fighter Alpha - warriors' dreams (950627 USA)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfar1|Street Fighter Alpha - warriors' dreams (950718 Euro)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfa|Street Fighter Alpha - warriors' dreams (950727 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+sfa2|Street Fighter Alpha 2 (960306 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+sfa3b|Street Fighter Alpha 3 (980629 Brazil)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfa3r1|Street Fighter Alpha 3 (980629 USA)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfa3|Street Fighter Alpha 3 (980904 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+sf2ua|Street Fighter II - the world warrior (910206 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2eb|Street Fighter II - the world warrior (910214 etc)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2ja|Street Fighter II - the world warrior (910214 Japan)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2ub|Street Fighter II - the world warrior (910214 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2ue|Street Fighter II - the world warrior (910228 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2jc|Street Fighter II - the world warrior (910306 Japan)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2ud|Street Fighter II - the world warrior (910318 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2uf|Street Fighter II - the world warrior (910411 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2|Street Fighter II - the world warrior (910522 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+sf2ui|Street Fighter II - the world warrior (910522 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2uk|Street Fighter II - the world warrior (911101 USA)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2j|Street Fighter II - the world warrior (911210 Japan)|clone|capcom/cps1.cpp|0|||||sf2||Capcom
+sf2accp2|Street Fighter II' - champion edition (Hack - Accelerator Pt.II) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2koryu|Street Fighter II' - champion edition (Hack - kouryu) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2m2|Street Fighter II' - champion edition (Hack - M-2) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2m4|Street Fighter II' - champion edition (Hack - M-4) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2m5|Street Fighter II' - champion edition (Hack - M-5) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2m6|Street Fighter II' - champion edition (Hack - M-6) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2m7|Street Fighter II' - champion edition (Hack - M-7) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2rb|Street Fighter II' - champion edition (Hack - Rainbow set 1) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2rb2|Street Fighter II' - champion edition (Hack - Rainbow set 2) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2red|Street Fighter II' - champion edition (Hack - Red Wave) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2v004|Street Fighter II' - champion edition (Hack - V004) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2yyc|Street Fighter II' - champion edition (Hack - YYC) [Bootleg]|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2ce|Street Fighter II' - champion edition (street fighter 2' 920313 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+sf2ceua|Street Fighter II' - champion edition (street fighter 2' 920313 USA)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2cej|Street Fighter II' - champion edition (street fighter 2' 920513 Japan)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2ceub|Street Fighter II' - champion edition (street fighter 2' 920513 USA)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2ceuc|Street Fighter II' - champion edition (street fighter 2' 920803 USA)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2hf|Street Fighter II' - hyper fighting (street fighter 2' T 921209 ETC)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2t|Street Fighter II' - hyper fighting (street fighter 2' T 921209 USA)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sf2tj|Street Fighter II' Turbo - hyper fighting (street fighter 2' T 921209 Japan)|clone|capcom/cps1.cpp|0|||||sf2ce||Capcom
+sfzjr2|Street Fighter Zero (950605 Japan)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfza|Street Fighter Zero (950627 Asia)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfzh|Street Fighter Zero (950627 Hispanic)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfzjr1|Street Fighter Zero (950627 Japan)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfzbr1|Street Fighter Zero (950727 Brazil)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfzj|Street Fighter Zero (950727 Japan)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfzch|Street Fighter Zero (951020 CPS Changer)|parent|capcom/cps1.cpp|0|||||||Capcom
+sfzb|Street Fighter Zero (951109 Brazil)|clone|capcom/cps2.cpp|0|||||sfa||Capcom
+sfz2a|Street Fighter Zero 2 (960227 Asia)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2j|Street Fighter Zero 2 (960227 Japan)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2n|Street Fighter Zero 2 (960229 Oceania)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2br1|Street Fighter Zero 2 (960304 Brazil)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2h|Street Fighter Zero 2 (960304 Hispanic)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2b|Street Fighter Zero 2 (960531 Brazil)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2aj|Street Fighter Zero 2 Alpha (960805 Japan)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2ab|Street Fighter Zero 2 Alpha (960813 Brazil)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2ah|Street Fighter Zero 2 Alpha (960813 Hispanic)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz2aa|Street Fighter Zero 2 Alpha (960826 Asia)|clone|capcom/cps2.cpp|0|||||sfa2||Capcom
+sfz3jr2|Street Fighter Zero 3 (980629 Japan)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfz3ar1|Street Fighter Zero 3 (980701 Asia)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfz3jr1|Street Fighter Zero 3 (980727 Japan)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfz3a|Street Fighter Zero 3 (980904 Asia)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+sfz3j|Street Fighter Zero 3 (980904 Japan)|clone|capcom/cps2.cpp|0|||||sfa3||Capcom
+strhoop|Street Hoop|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+strider|Strider (US set 1)|parent|capcom/cps1.cpp|0|||||||Capcom
+stridrua|Strider (US set 2)|clone|capcom/cps1.cpp|0|||||strider||Capcom
+striderj|Strider Hiryu (Japan set 1)|clone|capcom/cps1.cpp|0|||||strider||Capcom
+stridrja|Strider Hiryu (Japan set 2)|clone|capcom/cps1.cpp|0|||||strider||Capcom
+strkfgtr|Strike Fighter (Japan)|parent|sega/segaybd.cpp|0|||||||Sega
+s1945|Strikers 1945|parent|psikyo/psikyo.cpp|270|||||||Psikyo
+s1945a|Strikers 1945 (Alt)|clone|psikyo/psikyo.cpp|270|||||s1945||Psikyo
+s1945j|Strikers 1945 (Japan)|clone|psikyo/psikyo.cpp|270|||||s1945||Psikyo
+s1945jn|Strikers 1945 (Japan, unprotected)|clone|psikyo/psikyo.cpp|270|||||s1945||Psikyo
+s1945k|Strikers 1945 (Korea)|clone|psikyo/psikyo.cpp|270|||||s1945||Psikyo
+s1945p|Strikers 1945 plus|parent|neogeo/neogeo.cpp|0||||neogeo|||Psikyo
+sjryuko1|Sukeban Jansi Ryuko (set 1, System 16A, FD1089B 317-5021) [Incomplete Sound]|clone|sega/segas16a.cpp|0|||||sjryuko||White Board
+sjryuko|Sukeban Jansi Ryuko (set 2, System 16B, FD1089B 317-5021) [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||White Board
+sdodgeb|Super Dodge Ball|parent|neogeo/neogeo.cpp|0||||neogeo|||Technos
+sgemfa|Super Gem Fighter Mini Mix (970904 Asia)|clone|capcom/cps2.cpp|0|||||sgemf||Capcom
+sgemfh|Super Gem Fighter Mini Mix (970904 Hispanic)|clone|capcom/cps2.cpp|0|||||sgemf||Capcom
+sgemf|Super Gem Fighter Mini Mix (970904 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+shangon2|Super Hang-On (mini ride-on, Rev A, FD1089B 317-0034)|clone|sega/segaorun.cpp|0|||||shangon||Sega
+shangon3|Super Hang-On (sitdown/upright, FD1089B 317-0034)|clone|sega/segaorun.cpp|0|||||shangon||Sega
+shangon|Super Hang-On (sitdown/upright, unprotected)|parent|sega/segaorun.cpp|0|||||||Sega
+smgpj|Super Monaco GP (set 1, Japan, Rev B, FD1094 317-0124a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgpu3|Super Monaco GP (set 2, US, FD1094 317-0125a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgpu2|Super Monaco GP (set 3, US, Rev A, FD1094 317-0125a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgpu1|Super Monaco GP (set 4, US, Rev B, FD1094 317-0125a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgpu|Super Monaco GP (set 5, US, Rev C, FD1094 317-0125a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgp5|Super Monaco GP (set 6, World, 'Air Drive Cabinet', FD1094 317-0126) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgp6|Super Monaco GP (set 7, World, Rev A, FD1094 317-0126a) [Imperfect Sound]|clone|sega/segaxbd.cpp|0|||||smgp||Sega
+smgp|Super Monaco GP (set 8, World, Rev B, 'Twin', FD1094 317-0126a) [Imperfect Sound]|parent|sega/segaxbd.cpp|0|||||||Sega
+smbombr1|Super Muscle Bomber - the international blowout (940808 Japan)|clone|capcom/cps2.cpp|0|||||ringdest||Capcom
+smbomb|Super Muscle Bomber - the international blowout (940831 Japan)|clone|capcom/cps2.cpp|0|||||ringdest||Capcom
+spf2ta|Super Puzzle Fighter II Turbo (Super Puzzle Fighter 2 Turbo 960529 Asia)|clone|capcom/cps2.cpp|0|||||spf2t||Capcom
+spf2t|Super Puzzle Fighter II Turbo (Super Puzzle Fighter 2 Turbo 960620 USA)|parent|capcom/cps2.cpp|0|||||||Capcom
+spf2xj|Super Puzzle Fighter II X (Super Puzzle Fighter 2 X 960531 Japan)|clone|capcom/cps2.cpp|0|||||spf2t||Capcom
+ssideki2|Super Sidekicks 2 - the world championship|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ssideki3|Super Sidekicks 3 - the next glory|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ssideki|Super Sidekicks|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ssf2jr2|Super Street Fighter II - the new challengers (super street fighter 2 930910 Japan)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2|Super Street Fighter II - the new challengers (super street fighter 2 930911 etc)|parent|capcom/cps2.cpp|0|||||||Capcom
+ssf2jr1|Super Street Fighter II - the new challengers (super street fighter 2 930911 Japan)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2u|Super Street Fighter II - the new challengers (super street fighter 2 930911 USA)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2ar1|Super Street Fighter II - the new challengers (super street fighter 2 930914 Asia)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2a|Super Street Fighter II - the new challengers (super street fighter 2 931005 Asia)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2j|Super Street Fighter II - the new challengers (super street fighter 2 931005 Japan)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2tbr1|Super Street Fighter II - the tournament battle (930911 etc) [Linkup feature not implemented]|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2tbj|Super Street Fighter II - the tournament battle (930911 Japan) [Linkup feature not implemented]|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2tb|Super Street Fighter II - the tournament battle (931119 etc) [Linkup feature not implemented]|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2ta|Super Street Fighter II Turbo (super street fighter 2 X 940223 Asia)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2t|Super Street Fighter II Turbo (super street fighter 2 X 940223 etc)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2tur1|Super Street Fighter II Turbo (super street fighter 2 X 940223 USA)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2tu|Super Street Fighter II Turbo (super street fighter 2 X 940323 USA)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+ssf2xj|Super Street Fighter II X - grand master challenge (super street fighter 2 X 940223 Japan)|clone|capcom/cps2.cpp|0|||||ssf2||Capcom
+superman|Superman|parent|taito/taito_x.cpp|0|||||||Taito
+suprmanj|Superman (Japan)|clone|taito/taito_x.cpp|0|||||superman||Taito
+svcpcb|SvC Chaos - SNK vs Capcom (JAMMA PCB, set 1)|parent|neogeo/neopcb.cpp|0|||||||SNK Playmore
+svcpcba|SvC Chaos - SNK vs Capcom (JAMMA PCB, set 2)|clone|neogeo/neopcb.cpp|0|||||svcpcb||SNK Playmore
+svc|SvC Chaos - SNK vs Capcom (MVS)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK Playmore
+svcboot|SvC Chaos - SNK vs Capcom (MVS, bootleg) [Bootleg, bootleg of SvC Chaos - SNK vs Capcom (MVS)]|clone|neogeo/neogeo.cpp|0||||neogeo|svc||bootleg
+svcplus|SvC Chaos - SNK vs Capcom Plus (bootleg, set 1) [Bootleg, bootleg of SvC Chaos - SNK vs Capcom (MVS)]|clone|neogeo/neogeo.cpp|0||||neogeo|svc||bootleg
+svcplusa|SvC Chaos - SNK vs Capcom Plus (bootleg, set 2) [Bootleg, bootleg of SvC Chaos - SNK vs Capcom (MVS)]|clone|neogeo/neogeo.cpp|0||||neogeo|svc||bootleg
+svcsplus|SvC Chaos - SNK vs Capcom Super Plus (bootleg) [Bootleg, bootleg of SvC Chaos - SNK vs Capcom (MVS)]|clone|neogeo/neogeo.cpp|0||||neogeo|svc||bootleg
+mosyougi|Syougi No Tatsujin - master of syougi|parent||||||neogeo|||ADK / SNK
+tws96|Tecmo World Soccer '96|parent||||||neogeo|||Tecmo
+tekipaki|Teki Paki [No sound (sound MCU not dumped)]|parent|toaplan/toaplan2.cpp|0|||||||Toaplan
+dynwarj|Tenchi wo Kurau (Japan)|clone|capcom/cps1.cpp|0|||||dynwar||Capcom
+wofj|Tenchi wo Kurau II - Sekiheki no Tatakai (921031 Japan)|clone|capcom/cps1.cpp|0|||||wof||Capcom
+tengai|Tengai|parent|psikyo/psikyo.cpp|0|||||||Psikyo
+tetris1|Tetris (set 1, Japan, System 16B, FD1094 317-0091)|clone|sega/segas16b.cpp|0|||||tetris||Sega
+tetris2|Tetris (set 2, Japan, System 16B, FD1094 317-0092)|clone|sega/segas16b.cpp|0|||||tetris||Sega
+tetris3|Tetris (set 3, Japan, System 16A, FD1094 317-0093a)|clone|sega/segas16a.cpp|0|||||tetris||Sega
+tetris|Tetris (set 4, Japan, System 16A, FD1094 317-0093)|parent|sega/segas16a.cpp|0|||||||Sega
+irrmaze|The Irritating Maze|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK / Saurus
+kod|The King of Dragons (910711 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+kodj|The King of Dragons (Japan 910805)|clone|capcom/cps1.cpp|0|||||kod||Capcom
+kodu|The King of Dragons (US 910910)|clone|capcom/cps1.cpp|0|||||kod||Capcom
+kof94|The King of Fighters '94|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof95|The King of Fighters '95 (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof95a|The King of Fighters '95 (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kof95||SNK
+kof96|The King of Fighters '96 (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof96h|The King of Fighters '96 (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kof96||SNK
+kof97|The King of Fighters '97 (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof97a|The King of Fighters '97 (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kof97||SNK
+kof97pls|The King of Fighters '97 Plus (bootleg) [Bootleg, bootleg of The King of Fighters '97]|clone|neogeo/neogeo.cpp|0||||neogeo|kof97||bootleg
+kof98k|The King of Fighters '98 - the slugfest (korean release)|clone|neogeo/neogeo.cpp|0||||neogeo|kof98||SNK
+kof98n|The King of Fighters '98 - the slugfest (not encrypted)|clone|neogeo/neogeo.cpp|0||||neogeo|kof98||SNK
+kof98|The King of Fighters '98 - the slugfest|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof99e|The King of Fighters '99 - millennium battle (earlier)|clone|neogeo/neogeo.cpp|0||||neogeo|kof99||SNK
+kof99n|The King of Fighters '99 - millennium battle (not encrypted)|clone|neogeo/neogeo.cpp|0||||neogeo|kof99||SNK
+kof99p|The King of Fighters '99 - millennium battle (prototype) [Prototype]|clone|neogeo/neogeo.cpp|0||||neogeo|kof99||SNK
+kof99|The King of Fighters '99 - millennium battle (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof99a|The King of Fighters '99 - millennium battle (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kof99||SNK
+kof10th|The King of Fighters 10th Anniversary (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf2k5uni|The King of Fighters 10th Anniversary 2005 Unique (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf10thep|The King of Fighters 10th Anniversary Extra Plus (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kof2000|The King of Fighters 2000|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+kof2000n|The King of Fighters 2000 (not encrypted)|clone|neogeo/neogeo.cpp|0||||neogeo|kof2000||SNK
+kof2001|The King of Fighters 2001 (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK / Eolith
+kof2001h|The King of Fighters 2001 (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|kof2001||SNK / Eolith
+kof2002|The King of Fighters 2002 - challenge to ultimate battle|parent|neogeo/neogeo.cpp|0||||neogeo|||Eolith / Playmore Corporation
+kf2k2mp|The King of Fighters 2002 Magic Plus (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf2k2mp2|The King of Fighters 2002 Magic Plus II (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf2k2pls|The King of Fighters 2002 Plus (bootleg, set 1) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf2k2pla|The King of Fighters 2002 Plus (bootleg, set 2) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+kf2k3bl|The King of Fighters 2003 (bootleg, set 1) [Bootleg, bootleg of The King of Fighters 2003]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2003||bootleg
+kf2k3bla|The King of Fighters 2003 (bootleg, set 2) [Bootleg, bootleg of The King of Fighters 2003]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2003||bootleg
+kf2k3pcb|The King of Fighters 2003 (Japan, JAMMA PCB)|parent|neogeo/neopcb.cpp|0|||||||SNK Playmore
+kof2003|The King of Fighters 2003 (MVS)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK Playmore
+kf2k3pl|The King of Fighters 2004 Plus / Hero (bootleg) [Bootleg, bootleg of The King of Fighters 2003]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2003||bootleg
+kf2k3upl|The King of Fighters 2004 Ultra Plus (bootleg) [Bootleg, bootleg of The King of Fighters 2003]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2003||bootleg
+kof2k4se|The King of Fighters Special Edition 2004 (bootleg) [Bootleg, bootleg of The King of Fighters 2002]|clone|neogeo/neogeo.cpp|0||||neogeo|kof2002||bootleg
+lastblad|The Last Blade (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+lastbldh|The Last Blade (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|lastblad||SNK
+lastbld2|The Last Blade 2|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+lastsold|The Last Soldier [Korean version of The Last Blade]|clone|neogeo/neogeo.cpp|0||||neogeo|lastblad||SNK
+punisher|The Punisher (930422 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+punishrj|The Punisher (930422 Japan)|clone|capcom/cps1.cpp|0|||||punisher||Capcom
+punishru|The Punisher (930422 USA)|clone|capcom/cps1.cpp|0|||||punisher||Capcom
+superspy|The Super Spy|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+ssideki4|The Ultimate 11 - SNK football championship|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+trally|Thrash Rally|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+3wonders|Three Wonders (wonder 3 910520 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+3wonderu|Three Wonders (wonder 3 910520 USA)|clone|capcom/cps1.cpp|0|||||3wonders||Capcom
+thndrbd1|Thunder Blade (deluxe/standing, unprotected)|clone|sega/segaxbd.cpp|0|||||thndrbld||Sega
+thndrbld|Thunder Blade (upright, FD1094 317-0056)|parent|sega/segaxbd.cpp|0|||||||Sega
+theroes|Thunder Heroes|parent|misc/cave.cpp|0|||||||Primetek Investments
+tigerhb1|Tiger Heli (bootleg, set 1) [Bootleg]|clone|toaplan/slapfght.cpp|270|||||tigerh||Taito
+tigerhb2|Tiger Heli (bootleg, set 2) [Bootleg]|clone|toaplan/slapfght.cpp|270|||||tigerh||Taito
+tigerh|Tiger Heli (US) [Protection MCU not emulated]|parent|toaplan/slapfght.cpp|270|||||||Taito
+timesca1|Time Scanner (set 1, System 16A, FD1089B 317-0024) [Incomplete Sound]|clone|sega/segas16b.cpp|270|||||timescan||Sega
+timescan|Time Scanner (set 2, System 16B) [Incomplete Sound]|parent|sega/segas16b.cpp|270|||||||Sega
+tophuntr|Top Hunter - Roddy & Cathy (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+tophunta|Top Hunter - Roddy & Cathy (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|tophuntr||SNK
+tpgolf|Top Player's Golf|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK
+toppyrap|Toppy & Rappy|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+toryumon|Toryumon [Incomplete Sound]|parent|sega/segas16b.cpp|0|||||||Sega / Westone
+tturfu|Tough Turf (set 1, US, 8751 317-0099) [Incomplete Sound]|clone|sega/segas16b.cpp|0|||||tturf||Sega / Sunsoft
+tturf|Tough Turf (set 2, Japan, 8751 317-0104) [No Sound, Missing Z80 Program]|parent|sega/segas16b.cpp|0|||||||Sega / Sunsoft
+truxton2|Truxton II|parent|toaplan/toaplan2.cpp|270|||||||Toaplan
+truxton|Truxton|parent|toaplan/toaplan1.cpp|270|||||||[Toaplan] Taito Corporation
+toutrun|Turbo Out Run (Out Run upgrade, FD1094 317-0118)|parent|sega/segaorun.cpp|0|||||||Sega
+toutrun2|Turbo Out Run (upright, FD1094 317-unknown)|clone|sega/segaorun.cpp|0|||||toutrun||Sega
+twinadvk|Twin Adventure (Korea)|clone|kaneko/snowbros.cpp|0|||||twinadv||Barko Corp
+twinadv|Twin Adventure (World)|parent|kaneko/snowbros.cpp|0|||||||Barko Corp
+twinhwku|Twin Hawk (US)|clone|taito/taito_x.cpp|270|||||twinhawk||Taito
+twinhawk|Twin Hawk (World)|parent|taito/taito_x.cpp|270|||||||Taito
+twinkle|Twinkle|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+twinspri|Twinklestar Sprites|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK
+unsquad|U.N. Squadron (US)|parent|capcom/cps1.cpp|0|||||||Daipro / Capcom
+cawingj|U.S. Navy (901012 Japan)|clone|capcom/cps1.cpp|0|||||cawing||Capcom
+uecology|Ultimate Ecology (931203 Japan)|clone|capcom/cps2.cpp|0|||||ecofghtr||Capcom
+uopokoj|Uo Poko (Japan, ver. 1998 Feb 06)|clone|misc/cave.cpp|0|||||uopoko||Cave / Jaleco
+vfive|V-Five (Japan) [No sound (sound MCU not dumped)]|parent|toaplan/toaplan2.cpp|270|||||||Toaplan
+vliner|V-Liner (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Dyna / Brezzasoft
+vlinero|V-Liner (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|vliner||Dyna / Brezzasoft
+vampjr1|Vampire - the night warriors (940630 Japan)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+vampj|Vampire - the night warriors (940705 Japan)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+vampja|Vampire - the night warriors (940705 Japan, alt)|clone|capcom/cps2.cpp|0|||||dstlk||Capcom
+vhuntjr2|Vampire Hunter - darkstalkers' revenge (950302 Japan)|clone|capcom/cps2.cpp|0|||||nwarr||Capcom
+vhuntjr1|Vampire Hunter - darkstalkers' revenge (950307 Japan)|clone|capcom/cps2.cpp|0|||||nwarr||Capcom
+vhuntj|Vampire Hunter - darkstalkers' revenge (950316 Japan)|clone|capcom/cps2.cpp|0|||||nwarr||Capcom
+vhunt2r1|Vampire Hunter 2 - darkstalkers revenge (970913 Japan)|clone|capcom/cps2.cpp|0|||||vhunt2||Capcom
+vhunt2|Vampire Hunter 2 - darkstalkers revenge (970929 Japan)|parent|capcom/cps2.cpp|0|||||||Capcom
+vsava|Vampire Savior - the lord of vampire (970519 Asia)|clone|capcom/cps2.cpp|0|||||vsav||Capcom
+vsav|Vampire Savior - the lord of vampire (970519 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+vsavh|Vampire Savior - the lord of vampire (970519 Hispanic)|clone|capcom/cps2.cpp|0|||||vsav||Capcom
+vsavj|Vampire Savior - the lord of vampire (970519 Japan)|clone|capcom/cps2.cpp|0|||||vsav||Capcom
+vsavu|Vampire Savior - the lord of vampire (970519 USA)|clone|capcom/cps2.cpp|0|||||vsav||Capcom
+vsav2|Vampire Savior 2 - the lord of vampire (970913 Japan)|parent|capcom/cps2.cpp|0|||||||Capcom
+varthr1|Varth - operation thunderstorm (920612 etc)|clone|capcom/cps1.cpp|270|||||varth||Capcom
+varthu|Varth - operation thunderstorm (920612 USA)|clone|capcom/cps1.cpp|270|||||varth||Capcom (Romstar license)
+varth|Varth - operation thunderstorm (920714 etc)|parent|capcom/cps1.cpp|270|||||||Capcom
+varthj|Varth - operation thunderstorm (920714 Japan)|clone|capcom/cps1.cpp|270|||||varth||Capcom
+viewpoin|Viewpoint|parent|neogeo/neogeo.cpp|0||||neogeo|||Sammy
+gowcaizr|Voltage Fighter - Gowcaizer|parent|neogeo/neogeo.cpp|0||||neogeo|||Technos
+wakuwak7|Waku Waku 7|parent|neogeo/neogeo.cpp|0||||neogeo|||Sunsoft
+wof|Warriors of Fate (921002 etc)|parent|capcom/cps1.cpp|0|||||||Capcom
+wofu|Warriors of Fate (921031 USA)|clone|capcom/cps1.cpp|0|||||wof||Capcom
+willowje|Willow (Japan, English)|clone|capcom/cps1.cpp|0|||||willow||Capcom
+willowj|Willow (Japan, Japanese)|clone|capcom/cps1.cpp|0|||||willow||Capcom
+willow|Willow (US)|parent|capcom/cps1.cpp|0|||||||Capcom
+wjammers|Windjammers - flying disc game|parent|neogeo/neogeo.cpp|0||||neogeo|||Data East Corporation
+wonder3|Wonder 3 (910520 Japan)|clone|capcom/cps1.cpp|0|||||3wonders||Capcom
+wb31|Wonder Boy III - Monster Lair (set 1, System 16A, FD1094 317-0084)|clone|sega/segas16a.cpp|0|||||wb3||Sega / Westone
+wb32|Wonder Boy III - Monster Lair (set 2, Japan, System 16B, FD1094 317-0085)|clone|sega/segas16b.cpp|0|||||wb3||Sega / Westone
+wb33|Wonder Boy III - Monster Lair (set 3, World, System 16B, FD1094 317-0089)|clone|sega/segas16b.cpp|0|||||wb3||Sega / Westone
+wb34|Wonder Boy III - Monster Lair (set 4, Japan, System 16B, FD1094 317-0087)|clone|sega/segas16b.cpp|0|||||wb3||Sega / Westone
+wb3|Wonder Boy III - Monster Lair (set 5, World, System 16B, 8751 317-0098)|parent|sega/segas16b.cpp|0|||||||Sega / Westone
+wc90|World Cup '90 (set 1)|parent|tecmo/wc90.cpp|0|||||||Tecmo
+wc90a|World Cup '90 (set 2)|clone|tecmo/wc90.cpp|0|||||wc90||Tecmo
+wc90t|World Cup '90 (trackball)|clone|tecmo/wc90.cpp|0|||||wc90||Tecmo
+wh1|World Heroes (set 1)|parent|neogeo/neogeo.cpp|0||||neogeo|||Alpha Denshi Co.
+wh1h|World Heroes (set 2)|clone|neogeo/neogeo.cpp|0||||neogeo|wh1||Alpha Denshi Co.
+wh2|World Heroes 2|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK
+wh2j|World Heroes 2 Jet|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK / SNK
+whp|World Heroes Perfect|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK / SNK
+wrestwa1|Wrestle War (set 1, Japan, FD1094 317-0090) [Incomplete Sound]|clone|sega/segas16b.cpp|270|||||wrestwar||Sega
+wrestwa2|Wrestle War (set 2, World, FD1094 317-0102) [Incomplete Sound]|clone|sega/segas16b.cpp|270|||||wrestwar||Sega
+wrestwar|Wrestle War (set 3, World, 8751 317-0103) [Incomplete Sound]|parent|sega/segas16b.cpp|270|||||||Sega
+xmcotajr|X-Men - children of the atom (941208 Japan, rent version)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmcotaa|X-Men - children of the atom (941217 Asia)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmcotaj1|X-Men - children of the atom (941217 Japan)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmcotaj|X-Men - children of the atom (941219 Japan)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmcota|X-Men - children of the atom (950105 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+xmcotau|X-Men - children of the atom (950105 USA)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmcotah|X-Men - children of the atom (950331 Hispanic)|clone|capcom/cps2.cpp|0|||||xmcota||Capcom
+xmvsfjr2|X-Men vs Street Fighter (960909 Japan)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfr1|X-Men vs Street Fighter (960910 Euro)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfjr1|X-Men vs Street Fighter (960910 Japan)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfar1|X-Men vs Street Fighter (960919 Asia)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsf|X-Men vs Street Fighter (961004 Euro)|parent|capcom/cps2.cpp|0|||||||Capcom
+xmvsfh|X-Men vs Street Fighter (961004 Hispanic)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfj|X-Men vs Street Fighter (961004 Japan)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfur1|X-Men vs Street Fighter (961004 USA)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfa|X-Men vs Street Fighter (961023 Asia)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfb|X-Men vs Street Fighter (961023 Brazil)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+xmvsfu|X-Men vs Street Fighter (961023 USA)|clone|capcom/cps2.cpp|0|||||xmvsf||Capcom
+3in1semi|XESS - The New Revolution (SemiCom 3-in-1)|parent|kaneko/snowbros.cpp|0|||||||SemiCom
+zedblade|Zed Blade|parent|neogeo/neogeo.cpp|0||||neogeo|||NMK
+zerowing|Zero Wing|parent|toaplan/toaplan1.cpp|0|||||||Toaplan
+zintrckb|Zintrick (hack / bootleg) [Bootleg]|parent|neogeo/neogeo.cpp|0||||neogeo|||ADK / SNK
+zupapa|Zupapa!|parent|neogeo/neogeo.cpp|0||||neogeo|||SNK

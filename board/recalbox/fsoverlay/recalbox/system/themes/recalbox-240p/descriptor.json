@@ -1,0 +1,85 @@
+{
+  "name": "Recalbox-next for CRT",
+  "version": 1,
+  "recalbox-version": 10,
+  "author": "Recalbox",
+  "description": "Older CRT default official theme",
+  "description.fr": "Ancien thème CRT officiel par defaut",
+  "description.es": "Tema CRT oficial predeterminado anterior",
+  "description.de": "Älteres CRT offizielles Standarddesign",
+  "files": [
+    {
+      "compatibility": "crt,jamma,tate",
+      "resolutions": "qvga,vga",
+      "file": "",
+      "screenshots": [
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-59-17-688Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-59-39-326Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-59-07-741Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T23-33-06-447Z.png"
+          ]
+        },
+        {
+          "compatibility": "crt,jamma,tate",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-59-17-688Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-59-39-326Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-59-07-741Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T23-33-06-447Z.png"
+          ]
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "qvga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-25-05-273Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-32-14-190Z.png",
+            "screen/screenshot-2025-11-18T23-27-38-390Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-25-00-062Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T23-33-06-447Z.png"
+          ]
+        },
+        {
+          "compatibility": "crt,jamma",
+          "resolutions": "vga",
+          "systems": [
+            "screen/screenshot-2025-11-18T23-25-05-273Z.png"
+          ],
+          "gamelist": [
+            "screen/screenshot-2025-11-18T23-32-14-190Z.png",
+            "screen/screenshot-2025-11-18T23-27-38-390Z.png"
+          ],
+          "menus": [
+            "screen/screenshot-2025-11-18T23-25-00-062Z.png"
+          ],
+          "gameclip": [
+            "screen/screenshot-2025-11-18T23-33-06-447Z.png"
+          ]
+        }
+      ]
+    }
+  ]
+}

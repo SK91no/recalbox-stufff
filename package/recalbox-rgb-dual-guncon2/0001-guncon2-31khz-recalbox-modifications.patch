@@ -1,0 +1,743 @@
+From: Recalbox <build@recalbox.com>
+Date: Sun, 03 May 2026 18:24:16 +0200
+Subject: [PATCH] guncon2: 31kHz/15kHz support + adaptive cache + modeline-aware reset
+
+GunCon 2 driver tuned for the RGB Dual board (15kHz and 31kHz outputs)
+and for the retroarch lightgun stack:
+
+- Y 16-bit decode + sticky 8/16-bit detection, scaled to [0..480].
+  Always *2 in 8-bit Y mode (regardless of screen height): the old
+  condition 'screen_height > 240' left Y stuck in upper half in 240p.
+- Per-axis lazy cache + sentinel filtering (X=0/Y=5)
+- Off-screen detection: x_invalid_streak > 8 (~64ms) clears last_x to 0.
+- No hold_lock bump on rising edge: retroarch handles the post-flash
+  window itself (POSITION_LOCKED + adaptive deliver window).
+- mode_flags=0x0100 forced via SET_REPORT (shared 15kHz and 31kHz).
+- Drop USB soft-reset on open(): saves ~150ms latency at retroarch
+  launch. The firmware keeps mode_flags=0x0100 across sessions; we
+  still re-send the SET_REPORT and re-submit the URB.
+- Auto-cal linear X mapping with modeline-change reset: when the fb
+  'modes' string changes (15kHz <-> 31kHz, progressive <-> interlaced,
+  refresh, ...), the firmware's raw X plage shifts. We reset
+  x_auto_min/max + y_is_8bit so the new mode rebuilds bounds.
+
+Signed-off-by: Recalbox <build@recalbox.com>
+---
+--- a/guncon2.c	2022-02-23 12:05:31.000000000 +0100
++++ b/guncon2.c	2026-05-05 15:35:06.015970578 +0200
+@@ -8,11 +8,16 @@
+  */
+ #include <linux/bitops.h>
+ #include <linux/errno.h>
++#include <linux/file.h>
++#include <linux/fs.h>
+ #include <linux/input.h>
+ #include <linux/kernel.h>
++#include <linux/limits.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
+ #include <linux/slab.h>
++#include <linux/string.h>
++#include <linux/types.h>
+ #include <linux/uaccess.h>
+ #include <linux/usb.h>
+ #include <linux/usb/input.h>
+@@ -31,11 +36,276 @@
+ #define GUNCON2_BTN_START BIT(7)
+ #define GUNCON2_BTN_SELECT BIT(6)
+ 
+-// default calibration, can be updated with evdev-joystick
+-#define X_MIN 175
+-#define X_MAX 720
+-#define Y_MIN 20
+-#define Y_MAX 240
++/*
++ * Default ABS ranges. Y is decoded as a 16-bit signed value (data[5:4])
++ * matching the gun's actual report format - beardypig's original driver
++ * only read data[4] which capped Y at 255 and broke the bottom half of
++ * the screen in 480p. Calibration is done in userspace via evdev-joystick.
++ */
++#define X_MIN 0
++#define X_MAX 640           /* mapped to screen pixels via x_min_raw / x_max_raw */
++#define Y_MIN 0
++#define Y_MAX 480           /* mapped to screen pixels via y_min_raw / y_max_raw */
++
++/*
++ * USB SET_REPORT mode flags sent to the gun on open.
++ * Empirical findings on Recalbox RGB Dual 2 + 31kHz VGA monitor:
++ *   0x0100 ("TV/15kHz" in the firmware) is the ONLY setting that gives
++ *          a clean linear X reading on a 720x480 PS2-style modeline.
++ *          Raw sx goes 80..340 across the screen, NO mid-screen wrap.
++ *   0x0000 ("31kHz/480p progressive" in the firmware) makes the firmware
++ *          counter wrap mid-screen (e.g. 160..382 -> 0..288), which is
++ *          impossible to linearise without ambiguity.
++ *
++ * Default is 0x0100 because that's what works in our setup. Override
++ * with: modprobe guncon2 mode_flags=0x0000
++ */
++#define GUNCON2_MODE_AUTO 0xFFFF
++static unsigned short mode_flags = 0x0100;
++module_param(mode_flags, ushort, 0644);
++MODULE_PARM_DESC(mode_flags,
++        "GunCon2 USB mode flags (default 0x0100; 0xFFFF=auto, 0x0000=31kHz/480p)");
++
++/* Calibration offsets sent in the SET_REPORT (bytes 0-3, little-endian s16 each).
++ * Default is 0 (matches the beardypig original). Overriding may allow the gun
++ * firmware to remap its returned X/Y plage. */
++static short param_x = 0;
++static short param_y = 0;
++module_param(param_x, short, 0644);
++module_param(param_y, short, 0644);
++MODULE_PARM_DESC(param_x, "Calibration offset X sent at SET_REPORT (s16)");
++MODULE_PARM_DESC(param_y, "Calibration offset Y sent at SET_REPORT (s16)");
++
++/* Linear screen-mapping calibration (in raw, post-wrap units). Override
++ * via modprobe/sysfs to match a specific setup. The defaults match what
++ * was observed on a Recalbox RGB Dual 2 in 31kHz with the GunCon 2. */
++/* X mapping: auto-calibrated linear remap.
++ *
++ * Empirical: with mode_flags=0x0100 (15kHz "TV" mode in the firmware)
++ * AND the KMS modeline forced to 720x480 PS2 (27.027MHz, htotal=858),
++ * the gun reports X linearly without any mid-screen wrap. Raw range
++ * observed: ~80 (left edge) .. ~340 (right edge), no discontinuity.
++ *
++ * We track the min/max raw sx seen since open() and rescale linearly
++ * to [0..640]. While the spread is too small (user hasn't swept yet)
++ * we report raw sx so userland sees signal during the initial sweep.
++ */
++#define GUNCON2_X_AUTOCAL_MIN_SPREAD  80
++
++/*
++ * Mode classification rules (active fb mode height in lines):
++ *
++ *   height in [GUNCON2_HEIGHT_15K_MIN .. GUNCON2_HEIGHT_15K_MAX]  => 15kHz
++ *       covers 224 (NTSC arcade), 240 (NTSC), 288 (PAL).
++ *
++ *   height in [GUNCON2_HEIGHT_31K_MIN .. GUNCON2_HEIGHT_31K_MAX]  => 31kHz
++ *       covers 448 (NTSC arcade x2), 480 (480p NTSC) and anything in
++ *       between like 472, 478 used by some EDID-derived modelines.
++ *
++ *   anything else (including unknown / odd heights)              => 31kHz
++ *       safer default on a VGA monitor.
++ *
++ * A scan flag of 'i' (interlaced) always wins -> 15kHz.
++ */
++#define GUNCON2_HEIGHT_15K_MIN 200
++#define GUNCON2_HEIGHT_15K_MAX 320
++#define GUNCON2_HEIGHT_31K_MIN 400
++#define GUNCON2_HEIGHT_31K_MAX 600
++
++/* Active fb name fragments that correspond to the RGB Dual analog output. */
++static const char * const guncon2_dpi_fb_tags[] = {
++        "dpi", "rp1-dpi", NULL,
++};
++
++static int guncon2_read_sysfs(const char *path, char *buf, size_t buf_size)
++{
++        struct file *f;
++        loff_t pos = 0;
++        ssize_t n;
++
++        f = filp_open(path, O_RDONLY, 0);
++        if (IS_ERR(f))
++                return PTR_ERR(f);
++        n = kernel_read(f, buf, buf_size - 1, &pos);
++        filp_close(f, NULL);
++        if (n <= 0)
++                return -EIO;
++        buf[n] = '\0';
++        while (n > 0 && (buf[n - 1] == '\n' || buf[n - 1] == ' ')) {
++                buf[n - 1] = '\0';
++                n--;
++        }
++        return 0;
++}
++
++/*
++ * Walk /sys/class/graphics/fb* and find the active mode of the RGB Dual
++ * analog framebuffer (driven by rp1-dpi). The fb's reported "modes" mirrors
++ * the KMS mode currently driving that connector and is formatted as
++ *     U:WIDTHxHEIGHT[ip]-REFRESH    e.g. "U:640x480p-0", "U:1920x240p-60",
++ *                                        "U:640x480i-60"
++ * 'i' (interlaced) is always 15kHz HSYNC. Otherwise progressive height <= 288
++ * is 15kHz (240p / 288p), the rest is 31kHz+ (480p / VGA / higher).
++ */
++static unsigned short guncon2_autodetect_mode(void)
++{
++        char path[80];
++        char name[64];
++        char modes[96];
++        const char *p;
++        int fb, height, i;
++        char scan;
++        bool match;
++
++        for (fb = 0; fb < 16; fb++) {
++                match = false;
++
++                scnprintf(path, sizeof(path), "/sys/class/graphics/fb%d/name", fb);
++                if (guncon2_read_sysfs(path, name, sizeof(name)) != 0)
++                        continue;
++
++                for (i = 0; guncon2_dpi_fb_tags[i]; i++) {
++                        if (strstr(name, guncon2_dpi_fb_tags[i])) {
++                                match = true;
++                                break;
++                        }
++                }
++                if (!match)
++                        continue;
++
++                scnprintf(path, sizeof(path), "/sys/class/graphics/fb%d/modes", fb);
++                if (guncon2_read_sysfs(path, modes, sizeof(modes)) != 0)
++                        continue;
++
++                /* find "x" then parse decimal HEIGHT and the trailing scan flag */
++                p = strchr(modes, 'x');
++                if (!p)
++                        continue;
++                p++;
++                height = 0;
++                while (*p >= '0' && *p <= '9') {
++                        height = height * 10 + (*p - '0');
++                        p++;
++                }
++                scan = *p; /* 'p', 'i', or anything else */
++
++                if (scan == 'i') {
++                        pr_info("guncon2: %s (fb%d) %s -> interlaced, 15kHz\n",
++                                name, fb, modes);
++                        return 0x0100;
++                }
++                if (height >= GUNCON2_HEIGHT_15K_MIN
++                    && height <= GUNCON2_HEIGHT_15K_MAX) {
++                        pr_info("guncon2: %s (fb%d) %s -> %dp (15kHz range %d-%d)\n",
++                                name, fb, modes, height,
++                                GUNCON2_HEIGHT_15K_MIN, GUNCON2_HEIGHT_15K_MAX);
++                        return 0x0100;
++                }
++                if (height >= GUNCON2_HEIGHT_31K_MIN
++                    && height <= GUNCON2_HEIGHT_31K_MAX) {
++                        pr_info("guncon2: %s (fb%d) %s -> %dp (31kHz range %d-%d)\n",
++                                name, fb, modes, height,
++                                GUNCON2_HEIGHT_31K_MIN, GUNCON2_HEIGHT_31K_MAX);
++                        return 0x0000;
++                }
++
++                pr_info("guncon2: %s (fb%d) %s -> %dp (no-rule, defaulting 31kHz)\n",
++                        name, fb, modes, height);
++                return 0x0000;
++        }
++
++        pr_info("guncon2: no DPI fb found -> defaulting to 31kHz\n");
++        return 0x0000;
++}
++
++static unsigned short guncon2_resolve_mode(void)
++{
++        if (mode_flags == GUNCON2_MODE_AUTO)
++                return guncon2_autodetect_mode();
++        return mode_flags;
++}
++
++/* Read the active fb "modes" string for the DPI framebuffer. The mirror
++ * exposes the KMS modeline currently driving this connector (resolution,
++ * scan flag, refresh). Used as a signature to detect modeline switches
++ * (15kHz <-> 31kHz, progressive <-> interlaced, refresh changes...) and
++ * trigger an auto-cal reset on the X axis. Returns 0 on success. */
++static int guncon2_get_fb_modes(char *out, size_t out_size)
++{
++        char path[80];
++        char name[64];
++        int fb, i;
++
++        for (fb = 0; fb < 16; fb++) {
++                bool match = false;
++
++                scnprintf(path, sizeof(path),
++                          "/sys/class/graphics/fb%d/name", fb);
++                if (guncon2_read_sysfs(path, name, sizeof(name)) != 0)
++                        continue;
++                for (i = 0; guncon2_dpi_fb_tags[i]; i++) {
++                        if (strstr(name, guncon2_dpi_fb_tags[i])) {
++                                match = true;
++                                break;
++                        }
++                }
++                if (!match)
++                        continue;
++
++                scnprintf(path, sizeof(path),
++                          "/sys/class/graphics/fb%d/modes", fb);
++                return guncon2_read_sysfs(path, out, out_size);
++        }
++        return -ENOENT;
++}
++
++/* Read the active framebuffer resolution from /sys/class/graphics/fbN/
++ * virtual_size. We pick the same DPI fb that auto-detects the mode. On
++ * success, *width and *height are set to the active screen dimensions.
++ * Returns 0 on success, negative errno otherwise. */
++static int guncon2_get_screen_size(int *width, int *height)
++{
++        char path[80];
++        char name[64];
++        char size[32];
++        int fb, i;
++
++        for (fb = 0; fb < 16; fb++) {
++                bool match = false;
++
++                scnprintf(path, sizeof(path), "/sys/class/graphics/fb%d/name", fb);
++                if (guncon2_read_sysfs(path, name, sizeof(name)) != 0)
++                        continue;
++                for (i = 0; guncon2_dpi_fb_tags[i]; i++) {
++                        if (strstr(name, guncon2_dpi_fb_tags[i])) {
++                                match = true;
++                                break;
++                        }
++                }
++                if (!match)
++                        continue;
++
++                scnprintf(path, sizeof(path),
++                          "/sys/class/graphics/fb%d/virtual_size", fb);
++                if (guncon2_read_sysfs(path, size, sizeof(size)) != 0)
++                        continue;
++                {
++                        char *comma = strchr(size, ',');
++                        int w, h;
++                        if (!comma)
++                                continue;
++                        *comma = '\0';
++                        if (kstrtoint(size, 10, &w) != 0)
++                                continue;
++                        if (kstrtoint(comma + 1, 10, &h) != 0)
++                                continue;
++                        *width = w;
++                        *height = h;
++                        return 0;
++                }
++        }
++        return -ENOENT;
++}
+ 
+ struct guncon2 {
+     struct input_dev *input_device;
+@@ -44,8 +314,63 @@
+     struct mutex pm_mutex;
+     bool is_open;
+     char phys[64];
++    unsigned int x_scale;       /* 1 in 15kHz, 2 in 31kHz */
++    s16 last_raw_x;             /* previous valid raw X (pre-scale) */
++    int x_wrap_offset;          /* 0 on left half, GUNCON2_WRAP_PERIOD on right half */
++    /* Active framebuffer resolution (read from /sys/class/graphics/fbN/
++     * virtual_size at open() time). Used to scale the gun's raw position
++     * to actual screen pixels. */
++    int screen_width;
++    int screen_height;
++    /* Previous fb "modes" string (e.g. "U:640x480p-60" or
++     * "U:640x480i-50"). When this changes we have a modeline switch
++     * (15kHz <-> 31kHz, progressive <-> interlaced, etc.) which makes
++     * the firmware's raw X plage shift. We reset the auto-cal so the
++     * new mode learns its own bounds. Resolution alone isn't enough:
++     * 480p and 480i both report height=480 but use very different
++     * htotal -> different raw X readings. */
++    char prev_modes[96];
++    /* Last good (x, y) from a complete lock. We keep reporting it as long
++     * as the gun emits sentinels - typically right after a screen flash
++     * fades, when the photodiode no longer has a strong enough signal but
++     * the userspace consumer (RetroArch / fbneo) still polls for the shot
++     * position during the release queue. */
++    unsigned short last_x;
++    unsigned short last_y;
++    bool last_valid;
++    /* Number of consecutive USB polls where the firmware reported an
++     * invalid sample for the given axis. After enough invalid polls
++     * we conclude the gun is pointed off-screen and reset the cache
++     * to 0 so the libretro layer sees an off-screen shot (used by
++     * games like House of the Dead 2 to trigger reload). */
++    unsigned x_invalid_streak;
++    unsigned y_invalid_streak;
++    /* "Hold lock" counter: after a valid X+Y sample, we ignore
++     * sentinels for this many USB polls so the core has a stable
++     * window to poll the position right after the flash. */
++    unsigned hold_lock;
++    /* Previous trigger button state, to detect rising edge and
++     * extend hold_lock through the photodiode re-lock window. */
++    bool prev_trigger;
++    /* Sticky flag: starts true, flips to false on the first Y sample where
++     * data[5] != 0 (i.e. gun reported a 16-bit Y > 255). Once flipped, we
++     * stop doubling Y because the gun is delivering proper 480p coords. */
++    bool y_is_8bit;
++    /* Auto-cal of raw X plage. Linear remap once spread is wide enough. */
++    int x_auto_min;
++    int x_auto_max;
+ };
+ 
++/*
++ * In 31kHz the gun's internal pixel-clock counter wraps around ~384 (0x180)
++ * mid-screen. We track the wrap by watching for a sudden drop from a high
++ * raw X to a low raw X (and the reverse) and accumulate an offset of one
++ * GUNCON2_WRAP_PERIOD to expose a continuous range to userspace.
++ */
++#define GUNCON2_WRAP_PERIOD 384
++#define GUNCON2_WRAP_HIGH   300
++#define GUNCON2_WRAP_LOW    80
++
+ struct gc_mode {
+     unsigned short a;
+     unsigned char b;
+@@ -87,9 +412,150 @@
+     }
+ 
+     if (urb->actual_length == 6) {
+-        /* Aiming */
+-        x = (data[3] << 8) | data[2];
+-        y = data[4];
++        /* Per PCSX2/Nuvee reference: bytes 0-1=buttons, 2-3=pos_x (s16),
++         * 4-5=pos_y (s16). beardypig's original driver decoded only data[4]
++         * for Y, which capped Y at 255 and lost the bottom half of the
++         * screen in 480p.
++         *
++         * Hardware quirk: on some firmware revs, even when the screen is
++         * 31kHz/480p (so the gun should report Y in 0..480), the gun keeps
++         * reporting Y as 8-bit (data[5]==0, Y in 0..240). We can't fix that
++         * via SET_REPORT (mode_flags doesn't influence it). Workaround: if
++         * the active screen height > 240 and the gun is reporting 8-bit Y,
++         * double the value to stretch it back over the full screen.
++         */
++        {
++                s16 sx = (s16)((data[3] << 8) | data[2]);
++                s16 sy = (s16)((data[5] << 8) | data[4]);
++                /* The firmware emits several flavours of sentinel
++                 * when it cannot lock X: 0xffff (=-1), 0x3fff (=16383)
++                 * and 0x7fff (=32767). Only 0xffff is rejected by a
++                 * naive "sx > 1" test, so the others used to poison
++                 * the auto-cal min/max with absurd values and break
++                 * the linear mapping. Cap to something compatible
++                 * with the widest plausible htotal. */
++                bool x_valid = (sx > 1 && sx < 4096);
++                /* The firmware also reports Y values that fall in
++                 * the vblank zone (sy > screen_height) which then
++                 * snap back to garbage when the gun loses lock. Treat
++                 * anything above the visible region as invalid so we
++                 * keep the last good cached Y instead of bouncing. */
++                bool y_valid = (sy > 4 && sy < 4096
++                                && sy <= guncon2->screen_height);
++
++                /* Sticky 8/16-bit Y detection. The firmware starts
++                 * out reporting Y as 8-bit (data[5]==0) and switches
++                 * to 16-bit once it has seen a Y > 255. We commit on
++                 * the first 16-bit sample and keep the decision for
++                 * the rest of the session — mixing per-sample causes
++                 * Y "wrap" jumps between an 8-bit-doubled 480 and a
++                 * 16-bit raw ~260. */
++                if (y_valid && data[5] != 0)
++                        guncon2->y_is_8bit = false;
++                /* Always scale 8-bit Y from [0..240] to [0..480] so it
++                 * matches the announced ABS_Y range (Y_MAX=480). The
++                 * old condition `screen_height > 240` made this skip
++                 * in 240p modes where the firmware really reports
++                 * 8-bit Y, leaving Y stuck in the upper half. */
++                if (y_valid && guncon2->y_is_8bit)
++                        sy = (s16)(sy * 2);
++
++                /* Auto-cal linear X mapping (no wrap on this modeline). */
++                if (x_valid) {
++                        if (sx < guncon2->x_auto_min)
++                                guncon2->x_auto_min = sx;
++                        if (sx > guncon2->x_auto_max)
++                                guncon2->x_auto_max = sx;
++                        if (guncon2->x_auto_max - guncon2->x_auto_min
++                            >= GUNCON2_X_AUTOCAL_MIN_SPREAD) {
++                                int den = guncon2->x_auto_max
++                                        - guncon2->x_auto_min;
++                                long mapped =
++                                    (long)(sx - guncon2->x_auto_min)
++                                    * 640 / den;
++                                if (mapped < 0) mapped = 0;
++                                if (mapped > 640) mapped = 640;
++                                sx = (s16)mapped;
++                        }
++                }
++
++                /* Per-axis lazy cache: when the gun has a valid value on an
++                 * axis (whether or not the other axis locked too) we update
++                 * the cache; on sentinel we keep the previously cached
++                 * value. This way the frontend reads the most recent good
++                 * position on each axis even when the gun is busy emitting
++                 * sentinels (post-flash, gun pointed off-screen, ...). */
++                /* Detect trigger rising edge.
++                 * Userland (retroarch lightgun stack) handles the
++                 * post-flash window itself: it captures the position
++                 * lock as soon as a fresh sample lands, and falls back
++                 * to off-screen if no fresh arrives during the deliver
++                 * window. So we no longer extend hold_lock at rising —
++                 * we let the normal x_invalid_streak path mark the
++                 * cache as off-screen quickly when the gun is pointed
++                 * outside. */
++                {
++                    unsigned short cur_btns =
++                        ((data[0] << 8) | data[1]) ^ 0xffff;
++                    bool trig_now = (cur_btns & GUNCON2_TRIGGER) != 0;
++                    guncon2->prev_trigger = trig_now;
++                }
++
++                /* When we get a fully valid sample (both axes),
++                 * arm a hold lock so we don't immediately overwrite
++                 * the cache with a sentinel sample on the next USB
++                 * poll. Gives the core a wider window to read a
++                 * stable position after the flash. */
++                if (x_valid && y_valid) {
++                        guncon2->last_x = (unsigned short)sx;
++                        guncon2->last_y = (unsigned short)sy;
++                        guncon2->last_valid = true;
++                        guncon2->x_invalid_streak = 0;
++                        guncon2->y_invalid_streak = 0;
++                        guncon2->hold_lock = 5;  /* ~40 ms hold */
++                } else if (guncon2->hold_lock > 0) {
++                        /* Inside the hold window: ignore the sentinel
++                         * sample, keep cached values. */
++                        guncon2->hold_lock--;
++                } else {
++                        if (x_valid) {
++                                guncon2->last_x = (unsigned short)sx;
++                                guncon2->last_valid = true;
++                                guncon2->x_invalid_streak = 0;
++                        } else {
++                                guncon2->x_invalid_streak++;
++                                /* Only zero the cache when BOTH axes
++                                 * have been invalid for a while: a
++                                 * single-axis sentinel is a firmware
++                                 * mute (e.g. Y=4 stuck during HotD2
++                                 * trigger hold while X still tracks)
++                                 * — keep the previous valid value so
++                                 * the core doesn't see a fake
++                                 * off-screen. */
++                                if (guncon2->x_invalid_streak > 8
++                                    && guncon2->y_invalid_streak > 8)
++                                        guncon2->last_x = 0;
++                        }
++                        if (y_valid) {
++                                guncon2->last_y = (unsigned short)sy;
++                                guncon2->last_valid = true;
++                                guncon2->y_invalid_streak = 0;
++                        } else {
++                                guncon2->y_invalid_streak++;
++                                if (guncon2->y_invalid_streak > 8
++                                    && guncon2->x_invalid_streak > 8)
++                                        guncon2->last_y = 0;
++                        }
++                }
++
++                /* Always report the cached values. Before any valid
++                 * sample is seen last_x/last_y are 0, so userland gets
++                 * a stable 0 instead of the firmware sentinels (which
++                 * alternate sx=0/sx=1 every USB poll and pollute
++                 * downstream input handling). */
++                x = guncon2->last_x;
++                y = guncon2->last_y;
++        }
+ 
+         input_report_abs(guncon2->input_device, ABS_X, x);
+         input_report_abs(guncon2->input_device, ABS_Y, y);
+@@ -135,36 +601,94 @@
+                 __func__, error);
+ }
+ 
+-static int guncon2_open(struct input_dev *input) {
+-    unsigned char *gmode;
+-    struct guncon2 *guncon2 = input_get_drvdata(input);
++/* Refresh screen size from sysfs, send the SET_REPORT and submit the URB.
++ * Shared between open() (when no reset has been queued) and post_reset()
++ * (after a soft-reset triggered by open() or first probe). */
++static int guncon2_send_setup_and_submit(struct guncon2 *guncon2)
++{
+     struct usb_device *usb_dev = interface_to_usbdev(guncon2->intf);
++    unsigned char *gmode;
++    unsigned short m;
+     int retval;
+-    mutex_lock(&guncon2->pm_mutex);
+ 
+     gmode = kzalloc(6, GFP_KERNEL);
+     if (!gmode)
+         return -ENOMEM;
+ 
+-    /* set the mode to normal 50Hz mode */
+-    gmode[5] = 1;
++    m = guncon2_resolve_mode();
++    gmode[0] = (unsigned char)(param_x & 0xff);
++    gmode[1] = (unsigned char)((param_x >> 8) & 0xff);
++    gmode[2] = (unsigned char)(param_y & 0xff);
++    gmode[3] = (unsigned char)((param_y >> 8) & 0xff);
++    gmode[4] = m & 0xff;
++    gmode[5] = (m >> 8) & 0xff;
++    guncon2->x_scale = (m == 0x0100) ? 1 : 2;
++
++    {
++        int w = 320, h = 240;
++        char modes[96] = "";
++        if (guncon2_get_screen_size(&w, &h) == 0)
++            dev_info(&guncon2->intf->dev,
++                     "guncon2: screen size %dx%d (from fb)\n", w, h);
++        else
++            dev_info(&guncon2->intf->dev,
++                     "guncon2: screen size %dx%d (fallback)\n", w, h);
++        guncon2->screen_width  = w;
++        guncon2->screen_height = h;
++        /* Detect modeline change via the fb "modes" string: it embeds
++         * resolution + scan flag + refresh, so it differentiates 480p
++         * (31kHz) from 480i (15kHz) which share the same height. When
++         * the mode changes, the firmware's raw X plage shifts and the
++         * auto-cal min/max are stale -> reset them. */
++        if (guncon2_get_fb_modes(modes, sizeof(modes)) == 0
++            && strncmp(modes, guncon2->prev_modes,
++                       sizeof(guncon2->prev_modes)) != 0) {
++            dev_info(&guncon2->intf->dev,
++                     "guncon2: modeline changed ('%s' -> '%s'), "
++                     "reset X auto-cal + Y bit width\n",
++                     guncon2->prev_modes, modes);
++            guncon2->x_auto_min = INT_MAX;
++            guncon2->x_auto_max = INT_MIN;
++            /* Y is sticky 8/16-bit: starts true, flips to false on
++             * the first 16-bit sample seen. Reset on mode change so
++             * a 240p run after a 480p run re-detects 8-bit Y instead
++             * of staying in 16-bit (which would skip the *2 scaling
++             * and leave Y stuck in the upper half of the screen). */
++            guncon2->y_is_8bit = true;
++            strscpy(guncon2->prev_modes, modes,
++                    sizeof(guncon2->prev_modes));
++        }
++    }
++    dev_info(&guncon2->intf->dev,
++             "guncon2: SET_REPORT param_x=%d param_y=%d mode_flags=0x%04x%s x_scale=%u\n",
++             (int)param_x, (int)param_y, m,
++             mode_flags == GUNCON2_MODE_AUTO ? " (auto)" : " (forced)",
++             guncon2->x_scale);
+     usb_control_msg(usb_dev, usb_sndctrlpipe(usb_dev, 0),
+                     0x09, 0x21, 0x200, 0, gmode, 6, 100000);
+-
+     kfree(gmode);
+ 
+     retval = usb_submit_urb(guncon2->urb, GFP_KERNEL);
+     if (retval) {
+         dev_err(&guncon2->intf->dev,
+-                "%s - usb_submit_urb failed, error: %d\n",
+-                __func__, retval);
+-        retval = -EIO;
+-        goto out;
++                "guncon2: usb_submit_urb failed: %d\n", retval);
++        return -EIO;
+     }
++    return 0;
++}
+ 
+-    guncon2->is_open = true;
++static int guncon2_open(struct input_dev *input) {
++    struct guncon2 *guncon2 = input_get_drvdata(input);
++    int retval;
+ 
+-out:
++    mutex_lock(&guncon2->pm_mutex);
++    guncon2->is_open = true;
++    /* Skip the USB soft-reset (saves ~150ms latency at retroarch
++     * launch). The firmware keeps mode_flags=0x0100 across sessions,
++     * and that mode is shared between 15kHz and 31kHz outputs.
++     * We still re-send the SET_REPORT for safety, and we have to
++     * re-submit the URB since close() killed it. */
++    retval = guncon2_send_setup_and_submit(guncon2);
+     mutex_unlock(&guncon2->pm_mutex);
+     return retval;
+ }
+@@ -192,6 +716,10 @@
+     void *xfer_buf;
+     int error;
+ 
++    /* USB soft-reset is scheduled at the END of probe (see below) once
++     * intfdata is populated, so pre_reset/post_reset run safely with a
++     * valid `guncon2` pointer and the input device stays attached. */
++
+     /*
+    * Locate the endpoint information. This device only has an
+    * interrupt endpoint.
+@@ -210,6 +738,15 @@
+ 
+     mutex_init(&guncon2->pm_mutex);
+     guncon2->intf = intf;
++    guncon2->x_scale = 1;       /* updated at open() based on detected video mode */
++    guncon2->last_raw_x = 0;
++    guncon2->x_wrap_offset = 0;
++    guncon2->last_x = 0;
++    guncon2->last_y = 0;
++    guncon2->last_valid = false;
++    guncon2->y_is_8bit = true;
++    guncon2->x_auto_min = INT_MAX;
++    guncon2->x_auto_max = INT_MIN;
+ 
+     usb_set_intfdata(guncon2->intf, guncon2);
+ 
+@@ -229,7 +766,10 @@
+     /* set to URB for the interrupt interface  */
+     usb_fill_int_urb(guncon2->urb, udev,
+                      usb_rcvintpipe(udev, epirq->bEndpointAddress),
+-                     xfer_buf, xfer_size, guncon2_usb_irq, guncon2, 1);
++                     xfer_buf, xfer_size, guncon2_usb_irq, guncon2,
++                     epirq->bInterval);
++    dev_info(&intf->dev, "guncon2: native bInterval=%d (REVERT-CHECK)\n",
++             epirq->bInterval);
+ 
+     /* get path tree for the usb device */
+     usb_make_path(udev, guncon2->phys, sizeof(guncon2->phys));
+@@ -277,6 +817,23 @@
+     if (error)
+         return error;
+ 
++    /* On the first probe of this module load, schedule an asynchronous USB
++     * soft-reset. This brings the gun's firmware to a clean known state -
++     * useful after rmmod/insmod cycles where the firmware otherwise stays
++     * stuck in a degraded mode (X locked on sentinel 0x0001, Y locked at
++     * 8-bit). The reset triggers pre_reset / reset / post_reset callbacks;
++     * we keep intfdata populated so those callbacks find a valid pointer.
++     * Subsequent probe() calls (after re-enumeration) are skipped. */
++    {
++        static bool reset_done = false;
++        if (!reset_done) {
++            reset_done = true;
++            dev_info(&intf->dev,
++                     "guncon2: scheduling USB device soft-reset\n");
++            usb_queue_reset_device(intf);
++        }
++    }
++
+     return 0;
+ }
+ 
+@@ -311,7 +868,10 @@
+ 
+ static int guncon2_pre_reset(struct usb_interface *intf) {
+     struct guncon2 *guncon2 = usb_get_intfdata(intf);
+-
++    /* When the queued reset fires from the first-probe shortcut, intfdata
++     * has not been populated yet - just bail. */
++    if (!guncon2)
++        return 0;
+     mutex_lock(&guncon2->pm_mutex);
+     usb_kill_urb(guncon2->urb);
+     return 0;
+@@ -320,9 +880,12 @@
+ static int guncon2_post_reset(struct usb_interface *intf) {
+     struct guncon2 *guncon2 = usb_get_intfdata(intf);
+     int retval = 0;
+-
+-    if (guncon2->is_open && usb_submit_urb(guncon2->urb, GFP_KERNEL) < 0) {
+-        retval = -EIO;
++    if (!guncon2)
++        return 0;
++    if (guncon2->is_open) {
++        /* The soft-reset wiped the gun's state; re-send the SET_REPORT
++         * and re-submit the URB so userland gets fresh inputs. */
++        retval = guncon2_send_setup_and_submit(guncon2);
+     }
+ 
+     mutex_unlock(&guncon2->pm_mutex);

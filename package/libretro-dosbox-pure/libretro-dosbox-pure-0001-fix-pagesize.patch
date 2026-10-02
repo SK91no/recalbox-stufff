@@ -1,0 +1,55 @@
+From 69a8402043d992ab6e595917c4ec16bc041f5b49 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 21 Jan 2025 17:21:12 +0100
+Subject: [PATCH] fix pagesize
+
+---
+ Makefile            | 6 ++++++
+ src/cpu/dyn_cache.h | 7 ++++++-
+ 2 files changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index 40f9267..07df58e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -211,6 +211,12 @@ else
+   LDFLAGS  += -O2
+ endif
+ 
++# RPi5 pagesize optimization
++PAGESIZE16K   := 0
++ifeq ($(PAGESIZE16K), 1)
++  CFLAGS += -DPAGESIZE16K
++endif
++
+ CFLAGS  += $(CPUFLAGS) -std=gnu++11 -fomit-frame-pointer -fexceptions -Wno-address-of-packed-member -Wno-format -Wno-switch -Wno-psabi
+ ifneq ($(STATIC_LINKING), 1)
+   CFLAGS  += -fpic
+diff --git a/src/cpu/dyn_cache.h b/src/cpu/dyn_cache.h
+index c9c4d63..6fd027c 100644
+--- a/src/cpu/dyn_cache.h
++++ b/src/cpu/dyn_cache.h
+@@ -676,7 +676,11 @@ static void cache_block_closing(const Bit8u* block_start,Bitu block_size);
+ 
+ /* Define temporary pagesize so the MPROTECT case and the regular case share as much code as possible */
+ #if (C_HAVE_MPROTECT)
+-#define PAGESIZE_TEMP PAGESIZE
++	#ifdef PAGESIZE16K
++		#define PAGESIZE_TEMP 16384
++	#else
++		#define PAGESIZE_TEMP PAGESIZE
++	#endif
+ #else 
+ #define PAGESIZE_TEMP 4096
+ #endif
+@@ -734,6 +738,7 @@ static void cache_init(bool enable) {
+ 			cache_code=cache_code+PAGESIZE_TEMP;
+ 
+ #if (C_HAVE_MPROTECT)
++			LOG_MSG("Pagesize: %d", PAGESIZE_TEMP);
+ 			if(mprotect(cache_code_link_blocks,CACHE_TOTAL+CACHE_MAXSIZE+PAGESIZE_TEMP,PROT_WRITE|PROT_READ|PROT_EXEC))
+ 				LOG_MSG("Setting execute permission on the code cache has failed");
+ #endif
+-- 
+2.48.1
+

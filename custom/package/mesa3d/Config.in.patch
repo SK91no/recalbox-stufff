@@ -1,0 +1,125 @@
+diff --git a/package/mesa3d/Config.in b/package/mesa3d/Config.in
+index d8ea22ac91..e6f0576cd8 100644
+--- a/package/mesa3d/Config.in
++++ b/package/mesa3d/Config.in
+@@ -50,7 +50,8 @@ config BR2_PACKAGE_MESA3D_OPENCL
+ 	bool "OpenCL support"
+ 	depends on BR2_PACKAGE_MESA3D_LLVM
+ 	depends on BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_R600 || \
+-		BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_RADEONSI
++		BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_RADEONSI || \
++		BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_IRIS
+ 	select BR2_PACKAGE_LLVM_RTTI
+ 	select BR2_PACKAGE_CLANG
+ 	select BR2_PACKAGE_LIBCLC
+@@ -129,10 +130,18 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_I915
+ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_IRIS
+ 	bool "Gallium iris driver"
+ 	depends on BR2_i386 || BR2_x86_64
++	depends on BR2_PACKAGE_MESA3D_LLVM
+ 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
++	select BR2_PACKAGE_MESA3D_OPENCL
++	select BR2_PACKAGE_SPIRV_LLVM_TRANSLATOR
++	select BR2_PACKAGE_SPIRV_TOOLS
+ 	help
+ 	  Mesa driver for iris-based Intel GPUs.
+ 
++comment "iris driver needs llvm"
++	depends on BR2_i386 || BR2_x86_64
++	depends on !BR2_PACKAGE_MESA3D_LLVM
++
+ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_LIMA
+ 	bool "Gallium lima driver"
+ 	depends on BR2_TOOLCHAIN_HAS_SYNC_4 || !BR2_PACKAGE_XORG7 # libxshmfence
+@@ -140,6 +149,17 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_LIMA
+ 	help
+ 	  Mesa driver for ARM Mali Utgard GPUs.
+ 
++config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_LLVMPIPE
++	bool "Gallium llvmpipe driver"
++	depends on BR2_PACKAGE_MESA3D_LLVM
++	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
++	help
++	  This is a llvm opengl implementation using the Gallium3D
++	  infrastructure.
++
++comment "llvmpipe driver needs llvm"
++	depends on !BR2_PACKAGE_MESA3D_LLVM
++
+ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_NOUVEAU
+ 	bool "Gallium nouveau driver"
+ 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
+@@ -212,8 +232,8 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SVGA
+ 	help
+ 	  This is a virtual GPU driver for VMWare virtual machines.
+ 
+-config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SWRAST
+-	bool "Gallium swrast driver"
++config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_SOFTPIPE
++	bool "Gallium softpipe driver"
+ 	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
+ 	help
+ 	  This is a software opengl implementation using the Gallium3D
+@@ -262,6 +282,19 @@ config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VIRGL
+ 	  virgl is the 3D acceleration backend for the virtio-gpu
+ 	  shipping with qemu.
+ 
++config BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_ZINK
++	bool "Gallium zink driver"
++	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER
++	select BR2_PACKAGE_MESA3D_OPENGL_ES
++	select BR2_PACKAGE_MESA3D_OPENGL_EGL
++	select BR2_PACKAGE_MESA3D_OPENGL_GLX        if BR2_PACKAGE_XORG7
++	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER
++	help
++	  The Zink driver is a Gallium driver that emits Vulkan
++	  API calls instead of targeting a specific GPU architecture.
++	  This can be used to get full desktop OpenGL support on devices
++	  that only support Vulkan.
++
+ config BR2_PACKAGE_MESA3D_VDPAU
+ 	bool "Gallium VDPAU state tracker"
+ 	depends on BR2_PACKAGE_XORG7
+@@ -306,6 +339,42 @@ comment "intel vulkan needs a glibc toolchain w/ headers >= 3.17"
+ 	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
+ 		!BR2_TOOLCHAIN_USES_GLIBC
+ 
++config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_HASWELL
++	bool "Vulkan Haswell driver"
++	depends on BR2_i386 || BR2_x86_64
++	depends on BR2_TOOLCHAIN_HAS_SYNC_4 || !BR2_PACKAGE_XORG7 # libxshmfence
++	depends on BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 # memfd.h
++	depends on BR2_TOOLCHAIN_USES_GLIBC # ifunc, static_assert
++	select BR2_PACKAGE_MESA3D_DRI3 if BR2_PACKAGE_XORG7
++	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER
++	help
++	  Vulkan driver for older Intel Gen7/Gen8 GPU.
++
++comment "intel haswell vulkan needs a glibc toolchain w/ headers >= 3.17"
++	depends on BR2_i386 || BR2_x86_64
++	depends on BR2_TOOLCHAIN_HAS_SYNC_4 || !BR2_PACKAGE_XORG7
++	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
++		!BR2_TOOLCHAIN_USES_GLIBC
++
++config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_AMD
++	bool "Vulkan AMD Radeon driver"
++	depends on BR2_i386 || BR2_x86_64
++	depends on BR2_TOOLCHAIN_HAS_SYNC_4 # libxshmfence
++	depends on BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 # memfd.h
++	depends on BR2_TOOLCHAIN_USES_GLIBC # ifunc, static_assert
++	depends on BR2_PACKAGE_XORG7 # xorgproto
++	select BR2_PACKAGE_MESA3D_VULKAN_DRIVER
++	select BR2_PACKAGE_XORGPROTO
++	select BR2_PACKAGE_XLIB_LIBXSHMFENCE
++	help
++	  Vulkan driver for AMD Radeon GPU.
++
++comment "radeon vulkan depends on X.org and needs a glibc toolchain w/ headers >= 3.17"
++	depends on BR2_i386 || BR2_x86_64
++	depends on BR2_TOOLCHAIN_HAS_SYNC_4
++	depends on !BR2_TOOLCHAIN_HEADERS_AT_LEAST_3_17 || \
++		!BR2_TOOLCHAIN_USES_GLIBC || !BR2_PACKAGE_XORG7
++
+ config BR2_PACKAGE_MESA3D_VULKAN_DRIVER_SWRAST
+ 	bool "Vulkan swrast driver"
+ 	depends on BR2_PACKAGE_MESA3D_LLVM

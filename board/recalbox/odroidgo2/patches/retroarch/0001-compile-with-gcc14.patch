@@ -1,0 +1,13 @@
+diff --git a/gfx/drivers_context/drm_go2_ctx.c b/gfx/drivers_context/drm_go2_ctx.c
+index 856aa0f..4233b21 100644
+--- a/gfx/drivers_context/drm_go2_ctx.c
++++ b/gfx/drivers_context/drm_go2_ctx.c
+@@ -66,7 +66,7 @@
+ #ifndef EGL_PLATFORM_GBM_KHR
+ #define EGL_PLATFORM_GBM_KHR 0x31D7
+ #endif
+-
++extern void gl_clear();
+ typedef struct gfx_ctx_go2_drm_data
+ {
+ #ifdef HAVE_EGL

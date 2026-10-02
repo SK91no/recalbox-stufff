@@ -1,0 +1,55 @@
+From 7185c364d2d744bb6df18f9899d49ed2862d94ff Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 21 Oct 2025 11:09:32 +0100
+Subject: [PATCH 3/4] recalbox bios paths
+
+---
+ Source/Core/Core/BootManager.cpp         | 4 ++--
+ Source/Core/Core/Config/MainSettings.cpp | 2 +-
+ Source/Core/DolphinLibretro/Boot.cpp     | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Source/Core/Core/BootManager.cpp b/Source/Core/Core/BootManager.cpp
+index 222b8eca70..27616ec00b 100644
+--- a/Source/Core/Core/BootManager.cpp
++++ b/Source/Core/Core/BootManager.cpp
+@@ -197,8 +197,8 @@ bool BootCore(Core::System& system, std::unique_ptr<BootParameters> boot,
+     {
+       // Check for "<system_dir>/dolphin-emu/Sys/GC/<region>/IPL.bin"
+       // and "<save_dir>/User/GC/<region>/IPL.bin" respectively
+-      skip_ipl = !(File::Exists(File::GetSysDirectory() + GC_SYS_DIR DIR_SEP + ipl_path) ||
+-                   File::Exists(File::GetUserPath(D_GCUSER_IDX) + ipl_path));
++      skip_ipl = !(File::Exists(File::GetSysDirectory() + ipl_path) ||
++                   File::Exists(std::string("/recalbox/share/bios/gamecube/") + ipl_path));
+     }
+ 
+     // If the file is missing or if the returned region is unknown we set Config::MAIN_SKIP_IPL
+diff --git a/Source/Core/Core/Config/MainSettings.cpp b/Source/Core/Core/Config/MainSettings.cpp
+index 4e06ec3713..7a5a86669f 100644
+--- a/Source/Core/Core/Config/MainSettings.cpp
++++ b/Source/Core/Core/Config/MainSettings.cpp
+@@ -678,7 +678,7 @@ const char* GetDirectoryForRegion(DiscIO::Region region, RegionDirectoryStyle st
+ std::string GetBootROMPath(const std::string& region_directory)
+ {
+   const std::string path =
+-      File::GetUserPath(D_GCUSER_IDX) + DIR_SEP + region_directory + DIR_SEP GC_IPL;
++      std::string("/recalbox/share/bios/gamecube") + DIR_SEP + region_directory + DIR_SEP GC_IPL;
+   if (!File::Exists(path))
+     return File::GetSysDirectory() + GC_SYS_DIR + DIR_SEP + region_directory + DIR_SEP GC_IPL;
+   return path;
+diff --git a/Source/Core/DolphinLibretro/Boot.cpp b/Source/Core/DolphinLibretro/Boot.cpp
+index fe43fb6d79..cbd2a0eb72 100644
+--- a/Source/Core/DolphinLibretro/Boot.cpp
++++ b/Source/Core/DolphinLibretro/Boot.cpp
+@@ -70,7 +70,7 @@ bool retro_load_game(const struct retro_game_info* game)
+     user_dir = std::string(system_dir) + DIR_SEP "dolphin-emu" DIR_SEP "User";
+ 
+   if (system_dir && *system_dir)
+-    sys_dir = std::string(system_dir) + DIR_SEP "dolphin-emu" DIR_SEP "Sys";
++    sys_dir = std::string(system_dir);
+   else if (core_assets_dir && *core_assets_dir)
+     sys_dir = std::string(core_assets_dir) + DIR_SEP "dolphin-emu" DIR_SEP "Sys";
+   else if (save_dir && *save_dir)
+-- 
+2.52.0
+

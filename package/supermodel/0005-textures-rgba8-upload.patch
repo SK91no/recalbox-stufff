@@ -1,0 +1,200 @@
+supermodel: upload textures as RGBA8 instead of GL_FLOAT (legacy3d)
+
+DecodeTexture decoded to GLfloat RGBA + uploaded GL_FLOAT (16 B/texel) while the
+sheet storage is already GL_RGBA8. Decode straight to bytes (exact bit-replication)
+and upload GL_UNSIGNED_BYTE: 4x less upload bandwidth, no driver conversion,
+output-preserving (sources <=8-bit). Helps texture-churn (transitions).
+
+--- a/Src/Graphics/Legacy3D/Legacy3D.h
++++ b/Src/Graphics/Legacy3D/Legacy3D.h
+@@ -532,7 +532,7 @@
+  	 * Textures are decoded and copied from texture RAM into this temporary buffer
+  	 * before being uploaded. Dimensions are 512x512.
+  	 */
+-	GLfloat	*textureBuffer;	// RGBA8 format
++	GLubyte	*textureBuffer;	// RGBA8 format (uploaded as GL_UNSIGNED_BYTE: 4x less bandwidth than GL_FLOAT)
+ 
+ 	// JTAG configuration settings
+ 	bool blockCulling;
+--- a/Src/Graphics/Legacy3D/Legacy3D.cpp
++++ b/Src/Graphics/Legacy3D/Legacy3D.cpp
+@@ -231,6 +231,8 @@
+   //printf("Decoding texture format %u: %u x %u @ (%u, %u) sheet %u\n", format, width, height, x, y, texNum);
+ 
+   // Copy and decode
++  // Decode directly to 8-bit RGBA (storage is GL_RGBA8 anyway). Exact bit-replication
++  // expansion (5->8: (v<<3)|(v>>2), 4->8: (v<<4)|v) matches the float*255 path losslessly.
+   int i = 0;
+   switch (format)
+   {
+@@ -239,22 +241,24 @@
+     {
+       for (int xi = x; xi < (x+width); xi++)
+       {
+-        textureBuffer[i++] = 0.0; // R
+-        textureBuffer[i++] = 0.0; // G
+-        textureBuffer[i++] = 1.0f;  // B
+-        textureBuffer[i++] = 1.0f;  // A
++        textureBuffer[i++] = 0;   // R
++        textureBuffer[i++] = 0;   // G
++        textureBuffer[i++] = 255; // B
++        textureBuffer[i++] = 255; // A
+       }
+     }
+-    break;    
++    break;
+   case 0: // T1RGB5
+     for (int yi = y; yi < (y+height); yi++)
+     {
+       for (int xi = x; xi < (x+width); xi++)
+       {
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>10)&0x1F) * (1.0f/31.0f);  // R
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>5)&0x1F) * (1.0f/31.0f); // G
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>0)&0x1F) * (1.0f/31.0f); // B
+-        textureBuffer[i++] = ((textureRAM[yi*2048+xi]&0x8000)?0.0f:1.0f);         // T
++        uint16_t p = textureRAM[yi*2048+xi];
++        unsigned r = (p>>10)&0x1F, g = (p>>5)&0x1F, b = p&0x1F;
++        textureBuffer[i++] = (r<<3)|(r>>2);           // R
++        textureBuffer[i++] = (g<<3)|(g>>2);           // G
++        textureBuffer[i++] = (b<<3)|(b>>2);           // B
++        textureBuffer[i++] = (p&0x8000) ? 0 : 255;    // T
+       }
+     }
+     break;
+@@ -263,25 +267,25 @@
+     {
+       for (int xi = x; xi < (x+width); xi++)
+       {
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>12)&0xF) * (1.0f/15.0f); // R
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>8)&0xF) * (1.0f/15.0f);  // G
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>4)&0xF) * (1.0f/15.0f);  // B
+-        textureBuffer[i++] = (GLfloat) ((textureRAM[yi*2048+xi]>>0)&0xF) * (1.0f/15.0f);  // A
++        uint16_t p = textureRAM[yi*2048+xi];
++        unsigned r = (p>>12)&0xF, g = (p>>8)&0xF, b = (p>>4)&0xF, a = p&0xF;
++        textureBuffer[i++] = (r<<4)|r;  // R
++        textureBuffer[i++] = (g<<4)|g;  // G
++        textureBuffer[i++] = (b<<4)|b;  // B
++        textureBuffer[i++] = (a<<4)|a;  // A
+       }
+     }
+     break;
+-  case 5: // 8-bit grayscale
++  case 5: // 8-bit grayscale (low byte)
+     for (int yi = y; yi < (y+height); yi++)
+     {
+       for (int xi = x; xi < (x+width); xi++)
+       {
+-        // Interpret as 8-bit grayscale
+         uint16_t texel = textureRAM[yi*2048+xi] & 0xFF;
+-        GLfloat c = texel * (1.0f/255.0f);
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = (texel == 0xFF) ? 0.f : 1.f;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = (texel == 0xFF) ? 0 : 255;
+       }
+     }
+     break;
+@@ -291,8 +295,8 @@
+       for (int xi = x; xi < (x+width); xi++)
+       {
+         uint16_t texel = textureRAM[yi*2048+xi] >> 8;
+-        GLfloat c = (texel >> 4) * (1.0f/15.0f);
+-        GLfloat a = (texel & 0xF) * (1.0f/15.0f);
++        unsigned c = texel >> 4, a = texel & 0xF;
++        c = (c<<4)|c; a = (a<<4)|a;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+@@ -300,17 +304,16 @@
+       }
+     }
+     break;
+-  case 6: // 8-bit grayscale
++  case 6: // 8-bit grayscale (high byte)
+     for (int yi = y; yi < (y+height); yi++)
+     {
+       for (int xi = x; xi < (x+width); xi++)
+       {
+         uint16_t texel = textureRAM[yi*2048+xi] >> 8;
+-        GLfloat c = texel * (1.0f/255.0f);
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = c;
+-        textureBuffer[i++] = (texel == 0xFF) ? 0.f : 1.f;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = texel;
++        textureBuffer[i++] = (texel == 0xFF) ? 0 : 255;
+       }
+     }
+     break;
+@@ -320,8 +323,8 @@
+       for (int xi = x; xi < (x+width); xi++)
+       {
+         uint16_t texel = textureRAM[yi*2048+xi] & 0xFF;
+-        GLfloat c = (texel >> 4) * (1.0f/15.0f);
+-        GLfloat a = (texel & 0xF) * (1.0f/15.0f);
++        unsigned c = texel >> 4, a = texel & 0xF;
++        c = (c<<4)|c; a = (a<<4)|a;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+@@ -335,8 +338,8 @@
+       for (int xi = x; xi < (x+width); xi++)
+       {
+         uint16_t texel = textureRAM[yi*2048+xi] >> 8;
+-        GLfloat c = (texel & 0xF) * (1.0f/15.0f);
+-        GLfloat a = (texel >> 4) * (1.0f/15.0f);
++        unsigned c = texel & 0xF, a = texel >> 4;
++        c = (c<<4)|c; a = (a<<4)|a;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+@@ -350,8 +353,8 @@
+       for (int xi = x; xi < (x+width); xi++)
+       {
+         uint16_t texel = textureRAM[yi*2048+xi] & 0xFF;
+-        GLfloat c = (texel & 0xF) * (1.0f/15.0f);
+-        GLfloat a = (texel >> 4) * (1.0f/15.0f);
++        unsigned c = texel & 0xF, a = texel >> 4;
++        c = (c<<4)|c; a = (a<<4)|a;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+         textureBuffer[i++] = c;
+@@ -365,7 +368,7 @@
+   glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+   glActiveTexture(GL_TEXTURE0 + texSheet->mapNum);           // activate correct texture unit
+   glBindTexture(GL_TEXTURE_2D, texMapIDs[texSheet->mapNum]); // bind correct texture map
+-  glTexSubImage2D(GL_TEXTURE_2D, 0, texSheet->xOffset + x, texSheet->yOffset + y, width, height, GL_RGBA, GL_FLOAT, textureBuffer);
++  glTexSubImage2D(GL_TEXTURE_2D, 0, texSheet->xOffset + x, texSheet->yOffset + y, width, height, GL_RGBA, GL_UNSIGNED_BYTE, textureBuffer);
+   
+   // Mark texture as decoded
+   texSheet->texFormat[y/32][x/32] = format;
+@@ -380,10 +383,10 @@
+   // Make everything red
+   for (int i = 0; i < 512*512; )
+   {
+-    textureBuffer[i++] = 1.0f;
+-    textureBuffer[i++] = 0.0f;
+-    textureBuffer[i++] = 0.0f;
+-    textureBuffer[i++] = 1.0f;
++    textureBuffer[i++] = 255;
++    textureBuffer[i++] = 0;
++    textureBuffer[i++] = 0;
++    textureBuffer[i++] = 255;
+   }
+ #endif
+ 
+@@ -1113,7 +1116,7 @@
+ Result CLegacy3D::SetupGLObjects()
+ {
+     // Allocate memory for texture buffer
+-    textureBuffer = new(std::nothrow) GLfloat[1024 * 1024 * 4];
++    textureBuffer = new(std::nothrow) GLubyte[1024 * 1024 * 4];
+     if (NULL == textureBuffer)
+         return ErrorLog("Insufficient memory for texture decode buffer.");
+ 

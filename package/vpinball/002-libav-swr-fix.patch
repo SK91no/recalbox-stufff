@@ -1,0 +1,16 @@
+diff --git a/plugins/pup/LibAv.h b/plugins/pup/LibAv.h
+--- a/plugins/pup/LibAv.h
++++ b/plugins/pup/LibAv.h
+@@ -271,3 +271,3 @@
+       _swr_alloc_set_opts2 = &swr_alloc_set_opts2;
+-      _swr_convert = &swr_convert;
++      _swr_convert = reinterpret_cast<fn_swr_convert>(&swr_convert);
+       _swr_free = &swr_free;
+diff --git a/plugins/flexdmd/actors/LibAv.h b/plugins/flexdmd/actors/LibAv.h
+--- a/plugins/flexdmd/actors/LibAv.h
++++ b/plugins/flexdmd/actors/LibAv.h
+@@ -271,3 +271,3 @@
+       _swr_alloc_set_opts2 = &swr_alloc_set_opts2;
+-      _swr_convert = &swr_convert;
++      _swr_convert = reinterpret_cast<fn_swr_convert>(&swr_convert);
+       _swr_free = &swr_free;

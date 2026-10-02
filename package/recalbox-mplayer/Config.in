@@ -1,0 +1,28 @@
+config BR2_PACKAGE_RECALBOX_MPLAYER
+	bool "recalbox-mplayer"
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	select BR2_PACKAGE_ALSA_LIB
+	select BR2_PACKAGE_FAAD2
+	select BR2_PACKAGE_FONTCONFIG
+	select BR2_PACKAGE_FREETYPE
+	select BR2_PACKAGE_LAME
+	select BR2_PACKAGE_LIBASS
+	select BR2_PACKAGE_LIBFRIBIDI
+	select BR2_PACKAGE_LIBICONV
+	select BR2_PACKAGE_LIBMAD
+	select BR2_PACKAGE_LIBMPEG2
+	select BR2_PACKAGE_LIBVORBIS
+	select BR2_PACKAGE_LZO
+	select BR2_PACKAGE_MPG123
+	select BR2_PACKAGE_NCURSES
+	select BR2_PACKAGE_TREMOR
+	help
+	  MPlayer is a movie player which runs on many systems and
+	  supports many different file formats.
+
+	  http://www.mplayerhq.hu/
+
+comment "recalbox-mplayer needs a toolchain w/ threads"
+	depends on BR2_TOOLCHAIN_HAS_SYNC_4
+	depends on !BR2_TOOLCHAIN_HAS_THREADS

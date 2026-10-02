@@ -1,0 +1,11 @@
+config BR2_PACKAGE_KODI_PLUGIN_VIDEO_ORANGE
+	bool "kodi-plugin-video-orange"
+	default y
+	depends on BR2_PACKAGE_KODI
+	select BR2_PACKAGE_PYTHON_REQUESTS
+	select BR2_PACKAGE_KODI_SCRIPT_MODULE_INPUTSTREAMHELPER
+	select BR2_PACKAGE_KODI_SCRIPT_MODULE_ROUTING
+	help
+	  Kodi Orange PVR Plugin
+
+	  https://github.com/f-lawe/plugin.video.orange.fr

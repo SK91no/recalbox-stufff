@@ -1,0 +1,192 @@
+#!/bin/bash
+# S05jvs-screentype — JVS hardware watcher.
+#  - khz15_only DIP:   keep options.screen.type forced (KHz15).
+#  - hdmi_only  DIP:   any change reboots so kms-manager re-evaluates.
+#  - cab_type:         apply per-cab defaults on runtime change (user-overridable).
+# Runs before S06splash so the screen is never lit on the wrong output.
+
+set -o pipefail
+
+CFG="/boot/crt/recalbox-crt-options.cfg"
+# Remembers the user's screentype from before a DIP force clobbered it, so we
+# can restore the exact value (not a guessed baseline) when the force lifts.
+PREFORCE="/boot/crt/.jvs_screentype_preforce"
+TAG="S05jvs-screentype"
+SYSFS_KHZ15="/sys/devices/platform/recalboxjvs/khz15_only"
+SYSFS_HDMI="/sys/devices/platform/recalboxjvs/hdmi_only"
+SYSFS_CAB="/sys/devices/platform/recalboxjvs/cab_type"
+WATCH_INTERVAL=3
+PIDFILE="/var/run/jvs-screentype-watcher.pid"
+
+source /recalbox/scripts/recalbox-utils.sh
+
+read_screentype_cfg() {
+  grep "^options.screen.type" "$CFG" 2>/dev/null | head -1 | cut -d= -f2 | tr -d ' '
+}
+
+# Rewrite options.screen.type in cfg. Caller is expected to reboot after.
+write_screentype_cfg() {
+  local value="$1"
+  mount -o remount,rw /boot
+  if grep -q "^options.screen.type" "$CFG"; then
+    sed -i "s/^options.screen.type.*/options.screen.type = $value/" "$CFG"
+  else
+    echo "options.screen.type = $value" >> "$CFG"
+  fi
+  sync
+  mount -o remount,ro /boot
+}
+
+# Save the pre-force user value the first time a force kicks in. The ES menu is
+# grayed while a force is active, so this value can't change under us and stays
+# the user's true intent. No-op if already saved for the current force episode.
+save_preforce() {
+  [ -f "$PREFORCE" ] && return 0
+  local v
+  v=$(read_screentype_cfg); [ -z "$v" ] && v=0
+  mount -o remount,rw /boot
+  echo "$v" > "$PREFORCE"
+  sync
+  mount -o remount,ro /boot
+}
+
+clear_preforce() {
+  [ -f "$PREFORCE" ] || return 0
+  mount -o remount,rw /boot
+  rm -f "$PREFORCE"
+  sync
+  mount -o remount,ro /boot
+}
+
+# Reconcile cfg with the JVS-forced screentype.
+#  - force active   : remember the pre-force value, then enforce (reboot on change).
+#  - force inactive : if a pre-force value was saved, restore it (reboot on change).
+sync_forced_screentype() {
+  local required current
+  if required=$(jvsForcedScreentype); then
+    save_preforce
+    current=$(read_screentype_cfg)
+    if [ "$current" != "$required" ]; then
+      recallog -s "$TAG" -t "INFO" "JVS forces screentype=$required (was $current) — rewriting + rebooting"
+      write_screentype_cfg "$required"
+      reboot
+      exit 0
+    fi
+    return 0
+  fi
+  # No force active: restore whatever the user had before the force, if any.
+  [ -f "$PREFORCE" ] || return 0
+  local saved
+  saved=$(cat "$PREFORCE")
+  clear_preforce
+  current=$(read_screentype_cfg)
+  if [ "$current" != "$saved" ]; then
+    recallog -s "$TAG" -t "INFO" "force removed — restoring user screentype=$saved (was $current) — rebooting"
+    write_screentype_cfg "$saved"
+    reboot
+    exit 0
+  fi
+  return 0
+}
+
+# Apply per-cab default screentype (only meaningful on cab transition).
+# Returns 0 if a rewrite happened, 1 otherwise.
+apply_cab_default_screentype() {
+  # If a forced value exists, defaults don't apply (forced wins).
+  if jvsForcedScreentype >/dev/null; then return 1; fi
+  local default
+  default=$(jvsDefaultScreentype) || return 1
+  local current
+  current=$(read_screentype_cfg)
+  if [ "$current" = "$default" ]; then
+    return 1
+  fi
+  recallog -s "$TAG" -t "INFO" "cab default screentype=$default (was $current) — rewriting + rebooting"
+  write_screentype_cfg "$default"
+  return 0
+}
+
+start() {
+  # Wait up to 5 s for the JVS USB-HID module to enumerate.
+  local try
+  for try in $(seq 0 50); do
+    if isRecalboxJVS; then break; fi
+    sleep 0.1
+  done
+  if ! isRecalboxJVS; then
+    recallog -s "$TAG" -t "INFO" "No JVS detected, skipping"
+    return 0
+  fi
+
+  sync_forced_screentype
+
+  # Runtime watcher: DIP/cab transitions trigger reboot so the whole video stack re-initialises.
+  ( prev_hdmi=$(cat "$SYSFS_HDMI" 2>/dev/null)
+    prev_khz=$(cat "$SYSFS_KHZ15" 2>/dev/null)
+    prev_cab=$(cat "$SYSFS_CAB" 2>/dev/null)
+    while true; do
+      sleep "$WATCH_INTERVAL"
+      [ -f "$SYSFS_KHZ15" ] && [ -f "$SYSFS_HDMI" ] && [ -f "$SYSFS_CAB" ] || continue
+      cur_hdmi=$(cat "$SYSFS_HDMI" 2>/dev/null)
+      cur_khz=$(cat "$SYSFS_KHZ15" 2>/dev/null)
+      cur_cab=$(cat "$SYSFS_CAB" 2>/dev/null)
+      # Skip transient empty reads (USB renum / firmware flash).
+      [ -z "$cur_hdmi" ] || [ -z "$cur_khz" ] || [ -z "$cur_cab" ] && continue
+
+      # Going down: what changes here is the shutdown itself, and rebooting on it
+      # would turn a halt into a reboot. runlevel prints "<last> <wanted>".
+      runlevel 2>/dev/null | grep -qE "(0|6)$" && continue
+
+      # Firmware config UI is open: the firmware reports cab_type=configuring (runtime-only,
+      # never persisted). Suppress everything until config finalises to a real cab on the
+      # switch back to Pi5. prev_cab keeps the last real value so the transition is detected.
+      [ "$cur_cab" = "configuring" ] && continue
+
+      dip_changed=false
+      cab_changed=false
+      [ "$cur_hdmi" != "$prev_hdmi" ] && dip_changed=true
+      [ "$cur_khz"  != "$prev_khz"  ] && dip_changed=true
+      [ "$cur_cab"  != "$prev_cab"  ] && cab_changed=true
+
+      if [ "$dip_changed" = true ] || [ "$cab_changed" = true ]; then
+        recallog -s "$TAG" -t "INFO" "JVS change (hdmi: $prev_hdmi→$cur_hdmi, khz15: $prev_khz→$cur_khz, cab: $prev_cab→$cur_cab)"
+        # Track the new values now so a no-reboot change isn't re-detected every tick.
+        prev_hdmi=$cur_hdmi; prev_khz=$cur_khz; prev_cab=$cur_cab
+        # A cab change is deliberate: the new cab's default wins, so drop any
+        # pre-force value saved for the previous context.
+        [ "$cab_changed" = true ] && clear_preforce
+        # DIP change always reboots so kms-manager re-evaluates the output.
+        do_reboot=$dip_changed
+        # Enforce the force / restore the pre-force value; reboots+exits internally
+        # if it rewrote the cfg (handles the khz15 DIP going both on and off).
+        sync_forced_screentype
+        # A cab change reboots ONLY if it actually rewrote the screentype. Cabs with
+        # no default (not_configured after a reset) or whose default already matches
+        # change nothing — rebooting there is spurious (and can loop while the user is
+        # still picking a cab in the firmware menu).
+        if [ "$cab_changed" = true ] && apply_cab_default_screentype; then
+          do_reboot=true
+        fi
+        if [ "$do_reboot" = true ]; then
+          recallog -s "$TAG" -t "INFO" "screentype/output changed — rebooting to re-init the video stack"
+          reboot
+          exit 0
+        fi
+      fi
+    done
+  ) &
+  echo $! > "$PIDFILE"
+}
+
+stop() {
+  [ -f "$PIDFILE" ] || return 0
+  kill "$(cat "$PIDFILE")" 2>/dev/null
+  rm -f "$PIDFILE"
+}
+
+case "$1" in
+  start) start ;;
+  stop) stop ;;
+  restart|reload) ;;
+  *) echo "Usage: $0 {start|stop|restart|reload}" >&2; exit 1 ;;
+esac

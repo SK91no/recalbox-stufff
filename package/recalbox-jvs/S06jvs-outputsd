@@ -1,0 +1,37 @@
+#!/bin/bash
+#
+# S06jvs-outputsd — forward Flycast NetworkOutput (TCP :8000) to the JVS
+# firmware as HID outputs. Idle (no forwarding) until armed by ES via
+# `recalboxjvs-outputsd arm <rom>`. See OUTPUTS.md.
+#
+
+source /recalbox/scripts/recalbox-utils.sh
+
+DAEMON=/usr/bin/recalboxjvs-outputsd
+PIDFILE=/var/run/recalboxjvs-outputsd.pid
+TAG="S06jvs-outputsd"
+
+start() {
+    if ! isRecalboxJVS; then
+        return 0
+    fi
+    if [ -x "$DAEMON" ]; then
+        recallog -s "$TAG" -t "INFO" "starting"
+        start-stop-daemon -S -b -m -p "$PIDFILE" -x "$DAEMON"
+    fi
+}
+
+stop() {
+    if [ -f "$PIDFILE" ]; then
+        recallog -s "$TAG" -t "INFO" "stopping"
+        start-stop-daemon -K -p "$PIDFILE"
+        rm -f "$PIDFILE"
+    fi
+}
+
+case "$1" in
+    start) start ;;
+    stop)  stop  ;;
+    restart) stop; start ;;
+    *) echo "usage: $0 {start|stop|restart}"; exit 1 ;;
+esac

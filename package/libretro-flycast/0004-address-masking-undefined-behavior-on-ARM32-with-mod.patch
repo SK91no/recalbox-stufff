@@ -1,0 +1,73 @@
+From ab4053696af9d5a6aab99982302855909a4905be Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Wed, 21 Jan 2026 20:43:59 +0100
+Subject: [PATCH 5/5] address masking undefined behavior on ARM32 with modern
+ toolchains
+
+---
+ core/hw/mem/_vmem.cpp | 26 ++++++++++++++++++--------
+ 1 file changed, 18 insertions(+), 8 deletions(-)
+
+diff --git a/core/hw/mem/_vmem.cpp b/core/hw/mem/_vmem.cpp
+index 259d316..6ba6d0b 100644
+--- a/core/hw/mem/_vmem.cpp
++++ b/core/hw/mem/_vmem.cpp
+@@ -59,8 +59,10 @@ void* _vmem_read_const(u32 addr,bool& ismem,u32 sz)
+ 	else
+ 	{
+ 		ismem=true;
+-		addr<<=iirf;
+-		addr>>=iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		return &(((u8*)ptr)[addr]);
+ 	}
+@@ -99,8 +101,10 @@ void* _vmem_write_const(u32 addr,bool& ismem,u32 sz)
+ 	else
+ 	{
+ 		ismem=true;
+-		addr<<=iirf;
+-		addr>>=iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		return &(((u8*)ptr)[addr]);
+ 	}
+@@ -119,10 +123,14 @@ INLINE Trv DYNACALL _vmem_readt(u32 addr)
+ 
+ 	if (likely(ptr!=0))
+ 	{
+-		addr<<=iirf;
+-		addr>>=iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		// when iirf (which contains the full pointer value) is >= 32
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		T data=(*((T*)&(((u8*)ptr)[addr])));
++
+ 		return data;
+ 	}
+ 	else
+@@ -170,8 +178,10 @@ INLINE void DYNACALL _vmem_writet(u32 addr,T data)
+ 
+ 	if (likely(ptr!=0))
+ 	{
+-		addr<<=iirf;
+-		addr>>=iirf;
++		// Fix: extract only the low 5 bits for shift count to avoid undefined behavior
++		u32 shift = iirf & HANDLER_MAX;
++		addr <<= shift;
++		addr >>= shift;
+ 
+ 		*((T*)&(((u8*)ptr)[addr]))=data;
+ 	}
+-- 
+2.52.0
+

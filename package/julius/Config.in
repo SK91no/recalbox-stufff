@@ -1,0 +1,13 @@
+config BR2_PACKAGE_JULIUS
+	bool "Julius"
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_LIBPNG
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_SDL2_MIXER
+	help
+	  Port of Caesar III
+
+	  https://github.com/bvschaik/julius
+
+comment "Julius needs a toolchain w/ C++, and following libraries : libpng, sdl2 and sdl2_mixer"
+	depends on !BR2_INSTALL_LIBSTDCPP || !BR2_PACKAGE_LIBPNG || !BR2_PACKAGE_SDL2 || !BR2_PACKAGE_SDL2_MIXER

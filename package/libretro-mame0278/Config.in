@@ -1,0 +1,14 @@
+config BR2_PACKAGE_LIBRETRO_MAME0278
+	bool "libretro-mame0278"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	select BR2_PACKAGE_ARCADE_DATS
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_ALSA_LIB
+	help
+	  A libretro mame core for x86_64 - Based on MAME 0.278.
+
+	  http://www.libretro.com
+
+comment "BR2_PACKAGE_LIBRETRO_MAME0278 needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

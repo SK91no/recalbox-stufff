@@ -1,0 +1,8 @@
+config BR2_PACKAGE_KODI_SCRIPT_MODULE_CERTIFI
+	bool "kodi-script-module-certifi"
+	default n
+	depends on BR2_PACKAGE_KODI
+	help
+	  Kodi Certifi script module
+
+	  https://mirrors.kodi.tv/addons/matrix/script.module.certifi/

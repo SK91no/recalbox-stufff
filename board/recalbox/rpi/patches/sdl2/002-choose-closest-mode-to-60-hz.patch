@@ -1,0 +1,108 @@
+diff --git a/src/video/SDL_video.c b/src/video/SDL_video.c
+index 04a1fdf65..5380ad46d 100644
+--- a/src/video/SDL_video.c
++++ b/src/video/SDL_video.c
+@@ -1779,7 +1779,11 @@ SDL_Window *SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint
+             SDL_zero(fullscreen_mode);
+             fullscreen_mode.w = w;
+             fullscreen_mode.h = h;
++            fullscreen_mode.refresh_rate = 60;
++            SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "Searching mode - SDL_CreateWindow");
++
+             if (SDL_GetClosestDisplayModeForDisplay(display, &fullscreen_mode, &closest_mode) != NULL) {
++                SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "Found mode : %dx%d@%d", closest_mode.w, closest_mode.h, closest_mode.refresh_rate);
+                 bounds.w = closest_mode.w;
+                 bounds.h = closest_mode.h;
+             }
+@@ -1793,6 +1797,9 @@ SDL_Window *SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint
+     }
+ 
+     window->flags = ((flags & CREATE_FLAGS) | SDL_WINDOW_HIDDEN);
++    if (flags & SDL_WINDOW_FULLSCREEN)
++      window->flags |= SDL_WINDOW_FULLSCREEN;
++
+     window->last_fullscreen_flags = window->flags;
+     window->opacity = 1.0f;
+     window->brightness = 1.0f;
+diff --git a/src/video/kmsdrm/SDL_kmsdrmvideo.c b/src/video/kmsdrm/SDL_kmsdrmvideo.c
+index b7abb4fc7..715c216dc 100644
+--- a/src/video/kmsdrm/SDL_kmsdrmvideo.c
++++ b/src/video/kmsdrm/SDL_kmsdrmvideo.c
+@@ -1118,20 +1118,17 @@ static void KMSDRM_GetModeToSet(SDL_Window *window, drmModeModeInfo *out_mode)
+     SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
+     SDL_DisplayData *dispdata = (SDL_DisplayData *)display->driverdata;
+ 
+-    if ((window->flags & SDL_WINDOW_FULLSCREEN) == SDL_WINDOW_FULLSCREEN) {
+-        *out_mode = dispdata->fullscreen_mode;
+-    } else {
+         drmModeModeInfo *mode;
+ 
++        SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_GetModeToSet: Not fullscreen - searching mode closest to 60Hz - KMSDRM_GetModeToSet");
+         mode = KMSDRM_GetClosestDisplayMode(display,
+-                                            window->windowed.w, window->windowed.h, 0);
++                                            window->windowed.w, window->windowed.h, 60);
+ 
+         if (mode) {
+             *out_mode = *mode;
+         } else {
+             *out_mode = dispdata->original_mode;
+         }
+-    }
+ }
+ 
+ static void KMSDRM_DirtySurfaces(SDL_Window *window)
+@@ -1146,7 +1143,11 @@ static void KMSDRM_DirtySurfaces(SDL_Window *window)
+     /* The app may be waiting for the resize event after calling SetWindowSize
+        or SetWindowFullscreen, send a fake event for now since the actual
+        recreation is deferred */
++
++    SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_DirtySurfaces: calling KMSDRM_GetModeToSet()");
+     KMSDRM_GetModeToSet(window, &mode);
++    SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_DirtySurfaces: mode from KMSDRM_GetModeToSet : %dx%d@%d",
++               mode.hdisplay, mode.vdisplay, mode.vrefresh);
+     SDL_SendWindowEvent(window, SDL_WINDOWEVENT_RESIZED, mode.hdisplay, mode.vdisplay);
+ }
+ 
+@@ -1180,8 +1181,13 @@ int KMSDRM_CreateSurfaces(_THIS, SDL_Window *window)
+     /* The KMSDRM backend doesn't always set the mode the higher-level code in
+        SDL_video.c expects. Hulk-smash the display's current_mode to keep the
+        mode that's set in sync with what SDL_video.c thinks is set */
++    SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_CreateSurfaces: calling KMSDRM_GetModeToSet()");
++
+     KMSDRM_GetModeToSet(window, &dispdata->mode);
+ 
++    SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_CreateSurfaces: mode from KMSDRM_GetModeToSet : %dx%d@%d",
++                 dispdata->mode.hdisplay, dispdata->mode.vdisplay, dispdata->mode.vrefresh);
++
+     display->current_mode.w = dispdata->mode.hdisplay;
+     display->current_mode.h = dispdata->mode.vdisplay;
+     display->current_mode.refresh_rate = dispdata->mode.vrefresh;
+@@ -1364,6 +1370,8 @@ int KMSDRM_SetDisplayMode(_THIS, SDL_VideoDisplay *display, SDL_DisplayMode *mod
+     /* Take note of the new mode to be set, and leave the CRTC modeset pending
+        so it's done in SwapWindow. */
+     dispdata->fullscreen_mode = conn->modes[modedata->mode_index];
++    SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_SetDisplayMode: Setting fullscreen_mode: %dx%d@%d",
++               dispdata->fullscreen_mode.hdisplay, dispdata->fullscreen_mode.vdisplay, dispdata->fullscreen_mode.vrefresh);
+ 
+     for (i = 0; i < viddata->num_windows; i++) {
+         KMSDRM_DirtySurfaces(viddata->windows[i]);
+@@ -1541,15 +1549,17 @@ int KMSDRM_CreateWindow(_THIS, SDL_Window *window)
+            are considered "windowed" at this point of their life.
+            If a window is fullscreen, SDL internals will call
+            KMSDRM_SetWindowFullscreen() to reconfigure it if necessary. */
++        SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_CreateWindow: Searching mode closest to 60Hz");
+         mode = KMSDRM_GetClosestDisplayMode(display,
+-                                            window->windowed.w, window->windowed.h, 0);
++                                            window->windowed.w, window->windowed.h, 60);
+ 
+         if (mode) {
++            SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_CreateWindow: Found mode : %dx%d@%d", mode->hdisplay, mode->vdisplay, mode->vrefresh);
+             dispdata->fullscreen_mode = *mode;
+         } else {
++            SDL_LogDebug(SDL_LOG_CATEGORY_VIDEO, "KMSDRM_CreateWindow: Mode not found, using original mode: %dx%d@%d", dispdata->original_mode.hdisplay, dispdata->original_mode.vdisplay, dispdata->original_mode.vrefresh);
+             dispdata->fullscreen_mode = dispdata->original_mode;
+         }
+-
+         /* Create the window surfaces with the size we have just chosen.
+            Needs the window diverdata in place. */
+         ret = KMSDRM_CreateSurfaces(_this, window);

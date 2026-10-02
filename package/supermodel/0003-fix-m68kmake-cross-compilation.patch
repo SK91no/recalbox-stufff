@@ -1,0 +1,34 @@
+From 9a1c099786ce647960fe6cdd058477e1c62576a6 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Sun, 22 Jun 2025 20:45:33 +0200
+Subject: [PATCH 3/3] fix m68kmake cross-compilation
+
+---
+ Makefiles/Rules.inc | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Makefiles/Rules.inc b/Makefiles/Rules.inc
+index 2dfff71..c2e9fc5 100644
+--- a/Makefiles/Rules.inc
++++ b/Makefiles/Rules.inc
+@@ -375,14 +375,14 @@ $(OBJ_DIR)/%.o:	%.c | $(OBJ_DIR)
+ 
+ MUSASHI_OUTFILE = $(OBJ_DIR)/m68kmake.exe # do not remove the .exe suffix!
+ MUSASHI_CFLAGS = -ISrc/CPU/68K/Musashi -I$(OBJ_DIR) -DINLINE="static inline" -Wno-unused-variable
+-MUSASHI_LDFLAGS = -o $(MUSASHI_OUTFILE) $(OBJ_DIR)/m68kmake.o -s
++MUSASHI_HOSTFLAGS = -ISrc/CPU/68K/Musashi -I$(OBJ_DIR) -DINLINE="static inline" -Wno-unused-variable -O2
+ 
+ $(MUSASHI_OUTFILE): Src/CPU/68K/Musashi/m68kmake.c Src/CPU/68K/Musashi/m68k_in.c | $(OBJ_DIR)
+ 	$(info --------------------------------------------------------------------------------)
+ 	$(info Compiling              : $< -> $(OBJ_DIR)/m68kmake.o)
+-	$(SILENT)$(CC) $< $(CFLAGS) -o $(OBJ_DIR)/m68kmake.o
++	$(SILENT)$(HOSTCC) $< $(MUSASHI_HOSTFLAGS) -c -o $(OBJ_DIR)/m68kmake.o
+ 	$(info Linking                : $(MUSASHI_OUTFILE))
+-	$(SILENT)$(LD) $(MUSASHI_LDFLAGS)
++	$(SILENT)$(HOSTCC) $(OBJ_DIR)/m68kmake.o -o $(MUSASHI_OUTFILE) -s
+ 
+ $(OBJ_DIR)/m68kops.h $(OBJ_DIR)/m68kops.c $(OBJ_DIR)/m68kopac.c $(OBJ_DIR)/m68kopdm.c $(OBJ_DIR)/m68kopnz.c:	$(MUSASHI_OUTFILE) Src/CPU/68K/Musashi/m68k_in.c Src/CPU/68K/Musashi/m68k.h Src/CPU/68K/Musashi/m68kconf.h | $(OBJ_DIR)
+ 	$(info Generating 68K emulator: $@)
+-- 
+2.50.0
+

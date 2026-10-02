@@ -1,0 +1,63 @@
+name|description|type|sourcefile|rotate|width|height|refresh|bios|parent|status|manufacter
+bassdx|Sega Bass Fishing Deluxe (USA)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+dayto2pe|Daytona USA 2: Power Edition (Japan)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+daytona2|Daytona USA 2: Battle on the Edge (Japan, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+dirtdvls|Dirt Devils (Export, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+dirtdvlsau|Dirt Devils (Australia, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||dirtdvls|preliminary|Sega
+dirtdvlsg|Dirt Devils (Export, Ver. G?)|clone|sega/model3.cpp|0|496|384|57.524160||dirtdvls|preliminary|Sega
+dirtdvlsj|Dirt Devils (Japan, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||dirtdvls|preliminary|Sega
+dirtdvlsu|Dirt Devils (USA, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||dirtdvls|preliminary|Sega
+eca|Emergency Call Ambulance (Export)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+ecaj|Emergency Call Ambulance (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||eca|preliminary|Sega
+ecap|Emergency Call Ambulance (US location test?)|clone|sega/model3.cpp|0|496|384|57.524160||eca|preliminary|Sega
+ecau|Emergency Call Ambulance (USA)|clone|sega/model3.cpp|0|496|384|57.524160||eca|preliminary|Sega
+fvipers2|Fighting Vipers 2 (Japan, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+fvipers2o|Fighting Vipers 2 (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||fvipers2|preliminary|Sega
+getbass|Get Bass: Sega Bass Fishing (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||bassdx|preliminary|Sega
+getbassdx|Get Bass: Sega Bass Fishing Deluxe (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||bassdx|preliminary|Sega
+getbassur|Get Bass: Sega Bass Fishing Upright (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||bassdx|preliminary|Sega
+harley|Harley-Davidson and L.A. Riders (Export, Revision B)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+harleya|Harley-Davidson and L.A. Riders (Export, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||harley|preliminary|Sega
+lamachin|L.A. Machineguns (Japan)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+lemans24|Le Mans 24 (Japan, Revision B)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+lostwsga|The Lost World: Jurassic Park (Japan, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+lostwsgp|The Lost World: Jurassic Park (location test)|clone|sega/model3.cpp|0|496|384|57.524160||lostwsga|preliminary|Sega
+magtruck|Magical Truck Adventure (Export)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+oceanhun|The Ocean Hunter (Japan, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+oceanhuna|The Ocean Hunter (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||oceanhun|preliminary|Sega
+scud|Scud Race / Sega Super GT - Twin/DX (Export)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+scudau|Scud Race - Twin/DX (Australia)|clone|sega/model3.cpp|0|496|384|57.524160||scud|preliminary|Sega
+scuddx|Scud Race / Sega Super GT - Deluxe (Export, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||scud|preliminary|Sega
+scuddxo|Scud Race / Sega Super GT - Deluxe (Export)|clone|sega/model3.cpp|0|496|384|57.524160||scud|preliminary|Sega
+scudplus|Scud Race Plus / Sega Super GT Plus - Twin/DX (Export, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||scud|preliminary|Sega
+scudplusa|Scud Race Plus / Sega Super GT Plus - Twin/DX (Export)|clone|sega/model3.cpp|0|496|384|57.524160||scud|preliminary|Sega
+skichamp|Ski Champ (Japan)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+spikeofe|Spikeout Final Edition (Export)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+spikeout|Spikeout (Export, Revision C)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+srally2|Sega Rally 2 (Export)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+srally2dx|Sega Rally 2 Deluxe (Export)|clone|sega/model3.cpp|0|496|384|57.524160||srally2|preliminary|Sega
+srally2p|Sega Rally 2 (prototype, 29 Dec 1997)|clone|sega/model3.cpp|0|496|384|57.524160||srally2|preliminary|Sega
+srally2pa|Sega Rally 2 (prototype, 8 Dec 1997)|clone|sega/model3.cpp|0|496|384|57.524160||srally2|preliminary|Sega
+swtrilgy|Star Wars Trilogy Arcade (Export, Revision A)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|LucasArts/Sega
+swtrilgya|Star Wars Trilogy Arcade (Export)|clone|sega/model3.cpp|0|496|384|57.524160||swtrilgy|preliminary|LucasArts/Sega
+swtrilgyp|Star Wars Trilogy Arcade (location test, 16.09.98)|clone|sega/model3.cpp|0|496|384|57.524160||swtrilgy|preliminary|LucasArts/Sega
+vf3|Virtua Fighter 3 (Japan, Revision D)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+vf3a|Virtua Fighter 3 (Japan, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||vf3|preliminary|Sega
+vf3c|Virtua Fighter 3 (Japan, Revision C)|clone|sega/model3.cpp|0|496|384|57.524160||vf3|preliminary|Sega
+vf3tb|Virtua Fighter 3 Team Battle (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||vf3|preliminary|Sega
+von2|Virtual On 2: Oratorio Tangram (Japan, Revision B)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+von254g|Virtual On 2: Oratorio Tangram (Japan, ver 5.4g)|clone|sega/model3.cpp|0|496|384|57.524160||von2|preliminary|Sega
+von2a|Virtual On 2: Oratorio Tangram (Japan, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||von2|preliminary|Sega
+von2o|Virtual On 2: Oratorio Tangram (Japan)|clone|sega/model3.cpp|0|496|384|57.524160||von2|preliminary|Sega
+vs2|Virtua Striker 2 (Step 2.0, Export, USA)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+vs215|Virtua Striker 2 (Step 1.5, Export, USA)|clone|sega/model3.cpp|0|496|384|57.524160||vs2|preliminary|Sega
+vs215o|Virtua Striker 2 (Step 1.5, Japan, test/debug?)|clone|sega/model3.cpp|0|496|384|57.524160||vs2|preliminary|Sega
+vs298|Virtua Striker 2 '98 (Step 2.0, Japan)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega
+vs29815|Virtua Striker 2 '98 (Step 1.5, Japan)|clone|sega/model3.cpp|0|496|384|57.524160||vs298|preliminary|Sega
+vs299|Virtua Striker 2 '99 (Export, USA)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs29915|Virtua Striker 2 '99.1 (Step 1.5, Export, USA, Revision B)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs29915a|Virtua Striker 2 '99 (Step 1.5, Export, USA)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs29915j|Virtua Striker 2 '99.1 (Step 1.5, Japan, Revision B)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs299a|Virtua Striker 2 '99 (Export, USA, Revision A)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs299j|Virtua Striker 2 '99.1 (Japan, Revision B)|clone|sega/model3.cpp|0|496|384|57.524160||vs2v991|preliminary|Sega
+vs2v991|Virtua Striker 2 '99.1 (Export, USA, Revision B)|parent|sega/model3.cpp|0|496|384|57.524160|||preliminary|Sega

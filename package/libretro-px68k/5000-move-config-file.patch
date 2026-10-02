@@ -1,0 +1,11 @@
+--- a/libretro.c	2025-03-08 19:03:05.762195526 +0100
++++ b/libretro.c	2025-03-08 19:21:22.986075172 +0100
+@@ -941,7 +941,7 @@
+ static int pmain(int argc, char *argv[])
+ {
+ 	strcpy(winx68k_dir, retro_system_conf);
+-	sprintf(winx68k_ini, "%s%cconfig", retro_system_conf, SLASH);
++	sprintf(winx68k_ini, "/recalbox/share/system/configs/x68000/px68k.ini");
+ 
+    file_setcd(winx68k_dir);
+ 

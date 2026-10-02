@@ -1,0 +1,30 @@
+From 4d7583f7727edf1b4f6acbb5d359d901fd2c8639 Mon Sep 17 00:00:00 2001
+From: Simon Long <simon@raspberrypi.org>
+Date: Fri, 18 Dec 2020 22:45:13 +0100
+Subject: [PATCH 6/6] Move-the-43xx-firmware-into-lib-firmware
+
+This patch corrects the location of the firmware from /etc/firmware to
+/lib/firmware, and disables setting the UART interface speed *before* loading
+the firmware (a later call sets the speed of the interface as requested). It
+also introduces a short wait after the firmware load before the module is
+reset.
+---
+ tools/hciattach.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/hciattach.h b/tools/hciattach.h
+index dfa4c1e7a..e88484766 100644
+--- a/tools/hciattach.h
++++ b/tools/hciattach.h
+@@ -41,7 +41,7 @@
+ #define HCI_UART_VND_DETECT	5
+ 
+ #ifndef FIRMWARE_DIR
+-#define FIRMWARE_DIR "/etc/firmware"
++#define FIRMWARE_DIR "/lib/firmware"
+ #endif
+ 
+ int read_hci_event(int fd, unsigned char *buf, int size);
+-- 
+2.45.2
+

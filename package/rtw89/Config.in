@@ -1,0 +1,10 @@
+comment "rtw89 needs a Linux kernel to be built"
+	depends on !BR2_LINUX_KERNEL
+
+config BR2_PACKAGE_RTW89
+	bool "rtw89"
+	depends on BR2_LINUX_KERNEL
+	help
+	  rtw89 wifi driver
+
+	  https://github.com/lwfinger/rtw89

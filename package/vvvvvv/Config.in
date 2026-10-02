@@ -1,0 +1,6 @@
+config BR2_PACKAGE_VVVVVV
+	bool "vvvvvv"
+	select BR2_PACKAGE_SDL2
+	help
+	  The source code to VVVVVV!
+	  https://github.com/TerryCavanagh/VVVVVV

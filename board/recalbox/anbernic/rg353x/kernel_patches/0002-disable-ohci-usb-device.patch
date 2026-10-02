@@ -1,0 +1,25 @@
+From f2884b475e356ed149a0d6ea4f7ac94160d77fa0 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Tue, 7 Jan 2025 23:15:48 +0100
+Subject: [PATCH 02/17] disable ohci usb device
+
+---
+ arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
+index b76fe7faf50e..7fba104e90ec 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3566-anbernic-rgxx3.dtsi
+@@ -834,7 +834,7 @@ &usb_host1_ehci {
+ };
+ 
+ &usb_host1_ohci {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &usb_host1_xhci {
+-- 
+2.51.0
+

@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_MEDNAFEN_STV
+	bool "libretro-mednafen-stv"
+	depends on BR2_PACKAGE_RETROARCH
+	select BR2_PACKAGE_ARCADE_DATS
+	select BR2_PACKAGE_ZLIB
+	select BR2_PACKAGE_ZSTD
+	help
+	  A libretro core for ST-V.
+
+	  http://www.libretro.com
+	  https://github.com/beudbeud/libretro-stv

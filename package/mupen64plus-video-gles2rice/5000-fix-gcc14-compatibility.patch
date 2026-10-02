@@ -1,0 +1,10 @@
+--- mupen64plus-video-gles2rice-1dcd6ddb6c60750c9fe4dd6dab6a2d04c304221e/src/liblinux/pngrw.c.orig	2024-09-27 23:19:53.632241011 +0200
++++ mupen64plus-video-gles2rice-1dcd6ddb6c60750c9fe4dd6dab6a2d04c304221e/src/liblinux/pngrw.c	2024-09-27 23:20:18.468577199 +0200
+@@ -29,6 +29,7 @@
+ #include <ctype.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++#include <string.h>
+ #ifdef _BMG_LIBPNG_STANDALONE
+ #include "BMGLibPNG.h"
+ #else

@@ -1,0 +1,370 @@
+From ed4fa25e31713c4858751c9871e6d098224aa917 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Thu, 20 Nov 2025 17:34:11 -0500
+Subject: [PATCH 1/7] Improve OpenGL version detection logic in gl3.c
+
+---
+ gfx/drivers/gl3.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/gfx/drivers/gl3.c b/gfx/drivers/gl3.c
+index 6c88ce0a3e47..5b93f0c9c2f6 100644
+--- a/gfx/drivers/gl3.c
++++ b/gfx/drivers/gl3.c
+@@ -2914,7 +2914,14 @@ static void *gl3_init(const video_info_t *video,
+       goto error;
+ 
+    if (!string_is_empty(version))
+-      sscanf(version, "%u.%u", &gl->version_major, &gl->version_minor);
++   {
++      if (string_starts_with(version, "OpenGL ES "))
++         sscanf(version, "OpenGL ES %u.%u", &gl->version_major, &gl->version_minor);
++      else if (string_starts_with(version, "OpenGL "))
++         sscanf(version, "OpenGL %u.%u", &gl->version_major, &gl->version_minor);
++      else
++         sscanf(version, "%u.%u", &gl->version_major, &gl->version_minor);
++   }
+ 
+    video_driver_set_gpu_api_version_string(version);
+ 
+
+From 4076638408552db52eeff61325933299da7e12fa Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Fri, 21 Nov 2025 00:36:11 -0500
+Subject: [PATCH 2/7] Fix GLSL version selection in shader_glsl.c when using
+ GLCore driver with OpenGL ES
+
+---
+ gfx/drivers_shader/shader_glsl.c | 14 ++++++++++++--
+ 1 file changed, 12 insertions(+), 2 deletions(-)
+
+diff --git a/gfx/drivers_shader/shader_glsl.c b/gfx/drivers_shader/shader_glsl.c
+index 10e40d9d5051..070a7bb88eec 100644
+--- a/gfx/drivers_shader/shader_glsl.c
++++ b/gfx/drivers_shader/shader_glsl.c
+@@ -404,9 +404,18 @@ static bool gl_glsl_compile_shader(glsl_shader_data_t *glsl,
+    }
+    else if (glsl_core)
+    {
++      const char* version_extra = "";
+       unsigned version_no = 0;
+       unsigned gl_ver     = glsl_major * 100 + glsl_minor * 10;
+ 
++#ifdef HAVE_OPENGLES
++      if (gl_ver >= 300 && gl_check_capability(GL_CAPS_GLES3_SUPPORTED))
++      {
++         version_extra = " es";
++         version_no = gl_ver;
++      }
++      else version_no = 100;
++#else
+       switch (gl_ver)
+       {
+          case 300:
+@@ -422,9 +431,10 @@ static bool gl_glsl_compile_shader(glsl_shader_data_t *glsl,
+             version_no = gl_ver;
+             break;
+       }
++#endif
+ 
+-      snprintf(version, sizeof(version), "#version %u\n", version_no);
+-      RARCH_LOG("[GLSL] Using GLSL version %u.\n", version_no);
++      snprintf(version, sizeof(version), "#version %u%s\n", version_no, version_extra);
++      RARCH_LOG("[GLSL] Using GLSL version %u%s.\n", version_no, version_extra);
+    }
+ 
+    source[0] = version;
+
+From 122deac39fc1827bab7fc55942f8430a8823d077 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Fri, 21 Nov 2025 12:00:43 -0500
+Subject: [PATCH 3/7] Lower the default GLSL version to avoid breaking shaders
+ that use the `varying` keyword
+
+---
+ gfx/drivers_shader/shader_glsl.c | 54 ++++++++++++++++++--------------
+ 1 file changed, 30 insertions(+), 24 deletions(-)
+
+diff --git a/gfx/drivers_shader/shader_glsl.c b/gfx/drivers_shader/shader_glsl.c
+index 070a7bb88eec..780540385cba 100644
+--- a/gfx/drivers_shader/shader_glsl.c
++++ b/gfx/drivers_shader/shader_glsl.c
+@@ -404,37 +404,43 @@ static bool gl_glsl_compile_shader(glsl_shader_data_t *glsl,
+    }
+    else if (glsl_core)
+    {
+-      const char* version_extra = "";
+       unsigned version_no = 0;
+       unsigned gl_ver     = glsl_major * 100 + glsl_minor * 10;
+ 
+ #ifdef HAVE_OPENGLES
+-      if (gl_ver >= 300 && gl_check_capability(GL_CAPS_GLES3_SUPPORTED))
+-      {
+-         version_extra = " es";
+-         version_no = gl_ver;
+-      }
+-      else version_no = 100;
++      version_no = 100;
+ #else
+-      switch (gl_ver)
+-      {
+-         case 300:
+-            version_no = 130;
+-            break;
+-         case 310:
+-            version_no = 140;
+-            break;
+-         case 320:
+-            version_no = 150;
+-            break;
+-         default:
+-            version_no = gl_ver;
+-            break;
+-      }
++      if (gl_ver >= 410)
++         version_no = 410;
++      else
++         switch (gl_ver)
++         {
++            case 400:
++               version_no = 400;
++               break;
++            case 330:
++               version_no = 330;
++               break;
++            case 320:
++               version_no = 150;
++               break;
++            case 310:
++               version_no = 140;
++               break;
++            case 300:
++               version_no = 130;
++               break;
++            case 210:
++               version_no = 120;
++               break;
++            default:
++               version_no = 110;
++               break;
++         }
+ #endif
+ 
+-      snprintf(version, sizeof(version), "#version %u%s\n", version_no, version_extra);
+-      RARCH_LOG("[GLSL] Using GLSL version %u%s.\n", version_no, version_extra);
++      snprintf(version, sizeof(version), "#version %u\n", version_no);
++      RARCH_LOG("[GLSL] Using GLSL version %u.\n", version_no);
+    }
+ 
+    source[0] = version;
+
+From a2db29bb2abc32addde9f903c3f658377402cba6 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Fri, 21 Nov 2025 12:06:56 -0500
+Subject: [PATCH 4/7] Fix some mistakes in gl3.c
+
+---
+ gfx/drivers/gl3.c | 25 +++++++++++++++++++++----
+ 1 file changed, 21 insertions(+), 4 deletions(-)
+
+diff --git a/gfx/drivers/gl3.c b/gfx/drivers/gl3.c
+index 5b93f0c9c2f6..fccb88c2b6e3 100644
+--- a/gfx/drivers/gl3.c
++++ b/gfx/drivers/gl3.c
+@@ -503,8 +503,6 @@ static void gfx_display_gl3_draw_pipeline(
+             gl->chain.shader->use(gl, gl->chain.shader_data, draw->pipeline_id,
+                   true);
+ 
+-            t += 0.01;
+-
+             uniform_param.type              = UNIFORM_1F;
+             uniform_param.enabled           = true;
+             uniform_param.location          = 0;
+@@ -2545,9 +2543,15 @@ static bool gl3_create_fbo_targets(gl3_t *gl)
+ error:
+    RARCH_ERR("[GLCore] Failed to set up frame buffer objects. Multi-pass shading will not work.\n");
+    if (gl->chain.fbo_feedback_texture)
++   {
+       glDeleteTextures(1, &gl->chain.fbo_feedback_texture);
++      gl->chain.fbo_feedback_texture = 0;
++   }
+    if (gl->chain.fbo_feedback)
++   {
+       glDeleteFramebuffers(1, &gl->chain.fbo_feedback);
++      gl->chain.fbo_feedback = 0;
++   }
+    glDeleteTextures(gl->chain.num_fbo_passes, gl->chain.fbo_texture);
+    glDeleteFramebuffers(gl->chain.num_fbo_passes, gl->chain.fbo);
+    gl->chain.num_fbo_passes = 0;
+@@ -3325,10 +3329,16 @@ static bool gl3_set_shader(void *data,
+    }
+ 
+    if (gl->chain.fbo_feedback)
++   {
+       glDeleteFramebuffers(1, &gl->chain.fbo_feedback);
++      gl->chain.fbo_feedback = 0;
++   }
+ 
+    if (gl->chain.fbo_feedback_texture)
++   {
+       glDeleteTextures(1, &gl->chain.fbo_feedback_texture);
++      gl->chain.fbo_feedback_texture = 0;
++   }
+ 
+    if (!gl3_init_filter_chain_with_path(gl, path))
+       return false;
+@@ -4323,9 +4333,16 @@ static void gl3_apply_state_changes(void *data)
+ static struct video_shader *gl3_get_current_shader(void *data)
+ {
+    gl3_t *gl = (gl3_t*)data;
++   if (!gl)
++      return NULL;
++   if (gl->chain.active)
++      return gl->chain.shader->get_current_shader(gl->chain.shader_data);
+ #ifdef HAVE_SLANG
+-   if (gl && gl->filter_chain)
+-      return gl3_filter_chain_get_preset(gl->filter_chain);
++   else
++   {
++      if (gl->filter_chain)
++         return gl3_filter_chain_get_preset(gl->filter_chain);
++   }
+ #endif
+    return NULL;
+ }
+
+From 577f8e77c8689d0e99cc89152c18a20dc52592e2 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Sat, 22 Nov 2025 11:04:44 -0500
+Subject: [PATCH 5/7] Lower the default GLSL version again to avoid breaking
+ shaders that use the `varying` keyword
+
+---
+ gfx/drivers_shader/shader_glsl.c | 31 +++++--------------------------
+ 1 file changed, 5 insertions(+), 26 deletions(-)
+
+diff --git a/gfx/drivers_shader/shader_glsl.c b/gfx/drivers_shader/shader_glsl.c
+index 780540385cba..067c9e5582e1 100644
+--- a/gfx/drivers_shader/shader_glsl.c
++++ b/gfx/drivers_shader/shader_glsl.c
+@@ -410,33 +410,12 @@ static bool gl_glsl_compile_shader(glsl_shader_data_t *glsl,
+ #ifdef HAVE_OPENGLES
+       version_no = 100;
+ #else
+-      if (gl_ver >= 410)
+-         version_no = 410;
++      if (gl_ver >= 300)
++         version_no = 130;
++      else if (gl_ver >= 210)
++         version_no = 120;
+       else
+-         switch (gl_ver)
+-         {
+-            case 400:
+-               version_no = 400;
+-               break;
+-            case 330:
+-               version_no = 330;
+-               break;
+-            case 320:
+-               version_no = 150;
+-               break;
+-            case 310:
+-               version_no = 140;
+-               break;
+-            case 300:
+-               version_no = 130;
+-               break;
+-            case 210:
+-               version_no = 120;
+-               break;
+-            default:
+-               version_no = 110;
+-               break;
+-         }
++         version_no = 110;
+ #endif
+ 
+       snprintf(version, sizeof(version), "#version %u\n", version_no);
+
+From b78fa26c682300d2528c3572acf83221b6952129 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Sat, 22 Nov 2025 11:28:12 -0500
+Subject: [PATCH 6/7] Don't set `glsl_core` to true in gl3.c if using OpenGL ES
+
+---
+ gfx/drivers/gl3.c                | 8 +++++++-
+ gfx/drivers_shader/shader_glsl.c | 4 ----
+ 2 files changed, 7 insertions(+), 5 deletions(-)
+
+diff --git a/gfx/drivers/gl3.c b/gfx/drivers/gl3.c
+index fccb88c2b6e3..d98083d806d3 100644
+--- a/gfx/drivers/gl3.c
++++ b/gfx/drivers/gl3.c
+@@ -2593,7 +2593,13 @@ static bool gl3_init_filter_chain_with_path(gl3_t *gl, const char *shader_path)
+ 
+ #ifdef HAVE_GLSL
+    if (type == RARCH_SHADER_GLSL)
+-      gl_glsl_set_context_type(true, gl->version_major, gl->version_minor);
++      gl_glsl_set_context_type(
++#ifdef HAVE_OPENGLES
++            false,
++#else
++            true,
++#endif
++            gl->version_major, gl->version_minor);
+ #endif
+ 
+ #ifdef HAVE_SLANG
+diff --git a/gfx/drivers_shader/shader_glsl.c b/gfx/drivers_shader/shader_glsl.c
+index 067c9e5582e1..894d8286bd7f 100644
+--- a/gfx/drivers_shader/shader_glsl.c
++++ b/gfx/drivers_shader/shader_glsl.c
+@@ -407,16 +407,12 @@ static bool gl_glsl_compile_shader(glsl_shader_data_t *glsl,
+       unsigned version_no = 0;
+       unsigned gl_ver     = glsl_major * 100 + glsl_minor * 10;
+ 
+-#ifdef HAVE_OPENGLES
+-      version_no = 100;
+-#else
+       if (gl_ver >= 300)
+          version_no = 130;
+       else if (gl_ver >= 210)
+          version_no = 120;
+       else
+          version_no = 110;
+-#endif
+ 
+       snprintf(version, sizeof(version), "#version %u\n", version_no);
+       RARCH_LOG("[GLSL] Using GLSL version %u.\n", version_no);
+
+From 0887303e633dc42529c76fd3d26307f2a377bb3e Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E5=88=98=E7=9A=93?= <whiteaxe@tuta.io>
+Date: Tue, 25 Nov 2025 19:36:27 -0500
+Subject: [PATCH 7/7] Fix image dimensions being incorrect when using GLCore
+ driver with a GLSL shader enabled on a software-rendered core
+
+---
+ gfx/drivers/gl3.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/gfx/drivers/gl3.c b/gfx/drivers/gl3.c
+index d98083d806d3..9b7a2e773369 100644
+--- a/gfx/drivers/gl3.c
++++ b/gfx/drivers/gl3.c
+@@ -3462,6 +3462,15 @@ static void gl3_update_cpu_texture(gl3_t *gl,
+       struct gl3_streamed_texture *streamed,
+       const void *frame, unsigned width, unsigned height, unsigned pitch)
+ {
++   if (gl->chain.active)
++   {
++      /* The input texture is expected to be square with a power of 2 size when not using Slang */
++      unsigned max = width > height ? width : height;
++      unsigned pow2_size = next_pow2(max);
++      width = pow2_size;
++      height = pow2_size;
++   }
++
+    if (width != streamed->width || height != streamed->height)
+    {
+       if (streamed->tex != 0)

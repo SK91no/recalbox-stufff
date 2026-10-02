@@ -1,0 +1,26 @@
+<profile version="1.0">
+  <option name="myName" value="Recalbox Default" />
+  <inspection_tool class="ClangTidy" enabled="true" level="WARNING" enabled_by_default="true">
+    <option name="clangTidyCheckOptions">
+      <list>
+        <ClangTidyCheckOption>
+          <option name="optionName" value="readability-function-cognitive-complexity.Threshold" />
+          <option name="optionValue" value="50" />
+        </ClangTidyCheckOption>
+      </list>
+    </option>
+    <option name="clangTidyChecks" value="*,-android-*,-cert-dcl16-c,-cert-dcl50-cpp,-cert-dcl59-cpp,-cert-env33-c,-clang-analyzer-*,-clang-diagnostic-*,-fuchsia-*,-google-*,-hicpp-avoid-c-arrays,-hicpp-braces-around-statements,-hicpp-function-size,-hicpp-named-parameter,-hicpp-no-array-decay,-hicpp-no-assembler,-hicpp-no-malloc,-hicpp-special-member-functions,-hicpp-uppercase-literal-suffix,-hicpp-vararg,-llvm-*,-misc-definitions-in-headers,-misc-non-private-member-variables-in-classes,-misc-unused-using-decls,-objc-*,-openmp-exception-escape,-zircon-*,google-default-arguments,google-explicit-constructor,google-runtime-operator,-hicpp-signed-bitwise,-hicpp-use-auto,-hicpp-use-emplace,-cert-err58-cpp,-misc-no-recursion,-cert-dcl37-c,-cert-dcl51-cpp,-altera-struct-pack-align,-abseil-string-find-str-contains,-altera-id-dependent-backward-branch,-altera-unroll-loops,-misc-const-correctness,-cppcoreguidelines-*,-llvmlibc-*,-readability-use-anyofallof,-readability-identifier-length,-readability-magic-numbers,-readability-braces-around-statements,-bugprone-easily-swappable-parameters,-readability-uppercase-literal-suffix,-modernize-use-emplace,-modernize-use-trailing-return-type,-modernize-avoid-c-arrays,-modernize-return-braced-init-list,-modernize-pass-by-value,-modernize-use-using,-modernize-avoid-bind,-modernize-use-default-member-init,-modernize-use-auto,-bugprone-reserved-identifier,-performance-enum-size" />
+  </inspection_tool>
+  <inspection_tool class="OCUnusedClass" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedGlobalDeclaration" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedIncludeDirective" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+    <option name="showInHeaders" value="true" />
+  </inspection_tool>
+  <inspection_tool class="OCUnusedInstanceVariable" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedMacro" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedMethod" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedProperty" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedStruct" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="OCUnusedTemplateParameter" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+  <inspection_tool class="UnusedExpressionResult" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+</profile>

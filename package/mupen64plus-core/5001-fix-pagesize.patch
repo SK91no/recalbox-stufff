@@ -1,0 +1,25 @@
+From 72cba9b7de3f19137740f3b59a96e71e3aa8949e Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Sun, 6 Apr 2025 13:56:03 +0100
+Subject: [PATCH 2/2] fix pagesize
+
+---
+ src/device/r4300/r4300_core.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/device/r4300/r4300_core.h b/src/device/r4300/r4300_core.h
+index bce19d2f..8cef04a6 100644
+--- a/src/device/r4300/r4300_core.h
++++ b/src/device/r4300/r4300_core.h
+@@ -181,7 +181,7 @@ struct r4300_core
+     /* FIXME: better put that near linkage_arm code
+      * to help generate call beyond the +/-32MB range.
+      */
+-    ALIGN(4096, unsigned char extra_memory_buffer[NEW_DYNAREC_CACHE_SIZE + NEW_DYNAREC_CACHE_PAGE_PAD]);
++    ALIGN(16384, unsigned char extra_memory_buffer[NEW_DYNAREC_CACHE_SIZE + NEW_DYNAREC_CACHE_PAGE_PAD]);
+     unsigned char* extra_memory;
+     struct new_dynarec_hot_state new_dynarec_hot_state;
+ #endif /* NEW_DYNAREC */
+-- 
+2.52.0
+

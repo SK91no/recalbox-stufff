@@ -1,0 +1,33 @@
+diff --git a/src/util/compiler.h b/src/util/compiler.h
+index ddd4cfb836b..5fc23a566b6 100644
+--- a/src/util/compiler.h
++++ b/src/util/compiler.h
+@@ -35,6 +35,16 @@
+ 
+ 
+ #include <assert.h>
++
++/*
++ * C11 static_assert() macro
++ * assert.h only defines that name for C11 and above
++ */
++#if !defined(__cplusplus)
++#ifndef static_assert
++#define static_assert _Static_assert
++#endif
++#endif
+ #include <limits.h>
+ #include <stdarg.h>
+ #include <stdbool.h>
+diff --git a/src/util/macros.h b/src/util/macros.h
+index bb8f9b58ffa..9c4c95f3d4e 100644
+--- a/src/util/macros.h
++++ b/src/util/macros.h
+@@ -31,6 +31,7 @@
+ #include <stddef.h>
+ #include <stdint.h>
+ #include <stdio.h>
++#include "util/compiler.h"
+ 
+ #ifdef _GAMING_XBOX
+ #define strdup _strdup

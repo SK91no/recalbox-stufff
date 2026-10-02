@@ -1,0 +1,6913 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"Language: lt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"(n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+msgid "AN UPDATE IS AVAILABLE FOR YOUR RECALBOX"
+msgstr "JŪSŲ RECALBOX YRA PASIEKIAMAS ATNAUJINIMAS"
+
+msgid "NEW VERSION:"
+msgstr "NAUJA VERSIJA:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "ATNAUJINIMO POKYČIŲ SĄRAŠAS:"
+
+msgid "CANCEL"
+msgstr "ATŠAUKTI"
+
+msgid "Rating"
+msgstr "REITINGAS"
+
+msgid "Released"
+msgstr "IŠLEISTAS"
+
+msgid "Developer"
+msgstr "GAMINTOJAS"
+
+msgid "Publisher"
+msgstr "LEIDEJAS"
+
+msgid "Genre"
+msgstr "ŽANRAS"
+
+msgid "Players"
+msgstr "ŽAIDĖJAI"
+
+msgid "SEARCH"
+msgstr "PAIEŠKA"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "VYKDOMAS APRAŠYMAS"
+
+msgid "SYSTEM"
+msgstr "SISTEMA"
+
+msgid "subtitle text"
+msgstr "aprašymo tekstas"
+
+msgid "STOP"
+msgstr "STABDYTI"
+
+msgid "stop (progress saved)"
+msgstr "STABDUTI (išaugota)"
+
+msgid "ESTIMATED TIME: "
+msgstr "NUMATOMAS LAIKAS: "
+
+msgid "ELAPSED TIME: "
+msgstr "PRAĖJĘS LAIKAS: "
+
+msgid "COMPLETE!"
+msgstr "BAIGTA!"
+
+msgid "PLEASE VISIT"
+msgstr "APLANKYKITE"
+
+msgid "ONLY 1 SCRAPPING ENGINE"
+msgid_plural "%i SCRAPPING ENGINES"
+msgstr[0] "TIK 1 SCRAPING VARIKLIS"
+msgstr[1] "%i SCRAPING VARIKLIAI"
+msgstr[2] "%i SCRAPING VARIKLIŲ"
+
+msgid ""
+"Scraping complete! {PROCESSED} games processed.\n"
+"\n"
+"{SUCCESS} game(s) scraped or updated\n"
+"{NOTFOUND} game(s) not found...\n"
+"{ERRORS} request/download errors\n"
+"\n"
+"{TEXTINFO} Text information updated\n"
+"{IMAGES} images and {VIDEOS} videos downloaded\n"
+"{MEDIASIZE} of media saved"
+msgstr ""
+"Scraping baigtas! Apdorota {PROCESSED} žaidimų.\n"
+"\n"
+"{SUCCESS} žaidimas(-ai) surinkti arba atnaujinti\n"
+"{NOTFOUND} žaidimas(-ai) nerasta...\n"
+"{ERRORS} užklausos/atsisiuntimo klaidos\n"
+"\n"
+"{TEXTINFO} tekstinė informacija atnaujinta\n"
+"{IMAGES} paveikslėlių ir {VIDEOS} vaizdo įrašų atsisiųsta\n"
+"{MEDIASIZE} medijos išsaugota"
+
+msgid ""
+"You reached your daily quota of scraping request.\n"
+"All your today's scrapes have been saved anyway.\n"
+"\n"
+"Start scraping again tomorrow.\n"
+"Dont forget to select 'update' and not 'scrape all'"
+msgstr ""
+"Pasiekėte dienos scraping užklausų limitą.\n"
+"Visi šiandienos scrape rezultatai vis tiek buvo išsaugoti.\n"
+"\n"
+"Pradėkite scraping iš naujo rytoj.\n"
+"Nepamirškite pasirinkti 'atnaujinti', o ne 'nuskaityti viską'"
+
+msgid ""
+"Your share partition is almost full.\n"
+"The scraper stopped automatically.\n"
+"\n"
+"Remove unused games, media, files to make room before running the scraper "
+"again!"
+msgstr ""
+"Jūsų bendro naudojimo skaidinys beveik pilnas.\n"
+"Scraper sustabdytas automatiškai.\n"
+"\n"
+"Prieš vėl paleisdami scraper, pašalinkite nenaudojamus žaidimus, mediją, "
+"failus, kad atsirastų vietos!"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "SCRAPE"
+msgstr "APRAŠYTI"
+
+msgid "SAVE"
+msgstr "IŠSAUGOTI"
+
+msgid "YES"
+msgstr "TAIP"
+
+msgid "NO"
+msgstr "NE"
+
+msgid "DELETE"
+msgstr "TRINTI"
+
+msgid "BACK"
+msgstr "ATGAL"
+
+msgid "CLOSE"
+msgstr "UŽDARYTI"
+
+msgid "MAIN MENU"
+msgstr "PAGRINDINIS MENIU"
+
+msgid "KODI MEDIA CENTER"
+msgstr "KODI MEDIA CENTER"
+
+msgid "SYSTEM SETTINGS"
+msgstr "SISTEMOS NUSTATYMAI"
+
+msgid "VERSION"
+msgstr "VERSIJA"
+
+msgid "LANGUAGE"
+msgstr "KALBA"
+
+msgid "OVERCLOCK"
+msgstr "GREITNIMAS"
+
+msgid "NONE"
+msgstr "NĖRA"
+
+msgid "UPDATES"
+msgstr "ATNAUJINIMAI"
+
+msgid "KODI SETTINGS"
+msgstr "NUSTATYMAI KODI"
+
+msgid "ENABLE KODI"
+msgstr "ĮJUNGTI KODI"
+
+msgid "KODI AT START"
+msgstr "PRADŽIOJE KODI"
+
+msgid "START KODI WITH X"
+msgstr "PRADŽIOJE KODI X"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "SISTEMOS PALEIDIMAS IŠ NAUJO"
+
+msgid "GAME RATIO"
+msgstr "ŽAIDIMŲ REITINGAI"
+
+msgid "SMOOTH GAMES"
+msgstr "GLODINTI ŽAIDIMUS"
+
+msgid "REWIND"
+msgstr "PRASUKTI"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "AUTOMATINIS SAUGOJIMAS/NUSKAITIMAIS"
+
+msgid "PRESS TWICE TO QUIT GAME"
+msgstr "PASPAUSKITE DU KARTUS, KAD IŠEITUMĖTE IŠ ŽAIDIMO"
+
+msgid "SHADERS SET"
+msgstr "SHADERS RINKINYS"
+
+msgid "SCANLINES"
+msgstr "SCANLINES"
+
+msgid "RETRO"
+msgstr "RETRO"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "RETRO PASIEKIMAI NUSTATYMAI"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "RETRO PASIEKIMAI"
+
+msgid "HARDCORE MODE"
+msgstr "\"KIETAS\" LYGIS"
+
+msgid "USERNAME"
+msgstr "VARTOTOJAS"
+
+msgid "PASSWORD"
+msgstr "SLAPTAŽODIS"
+
+msgid "ADVANCED"
+msgstr "IŠPLESTINIAI"
+
+msgid "UPDATE GAMES LISTS"
+msgstr "ATNAUJINTI ŽAIDIMŲ SĄRAŠĄ"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "VALDIKLIO NUSTATYMAI"
+
+msgid "SCREENSAVER AFTER"
+msgstr "EKRANO SAUGOJIMAS PO"
+
+msgid "CAROUSEL ANIMATION"
+msgstr "KARUSELĖS ANIMACIJA"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "EKRANO SAUGOTOJO APLINKA"
+
+msgid "SHOW FRAMERATE"
+msgstr "RODYTI KADRAI/SEK"
+
+msgid "ON-SCREEN HELP"
+msgstr "EKRANINĖ PAGALBA"
+
+msgid "THEME SET"
+msgstr "TEMŲ RINKINIS"
+
+msgid "SOUND SETTINGS"
+msgstr "GARSO NUSTATYMAI"
+
+msgid "SYSTEM VOLUME"
+msgstr "SISTEMOS GARSUMAS"
+
+msgid "OUTPUT DEVICE"
+msgstr "IŠVEDIMO ĮRENGINYS"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "NETWORK SETTINGS"
+msgstr "TINKLO NUSTATYMAI"
+
+msgid "CONNECTED"
+msgstr "PRIJUNGTAS"
+
+msgid "NOT CONNECTED"
+msgstr "NEPRIJUNGTAS"
+
+msgid "STATUS"
+msgstr "STATUSAS"
+
+msgid "IP ADDRESS"
+msgstr "IP ADRESAS"
+
+msgid "HOSTNAME"
+msgstr "HOSTNAME"
+
+msgid "ENABLE WIFI"
+msgstr "ĮJUNGTI WIFI"
+
+msgid "WIFI SSID"
+msgstr "WIFI PAVADINIMAS"
+
+msgid "WIFI KEY"
+msgstr "WIFI RAKTAS"
+
+msgid "SCRAPER"
+msgstr "APRAŠINĖTOJAS"
+
+msgid "SCRAPE FROM"
+msgstr "APRAŠYTI IŠ"
+
+msgid "SCRAPE NOW"
+msgstr "APRAŠYTI DABAR"
+
+msgid "QUIT"
+msgstr "IŠEITI"
+
+msgid "REALLY RESTART?"
+msgstr "TIKRAI PERKRAUTI?"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "TIKRAI IŠJUNGTI?"
+
+msgid "Emulator"
+msgstr "Emuliatorius"
+
+msgid "Core"
+msgstr "Branduolis"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "VALDIKLIO KONFIGŪRAVIMAS"
+
+msgid "CONTROLLER PAIRED"
+msgstr "VALDIKLIS PRIJUNGTAS"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "NEĮMANOMA PRIJUNGTI VALDIKLIO"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "NERASTA VALDYKLIŲ"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "VALDIKLIŲ SĄSAJOS BUVO IŠTRINTOS."
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "ATJUNGTI BLUETOOTH VALDYKLIUS"
+
+msgid "INPUT P%i"
+msgstr "ĮVESK P%i"
+
+msgid "CHOOSE"
+msgstr "IŠRINK"
+
+msgid "SELECT"
+msgstr "PASIRINK"
+
+msgid "OPTIONS"
+msgstr "PARINKTYS"
+
+msgid "JUMP TO LETTER"
+msgstr "PEREIK PRIE RAIDĖS"
+
+msgid "SORT GAMES BY"
+msgstr "RŪŠIUOK PAGAL"
+
+msgid "All Games"
+msgstr "Visi žaidimai"
+
+msgid "Only missing image"
+msgstr "Tik neaprašyti žaidimai"
+
+msgid "FILTER"
+msgstr "FILTRAS"
+
+msgid "SYSTEMS"
+msgstr "SISTEMOS"
+
+msgid "START"
+msgstr "PRADĖTI"
+
+msgid "Ratio"
+msgstr "Santykis"
+
+msgid "Name"
+msgstr "Pavadinimas"
+
+msgid "Description"
+msgstr "Aprašymas"
+
+msgid "Image"
+msgstr "Paveikslėlis"
+
+msgid "Favorite"
+msgstr "Mėgstamiausias"
+
+msgid "Region"
+msgstr "Regionas"
+
+msgid "Hidden"
+msgstr "Paslėptas"
+
+msgid "Last played"
+msgstr "Paskutinį kartą žaista"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "%i ŽAIDIMAS PRIEINAMAS"
+msgstr[1] "%i ŽAIDIMAI PRIEINAMI"
+msgstr[2] "%i ŽAIDIMŲ PRIEINAMA"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "%i MĖGSTAMIAUSIAS"
+msgstr[1] "%i MĖGSTAMIAUSI"
+msgstr[2] "%i MĖGSTAMIAUSIŲ"
+
+msgid "LAUNCH"
+msgstr "PALEISTI"
+
+msgid "Times played"
+msgstr "Žaista kartų"
+
+msgid "MENU"
+msgstr "MENIU"
+
+msgid "START KODI"
+msgstr "PALEISTI KODI"
+
+msgid "WORKING..."
+msgstr "VYKDOMA..."
+
+msgid "CHANGE"
+msgstr "KEISTI"
+
+msgid "never"
+msgstr "niekada"
+
+msgid "just now"
+msgstr "ką tik"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "prieš %i sek."
+msgstr[1] "prieš %i sek."
+msgstr[2] "prieš %i sek."
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "prieš %i min."
+msgstr[1] "prieš %i min."
+msgstr[2] "prieš %i min."
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "prieš %i val."
+msgstr[1] "prieš %i val."
+msgstr[2] "prieš %i val."
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "prieš %i dieną"
+msgstr[1] "prieš %i dienas"
+msgstr[2] "prieš %i dienų"
+
+msgid "unknown"
+msgstr "nežinoma"
+
+msgid "SELECT ALL"
+msgstr "PASIRINKTI VISKĄ"
+
+msgid "SELECT NONE"
+msgstr "NEPASIRINKTI NIEKO"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i PASIRINKTAS"
+msgstr[1] "%i PASIRINKTI"
+msgstr[2] "%i PASIRINKTA"
+
+msgid "UP"
+msgstr "UP"
+
+msgid "DOWN"
+msgstr "DOWN"
+
+msgid "LEFT"
+msgstr "LEFT"
+
+msgid "RIGHT"
+msgstr "RIGHT"
+
+msgid "HOTKEY"
+msgstr "HOTKEY"
+
+msgid "CONFIGURING"
+msgstr "KONFIGŪRAVIMAS"
+
+msgid "KEYBOARD"
+msgstr "KLAVIATŪRA"
+
+msgid "GAMEPAD %i"
+msgstr "VALDIKLIS %i"
+
+msgid "(skipped)"
+msgstr "(praleista)"
+
+msgid "DISCARD CHANGES"
+msgstr "ATŠAUK PAKEITIMUS"
+
+msgid "WELCOME"
+msgstr "SVEIKI!"
+
+msgid "CONFIGURE INPUT"
+msgstr "KONFIGŪRUOTI ĮVEDIMĄ"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "%i VALDIKLIS APTIKTAS"
+msgstr[1] "%i VALDIKLIAI APTIKTI"
+msgstr[2] "%i VALDIKLIŲ APTIKTA"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "NERASTAS VALDIKLIS"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "LAIKYKITE MYGTUKĄ ANT SAVO ĮRENGINIO, KAD JĮ SUKONFIGŪRUOTUMĖTE."
+
+msgid "PRESS ESC OR THE HOTKEY TO CANCEL."
+msgstr "PASPAUSKITE ESC ARBA HOTKEY, KAD ATŠAUKTUMĖTE."
+
+msgid "LOADING..."
+msgstr "KRAUNAME..."
+
+msgid "PLEASE WAIT..."
+msgstr "PALAUKITE..."
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "TIKRAI IŠJUNGTI NEIŠSAUGANT METADUOMENŲ?"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "SHIFT DIDŽIOSIOMS, MAŽOSIOMS IR SPECIALIEMS SIMBOLIAMS"
+
+msgid "SPACE"
+msgstr "TARPAS"
+
+msgid "DELETE A CHAR"
+msgstr "TRINTI SIMBOLĮ"
+
+msgid "SHIFT"
+msgstr "SHIFT"
+
+msgid "STOP EDITING"
+msgstr "BAIGTI REDAGAVIMĄ"
+
+msgid "MOVE CURSOR"
+msgstr "PERKELTI ŽYMEKLĮ"
+
+msgid "EDIT"
+msgstr "REDAGUOTI"
+
+msgid "FILENAME"
+msgstr "FAILO PAVADINIMAS"
+
+msgid "RATING"
+msgstr "VERTINIMAS"
+
+msgid "TIMES PLAYED"
+msgstr "ŽAISTA KARTŲ"
+
+msgid "LAST PLAYED"
+msgstr "PASKUTINĮ KARTĄ ŽAISTA"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "ŽAIDĖJŲ SKAIČIUS"
+
+msgid "DEVELOPER"
+msgstr "KŪRĖJAS"
+
+msgid "GENRE"
+msgstr "ŽANRAS"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE "
+"THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"TURBO IR EKSTREMALŪS OVERCLOCK NUSTATYMAI GALI SUKELTI SISTEMOS NESTABILUMĄ, "
+"TAD NAUDOKITE JUOS SAVO RIZIKA.\n"
+"JEI TĘSITE, SISTEMA DABAR PERSIKRAUS."
+
+msgid "Start kodi media player."
+msgstr "Paleisti kodi medijos leistuvą."
+
+msgid ""
+"Select the language for your recalbox, select an external drive to store "
+"your games and configurations, check your current version and the free space "
+"on your drive"
+msgstr ""
+"Pasirinkite savo recalbox kalbą, pasirinkite išorinį diską žaidimams ir "
+"konfigūracijoms saugoti, patikrinkite dabartinę versiją ir laisvą vietą diske"
+
+msgid "Shows your current recalboxOS version."
+msgstr "Rodo dabartinę jūsų recalboxOS versiją."
+
+msgid ""
+"Show how much space is used on your SHARE partition, located either on the "
+"SDCARD or on an external drive. The information shows how many GB are used "
+"and how many GB your storage has in total (example 13GB/26GB)."
+msgstr ""
+"Rodo, kiek vietos naudojama jūsų SHARE skaidinyje, esančiame SD kortelėje "
+"arba išoriniame diske. Informacija rodo, kiek GB naudojama ir kiek GB iš "
+"viso turi jūsų saugykla (pavyzdys 13GB/26GB)."
+
+msgid ""
+"Select an external drive to store your roms, saves, configurations etc.\n"
+"Use a FAT32 formatted drive. The system does not format the drive. On first "
+"boot, with this option enabled, recalbox will create a '/recalbox' folder "
+"with all system files inside."
+msgstr ""
+"Pasirinkite išorinį diską roms, išsaugojimams, konfigūracijoms ir kt. "
+"saugoti.\n"
+"Naudokite FAT32 formato diską. Sistema neformatuoja disko. Pirmojo paleidimo "
+"metu, įjungus šią parinktį, recalbox sukurs '/recalbox' aplanką su visais "
+"sistemos failais viduje."
+
+msgid ""
+"Manage your recalbox updates. Select the update type. Activate update check."
+msgstr ""
+"Tvarkykite savo recalbox atnaujinimus. Pasirinkite atnaujinimo tipą. "
+"Aktyvuokite atnaujinimų tikrinimą."
+
+msgid "Check if an update is available, and start the update process."
+msgstr "Patikrinkite, ar yra atnaujinimas, ir pradėkite atnaujinimo procesą."
+
+msgid ""
+"Configure games display, ratio, filters (shaders), auto save and load and "
+"retroachievement account."
+msgstr ""
+"Sukonfigūruokite žaidimų rodymą, santykį, filtrus (shaders), automatinį "
+"išsaugojimą ir įkėlimą bei retroachievements paskyrą."
+
+msgid ""
+"The game ratio is the ratio between image width and image height. Use AUTO "
+"to let the emulator choose the original game ratio, that will give you the "
+"best retrogaming experience."
+msgstr ""
+"Žaidimo santykis yra santykis tarp vaizdo pločio ir aukščio. Naudokite AUTO, "
+"kad emuliatorius pasirinktų originalų žaidimo santykį, kuris suteiks "
+"geriausią retrogaming patirtį."
+
+msgid ""
+"Smooth the game image. This option makes the image smoother, using bilinear "
+"filtering."
+msgstr ""
+"Glodina žaidimo vaizdą. Ši parinktis padaro vaizdą glotnesnį, naudodama "
+"bilinear filtravimą."
+
+msgid ""
+"This option allows you to rewind the game if you get killed by a monster, or "
+"if you make any other mistake. Use the HOTKEY + LEFT command within the game "
+"to rewind."
+msgstr ""
+"Ši parinktis leidžia atsukti žaidimą atgal, jei jus nužudė pabaisa arba "
+"padarėte kitą klaidą. Naudokite HOTKEY + LEFT komandą žaidime, kad "
+"atsuktumėte atgal."
+
+msgid ""
+"Auto save the state when you quit a game, and auto load last saved state "
+"when you start a game."
+msgstr ""
+"Automatiškai išsaugo būseną, kai išeinate iš žaidimo, ir automatiškai įkelia "
+"paskutinę išsaugotą būseną, kai pradedate žaidimą."
+
+msgid "Press the buttons twice to end the game and go back to the main menu."
+msgstr ""
+"Paspauskite mygtukus du kartus, kad baigtumėte žaidimą ir grįžtumėte į "
+"pagrindinį meniu."
+
+msgid ""
+"Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, "
+"4x, etc. This option scales the image up to the greatest integer scale below "
+"the set resolution. So for instance, if you set your fullscreen resolution "
+"to 1920x1080 and enable integer scaling, it will only scale a 320x240 image "
+"up to 1280x960, and leave black borders all around. This is to maintain a "
+"1:1 pixel ratio with the original source image, so that pixels are not "
+"unevenly duplicated."
+msgstr ""
+"Sveikaskaitis mastelio keitimas yra mastelio keitimas sveiku skaičiumi, "
+"pvz., 2x, 3x, 4x ir t.t. Ši parinktis padidina vaizdą iki didžiausio "
+"sveikojo skaičiaus mastelio, mažesnio už nustatytą skiriamąją gebą. "
+"Pavyzdžiui, jei nustatysite viso ekrano skiriamąją gebą į 1920x1080 ir "
+"įjungsite sveikaskaitį mastelio keitimą, jis padidins tik 320x240 vaizdą iki "
+"1280x960, paliekant juodus kraštus aplinkui. Tai daroma norint išlaikyti 1:1 "
+"pikselio santykį su originaliu šaltinio vaizdu, kad pikseliai nebūtų "
+"nevienodai dubliuojami."
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a shader set "
+"here, which is a collection of shaders selected for each system. You can "
+"also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr ""
+"Shaders yra tarsi filtrai žaidimo atvaizdavimui. Čia galite pasirinkti "
+"shader rinkinį, kuris yra kiekvienai sistemai pasirinktų shaders kolekcija. "
+"Taip pat galite pakeisti shader žaidimo metu naudodami HOTKEY + L2 arba "
+"HOTKEY + R2."
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "Įjungti arba išjungti RetroAchievements žaidimuose."
+
+msgid ""
+"Hardcore mode disables *all* savestate and rewind functions within the "
+"emulator: you will not be able to save and reload at any time. You will have "
+"to complete the game and get the achievements first time, just like on the "
+"original console. In reward for this, you will earn both the standard and "
+"the hardcore achievement, in effect earning double points! A regular game "
+"worth 400 points, is now worth 800 if you complete it on hardcore! For "
+"example: if you complete the game for 400 points, you then have the "
+"opportunity to earn another 400 on hardcore."
+msgstr ""
+"Hardcore režimas išjungia *visas* savestate ir atsukimo funkcijas "
+"emuliatoriuje: negalėsite išsaugoti ir įkelti bet kuriuo metu. Turėsite "
+"užbaigti žaidimą ir gauti pasiekimus iš pirmo karto, kaip ir originalioje "
+"konsolėje. Už tai gausite ir standartinį, ir hardcore pasiekimą, taip "
+"uždirbdami dvigubai taškų! Įprastas žaidimas, vertas 400 taškų, dabar vertas "
+"800, jei jį užbaigsite hardcore režimu! Pavyzdžiui: jei užbaigsite žaidimą "
+"už 400 taškų, tuomet turėsite galimybę uždirbti dar 400 hardcore režimu."
+
+msgid ""
+"Configure an associated controller. Your controller has to be associated / "
+"plugged before."
+msgstr ""
+"Sukonfigūruokite susietą valdiklį. Jūsų valdiklis turi būti susietas / "
+"prijungtas prieš tai."
+
+msgid ""
+"Pair a bluetooth controller with your recalbox. Your controller must be in "
+"pairing mode."
+msgstr ""
+"Susiekite bluetooth valdiklį su savo recalbox. Jūsų valdiklis turi būti "
+"susiejimo režime."
+
+msgid ""
+"Forget all paired bluetooth controllers. You will have to pair your "
+"controllers again, but this option can help if you have issues to reconnect "
+"a controller, which is already paired."
+msgstr ""
+"Pamiršti visus susietus bluetooth valdiklius. Turėsite iš naujo susieti savo "
+"valdiklius, tačiau ši parinktis gali padėti, jei turite problemų iš naujo "
+"prijungiant jau susietą valdiklį."
+
+msgid ""
+"Configure your EmulationStation experience. Select transition types, help "
+"prompts, screensaver behavior. You can also deactivate the onscreen keyboard "
+"if you have a real keyboard plugged into your recalbox.\n"
+"If you've added games since the last boot, you can also refresh the gamelist "
+"from this menu."
+msgstr ""
+"Sukonfigūruokite savo EmulationStation patirtį. Pasirinkite perėjimų tipus, "
+"pagalbos užuominas, ekrano užsklandos elgseną. Taip pat galite išjungti "
+"ekrano klaviatūrą, jei prie recalbox prijungta tikra klaviatūra.\n"
+"Jei pridėjote žaidimų nuo paskutinio paleidimo, taip pat galite atnaujinti "
+"žaidimų sąrašą iš šio meniu."
+
+msgid "Configure screensaver"
+msgstr "Sukonfigūruoti ekrano užsklandą"
+
+msgid "Start the screensaver after N minutes."
+msgstr "Paleisti ekrano užsklandą po N minučių."
+
+msgid ""
+"Set the screensaver behavior. DIM will reduce the screen light, BLACK will "
+"turn the screen black, DEMO will launch demo mode."
+msgstr ""
+"Nustatykite ekrano užsklandos elgseną. DIM sumažins ekrano šviesumą, BLACK "
+"padarys ekraną juodą, DEMO paleis demonstracinį režimą."
+
+msgid ""
+"Shows a help at the bottom of the screen which displays commands you can use."
+msgstr ""
+"Rodo pagalbą ekrano apačioje, kurioje rodomos komandos, kurias galite "
+"naudoti."
+
+msgid ""
+"When enabled, you can switch between systems while browsing a gamelist by "
+"pressing LEFT or RIGHT."
+msgstr ""
+"Kai įjungta, galite perjungti sistemas naršydami žaidimų sąrašą paspausdami "
+"LEFT arba RIGHT."
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "Pasirinkite, ar karuselė bus animuota, ar ne, perėjimų metu"
+
+msgid "Select a theme for your recalbox."
+msgstr "Pasirinkite temą savo recalbox."
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr ""
+"Atnaujina žaidimų sąrašus, jei pridėjote žaidimų nuo paskutinio paleidimo."
+
+msgid "Configure the sound options of your recalbox."
+msgstr "Sukonfigūruokite savo recalbox garso parinktis."
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "Nustatykite garso išvesties garsumą frontend ir žaidimams."
+
+msgid "Select your output device. Only HDMI and JACK are supported."
+msgstr "Pasirinkite savo išvesties įrenginį. Palaikomi tik HDMI ir JACK."
+
+msgid ""
+"Configure the network options of your recalbox.\n"
+"Check your network status and IP address, set the hostname and configure the "
+"WIFI."
+msgstr ""
+"Sukonfigūruokite savo recalbox tinklo parinktis.\n"
+"Patikrinkite tinklo būseną ir IP adresą, nustatykite kompiuterio pavadinimą "
+"ir sukonfigūruokite WIFI."
+
+msgid ""
+"Displays CONNECTED, if you are connected, by checking if your recalbox can "
+"access the recalbox.com update server."
+msgstr ""
+"Rodo PRISIJUNGTA, jei esate prisijungę, patikrinant, ar jūsų recalbox gali "
+"pasiekti recalbox.com atnaujinimų serverį."
+
+msgid "The IP address of your recalbox within your local network."
+msgstr "Jūsų recalbox IP adresas jūsų vietiniame tinkle."
+
+msgid ""
+"Enable or disable WIFI.\n"
+"If you disable WIFI, the SSID and the WIFI passwords are saved and can be "
+"used when you reactivate it"
+msgstr ""
+"Įjungti arba išjungti WIFI.\n"
+"Jei išjungsite WIFI, SSID ir WIFI slaptažodžiai bus išsaugoti ir galės būti "
+"naudojami, kai jį vėl aktyvuosite"
+
+msgid "The name of your recalbox in your local network"
+msgstr "Jūsų recalbox pavadinimas jūsų vietiniame tinkle"
+
+msgid "SSID (WIFI Name) of your network."
+msgstr "Jūsų tinklo SSID (WIFI pavadinimas)."
+
+msgid "Private key of your WIFI network."
+msgstr "Jūsų WIFI tinklo privatus raktas."
+
+msgid ""
+"Get information and visuals for your games. The scraper downloads metadata "
+"and visuals for your games from different servers, and greatly enhances the "
+"user experience in EmulationStation."
+msgstr ""
+"Gaukite informaciją ir vaizdinę medžiagą savo žaidimams. Scraper atsisiunčia "
+"metaduomenis ir vaizdinę medžiagą jūsų žaidimams iš skirtingų serverių ir "
+"visiškai pagerina naudotojo patirtį EmulationStation."
+
+msgid ""
+"Select a server to scrape from. The SCREENSCRAPER server is recommended and "
+"is based on www.screenscraper.fr and scrapes game data in your language, if "
+"available."
+msgstr ""
+"Pasirinkite serverį, iš kurio bus renkami duomenys. Rekomenduojamas "
+"SCREENSCRAPER serveris, pagrįstas www.screenscraper.fr, kuris renka žaidimo "
+"duomenis jūsų kalba, jei jie prieinami."
+
+msgid ""
+"Advanced settings. Please make sure you really know what you're doing, "
+"before changing any values in this menu."
+msgstr ""
+"Išplėstiniai nustatymai. Įsitikinkite, kad tikrai žinote, ką darote, prieš "
+"keisdami bet kokias reikšmes šiame meniu."
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind "
+"that overclocking your board can void your warranty."
+msgstr ""
+"Įjunkite overclock savo plokštei, kad padidintumėte našumą.\n"
+"Overclock nustatymai yra bendruomenės išbandyti ir patvirtinti. Turėkite "
+"omenyje, kad plokštės overclockinimas gali panaikinti garantiją."
+
+msgid ""
+"Select which system to show when the recalbox frontend starts. The default "
+"value is 'favorites'."
+msgstr ""
+"Pasirinkite, kurią sistemą rodyti, kai paleidžiamas recalbox frontend. "
+"Numatytoji reikšmė yra 'favorites'."
+
+msgid ""
+"On boot, recalbox will show the list of games of the selected system rather "
+"than the system view."
+msgstr ""
+"Paleidimo metu recalbox rodys pasirinktos sistemos žaidimų sąrašą, o ne "
+"sistemų vaizdą."
+
+msgid ""
+"Override global options like emulator, core, ratio and more for each "
+"available system in your recalbox."
+msgstr ""
+"Perrašykite bendras parinktis, tokias kaip emuliatorius, branduolys, "
+"santykis ir kt., kiekvienai prieinamai sistemai jūsų recalbox."
+
+msgid ""
+"Configure boot options that make your recalbox boot straight into a system "
+"or into Kodi, lock a user to a single system, or directly show the gamelist."
+msgstr ""
+"Sukonfigūruokite paleidimo parinktis, dėl kurių jūsų recalbox paleidžiamas "
+"tiesiai į sistemą arba į Kodi, priverčia naudotoją naudoti tik vieną sistemą "
+"arba tiesiogiai rodo žaidimų sąrašą."
+
+msgid ""
+"Enable or disable Kodi. If kodi is disabled, you won't be able to start it "
+"with the X button, or start it automatically at boot. The menu entry will be "
+"removed as well."
+msgstr ""
+"Įjunkite arba išjunkite Kodi. Jei Kodi išjungtas, negalėsite jo paleisti X "
+"mygtuku arba paleisti automatiškai paleidimo metu. Meniu įrašas taip pat bus "
+"pašalintas."
+
+msgid "Use the X button to start Kodi."
+msgstr "Naudokite X mygtuką, kad paleistumėte Kodi."
+
+msgid "Automatically start into Kodi on boot."
+msgstr "Automatiškai paleisti į Kodi paleidimo metu."
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "Rodyti kadrų dažnį EmulationStation ir žaidime."
+
+msgid ""
+"Enable or disable the Recalbox Manager.\n"
+"The Recalbox Manager is a web application available at http://recalbox if "
+"you are on Windows, at http://recalbox.local if you are on Linux or Mac, or "
+"directly with your recalbox IP: http://192.168.1.XX.\n"
+"You can configure many options from within the manager, and even manage "
+"games, saves, and scrapes!"
+msgstr ""
+"Įjunkite arba išjunkite Recalbox Manager.\n"
+"Recalbox Manager yra žiniatinklio programa, pasiekiama adresu http://"
+"recalbox , jei naudojate windows, http://recalbox.local , jei naudojate "
+"Linux ar Mac, arba tiesiogiai per jūsų recalbox IP: http://192.168.1.XX.\n"
+"Galite sukonfigūruoti daugybę parinkčių iš manager viduje, netgi tvarkyti "
+"žaidimus, išsaugojimus ir scrape rezultatus!"
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr ""
+"Pasirinkite, kurį emuliatorių naudoti, kai paleidžiate žaidimą šiai sistemai."
+
+msgid ""
+"Switch between showing only the favorite games and showing them all. To add "
+"a game to the favorite list, select the game and toggle its state with 'Y'."
+msgstr ""
+"Perjunkite tarp matymo tik mėgstamiausių žaidimų arba ne. Norėdami pridėti "
+"žaidimą į mėgstamiausių sąrašą, pasirinkite žaidimą ir perjunkite jo būseną "
+"naudodami 'Y'."
+
+msgid ""
+"Switch between seeing the folder structure and seeing all games in a flat "
+"top-level list."
+msgstr ""
+"Perjunkite tarp aplankų struktūros matymo ir visų žaidimų matymo "
+"suplokštintame viršutiniame lygyje."
+
+msgid "UPDATE TYPE"
+msgstr "ATNAUJINIMO TIPAS"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "SVEIKASKAITIS MASTELIS (PIXEL PERFECT)"
+
+msgid "ADVANCED SETTINGS"
+msgstr "IŠPLĖSTINIAI NUSTATYMAI"
+
+msgid "BOOT SETTINGS"
+msgstr "PALEIDIMO NUSTATYMAI"
+
+msgid "BOOT ON SYSTEM"
+msgstr "PALEISTI SISTEMOJE"
+
+msgid "BOOT ON GAMELIST"
+msgstr "PALEISTI ŽAIDIMŲ SĄRAŠE"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "SLĖPTI SISTEMŲ VAIZDĄ"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "IŠPLĖSTINĖ EMULIATORIAUS KONFIGŪRACIJA"
+
+msgid "HELP"
+msgstr "PAGALBA"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "SISTEMA YRA ATNAUJINTA"
+
+msgid "Now playing"
+msgstr "Dabar žaidžiama"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr ""
+"Nustatykite pagalbos iššokančių langų trukmę, 0 reiškia be iššokančio lango."
+
+msgid "HELP POPUP DURATION"
+msgstr "PAGALBOS IŠŠOKANČIO LANGO TRUKMĖ"
+
+msgid "POPUP SETTINGS"
+msgstr "IŠŠOKANČIŲ LANGŲ NUSTATYMAI"
+
+msgid "Set position and duration of popups."
+msgstr "Nustatykite iššokančių langų padėtį ir trukmę."
+
+msgid "NETPLAY"
+msgstr "NETPLAY"
+
+msgid "NETPLAY SETTINGS"
+msgstr "NETPLAY NUSTATYMAI"
+
+msgid "NETPLAY LOBBY"
+msgstr "NETPLAY LOBBY"
+
+msgid "Enable or disable Netplay in games."
+msgstr "Įjunkite arba išjunkite Netplay žaidimuose."
+
+msgid "PORT"
+msgstr "PORTAS"
+
+msgid "NICKNAME"
+msgstr "SLAPYVARDIS"
+
+msgid "Enable or disable connections through relay servers."
+msgstr "Įjunkite arba išjunkite ryšius per relay serverius."
+
+msgid "KODI/NETPLAY"
+msgstr "KODI/NETPLAY"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "NĖRA ŽAIDIMŲ ARBA NĖRA RYŠIO"
+
+msgid ""
+"Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr ""
+"Pridėkite roms hash į savo žaidimų sąrašus, kad Netplay rezultatai būtų "
+"tikslesni."
+
+msgid "HASH ROMS"
+msgstr "HASH ROMS"
+
+msgid "Username"
+msgstr "Naudotojo vardas"
+
+msgid "Country"
+msgstr "Šalis"
+
+msgid "Latency"
+msgstr "Vėlavimas"
+
+msgid "Host arch."
+msgstr "Host arch."
+
+msgid "Core ver."
+msgstr "Core vers."
+
+msgid "RA ver."
+msgstr "RA vers."
+
+msgid "Can join"
+msgstr "Gali prisijungti"
+
+msgid "Rom and core match"
+msgstr "Rom ir core sutampa"
+
+msgid "Rom, hash and core match"
+msgstr "Rom, hash ir core sutampa"
+
+msgid "No rom match"
+msgstr "Rom nesutampa"
+
+msgid "No core match"
+msgstr "Core nesutampa"
+
+msgid "Match"
+msgstr "Sutampa"
+
+msgid "No Match"
+msgstr "Nesutampa"
+
+msgid "Rom file"
+msgstr "Rom failas"
+
+msgid "Rom hash"
+msgstr "Rom hash"
+
+msgid "good"
+msgstr "geras"
+
+msgid "bad"
+msgstr "blogas"
+
+msgid "medium"
+msgstr "vidutinis"
+
+msgid "Player"
+msgstr "Žaidėjas"
+
+msgid "Game"
+msgstr "Žaidimas"
+
+msgid "A Recalbox friend has started a Netplay game!"
+msgstr "Recalbox draugas pradėjo Netplay žaidimą!"
+
+msgid "EMPTY LIST"
+msgstr "TUŠČIAS SĄRAŠAS"
+
+msgid "Auto"
+msgstr "Automatinis"
+
+msgid "Square pixel"
+msgstr "Kvadratinis pikselis"
+
+msgid "Retroarch Config"
+msgstr "Retroarch konfigūracija"
+
+msgid "Retroarch Custom"
+msgstr "Retroarch pasirinktinis"
+
+msgid "Core provided"
+msgstr "Numatyta core"
+
+msgid "Do not set"
+msgstr "Nenustatyti"
+
+msgid "BIOS CHECKING"
+msgstr "BIOS TIKRINIMAS"
+
+msgid ""
+"Scan and check all your BIOS files and report everything in a comprehensive "
+"way."
+msgstr ""
+"Nuskaitykite ir patikrinkite visus savo BIOS failus bei praneškite apie "
+"viską išsamiai."
+
+msgid "RESCAN"
+msgstr "PERSKENUOTI"
+
+msgid ""
+"EMULATOR %s MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE AVAILABLE!"
+msgstr ""
+"EMULIATORIUS %s GALI VEIKTI NETINKAMAI, KOL NEBUS PRIEINAMOS VISOS "
+"REIKALINGOS BIOS!"
+
+msgid ""
+"%i EMULATORS MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE "
+"AVAILABLE!"
+msgstr ""
+"%i EMULIATORIAI GALI VEIKTI NETINKAMAI, KOL NEBUS PRIEINAMOS VISOS "
+"REIKALINGOS BIOS!"
+
+msgid "CONGRATULATIONS! ALL EMULATORS SHOULD WORK PROPERLY!"
+msgstr "SVEIKINAME! VISI EMULIATORIAI TURĖTŲ VEIKTI TINKAMAI!"
+
+msgid "%i BIOS NOT FOUND"
+msgstr "%i BIOS NERASTA"
+
+msgid "%i NON-MATCHING BIOS FOUND"
+msgstr "%i NEATITINKANČIŲ BIOS RASTA"
+
+msgid "%i GOOD BIOS FOUND!"
+msgstr "%i TINKAMŲ BIOS RASTA!"
+
+msgid "File Path"
+msgstr "Failo kelias"
+
+msgid "Mandatory"
+msgstr "Privaloma"
+
+msgid "Must match MD5"
+msgstr "Turi sutapti MD5"
+
+msgid "File found ?"
+msgstr "Failas rastas?"
+
+msgid "Matching MD5 ?"
+msgstr "Sutampantis MD5?"
+
+msgid "NOTE"
+msgstr "PASTABA"
+
+msgid ""
+"This bios is required in order to run the emulator properly. You won't be "
+"able to run any games with the emulator/core above."
+msgstr ""
+"Ši bios reikalinga tam, kad emuliatorius veiktų tinkamai. Negalėsite "
+"paleisti jokių žaidimų su aukščiau nurodytu emuliatoriumi/core."
+
+msgid ""
+"This bios is not mandatory in most cases. The emulator will run properly "
+"unless you want to use features requiring this particular bios file."
+msgstr ""
+"Ši bios daugeliu atvejų nėra privaloma. Emuliatorius veiks tinkamai, nebent "
+"norite naudoti funkcijas, kurioms reikalingas šis konkretus bios failas."
+
+msgid ""
+"Your bios file does not match any known MD5. However, there are chances of "
+"getting the emulator running fine."
+msgstr ""
+"Jūsų bios failas neatitinka jokio žinomo MD5. Vis dėlto yra galimybė, kad "
+"emuliatorius veiks gerai."
+
+msgid ""
+"Your bios file does not match any known MD5 but this is not required. So "
+"there are strong chances of getting everything running fine."
+msgstr ""
+"Jūsų bios failas neatitinka jokio žinomo MD5, tačiau tai nebūtina. Todėl yra "
+"didelė tikimybė, kad viskas veiks gerai."
+
+msgid ""
+"Your bios file does match one of the known MD5. Everything will run fine!"
+msgstr "Jūsų bios failas atitinka vieną iš žinomų MD5. Viskas veiks gerai!"
+
+msgid "MD5 LIST"
+msgstr "MD5 SĄRAŠAS"
+
+msgid "Congratulation, all cores/emulators listed below will work flawlessly!"
+msgstr ""
+"Sveikiname, visi žemiau išvardyti core/emuliatoriai veiks nepriekaištingai!"
+
+msgid ""
+"Cores/emulators listed below won't probably work until required bios are "
+"made available."
+msgstr ""
+"Žemiau išvardyti core/emuliatoriai tikriausiai neveiks, kol nebus prieinamos "
+"reikalingos bios."
+
+msgid ""
+"Cores/emulators listed below may work in most cases, unless you use features "
+"requiring special bios."
+msgstr ""
+"Žemiau išvardyti core/emuliatoriai daugeliu atvejų gali veikti, nebent "
+"naudojate funkcijas, kurioms reikalingos specialios bios."
+
+msgid "BIOS OK"
+msgstr "BIOS GERAI"
+
+msgid "BIOS UNSAFE"
+msgstr "BIOS NESAUGI"
+
+msgid "BIOS KO"
+msgstr "BIOS NETINKAMA"
+
+msgid "BIOS NOT FOUND"
+msgstr "BIOS NERASTA"
+
+msgid "MD5 OK"
+msgstr "MD5 GERAI"
+
+msgid "MD5 NOT OK"
+msgstr "MD5 NETINKAMAS"
+
+msgid "BROWSE"
+msgstr "NARŠYTI"
+
+msgid "Your bios' MD5"
+msgstr "Jūsų bios MD5"
+
+msgid "Known MD5 List"
+msgstr "Žinomų MD5 sąrašas"
+
+msgid "MY SYSTEMS"
+msgstr "MANO SISTEMOS"
+
+msgid "ALL SYSTEMS"
+msgstr "VISOS SISTEMOS"
+
+msgid ""
+"EmulationStation has detected external changes on a gamelist file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation aptiko išorinius pakeitimus žaidimų sąrašo faile.\n"
+"Kad būtų išvengta duomenų praradimo, EmulationStation ketina paleisti iš "
+"naujo ir perkrauti visus failus."
+
+msgid ""
+"EmulationStation has detected external changes on a theme file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation aptiko išorinius pakeitimus temos faile.\n"
+"Kad būtų išvengta duomenų praradimo, EmulationStation ketina paleisti iš "
+"naujo ir perkrauti visus failus."
+
+msgid "VIRTUAL SYSTEMS"
+msgstr "VIRTUALIOS SISTEMOS"
+
+msgid "SHOW ALL-GAMES SYSTEM"
+msgstr "RODYTI VISŲ ŽAIDIMŲ SISTEMĄ"
+
+msgid "SHOW MULTIPLAYER SYSTEM"
+msgstr "RODYTI DAUGIALYPIO ŽAIDIMO SISTEMĄ"
+
+msgid "SHOW LAST-PLAYED SYSTEM"
+msgstr "RODYTI PASKUTINIŲ ŽAISTŲ SISTEMĄ"
+
+msgid "VIRTUAL SYSTEMS PER GENRE"
+msgstr "VIRTUALIOS SISTEMOS PAGAL ŽANRĄ"
+
+msgid "Show a 'all-games' system with all games from all systems."
+msgstr "Rodo 'visų žaidimų' sistemą su visais žaidimais iš visų sistemų."
+
+msgid "Show multiplayer games (all games playable by two or more players)."
+msgstr ""
+"Rodo daugialypio žaidimo žaidimus (visi žaidimai, žaidžiami dviejų ar "
+"daugiau žaidėjų)."
+
+msgid "Show last played games."
+msgstr "Rodo paskutinius žaistus žaidimus."
+
+msgid "Select virtual systems per genre to show."
+msgstr "Pasirinkite virtualias sistemas pagal žanrą, kurias rodyti."
+
+msgid "HIGHLIGHT GAMES OF REGION..."
+msgstr "IŠRYŠKINTI REGIONO ŽAIDIMUS..."
+
+msgid ""
+"Select the source of your game name. Trust the scraping database or get them "
+"from filename, raw or undecorated (without decoration in () or [] )."
+msgstr ""
+"Pasirinkite savo žaidimo pavadinimo šaltinį. Pasitikėkite scraping duomenų "
+"baze arba gaukite juos iš failo pavadinimo, neapdorotą arba nepapuoštą (be "
+"papuošimo () arba [] )."
+
+msgid "GET GAME NAME FROM"
+msgstr "GAUTI ŽAIDIMO PAVADINIMĄ IŠ"
+
+msgid "Scraper results"
+msgstr "Scraper rezultatai"
+
+msgid "Raw filename"
+msgstr "Neapdorotas failo pavadinimas"
+
+msgid "Undecorated filename"
+msgstr "Nepapuoštas failo pavadinimas"
+
+msgid "OPEN-SOURCE LICENSE"
+msgstr "ATVIRO KODO LICENCIJA"
+
+msgid "SELECT IMAGE TYPE"
+msgstr "PASIRINKTI PAVEIKSLĖLIO TIPĄ"
+
+msgid "In-game screenshot"
+msgstr "Ekrano nuotrauka žaidime"
+
+msgid "Title screenshot"
+msgstr "Antraštės ekrano nuotrauka"
+
+msgid "Marquee"
+msgstr "Marquee"
+
+msgid "ScreenScraper Mix V1"
+msgstr "ScreenScraper Mix V1"
+
+msgid "ScreenScraper Mix V2"
+msgstr "ScreenScraper Mix V2"
+
+msgid "SELECT VIDEO TYPE"
+msgstr "PASIRINKTI VAIZDO ĮRAŠO TIPĄ"
+
+msgid "No video"
+msgstr "Be vaizdo įrašo"
+
+msgid "Original video"
+msgstr "Originalus vaizdo įrašas"
+
+msgid "SELECT FAVORITE REGION"
+msgstr "PASIRINKTI MĖGSTAMĄ REGIONĄ"
+
+msgid "FAVORITE REGION"
+msgstr "MĖGSTAMAS REGIONAS"
+
+msgid "SELECT FAVORITE LANGUAGE"
+msgstr "PASIRINKTI MĖGSTAMĄ KALBĄ"
+
+msgid "SYSTEM NAME"
+msgstr "SISTEMOS PAVADINIMAS"
+
+msgid "PUBLISHER"
+msgstr "LEIDĖJAS"
+
+msgid "DEFAULT"
+msgstr "NUMATYTASIS"
+
+msgid ""
+"It seems that your game didn't start at all!\n"
+"\n"
+"It's most likely due to either:\n"
+"- bad rom\n"
+"- missing/bad mandatory bios files\n"
+"- missing/bad optional BIOS files (but required for this very game)"
+msgstr ""
+"Atrodo, kad jūsų žaidimas visai nepasileido!\n"
+"\n"
+"Tai greičiausiai dėl:\n"
+"- blogo rom\n"
+"- trūkstamų/blogų privalomų bios failų\n"
+"- trūkstamų/blogų neprivalomų BIOS failų (bet reikalingų būtent šiam "
+"žaidimui)"
+
+msgid ""
+"At least one mandatory BIOS is missing for %emulator%!\n"
+"Your game '%game%' will very likely not run at all until required BIOS are "
+"put in the expected folder.\n"
+"\n"
+"Do you want to launch the game anyway?"
+msgstr ""
+"Trūksta bent vienos privalomos BIOS %emulator%!\n"
+"Jūsų žaidimas '%game%' greičiausiai visai neveiks, kol reikalingos BIOS "
+"nebus įdėtos į laukiamą aplanką.\n"
+"\n"
+"Ar vis tiek norite paleisti žaidimą?"
+
+msgid "BACKSPACE"
+msgstr "BACKSPACE"
+
+msgid "FAST WHEEL"
+msgstr "GREITAS RATAS"
+
+msgid "CHANGE CHARSET"
+msgstr "KEISTI SIMBOLIŲ RINKINĮ"
+
+msgid "MOVE WHEEL"
+msgstr "PERKELTI RATĄ"
+
+msgid "DOWNLOAD GAME MANUALS"
+msgstr "ATSISIŲSTI ŽAIDIMŲ VADOVUS"
+
+msgid "DOWNLOAD GAME MAPS"
+msgstr "ATSISIŲSTI ŽAIDIMŲ ŽEMĖLAPIUS"
+
+msgid "INSTALL PAD-2-KEYBOARD CONFIGURATIONS"
+msgstr "ĮDIEGTI PAD-2-KEYBOARD KONFIGŪRACIJAS"
+
+msgid ""
+"You're strongly recommended to update your Recalbox.\n"
+"No support will be provided for older versions!"
+msgstr ""
+"Primygtinai rekomenduojama atnaujinti savo Recalbox.\n"
+"Senesnėms versijoms parama nebus teikiama!"
+
+msgid " has been plugged!"
+msgstr " buvo prijungtas!"
+
+msgid "Ready to play!"
+msgstr "Pasiruošę žaisti!"
+
+msgid "Not configured yet! Press a button to enter the configuration window."
+msgstr ""
+"Dar nesukonfigūruota! Paspauskite mygtuką, kad įeitumėte į konfigūracijos "
+"langą."
+
+msgid " has been unplugged!"
+msgstr " buvo atjungtas!"
+
+msgid "Remove from favorite"
+msgstr "Pašalinti iš mėgstamiausių"
+
+msgid "Default output"
+msgstr "Numatytoji išvestis"
+
+msgid "HIDE ORIGINAL SYSTEMS"
+msgstr "SLĖPTI ORIGINALIAS SISTEMAS"
+
+msgid "PREDEFINED PASSWORDS"
+msgstr "IŠANKSTO NUSTATYTI SLAPTAŽODŽIAI"
+
+msgid "VALIDATE"
+msgstr "PATVIRTINTI"
+
+msgid "CHOOSE PLAYER PASSWORD"
+msgstr "PASIRINKTI ŽAIDĖJO SLAPTAŽODĮ"
+
+msgid "SEARCH IN..."
+msgstr "IEŠKOTI..."
+
+msgid "DOWNLOADING UPDATE..."
+msgstr "ATSISIUNČIAMAS ATNAUJINIMAS..."
+
+msgid "REBOOT IN %s"
+msgstr "PERKROVIMAS PO %s"
+
+msgid "Error downloading Recalbox %s... Please retry later!"
+msgstr "Klaida atsisiunčiant Recalbox %s... Bandykite dar kartą vėliau!"
+
+msgid "ALL"
+msgstr "VISI"
+
+msgid "TYPE AT LEAST 3 CHARACTERS"
+msgstr "ĮVESKITE BENT 3 SIMBOLIUS"
+
+msgid "AUTOMATIC WPS CONNECTION"
+msgstr "AUTOMATINIS WPS PRISIJUNGIMAS"
+
+msgid "Connecting to WIFI..."
+msgstr "Jungiamasi prie WIFI..."
+
+msgid "Disconnecting from WIFI..."
+msgstr "Atsijungiama nuo WIFI..."
+
+msgid "NO WPS CONFIGURATION FOUND!"
+msgstr "NERASTA WPS KONFIGŪRACIJA!"
+
+msgid "Hostname changes will not be effective until next reboot"
+msgstr "Kompiuterio pavadinimo pakeitimai neįsigalios iki kito perkrovimo"
+
+msgid "Fetching WIFI parameters"
+msgstr "Gaunami WIFI parametrai"
+
+msgid "NETPLAY MITM"
+msgstr "NETPLAY MITM"
+
+msgid "Reseting WIFI configuration..."
+msgstr "Atkuriama WIFI konfigūracija..."
+
+msgid "WPS CONFIGURATION SUCCESSFUL!"
+msgstr "WPS KONFIGŪRACIJA SĖKMINGA!"
+
+msgid "Waiting for IP address... (%is)"
+msgstr "Laukiama IP adreso... (%is)"
+
+msgid "Waiting for WPS configuration..."
+msgstr "Laukiama WPS konfigūracijos..."
+
+msgid "SCREENSAVER"
+msgstr "EKRANO UŽSKLANDA"
+
+msgid "SHADERS"
+msgstr "SHADERS"
+
+msgid "Saving WIFI configuration"
+msgstr "Išsaugoma WIFI konfigūracija"
+
+msgid "THEME"
+msgstr "TEMA"
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a raw shader "
+"file here. This setting may be overridden by the shader set if it is not set "
+"to 'none'."
+msgstr ""
+"Shaders yra tarsi filtrai žaidimo atvaizdavimui. Čia galite pasirinkti "
+"neapdorotą shader failą. Šis nustatymas gali būti perrašytas shaderset, jei "
+"nenustatytas kaip 'none'."
+
+msgid "Select your keyboard layout."
+msgstr "Pasirinkite savo klaviatūros išdėstymą."
+
+msgid "Mute (no sound)"
+msgstr "Nutildyti (be garso)"
+
+msgid "Internal Speakers"
+msgstr "Vidiniai garsiakalbiai"
+
+msgid "Headphone Jack"
+msgstr "Ausinių lizdas"
+
+msgid "Internal Speakers + Headphone Jack"
+msgstr "Vidiniai garsiakalbiai + ausinių lizdas"
+
+msgid "black"
+msgstr "juoda"
+
+msgid "demo"
+msgstr "demo"
+
+msgid "dim"
+msgstr "pritemdyti"
+
+msgid "gameclip"
+msgstr "gameclip"
+
+msgid "Action (All)"
+msgstr "Veiksmo (Visi)"
+
+msgid "Action RPG"
+msgstr "Veiksmo RPG"
+
+msgid "Adventure (All)"
+msgstr "Nuotykių (Visi)"
+
+msgid "Artillery"
+msgstr "Artilerija"
+
+msgid "Auto-battler"
+msgstr "Auto-battler"
+
+msgid "Battle Royale"
+msgstr "Battle Royale"
+
+msgid "Beat'em All"
+msgstr "Beat'em All"
+
+msgid "Board game"
+msgstr "Stalo žaidimas"
+
+msgid "Build & Management"
+msgstr "Statyba ir valdymas"
+
+msgid "Casino"
+msgstr "Kazino"
+
+msgid "Casual game"
+msgstr "Atsitiktinis žaidimas"
+
+msgid "Competition Sport"
+msgstr "Varžybinis sportas"
+
+msgid "Demo from Demo Screne"
+msgstr "Demo iš demo scenos"
+
+msgid "Digital Cards"
+msgstr "Skaitmeninės kortos"
+
+msgid "Dungeon Crawler"
+msgstr "Dungeon Crawler"
+
+msgid "Educative"
+msgstr "Edukacinis"
+
+msgid "Favorites"
+msgstr "Mėgstamiausi"
+
+msgid "Fighting"
+msgstr "Mušimosi"
+
+msgid "Fighting/Violent Sport"
+msgstr "Mušimosi/Smurtinis sportas"
+
+msgid "First Person Shooter"
+msgstr "Pirmojo asmens šaudyklė"
+
+msgid "Fishing & Hunting"
+msgstr "Žvejyba ir medžioklė"
+
+msgid "Graphical Adventure"
+msgstr "Grafinis nuotykis"
+
+msgid "Infiltration"
+msgstr "Infiltracija"
+
+msgid "Interactive Movie"
+msgstr "Interaktyvus filmas"
+
+msgid "JRPG"
+msgstr "JRPG"
+
+msgid "Life Simulation"
+msgstr "Gyvenimo simuliacija"
+
+msgid "MMORPG"
+msgstr "MMORPG"
+
+msgid "Multi Game Compilation"
+msgstr "Daugelio žaidimų rinkinys"
+
+msgid "Multiplayer Online Battle Arena"
+msgstr "Daugialypio internetinio mūšio arena"
+
+msgid "Multiplayer Party Game"
+msgstr "Daugialypis vakarėlio žaidimas"
+
+msgid "Party based RPG"
+msgstr "Grupinis RPG"
+
+msgid "Pinball"
+msgstr "Biliardas"
+
+msgid "Platform Shooter"
+msgstr "Platformų šaudyklė"
+
+msgid "Platform"
+msgstr "Platforminis"
+
+msgid "Puzzle & Logic"
+msgstr "Galvosūkiai ir logika"
+
+msgid "RPG (All)"
+msgstr "RPG (Visi)"
+
+msgid "Racing"
+msgstr "Lenktynės"
+
+msgid "Real Time 3D Adventure"
+msgstr "Realaus laiko 3D nuotykis"
+
+msgid "Real Time Strategy"
+msgstr "Realaus laiko strategija"
+
+msgid "Rythm & Music"
+msgstr "Ritmas ir muzika"
+
+msgid "Science Fiction Simulation"
+msgstr "Mokslinės fantastikos simuliacija"
+
+msgid "Shoot with Gun"
+msgstr "Šaudymas ginklu"
+
+msgid "Shoot'em Up"
+msgstr "Shoot'em Up"
+
+msgid "Simulation (All)"
+msgstr "Simuliacija (Visi)"
+
+msgid "Sport Simulation"
+msgstr "Sporto simuliacija"
+
+msgid "Sports (All)"
+msgstr "Sportas (Visi)"
+
+msgid "Strategy (All)"
+msgstr "Strategija (Visi)"
+
+msgid "Survival"
+msgstr "Išgyvenimas"
+
+msgid "Tactical RPG"
+msgstr "Taktinis RPG"
+
+msgid "Textual Adventure"
+msgstr "Tekstinis nuotykis"
+
+msgid "Tower Defense"
+msgstr "Tower Defense"
+
+msgid "Trivia"
+msgstr "Žinių žaidimas"
+
+msgid "Turn Based Strategy"
+msgstr "Ėjimais paremta strategija"
+
+msgid "Vehicle Simulation"
+msgstr "Transporto priemonių simuliacija"
+
+msgid "Visual Novel"
+msgstr "Vizualinis romanas"
+
+msgid "Wargame"
+msgstr "Karo žaidimas"
+
+msgid "eXplore, eXpand, eXploit & eXterminate"
+msgstr "eXplore, eXpand, eXploit & eXterminate"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Advance!\n"
+"This little presentation will show you how to use the 6 special buttons "
+"available right under the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Sveiki atvykę į RECALBOX, skirtą Odroid Go Advance!\n"
+"Šis trumpas pristatymas parodys, kaip naudoti 6 specialius mygtukus, "
+"esančius tiesiai po ekranu.\n"
+"\n"
+"Paspauskite bet kurį mygtuką, kad pradėtumėte!"
+
+msgid ""
+"The leftmost button is the SELECT button, marked with a 'I', also available "
+"on most modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Kairiausias mygtukas yra SELECT mygtukas, pažymėtas 'I', taip pat prieinamas "
+"daugumoje šiuolaikinių valdiklių.\n"
+"Tačiau tai taip pat yra HOTKEY mygtukas, kurį galite naudoti kartu su kitais "
+"mygtukais daugumoje emuliatorių.\n"
+"Pavyzdžiui, galite naudoti HOTKEY+START, kad išeitumėte iš dabartinio "
+"žaidimo.\n"
+"\n"
+"Paspauskite SELECT mygtuką."
+
+msgid ""
+"Next to the SELECT button is the START button, marked with an 'II'.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Šalia SELECT mygtuko yra START mygtukas, pažymėtas 'II'.\n"
+"Naudokite jį, norėdami atidaryti pagrindinį meniu Recalbox sąsajoje, o "
+"žaidime naudokite jį kaip įprastą START mygtuką, prieinamą daugumoje "
+"konsolių.\n"
+"\n"
+"Paspauskite šį START mygtuką."
+
+msgid ""
+"Then, there are 2 buttons marked with a 'III' and a 'IV'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press either volume up or down (III/IV)."
+msgstr ""
+"Tuomet yra 2 mygtukai, pažymėti 'III' ir 'IV'.\n"
+"Naudokite juos, norėdami padidinti arba sumažinti garsumą bet kuriuo metu "
+"Recalbox sąsajoje arba žaidime.\n"
+"\n"
+" Paspauskite garsumo didinimą arba mažinimą (III/IV)."
+
+msgid ""
+"The last two buttons marked 'V' and 'VI' are useful to make your screen "
+"darker or brighter.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down (V/VI)."
+msgstr ""
+"Paskutiniai du mygtukai, pažymėti 'V' ir 'VI', naudingi norint padaryti "
+"ekraną tamsesnį arba šviesesnį.\n"
+"Atkreipkite dėmesį, kad kuo šviesesnis ekranas, tuo daugiau energijos jis "
+"naudoja!\n"
+"\n"
+"Paspauskite ryškumo didinimą arba mažinimą (V/VI)."
+
+msgid ""
+"Now you're ready to start your RETROGAMING experience with Recalbox! Press "
+"button B to start... and PLAY AGAIN!"
+msgstr ""
+"Dabar esate pasiruošę pradėti savo RETROGAMING patirtį su Recalbox! "
+"Paspauskite mygtuką B, kad pradėtumėte... ir ŽAISKITE VĖL!"
+
+msgid "WELCOME TO RECALBOX!"
+msgstr "SVEIKI ATVYKĘ Į RECALBOX!"
+
+msgid ""
+"Just a few words about the POWER button.\n"
+"Make a short press, just like a mouse click, and your console will enter "
+"sleep mode. Make another short press and your console will restart instanly! "
+"Work in Recalbox interface and in-game!\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Keli žodžiai apie POWER mygtuką.\n"
+"Trumpai paspauskite, tarsi pelės spustelėjimą, ir jūsų konsolė pereis į "
+"miego režimą. Dar kartą trumpai paspauskite, ir jūsų konsolė iškart "
+"persikraus! Veikia Recalbox sąsajoje ir žaidime!\n"
+"\n"
+"Paspauskite mygtuką B, kad tęstumėte."
+
+msgid ""
+"If you push the POWER button more than 2 seconds, this will power-off your "
+"console. If you do so in-game, Recalbox will close the current emulator "
+"gracefully.\n"
+"Just in case, holding the POWER button down more than 5s perform an hard "
+"power-off.\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Jei paspausite POWER mygtuką ilgiau nei 2 sekundes, tai išjungs jūsų "
+"konsolę. Jei tai padarysite žaidime, Recalbox tvarkingai uždarys dabartinį "
+"emuliatorių.\n"
+"Bet kuriuo atveju, laikant POWER mygtuką ilgiau nei 5s, atliekamas kietas "
+"išjungimas.\n"
+"\n"
+"Paspauskite mygtuką B, kad tęstumėte."
+
+msgid ""
+"One more thing to know: If you plug in or unplug your headphones in the jack "
+"connector, Recalbox will automatically switch the audio output. Convenient.\n"
+"\n"
+"Press button B, as usual."
+msgstr ""
+"Dar viena svarbi žinia: jei prijungsite arba atjungsite ausines jack "
+"jungtyje, Recalbox automatiškai perjungs garso išvestį. Patogu.\n"
+"\n"
+"Paspauskite mygtuką B, kaip įprasta."
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Added to favorites"
+msgstr "Pridėta prie mėgstamiausių"
+
+msgid "Removed from favorites"
+msgstr "Pašalinta iš mėgstamiausių"
+
+msgid "Gameclips cannot be played. No video availabe for your selection"
+msgstr "Gameclips negalima paleisti. Nėra vaizdo įrašo jūsų pasirinkimui"
+
+msgid "EmulationStation must relaunch to apply your changes."
+msgstr ""
+"EmulationStation turi būti paleistas iš naujo, kad būtų pritaikyti jūsų "
+"pakeitimai."
+
+msgid "PAIRING %s ..."
+msgstr "SUSIEJAMA %s ..."
+
+msgid "GAME %s"
+msgstr "ŽAIDIMAS %s"
+
+msgid "RUN WITH"
+msgstr "PALEISTI SU"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Super!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Sveiki atvykę į RECALBOX, skirtą Odroid Go Super!\n"
+"Šis trumpas pristatymas parodys, kaip naudoti visus specialius mygtukus, "
+"esančius aplink ekraną.\n"
+"\n"
+"Paspauskite bet kurį mygtuką, kad pradėtumėte!"
+
+msgid ""
+"The top-left black button is the SELECT button, also available on most "
+"modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"Viršuje kairėje esantis juodas mygtukas yra SELECT mygtukas, taip pat "
+"prieinamas daugumoje šiuolaikinių valdiklių.\n"
+"Tačiau tai taip pat yra HOTKEY mygtukas, kurį galite naudoti kartu su kitais "
+"mygtukais daugumoje emuliatorių.\n"
+"Pavyzdžiui, galite naudoti HOTKEY+START, kad išeitumėte iš dabartinio "
+"žaidimo.\n"
+"\n"
+"Paspauskite SELECT mygtuką."
+
+msgid ""
+"At the opposite side of the SELECT button is the START button.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Priešingoje SELECT mygtuko pusėje yra START mygtukas.\n"
+"Naudokite jį, norėdami atidaryti pagrindinį meniu Recalbox sąsajoje, o "
+"žaidime naudokite jį kaip įprastą START mygtuką, prieinamą daugumoje "
+"konsolių.\n"
+"\n"
+"Paspauskite šį START mygtuką."
+
+msgid ""
+"Then, on the top of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press any button to continue"
+msgstr ""
+"Tuomet konsolės viršuje yra 2 mygtukai, pažymėti '-' ir '+'.\n"
+"Naudokite juos, norėdami padidinti arba sumažinti garsumą bet kuriuo metu "
+"Recalbox sąsajoje arba žaidime.\n"
+"\n"
+" Paspauskite bet kurį mygtuką, kad tęstumėte"
+
+msgid ""
+"The two bottom-left gray buttons control the screen brightness.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down button"
+msgstr ""
+"Du apačioje kairėje esantys pilki mygtukai valdo ekrano ryškumą.\n"
+"Atkreipkite dėmesį, kad kuo šviesesnis ekranas, tuo daugiau energijos jis "
+"naudoja!\n"
+"\n"
+" Paspauskite ryškumo didinimo arba mažinimo mygtuką"
+
+msgid ""
+"Finally, the two bottom-right gray buttons are third left & right triggers "
+"(L3/R3), only usefull in some emulators or to record videos.\n"
+"\n"
+" Press either L3 or R3"
+msgstr ""
+"Galiausiai, du apačioje dešinėje esantys pilki mygtukai yra treti kairysis "
+"ir dešinysis trigeriai (L3/R3), naudingi tik kai kuriuose emuliatoriuose "
+"arba vaizdo įrašams įrašyti.\n"
+"\n"
+" Paspauskite L3 arba R3"
+
+msgid ""
+"Change the driver if your pad is not working at all or not working properly "
+"in-game."
+msgstr ""
+"Pakeiskite tvarkyklę, jei jūsų valdiklis visai neveikia arba veikia "
+"netinkamai žaidime."
+
+msgid "In Memory!"
+msgstr "Atmintyje!"
+
+msgid "Internal Share Partition"
+msgstr "Vidinis bendro naudojimo skaidinys"
+
+msgid "Network Share"
+msgstr "Tinklo bendro naudojimo"
+
+msgid "Device %d - %l (%f)"
+msgstr "Įrenginys %d - %l (%f)"
+
+msgid "Any External Device"
+msgstr "Bet koks išorinis įrenginys"
+
+msgid "DETECTED REGION"
+msgstr "APTIKTAS REGIONAS"
+
+msgid "SELECT REGION PRIORITY"
+msgstr "PASIRINKTI REGIONO PRIORITETĄ"
+
+msgid "LATER"
+msgstr "VĖLIAU"
+
+msgid "A reboot is required to apply pending changes."
+msgstr "Norint pritaikyti laukiančius pakeitimus, reikalingas perkrovimas."
+
+msgid "SHOW LIGHTGUN SYSTEM"
+msgstr "RODYTI LIGHTGUN SISTEMĄ"
+
+msgid "SHOW PORTS SYSTEM"
+msgstr "RODYTI PORTS SISTEMĄ"
+
+msgid "Show all available games playable with a lightgun."
+msgstr "Rodo visus prieinamus žaidimus, žaidžiamus su lightgun."
+
+msgid "Show a 'ports' system with all ports in the same place."
+msgstr "Rodo 'ports' sistemą su visais portais tame pačiame vietoje."
+
+msgid ""
+"WARNING! This option erases all Recalbox and emulator configurations! Use it "
+"carefully!"
+msgstr ""
+"DĖMESIO! Ši parinktis ištrina visas recalbox ir emuliatoriaus "
+"konfigūracijas! Naudokite atsargiai!"
+
+msgid "RESET TO FACTORY SETTINGS"
+msgstr "ATKURTI GAMYKLINIUS NUSTATYMUS"
+
+msgid "WARNING!"
+msgstr "DĖMESIO!"
+
+msgid ""
+"RESET TO FACTORY SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET RECALBOX AND EMULATOR SETTINGS TO DEFAULT VALUES.\n"
+"ALL YOUR DATA LIKE GAMES, SAVES, MUSIC, SCREENSHOTS AND SO ON, WILL BE "
+"KEPT.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR SETTINGS?"
+msgstr ""
+"ATKURTI GAMYKLINIUS NUSTATYMUS\n"
+"\n"
+"JŪS KETINATE ATKURTI RECALBOX IR EMULIATORIAUS NUSTATYMUS Į NUMATYTĄSIAS "
+"REIKŠMES.\n"
+"VISI JŪSŲ DUOMENYS, TOKIE KAIP ŽAIDIMAI, IŠSAUGOJIMAI, MUZIKA, EKRANO "
+"NUOTRAUKOS IR KT., BUS IŠSAUGOTI.\n"
+"\n"
+"ŠIO VEIKSMO NEGALIMA ATŠAUKTI!\n"
+"AR TIKRAI NORITE ATKURTI VISUS SAVO NUSTATYMUS?"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR RECALBOX TO FACTORY SETTINGS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"JUS SKIRIA VIENAS SPUSTELĖJIMAS NUO RECALBOX ATKŪRIMO Į GAMYKLINIUS "
+"NUSTATYMUS!\n"
+"\n"
+"AR TIKRAI ESATE TIKRI, KAD NORITE TAI PADARYTI?"
+
+msgid "SWAP VALIDATE/CANCEL BUTTONS"
+msgstr "SUKEISTI PATVIRTINIMO/ATŠAUKIMO MYGTUKUS"
+
+msgid "AUDIO MODE"
+msgstr "GARSO REŽIMAS"
+
+msgid "Select sound to play. Musics, videos sound, both or none"
+msgstr ""
+"Pasirinkite garsą, kurį groti. Muzika, vaizdo įrašų garsas, abu arba nė "
+"vienas"
+
+msgid "Musics or videos sound"
+msgstr "Muzika arba vaizdo įrašų garsas"
+
+msgid "Musics and videos sound"
+msgstr "Muzika ir vaizdo įrašų garsas"
+
+msgid "Musics only"
+msgstr "Tik muzika"
+
+msgid "Videos sound only"
+msgstr "Tik vaizdo įrašų garsas"
+
+msgid "No sound"
+msgstr "Be garso"
+
+msgid "Adult"
+msgstr "Suaugusiems"
+
+msgid "Waking up!"
+msgstr "Žadinama!"
+
+msgid "LightGun Games"
+msgstr "LightGun žaidimai"
+
+msgid "NEW YORK"
+msgstr "NIUJORKAS"
+
+msgid "MADRID"
+msgstr "MADRIDAS"
+
+msgid "Swap the validate button (B/X) and the cancel button (B/O)."
+msgstr "Leisti sukeisti patvirtinimo mygtuką B/X ir atšaukimo mygtuką B/O"
+
+msgid "box3d"
+msgstr "box3d"
+
+msgid "P2K CONTROLS"
+msgstr "P2K VALDIKLIAI"
+
+msgid "THE UPGRADE HAS FAILED"
+msgstr "ATNAUJINIMAS NEPAVYKO"
+
+msgid ""
+"The upgrade process has failed. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, and contact the team on https://forum."
+"recalbox.com if the problem persists."
+msgstr ""
+"Atnaujinimo procesas nepavyko. Esate grąžinti į Recalbox %s.\n"
+"Bandykite dar kartą atnaujinti savo Recalbox ir susisiekite su komanda "
+"https://forum.recalbox.com, jei problema išlieka."
+
+msgid "RECALBOX OVERLAYS"
+msgstr "RECALBOX OVERLAYS"
+
+msgid ""
+"On wide screens, display system images that wrap around emulated screen."
+msgstr ""
+"Plačiuose ekranuose rodo sistemos vaizdus, apgaubiančius emuliuojamą ekraną."
+
+msgid "No comment available"
+msgstr "Komentaras neprieinamas"
+
+msgid "UNKNOWN"
+msgstr "NEŽINOMA"
+
+msgid "GO TO GAME"
+msgstr "EITI Į ŽAIDIMĄ"
+
+msgid "MEDIA FILES"
+msgstr "MEDIJOS FAILAI"
+
+msgid "CONFIGURATION AND PATCH FILES"
+msgstr "KONFIGŪRACIJOS IR PATCH FAILAI"
+
+msgid "SAVE FILES"
+msgstr "IŠSAUGOJIMO FAILAI"
+
+msgid "RELEASE DATE"
+msgstr "IŠLEIDIMO DATA"
+
+msgid "TYPE, THEN NAME"
+msgstr "TIPAS, TADA PAVADINIMAS"
+
+msgid "TYPE, THEN RELEASE DATE"
+msgstr "TIPAS, TADA IŠLEIDIMO DATA"
+
+msgid "MANUFACTURER, THEN NAME"
+msgstr "GAMINTOJAS, TADA PAVADINIMAS"
+
+msgid "MANUFACTURER, THEN RELEASE DATE"
+msgstr "GAMINTOJAS, TADA IŠLEIDIMO DATA"
+
+msgid "TYPE, THEN MANUFACTURER, THEN NAME"
+msgstr "TIPAS, TADA GAMINTOJAS, TADA PAVADINIMAS"
+
+msgid "TYPE, THEN MANUFACTURER, THEN RELEASE DATE"
+msgstr "TIPAS, TADA GAMINTOJAS, TADA IŠLEIDIMO DATA"
+
+msgid "SYSTEM SORTING"
+msgstr "SISTEMŲ RIKIAVIMAS"
+
+msgid ""
+"Default: use original or custom systemlist.xml order\n"
+"System Type: order by Console/Handheld/Computer/Arcade/Other\n"
+"Release Date: order by release date asc\n"
+"Manufacturer: order by manufacturer (e.g. Sega)\n"
+"Special Blend: Sort by type then Manufacturer then Release Date"
+msgstr ""
+"Numatytasis: naudoti originalią arba pasirinktinę systemlist.xml tvarką\n"
+"Sistemos tipas: rikiuoti pagal Konsolė/Nešiojama/Kompiuteris/Arcade/Kita\n"
+"Išleidimo data: rikiuoti pagal išleidimo datą didėjančia tvarka\n"
+"Gamintojas: rikiuoti pagal gamintoją (pvz., Sega)\n"
+"Specialus derinys: rikiuoti pagal tipą, tada gamintoją, tada išleidimo datą"
+
+msgid "DELETE ALL FILES"
+msgstr "IŠTRINTI VISUS FAILUS"
+
+msgid "ADVANCED DELETE"
+msgstr "IŠPLĖSTINIS TRYNIMAS"
+
+msgid "DELETE ALL FILES, CONFIRM?"
+msgstr "IŠTRINTI VISUS FAILUS, PATVIRTINTI?"
+
+msgid "DELETE SCREENSHOT, CONFIRM?"
+msgstr "IŠTRINTI EKRANO NUOTRAUKĄ, PATVIRTINTI?"
+
+msgid ""
+"Global resolution is the resolution used by default when specific "
+"resolutions are undefined."
+msgstr ""
+"Bendra skiriamoji geba yra skiriamoji geba, naudojama pagal numatytuosius "
+"nustatymus, kai konkrečios skiriamosios gebos nenustatytos."
+
+msgid "Select the resolution EmulationStation will use."
+msgstr "Pasirinkite skiriamąją gebą, kurią naudos EmulationStation."
+
+msgid "RESOLUTIONS"
+msgstr "SKIRIAMOSIOS GEBOS"
+
+msgid "GLOBAL RESOLUTION"
+msgstr "BENDRA SKIRIAMOJI GEBA"
+
+msgid "EMULATIONSTATION RESOLUTION"
+msgstr "EMULATIONSTATION SKIRIAMOJI GEBA"
+
+msgid "USE GLOBAL"
+msgstr "NAUDOTI BENDRĄ"
+
+msgid "NATIVE"
+msgstr "NATYVI"
+
+msgid ""
+"No file selected,\n"
+"you must at least choose one."
+msgstr ""
+"Nepasirinktas failas,\n"
+"turite pasirinkti bent vieną."
+
+msgid ""
+"The device %NAME% containing roms has been plugged in! EmulationStation must "
+"relaunch to load new games."
+msgstr ""
+"Įrenginys %NAME%, kuriame yra roms, buvo prijungtas! EmulationStation turi "
+"būti paleistas iš naujo, kad įkeltų naujus žaidimus."
+
+msgid ""
+"A device containing roms has been unplugged! EmulationStation must relaunch "
+"to remove unavailable games."
+msgstr ""
+"Įrenginys, kuriame buvo roms, buvo atjungtas! EmulationStation turi būti "
+"paleistas iš naujo, kad pašalintų neprieinamus žaidimus."
+
+msgid ""
+"Your USB device has been initialized! You can unplug it and copy your games "
+"on it."
+msgstr ""
+"Jūsų USB įrenginys buvo inicijuotas! Galite jį atjungti ir kopijuoti savo "
+"žaidimus į jį."
+
+msgid ""
+"Initialization failed! Your USB device is full or contains errors. Please "
+"repair or use another device."
+msgstr ""
+"Inicijavimas nepavyko! Jūsų USB įrenginys pilnas arba jame yra klaidų. "
+"Pataisykite arba naudokite kitą įrenginį."
+
+msgid "DISPLAY BY FILENAME"
+msgstr "RODYTI PAGAL FAILO PAVADINIMĄ"
+
+msgid "SEARCH GAMES HERE"
+msgstr "IEŠKOTI ŽAIDIMŲ ČIA"
+
+msgid "This game is currently updating its metadata. Retry in a few seconds."
+msgstr ""
+"Šis žaidimas šiuo metu atnaujina savo metaduomenis. Bandykite dar kartą po "
+"kelių sekundžių."
+
+msgid "SHOW ONLY LATEST VERSION"
+msgstr "RODYTI TIK NAUJAUSIĄ VERSIJĄ"
+
+msgid "SHOW ONLY FAVORITES"
+msgstr "RODYTI TIK MĖGSTAMIAUSIUS"
+
+msgid "SHOW HIDDEN GAMES"
+msgstr "RODYTI PASLĖPTUS ŽAIDIMUS"
+
+msgid "Display game by file name instead of game name."
+msgstr "Rodyti žaidimą pagal failo pavadinimą, o ne žaidimo pavadinimą."
+
+msgid "DISABLE"
+msgstr "IŠJUNGTI"
+
+msgid "original"
+msgstr "originalus"
+
+msgid ""
+"A fatal error occured while scraping your game! It may be related to server "
+"issues or bad login/password.\n"
+"\n"
+"Try again in a few moment or fix your credentials if required."
+msgstr ""
+"Įvyko lemtinga klaida renkant duomenis apie jūsų žaidimą! Tai gali būti "
+"susiję su serverio problemomis arba neteisingu prisijungimu/slaptažodžiu.\n"
+"\n"
+"Bandykite dar kartą po kurio laiko arba, jei reikia, ištaisykite savo "
+"prisijungimo duomenis."
+
+msgid "Your scraping session completed!"
+msgstr "Jūsų scraping sesija baigta!"
+
+msgid "Please select one or more systems to scrape!"
+msgstr "Pasirinkite vieną ar daugiau sistemų, kurioms atlikti scraping!"
+
+msgid ""
+"Your system has not enough memory to handle %SYSTEMS% systems. You should "
+"not exceed %MAXSYSTEMS% consoles/computers or you may face stability "
+"issues!\n"
+"\n"
+"You can hide preinstalled games in UI SETTINGS menu to decrease active "
+"systems"
+msgstr ""
+"Jūsų sistema neturi pakankamai atminties, kad galėtų valdyti %SYSTEMS% "
+"sistemų. Neturėtumėte viršyti %MAXSYSTEMS% konsolių/kompiuterių, kitaip "
+"galite susidurti su stabilumo problemomis!\n"
+"\n"
+"Galite paslėpti iš anksto įdiegtus žaidimus UI SETTINGS meniu, kad "
+"sumažintumėte aktyvias sistemas"
+
+msgid ""
+"Your system has not enough memory to handle %GAMES% games. You should not "
+"exceed %MAXGAMES% or you may face stability issues!"
+msgstr ""
+"Jūsų sistema neturi pakankamai atminties, kad galėtų valdyti %GAMES% "
+"žaidimų. Neturėtumėte viršyti %MAXGAMES%, kitaip galite susidurti su "
+"stabilumo problemomis!"
+
+msgid "WARNING! SYSTEM OVERLOAD!"
+msgstr "DĖMESIO! SISTEMOS PERKROVA!"
+
+msgid ""
+"Welcome back %NAME%!\n"
+"Patron level %LEVEL%\n"
+"You are now connected to your recalbox patron account, and all exclusives "
+"features are available!"
+msgstr ""
+"Sveiki sugrįžę, %NAME%!\n"
+"Rėmėjo lygis %LEVEL%\n"
+"Dabar esate prisijungę prie savo recalbox rėmėjo paskyros, ir visos "
+"išskirtinės funkcijos yra prieinamos!"
+
+msgid ""
+"Hello %NAME%, your private key is linked to a Patreon account which is no "
+"longer a Recalbox Patron.\n"
+"We still hope to see you back soon as a Recalbox Patron!\n"
+"Delete your private key to suppress this message."
+msgstr ""
+"Sveiki %NAME%, jūsų privatus raktas susietas su Patreon paskyra, kuri nebėra "
+"Recalbox rėmėjas.\n"
+"Vis dar tikimės greitai jus vėl matyti kaip Recalbox rėmėją!\n"
+"Ištrinkite savo privatų raktą, kad panaikintumėte šį pranešimą."
+
+msgid ""
+"Your private key does not allow to retrieve your Patreon information. Go to "
+"recalbox.com/patreon to generate a new valid key!"
+msgstr ""
+"Jūsų privatus raktas neleidžia gauti jūsų Patreon informacijos. Eikite į "
+"recalbox.com/patreon, kad sugeneruotumėte naują galiojantį raktą!"
+
+msgid ""
+"Sorry we're not able to retrieve your Patron level because no network is "
+"available!"
+msgstr ""
+"Atsiprašome, negalime gauti jūsų rėmėjo lygio, nes tinklas neprieinamas!"
+
+msgid ""
+"We're not able to retrieve your Patron level! Sorry for the inconvenience, "
+"we're already working on a fix!"
+msgstr ""
+"Negalime gauti jūsų rėmėjo lygio! Atsiprašome už nepatogumus, jau dirbame "
+"prie sprendimo!"
+
+msgid "CASE MANAGEMENT"
+msgstr "KORPUSO VALDYMAS"
+
+msgid ""
+"If you installed a case on your Recalbox, you can install or uninstall it in "
+"this menu. Some cases are detected automatically and will also be reported "
+"here."
+msgstr ""
+"Jei įdiegėte korpusą savo Recalbox, galite jį įdiegti arba pašalinti čia. "
+"Kai kurie korpusai aptinkami automatiškai ir taip pat bus rodomi čia."
+
+msgid ""
+"The USB device %NAME% with no rom folder and no share folder has been "
+"plugged in! Would you like to initialize this device?"
+msgstr ""
+"USB įrenginys %NAME% be rom aplanko ir be bendro naudojimo aplanko buvo "
+"prijungtas! Ar norėtumėte inicijuoti šį įrenginį?"
+
+msgid "• Choose '%INIT%' to create only all the rom folders"
+msgstr "• Pasirinkite '%INIT%', kad sukurtumėte tik visus rom aplankus"
+
+msgid ""
+"• Choose '%MOVE%' to copy all the current share to the new device, "
+"automatically switch to this device, and reboot"
+msgstr ""
+"• Pasirinkite '%MOVE%', kad nukopijuotumėte visą dabartinį bendrą naudojimą "
+"į naują įrenginį, automatiškai persijungtumėte į šį įrenginį ir "
+"persikrautumėte"
+
+msgid "• Or just chose '%CANCEL%' to do nothing with this new device"
+msgstr ""
+"• Arba tiesiog pasirinkite '%CANCEL%', kad nieko nedarytumėte su šiuo nauju "
+"įrenginiu"
+
+msgid "INITIALIZE"
+msgstr "INICIJUOTI"
+
+msgid "MOVE SHARE"
+msgstr "PERKELTI BENDRĄ NAUDOJIMĄ"
+
+msgid "Setting up boot device..."
+msgstr "Nustatomas paleidimo įrenginys..."
+
+msgid ""
+"Your USB device has been initialized! Ready to reboot on your new share "
+"device!"
+msgstr ""
+"Jūsų USB įrenginys buvo inicijuotas! Pasiruošęs persikrauti su nauju bendro "
+"naudojimo įrenginiu!"
+
+msgid "UPDATING..."
+msgstr "ATNAUJINAMA..."
+
+msgid "Video"
+msgstr "Vaizdo įrašas"
+
+msgid ""
+"For safe shutdown to work, set the SAFE SHUTDOWN switch to ON. You will find "
+"it on the circuit board, inside your Retroflag case."
+msgstr ""
+"Kad saugus išjungimas veiktų, nustatykite SAFE SHUTDOWN jungiklį į ON. Jį "
+"rasite ant plokštės, Retroflag korpuso viduje."
+
+msgid "MENU RESOLUTION"
+msgstr "MENIU SKIRIAMOJI GEBA"
+
+msgid "SCREEN TYPE"
+msgstr "EKRANO TIPAS"
+
+msgid "SELECT GAME REFRESH RATE AT LAUNCH"
+msgstr "PASIRINKTI ŽAIDIMO ATNAUJINIMO DAŽNĮ PALEIDIMO METU"
+
+msgid "Let you choose between 50Hz and 60Hz at launch, for compatible systems."
+msgstr ""
+"Leidžia pasirinkti tarp 50Hz ir 60Hz paleidimo metu, suderinamoms sistemoms."
+
+msgid "SELECT GAME RESOLUTION AT LAUNCH"
+msgstr "PASIRINKTI ŽAIDIMO SKIRIAMĄJĄ GEBĄ PALEIDIMO METU"
+
+msgid ""
+"Let you choose between 240p, 480i, or 480p at launch, for compatible systems."
+msgstr ""
+"Leidžia pasirinkti tarp 240p, 480i arba 480p paleidimo metu, suderinamoms "
+"sistemoms."
+
+msgid "FORCE SOUND ON JACK"
+msgstr "PRIVERSTI GARSĄ JACK"
+
+msgid "Force sound on jack. Auto-enabled when 31kHz switch is ON"
+msgstr ""
+"Priverčia garsą jack. Automatiškai įjungiama, kai 31kHz jungiklis yra ON"
+
+msgid "MOVE SCREEN"
+msgstr "PERKELTI EKRANĄ"
+
+msgid "Horizontal offset:"
+msgstr "Horizontalus poslinkis:"
+
+msgid "Vertical offset:"
+msgstr "Vertikalus poslinkis:"
+
+msgid "YOUR LIST IS EMPTY. PRESS START TO CHANGE GAME FILTERS."
+msgstr ""
+"JŪSŲ SĄRAŠAS TUŠČIAS. PASPAUSKITE START, KAD PAKEISTUMĖTE ŽAIDIMŲ FILTRUS."
+
+msgid "Select a region to filter out games not matching the selected region."
+msgstr ""
+"Pasirinkite regioną, kad atfiltruotumėte žaidimus, neatitinkančius "
+"pasirinkto regiono."
+
+msgid "SOFTPATCHING"
+msgstr "SOFTPATCHING"
+
+msgid "AUTOMATIC SCRAPING"
+msgstr "AUTOMATINIS SCRAPING"
+
+msgid "RUN IN BACKGROUND"
+msgstr "VYKDYTI FONE"
+
+msgid "MONTREAL"
+msgstr "MONREALIS"
+
+msgid "SAOPAULO"
+msgstr "SAN PAULAS"
+
+msgid "%i Known MD5"
+msgstr "%i žinomų MD5"
+
+msgid "Restarting."
+msgstr "Perkraunama."
+
+msgid "Entering standby..."
+msgstr "Įeinama į budėjimo režimą..."
+
+msgid "PAD TO KEYBOARD CONTROLS"
+msgstr "PAD Į KLAVIATŪROS VALDIKLIUS"
+
+msgid "You are about to delete this files, confirm ?"
+msgstr "Ketinate ištrinti šiuos failus, patvirtinti?"
+
+msgid "Preparing Games..."
+msgstr "Ruošiami žaidimai..."
+
+msgid "Free"
+msgstr "Laisva"
+
+msgid "FADE"
+msgstr "IŠBLUKIMAS"
+
+msgid "SLIDE"
+msgstr "SLINKIMAS"
+
+msgid "INSTANT"
+msgstr "AKIMIRKSNIU"
+
+msgid "You must have at least %dGB free on 'SHARE' partition!"
+msgstr "Turite turėti bent %dGB laisvos vietos 'SHARE' skaidinyje!"
+
+msgid "60Hz (US)"
+msgstr "60Hz (US)"
+
+msgid "60Hz (JP)"
+msgstr "60Hz (JP)"
+
+msgid "50Hz (EU)"
+msgstr "50Hz (EU)"
+
+msgid "60Hz"
+msgstr "60Hz"
+
+msgid "50Hz"
+msgstr "50Hz"
+
+msgid "Recalbox RGB Dual options and configuration."
+msgstr "Recalbox RGB Dual parinktys ir konfigūracija."
+
+msgid "Select system, frontend and emulator resolutions."
+msgstr "Pasirinkite sistemos, frontend ir emuliatoriaus skiriamąsias gebas."
+
+msgid "PAIR BLUETOOTH CONTROLLERS"
+msgstr "SUSIETI BLUETOOTH VALDIKLIUS"
+
+msgid ""
+"The bluetooth pairing will start and run for several minutes.\n"
+"During this time, you just have to apply the pairing procedure on any "
+"bluetooth controller you want to pair.\n"
+"The next window will display all detected bluetooth devices and their status "
+"for information purposes only.\n"
+"You can close it at any time, while continuing to pair your bluetooth "
+"devices for as long as the bluetooth icon is blinking on the top left."
+msgstr ""
+"Bluetooth susiejimas prasidės ir vyks kelias minutes.\n"
+"Šiuo metu tiesiog turite atlikti susiejimo procedūrą su bet kuriuo bluetooth "
+"valdikliu, kurį norite susieti.\n"
+"Kitas langas rodys visus aptiktus bluetooth įrenginius ir jų būseną tik "
+"informaciniais tikslais.\n"
+"Galite jį uždaryti bet kuriuo metu, tęsdami savo bluetooth įrenginių "
+"susiejimą tol, kol bluetooth piktograma mirksi viršuje kairėje."
+
+msgid "START DOWNLOADING..."
+msgstr "PRADEDAMA ATSISIŲSTI..."
+
+msgid ""
+"Pair a bluetooth audio device. Put your device in discovery mode before "
+"starting."
+msgstr ""
+"Susiekite bluetooth garso įrenginį. Prieš pradedant, perjunkite savo "
+"įrenginį į aptikimo režimą."
+
+msgid "PAIR A BLUETOOTH AUDIO DEVICE"
+msgstr "SUSIETI BLUETOOTH GARSO ĮRENGINĮ"
+
+msgid "J1 UP"
+msgstr "J1 UP"
+
+msgid "J1 DOWN"
+msgstr "J1 DOWN"
+
+msgid "J1 LEFT"
+msgstr "J1 LEFT"
+
+msgid "J1 RIGHT"
+msgstr "J1 RIGHT"
+
+msgid "J2 UP"
+msgstr "J2 UP"
+
+msgid "J2 DOWN"
+msgstr "J2 DOWN"
+
+msgid "J2 LEFT"
+msgstr "J2 LEFT"
+
+msgid "J2 RIGHT"
+msgstr "J2 RIGHT"
+
+msgid "Alias: **"
+msgstr "Slapyvardis: **"
+
+msgid "MAC: "
+msgstr "MAC: "
+
+msgid "Connected: "
+msgstr "Prisijungęs: "
+
+msgid "Trusted: "
+msgstr "Patikimas: "
+
+msgid "Paired: "
+msgstr "Susietas: "
+
+msgid "Blocked: "
+msgstr "Užblokuotas: "
+
+msgid "NO DEVICE"
+msgstr "NĖRA ĮRENGINIO"
+
+msgid "SEARCH BY"
+msgstr "IEŠKOTI PAGAL"
+
+msgid "NO RESULTS"
+msgstr "NĖRA REZULTATŲ"
+
+msgid "PRIORITY TO HDMI"
+msgstr "PRIORITETAS HDMI"
+
+msgid "ON"
+msgstr "ĮJUNGTA"
+
+msgid "OFF"
+msgstr "IŠJUNGTA"
+
+msgid "60Hz Only"
+msgstr "Tik 60Hz"
+
+msgid "50Hz Only"
+msgstr "Tik 50Hz"
+
+msgid "DISCOVERING BLUETOOTH AUDIO DEVICES..."
+msgstr "APTINKAMI BLUETOOTH GARSO ĮRENGINIAI..."
+
+msgid "NO AUDIO DEVICE FOUND"
+msgstr "NERASTA GARSO ĮRENGINIO"
+
+msgid "KODI RESOLUTION"
+msgstr "KODI SKIRIAMOJI GEBA"
+
+msgid "AUDIO DEVICE PAIRED"
+msgstr "GARSO ĮRENGINYS SUSIETAS"
+
+msgid "UNABLE TO PAIR AUDIO DEVICE"
+msgstr "NEPAVYKO SUSIETI GARSO ĮRENGINIO"
+
+msgid "BRIGHTNESS"
+msgstr "RYŠKUMAS"
+
+msgid "NAME"
+msgstr "PAVADINIMAS"
+
+msgid "suspend"
+msgstr "sustabdyti"
+
+msgid "NEXT RESOLUTION"
+msgstr "KITA SKIRIAMOJI GEBA"
+
+msgid "Game refresh rate"
+msgstr "Žaidimo atnaujinimo dažnis"
+
+msgid "Game resolution"
+msgstr "Žaidimo skiriamoji geba"
+
+msgid "CHANGELOG"
+msgstr "POKYČIŲ SĄRAŠAS"
+
+msgid "Copying %s folder..."
+msgstr "Kopijuojamas %s aplankas..."
+
+msgid "B"
+msgstr "B"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "SAVE STATES"
+msgstr "IŠSAUGOJIMO BŪSENOS"
+
+msgid "SHOW SAVE STATES ON START"
+msgstr "RODYTI IŠSAUGOJIMO BŪSENAS PALEIDIMO METU"
+
+msgid "You are about to delete this state, confirm ?"
+msgstr "Ketinate ištrinti šią būseną, patvirtinti?"
+
+msgid "DELETE STATE, CONFIRM?"
+msgstr "IŠTRINTI BŪSENĄ, PATVIRTINTI?"
+
+msgid "CHANGE ORDER"
+msgstr "KEISTI TVARKĄ"
+
+msgid "LAUNCH GAME FROM STATE"
+msgstr "PALEISTI ŽAIDIMĄ IŠ BŪSENOS"
+
+msgid "DELETE STATE SLOT"
+msgstr "IŠTRINTI BŪSENOS LIZDĄ"
+
+msgid "Display the available save states before launching a game."
+msgstr ""
+"Rodyti išsaugojimo būsenas paleidimo metu bus rodomos prieinamos išsaugojimo "
+"būsenos prieš paleidžiant žaidimą."
+
+msgid "DOWNLOADING GAMES FOR %s"
+msgstr "ATSISIUNČIAMI ŽAIDIMAI SKIRTI %s"
+
+msgid "Downloading WASM4 games from the official site. Please wait..."
+msgstr "Atsisiunčiami WASM4 žaidimai iš oficialios svetainės. Palaukite..."
+
+msgid "Downloading... Estimated time: %s"
+msgstr "Atsisiunčiama... Numatomas laikas: %s"
+
+msgid "Extracting... found %s games"
+msgstr "Išpakuojama... rasta %s žaidimų"
+
+msgid "Updating metadata..."
+msgstr "Atnaujinami metaduomenys..."
+
+msgid "Refreshing gamelist..."
+msgstr "Atnaujinamas žaidimų sąrašas..."
+
+msgid ""
+"Scrap running in background.\n"
+"Return to the scrap menu to get the progression."
+msgstr ""
+"Scraping vykdomas fone.\n"
+"Grįžkite į scraping meniu, kad pamatytumėte pažangą."
+
+msgid "ADVANCED SHADERS"
+msgstr "IŠPLĖSTINIAI SHADERS"
+
+msgid "GAME BOY MODE"
+msgstr "GAME BOY REŽIMAS"
+
+msgid "GAME BOY"
+msgstr "GAME BOY"
+
+msgid "SUPER GAME BOY"
+msgstr "SUPER GAME BOY"
+
+msgid "ASK AT LAUNCH"
+msgstr "KLAUSTI PALEIDIMO METU"
+
+msgid "CRT CURVED"
+msgstr "CRT LENKTAS"
+
+msgid ""
+"YOU JUST ACTIVATED THE SHADERS FOR ALL SYSTEMS. FOR A BETTER RENDERING, IT "
+"IS ADVISED TO DISABLE GAME SMOOTHING. DO YOU WANT TO CHANGE THIS OPTION "
+"AUTOMATICALLY?"
+msgstr ""
+"JŪS KĄ TIK AKTYVAVOTE SHADERS VISOMS SISTEMOMS. GERESNIAM ATVAIZDAVIMUI "
+"REKOMENDUOJAMA IŠJUNGTI ŽAIDIMO GLODINIMĄ. AR NORITE AUTOMATIŠKAI PAKEISTI "
+"ŠIĄ PARINKTĮ?"
+
+msgid "Optimized video"
+msgstr "Optimizuotas vaizdo įrašas"
+
+msgid "RECOMMENDED"
+msgstr "REKOMENDUOJAMA"
+
+msgid "TATE SETTINGS"
+msgstr "TATE NUSTATYMAI"
+
+msgid "ENABLE TATE VIRTUAL SYSTEM"
+msgstr "ĮJUNGTI TATE VIRTUALIĄ SISTEMĄ"
+
+msgid "GAMES ROTATION"
+msgstr "ŽAIDIMŲ PASUKIMAS"
+
+msgid "COMPLETE SYSTEM ROTATION"
+msgstr "PILNAS SISTEMOS PASUKIMAS"
+
+msgid ""
+"Welcome to RECALBOX for Anbernic RG!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Sveiki atvykę į RECALBOX, skirtą Anbernic RG!\n"
+"Šis trumpas pristatymas parodys, kaip naudoti visus specialius mygtukus, "
+"esančius aplink ekraną.\n"
+"\n"
+"Paspauskite bet kurį mygtuką, kad pradėtumėte!"
+
+msgid ""
+"On the left side of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+"Press button B to continue"
+msgstr ""
+"Kairėje konsolės pusėje yra 2 mygtukai, pažymėti '-' ir '+'.\n"
+"Naudokite juos, norėdami padidinti arba sumažinti garsumą bet kuriuo metu "
+"Recalbox sąsajoje arba žaidime.\n"
+"\n"
+"Paspauskite mygtuką B, kad tęstumėte"
+
+msgid ""
+"On the top side of the console, there is a button marked 'F'.\n"
+"This is the Hotkey button\n"
+"To quit a game press both F + START\n"
+"Press button B to continue"
+msgstr ""
+"Konsolės viršuje yra mygtukas, pažymėtas 'F'.\n"
+"Tai yra Hotkey mygtukas\n"
+"Norėdami išeiti iš žaidimo, paspauskite F + START kartu\n"
+"Paspauskite mygtuką B, kad tęstumėte"
+
+msgid ""
+"Use the function F button and a volume button to adjust brightness\n"
+"Press button B to continue"
+msgstr ""
+"Naudokite funkcijos F mygtuką ir garsumo mygtuką ryškumui reguliuoti\n"
+"Paspauskite mygtuką B, kad tęstumėte"
+
+msgid "GameBoy Mode"
+msgstr "GameBoy režimas"
+
+msgid "Rotation"
+msgstr "Pasukimas"
+
+msgid "Full Screen"
+msgstr "Visas ekranas"
+
+msgid "DOWNLOAD CONTENTS"
+msgstr "ATSISIŲSTI TURINĮ"
+
+msgid "Start downloading..."
+msgstr "Pradėti atsisiuntimą..."
+
+msgid "none"
+msgstr "nė vienas"
+
+msgid "Games"
+msgstr "Žaidimai"
+
+msgid "Downloading free games from Recalbox repositories. Please wait..."
+msgstr "Atsisiunčiami nemokami žaidimai iš Recalbox saugyklų. Palaukite..."
+
+msgid "Installing %s games"
+msgstr "Įdiegiama %s žaidimų"
+
+msgid "SLOT"
+msgstr "LIZDAS"
+
+msgid "ENABLE ENHANCED VIEW"
+msgstr "ĮJUNGTI PATOBULINTĄ VAIZDĄ"
+
+msgid "FOLD CLONES BY DEFAULT"
+msgstr "SULENKTI KLONUS PAGAL NUTYLĖJIMĄ"
+
+msgid "HIDE BIOS"
+msgstr "SLĖPTI BIOS"
+
+msgid "HIDE NON-WORKING GAMES"
+msgstr "SLĖPTI NEVEIKIANČIUS ŽAIDIMUS"
+
+msgid "ALWAYS USE OFFICIAL NAMES"
+msgstr "VISADA NAUDOTI OFICIALIUS PAVADINIMUS"
+
+msgid "MANUFACTURER VIRTUAL SYSTEMS"
+msgstr "GAMINTOJO VIRTUALIOS SISTEMOS"
+
+msgid "HD MODE"
+msgstr "HD REŽIMAS"
+
+msgid "WIDESCREEN (16/9)"
+msgstr "PLATUS EKRANAS (16/9)"
+
+msgid "LAUNCH LAST"
+msgstr "PALEISTI PASKUTINĮ"
+
+msgid "BOOTLOADER UPDATE"
+msgstr "BOOTLOADER ATNAUJINIMAS"
+
+msgid ""
+"If no configured controller is detected at boot, Recalbox will run as usual "
+"and display the system list."
+msgstr ""
+"Jei paleidimo metu neaptinkamas sukonfigūruotas valdiklis, recalbox veiks "
+"kaip įprasta ir rodys sistemų sąrašą."
+
+msgid "Could not get bootloader status. Something went wrong"
+msgstr "Nepavyko gauti bootloader būsenos. Kažkas nutiko ne taip"
+
+msgid "An update is available :\n"
+msgstr "Yra prieinamas atnaujinimas:\n"
+
+msgid "Current version: \n"
+msgstr "Dabartinė versija: \n"
+
+msgid ""
+"\n"
+"Latest version: \n"
+msgstr ""
+"\n"
+"Naujausia versija: \n"
+
+msgid "Update success. The bootloader is up to date."
+msgstr "Atnaujinimas sėkmingas. Bootloader yra atnaujintas."
+
+msgid ""
+"Your bootloader is up to date.\n"
+"The bootloader version is:\n"
+msgstr ""
+"Jūsų bootloader yra atnaujintas.\n"
+"Bootloader versija yra:\n"
+
+msgid "AUTO PAIR ON BOOT"
+msgstr "AUTOMATINIS SUSIEJIMAS PALEIDŽIANT"
+
+msgid "ALWAYS SHOW PAD OSD"
+msgstr "VISADA RODYTI PAD OSD"
+
+msgid "PAD OSD TYPE"
+msgstr "PAD OSD TIPAS"
+
+msgid "REDUCED LATENCY (EXPERIMENTAL)"
+msgstr "SUMAŽINTAS VĖLAVIMAS (EKSPERIMENTINIS)"
+
+msgid "RUN AHEAD (EXPERIMENTAL)"
+msgstr "RUN AHEAD (EKSPERIMENTINIS)"
+
+msgid "MONO AMP BOOST"
+msgstr "MONO STIPRINTUVO PADIDINIMAS"
+
+msgid "PANEL TYPE"
+msgstr "SKYDELIO TIPAS"
+
+msgid "4 PLAYERS MODE"
+msgstr "4 ŽAIDĖJŲ REŽIMAS"
+
+msgid "START+BTN1 = CREDIT"
+msgstr "START+BTN1 = KREDITAS"
+
+msgid "START+BTN = HK+BTN"
+msgstr "START+BTN = HK+BTN"
+
+msgid "START 3SEC = EXIT"
+msgstr "START 3SEK = IŠEITI"
+
+msgid "START+BTN 5SEC = AUTO FIRE"
+msgstr "START+BTN 5SEK = AUTOMATINIS ŠAUDYMAS"
+
+msgid "PIN E/27 AS GND"
+msgstr "PIN E/27 KAIP GND"
+
+msgid "RESET JAMMA CONFIGURATION"
+msgstr "ATKURTI JAMMA KONFIGŪRACIJĄ"
+
+msgid ""
+"You will now calibrate different resolutions for the frontend. Select the "
+"refresh rate according to what your TV supports.\n"
+"During the calibration, press B to validate, and A to cancel."
+msgstr ""
+"Dabar kalibruosite skirtingas frontend skiriamąsias gebas. Pasirinkite "
+"atnaujinimo dažnį pagal tai, ką palaiko jūsų TV.\n"
+"Kalibravimo metu paspauskite B patvirtinti, o A atšaukti."
+
+msgid "Are you sure you want to reset JAMMA configuration?"
+msgstr "Ar tikrai norite atkurti JAMMA konfigūraciją?"
+
+msgid "BOOT ON THIS GAME"
+msgstr "PALEISTI ŠIAME ŽAIDIME"
+
+msgid "DOWNLOAD GAMES"
+msgstr "ATSISIŲSTI ŽAIDIMUS"
+
+msgid "DISPLAY ONLY TATE GAMES IN GAMELISTS"
+msgstr "RODYTI TIK TATE ŽAIDIMUS ŽAIDIMŲ SĄRAŠUOSE"
+
+msgid "TIME PLAYED"
+msgstr "ŽAISTAS LAIKAS"
+
+msgid "DID YOU KNOW?"
+msgstr "AR ŽINOJOTE?"
+
+msgid ""
+"Last operation removed all systems!\n"
+"\n"
+"They have been restored to allow normal operations, regardless of the "
+"current filters."
+msgstr ""
+"Paskutinė operacija pašalino visas sistemas!\n"
+"\n"
+"Jos buvo atkurtos, kad būtų leidžiamos normalios operacijos, nepaisant "
+"dabartinių filtrų."
+
+msgid ""
+"{0} reports the emulation status of this game is 'preliminary'. You should "
+"expect issues such as bugs or even crashes!"
+msgstr ""
+"{0} praneša, kad šio žaidimo emuliacijos būsena yra 'preliminari'. "
+"Turėtumėte tikėtis problemų, tokių kaip klaidos ar net strigimai!"
+
+msgid "Start the game standard Game Boy mode"
+msgstr "Paleisti žaidimą standartiniu Game Boy režimu"
+
+msgid "Start the game in Super Game Boy mode"
+msgstr "Paleisti žaidimą Super Game Boy režimu"
+
+msgid "INITIALIZING SYSTEM {0}"
+msgid_plural "INITIALIZING SYSTEMS..."
+msgstr[0] "INICIJUOJAMA SISTEMA {0}"
+msgstr[1] "INICIJUOJAMOS SISTEMOS..."
+msgstr[2] "INICIJUOJAMOS SISTEMOS..."
+
+msgid "LOADING SYSTEMS..."
+msgstr "ĮKELIAMOS SISTEMOS..."
+
+msgid "LOADING VIRTUAL SYSTEMS..."
+msgstr "ĮKELIAMOS VIRTUALIOS SISTEMOS..."
+
+msgid "INITIALIZING INTERFACE..."
+msgstr "INICIJUOJAMA SĄSAJA..."
+
+msgid ""
+"One or more files are corrupted. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, check your Recalbox storage (SD Card, "
+"USB Key or hard drive).\n"
+"Contact the team on https://forum.recalbox.com if the problem persists."
+msgstr ""
+"Vienas ar keli failai yra sugadinti. Esate grąžinti į Recalbox %s.\n"
+"Bandykite dar kartą atnaujinti savo Recalbox, patikrinkite savo Recalbox "
+"saugyklą (SD kortelę, USB raktą arba kietąjį diską).\n"
+"Susisiekite su komanda https://forum.recalbox.com, jei problema išlieka."
+
+msgid "THE UPGRADE IS CORRUPTED"
+msgstr "ATNAUJINIMAS SUGADINTAS"
+
+msgid "An undervoltage has been detected, the system may slow down.\n"
+msgstr "Aptiktas nepakankamas įtampos lygis, sistema gali sulėtėti.\n"
+
+msgid ""
+"We recommend adjusting your JAMMA cabinet power supply to increase the "
+"voltage to between 5.05V and 5.2V"
+msgstr ""
+"Rekomenduojame pakoreguoti jūsų JAMMA korpuso maitinimo šaltinį, kad "
+"padidintumėte įtampą iki 5.05V-5.2V"
+
+msgid ""
+"We recommend that you purchase an official USB-C power supply designed for "
+"your Raspberry Pi"
+msgstr ""
+"Rekomenduojame įsigyti oficialų USB-C maitinimo šaltinį, skirtą jūsų "
+"Raspberry Pi"
+
+msgid ""
+"The temperature of your system is high.\n"
+"The system may slow down. Try cooling your Raspberry Pi with a fan or "
+"disable overclock if it's enabled."
+msgstr ""
+"Jūsų sistemos temperatūra yra aukšta.\n"
+"Sistema gali sulėtėti. Pabandykite atvėsinti savo Raspberry Pi "
+"ventiliatoriumi arba išjunkite overclock, jei jis įjungtas."
+
+msgid ""
+"Choose strategy\n"
+"\n"
+"AUTO: auto apply default patch\n"
+"\n"
+"LAUNCH LAST: always launch the last one (can be modified in edit game menu)\n"
+"\n"
+"SELECT: choose manually which patch to apply. Default one or patches in "
+"[ROM_NAME]-patches directory\n"
+"\n"
+"DISABLED: never apply patch"
+msgstr ""
+"Pasirinkite strategiją\n"
+"\n"
+"AUTO: automatiškai pritaikyti numatytąjį patch\n"
+"\n"
+"PALEISTI PASKUTINĮ: visada paleisti paskutinį (galima keisti žaidimo "
+"redagavimo meniu)\n"
+"\n"
+"PASIRINKTI: rankiniu būdu pasirinkti, kurį patch pritaikyti. Numatytąjį arba "
+"patches [ROM_NAME]-patches kataloge\n"
+"\n"
+"IŠJUNGTA: niekada netaikyti patch"
+
+msgid "Set the Super GameBoy mode for GameBoy games."
+msgstr "Nustatyti Super GameBoy režimą GameBoy žaidimams."
+
+msgid ""
+"Improves resolution on compatible 3d emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+msgstr ""
+"Pagerina skiriamąją gebą suderinamuose 3D emuliatoriuose. Gali turėti įtakos "
+"našumui. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+
+msgid ""
+"Enables 16:9 hacks for compatible emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+msgstr ""
+"Įjungia 16:9 hacks suderinamiems emuliatoriams. Gali turėti įtakos našumui. "
+"(Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+
+msgid "Always display Pad OSD whether you are in pad menus or not."
+msgstr "Visada rodyti Pad OSD, nesvarbu, ar esate valdiklio meniu, ar ne."
+
+msgid "Change the icon used to display pad OSD."
+msgstr "Pakeiskite piktogramą, naudojamą valdiklio OSD rodyti."
+
+msgid "Activates Bluetooth pairing automatically each time you boot."
+msgstr ""
+"Automatiškai aktyvuoja Bluetooth susiejimą kiekvieną kartą paleidžiant."
+
+msgid ""
+"Enable the new arcade view, with parents and clones sorted hierarchically."
+msgstr ""
+"Įjungia naują arcade vaizdą su tėviniais/klonais, rikiuojamais hierarchiškai."
+
+msgid "Hide clones and orphaned games"
+msgstr "Slėpti klonus ir be tėvinio žaidimus"
+
+msgid "Hide bios files"
+msgstr "Slėpti bios failus"
+
+msgid "Hide unknown and non-working games"
+msgstr "Slėpti nežinomus ir neveikiančius žaidimus"
+
+msgid "Manage screen and game rotation options"
+msgstr "Tvarkyti ekrano ir žaidimo pasukimo parinktis"
+
+msgid "Proceed to a complete screen rotation, for frontend and games."
+msgstr "Atlikite pilną ekrano pasukimą frontend ir žaidimams."
+
+msgid "Configure emulators to reduce latency."
+msgstr "Sukonfigūruokite emuliatorius, kad sumažintumėte vėlavimą."
+
+msgid ""
+"Use run ahead to reduce latency. Can have undesired effect on some emulators."
+msgstr ""
+"Naudokite run ahead, kad sumažintumėte vėlavimą. Gali turėti nepageidaujamą "
+"poveikį kai kuriuose emuliatoriuose."
+
+msgid "When a HDMI cable is connected, use HDMI output in priority."
+msgstr "Kai prijungtas HDMI kabelis, prioritetą teikti HDMI išvesčiai."
+
+msgid "Superrez can increase image quality depending on your CRT."
+msgstr "Superrez gali pagerinti vaizdo kokybę priklausomai nuo jūsų CRT."
+
+msgid "Number of buttons on your arcade cab panel."
+msgstr "Mygtukų skaičius jūsų arcade korpuso skydelyje."
+
+msgid "Boost mono amp power. Use only if the sound level is too low."
+msgstr ""
+"Padidinti mono stiprintuvo galią. Naudokite tik jei garso lygis per žemas."
+
+msgid "Define the NEOGEO layout when playing NEOGEO games."
+msgstr "Nustatykite NEOGEO išdėstymą žaidžiant NEOGEO žaidimus."
+
+msgid "Add a credit in game, pressing START + BTN1. Works for all players."
+msgstr ""
+"Pridėti kreditą žaidime, paspaudžiant START + BTN1. Veikia visiems žaidėjams."
+
+msgid ""
+"START + any button will send the HK+BTN event, so you can use special hotkey "
+"controls in emulators."
+msgstr ""
+"START + bet koks mygtukas siųs HK+BTN įvykį, taip galėsite naudoti "
+"specialius hotkey valdiklius emuliatoriuose."
+
+msgid ""
+"Pressing START for 3sec will exit the game. If you disable this option, you "
+"will have to exit the game with SERVICE + TEST."
+msgstr ""
+"Paspaudus START 3 sekundes, bus išeita iš žaidimo. Jei išjungsite šią "
+"parinktį, turėsite išeiti iš žaidimo su SERVICE + TEST."
+
+msgid ""
+"Select the type of your screen. If you don't know what you are doing, do not "
+"change this value."
+msgstr ""
+"Pasirinkite savo ekrano tipą. Jei nežinote, ką darote, nekeiskite šios "
+"reikšmės."
+
+msgid "4-player mode, with players 2 and 3 on the CPS2 kick harness."
+msgstr "4 žaidėjų režimas, su 2 ir 3 žaidėjais ant CPS2 kickharness."
+
+msgid "Set auto fire for a button by pressing START + a button for 5 seconds"
+msgstr ""
+"Nustatykite automatinį šaudymą mygtukui, paspausdami START + mygtuką 5 "
+"sekundėms"
+
+msgid ""
+"On some cabs, the pins E/27 of the JAMMA are the common ground for controls. "
+"Enable this option if you have this configuration."
+msgstr ""
+"Kai kuriuose korpusuose E/27 kontaktai JAMMA yra bendra valdiklių įžeminimo "
+"vieta. Įjunkite šią parinktį, jei turite tokią konfigūraciją."
+
+msgid "Refreshing systems..."
+msgstr "Atnaujinamos sistemos..."
+
+msgid "Your scraping session completed. Press OK to show the results."
+msgstr ""
+"Jūsų scraping sesija baigta. Paspauskite OK, kad pamatytumėte rezultatus."
+
+msgid ""
+"There is no game to show after this filter is changed! No change recorded."
+msgstr ""
+"Pakeitus šį filtrą, nėra žaidimo, kurį būtų galima rodyti! Pakeitimas "
+"neįrašytas."
+
+msgid "ENABLE VULKAN DRIVER"
+msgstr "ĮJUNGTI VULKAN TVARKYKLĘ"
+
+msgid "UPDATE"
+msgstr "ATNAUJINTI"
+
+msgid "Could not update bootloader. Something went wrong"
+msgstr "Nepavyko atnaujinti bootloader. Kažkas nutiko ne taip"
+
+msgid "BOOT VIDEOS"
+msgstr "PALEIDIMO VAIZDO ĮRAŠAI"
+
+msgid "There is no favorite games in any system!"
+msgstr "Nėra mėgstamiausių žaidimų jokioje sistemoje!"
+
+msgid "FORCED"
+msgstr "PRIVERSTA"
+
+msgid "SYSTEM DEFAULT"
+msgstr "SISTEMOS NUMATYTASIS"
+
+msgid "SOUND"
+msgstr "GARSAS"
+
+msgid "UPSIDEDOWN"
+msgstr "APVERSTA"
+
+msgid "There is no TATE game to show!No change recorded."
+msgstr "Nėra TATE žaidimo, kurį būtų galima rodyti! Pakeitimas neįrašytas."
+
+msgid "REGION"
+msgstr "REGIONAS"
+
+msgid "Europe"
+msgstr "Europa"
+
+msgid "USA"
+msgstr "JAV"
+
+msgid "Japan"
+msgstr "Japonija"
+
+msgid "You display {0} is not in the list of this theme's supported displays:"
+msgstr "Jūsų ekranas {0} nėra šios temos palaikomų ekranų sąraše:"
+
+msgid ""
+"You current resolution {0} is not in the list of this theme's supported "
+"resolutions:"
+msgstr ""
+"Jūsų dabartinė skiriamoji geba {0} nėra šios temos palaikomų skiriamųjų gebų "
+"sąraše:"
+
+msgid "You're in TATE mode and this theme does not seem to support TATE."
+msgstr "Esate TATE režime, ir ši tema, atrodo, nepalaiko TATE."
+
+msgid ""
+"This theme may have one or more compatibility issues with your current "
+"display:\n"
+msgstr ""
+"Ši tema gali turėti vieną ar daugiau suderinamumo problemų su jūsų "
+"dabartiniu ekranu:\n"
+
+msgid "NEXT"
+msgstr "KITAS"
+
+msgid "UPDATE NOW"
+msgstr "ATNAUJINTI DABAR"
+
+msgid "PAGE UP/DOWN"
+msgstr "PAGE UP/DOWN"
+
+msgid "{0} reports the emulation status of this game is 'imperfect'."
+msgstr "{0} praneša, kad šio žaidimo emuliacijos būsena yra 'netobula'."
+
+msgid ""
+"System \"{0}\" has no visible game yet!\n"
+"\n"
+"It will show up automatically as soon as it has visible games."
+msgstr ""
+"Sistema \"{0}\" dar neturi jokio matomo žaidimo!\n"
+"\n"
+"Ji pasirodys automatiškai, kai tik turės matomų žaidimų."
+
+msgid ""
+"With regard to the new BIOS folder structure, some of your bios files have "
+"been moved automatically to their new path."
+msgstr ""
+"Atsižvelgiant į naują BIOS aplankų struktūrą, kai kurie jūsų bios failai "
+"buvo automatiškai perkelti į naują vietą."
+
+msgid "This move is applied only once. No additional operation required."
+msgstr "Šis perkėlimas taikomas tik vieną kartą. Papildomo veiksmo nereikia."
+
+msgid ""
+"However, some files failed to move. You should run the BIOS Checker and move "
+"some files manually."
+msgstr ""
+"Tačiau kai kurie failai nebuvo perkelti. Turėtumėte paleisti BIOS Checker ir "
+"perkelti kai kuriuos failus rankiniu būdu."
+
+msgid ""
+"However, all files failed to move. You should:\n"
+"- either run the BIOS Checker and move the required files manually.\n"
+"- or if your bios files are on a read-only device or remote share, change it "
+"to read-write, reboot your recalbox, wait until all files are moved, then "
+"protect it again."
+msgstr ""
+"Tačiau visi failai nebuvo perkelti. Turėtumėte:\n"
+"- arba paleisti BIOS Checker ir perkelti reikiamus failus rankiniu būdu.\n"
+"- arba, jei jūsų bios failai yra tik skaitymo įrenginyje arba nuotoliniame "
+"bendrame naudojime, pakeiskite jį į skaitymo-rašymo, perkraukite savo "
+"recalbox, palaukite, kol visi failai bus perkelti, tada vėl apsaugokite jį."
+
+msgid "Updating current theme..."
+msgstr "Atnaujinama dabartinė tema..."
+
+msgid "Loading new theme {0}"
+msgstr "Įkeliama nauja tema {0}"
+
+msgid "Shows the Recalbox license."
+msgstr "Rodo Recalbox licenciją."
+
+msgid "Shows the quit menu to reboot or shutdown Recalbox."
+msgstr "Rodo išėjimo meniu, skirtą perkrauti arba išjungti Recalbox."
+
+msgid ""
+"Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, "
+"and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running."
+msgstr ""
+"Įjunkite vulkan tvarkyklę, kai ji prieinama. Numatytai įjungta RPi4, RPi5 ir "
+"PC. Nustatykite į OFF, jei Dreamcast, Naomi arba Atomiswave nustoja veikti."
+
+msgid "Sets the rating of the game."
+msgstr "Nustato žaidimo vertinimą."
+
+msgid "Sets the genre of the game."
+msgstr "Nustato žaidimo žanrą."
+
+msgid "Sets the description of the game."
+msgstr "Nustato žaidimo aprašymą."
+
+msgid "Defines the screen rotation of the game for tate usage."
+msgstr "Nustato žaidimo ekrano pasukimą tate naudojimui."
+
+msgid "Retroachievements user name."
+msgstr "Retroachievements naudotojo vardas."
+
+msgid "Retroachievements password."
+msgstr "Retroachievements slaptažodis."
+
+msgid "Netplay user name. Do not use special characters!"
+msgstr "Netplay naudotojo vardas. Nenaudokite specialių simbolių!"
+
+msgid ""
+"Local port other players will connect to when hosting a Netplay session."
+msgstr ""
+"Vietinis portas, prie kurio jungsis kiti žaidėjai, kai priimsite Netplay "
+"sesiją."
+
+msgid ""
+"List of predefined passwords to use to protect access to your Netplay "
+"sessions."
+msgstr ""
+"Iš anksto nustatytų slaptažodžių sąrašas, skirtas apsaugoti prieigą prie "
+"jūsų Netplay sesijų."
+
+msgid "Choose systems to use for demo and gameclip screensavers."
+msgstr ""
+"Pasirinkite sistemas, kurias naudoti demo ir gameclip ekrano užsklandoms."
+
+msgid "Select the region for theme supporting regionalized assets or texts"
+msgstr ""
+"Pasirinkite regioną temai, palaikančiai regionalizuotus išteklius ar tekstus"
+
+msgid "Shows the Arcade virtual system in the systems list."
+msgstr "Rodo Arcade virtualią sistemą sistemų sąraše."
+
+msgid ""
+"Hides the original arcade systems when the Arcade virtual system is enabled."
+msgstr ""
+"Slepia originalias arcade sistemas, kai įjungta Arcade virtuali sistema."
+
+msgid "Shows the Tate virtual system in the systems list."
+msgstr "Rodo Tate virtualią sistemą sistemų sąraše."
+
+msgid "Shows only games playable in tate mode in gamelists."
+msgstr "Rodo tik žaidimus, žaidžiamus tate režimu, žaidimų sąrašuose."
+
+msgid "Proceed to a screen rotation in games tate compatible."
+msgstr "Atlikite ekrano pasukimą tate suderinamuose žaidimuose."
+
+msgid ""
+"Sets whether the auto scraper is available or not. Auto scraping lets you "
+"scrape games just by moving onto them in gamelists."
+msgstr ""
+"Nustato, ar automatinis scraper yra prieinamas, ar ne. Automatinis scrap "
+"leidžia rinkti duomenis apie žaidimus tiesiog judant per juos žaidimų "
+"sąrašuose."
+
+msgid "Allows you to scrape only non-scraped games, or to scrape all games."
+msgstr ""
+"Leidžia rinkti duomenis tik apie žaidimus be duomenų arba rinkti duomenis "
+"apie visus žaidimus."
+
+msgid "Allows you to choose which systems you would like to scrape."
+msgstr "Leidžia pasirinkti, kurioms sistemoms norite rinkti duomenis."
+
+msgid "Selects the image type to scrape for your games."
+msgstr "Pasirenka paveikslėlio tipą, kurį rinkti jūsų žaidimams."
+
+msgid "Selects the video type to scrape for your games."
+msgstr "Pasirenka vaizdo įrašo tipą, kurį rinkti jūsų žaidimams."
+
+msgid "Selects the game region to use when you scrape your games."
+msgstr ""
+"Pasirenka žaidimo regioną, kurį naudoti renkant duomenis apie jūsų žaidimus."
+
+msgid "Selects the preferred region to scrape for your games."
+msgstr "Pasirenka pageidaujamą regioną, kurį rinkti jūsų žaidimams."
+
+msgid "Selects the preferred language to scrape for your games."
+msgstr "Pasirenka pageidaujamą kalbą, kurią rinkti jūsų žaidimams."
+
+msgid ""
+"Selects if you would like to download manuals with the scraped data if "
+"available."
+msgstr ""
+"Pasirenka, ar norite atsisiųsti vadovą kartu su surinktais duomenimis, jei "
+"prieinamas."
+
+msgid ""
+"Selects if you would like to download maps with the scraped data if "
+"available."
+msgstr ""
+"Pasirenka, ar norite atsisiųsti žemėlapius kartu su surinktais duomenimis, "
+"jei prieinami."
+
+msgid ""
+"Selects if you would like to download pad2keyboard files with the scraped "
+"data if available."
+msgstr ""
+"Pasirenka, ar norite atsisiųsti pad2keyboard failus kartu su surinktais "
+"duomenimis, jei prieinami."
+
+msgid "Enable or disable videos on boot."
+msgstr "Įjungti arba išjungti vaizdo įrašus paleidimo metu."
+
+msgid ""
+"This option allows you to select the current game to boot on it directly "
+"when you turn on your Recalbox. Don't forget to enable the boot on game "
+"option!"
+msgstr ""
+"Ši parinktis leidžia pasirinkti dabartinį žaidimą, kad įjungus Recalbox būtų "
+"paleidžiama tiesiogiai jame. Nepamirškite įjungti paleidimo žaidime "
+"parinkties!"
+
+msgid "This option allows you to download games for the current system."
+msgstr "Ši parinktis leidžia atsisiųsti žaidimus dabartinei sistemai."
+
+msgid ""
+"This option allows you to search games specifically in the current system "
+"only."
+msgstr "Ši parinktis leidžia ieškoti žaidimų tik dabartinėje sistemoje."
+
+msgid "Select sound output: JACK/MONO or JACK/JST. Jack always takes priority."
+msgstr ""
+"Pasirinkite garso išvestį: JACK/MONO arba JACK/JST. Jack visada turi "
+"prioritetą."
+
+msgid "Set the volume of the music in the frontend"
+msgstr "Nustatykite muzikos garsumą frontend"
+
+msgid "MUSIC VOLUME"
+msgstr "MUZIKOS GARSUMAS"
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON HD-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX AUTOMATIŠKAI PASIRINKS EMULIATORIUS, KURIE VEIKS HD SUDERINAMOSE "
+"SISTEMOSE. KAI KURIE ŽAIDIMAI GALI BŪTI NE 100% SUDERINAMI, TODĖL "
+"NEPAMIRŠKITE IŠJUNGTI ŠIOS PARINKTIES, JEI ATSIRANDA EMULIACIJOS AR NAŠUMO "
+"PROBLEMŲ."
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON WIDESCREEN-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX AUTOMATIŠKAI PASIRINKS EMULIATORIUS, KURIE VEIKS PLATAUS EKRANO "
+"SUDERINAMOSE SISTEMOSE. KAI KURIE ŽAIDIMAI GALI BŪTI NE 100% SUDERINAMI, "
+"TODĖL NEPAMIRŠKITE IŠJUNGTI ŠIOS PARINKTIES, JEI ATSIRANDA EMULIACIJOS AR "
+"NAŠUMO PROBLEMŲ."
+
+msgid "BOOT ON GAME"
+msgstr "PALEISTI ŽAIDIME"
+
+msgid "Add a menu in game option to boot on a specific game on startup."
+msgstr ""
+"Prideda meniu žaidimo parinktį, skirtą paleisti konkretų žaidimą paleidimo "
+"metu."
+
+msgid "SHOW ONLY 3+ PLAYERS GAMES"
+msgstr "RODYTI TIK 3+ ŽAIDĖJŲ ŽAIDIMUS"
+
+msgid "Deprecated"
+msgstr "Nebenaudojamas"
+
+msgid "QUICK JUMP"
+msgstr "GREITAS ŠUOLIS"
+
+msgid "FOLD/UNFOLD"
+msgstr "SULENKTI/IŠSKLEISTI"
+
+msgid "FAST MOVE"
+msgstr "GREITAS JUDĖJIMAS"
+
+msgid "BOTTOM"
+msgstr "APAČIA"
+
+msgid "TOP"
+msgstr "VIRŠUS"
+
+msgid "UNFOLD"
+msgstr "IŠSKLEISTI"
+
+msgid "ADD CHARACTER"
+msgstr "PRIDĖTI SIMBOLĮ"
+
+msgid "GAMELIST MODIFIED!"
+msgstr "ŽAIDIMŲ SĄRAŠAS PAKEISTAS!"
+
+msgid "ROM FOLDERS MODIFIED!"
+msgstr "ROM APLANKAI PAKEISTI!"
+
+msgid "TOTAL PLAYING TIME"
+msgstr "BENDRAS ŽAIDIMO LAIKAS"
+
+msgid "OPTION NOT AVAILABLE"
+msgstr "PARINKTIS NEPRIEINAMA"
+
+msgid "Screen calibration only available in YOKO mode."
+msgstr "Ekrano kalibravimas prieinamas tik YOKO režime."
+
+msgid "REALLY UPDATE {0}'S GAME LIST ?"
+msgstr "TIKRAI ATNAUJINTI {0} ŽAIDIMŲ SĄRAŠĄ?"
+
+msgid ""
+"REALLY UPDATE ALL GAME LISTS ?\n"
+"\n"
+"IT MAY TAKE A LONG TIME DEPENDING OF YOUR STORAGE SPEED AND THE NUMBER OF "
+"GAMES."
+msgstr ""
+"TIKRAI ATNAUJINTI VISUS ŽAIDIMŲ SĄRAŠUS?\n"
+"\n"
+"TAI GALI UŽTRUKTI ILGAI, PRIKLAUSOMAI NUO JŪSŲ SAUGYKLOS GREIČIO IR ŽAIDIMŲ "
+"SKAIČIAUS."
+
+msgid "Do you want to enable the 3+ player filter for all the games ?"
+msgstr "Ar norite įjungti 3+ žaidėjų filtrą visiems žaidimams?"
+
+msgid "Do you want to disable the 3+ player filter for all the games ?"
+msgstr "Ar norite išjungti 3+ žaidėjų filtrą visiems žaidimams?"
+
+msgid ""
+"Make sure to check the compatibility of your hardware before changing the "
+"recalbox refresh rate. Are you sure you want to switch the display mode to "
+msgstr ""
+"Prieš keisdami recalbox atnaujinimo dažnį, patikrinkite savo aparatūros "
+"suderinamumą. Ar tikrai norite perjungti ekrano režimą į"
+
+msgid "PAIR"
+msgstr "SUSIETI"
+
+msgid "JOIN GAME"
+msgstr "PRISIJUNGTI PRIE ŽAIDIMO"
+
+msgid "RUN"
+msgstr "PALEISTI"
+
+msgid "DON'T DELETE ANYTHING!"
+msgstr "NIEKO NETRINTI!"
+
+msgid "SHOW FAVORITES FIRST"
+msgstr "RODYTI MĖGSTAMIAUSIUS PIRMA"
+
+msgid ""
+"Shutdown Recalbox. All pending operations are completed before Recalbox is "
+"switched off"
+msgstr ""
+"Išjungti Recalbox. Visos laukiančios operacijos užbaigiamos prieš išjungiant "
+"Recalbox"
+
+msgid ""
+"Quickly shutdown Recalbox. All pending operations are ignored and no change "
+"is saved!"
+msgstr ""
+"Greitai išjungti Recalbox. Visos laukiančios operacijos ignoruojamos ir "
+"jokie pakeitimai neišsaugomi!"
+
+msgid ""
+"Reboot Recalbox. All pending operations are completed before Recalbox "
+"restarts"
+msgstr ""
+"Perkrauti Recalbox. Visos laukiančios operacijos užbaigiamos prieš Recalbox "
+"persikraunant"
+
+msgid "START GAME"
+msgstr "PALEISTI ŽAIDIMĄ"
+
+msgid "CONNECT"
+msgstr "PRISIJUNGTI"
+
+msgid "Run the original, unpatched game"
+msgstr "Paleisti originalų, nekeistą žaidimą"
+
+msgid "Run the game, patched with the selected patch"
+msgstr "Paleisti žaidimą, pakeistą pasirinktu patch"
+
+msgid "USER SCRIPTS"
+msgstr "NAUDOTOJO SCENARIJAI"
+
+msgid "CHECK FOR UPDATE NOW"
+msgstr "TIKRINTI ATNAUJINIMUS DABAR"
+
+msgid "Username not required for the selected scraper"
+msgstr "Naudotojo vardas nereikalingas pasirinktam scraper"
+
+msgid "Password not required for the selected scraper"
+msgstr "Slaptažodis nereikalingas pasirinktam scraper"
+
+msgid "NEOGEO/PGM LAYOUT P1"
+msgstr "NEOGEO/PGM IŠDĖSTYMAS P1"
+
+msgid "NEOGEO/PGM LAYOUT P2"
+msgstr "NEOGEO/PGM IŠDĖSTYMAS P2"
+
+msgid "START+UP/DOWN = VOLUME"
+msgstr "START+UP/DOWN = GARSUMAS"
+
+msgid "DUAL JOYSTICKS"
+msgstr "DVIGUBOS VAIRALAZDĖS"
+
+msgid "RESET"
+msgstr "ATKURTI"
+
+msgid "FRONTEND SCREEN CALIBRATION"
+msgstr "FRONTEND EKRANO KALIBRAVIMAS"
+
+msgid "Calibrate screen on frontend."
+msgstr "Kalibruoti ekraną frontend."
+
+msgid "CLOCK OSD"
+msgstr "LAIKRODIS OSD"
+
+msgid "Script {0} started successfully!"
+msgstr "Scenarijus {0} sėkmingai paleistas!"
+
+msgid "Running {0}..."
+msgstr "Vykdoma {0}..."
+
+msgid "Script execution complete"
+msgstr "Scenarijaus vykdymas baigtas"
+
+msgid "Script {0} has failed!"
+msgstr "Scenarijus {0} nepavyko!"
+
+msgid "With the following Error output:"
+msgstr "Su šia klaidos išvestimi:"
+
+msgid "Script {0} executed successfully!"
+msgstr "Scenarijus {0} sėkmingai įvykdytas!"
+
+msgid "With the following output:"
+msgstr "Su šia išvestimi:"
+
+msgid "SEARCH OTHER VERSIONS"
+msgstr "IEŠKOTI KITŲ VERSIJŲ"
+
+msgid "SEARCH BY LICENCE"
+msgstr "IEŠKOTI PAGAL LICENCIJĄ"
+
+msgid "DECORATIONS"
+msgstr "PAPUOŠIMAI"
+
+msgid "UNSET"
+msgstr "ATŠAUKTI"
+
+msgid "RUMBLE"
+msgstr "VIBRACIJA"
+
+msgid "Search games by licence"
+msgstr "Ieškoti žaidimų pagal licenciją"
+
+msgid ""
+"There is no TATE game available in your gamelists. Add TATE games and/or run "
+"the scraper to update TATE information"
+msgstr ""
+"Jūsų žaidimų sąrašuose nėra prieinamo TATE žaidimo. Pridėkite TATE žaidimų "
+"ir/arba paleiskite scraper, kad atnaujintumėte TATE informaciją"
+
+msgid "ALL YOUR EMULATOR SETTINGS HAVE BEEN RESET TO THEIR FACTORY DEFAULTS."
+msgstr ""
+"VISI JŪSŲ EMULIATORIAUS NUSTATYMAI BUVO ATKURTI Į GAMYKLINIUS NUMATYTUOSIUS."
+
+msgid ""
+"SOME ERROR OCCURRED WHILE RESETING ALL YOUR EMULATOR SETTINGS.\n"
+"\n"
+"IF YOU STILL HAVE ISSUES WITH SOME EMULATORS, REBOOT YOUR RECALBOX AND TRY "
+"RESETING EMULATOR SETTINGS AGAIN."
+msgstr ""
+"ATKURIANT VISUS JŪSŲ EMULIATORIAUS NUSTATYMUS ĮVYKO KLAIDA.\n"
+"\n"
+"JEI VIS DAR TURITE PROBLEMŲ SU KAI KURIAIS EMULIATORIAIS, PERKRAUKITE SAVO "
+"RECALBOX IR BANDYKITE DAR KARTĄ ATKURTI EMULIATORIAUS NUSTATYMUS."
+
+msgid "CHECKING UPDATE..."
+msgstr "TIKRINAMAS ATNAUJINIMAS..."
+
+msgid "FACTORY RESET IN PROGRESS"
+msgstr "VYKDOMAS GAMYKLINIS ATKŪRIMAS"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR EMULATOR SETTINGS TO FACTORY "
+"DEFAULTS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"JUS SKIRIA VIENAS SPUSTELĖJIMAS NUO EMULIATORIAUS NUSTATYMŲ ATKŪRIMO Į "
+"GAMYKLINIUS NUMATYTUOSIUS!\n"
+"\n"
+"AR TIKRAI ESATE TIKRI, KAD NORITE TAI PADARYTI?"
+
+msgid ""
+"RESET EMULATOR SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET ALL EMULATOR SETTINGS TO THEIR DEFAULT VALUES.\n"
+"YOU RECALBOX SETTINGS AND FILES WON'T BE AFFECTED.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR EMULATOR SETTINGS?"
+msgstr ""
+"ATKURTI EMULIATORIAUS NUSTATYMUS\n"
+"\n"
+"JŪS KETINATE ATKURTI VISUS EMULIATORIAUS NUSTATYMUS Į JŲ NUMATYTĄSIAS "
+"REIKŠMES.\n"
+"JŪSŲ RECALBOX NUSTATYMAI IR FAILAI NEBUS PALIESTI.\n"
+"\n"
+"ŠIO VEIKSMO NEGALIMA ATŠAUKTI!\n"
+"AR TIKRAI NORITE ATKURTI VISUS SAVO EMULIATORIAUS NUSTATYMUS?"
+
+msgid "EMULATOR SETTINGS RESET IN PROGRESS"
+msgstr "VYKDOMAS EMULIATORIAUS NUSTATYMŲ ATKŪRIMAS"
+
+msgid "Refreshing gamelists..."
+msgstr "Atnaujinami žaidimų sąrašai..."
+
+msgid "Preparing gamelists..."
+msgstr "Ruošiami žaidimų sąrašai..."
+
+msgid "Scan completed for system {0}."
+msgstr "Sistemos {0} nuskaitymas baigtas."
+
+msgid "Scan completed for all your systems."
+msgstr "Visų jūsų sistemų nuskaitymas baigtas."
+
+msgid "No game has been removed from your gamelists"
+msgstr "Iš jūsų žaidimų sąrašų nebuvo pašalinta jokio žaidimo"
+
+msgid "No game has been added to your gamelists"
+msgstr "Į jūsų žaidimų sąrašus nebuvo pridėta jokio žaidimo"
+
+msgid ""
+"Would you like to scrape newly added games now, using your current scraper "
+"configuration?"
+msgstr ""
+"Ar norėtumėte dabar rinkti duomenis apie naujai pridėtus žaidimus, naudojant "
+"dabartinę scraper konfigūraciją?"
+
+msgid "GAMELIST UPDATE COMPLETED"
+msgstr "ŽAIDIMŲ SĄRAŠO ATNAUJINIMAS BAIGTAS"
+
+msgid "Scanning {0} - 0 Added  - 0 Removed"
+msgstr "Nuskaitoma {0} - 0 Pridėta - 0 Pašalinta"
+
+msgid "Scanning {0}... {1} Added - {2} Removed"
+msgstr "Nuskaitoma {0}... {1} Pridėta - {2} Pašalinta"
+
+msgid "Saving gamelist for {0}..."
+msgstr "Išsaugomas žaidimų sąrašas {0}..."
+
+msgid "Added games: {0} - Removed games: {1}"
+msgstr "Pridėta žaidimų: {0} - Pašalinta žaidimų: {1}"
+
+msgid "WIFI CONNECTION OK!"
+msgstr "WIFI RYŠYS GERAI!"
+
+msgid "Initializing roms folders on device "
+msgstr "Inicijuojami rom aplankai įrenginyje "
+
+msgid "Moving share to device "
+msgstr "Perkeliamas bendras naudojimas į įrenginį "
+
+msgid "A new version {0} is available!"
+msgstr "Yra prieinama nauja versija {0}!"
+
+msgid "No new version available yet."
+msgstr "Dar nėra prieinamos naujos versijos."
+
+msgid "Reloading {0} gamelist..."
+msgstr "Perkraunamas {0} žaidimų sąrašas..."
+
+msgid "Recalbox interface must restart to apply your changes."
+msgstr ""
+"Recalbox sąsaja turi būti paleista iš naujo, kad būtų pritaikyti jūsų "
+"pakeitimai."
+
+msgid "TESTING CONNECTION..."
+msgstr "TIKRINAMAS RYŠYS..."
+
+msgid "UNAVAILABLE"
+msgstr "NEPRIEINAMA"
+
+msgid "NO WIFI ACCESS POINT"
+msgstr "NĖRA WIFI PRIEIGOS TAŠKO"
+
+msgid "NO ACCESS"
+msgstr "NĖRA PRIEIGOS"
+
+msgid "YES, BUT NOT RECOMMENDED"
+msgstr "TAIP, BET NEREKOMENDUOJAMA"
+
+msgid "CANCEL SELECTION"
+msgstr "ATŠAUKTI PASIRINKIMĄ"
+
+msgid "MOVE"
+msgstr "PERKELTI"
+
+msgid "MIN/MAX"
+msgstr "MIN/MAX"
+
+msgid "TOGGLE"
+msgstr "PERJUNGTI"
+
+msgid "SELECTED"
+msgstr "PASIRINKTA"
+
+msgid "OPEN"
+msgstr "ATIDARYTI"
+
+msgid "RECALBOX (DEFAULT)"
+msgstr "RECALBOX (NUMATYTASIS)"
+
+msgid "LICENCE"
+msgstr "LICENCIJA"
+
+msgid "GAME {0} OF {1}"
+msgstr "ŽAIDIMAS {0} IŠ {1}"
+
+msgid "Saving gamelists..."
+msgstr "Išsaugomi žaidimų sąrašai..."
+
+msgid "DOWNLOADING GAME FOR %s"
+msgstr "ATSISIUNČIAMAS ŽAIDIMAS SKIRTAS %s"
+
+msgid ""
+"Downloading Theme Hospital demo game from the official site. Please wait..."
+msgstr ""
+"Atsisiunčiamas Theme Hospital demonstracinis žaidimas iš oficialios "
+"svetainės. Palaukite..."
+
+msgid "Extracting... found 1 game"
+msgstr "Išpakuojama... rasta 1 žaidimas"
+
+msgid ""
+"There is no network available.\n"
+"Please connect your recalbox and try again."
+msgstr ""
+"Nėra prieinamo tinklo.\n"
+"Prijunkite savo recalbox ir bandykite dar kartą."
+
+msgid "In alphabetical order"
+msgstr "Abėcėlės tvarka"
+
+msgid "RATED {0} / 10"
+msgstr "ĮVERTINTA {0} / 10"
+
+msgid "NOT RATED"
+msgstr "NEĮVERTINTA"
+
+msgid "Never played"
+msgstr "Niekada nežaista"
+
+msgid "Just a few minutes"
+msgstr "Vos kelios minutės"
+
+msgid "Less than an hour"
+msgstr "Mažiau nei valanda"
+
+msgid "{0} hours"
+msgstr "{0} valandų"
+
+msgid "One player"
+msgid_plural "{0} Players"
+msgstr[0] "Vienas žaidėjas"
+msgstr[1] "{0} žaidėjai"
+msgstr[2] "{0} žaidėjų"
+
+msgid "Unknown developer"
+msgstr "Nežinomas kūrėjas"
+
+msgid "Unknown publisher"
+msgstr "Nežinomas leidėjas"
+
+msgid "Release date unknown"
+msgstr "Išleidimo data nežinoma"
+
+msgid "Year {0}"
+msgstr "Metai {0}"
+
+msgid "NO REGION"
+msgstr "NĖRA REGIONO"
+
+msgid ""
+"Game are now sorted\n"
+"by {0}"
+msgstr ""
+"Žaidimai dabar surikiuoti\n"
+"pagal {0}"
+
+msgid "{0} Years ago..."
+msgstr "Prieš {0} metų..."
+
+msgid "{0} Month ago..."
+msgstr "Prieš {0} mėnesį..."
+
+msgid "{0} Days ago..."
+msgstr "Prieš {0} dienų..."
+
+msgid "{0} Hours ago..."
+msgstr "Prieš {0} valandų..."
+
+msgid "A short while ago"
+msgstr "Prieš trumpą laiką"
+
+msgid ""
+"The emulator selected to launch {0} does not support file '{1}'. Would you "
+"like to run the game anyway, even though there's a high chance it will not "
+"work?"
+msgstr ""
+"Pasirinktas emuliatorius, skirtas paleisti {0}, nepalaiko failo '{1}'. Ar "
+"vis tiek norite paleisti žaidimą, nors yra didelė tikimybė, kad jis neveiks?"
+
+msgid ""
+"The emulator selected to launch {0} does not support zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Pasirinktas emuliatorius, skirtas paleisti {0}, nepalaiko suarchyvuotų failų/"
+"rom. Ar vis tiek norite paleisti žaidimą, nors yra didelė tikimybė, kad jis "
+"neveiks?"
+
+msgid ""
+"This zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Šiame suarchyvuotame žaidime nėra jokio failo, kurį palaikytų pasirinktas "
+"emuliatorius. Ar vis tiek norite paleisti žaidimą, nors yra didelė tikimybė, "
+"kad jis neveiks?"
+
+msgid ""
+"The emulator selected to launch {0} does not support 7zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Pasirinktas emuliatorius, skirtas paleisti {0}, nepalaiko 7zip suarchyvuotų "
+"failų/rom. Ar vis tiek norite paleisti žaidimą, nors yra didelė tikimybė, "
+"kad jis neveiks?"
+
+msgid ""
+"This 7zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Šiame 7zip suarchyvuotame žaidime nėra jokio failo, kurį palaikytų "
+"pasirinktas emuliatorius. Ar vis tiek norite paleisti žaidimą, nors yra "
+"didelė tikimybė, kad jis neveiks?"
+
+msgid ""
+"The emulator selected to launch {0} does not support file extension '{1}'. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"Pasirinktas emuliatorius, skirtas paleisti {0}, nepalaiko failo plėtinio "
+"'{1}'. Ar vis tiek norite paleisti žaidimą, nors yra didelė tikimybė, kad "
+"jis neveiks?"
+
+msgid "Signal"
+msgstr "Signalas"
+
+msgid "MOVE 5 BY 5"
+msgstr "PERKELTI PO 5"
+
+msgid ""
+"We're downloading __Recalbox__ version **%s**!\n"
+"\n"
+"Once the download is complete, Recalbox will reboot and start installing the "
+"new version.\n"
+"Typical installations take about 5-10mn. **DO NOT reboot or power off "
+"Recalbox** until the installation is complete."
+msgstr ""
+"Atsisiunčiama __Recalbox__ versija **%s**!\n"
+"\n"
+"Kai atsisiuntimas bus baigtas, Recalbox persikraus ir pradės diegti naują "
+"versiją.\n"
+"Įprastas diegimas trunka apie 5-10 min. **NEPERKRAUKITE IR NEIŠJUNKITE "
+"Recalbox**, kol diegimas nebus baigtas."
+
+msgid "ZOOM"
+msgstr "PRIARTINIMAS"
+
+msgid "SCANNING..."
+msgstr "NUSKAITOMA..."
+
+msgid "Ok"
+msgstr "Gerai"
+
+msgid "Disabling WIFI..."
+msgstr "Išjungiamas WIFI..."
+
+msgid "Enabling WIFI..."
+msgstr "Įjungiamas WIFI..."
+
+msgid ""
+"CONNECTION ERROR !\n"
+"Please check your SSID and Password."
+msgstr ""
+"RYŠIO KLAIDA!\n"
+"Patikrinkite savo SSID ir slaptažodį."
+
+msgid "FAVORITES FIRST"
+msgstr "MĖGSTAMIAUSI PIRMA"
+
+msgid "SUPERREZ MULTIPLIER"
+msgstr "SUPERREZ DAUGIKLIS"
+
+msgid "CALIBRATE"
+msgstr "KALIBRUOTI"
+
+msgid "DELETE SELECTED FILES"
+msgstr "IŠTRINTI PASIRINKTUS FAILUS"
+
+msgid "**YES**"
+msgstr "**TAIP**"
+
+msgid "Press any button for 5s to cancel !"
+msgstr "Paspauskite bet kurį mygtuką 5s, kad atšauktumėte!"
+
+msgid "Cancelling..."
+msgstr "Atšaukiama..."
+
+msgid "CANCELLED! Please release all buttons."
+msgstr "ATŠAUKTA! Atleiskite visus mygtukus."
+
+msgid "NEVER"
+msgstr "NIEKADA"
+
+msgid "THEME'S COLORSET"
+msgstr "TEMOS SPALVŲ RINKINYS"
+
+msgid "Select a colorset from this theme."
+msgstr "Pasirinkite spalvų rinkinį iš šios temos."
+
+msgid "THEME'S ICONSET"
+msgstr "TEMOS PIKTOGRAMŲ RINKINYS"
+
+msgid "Select an iconset from this theme."
+msgstr "Pasirinkite piktogramų rinkinį iš šios temos."
+
+msgid "THEME'S MENU STYLE"
+msgstr "TEMOS MENIU STILIUS"
+
+msgid "Select menu style from this theme."
+msgstr "Pasirinkite meniu stilių iš šios temos."
+
+msgid "THEME'S SYSTEMVIEW LAYOUT"
+msgstr "TEMOS SISTEMŲ VAIZDO IŠDĖSTYMAS"
+
+msgid "Select system view layout from this theme."
+msgstr "Pasirinkite sistemų vaizdo išdėstymą iš šios temos."
+
+msgid "THEME'S GAMELISTVIEW LAYOUT"
+msgstr "TEMOS ŽAIDIMŲ SĄRAŠO VAIZDO IŠDĖSTYMAS"
+
+msgid "Select gamelist view layout from this theme."
+msgstr "Pasirinkite žaidimų sąrašo vaizdo išdėstymą iš šios temos."
+
+msgid "THEME'S GAMECLIPVIEW LAYOUT"
+msgstr "TEMOS GAMECLIP VAIZDO IŠDĖSTYMAS"
+
+msgid "Select gameclip view layout from this theme."
+msgstr "Pasirinkite gameclip vaizdo išdėstymą iš šios temos."
+
+msgid "Libretro HatariB Settings"
+msgstr "Libretro HatariB nustatymai"
+
+msgid "Machine Type"
+msgstr "Įrenginio tipas"
+
+msgid ""
+"Choose the machine model to emulate. STE is a good choice for most games."
+msgstr ""
+"Pasirinkite emuliuojamą įrenginio modelį. STE yra geras pasirinkimas "
+"daugumai žaidimų."
+
+msgid "Memory Size"
+msgstr "Atminties dydis"
+
+msgid "Select the amount of memory. 1 MB is enough for gaming."
+msgstr "Pasirinkite atminties kiekį. 1 MB pakanka žaidimui."
+
+msgid "Fast Floppy"
+msgstr "Greitas diskelis"
+
+msgid ""
+"Set ON to accelerate the floppy disc emulation. May cause some games to fail!"
+msgstr ""
+"Nustatykite ON, kad pagreitintumėte diskelio emuliaciją. Gali sukelti kai "
+"kurių žaidimų klaidas!"
+
+msgid "Libretro Fuse Settings"
+msgstr "Libretro Fuse nustatymai"
+
+msgid ""
+"Choose the Sinclair machine (or clone) to emulate. The original Spectrum "
+"128k is a good way to start."
+msgstr ""
+"Pasirinkite emuliuojamą Sinclair įrenginį (ar kloną). Originalus Spectrum "
+"128k yra geras būdas pradėti."
+
+msgid "Set ON to accelerate the tape emulation. May cause some games to fail!"
+msgstr ""
+"Nustatykite ON, kad pagreitintumėte juostos emuliaciją. Gali sukelti kai "
+"kurių žaidimų klaidas!"
+
+msgid "Libretro PX68K Settings"
+msgstr "Libretro PX68K nustatymai"
+
+msgid "Model/CPU Speed"
+msgstr "Modelis/CPU greitis"
+
+msgid ""
+"Choose the CPU frequency to emulate. 10Mhz is the basic machine and will "
+"work for most of the games."
+msgstr ""
+"Pasirinkite emuliuojamą CPU dažnį. 10Mhz yra bazinis įrenginys ir veiks "
+"daugumai žaidimų."
+
+msgid "Memory Size (in MB)"
+msgstr "Atminties dydis (MB)"
+
+msgid ""
+"Choose the amount of memory available. Most of the games will work with 2MB "
+"but some games may require 4MB."
+msgstr ""
+"Pasirinkite prieinamą atminties kiekį. Dauguma žaidimų veiks su 2MB, tačiau "
+"kai kuriems žaidimams gali reikėti 4MB."
+
+msgid "Dolphin / Dolphin-GUI Settings"
+msgstr "Dolphin / Dolphin-GUI nustatymai"
+
+msgid "Resolution"
+msgstr "Skiriamoji geba"
+
+msgid "Choose the internal resolution."
+msgstr "Pasirinkite vidinę skiriamąją gebą."
+
+msgid "Dual CPU"
+msgstr "Dvigubas CPU"
+
+msgid ""
+"May improve performance on a few rare games, at the expense of others that "
+"are incompatible."
+msgstr ""
+"Įjunkite šią parinktį, jei ji gali pagerinti kai kurių retų žaidimų našumą, "
+"tačiau tai gali pakenkti kitiems, kurie yra nesuderinami."
+
+msgid "Sync GPU"
+msgstr "Sinchronizuoti GPU"
+
+msgid "Enable this speed hack for dual core mode to fix some glitches."
+msgstr ""
+"Įjunkite šį greičio hack dvigubo branduolio režimui, kad ištaisytumėte kai "
+"kurias klaidas."
+
+msgid "Anti-aliasing"
+msgstr "Glodinimas"
+
+msgid "Enable or disable anti-aliasing."
+msgstr "Įjunkite arba išjunkite glodinimą."
+
+msgid "VSync"
+msgstr "VSync"
+
+msgid "Enable or disable vsync."
+msgstr "Įjunkite šią parinktį, kad įjungtumėte arba išjungtumėte vsync."
+
+msgid "Real Gamecube controllers"
+msgstr "Tikri Gamecube valdikliai"
+
+msgid "Enable this option to play with real GameCube controllers."
+msgstr "Įjunkite šią parinktį, kad žaistumėte su tikrais GameCube valdikliais."
+
+msgid "Real Wiimotes"
+msgstr "Tikri Wiimotes"
+
+msgid "Enable this option to play with real Wiimotes."
+msgstr "Įjunkite šią parinktį, kad žaistumėte su tikrais Wiimotes."
+
+msgid "Emulated Wiimote"
+msgstr "Emuliuotas Wiimote"
+
+msgid "Enable this option to play with emulated Wiimotes."
+msgstr "Įjunkite, kad žaistumėte su emuliuotais Wiimotes."
+
+msgid "Dolphinbar position"
+msgstr "Dolphinbar padėtis"
+
+msgid "Choose the position of the Dolphin bar."
+msgstr "Pasirinkite Dolphin bar padėtį."
+
+msgid "Show on-screen information"
+msgstr "Rodyti informaciją ekrane"
+
+msgid "PPSSPP Settings"
+msgstr "PPSSPP nustatymai"
+
+msgid "Choose the internal resolution of the PSP."
+msgstr "Pasirinkite PSP vidinę skiriamąją gebą."
+
+msgid "SCUMMVM Settings"
+msgstr "SCUMMVM nustatymai"
+
+msgid "Subtitles"
+msgstr "Subtitrai"
+
+msgid "Enable subtitles"
+msgstr "Įjungti subtitrus"
+
+msgid "Supermodel Settings - Controllers"
+msgstr "Supermodel nustatymai - Valdikliai"
+
+msgid "Sensitivity"
+msgstr "Jautrumas"
+
+msgid ""
+"Choose the rate at which analog control values increase/decrease when "
+"controlled by a key, between 1 to 100. Default is 25."
+msgstr ""
+"Pasirinkite greitį, kuriuo analoginio valdymo reikšmės didėja/mažėja valdant "
+"klavišu, nuo 1 iki 100. Numatytoji reikšmė yra 25."
+
+msgid "Saturation"
+msgstr "Sotis"
+
+msgid ""
+"Choose the position at which the joystick is interpreted as being in its "
+"most extreme position, between 0% to 200%. Default is 100%."
+msgstr ""
+"Pasirinkite padėtį, kuriai esant vairalazdė interpretuojama kaip esanti "
+"kraštutinėje padėtyje, nuo 0% iki 200%. Numatytoji reikšmė yra 100%."
+
+msgid "Deadzone"
+msgstr "Negyvoji zona"
+
+msgid "Choose the dead zone as a percentage, between 0% to 99%. Default is 2%."
+msgstr ""
+"Pasirinkite negyvąją zoną procentais, nuo 0% iki 99%. Numatytoji reikšmė yra "
+"2%."
+
+msgid "Supermodel Settings - Audio"
+msgstr "Supermodel nustatymai - Garsas"
+
+msgid "Sound volume"
+msgstr "Garso garsumas"
+
+msgid ""
+"Choose the master volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Pasirinkite bendrą garsumą procentais, nuo 0% iki 100%. Numatytoji reikšmė "
+"yra 100%."
+
+msgid "Music volume"
+msgstr "Muzikos garsumas"
+
+msgid ""
+"Choose the music volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Pasirinkite muzikos garsumą procentais, nuo 0% iki 100%. Numatytoji reikšmė "
+"yra 100%."
+
+msgid "Balance"
+msgstr "Balansas"
+
+msgid ""
+"Choose the relative front/rear balance in percentage, between 0% to 100%. "
+"Default is 0%."
+msgstr ""
+"Pasirinkite santykinį priekio/galo balansą procentais, nuo 0% iki 100%. "
+"Numatytoji reikšmė yra 0%."
+
+msgid "Channels"
+msgstr "Kanalai"
+
+msgid "Choose the number of sound channels to use on host. Default is 2."
+msgstr ""
+"Pasirinkite garso kanalų skaičių, naudojamą host. Numatytoji reikšmė yra 2."
+
+msgid "Flip stereo"
+msgstr "Apversti stereo"
+
+msgid "Swap the left and right audio channels."
+msgstr "Pasirinkite, ar sukeisti kairį ir dešinį garso kanalus."
+
+msgid "Sound"
+msgstr "Garsas"
+
+msgid ""
+"Choose if you disable sound board emulation sound effects. Default is "
+"disabled."
+msgstr ""
+"Pasirinkite, ar išjungti garso plokštės emuliacijos garso efektus. Numatytai "
+"išjungta."
+
+msgid "No Digital Sound Board (DSB)"
+msgstr "Be skaitmeninės garso plokštės (DSB)"
+
+msgid "Enable or disable Digital Sound Board MPEG music. Default is disabled."
+msgstr ""
+"Įjunkite arba išjunkite skaitmeninės garso plokštės MPEG muziką. Numatytai "
+"išjungta."
+
+msgid "Sound engine"
+msgstr "Garso variklis"
+
+msgid ""
+"Choose between the legacy and new sound engines. Default is MAME engine."
+msgstr ""
+"Pasirinkite tarp seno ir naujo garso variklio. Numatytasis yra MAME variklis."
+
+msgid "Supermodel Settings - Video"
+msgstr "Supermodel nustatymai - Vaizdas"
+
+msgid "Supersampling"
+msgstr "Supersampling"
+
+msgid "Supersampling. Not enabled yet. Default is 1."
+msgstr "Supersampling. Dar neįjungta. Numatytoji reikšmė yra 1."
+
+msgid "Upscale"
+msgstr "Padidinimas"
+
+msgid "Choose the 2D layer upscaling filter mode. Default is 0."
+msgstr ""
+"Pasirinkite 2D sluoksnio padidinimo filtro režimą. Numatytoji reikšmė yra 0."
+
+msgid "Disable no throttle"
+msgstr "Išjungti be apribojimo"
+
+msgid "Enable or disable the 60Hz frame rate lock. Default is disabled."
+msgstr ""
+"Pasirinkite, ar norite įjungti, ar išjungti 60Hz kadrų dažnio užraktą. "
+"Numatytai išjungta."
+
+msgid "Lock the vertical refresh rate. Default is enabled."
+msgstr "Pasirinkite užrakinti vertikalų atnaujinimo dažnį. Numatytai įjungta."
+
+msgid "True Hz"
+msgstr "Tikras Hz"
+
+msgid "Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled."
+msgstr ""
+"Pasirinkite naudoti tikrą Model 3 atnaujinimo dažnį 57,524 Hz. Numatytai "
+"išjungta."
+
+msgid "Crosshairs"
+msgstr "Taikiklis"
+
+msgid "Show crosshairs. Default is disabled."
+msgstr "Pasirinkite, ar norite rodyti taikiklį. Numatytai išjungta."
+
+msgid "Multi texture"
+msgstr "Daugybinė tekstūra"
+
+msgid "Use 8 texture maps for decoding. Default is disabled."
+msgstr ""
+"Pasirinkite, ar norite naudoti 8 tekstūrų žemėlapius dekodavimui. Numatytai "
+"išjungta."
+
+msgid "Quad rendering"
+msgstr "Quad atvaizdavimas"
+
+msgid "Enable proper quad rendering. Default is disabled."
+msgstr ""
+"Pasirinkite, ar norite įjungti tinkamą quad atvaizdavimą. Numatytai išjungta."
+
+msgid "Supermodel Settings - Core"
+msgstr "Supermodel nustatymai - Branduolys"
+
+msgid "GPU multi threading"
+msgstr "GPU daugiagijiškumas"
+
+msgid ""
+"Set to ON to run GPU in its own thread instead of sharing the CPU thread. "
+"Faster but may cause bugs, depending on the game."
+msgstr ""
+"Nustatykite ON, kad GPU veiktų savo atskiroje gijoje, o ne dalintųsi CPU "
+"gija. Greičiau, bet priklausomai nuo žaidimo gali sukelti klaidų."
+
+msgid "PPC Frequency"
+msgstr "PPC dažnis"
+
+msgid "Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70."
+msgstr ""
+"Pasirinkite PowerPC dažnį MHz, nuo 1 iki 1000. Numatytoji reikšmė yra 70."
+
+msgid "Service button"
+msgstr "Aptarnavimo mygtukas"
+
+msgid ""
+"Enable or disable the service menu in games (L3 = test, R3 = service). "
+"Default is enabled."
+msgstr ""
+"Įjunkite arba išjunkite aptarnavimo meniu žaidimuose (L3 = test, R3 = "
+"service). Numatytai įjungta."
+
+msgid "Log level"
+msgstr "Žurnalo lygis"
+
+msgid "Choose the level of detail in the log file. Default is Information."
+msgstr ""
+"Pasirinkite informacijos lygį žurnalo faile. Numatytoji reikšmė yra "
+"informacija."
+
+msgid "Xemu Settings"
+msgstr "Xemu nustatymai"
+
+msgid "Choose the internal resolution of the Xbox."
+msgstr "Pasirinkite Xbox vidinę skiriamąją gebą."
+
+msgid "Show menu bar"
+msgstr "Rodyti meniu juostą"
+
+msgid "Show the menu bar."
+msgstr "Pasirinkite, ar norite rodyti meniu juostą."
+
+msgid "Skip boot animation"
+msgstr "Praleisti paleidimo animaciją"
+
+msgid "Skip the boot animation."
+msgstr "Pasirinkite, ar norite praleisti paleidimo animaciją."
+
+msgid "Show notifications"
+msgstr "Rodyti pranešimus"
+
+msgid "Show the notifications displayed in the top-right corner of the screen."
+msgstr "Rodyti pranešimus viršutiniame dešiniajame ekrano kampe."
+
+msgid "Display mode"
+msgstr "Ekrano režimas"
+
+msgid "Choose how the framebuffer should fit or scale."
+msgstr ""
+"Pasirinkite, kaip framebuffer turėtų tilpti arba būti keičiamas mastelis."
+
+msgid "Aspect Ratio"
+msgstr "Kraštinių santykis"
+
+msgid "Choose the aspect ratio of the Xbox."
+msgstr "Pasirinkite Xbox kraštinių santykį."
+
+msgid "Xemu - EEPROM General Settings"
+msgstr "Xemu - Bendrieji EEPROM nustatymai"
+
+msgid "Choose the region to use on Xbox."
+msgstr "Pasirinkite regioną, naudojamą Xbox."
+
+msgid "Video Standard"
+msgstr "Vaizdo standartas"
+
+msgid "Choose the video standard to use on Xbox."
+msgstr "Pasirinkite vaizdo standartą, naudojamą Xbox."
+
+msgid "Timezone"
+msgstr "Laiko juosta"
+
+msgid ""
+"Choose the timezone to use on Xbox. If your country is using DST, don't take "
+"it into account when you are setting this."
+msgstr ""
+"Pasirinkite laiko juostą, naudojamą Xbox. Jei jūsų šalis naudoja vasaros "
+"laiką, neatsižvelkite į tai nustatydami šį parametrą."
+
+msgid "Disable automatic daylight saving time"
+msgstr "Išjungti automatinį vasaros laiką"
+
+msgid "Choose if you want to disable automatic daylight saving time."
+msgstr "Pasirinkite, ar norite išjungti automatinį vasaros laiką."
+
+msgid "DVD Region"
+msgstr "DVD regionas"
+
+msgid "Choose the DVD region to use on Xbox."
+msgstr "Pasirinkite DVD regioną, naudojamą Xbox."
+
+msgid "Language"
+msgstr "Kalba"
+
+msgid "Choose the language to use on Xbox."
+msgstr "Pasirinkite kalbą, naudojamą Xbox."
+
+msgid "Xemu - EEPROM Video Settings"
+msgstr "Xemu - EEPROM vaizdo nustatymai"
+
+msgid "Enable 480p resolution on Xbox."
+msgstr "Įjunkite 480p skiriamąją gebą Xbox."
+
+msgid "720p"
+msgstr "720p"
+
+msgid "Enable 720p resolution on Xbox."
+msgstr "Įjunkite 720p skiriamąją gebą Xbox."
+
+msgid "1080i"
+msgstr "1080i"
+
+msgid "Enable 1080i resolution on Xbox."
+msgstr "Įjunkite 1080i skiriamąją gebą Xbox."
+
+msgid "Video Mode"
+msgstr "Vaizdo režimas"
+
+msgid "Choose the video mode to use on Xbox."
+msgstr "Pasirinkite vaizdo režimą, naudojamą Xbox."
+
+msgid "Refresh rate"
+msgstr "Atnaujinimo dažnis"
+
+msgid "Set the refresh rate to 60Hz on Xbox."
+msgstr "Įjunkite 60Hz atnaujinimo dažnį Xbox."
+
+msgid "Xemu - EEPROM Audio Settings"
+msgstr "Xemu - EEPROM garso nustatymai"
+
+msgid "Audio Output"
+msgstr "Garso išvestis"
+
+msgid "Choose the audio output to use on Xbox."
+msgstr "Pasirinkite garso išvestį, naudojamą Xbox."
+
+msgid "AC3"
+msgstr "AC3"
+
+msgid "Enable Dolby Digital (AC3) on Xbox."
+msgstr "Įjunkite Dolby Digital (AC3) Xbox."
+
+msgid "DTS"
+msgstr "DTS"
+
+msgid "Enable Dolby Surround (DTS) on Xbox."
+msgstr "Įjunkite Dolby Surround (DTS) Xbox."
+
+msgid "SHUTDOWN RECALBOX"
+msgstr "IŠJUNGTI RECALBOX"
+
+msgid "FAST SHUTDOWN RECALBOX"
+msgstr "GREITAI IŠJUNGTI RECALBOX"
+
+msgid "RESTART RECALBOX"
+msgstr "PERKRAUTI RECALBOX"
+
+msgid "EDIT NETPLAY PASSWORDS"
+msgstr "REDAGUOTI NETPLAY SLAPTAŽODŽIUS"
+
+msgid "PASSWORD #{INDEX}"
+msgstr "SLAPTAŽODIS #{INDEX}"
+
+msgid "SHARE USAGE"
+msgstr "BENDRO NAUDOJIMO NAUDOJIMAS"
+
+msgid "SHARE PARTITION"
+msgstr "BENDRO NAUDOJIMO SKAIDINYS"
+
+msgid "Exit the password edition."
+msgstr "Išeiti iš slaptažodžio redagavimo."
+
+msgid "AVAILABLE STORAGES"
+msgstr "PRIEINAMOS SAUGYKLOS"
+
+msgid ""
+"Show a list of storage available on your system. Select a storage to access "
+"extra information and available actions."
+msgstr ""
+"Rodo prieinamų saugyklų sąrašą jūsų sistemoje. Pasirinkite saugyklą, kad "
+"pasiektumėte papildomą informaciją ir prieinamus veiksmus."
+
+msgid "Get information about {DEVICE.NAME}"
+msgstr "Gauti informaciją apie {DEVICE.NAME}"
+
+msgid "FREE SPACE"
+msgstr "LAISVA VIETA"
+
+msgid "Display free space available on the device"
+msgstr "Rodyti laisvą vietą, prieinamą įrenginyje"
+
+msgid "STORAGE NAME"
+msgstr "SAUGYKLOS PAVADINIMAS"
+
+msgid "Display real device name"
+msgstr "Rodyti tikrąjį įrenginio pavadinimą"
+
+msgid "NETWORK ACCESS"
+msgstr "TINKLO PRIEIGA"
+
+msgid "Access to this storage through your local network."
+msgstr "Prieiga prie šios saugyklos per jūsų vietinį tinklą."
+
+msgid "FILE SYSTEM"
+msgstr "FAILŲ SISTEMA"
+
+msgid "FileSystem"
+msgstr "Failų sistema"
+
+msgid "COMPATIBLE WITH RECALBOX?"
+msgstr "SUDERINAMA SU RECALBOX?"
+
+msgid "Show if this storage is compatible with recalbox"
+msgstr "Rodo, ar ši saugykla suderinama su recalbox"
+
+msgid "INSTALL RECALBOX ROM FOLDERS"
+msgstr "ĮDIEGTI RECALBOX ROM APLANKUS"
+
+msgid "INITIALIZE!"
+msgstr "INICIJUOTI!"
+
+msgid ""
+"Create rom structure so that this storage will be used by Recalbox on next "
+"boots."
+msgstr ""
+"Sukuria rom struktūrą, kad ši saugykla būtų naudojama Recalbox kitų "
+"paleidimų metu."
+
+msgid ""
+"You cannot initialize this storage, because either it is already initialized "
+"or it is not compatible."
+msgstr ""
+"Negalite inicijuoti šios saugyklos, nes ji jau inicijuota arba nesuderinama."
+
+msgid ""
+"Select your language. A reboot is required to set this configuration active."
+msgstr ""
+"Pasirinkite savo kalbą. Norint aktyvuoti šią konfigūraciją, reikalingas "
+"perkrovimas."
+
+msgid "TIMEZONE"
+msgstr "LAIKO JUOSTA"
+
+msgid ""
+"Select the timezone used to display dates and times in their local format."
+msgstr ""
+"Leidžia pasirinkti laiko juostą, kad datos ir laikai būtų rodomi vietiniu "
+"formatu."
+
+msgid "Shows available update version."
+msgstr "Rodo prieinamą atnaujinimo versiją."
+
+msgid "CHECK UPDATES PERIODICALLY"
+msgstr "TIKRINTI ATNAUJINIMUS PERIODIŠKAI"
+
+msgid ""
+"Automatically check if an update is available. If so, it notifies you with a "
+"message."
+msgstr ""
+"Automatiškai tikrina, ar yra prieinamas atnaujinimas. Jei taip, praneša jums "
+"žinute."
+
+msgid "Select update type"
+msgstr "Pasirinkti atnaujinimo tipą"
+
+msgid "CHECK"
+msgstr "TIKRINTI"
+
+msgid "Check if an update is available, right now."
+msgstr "Patikrinkite, ar dabar yra prieinamas atnaujinimas."
+
+msgid "SHOW NEW VERSION CHANGELOG"
+msgstr "RODYTI NAUJOS VERSIJOS POKYČIŲ SĄRAŠĄ"
+
+msgid "SHOW"
+msgstr "RODYTI"
+
+msgid "Shows available update changelog."
+msgstr "Rodo prieinamą atnaujinimo pokyčių sąrašą."
+
+msgid "DOWNLOAD AND UPDATE MY RECALBOX"
+msgstr "ATSISIŲSTI IR ATNAUJINTI MANO RECALBOX"
+
+msgid "GO!"
+msgstr "PIRMYN!"
+
+msgid "No update available yet."
+msgstr "Dar nėra prieinamo atnaujinimo."
+
+msgid "RECALBOX RGB DUAL SETTINGS"
+msgstr "RECALBOX RGB DUAL NUSTATYMAI"
+
+msgid ""
+"Select Recalbox's interface resolution. 480i is recommended for better "
+"details."
+msgstr ""
+"Pasirinkite Recalbox sąsajos skiriamąją gebą. 480i rekomenduojama geresnėms "
+"detalėms."
+
+msgid "AVOID INTERLACED MODES"
+msgstr "VENGTI PERŽVALGOS REŽIMŲ"
+
+msgid "Avoid interlaced mode for all games."
+msgstr "Venkite peržvalgos režimo visiems žaidimams."
+
+msgid "AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS"
+msgstr "VENGTI PERŽVALGOS REŽIMŲ TATE ŽAIDIMAMS YOKO IR NEŠIOJAMUOSE"
+
+msgid "31 KHZ"
+msgstr "31 KHZ"
+
+msgid "You're not in 31khz mode"
+msgstr "Nesate 31khz režime"
+
+msgid "RUN DEMOS AND AUTOBOOT GAMES IN 240P@120"
+msgstr "PALEISTI DEMONSTRACIJAS IR AUTOBOOT ŽAIDIMUS 240P@120"
+
+msgid ""
+"Run the demos and autoboot games in 240p resolution on your 31kHz monitor."
+msgstr ""
+"Paleiskite demonstracijas ir autoboot žaidimus 240p skiriamąja geba savo "
+"31kHz monitoriuje."
+
+msgid "EXPERIMENTAL"
+msgstr "EKSPERIMENTINIS"
+
+msgid "RECALBOX RGB JAMMA SETTINGS"
+msgstr "RECALBOX RGB JAMMA NUSTATYMAI"
+
+msgid "Recalbox RGB Jamma options and configuration."
+msgstr "Recalbox RGB Jamma parinktys ir konfigūracija."
+
+msgid ""
+"Avoid interlaced mode for tate (vertical) games on yoko (horizontal) "
+"screens, and for handheld consoles."
+msgstr ""
+"Venkite peržvalgos režimo tate (vertikaliems) žaidimams yoko "
+"(horizontaliuose) ekranuose, ir nešiojamosioms konsolėms."
+
+msgid "JAMMA OPTIONS"
+msgstr "JAMMA PARINKTYS"
+
+msgid "START + UP and DOWN change the volume in frontend and in games."
+msgstr "START + UP ir DOWN keičia garsumą frontend ir žaidimuose."
+
+msgid "Load the dual joystick configuration on compatible games!"
+msgstr "Įkelkite dvigubos vairalazdės konfigūraciją suderinamuose žaidimuose!"
+
+msgid "Reset all previous options to their default values"
+msgstr "Atkurti visas ankstesnes parinktis į numatytąsias reikšmes"
+
+msgid "RECALBOX RGB DUAL 2 SETTINGS"
+msgstr "RECALBOX RGB DUAL 2 NUSTATYMAI"
+
+msgid "Recalbox RGB Dual 2 options and configuration."
+msgstr "Recalbox RGB Dual 2 parinktys ir konfigūracija."
+
+msgid "Select Recalbox's interface resolution."
+msgstr "Pasirinkite Recalbox sąsajos skiriamąją gebą."
+
+msgid "FORCE COMPOSITE"
+msgstr "PRIVERSTI COMPOSITE"
+
+msgid "Force composite output (On SCART, RCA and JACK)."
+msgstr "Priverčia composite išvestį (SCART, RCA ir JACK)."
+
+msgid "COMPOSITE SIGNAL STANDARD"
+msgstr "COMPOSITE SIGNALO STANDARTAS"
+
+msgid ""
+"When using composite, selects the composite signal standard for your region."
+msgstr ""
+"Naudojant composite, pasirenka composite signalo standartą jūsų regionui."
+
+msgid "16/9 CRT TV"
+msgstr "16/9 CRT TV"
+
+msgid "Activate if you have a 16/9 CRT TV."
+msgstr "Aktyvuokite, jei turite 16/9 CRT TV."
+
+msgid "SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH"
+msgstr "PASIRINKTI SIGNALĄ (RGB/COMPOSITE) PALEIDIMO METU"
+
+msgid ""
+"Let you choose between RGB Signal and composite signal at launch, for "
+"compatible systems."
+msgstr ""
+"Leidžia pasirinkti tarp RGB signalo ir composite signalo paleidimo metu, "
+"suderinamoms sistemoms."
+
+msgid "DIP SWITCHES"
+msgstr "DIP JUNGIKLIAI"
+
+msgid "FORCED 50HZ DIP SWITCH"
+msgstr "PRIVERSTAS 50HZ DIP JUNGIKLIS"
+
+msgid "FORCED 31kHz/MULTISYNC DIP SWITCH"
+msgstr "PRIVERSTAS 31kHz/MULTISYNC DIP JUNGIKLIS"
+
+msgid "FORCED COMPOSITE DIP SWITCH"
+msgstr "PRIVERSTAS COMPOSITE DIP JUNGIKLIS"
+
+msgid "IN-GAME SETTINGS"
+msgstr "NUSTATYMAI ŽAIDIME"
+
+msgid "FEATURES"
+msgstr "FUNKCIJOS"
+
+msgid "GAMES RENDERING"
+msgstr "ŽAIDIMŲ ATVAIZDAVIMAS"
+
+msgid "AUTO BLITTER (FBNEO/MAME)"
+msgstr "AUTOMATINIS BLITTER (FBNEO/MAME)"
+
+msgid ""
+"Enables automatic blitter and CPU settings for fbneo and mame games. Can "
+"enhance emulation precision on games like Cave."
+msgstr ""
+"Įjungia automatinius blitter ir CPU nustatymus fbneo ir mame žaidimams. Gali "
+"pagerinti emuliacijos tikslumą tokiuose žaidimuose kaip Cave."
+
+msgid "SYSTEM-LISTS & GAMELISTS SETTINGS"
+msgstr "SISTEMŲ SĄRAŠŲ IR ŽAIDIMŲ SĄRAŠŲ NUSTATYMAI"
+
+msgid "Configure system and gamelist filters and options"
+msgstr "Sukonfigūruoti sistemų ir žaidimų sąrašų filtrus bei parinktis"
+
+msgid "SYSTEM LISTS"
+msgstr "SISTEMŲ SĄRAŠAI"
+
+msgid "SHOW SYSTEMS"
+msgstr "RODYTI SISTEMAS"
+
+msgid "Show or hide systems individually"
+msgstr "Rodyti arba slėpti sistemas atskirai"
+
+msgid "GAMES"
+msgstr "ŽAIDIMAI"
+
+msgid "ENABLE ADDING/REMOVING FAVORITES"
+msgstr "ĮJUNGTI MĖGSTAMIAUSIŲ PRIDĖJIMĄ/PAŠALINIMĄ"
+
+msgid ""
+"Enable or disable adding/removing favorites in gamelist, search and other "
+"various places."
+msgstr ""
+"Įjunkite arba išjunkite mėgstamiausių pridėjimą/pašalinimą žaidimų sąraše, "
+"paieškoje ir kitose įvairiose vietose."
+
+msgid ""
+"Show only favorites. May hide all systems with no favorite at all until you "
+"switch off this option."
+msgstr ""
+"Rodyti tik mėgstamiausius. Gali paslėpti visas sistemas be jokio "
+"mėgstamiausio, kol išjungsite šią parinktį."
+
+msgid "Display all favorites at the top of the game list."
+msgstr "Rodyti visus mėgstamiausius žaidimų sąrašo viršuje."
+
+msgid "Force hidden game to show in gamelists."
+msgstr "Priversti paslėptą žaidimą rodytis žaidimų sąrašuose."
+
+msgid "SHOW MAHJONG AND CASINO GAMES"
+msgstr "RODYTI MAHJONG IR KAZINO ŽAIDIMUS"
+
+msgid ""
+"Show or hide asian casino and mahjong games. You must scrape your game for "
+"this option to work."
+msgstr ""
+"Rodyti arba slėpti azijietiškus kazino ir mahjong žaidimus. Norint, kad ši "
+"parinktis veiktų, turite surinkti duomenis apie savo žaidimą."
+
+msgid "SHOW ADULT GAMES"
+msgstr "RODYTI SUAUGUSIŲJŲ ŽAIDIMUS"
+
+msgid ""
+"Show or hide adult games. You must scrape your game for this option to work."
+msgstr ""
+"Rodyti arba slėpti suaugusiųjų žaidimus. Norint, kad ši parinktis veiktų, "
+"turite surinkti duomenis apie savo žaidimą."
+
+msgid "SHOW PREINSTALLED GAMES"
+msgstr "RODYTI IŠ ANKSTO ĮDIEGTUS ŽAIDIMUS"
+
+msgid ""
+"Show or hide games distributed with Recalbox. But you don't want to do this: "
+"they are all excellent games!"
+msgstr ""
+"Rodyti arba slėpti žaidimus, platinamus su Recalbox. Tačiau nenorėsite to "
+"daryti: visi jie yra puikūs žaidimai!"
+
+msgid "Show only games playable with 3 or more players"
+msgstr "Rodyti tik žaidimus, žaidžiamus 3 ar daugiau žaidėjų"
+
+msgid "SHOW ONLY YOKO (HORIZONTAL) GAMES"
+msgstr "RODYTI TIK YOKO (HORIZONTALIUS) ŽAIDIMUS"
+
+msgid ""
+"Show only YOKO (horizontal) games. Mutually exclusive with the option to "
+"show only TATE games."
+msgstr ""
+"Rodyti tik YOKO (horizontalius) žaidimus. Nesuderinama su parinktimi rodyti "
+"tik TATE žaidimus."
+
+msgid "SHOW ONLY TATE (VERTICAL) GAMES"
+msgstr "RODYTI TIK TATE (VERTIKALIUS) ŽAIDIMUS"
+
+msgid ""
+"Show only TATE (vertical) games. Mutually exclusive with the option to show "
+"only YOKO games."
+msgstr ""
+"Rodyti tik TATE (vertikalius) žaidimus. Nesuderinama su parinktimi rodyti "
+"tik YOKO žaidimus."
+
+msgid "SHOW ROMS MARKED AS NON-GAMES"
+msgstr "RODYTI ROMS PAŽYMĖTAS KAIP NE-ŽAIDIMAI"
+
+msgid ""
+"Show or hide roms that are explicitly marked as non-game (application, "
+"utilities, ...). You must scrape your game for this option to work."
+msgstr ""
+"Rodyti arba slėpti roms, aiškiai pažymėtas kaip ne-žaidimas (programa, "
+"priemonės, ...). Norint, kad ši parinktis veiktų, turite surinkti duomenis "
+"apie savo žaidimą."
+
+msgid "ENABLE ONE GAME ONE ROM (1G1R)"
+msgstr "ĮJUNGTI VIENAS ŽAIDIMAS VIENAS ROM (1G1R)"
+
+msgid "Display only one rom|disk image for a game from your preferred region."
+msgstr ""
+"Rodyti tik vieną rom|disko atvaizdą žaidimui iš jūsų pageidaujamo regiono."
+
+msgid "PRIORITY REGION (1G1R)"
+msgstr "PRIORITETINIS REGIONAS (1G1R)"
+
+msgid "Choose your preferred region for 1G1R filtering."
+msgstr "Pasirinkite savo pageidaujamą regioną 1G1R filtravimui"
+
+msgid "SECOND PRIORITY REGION (1G1R)"
+msgstr "ANTRAS PRIORITETINIS REGIONAS (1G1R)"
+
+msgid "Choose your second preferred region for 1G1R filtering."
+msgstr "Pasirinkite savo antrą pageidaujamą regioną 1G1R filtravimui"
+
+msgid "THIRD PRIORITY REGIONS (1G1R)"
+msgstr "TREČIAS PRIORITETINIS REGIONAS (1G1R)"
+
+msgid ""
+"Choose your preferred regions priority when there is no match with first and "
+"second regions"
+msgstr ""
+"Pasirinkite savo pageidaujamų regionų prioritetą, kai nėra atitikties su "
+"pirmu ir antru regionais"
+
+msgid "ARCADE SYSTEMS"
+msgstr "ARCADE SISTEMOS"
+
+msgid "ENABLE AGGREGATED ARCADE SYSTEM"
+msgstr "ĮJUNGTI SUJUNGTĄ ARCADE SISTEMĄ"
+
+msgid "Available only when aggregated arcade system is on"
+msgstr "Prieinama tik kai įjungta sujungta arcade sistema"
+
+msgid ""
+"Select manufacturer virtual system to show in the system view (like "
+"CPS1/2/3, SEGA, TAITO, ...)"
+msgstr ""
+"Pasirinkite gamintojo virtualią sistemą, rodomą sistemų vaizde (pvz., "
+"CPS1/2/3, SEGA, TAITO, ...)"
+
+msgid "ARCADE GAMES"
+msgstr "ARCADE ŽAIDIMAI"
+
+msgid ""
+"Always use arcade names from official databases. Overwrites manual edits and "
+"scraper results."
+msgstr ""
+"Visada naudoti arcade pavadinimus iš oficialių duomenų bazių. Perrašo "
+"rankinį redagavimą ir scraper rezultatus."
+
+msgid "USER INTERFACE SETTINGS"
+msgstr "NAUDOTOJO SĄSAJOS NUSTATYMAI"
+
+msgid "SYSTEMS TO SHOW IN DEMO/GAMECLIP"
+msgstr "SISTEMOS, RODOMOS DEMO/GAMECLIP"
+
+msgid "Adjust the screen brightness"
+msgstr "Reguliuoti ekrano ryškumą"
+
+msgid "Change the look of your Recalbox!"
+msgstr "Pakeiskite savo Recalbox išvaizdą!"
+
+msgid "DEFAULT TRANSITION STYLE"
+msgstr "NUMATYTASIS PERĖJIMO STILIUS"
+
+msgid ""
+"Select the type of transition between system. INSTANT will do nothing, FADE "
+"will fade to dark, and SLIDE will slide the entire screen"
+msgstr ""
+"Pasirinkite perėjimo tarp sistemų tipą. INSTANT nieko nedarys, FADE išbluks "
+"į tamsą, o SLIDE paslinks visą ekraną"
+
+msgid "Select {THEME.OPTION.NAME}"
+msgstr "Pasirinkite {THEME.OPTION.NAME}"
+
+msgid "GAME LAUNCH TRANSITION STYLE"
+msgstr "ŽAIDIMO PALEIDIMO PERĖJIMO STILIUS"
+
+msgid ""
+"Select the type of transition when you launch a game. INSTANT will do "
+"nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover."
+msgstr ""
+"Pasirinkite perėjimo tipą, kai paleidžiate žaidimą. INSTANT nieko nedarys, "
+"FADE išbluks į tamsą, o SLIDE priartins žaidimo viršelį."
+
+msgid "ENABLE FAST MOVE IN GAMELIST"
+msgstr "ĮJUNGTI GREITĄ JUDĖJIMĄ ŽAIDIMŲ SĄRAŠE"
+
+msgid ""
+"When enabled, holding up or down for a few seconds makes the list scroll "
+"very fast."
+msgstr ""
+"Kai įjungta, laikant up/down kelias sekundes, sąrašas slenka labai greitai"
+
+msgid "Display the current time in a corner of the screen."
+msgstr "Rodyti dabartinį laiką ekrano kampe."
+
+msgid "SHOW MUSIC POPUPS"
+msgstr "RODYTI MUZIKOS IŠŠOKANČIUS LANGUS"
+
+msgid "When enabled, show music information every time a new music starts."
+msgstr ""
+"Kai įjungta, rodo muzikos informaciją kiekvieną kartą, kai prasideda nauja "
+"muzika."
+
+msgid "SHOW NETPLAY POPUPS"
+msgstr "RODYTI NETPLAY IŠŠOKANČIUS LANGUS"
+
+msgid ""
+"When enabled, show netplay information every time a user starts a new game "
+"over internet."
+msgstr ""
+"Kai įjungta, rodo netplay informaciją kiekvieną kartą, kai naudotojas "
+"pradeda naują žaidimą per internetą."
+
+msgid "CONTROLLER SETTINGS"
+msgstr "VALDIKLIO NUSTATYMAI"
+
+msgid "Add and configure all your controllers."
+msgstr "Pridėkite ir sukonfigūruokite visus savo valdiklius."
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "CONNECT AUTOMATICALLY"
+msgstr "AUTOMATIŠKAI PRISIJUNGTI"
+
+msgid ""
+"Automatically connect on startup if the WIFI network is available and "
+"properly configured!"
+msgstr ""
+"Automatiškai prisijungti paleidimo metu, jei WIFI tinklas prieinamas ir "
+"tinkamai sukonfigūruotas!"
+
+msgid "WIFI is disabled!"
+msgstr "WIFI išjungtas!"
+
+msgid "SELECT SSID"
+msgstr "PASIRINKTI SSID"
+
+msgid "Select an available SSID."
+msgstr "Pasirinkite prieinamą SSID."
+
+msgid "If your Internet box has a WPS system, activate it and then click here!"
+msgstr ""
+"Jei jūsų interneto maršrutizatorius turi WPS sistemą, aktyvuokite ją ir tada "
+"spustelėkite čia!"
+
+msgid ""
+"Run the scraper! The operation may take a while, however you can make it a "
+"background task and keep using Recalbox."
+msgstr ""
+"Paleiskite scraper! Operacija gali užtrukti, tačiau galite ją paversti fono "
+"užduotimi ir toliau naudotis Recalbox."
+
+msgid "PATRON OPTIONS"
+msgstr "RĖMĖJO PARINKTYS"
+
+msgid "user name for the selected scraper"
+msgstr "naudotojo vardas pasirinktam scraper"
+
+msgid "password for the selected scraper"
+msgstr "slaptažodis pasirinktam scraper"
+
+msgid "Download various free games and free contents!"
+msgstr "Atsisiųskite įvairius nemokamus žaidimus ir nemokamą turinį!"
+
+msgid "Download games for {SYSTEM.NAME}"
+msgstr "Atsisiųsti žaidimus {SYSTEM.NAME}"
+
+msgid ""
+"Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}"
+msgstr ""
+"Atsisiųsti nemokamų žaidimų, žaidimų demonstracijų ir homebrew paketą "
+"{SYSTEM.NAME}"
+
+msgid "No content available yet for {SYSTEM.NAME}!"
+msgstr "Dar nėra prieinamo turinio {SYSTEM.NAME}!"
+
+msgid "ACTIVATE DEBUG/VERBOSE LOGS"
+msgstr "AKTYVUOTI DEBUG/VERBOSE ŽURNALUS"
+
+msgid "Activate debug and verbose logs in Recalbox and Emulators."
+msgstr "Aktyvuokite debug ir verbose žurnalus Recalbox ir emuliatoriuose."
+
+msgid "You cannot set up Kodi on boot when Kodi is disabled."
+msgstr "Negalite nustatyti Kodi paleidimo metu, kai Kodi išjungtas."
+
+msgid "DO NOT SCAN NEW GAMES"
+msgstr "NENUSKAITYTI NAUJŲ ŽAIDIMŲ"
+
+msgid ""
+"Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not "
+"scanning new files. Use it if your romsets are rarely updated."
+msgstr ""
+"Anksčiau vadinta 'TIK ŽAIDIMŲ SĄRAŠAS', gali labai pagreitinti paleidimo "
+"laiką, nenuskaitant naujų failų. Naudokite, jei jūsų romsets retai "
+"atnaujinami."
+
+msgid "ALLOW BOOT ON GAME"
+msgstr "LEISTI PALEISTI ŽAIDIME"
+
+msgid ""
+"When activated, Recalbox boots into the gamelist and does not allow moving "
+"back to the system list."
+msgstr ""
+"Kai aktyvuota, Recalbox paleidžiamas žaidimų sąraše ir neleidžia grįžti į "
+"sistemų sąrašą."
+
+msgid "SYSTEM SPECIFIC RESOLUTIONS"
+msgstr "SISTEMAI SPECIFINĖS SKIRIAMOSIOS GEBOS"
+
+msgid "FOR {SYSTEM.NAME}"
+msgstr "SKIRTA {SYSTEM.NAME}"
+
+msgid "Select the resolution used by the emulator '{SYSTEM.NAME}'."
+msgstr "Pasirinkite skiriamąją gebą, naudojamą emuliatoriaus '{SYSTEM.NAME}'."
+
+msgid "Set options for system {SYSTEM.NAME}"
+msgstr "Nustatyti parinktis sistemai {SYSTEM.NAME}"
+
+msgid "Set the way you want to use Kodi mediaplayer."
+msgstr "Nustatykite būdą, kaip norite naudoti Kodi medijos leistuvą."
+
+msgid "RUN KODI ON STARTUP"
+msgstr "PALEISTI KODI PALEIDIMO METU"
+
+msgid "START KODI WITH X BUTTON"
+msgstr "PALEISTI KODI X MYGTUKU"
+
+msgid "Run your own scripts in shell or python"
+msgstr "Vykdykite savo scenarijus shell arba python kalba"
+
+msgid "Run custom script {SCRIPT.NAME}"
+msgstr "Vykdyti pasirinktinį scenarijų {SCRIPT.NAME}"
+
+msgid "ENABLE WEB MANAGER"
+msgstr "ĮJUNGTI WEB MANAGER"
+
+msgid "RESET EMULATOR SETTINGS"
+msgstr "ATKURTI EMULIATORIAUS NUSTATYMUS"
+
+msgid "RESET!"
+msgstr "ATKURTI!"
+
+msgid ""
+"This option resets all emulator settings to their factory defaults. It does "
+"not affect any Recalbox setting."
+msgstr ""
+"Ši parinktis atkuria visus emuliatoriaus nustatymus į jų gamyklinius "
+"numatytuosius. Ji neturi įtakos jokiems Recalbox nustatymams."
+
+msgid "HARDWARE"
+msgstr "APARATŪRA"
+
+msgid "UPDATE!"
+msgstr "ATNAUJINTI!"
+
+msgid "Update Pi4 / Pi400 or Pi5 bootloader if required."
+msgstr "Atnaujinkite Pi4 / Pi400 arba Pi5 bootloader, jei reikia."
+
+msgid "Recalbox does not support overclocking for your board."
+msgstr "Recalbox nepalaiko overclocking jūsų plokštei."
+
+msgid "CONTEXTUAL OPTIONS"
+msgstr "KONTEKSTINĖS PARINKTYS"
+
+msgid "EDIT GAME {GAME.NAME}"
+msgstr "REDAGUOTI ŽAIDIMĄ {GAME.NAME}"
+
+msgid "Show options related to {GAME.NAME} and allow editing game metadata."
+msgstr ""
+"Rodo parinktis, susijusias su {GAME.NAME}, ir leidžia redaguoti žaidimo "
+"metaduomenis."
+
+msgid ""
+"You cannot edit this game because it is a pre-installed game or it is stored "
+"on a read-only device"
+msgstr ""
+"Negalite redaguoti šio žaidimo, nes tai iš anksto įdiegtas žaidimas arba jis "
+"saugomas tik skaitymo įrenginyje"
+
+msgid "Select the emulator to use to run {GAME.NAME}"
+msgstr "Pasirinkite emuliatorių, naudojamą paleisti {GAME.NAME}"
+
+msgid "SET PATCH"
+msgstr "NUSTATYTI PATCH"
+
+msgid "Select patch to use when running an emulator supporting softpatching."
+msgstr ""
+"Pasirinkite patch, naudojamą paleidžiant emuliatorių, palaikantį "
+"softpatching."
+
+msgid ""
+"Either the game has no patch or the emulator selected to run this game is "
+"not supporting softpatching."
+msgstr ""
+"Arba žaidimas neturi patch, arba pasirinktas emuliatorius, skirtas paleisti "
+"šį žaidimą, nepalaiko softpatching."
+
+msgid "Sets the name of the game or folder."
+msgstr "Nustato žaidimo arba aplanko pavadinimą."
+
+msgid "Set this game as favorite or not."
+msgstr "Nustatykite šį žaidimą kaip mėgstamiausią ar ne."
+
+msgid "Editing favorites is not enabled."
+msgstr "Mėgstamiausių redagavimas neįjungtas."
+
+msgid "Hide or show this game."
+msgstr "Slėpti arba rodyti šį žaidimą."
+
+msgid "Defines this game as an adult game or not."
+msgstr "Nustato šį žaidimą kaip suaugusiųjų žaidimą ar ne."
+
+msgid "Scraping"
+msgstr "Scraping"
+
+msgid "Scrape this game and fill in all metadata at once!"
+msgstr ""
+"Rinkite duomenis apie šį žaidimą ir užpildykite visus metaduomenis iš karto!"
+
+msgid "Statistics"
+msgstr "Statistika"
+
+msgid "Show the total time you played this game"
+msgstr "Rodo bendrą laiką, kurį žaidėte šį žaidimą"
+
+msgid "PLAY COUNT"
+msgstr "ŽAIDIMŲ SKAIČIUS"
+
+msgid "Show the number of times you played this game"
+msgstr "Rodo, kiek kartų žaidėte šį žaidimą"
+
+msgid "Show the last date/time you played this game"
+msgstr "Rodo paskutinę datą/laiką, kada žaidėte šį žaidimą"
+
+msgid "DELETE GAME {GAME.NAME}"
+msgstr "IŠTRINTI ŽAIDIMĄ {GAME.NAME}"
+
+msgid "DELETE {ICON.WARNING}"
+msgstr "IŠTRINTI {ICON.WARNING}"
+
+msgid ""
+"Delete game or screenshot physically on the storage. Allow keeping save, "
+"metadata and other related files individually."
+msgstr ""
+"Ištrina žaidimą arba ekrano nuotrauką fiziškai saugykloje. Leidžia palikti "
+"išsaugojimą, metaduomenis ir kitus susijusius failus atskirai."
+
+msgid ""
+"You cannot delete this game because it is a pre-installed game or it is "
+"stored on a read-only device or it is a folder."
+msgstr ""
+"Negalite ištrinti šio žaidimo, nes tai iš anksto įdiegtas žaidimas, arba jis "
+"saugomas tik skaitymo įrenginyje, arba tai yra aplankas."
+
+msgid ""
+"Boot on game is not enabled. To set a game to boot on, enable the "
+"appropriate option first."
+msgstr ""
+"Paleidimas žaidime neįjungtas. Norėdami nustatyti žaidimą paleidimui, "
+"pirmiausia įjunkite atitinkamą parinktį."
+
+msgid "RUN SAVE STATE"
+msgstr "PALEISTI IŠSAUGOJIMO BŪSENĄ"
+
+msgid "Select, restore and run game in the selected save state."
+msgstr ""
+"Pasirinkite, atkurkite ir paleiskite žaidimą pasirinktoje išsaugojimo "
+"būsenoje."
+
+msgid ""
+"No save state has been detected for the currently selected game, or the "
+"currently selected item is not a game."
+msgstr ""
+"Nebuvo aptikta jokios išsaugojimo būsenos dabartiniam pasirinktam žaidimui, "
+"arba dabartinis pasirinktas elementas nėra žaidimas."
+
+msgid "JUMP"
+msgstr "ŠUOLIS"
+
+msgid "Open the Quick Jump selector."
+msgstr "Atidaryti greito šuolio selektorių."
+
+msgid "This option allows you to search for other versions of a game."
+msgstr "Ši parinktis leidžia ieškoti kitų žaidimo versijų."
+
+msgid "This option allows you to search for other games with the same licence."
+msgstr "Ši parinktis leidžia ieškoti kitų žaidimų su ta pačia licencija."
+
+msgid ""
+"Select the way the game list is sorted (alphabetically, by rating, ...)."
+msgstr ""
+"Pasirinkite žaidimų sąrašo rikiavimo būdą (abėcėlės tvarka, pagal "
+"vertinimą...)."
+
+msgid "This list has a natural order and can't be sorted."
+msgstr "Šis sąrašas turi natūralią tvarką ir negali būti surikiuotas."
+
+msgid ""
+"Select what kind of information you want to see on the right of your "
+"gamelist: regions flags, players or game genre."
+msgstr ""
+"Pasirinkite, kokią informaciją norite matyti savo žaidimų sąrašo dešinėje: "
+"regionų vėliavas, žaidėjus arba žaidimo žanrą."
+
+msgid "FLATTEN FOLDERS"
+msgstr "SUPLOKŠTINTI APLANKUS"
+
+msgid "This system is either always flattened or cannot be flattened!"
+msgstr "Ši sistema arba visada suplokštinama, arba negali būti suplokštinta!"
+
+msgid "You can't hide favorites in the Favorite system!"
+msgstr "Negalite slėpti mėgstamiausių Mėgstamiausių sistemoje!"
+
+msgid "Display favorites at the top of gamelists."
+msgstr "Rodyti mėgstamiausius žaidimų sąrašų viršuje."
+
+msgid "Favorites are always first in the Favorite system!"
+msgstr "Mėgstamiausi visada pirmi Mėgstamiausių sistemoje!"
+
+msgid "Virtual systems cannot be updated. Update real systems instead."
+msgstr ""
+"Virtualios sistemos negali būti atnaujinamos. Vietoj to atnaujinkite tikras "
+"sistemas."
+
+msgid "Advanced system settings"
+msgstr "Išplėstiniai sistemos nustatymai"
+
+msgid "Set advanced settings for system {SYSTEM.NAME}"
+msgstr "Nustatyti išplėstinius nustatymus sistemai {SYSTEM.NAME}"
+
+msgid "DELETE {GAME.NAME}"
+msgstr "IŠTRINTI {GAME.NAME}"
+
+msgid "GAME FILES (ROM, DISK IMAGE, TAPE, ...)"
+msgstr "ŽAIDIMO FAILAI (ROM, DISKO ATVAIZDAS, JUOSTA, ...)"
+
+msgid "Number of game files that are to be deleted."
+msgstr "Ištrintinų žaidimo failų skaičius."
+
+msgid ""
+"Number of media files (images, video, ...) that will be deleted along with "
+"game files."
+msgstr ""
+"Medijos failų (paveikslėlių, vaizdo įrašų, ...) skaičius, kurie bus ištrinti "
+"kartu su žaidimo failais."
+
+msgid "There is no media file associated with this game"
+msgstr "Su šiuo žaidimu nėra susieto medijos failo"
+
+msgid ""
+"Number of extra files associated with this game: configurations, overrides, "
+"patches, ..."
+msgstr ""
+"Papildomų failų, susietų su šiuo žaidimu, skaičius: konfigūracijos, "
+"perrašymai, patches, ..."
+
+msgid "There is no extra file associated with this game"
+msgstr "Su šiuo žaidimu nėra susieto papildomo failo"
+
+msgid "Number of save games and save states of {GAME.NAME}"
+msgstr "Išsaugotų žaidimų ir išsaugojimo būsenų skaičius {GAME.NAME}"
+
+msgid "There is no save game or save state for this game"
+msgstr "Šiam žaidimui nėra nei išsaugoto žaidimo, nei išsaugojimo būsenos"
+
+msgid "Select files to delete one by one."
+msgstr "Pasirinkite failus, kuriuos ištrinti po vieną."
+
+msgid "Select game files that are to be deleted one by one."
+msgstr "Pasirinkite žaidimo failus, kurie bus ištrinti po vieną."
+
+msgid ""
+"Select media files (images, video, ...) that will be deleted along with game "
+"files."
+msgstr ""
+"Pasirinkite medijos failus (paveikslėlius, vaizdo įrašus, ...), kurie bus "
+"ištrinti kartu su žaidimo failais."
+
+msgid "Select extra files to delete: configurations, overrides, patches, ..."
+msgstr ""
+"Pasirinkite papildomus failus, kuriuos ištrinti: konfigūracijas, perrašymus, "
+"patches, ..."
+
+msgid "Select save games and save states of {GAME.NAME} to delete"
+msgstr ""
+"Pasirinkite išsaugotus žaidimus ir išsaugojimo būsenas {GAME.NAME}, kurias "
+"ištrinti"
+
+msgid "Delete all files selected below"
+msgstr "Ištrinti visus žemiau pasirinktus failus"
+
+msgid "Cancel operation. Do not delete anything"
+msgstr "Atšaukti operaciją. Nieko netrinti"
+
+msgid "Delete all files listed below"
+msgstr "Ištrinti visus žemiau išvardytus failus"
+
+msgid "SOFTPATCHING {GAME.NAME}"
+msgstr "SOFTPATCHING {GAME.NAME}"
+
+msgid "ORIGINAL GAME"
+msgstr "ORIGINALUS ŽAIDIMAS"
+
+msgid "PATCHED GAME"
+msgstr "PAKEISTAS ŽAIDIMAS"
+
+msgid "SELECT PATCH TO APPLY"
+msgstr "PASIRINKTI PATCH, KURĮ PRITAIKYTI"
+
+msgid "Select the patch to apply."
+msgstr "Pasirinkite patch, kurį pritaikyti"
+
+msgid "INITIATE {GAME.NAME} NETPLAY GAME"
+msgstr "PRADĖTI {GAME.NAME} NETPLAY ŽAIDIMĄ"
+
+msgid "Launch the game and wait for other player to join"
+msgstr "Paleiskite žaidimą ir palaukite, kol prisijungs kitas žaidėjas"
+
+msgid "Select password other player will have to use to join the game"
+msgstr ""
+"Pasirinkite slaptažodį, kurį kitas žaidėjas turės naudoti norėdamas "
+"prisijungti prie žaidimo"
+
+msgid "CHOOSE VIEWER PASSWORD"
+msgstr "PASIRINKTI ŽIŪROVO SLAPTAŽODĮ"
+
+msgid "Select password other player will have to use to watch the game"
+msgstr ""
+"Pasirinkite slaptažodį, kurį kitas žaidėjas turės naudoti norėdamas stebėti "
+"žaidimą"
+
+msgid "Do not initiate this game."
+msgstr "Nepradėti šio žaidimo."
+
+msgid "JOIN {GAME.NAME} NETPLAY GAME"
+msgstr "PRISIJUNGTI PRIE {GAME.NAME} NETPLAY ŽAIDIMO"
+
+msgid "JOIN AS PLAYER"
+msgstr "PRISIJUNGTI KAIP ŽAIDĖJAS"
+
+msgid "JOIN"
+msgstr "PRISIJUNGTI"
+
+msgid "Join the game as a player."
+msgstr "Prisijungti prie žaidimo kaip žaidėjas."
+
+msgid "WATCH"
+msgstr "STEBĖTI"
+
+msgid "Join the game as a viewer. You can watch the game, but not participate."
+msgstr ""
+"Prisijunkite prie žaidimo kaip žiūrovas. Galite stebėti žaidimą, bet "
+"negalite dalyvauti."
+
+msgid "USE PASSWORD"
+msgstr "NAUDOTI SLAPTAŽODĮ"
+
+msgid "Use the selected password to join the game."
+msgstr "Naudokite pasirinktą slaptažodį, kad prisijungtumėte prie žaidimo."
+
+msgid "Do not join this game."
+msgstr "Neprisijungti prie šio žaidimo."
+
+msgid "{0} free of {1}"
+msgstr "{0} laisva iš {1}"
+
+msgid "{0} FREE"
+msgstr "{0} LAISVA"
+
+msgid "No vulkan driver is available on your hardware."
+msgstr "Jūsų aparatūroje nėra prieinamos vulkan tvarkyklės."
+
+msgid "Enable rumble with compatible controllers."
+msgstr "Įjunkite vibraciją su suderinamais valdikliais."
+
+msgid "EDIT FOLDER {GAME.NAME}"
+msgstr "REDAGUOTI APLANKĄ {GAME.NAME}"
+
+msgid "%i MINUTE"
+msgid_plural "%i MINUTES"
+msgstr[0] "%i MINUTĖ"
+msgstr[1] "%i MINUTĖS"
+msgstr[2] "%i MINUČIŲ"
+
+msgid "%i TIME"
+msgid_plural "%i TIMES"
+msgstr[0] "%i KARTAS"
+msgstr[1] "%i KARTAI"
+msgstr[2] "%i KARTŲ"
+
+msgid ""
+"Show only the very latest version of a given game, hiding all previous "
+"versions/releases. Particularly useful in TOSEC romsets."
+msgstr ""
+"Rodyti tik naujausią pateikto žaidimo versiją, slepiant visas ankstesnes "
+"versijas/leidimus. Ypač naudinga TOSEC romsets."
+
+msgid "{THEME.OPTION.HELP}"
+msgstr "{THEME.OPTION.HELP}"
+
+msgid "Fast Tape"
+msgstr "Greita juosta"
+
+msgid "LIGHT"
+msgstr "LENGVAS"
+
+msgid "MEDIUM"
+msgstr "VIDUTINIS"
+
+msgid "HEAVY"
+msgstr "SUNKUS"
+
+msgid "X6 (DEFAULT)"
+msgstr "X6 (NUMATYTASIS)"
+
+msgid "Region flags"
+msgstr "Regionų vėliavos"
+
+msgid "Genres"
+msgstr "Žanrai"
+
+msgid "Support numbers"
+msgstr "Palaikymo numeriai"
+
+msgid "Support types"
+msgstr "Palaikymo tipai"
+
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} failas"
+msgstr[1] "{0} failai"
+msgstr[2] "{0} failų"
+
+msgid "THEME MANAGER"
+msgstr "TEMŲ TVARKYKLĖ"
+
+msgid "LOADING THEME LIST..."
+msgstr "ĮKELIAMAS TEMŲ SĄRAŠAS..."
+
+msgid "Loading theme list..."
+msgstr "Įkeliamas temų sąrašas..."
+
+msgid "Unexpected error while retrieving theme list ! Please retry later."
+msgstr "Netikėta klaida gaunant temų sąrašą! Bandykite dar kartą vėliau."
+
+msgid "Installed"
+msgstr "Įdiegta"
+
+msgid "Not Installed"
+msgstr "Neįdiegta"
+
+msgid "Author"
+msgstr "Autorius"
+
+msgid "Version"
+msgstr "Versija"
+
+msgid "Compatible with"
+msgstr "Suderinama su"
+
+msgid "Download Size"
+msgstr "Atsisiuntimo dydis"
+
+msgid "BROWSE PREVIEWS"
+msgstr "NARŠYTI PERŽIŪRAS"
+
+msgid "BROWSE THEMES"
+msgstr "NARŠYTI TEMAS"
+
+msgid "INSTALL"
+msgstr "ĮDIEGTI"
+
+msgid "Please confirm. Do you want to update the theme {0}?"
+msgstr "Patvirtinkite. Ar norite atnaujinti temą {0}?"
+
+msgid "Please confirm. Do you want to install the theme {0}?"
+msgstr "Patvirtinkite. Ar norite įdiegti temą {0}?"
+
+msgid "Please confirm. Do you really want to delete the theme {0}?"
+msgstr "Patvirtinkite. Ar tikrai norite ištrinti temą {0}?"
+
+msgid "Preparing theme installation..."
+msgstr "Ruošiamas temos diegimas..."
+
+msgid "Downloading theme {0}"
+msgstr "Atsisiunčiama tema {0}"
+
+msgid "Installing theme {0}"
+msgstr "Diegiama tema {0}"
+
+msgid "Installed {0}%"
+msgstr "Įdiegta {0}%"
+
+msgid "Cleaning..."
+msgstr "Valoma..."
+
+msgid ""
+"Error installing theme {0}\n"
+"Reason: {1}"
+msgstr ""
+"Klaida diegiant temą {0}\n"
+"Priežastis: {1}"
+
+msgid "Do you want to switch to the newly installed theme {0} ?"
+msgstr "Ar norite persijungti į naujai įdiegtą temą {0}?"
+
+msgid "Failed to download theme file. Please check your internet connection."
+msgstr "Nepavyko atsisiųsti temos failo. Patikrinkite savo interneto ryšį."
+
+msgid ""
+"Failed to install required files. Please check you've enough free space on "
+"your storage !"
+msgstr ""
+"Nepavyko įdiegti reikiamų failų. Patikrinkite, ar turite pakankamai laisvos "
+"vietos savo saugykloje!"
+
+msgid "Unknown failure."
+msgstr "Nežinoma klaida."
+
+msgid "Downloaded {0}%"
+msgstr "Atsisiųsta {0}%"
+
+msgid ""
+"Browse, download, install, update or remove themes from Recalbox's theme "
+"repository!"
+msgstr ""
+"Naršykite, atsisiųskite, įdiekite, atnaujinkite arba pašalinkite temas iš "
+"Recalbox temų saugyklos!"
+
+msgid "Loading theme information..."
+msgstr "Įkeliama temos informacija..."
+
+msgid "{THEME.NAME}"
+msgstr "{THEME.NAME}"
+
+msgid "SWITCH TO"
+msgstr "PERSIJUNGTI Į"
+
+msgid "DESCRIPTION"
+msgstr "APRAŠYMAS"
+
+msgid "and later versions"
+msgstr "ir vėlesnės versijos"
+
+msgid "The theme version is too old and the theme may not work properly."
+msgstr "Temos versija per sena, ir tema gali veikti netinkamai."
+
+msgid "REGIONS"
+msgstr "REGIONAI"
+
+msgid "SET THIS GAME FOR THE CURRENT CARD"
+msgstr "NUSTATYTI ŠĮ ŽAIDIMĄ DABARTINEI KORTELEI"
+
+msgid "This option allows you to select the current game for the current card."
+msgstr "Ši parinktis leidžia pasirinkti dabartinį žaidimą dabartinei kortelei."
+
+msgid ""
+"A gamelist file has been altered manually or by an application external to "
+"Recalbox.\n"
+"\n"
+"In order not to lose any data, this file will be reloaded as soon as you "
+"click on the 'update' button.\n"
+"If several files have been modified when you click on 'update', all the "
+"systems concerned will be updated. No reboot is required."
+msgstr ""
+"Žaidimų sąrašo failas buvo pakeistas rankiniu būdu arba Recalbox "
+"nepriklausančios programos.\n"
+"\n"
+"Kad neprarastumėte jokių duomenų, šis failas bus perkrautas, kai tik "
+"spustelėsite mygtuką 'atnaujinti'.\n"
+"Jei keli failai buvo pakeisti, kai spustelėsite 'atnaujinti', visos "
+"susijusios sistemos bus atnaujintos. Perkrovimas nereikalingas."
+
+msgid ""
+"Changes have been detected in a roms directory on system {0}.\n"
+"\n"
+"Wait for your file operations to finish, then click on the 'update' button "
+"to update your roms in Recalbox.\n"
+"No restart is required, and if you've added roms, you'll be able to scrape "
+"them at the end of the update.\n"
+"\n"
+"If you add roms to several systems, they will all be updated when you click "
+"on the 'update' button."
+msgstr ""
+"Sistemos {0} rom kataloge aptikti pakeitimai.\n"
+"\n"
+"Palaukite, kol baigsis jūsų failų operacijos, tada spustelėkite mygtuką "
+"'atnaujinti', kad atnaujintumėte savo rom Recalbox.\n"
+"Perkrovimas nereikalingas, ir jei pridėjote rom, galėsite surinkti apie juos "
+"duomenis atnaujinimo pabaigoje.\n"
+"\n"
+"Jei pridedate rom į kelias sistemas, visos jos bus atnaujintos, kai "
+"spustelėsite mygtuką 'atnaujinti'."
+
+msgid "Powering off."
+msgstr "Išjungiama."
+
+msgid "{0} game has been removed from your gamelists"
+msgid_plural "{0} games have been removed from your gamelists"
+msgstr[0] "{0} žaidimas buvo pašalintas iš jūsų žaidimų sąrašų"
+msgstr[1] "{0} žaidimai buvo pašalinti iš jūsų žaidimų sąrašų"
+msgstr[2] "{0} žaidimų buvo pašalinta iš jūsų žaidimų sąrašų"
+
+msgid "{0} game has been added to your gamelists"
+msgid_plural "{0} games have been added to your gamelists"
+msgstr[0] "{0} žaidimas buvo pridėtas į jūsų žaidimų sąrašus"
+msgstr[1] "{0} žaidimai buvo pridėti į jūsų žaidimų sąrašus"
+msgstr[2] "{0} žaidimų buvo pridėta į jūsų žaidimų sąrašus"
+
+msgid "FULLSCREEN"
+msgstr "VISAS EKRANAS"
+
+msgid "ORIGINAL"
+msgstr "ORIGINALUS"
+
+msgid ""
+"The card could not be read.\n"
+"This problem can probably be fixed by blowing on the card's contacts!"
+msgstr ""
+"Kortelė negalėjo būti perskaityta.\n"
+"Ši problema tikriausiai gali būti išspręsta papučiant į kortelės kontaktus!"
+
+msgid ""
+"A card has been detected but is not yet associated with a game. Use START "
+"menu on a game to associate."
+msgstr ""
+"Kortelė aptikta, bet dar nesusieta su žaidimu. Naudokite START meniu "
+"žaidime, kad susietumėte."
+
+msgid "Arcade"
+msgstr "Arcade"
+
+msgid ""
+"The Recalbox team thanks you for your trust!\n"
+"\n"
+"Let's take advantage of this first launch to discover together how to use:\n"
+"- your Recalbox"
+msgstr ""
+"Recalbox komanda dėkoja jums už pasitikėjimą!\n"
+"\n"
+"Pasinaudokime šiuo pirmuoju paleidimu, kad kartu atrastume, kaip naudoti:\n"
+"- jūsų Recalbox"
+
+msgid "and its Recaltower"
+msgstr "ir jo Recaltower"
+
+msgid "- your controller"
+msgstr "- jūsų valdiklį"
+
+msgid "- your Recalbox RGB DUAL 2"
+msgstr "- jūsų Recalbox RGB DUAL 2"
+
+msgid "- your Recalbox RGB JAMMA 2"
+msgstr "- jūsų Recalbox RGB JAMMA 2"
+
+msgid "- your Recalbox Card Reader"
+msgstr "- jūsų Recalbox Card Reader"
+
+msgid "Please connect your controller via USB and press X to continue."
+msgstr "Prijunkite savo valdiklį per USB ir paspauskite X, kad tęstumėte."
+
+msgid "Controller"
+msgstr "Valdiklis"
+
+msgid ""
+"You can navigate through the menus using the directional pad, **select a "
+"system**, or start a game with the **B button**. The **A button** allows you "
+"to exit a menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To exit a game, press the SELECT and START buttons simultaneously."
+msgstr ""
+"Galite naršyti meniu naudodami kryptinį pad, **pasirinkti sistemą**, arba "
+"pradėti žaidimą **B mygtuku**. **A mygtukas** leidžia išeiti iš meniu ar "
+"žaidimų sąrašo.\n"
+"\n"
+"Pasiekite **pagrindinį meniu** naudodami **START mygtuką**.\n"
+"Norėdami išeiti iš žaidimo, paspauskite SELECT ir START mygtukus vienu metu."
+
+msgid "RGB JAMMA 2"
+msgstr "RGB JAMMA 2"
+
+msgid ""
+"You can navigate through the menus using the joystick, **select a system**, "
+"or start a game with the **button 1**. The **button 2** allows you to exit a "
+"menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To **exit a game**, **press and hold START** for 4 seconds and release."
+msgstr ""
+"Galite naršyti meniu naudodami vairalazdę, **pasirinkti sistemą**, arba "
+"pradėti žaidimą **1 mygtuku**. **2 mygtukas** leidžia išeiti iš meniu ar "
+"žaidimų sąrašo.\n"
+"\n"
+"Pasiekite **pagrindinį meniu** naudodami **START mygtuką**.\n"
+"Norėdami **išeiti iš žaidimo**, **paspauskite ir laikykite START** 4 "
+"sekundes ir atleiskite."
+
+msgid "RGB DUAL 2"
+msgstr "RGB DUAL 2"
+
+msgid ""
+"Your Recalbox RGB DUAL 2 has been detected and installed automatically! You "
+"can now enjoy **all your games** on Recalbox with **perfect pixels and "
+"frequency**!"
+msgstr ""
+"Jūsų Recalbox RGB DUAL 2 buvo aptiktas ir automatiškai įdiegtas! Dabar "
+"galite mėgautis **visais savo žaidimais** Recalbox su **tobulais pikseliais "
+"ir dažniu**!"
+
+msgid ""
+"\n"
+"\n"
+"Consider this: you can automatically switch back to **HDMI mode** by "
+"connecting an HDMI cable and restarting Recalbox!"
+msgstr ""
+"\n"
+"\n"
+"Atkreipkite dėmesį: galite automatiškai grįžti į **HDMI režimą**, "
+"prijungdami HDMI kabelį ir perkraudami Recalbox!"
+
+msgid ""
+"\n"
+"\n"
+"An HDMI cable has been detected and the “HDMI priority” mode is enabled in "
+"the options. To switch back to CRT mode, disconnect the HDMI cable and "
+"restart, or disable the HDMI priority option in the Recalbox RGB DUAL 2 "
+"(START) menu options."
+msgstr ""
+"\n"
+"\n"
+"Buvo aptiktas HDMI kabelis, ir parinktyse įjungtas „HDMI prioriteto“ "
+"režimas. Norėdami grįžti į CRT režimą, atjunkite HDMI kabelį ir "
+"persikraukite, arba išjunkite HDMI prioriteto parinktį Recalbox RGB DUAL 2 "
+"(START) meniu parinktyse."
+
+msgid "Recalbox Card Reader"
+msgstr "Recalbox Card Reader"
+
+msgid ""
+"Your Recalbox Card Reader has been detected and **installed automatically!"
+"**\n"
+"\n"
+"You can start using it right away by **inserting a card** into the reader "
+"and going to the game of your choice to **associate the game and card** "
+"using the **menu** available with the **START** button."
+msgstr ""
+"Jūsų Recalbox Card Reader buvo aptiktas ir **automatiškai įdiegtas!**\n"
+"\n"
+"Galite pradėti jį naudoti iš karto, **įdėdami kortelę** į skaitytuvą ir "
+"eidami į pasirinktą žaidimą, kad **susietumėte žaidimą su kortele**, "
+"naudodami **meniu**, prieinamą su **START** mygtuku."
+
+msgid "Add games"
+msgstr "Pridėti žaidimų"
+
+msgid ""
+"Recalbox shares its ROM, BIOS, and save files folders on the local network. "
+"Adding your ROMs couldn't be easier: on your computer, search for your "
+"“recalbox” in the network shares.\n"
+"Go to the ROMs folder, then copy your game to the folder corresponding to "
+"its system. For example, to add a “NES” game, copy it to the ‘roms/nes’ "
+"folder."
+msgstr ""
+"Recalbox bendrai naudoja ROM, BIOS ir išsaugojimo failų aplankus vietiniame "
+"tinkle. Pridėti savo ROM negali būti lengviau: savo kompiuteryje ieškokite "
+"savo „recalbox“ tinklo bendruose ištekliuose.\n"
+"Eikite į ROM aplanką, tada nukopijuokite savo žaidimą į atitinkamos sistemos "
+"aplanką. Pavyzdžiui, norėdami pridėti „NES“ žaidimą, nukopijuokite jį į "
+"‘roms/nes’ aplanką."
+
+msgid ""
+"Remember to connect your Recalbox to the internet to enjoy all its "
+"features!\n"
+msgstr ""
+"Nepamirškite prijungti savo Recalbox prie interneto, kad galėtumėte mėgautis "
+"visomis jo funkcijomis!\n"
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Atnaujinimai bus pasiūlyti jums automatiškai.\n"
+"\n"
+"Raskite naudingos informacijos ir vadovų recalbox.com, arba recalbox wiki "
+"nuskaitydami QR kodą."
+
+msgid "Update"
+msgstr "Atnaujinti"
+
+msgid "Are you sure to activate this theme?"
+msgstr "Ar tikrai norite aktyvuoti šią temą?"
+
+msgid "Can't write game to share!"
+msgid_plural "Can't write games to share!"
+msgstr[0] "Nepavyko įrašyti žaidimo į bendrą naudojimą!"
+msgstr[1] "Nepavyko įrašyti žaidimų į bendrą naudojimą!"
+msgstr[2] "Nepavyko įrašyti žaidimų į bendrą naudojimą!"
+
+msgid "Error downloading game! Retry later."
+msgid_plural "Error downloading games! Retry later."
+msgstr[0] "Klaida atsisiunčiant žaidimą! Bandykite dar kartą vėliau."
+msgstr[1] "Klaida atsisiunčiant žaidimus! Bandykite dar kartą vėliau."
+msgstr[2] "Klaida atsisiunčiant žaidimus! Bandykite dar kartą vėliau."
+
+msgid "Button "
+msgstr "Mygtukas "
+
+msgid "Axis "
+msgstr "Ašis "
+
+msgid "pressed"
+msgstr "paspausta"
+
+msgid "released"
+msgstr "atleista"
+
+msgid " {0} Fps ({1}%) "
+msgstr " {0} Fps ({1}%) "
+
+msgid ""
+"Scraping game %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Renkami duomenys apie žaidimą %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Scraper starting..."
+msgstr "Paleidžiamas scraper..."
+
+msgid "Scraping completed!"
+msgstr "Scraping baigtas!"
+
+msgid "All games scraped successfully."
+msgstr "Visi žaidimai sėkmingai surinkti."
+
+msgid "You reached your daily quota. Retry tomorrow."
+msgstr "Pasiekėte savo dienos limitą. Bandykite dar kartą rytoj."
+
+msgid "Your disk is full Pleas make room before trying again."
+msgstr "Jūsų diskas pilnas. Padarykite vietos prieš bandydami dar kartą."
+
+msgid ""
+"Errors occurred and prevented some games to get their metadata. Retry later."
+msgstr ""
+"Įvyko klaidos, kurios sutrukdė kai kuriems žaidimams gauti savo "
+"metaduomenis. Bandykite dar kartą vėliau."
+
+msgid ""
+"Scraping game... %COUNT% yet to go.\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Renkami duomenys apie žaidimą... liko %COUNT%.\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Starting background scraper..."
+msgstr "Paleidžiamas fono scraper..."
+
+msgid " by "
+msgstr " pagal "
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"The filters will be reset and recalbox will be reloaded."
+msgstr ""
+"Jūsų filtrų nuostatos slepia visus jūsų žaidimus!\n"
+"Filtrai bus atkurti, ir recalbox bus perkrautas."
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"All filters have been reset."
+msgstr ""
+"Jūsų filtrų nuostatos slepia visus jūsų žaidimus!\n"
+"Visi filtrai buvo atkurti."
+
+msgid ""
+"Free space on device %NAME% has gone under %LIMIT%!\n"
+"You should try to free some space quickly!"
+msgstr ""
+"Laisva vieta įrenginyje %NAME% nukrito žemiau %LIMIT%!\n"
+"Turėtumėte pabandyti greitai atlaisvinti vietos!"
+
+msgid "Running script..."
+msgstr "Vykdomas scenarijus..."
+
+msgid "Passwords cannot be empty ! Replaced with default value."
+msgstr "Slaptažodžiai negali būti tušti! Pakeista numatytąja reikšme."
+
+msgid "%i SECOND"
+msgid_plural "%i SECONDS"
+msgstr[0] "%i SEKUNDĖ"
+msgstr[1] "%i SEKUNDĖS"
+msgstr[2] "%i SEKUNDŽIŲ"
+
+msgid "%i HOUR"
+msgid_plural "%i HOURS"
+msgstr[0] "%i VALANDA"
+msgstr[1] "%i VALANDOS"
+msgstr[2] "%i VALANDŲ"
+
+msgid ""
+"\n"
+"WARNING: You device may not have been properly unplugged and has consistency "
+"errors. As a result, it's been mounted as read-only. You should plug your "
+"device in a Window PC and use the repair tool."
+msgstr ""
+"\n"
+"DĖMESIO: Jūsų įrenginys galėjo būti netinkamai atjungtas ir turi vientisumo "
+"klaidų. Dėl to jis buvo prijungtas tik skaitymo režimu. Turėtumėte prijungti "
+"savo įrenginį prie Windows kompiuterio ir naudoti taisymo įrankį."
+
+msgid "{THEME.NAME} CONFIGURATION"
+msgstr "{THEME.NAME} KONFIGŪRACIJA"
+
+msgid "ENABLE SIDE NAVIGATION IN GAME LISTS"
+msgstr "ĮJUNGTI ŠONINĘ NAVIGACIJĄ ŽAIDIMŲ SĄRAŠUOSE"
+
+msgid "JOIN AS VIEWER"
+msgstr "PRISIJUNGTI KAIP ŽIŪROVAS"
+
+msgid "RECALCARDS SETTINGS"
+msgstr "RECALCARDS NUSTATYMAI"
+
+msgid "Recalbox Card Reader options and configuration."
+msgstr "Recalbox Card Reader parinktys ir konfigūracija."
+
+msgid "CARD READER"
+msgstr "KORTELIŲ SKAITYTUVAS"
+
+msgid "Card Reader Version and status."
+msgstr "Kortelių skaitytuvo versija ir būsena."
+
+msgid "BOOT ON CARD"
+msgstr "PALEISTI KORTELĖJE"
+
+msgid "Boot on the card when inserted at Recalbox boot."
+msgstr "Paleisti kortelėje, kai ji įdėta Recalbox paleidimo metu."
+
+msgid "RECALBOX BOOT VIDEOS"
+msgstr "RECALBOX PALEIDIMO VAIZDO ĮRAŠAI"
+
+msgid "Enable or disable recalbox videos on boot."
+msgstr "Įjunkite arba išjunkite recalbox vaizdo įrašus paleidimo metu."
+
+msgid "Console Mode (cards only)"
+msgstr "Konsolės režimas (tik kortelės)"
+
+msgid "Start Recalbox in console mode, where only cards can be played."
+msgstr ""
+"Paleiskite Recalbox konsolės režimu, kuriame galima žaisti tik korteles."
+
+msgid "Console Mode exit buttons"
+msgstr "Konsolės režimo išėjimo mygtukai"
+
+msgid "Select how to exit console mode."
+msgstr "Pasirinkite, kaip išeiti iš konsolės režimo."
+
+msgid "Console Mode video"
+msgstr "Konsolės režimo vaizdo įrašas"
+
+msgid "Select the video to run in console mode."
+msgstr "Pasirinkite vaizdo įrašą, kurį paleisti konsolės režimu."
+
+msgid "Console Mode sound"
+msgstr "Konsolės režimo garsas"
+
+msgid "Switch between recalbox music and bios sound."
+msgstr "Perjungti tarp recalbox muzikos ir bios garso."
+
+msgid "({0} AVAILABLE)"
+msgstr "({0} PRIEINAMA)"
+
+msgid "UP TO DATE"
+msgstr "ATNAUJINTA"
+
+msgid ""
+"The game associated with the card was not found on your Recalbox, the card "
+"association has been cleared."
+msgstr ""
+"Su kortele susietas žaidimas nerastas jūsų Recalbox, kortelės susiejimas "
+"buvo pašalintas."
+
+msgid "Unable to start on the game, could not find the game."
+msgstr "Nepavyko pradėti žaidimo, žaidimas nerastas."
+
+msgid "Unable to start on the game, no controllers found."
+msgstr "Nepavyko pradėti žaidimo, nerasta jokių valdiklių."
+
+msgid "GLOBAL CONFIGURATION"
+msgstr "BENDRA KONFIGŪRACIJA"
+
+msgid "Board"
+msgstr "Plokštė"
+
+msgid "Shows your current board."
+msgstr "Rodo jūsų dabartinę plokštę."
+
+msgid "Show release notes"
+msgstr "Rodyti leidimo pastabas"
+
+msgid "Shows current version's release notes."
+msgstr "Rodo dabartinės versijos leidimo pastabas."
+
+msgid "RELEASE NOTES"
+msgstr "LEIDIMO PASTABOS"
+
+msgid "Scroll manually"
+msgstr "Slinkti rankiniu būdu"
+
+msgid "AVAILABLE UPDATE"
+msgstr "PRIEINAMAS ATNAUJINIMAS"
+
+msgid "DOWNLOAD"
+msgstr "ATSISIŲSTI"
+
+msgid "Libretro Geolith Settings"
+msgstr "Libretro Geolith nustatymai"
+
+msgid "System Type"
+msgstr "Sistemos tipas"
+
+msgid "Specify the System Type: AES, MVS or Universe BIOS System."
+msgstr "Nurodykite sistemos tipą: AES, MVS arba Universe BIOS System."
+
+msgid "480p"
+msgstr "480p"
+
+msgid "Select the resolution for Kodi interface and videos"
+msgstr "Pasirinkite skiriamąją gebą Kodi sąsajai ir vaizdo įrašams"
+
+msgid ""
+"You are currently running a preview version of **Recalbox 10**. An update to "
+"the public version will be offered automatically when it becomes available "
+"for download."
+msgstr ""
+"Šiuo metu naudojate **Recalbox 10** peržiūros versiją. Atnaujinimas iki "
+"viešosios versijos bus pasiūlytas automatiškai, kai jis taps prieinamas "
+"atsisiuntimui."
+
+msgid ""
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Raskite naudingos informacijos ir vadovų recalbox.com, arba recalbox wiki "
+"nuskaitydami QR kodą."
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+msgstr ""
+"Atnaujinimai bus pasiūlyti jums automatiškai.\n"
+"\n"
+
+msgid ""
+"Cannot check update ! Ensure your Recalbox is connected to the Internet, and "
+"try later."
+msgstr ""
+"Nepavyko patikrinti atnaujinimo! Įsitikinkite, kad jūsų Recalbox prijungtas "
+"prie interneto, ir bandykite vėliau."
+
+msgid "Libretro MelonDS Settings"
+msgstr "Libretro MelonDS nustatymai"
+
+msgid "Touch Mode"
+msgstr "Prisilietimo režimas"
+
+msgid "Choose mode for interactions with the touch screen."
+msgstr "Pasirinkite sąveikos su jutikliniu ekranu režimą."
+
+msgid "Swap Screen Mode"
+msgstr "Ekranų sukeitimo režimas"
+
+msgid "Choose if the 'Swap screens' button should work on press or on hold."
+msgstr ""
+"Pasirinkite, ar 'Sukeisti ekranus' mygtukas turėtų veikti paspaudus ar "
+"laikant."
+
+msgid "Screen Layout"
+msgstr "Ekrano išdėstymas"
+
+msgid ""
+"Choose how many screens should be displayed, and how they should be arranged."
+msgstr ""
+"Pasirinkite, kiek ekranų turėtų būti rodoma ir kaip jie turėtų būti rodomi."
+
+msgid "Enabled (GPU)"
+msgstr "Įjungta (GPU)"
+
+msgid "Run in main thread (CPU)"
+msgstr "Vykdyti pagrindinėje gijoje (CPU)"
+
+msgid "Disabled"
+msgstr "Išjungta"
+
+msgid "Center"
+msgstr "Centras"
+
+msgid "Stretch"
+msgstr "Ištempti"
+
+msgid "Scale"
+msgstr "Mastelis"
+
+msgid "North America"
+msgstr "Šiaurės Amerika"
+
+msgid "Europe and Australia"
+msgstr "Europa ir Australija"
+
+msgid "Manufacturing plant"
+msgstr "Gamybos gamykla"
+
+msgid "NTSC-M (North America)"
+msgstr "NTSC-M (Šiaurės Amerika)"
+
+msgid "NTSC-J (Japan)"
+msgstr "NTSC-J (Japonija)"
+
+msgid "PAL-I (Europe and Australia)"
+msgstr "PAL-I (Europa ir Australija)"
+
+msgid "PAL-M (Brazil)"
+msgstr "PAL-M (Brazilija)"
+
+msgid "Stereo"
+msgstr "Stereo"
+
+msgid "Legacy sound engine"
+msgstr "Senas garso variklis"
+
+msgid "New sound engine based on MAME"
+msgstr "Naujas garso variklis, pagrįstas MAME"
+
+msgid "Enable for 1 player"
+msgstr "Įjungti 1 žaidėjui"
+
+msgid "Enable for 2 players"
+msgstr "Įjungti 2 žaidėjams"
+
+msgid "MOUSE"
+msgstr "PELĖ"
+
+msgid "TOUCH"
+msgstr "PRISILIETIMAS"
+
+msgid "HOLD"
+msgstr "LAIKYTI"
+
+msgid "Top/Bottom"
+msgstr "Viršus/Apačia"
+
+msgid "Bottom/Top"
+msgstr "Apačia/Viršus"
+
+msgid "Left/Right"
+msgstr "Kairė/Dešinė"
+
+msgid "Right/Left"
+msgstr "Dešinė/Kairė"
+
+msgid "Top Only"
+msgstr "Tik viršus"
+
+msgid "Bottom Only"
+msgstr "Tik apačia"
+
+msgid "Hybrid Top"
+msgstr "Hibridinis viršus"
+
+msgid "Hybrid Bottom"
+msgstr "Hibridinė apačia"
+
+msgid "Downloading Quake 3 demo game from the official site. Please wait..."
+msgstr ""
+"Atsisiunčiamas Quake 3 demonstracinis žaidimas iš oficialios svetainės. "
+"Palaukite..."
+
+msgid ""
+"Downloading Tomb Raider demo game from the official site. Please wait..."
+msgstr ""
+"Atsisiunčiamas Tomb Raider demonstracinis žaidimas iš oficialios svetainės. "
+"Palaukite..."
+
+msgid "AVOID LOW FREQUENCY MODES"
+msgstr "VENGTI ŽEMO DAŽNIO REŽIMŲ"
+
+msgid "Avoid modes under 57Hz for non-compatible TVs."
+msgstr "Venkite režimų žemiau 57Hz nesuderinamai TV."
+
+msgid "HANDHELDS RATIO"
+msgstr "NEŠIOJAMŲ ĮRENGINIŲ SANTYKIS"
+
+msgid ""
+"Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full "
+"image, or ORIGINAL to get original and pixel perfect resolution."
+msgstr ""
+"Vaizdo santykis CRT nešiojamosioms konsolėms. Pasirinkite FULLSCREEN, kad "
+"gautumėte pilną vaizdą, arba ORIGINAL, kad gautumėte originalią ir pixel "
+"perfect skiriamąją gebą."
+
+#: GuiInputConfig — phase messages
+msgid "Press %LABEL%"
+msgstr "Paspauskite %LABEL%"
+
+msgid "Release to confirm"
+msgstr "Atleiskite, kad patvirtintumėte"
+
+msgid "Press **HOTKEY + START** to validate"
+msgstr "Paspauskite **HOTKEY + START**, kad patvirtintumėte"
+
+msgid "ALREADY USED"
+msgstr "JAU NAUDOJAMA"
+
+msgid "ALREADY USED BY {0}"
+msgstr "JAU NAUDOJA {0}"
+
+msgid "Button combination"
+msgstr "Mygtukų derinys"
+
+msgid ""
+"Your controller has __no SELECT or HOTKEY button__. The START button will be "
+"used for special actions:\n"
+"- **Long press on START** = quit the game (START + HOTKEY)\n"
+"- **START + Validate** = SELECT (insert credit in arcade games)\n"
+"- **START + any other button** = HOTKEY + that button"
+msgstr ""
+"Jūsų valdiklis __neturi SELECT arba HOTKEY mygtuko__. START mygtukas bus "
+"naudojamas specialiems veiksmams:\n"
+"- **Ilgai paspaudus START** = išeiti iš žaidimo (START + HOTKEY)\n"
+"- **START + Patvirtinti** = SELECT (įdėti kreditą arcade žaidimuose)\n"
+"- **START + bet koks kitas mygtukas** = HOTKEY + tas mygtukas"
+
+msgid "**Long-press START** to validate"
+msgstr "**Ilgai paspauskite START**, kad patvirtintumėte"
+
+msgid "SAME AS SELECT"
+msgstr "TAS PATS KAIP SELECT"
+
+msgid "DPAD RIGHT to skip"
+msgstr "DPAD RIGHT praleisti"
+
+msgid "DPAD LEFT to go back"
+msgstr "DPAD LEFT grįžti"
+
+#: GuiInputConfig — DPAD / hat
+msgid "DPAD UP"
+msgstr "DPAD UP"
+
+msgid "DPAD RIGHT"
+msgstr "DPAD RIGHT"
+
+msgid "DPAD DOWN"
+msgstr "DPAD DOWN"
+
+msgid "DPAD LEFT"
+msgstr "DPAD LEFT"
+
+#: GuiInputConfig — left stick
+msgid "LEFT STICK UP"
+msgstr "LEFT STICK UP"
+
+msgid "LEFT STICK RIGHT"
+msgstr "LEFT STICK RIGHT"
+
+msgid "LEFT STICK DOWN"
+msgstr "LEFT STICK DOWN"
+
+msgid "LEFT STICK LEFT"
+msgstr "LEFT STICK LEFT"
+
+#: GuiInputConfig — right stick
+msgid "RIGHT STICK UP"
+msgstr "RIGHT STICK UP"
+
+msgid "RIGHT STICK RIGHT"
+msgstr "RIGHT STICK RIGHT"
+
+msgid "RIGHT STICK DOWN"
+msgstr "RIGHT STICK DOWN"
+
+msgid "RIGHT STICK LEFT"
+msgstr "RIGHT STICK LEFT"
+
+#: GuiInputConfig — Gamecube main stick
+msgid "MAIN STICK UP"
+msgstr "MAIN STICK UP"
+
+msgid "MAIN STICK RIGHT"
+msgstr "MAIN STICK RIGHT"
+
+msgid "MAIN STICK DOWN"
+msgstr "MAIN STICK DOWN"
+
+msgid "MAIN STICK LEFT"
+msgstr "MAIN STICK LEFT"
+
+#: GuiInputConfig — Gamecube C-stick
+msgid "C-STICK UP"
+msgstr "C-STICK UP"
+
+msgid "C-STICK RIGHT"
+msgstr "C-STICK RIGHT"
+
+msgid "C-STICK DOWN"
+msgstr "C-STICK DOWN"
+
+msgid "C-STICK LEFT"
+msgstr "C-STICK LEFT"
+
+#: GuiInputConfig — N64 C buttons
+msgid "C UP"
+msgstr "C UP"
+
+msgid "C RIGHT"
+msgstr "C RIGHT"
+
+msgid "C DOWN"
+msgstr "C DOWN"
+
+msgid "C LEFT"
+msgstr "C LEFT"
+
+#: GuiInputConfig — arcade single stick
+msgid "STICK UP"
+msgstr "STICK UP"
+
+msgid "STICK RIGHT"
+msgstr "STICK RIGHT"
+
+msgid "STICK DOWN"
+msgstr "STICK DOWN"
+
+msgid "STICK LEFT"
+msgstr "STICK LEFT"
+
+#: GuiInputConfig — Sony face buttons
+msgid "CIRCLE"
+msgstr "CIRCLE"
+
+msgid "CROSS"
+msgstr "CROSS"
+
+msgid "TRIANGLE"
+msgstr "TRIANGLE"
+
+msgid "SQUARE"
+msgstr "SQUARE"
+
+#: GuiInputConfig — arcade 4 button labels
+msgid "BUTTON 1"
+msgstr "MYGTUKAS 1"
+
+msgid "BUTTON 2"
+msgstr "MYGTUKAS 2"
+
+msgid "BUTTON 3"
+msgstr "MYGTUKAS 3"
+
+msgid "BUTTON 4"
+msgstr "MYGTUKAS 4"
+
+#: GuiInputConfig — arcade row labels
+msgid "TOP ROW 1"
+msgstr "VIRŠUTINĖ EILUTĖ 1"
+
+msgid "TOP ROW 2"
+msgstr "VIRŠUTINĖ EILUTĖ 2"
+
+msgid "TOP ROW 3"
+msgstr "VIRŠUTINĖ EILUTĖ 3"
+
+msgid "TOP ROW 4"
+msgstr "VIRŠUTINĖ EILUTĖ 4"
+
+msgid "BOTTOM ROW 1"
+msgstr "APATINĖ EILUTĖ 1"
+
+msgid "BOTTOM ROW 2"
+msgstr "APATINĖ EILUTĖ 2"
+
+msgid "BOTTOM ROW 3"
+msgstr "APATINĖ EILUTĖ 3"
+
+msgid "BOTTOM ROW 4"
+msgstr "APATINĖ EILUTĖ 4"
+
+#: GuiInputConfig — shoulders / triggers stick clicks
+msgid "L1 (Left Shoulder)"
+msgstr "L1 (Kairysis peties mygtukas)"
+
+msgid "R1 (Right Shoulder)"
+msgstr "R1 (Dešinysis peties mygtukas)"
+
+msgid "L2 (Left Trigger)"
+msgstr "L2 (Kairysis trigeris)"
+
+msgid "R2 (Right Trigger)"
+msgstr "R2 (Dešinysis trigeris)"
+
+msgid "L3 (Left Joystick Click)"
+msgstr "L3 (Kairiosios vairalazdės paspaudimas)"
+
+msgid "R3 (Right Joystick Click)"
+msgstr "R3 (Dešiniosios vairalazdės paspaudimas)"
+
+#: GuiInputConfig — XBox shoulders / triggers
+msgid "LB (Left Shoulder)"
+msgstr "LB (Kairysis peties mygtukas)"
+
+msgid "RB (Right Shoulder)"
+msgstr "RB (Dešinysis peties mygtukas)"
+
+msgid "LT (Left Trigger)"
+msgstr "LT (Kairysis trigeris)"
+
+msgid "RT (Right Trigger)"
+msgstr "RT (Dešinysis trigeris)"
+
+#: GuiInputConfig — Gamecube / Megadrive N64 shoulders
+msgid "L (Left Shoulder)"
+msgstr "L (Kairysis peties mygtukas)"
+
+msgid "R (Right Shoulder)"
+msgstr "R (Dešinysis peties mygtukas)"
+
+msgid "Z (Trigger)"
+msgstr "Z (Trigeris)"
+
+#: GuiInputConfig — Sony Start/Select/Hotkey
+msgid "OPTIONS (Start)"
+msgstr "OPTIONS (Start)"
+
+msgid "SHARE"
+msgstr "SHARE"
+
+msgid "SHARE (Select)"
+msgstr "SHARE (Select)"
+
+msgid "PS BUTTON (Hotkey)"
+msgstr "PS MYGTUKAS (Hotkey)"
+
+#: GuiInputConfig — XBox Start/Select/Hotkey
+msgid "MENU (Start)"
+msgstr "MENU (Start)"
+
+msgid "VIEW"
+msgstr "VIEW"
+
+msgid "VIEW (Select)"
+msgstr "VIEW (Select)"
+
+msgid "GUIDE (Hotkey)"
+msgstr "GUIDE (Hotkey)"
+
+msgid "HEART (Hotkey)"
+msgstr "ŠIRDIS (Hotkey)"
+
+#: GuiInputConfig — skippable Select/Hotkey 2-line hints
+msgid "Skip if absent"
+msgstr "Praleisti, jei nėra"
+
+msgid "Skip if physically absent"
+msgstr "Praleisti, jei fiziškai nėra"
+
+msgid "Unable to update"
+msgstr "Nepavyko atnaujinti"
+
+msgid ""
+"Recalbox adds many new features with each new version, which gradually "
+"increases the size of the system.\n"
+"The system partition on your installation is too small to accommodate "
+"version {0}.\n"
+"\n"
+"To continue receiving updates, you must reinstall Recalbox by downloading "
+"the latest image from www.recalbox.com."
+msgstr ""
+"Recalbox prideda daug naujų funkcijų su kiekviena nauja versija, o tai "
+"palaipsniui padidina sistemos dydį.\n"
+"Jūsų diegimo sistemos skirsnys yra per mažas, kad tilptų versija {0}.\n"
+"\n"
+"Norėdami toliau gauti atnaujinimus, turite iš naujo įdiegti Recalbox "
+"atsisiųsdami naujausią vaizdą iš www.recalbox.com."
+
+msgid ""
+"Unable to verify that there is enough space left on the boot partition. The "
+"update may not complete successfully."
+msgstr ""
+"Nepavyko patikrinti, ar paleidimo skirsnyje yra pakankamai laisvos vietos. "
+"Atnaujinimas gali nebaigti sėkmingai."
+
+msgid "PLAY"
+msgstr "GROTI"
+
+msgid "ENABLE/DISABLE"
+msgstr "ĮJUNGTI/IŠJUNGTI"
+
+msgid "Downloading"
+msgstr "Atsisiunčiama"
+
+msgid "SEEK"
+msgstr "IEŠKOTI"
+
+msgid "FOLLOW"
+msgstr "SEKTI"
+
+msgid "SWITCH TO LINEAR PLAY"
+msgstr "PERJUNGTI Į TIESINĮ GROJIMĄ"
+
+msgid "SWITCH TO RANDOM PLAY"
+msgstr "PERJUNGTI Į ATSITIKTINĮ GROJIMĄ"
+
+msgid "JUKEBOX"
+msgstr "JUKEBOX"
+
+#: MenuProvider.cpp InstallDevice — first warning title (destructive)
+msgid "WARNING ! DESTRUCTIVE OPERATION !"
+msgstr "DĖMESIO! DESTRUKTYVI OPERACIJA!"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: AND data
+msgid ""
+"**{DEVICE}** contains **partitions with existing data**.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly**:\n"
+"\n"
+"- Erase **all partitions** on this disk\n"
+"- **Destroy all data** present on those partitions\n"
+"\n"
+"**There is no going back.** Once confirmed, there is absolutely no way to "
+"recover your files or partitions.\n"
+"\n"
+"Are you **absolutely sure** you want to continue?"
+msgstr ""
+"**{DEVICE}** turi **skaidinių su esamais duomenimis**.\n"
+"\n"
+"Jei patvirtinsite, Recalbox **negrįžtamai ir visam laikui**:\n"
+"\n"
+"- Ištrins **visus skaidinius** šiame diske\n"
+"- **Sunaikins visus duomenis**, esančius tuose skaidiniuose\n"
+"\n"
+"**Atgal kelio nėra.** Patvirtinus, nebus absoliučiai jokio būdo atkurti jūsų "
+"failus ar skaidinius.\n"
+"\n"
+"Ar esate **visiškai tikri**, kad norite tęsti?"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: but no detected data
+msgid ""
+"**{DEVICE}** already has partitions.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly erase all "
+"existing partitions** on this disk.\n"
+"\n"
+"**There is no going back.**\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"**{DEVICE}** jau turi skaidinių.\n"
+"\n"
+"Jei patvirtinsite, Recalbox **negrįžtamai ir visam laikui ištrins visus "
+"esamus skaidinius** šiame diske.\n"
+"\n"
+"**Atgal kelio nėra.**\n"
+"\n"
+"Ar esate tikri, kad norite tęsti?"
+
+#: MenuProvider.cpp InstallDevice — second confirmation title
+msgid "LAST WARNING BEFORE INSTALLATION"
+msgstr "PASKUTINIS ĮSPĖJIMAS PRIEŠ DIEGIMĄ"
+
+#: MenuProvider.cpp InstallDevice — second confirmation body
+msgid ""
+"The installation of Recalbox on **{DEVICE}** may take **several minutes**.\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation.\n"
+"If the process is interrupted, the disk may be left in an unusable state.\n"
+"\n"
+"You can still change your mind and **cancel right now**."
+msgstr ""
+"Recalbox diegimas į **{DEVICE}** gali užtrukti **kelias minutes**.\n"
+"\n"
+"⚠ **NEIŠJUNKITE** ir neperkraukite Recalbox diegimo metu.\n"
+"Jei procesas bus pertrauktas, diskas gali likti nenaudojamos būsenos.\n"
+"\n"
+"Vis dar galite persigalvoti ir **atšaukti dabar pat**."
+
+#: GuiInstallRecalbox.cpp — window title
+msgid "INSTALLATION IN PROGRESS..."
+msgstr "VYKSTA DIEGIMAS..."
+
+#: GuiInstallRecalbox.cpp — body text shown during installation
+msgid ""
+"Installing Recalbox on **{DEVICE}**...\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation process.\n"
+"If the installation is interrupted, the disk may be left in an unusable "
+"state.\n"
+"\n"
+"Please wait — this may take **several minutes**."
+msgstr ""
+"Diegiama Recalbox į **{DEVICE}**...\n"
+"\n"
+"⚠ **NEIŠJUNKITE** ir neperkraukite Recalbox diegimo proceso metu.\n"
+"Jei diegimas bus pertrauktas, diskas gali likti nenaudojamos būsenos.\n"
+"\n"
+"Palaukite — tai gali užtrukti **kelias minutes**."
+
+#: GuiInstallRecalbox.cpp — initial status line
+msgid "Starting installation..."
+msgstr "Pradedamas diegimas..."
+
+#: GuiInstallRecalbox.cpp — status line on success
+msgid "Installation complete! Press any button to reboot."
+msgstr "Diegimas baigtas! Paspauskite bet kurį mygtuką, kad perkrautumėte."
+
+#: GuiInstallRecalbox.cpp — help bar label when installation is complete
+msgid "REBOOT"
+msgstr "PERKRAUTI"
+
+#: GuiInstallRecalbox.cpp — status line on failure
+msgid "Installation failed! Check the logs for details."
+msgstr "Diegimas nepavyko! Peržiūrėkite žurnalus, kad sužinotumėte daugiau."
+
+#: GuiInstallRecalbox.cpp — partition step status strings
+msgid "Unmounting existing partitions..."
+msgstr "Atjungiami esami skaidiniai..."
+
+msgid "Wiping existing partitions..."
+msgstr "Trinami esami skaidiniai..."
+
+msgid "Creating RECALBOX partition (FAT32, 6 GB)..."
+msgstr "Kuriamas RECALBOX skaidinys (FAT32, 6 GB)..."
+
+msgid "Creating SHARE partition (exFAT)..."
+msgstr "Kuriamas SHARE skaidinys (exFAT)..."
+
+msgid "Creating OVERLAY partition (ext4, 1 GB)..."
+msgstr "Kuriamas OVERLAY skaidinys (ext4, 1 GB)..."
+
+msgid "Reloading partition table..."
+msgstr "Iš naujo įkeliama skaidinių lentelė..."
+
+msgid "Formatting RECALBOX partition (FAT32)..."
+msgstr "Formatuojamas RECALBOX skaidinys (FAT32)..."
+
+msgid "Formatting SHARE partition (exFAT)..."
+msgstr "Formatuojamas SHARE skaidinys (exFAT)..."
+
+msgid "Formatting OVERLAY partition (ext4)..."
+msgstr "Formatuojamas OVERLAY skaidinys (ext4)..."
+
+#: GuiInstallRecalbox.cpp — pre-flight size check
+msgid "Checking available disk space..."
+msgstr "Tikrinama laisva vieta diske..."
+
+msgid ""
+"Not enough space on the target disk.\n"
+"\n"
+"The content of **/recalbox/share** ({SIZE_SHARE}) does not fit in the "
+"available SHARE partition ({SIZE_AVAIL}).\n"
+"\n"
+"Please use a larger disk or free up space on /recalbox/share first."
+msgstr ""
+"Nepakanka vietos paskirties diske.\n"
+"\n"
+"**/recalbox/share** turinys ({SIZE_SHARE}) netelpa į prieinamą SHARE "
+"skaidinį ({SIZE_AVAIL}).\n"
+"\n"
+"Naudokite didesnį diską arba pirmiausia atlaisvinkite vietą /recalbox/share."
+
+#: GuiInstallRecalbox.cpp — mount and measure steps
+msgid "Mounting partitions..."
+msgstr "Prijungiami skaidiniai..."
+
+msgid "Measuring data to copy..."
+msgstr "Matuojami kopijuotini duomenys..."
+
+msgid "{COUNT} files copied ({DONE}/{TOTAL})"
+msgstr "Nukopijuota failų: {COUNT} ({DONE}/{TOTAL})"
+
+#: GuiInstallRecalbox.cpp — final step
+msgid "Finalizing installation..."
+msgstr "Baigiamas diegimas..."
+
+msgid "GUIDE"
+msgstr "GUIDE"
+
+#: GuiInputConfig — 8bitdo Hotkey
+msgid "HEART"
+msgstr "ŠIRDIS"
+
+msgid "PS BUTTON"
+msgstr "PS MYGTUKAS"
+
+msgid "Text list"
+msgstr "Tekstinis sąrašas"
+
+msgid "Logo list"
+msgstr "Logotipų sąrašas"
+
+msgid "Carousel"
+msgstr "Karuselė"
+
+msgid "Grid"
+msgstr "Tinklelis"
+
+msgid "Gamelist layout"
+msgstr "Žaidimų sąrašo išdėstymas"
+
+msgid "Game list layout"
+msgstr "Žaidimų sąrašo išdėstymas"
+
+msgid ""
+"Select the way your games are shown. Text list, logo list, carousel, "
+"grid, ..."
+msgstr ""
+"Pasirinkite, kaip rodomi jūsų žaidimai. Tekstinis sąrašas, logotipų sąrašas, "
+"karuselė, tinklelis, ..."

@@ -1,0 +1,52 @@
+From 7756dbf4cebc5ba805bc667960fbe4fcb9b1bdd9 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Wed, 19 Mar 2025 10:34:46 +0100
+Subject: [PATCH] add fullscreen argument
+
+---
+ src/platform/sdl2/main.cpp | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/src/platform/sdl2/main.cpp b/src/platform/sdl2/main.cpp
+index f26f4fe..5e60c06 100644
+--- a/src/platform/sdl2/main.cpp
++++ b/src/platform/sdl2/main.cpp
+@@ -489,6 +489,7 @@ void print_help(int argc, char **argv) {
+            argc ? argv[0] : "OpenLara");
+     puts("-d [DIRECTORY]  directory where data files are");
+     puts("-l [FILE]       load a specific level file");
++    puts("-f              launch in fullscreen mode");
+     puts("-h              print this help");
+ }
+ 
+@@ -498,7 +499,7 @@ int main(int argc, char **argv) {
+     char *lvlName = nullptr;
+ 
+     int option;
+-    while ((option = getopt(argc, argv, "hl:d:")) != -1) {
++    while ((option = getopt(argc, argv, "hfl:d:")) != -1) {
+         switch(option) {
+             case 'h':
+                 print_help(argc, argv);
+@@ -509,6 +510,9 @@ int main(int argc, char **argv) {
+             case 'd':
+                strncpy(contentDir, optarg, 254);
+                break;
++            case 'f':
++                fullscreen = true;
++                break;
+             case ':':
+                 printf("option %c needs a value\n", optopt);
+                 print_help(argc, argv);
+@@ -551,7 +555,7 @@ int main(int argc, char **argv) {
+ #ifdef _GAPI_GLES
+         sdl_displaymode.w, sdl_displaymode.h, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_FULLSCREEN_DESKTOP
+ #else
+-        WIN_W, WIN_H, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN
++        WIN_W, WIN_H, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | (fullscreen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0)
+ #endif
+     ); 
+  
+-- 
+2.49.0
+

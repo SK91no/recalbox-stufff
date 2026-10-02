@@ -1,0 +1,12 @@
+--- a/backend/drm/drm.c	2023-12-21 19:42:26.000000000 +0100
++++ b/backend/drm/drm.c	2025-07-22 09:42:40.784967012 +0200
+@@ -1432,9 +1432,6 @@
+ 	wlr_log(WLR_INFO, "Detected modes:");
+ 
+ 	for (int i = 0; i < drm_conn->count_modes; ++i) {
+-		if (drm_conn->modes[i].flags & DRM_MODE_FLAG_INTERLACE) {
+-			continue;
+-		}
+ 
+ 		struct wlr_drm_mode *mode = drm_mode_create(&drm_conn->modes[i]);
+ 		if (!mode) {

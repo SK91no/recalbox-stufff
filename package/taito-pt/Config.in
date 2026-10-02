@@ -1,0 +1,5 @@
+config BR2_PACKAGE_TAITO_PT
+	bool "taito-pt"
+	help
+	  Linux driver for the TAITO USB Paddle & Trackball Controller
+	  https://github.com/rtomasa/taito-pt

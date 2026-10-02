@@ -1,0 +1,25 @@
+From 25216185bd07f3d66db016f3e9cab3dcc39cc000 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Wed, 11 Jun 2025 01:07:50 +0200
+Subject: [PATCH 3/5] bios path
+
+---
+ libretro/libretro.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libretro/libretro.c b/libretro/libretro.c
+index 16525703..43ab795f 100644
+--- a/libretro/libretro.c
++++ b/libretro/libretro.c
+@@ -573,7 +573,7 @@ static bool emu_step_load_data()
+       disk_data = NULL;
+ 
+       /* 64DD IPL LOAD - assumes "64DD_IPL.bin" is in system folder */
+-      sprintf(disk_ipl_path, "%s%c64DD_IPL.bin", dir, slash);
++      sprintf(disk_ipl_path, "%s%c%s%cIPL.n64", dir, slash, "Mupen64plus", slash);
+ 
+       if (log_cb)
+          log_cb(RETRO_LOG_INFO, "64DD_IPL.bin path: %s\n", disk_ipl_path);
+-- 
+2.52.0
+

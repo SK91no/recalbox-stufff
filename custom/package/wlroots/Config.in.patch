@@ -1,0 +1,12 @@
+diff --git a/package/wlroots/Config.in b/package/wlroots/Config.in
+index f0f53a82c9..26e60437a3 100644
+--- a/package/wlroots/Config.in
++++ b/package/wlroots/Config.in
+@@ -25,6 +25,7 @@ config BR2_PACKAGE_WLROOTS
+ 	select BR2_PACKAGE_SEATD
+ 	select BR2_PACKAGE_WAYLAND
+ 	select BR2_PACKAGE_WAYLAND_PROTOCOLS
++	select BR2_PACKAGE_LIBDISPLAY_INFO
+ 	help
+ 	  wlroots is a modular Wayland library for building compositors
+ 	  which implements many of their common features.

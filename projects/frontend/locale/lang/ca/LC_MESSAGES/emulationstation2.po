@@ -1,0 +1,6925 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: recalbox-emulationstation\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "AN UPDATE IS AVAILABLE FOR YOUR RECALBOX"
+msgstr "HI HA UNA ACTUALITZACIÓ DISPONIBLE PER A RECALBOX"
+
+msgid "NEW VERSION:"
+msgstr "VERSIÓ NOVA:"
+
+msgid "UPDATE CHANGELOG:"
+msgstr "REGISTRE DE CANVIS DE L'ACTUALITZACIÓ:"
+
+msgid "CANCEL"
+msgstr "CANCEL·LA"
+
+msgid "Rating"
+msgstr "Valoració"
+
+msgid "Released"
+msgstr "Publicat"
+
+msgid "Developer"
+msgstr "Desenvolupador"
+
+msgid "Publisher"
+msgstr "Distribuïdor"
+
+msgid "Genre"
+msgstr "Gènere"
+
+msgid "Players"
+msgstr "Jugadors"
+
+msgid "SEARCH"
+msgstr "CERCA"
+
+msgid "SCRAPING IN PROGRESS"
+msgstr "S'ESTAN OBTENINT DADES"
+
+msgid "SYSTEM"
+msgstr "SISTEMA"
+
+msgid "subtitle text"
+msgstr "text del subtítol"
+
+msgid "STOP"
+msgstr "ATURA"
+
+msgid "stop (progress saved)"
+msgstr "atura (progrés desat)"
+
+msgid "ESTIMATED TIME: "
+msgstr "TEMPS ESTIMAT: "
+
+msgid "ELAPSED TIME: "
+msgstr "TEMPS TRANSCORREGUT: "
+
+msgid "COMPLETE!"
+msgstr "COMPLETAT!"
+
+msgid "PLEASE VISIT"
+msgstr "SI US PLAU, VISITEU"
+
+msgid "ONLY 1 SCRAPPING ENGINE"
+msgid_plural "%i SCRAPPING ENGINES"
+msgstr[0] "NOMÉS 1 MOTOR DE CERCA"
+msgstr[1] "%i MOTORS DE CERCA"
+
+msgid ""
+"Scraping complete! {PROCESSED} games processed.\n"
+"\n"
+"{SUCCESS} game(s) scraped or updated\n"
+"{NOTFOUND} game(s) not found...\n"
+"{ERRORS} request/download errors\n"
+"\n"
+"{TEXTINFO} Text information updated\n"
+"{IMAGES} images and {VIDEOS} videos downloaded\n"
+"{MEDIASIZE} of media saved"
+msgstr ""
+"Cerca completada! {PROCESSED} jocs processats.\n"
+"\n"
+"{SUCCESS} joc(s) cercat(s) o actualitzat(s)\n"
+"{NOTFOUND} joc(s) no trobat(s)...\n"
+"{ERRORS} errors de sol·licitud/descàrrega\n"
+"\n"
+"{TEXTINFO} informació de text actualitzada\n"
+"{IMAGES} imatges i {VIDEOS} vídeos descarregats\n"
+"{MEDIASIZE} de multimèdia desat"
+
+msgid ""
+"You reached your daily quota of scraping request.\n"
+"All your today's scrapes have been saved anyway.\n"
+"\n"
+"Start scraping again tomorrow.\n"
+"Dont forget to select 'update' and not 'scrape all'"
+msgstr ""
+"Heu arribat al límit diari de sol·licituds de cerca.\n"
+"De totes maneres, s'han desat totes les cerques d'avui.\n"
+"\n"
+"Torneu a començar la cerca demà.\n"
+"No oblideu seleccionar 'actualitza' i no 'cerca-ho tot'"
+
+msgid ""
+"Your share partition is almost full.\n"
+"The scraper stopped automatically.\n"
+"\n"
+"Remove unused games, media, files to make room before running the scraper "
+"again!"
+msgstr ""
+"La partició share està gairebé plena.\n"
+"El cercador s'ha aturat automàticament.\n"
+"\n"
+"Elimineu jocs, multimèdia i fitxers no utilitzats per fer espai abans de "
+"tornar a executar el cercador!"
+
+msgid "OK"
+msgstr "D'ACORD"
+
+msgid "SCRAPE"
+msgstr "OBTÉ LES DADES"
+
+msgid "SAVE"
+msgstr "DESA"
+
+msgid "YES"
+msgstr "SÍ"
+
+msgid "NO"
+msgstr "NO"
+
+msgid "DELETE"
+msgstr "ESBORRA"
+
+msgid "BACK"
+msgstr "ENRERE"
+
+msgid "CLOSE"
+msgstr "TANCA"
+
+msgid "MAIN MENU"
+msgstr "MENÚ PRINCIPAL"
+
+msgid "KODI MEDIA CENTER"
+msgstr "CENTRE MULTIMÈDIA DEL KODI"
+
+msgid "SYSTEM SETTINGS"
+msgstr "PARÀMETRES DEL SISTEMA"
+
+msgid "VERSION"
+msgstr "VERSIÓ"
+
+msgid "LANGUAGE"
+msgstr "IDIOMA"
+
+msgid "OVERCLOCK"
+msgstr "VELOCITAT DE RELLOTGE"
+
+msgid "NONE"
+msgstr "NORMAL"
+
+msgid "UPDATES"
+msgstr "ACTUALITZACIONS"
+
+msgid "KODI SETTINGS"
+msgstr "PARÀMETRES DEL KODI"
+
+msgid "ENABLE KODI"
+msgstr "HABILITA EL KODI"
+
+msgid "KODI AT START"
+msgstr "KODI A L'INICI"
+
+msgid "START KODI WITH X"
+msgstr "INICIA EL CODI AMB X"
+
+msgid "THE SYSTEM WILL NOW REBOOT"
+msgstr "ES REINICIARÀ EL SISTEMA ARA"
+
+msgid "GAME RATIO"
+msgstr "PROPORCIÓ DEL JOC"
+
+msgid "SMOOTH GAMES"
+msgstr "JOCS SUAVITZATS"
+
+msgid "REWIND"
+msgstr "REBOBINA"
+
+msgid "AUTO SAVE/LOAD"
+msgstr "DESA / CARREGA AUTOMÀTICAMENT"
+
+msgid "PRESS TWICE TO QUIT GAME"
+msgstr "PREMEU DOS COPS PER SORTIR DEL JOC"
+
+msgid "SHADERS SET"
+msgstr "SHADERS ESTABLERTS"
+
+msgid "SCANLINES"
+msgstr "SCANLINES"
+
+msgid "RETRO"
+msgstr "RETRO"
+
+msgid "RETROACHIEVEMENTS SETTINGS"
+msgstr "PARÀMETRES DELS ASSOLIMENTS RETRO"
+
+msgid "RETROACHIEVEMENTS"
+msgstr "ASSOLIMENTS RETRO"
+
+msgid "HARDCORE MODE"
+msgstr "MODE EXPERT"
+
+msgid "USERNAME"
+msgstr "USUARI"
+
+msgid "PASSWORD"
+msgstr "CONTRASENYA"
+
+msgid "ADVANCED"
+msgstr "AVANÇAT"
+
+msgid "UPDATE GAMES LISTS"
+msgstr "ACTUALITZA LES LLISTES DELS JOCS"
+
+msgid "CONTROLLERS SETTINGS"
+msgstr "PARÀMETRES DELS COMANDAMENTS"
+
+msgid "SCREENSAVER AFTER"
+msgstr "ESTALVI DE PANTALLA DESPRÉS DE"
+
+msgid "CAROUSEL ANIMATION"
+msgstr "ANIMACIÓ DEL CARRUSEL"
+
+msgid "SCREENSAVER BEHAVIOR"
+msgstr "COMPORTAMENT DE L'ESTALVI DE PANTALLA"
+
+msgid "SHOW FRAMERATE"
+msgstr "MOSTRA ELS FOTOGRAMES PER SEGON"
+
+msgid "ON-SCREEN HELP"
+msgstr "AJUDA EN PANTALLA"
+
+msgid "THEME SET"
+msgstr "TEMA ESTABLERT"
+
+msgid "SOUND SETTINGS"
+msgstr "PARÀMETRES DEL SO"
+
+msgid "SYSTEM VOLUME"
+msgstr "VOLUM DEL SISTEMA"
+
+msgid "OUTPUT DEVICE"
+msgstr "DISPOSITIU DE SORTIDA"
+
+msgid "AUTO"
+msgstr "AUTO"
+
+msgid "NETWORK SETTINGS"
+msgstr "PARÀMETRES DE LA XARXA"
+
+msgid "CONNECTED"
+msgstr "CONNECTAT"
+
+msgid "NOT CONNECTED"
+msgstr "NO CONNECTAT"
+
+msgid "STATUS"
+msgstr "ESTAT"
+
+msgid "IP ADDRESS"
+msgstr "ADREÇA IP"
+
+msgid "HOSTNAME"
+msgstr "NOM DE LA MÀQUINA"
+
+msgid "ENABLE WIFI"
+msgstr "ACTIVA EL WIFI"
+
+msgid "WIFI SSID"
+msgstr "SSID DEL WIFI"
+
+msgid "WIFI KEY"
+msgstr "CLAU DEL WIFI"
+
+msgid "SCRAPER"
+msgstr "RASPADOR"
+
+msgid "SCRAPE FROM"
+msgstr "OBTÉ LES DADES DE"
+
+msgid "SCRAPE NOW"
+msgstr "OBTÉ LES DADES ARA"
+
+msgid "QUIT"
+msgstr "SURT"
+
+msgid "REALLY RESTART?"
+msgstr "ESTEU SEGUR QUE VOLEU REINICIAR?"
+
+msgid "REALLY SHUTDOWN?"
+msgstr "ESTEU SEGUR QUE VOLEU APAGAR?"
+
+msgid "Emulator"
+msgstr "Emulador"
+
+msgid "Core"
+msgstr "Nucli"
+
+msgid "CONFIGURE A CONTROLLER"
+msgstr "CONFIGUREU UN COMANDAMENT"
+
+msgid "CONTROLLER PAIRED"
+msgstr "S'HAN APARELLAT TOTS ELS COMANDAMENTS"
+
+msgid "UNABLE TO PAIR CONTROLLER"
+msgstr "NO S'HA POGUT APARELLAR EL COMANDAMENT"
+
+msgid "NO CONTROLLERS FOUND"
+msgstr "NO S'HA TROBAT CAP COMANDAMENT"
+
+msgid "CONTROLLERS LINKS HAVE BEEN DELETED."
+msgstr "S'HAN ESBORRAT TOTS ELS COMANDAMENTS."
+
+msgid "FORGET BLUETOOTH CONTROLLERS"
+msgstr "OBLIDA ELS COMANDAMENTS BLUETOOTH"
+
+msgid "INPUT P%i"
+msgstr "ENTRADA P%i"
+
+msgid "CHOOSE"
+msgstr "TRIA"
+
+msgid "SELECT"
+msgstr "SELECCIONA"
+
+msgid "OPTIONS"
+msgstr "OPCIONS"
+
+msgid "JUMP TO LETTER"
+msgstr "SALTA A UNA LLETRA"
+
+msgid "SORT GAMES BY"
+msgstr "ORDENA ELS JOCS PER"
+
+msgid "All Games"
+msgstr "Tots els jocs"
+
+msgid "Only missing image"
+msgstr "Només la imatge que falta"
+
+msgid "FILTER"
+msgstr "FILTRA"
+
+msgid "SYSTEMS"
+msgstr "SISTEMES"
+
+msgid "START"
+msgstr "COMENÇA"
+
+msgid "Ratio"
+msgstr "Proporció"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Description"
+msgstr "Descripció"
+
+msgid "Image"
+msgstr "Imatge"
+
+msgid "Favorite"
+msgstr "Preferit"
+
+msgid "Region"
+msgstr "Regió"
+
+msgid "Hidden"
+msgstr "Ocult"
+
+msgid "Last played"
+msgstr "Jugat per última vegada"
+
+msgid "%i GAME AVAILABLE"
+msgid_plural "%i GAMES AVAILABLE"
+msgstr[0] "HI HA %i JOC DISPONIBLE"
+msgstr[1] "HI HA %i JOCS DISPONIBLES"
+
+msgid "%i FAVORITE"
+msgid_plural "%i FAVORITES"
+msgstr[0] "HI HA %i PREFERIT"
+msgstr[1] "HI HA %i PREFERITS"
+
+msgid "LAUNCH"
+msgstr "EXECUTA"
+
+msgid "Times played"
+msgstr "Nombre de vegades que s'ha jugat"
+
+msgid "MENU"
+msgstr "MENÚ"
+
+msgid "START KODI"
+msgstr "INICIA KODI"
+
+msgid "WORKING..."
+msgstr "S'ESTÀ TREBALLANT..."
+
+msgid "CHANGE"
+msgstr "CANVIA"
+
+msgid "never"
+msgstr "mai"
+
+msgid "just now"
+msgstr "fa un moment"
+
+msgid "%i sec ago"
+msgid_plural "%i secs ago"
+msgstr[0] "fa %i segon"
+msgstr[1] "fa %i segons"
+
+msgid "%i min ago"
+msgid_plural "%i mins ago"
+msgstr[0] "fa %i minut"
+msgstr[1] "fa %i minuts"
+
+msgid "%i hour ago"
+msgid_plural "%i hours ago"
+msgstr[0] "fa %i hora"
+msgstr[1] "fa %i hores"
+
+msgid "%i day ago"
+msgid_plural "%i days ago"
+msgstr[0] "fa %i dia"
+msgstr[1] "fa %i dies"
+
+msgid "unknown"
+msgstr "desconegut"
+
+msgid "SELECT ALL"
+msgstr "SELECCIONA-HO TOT"
+
+msgid "SELECT NONE"
+msgstr "NO SELECCIONIS RES"
+
+msgid "%i SELECTED"
+msgid_plural "%i SELECTED"
+msgstr[0] "%i SELECCIONAT"
+msgstr[1] "%i SELECCIONATS"
+
+msgid "UP"
+msgstr "AMUNT"
+
+msgid "DOWN"
+msgstr "AVALL"
+
+msgid "LEFT"
+msgstr "ESQUERRA"
+
+msgid "RIGHT"
+msgstr "DRETA"
+
+msgid "HOTKEY"
+msgstr "DRECERA DE TECLAT"
+
+msgid "CONFIGURING"
+msgstr "S'ESTÀ CONFIGURANT"
+
+msgid "KEYBOARD"
+msgstr "TECLAT"
+
+msgid "GAMEPAD %i"
+msgstr "CONTROLADOR %i"
+
+msgid "(skipped)"
+msgstr "(omès)"
+
+msgid "DISCARD CHANGES"
+msgstr "DESCARTA ELS CANVIS"
+
+msgid "WELCOME"
+msgstr "BENVINGUT"
+
+msgid "CONFIGURE INPUT"
+msgstr "CONFIGUREU L'ENTRADA"
+
+msgid "%i GAMEPAD DETECTED"
+msgid_plural "%i GAMEPADS DETECTED"
+msgstr[0] "S'HA DETECTAT %i CONTROLADOR"
+msgstr[1] "S'HA DETECTAT %i CONTROLADORS"
+
+msgid "NO GAMEPADS DETECTED"
+msgstr "NO S'HA DETECTAT CAP CONTROLADOR"
+
+msgid "HOLD A BUTTON ON YOUR DEVICE TO CONFIGURE IT."
+msgstr "PREMEU UN BOTÓ DEL VOSTRE DISPOSITIU PER CONFIGURAR-LO."
+
+msgid "PRESS ESC OR THE HOTKEY TO CANCEL."
+msgstr "PREMEU ESC O UNA DRECERA DE TECLAT PER A CANCEL·LAR."
+
+msgid "LOADING..."
+msgstr "S'ESTÀ CARREGANT..."
+
+msgid "PLEASE WAIT..."
+msgstr "ESPEREU..."
+
+msgid "REALLY SHUTDOWN WITHOUT SAVING METADATAS?"
+msgstr "ESTEU SEGUR QUE VOLEU APAGAR SENSE DESAR LES METADADES?"
+
+msgid "SHIFTS FOR UPPER,LOWER, AND SPECIAL"
+msgstr "SHIFTS PER A MAJÚSCULES, MINÚSCULES I ESPECIALS"
+
+msgid "SPACE"
+msgstr "ESPAI"
+
+msgid "DELETE A CHAR"
+msgstr "ESBORRA UN CARÀCTER"
+
+msgid "SHIFT"
+msgstr "MAJÚSCULES"
+
+msgid "STOP EDITING"
+msgstr "ATURA L'EDICIÓ"
+
+msgid "MOVE CURSOR"
+msgstr "MOVEU EL CURSOR"
+
+msgid "EDIT"
+msgstr "EDITA"
+
+msgid "FILENAME"
+msgstr "FITXER"
+
+msgid "RATING"
+msgstr "VALORACIÓ"
+
+msgid "TIMES PLAYED"
+msgstr "VEGADES JUGAT"
+
+msgid "LAST PLAYED"
+msgstr "JUGAT PER ÚLTIMA VEGADA"
+
+msgid "NUMBER OF PLAYERS"
+msgstr "NOMBRE DE JUGADORS"
+
+msgid "DEVELOPER"
+msgstr "DESENVOLUPADOR"
+
+msgid "GENRE"
+msgstr "GÈNERE"
+
+msgid ""
+"TURBO AND EXTREM OVERCLOCK PRESETS MAY CAUSE SYSTEM UNSTABILITIES, SO USE "
+"THEM AT YOUR OWN RISK.\n"
+"IF YOU CONTINUE, THE SYSTEM WILL REBOOT NOW."
+msgstr ""
+"SI ESTABLIU L'OVERCLOCK ALS MODES TURBO O EXTREM POT FER QUE EL SISTEMA ES "
+"TORNI INESTABLE. NO HO UTILITZEU SI NO ESTEU SEGUR.\n"
+"SI CONTINUEU, EL SISTEMA ES REINICIARÀ."
+
+msgid "Start kodi media player."
+msgstr "Inicia el reproductor Kodi."
+
+msgid ""
+"Select the language for your recalbox, select an external drive to store "
+"your games and configurations, check your current version and the free space "
+"on your drive"
+msgstr ""
+"Seleccioneu l'idioma del Recalbox, seleccioneu un disc dur extern per "
+"emmagatzemar els jocs i configuracions, i comproveu la versió actual i "
+"l'espai lliure a la unitat"
+
+msgid "Shows your current recalboxOS version."
+msgstr "Mostra la versió actual del recalboxOS."
+
+msgid ""
+"Show how much space is used on your SHARE partition, located either on the "
+"SDCARD or on an external drive. The information shows how many GB are used "
+"and how many GB your storage has in total (example 13GB/26GB)."
+msgstr ""
+"Mostra quant espai s'utilitza en la partició, ja sigui en la targeta SD o en "
+"una unitat externa. La informació mostra quants GB s'estan utilitzant i "
+"quants GB d'emmagatzematge hi ha en total (per exemple 13 GB/26GB)."
+
+msgid ""
+"Select an external drive to store your roms, saves, configurations etc.\n"
+"Use a FAT32 formatted drive. The system does not format the drive. On first "
+"boot, with this option enabled, recalbox will create a '/recalbox' folder "
+"with all system files inside."
+msgstr ""
+"Seleccioneu un disc dur extern per emmagatzemar els jocs ROM, les partides "
+"desades, les configuracions, etc. Utilitzeu una unitat amb format FAT32. El "
+"sistema no dóna format a la unitat. Amb aquesta opció activada, recalbox "
+"crearà una carpeta anomenada '/recalbox' amb tots els arxius de sistema la "
+"primera vegada que l'inicieu."
+
+msgid ""
+"Manage your recalbox updates. Select the update type. Activate update check."
+msgstr ""
+"Gestiona les actualitzacions del recalbox. Seleccioneu el tipus "
+"d'actualització. Activa la comprovació d'actualitzacions."
+
+msgid "Check if an update is available, and start the update process."
+msgstr "Comprova si hi ha una actualització disponible, i inicia el procés."
+
+msgid ""
+"Configure games display, ratio, filters (shaders), auto save and load and "
+"retroachievement account."
+msgstr ""
+"Configura la visualització dels jocs, la relació d'aspecte, els filtres "
+"(shaders), el desat i la càrrega automàtica, i el compte d'assoliments retro."
+
+msgid ""
+"The game ratio is the ratio between image width and image height. Use AUTO "
+"to let the emulator choose the original game ratio, that will give you the "
+"best retrogaming experience."
+msgstr ""
+"La relació d'aspecte dels jocs és la relació entre l'ample i l'alt de la "
+"imatge. Fes servir AUTO per deixar que l'emulador triï la relació d'aspecte "
+"original del joc, això et donarà la millor experiència de retro joc."
+
+msgid ""
+"Smooth the game image. This option makes the image smoother, using bilinear "
+"filtering."
+msgstr ""
+"Suavitza la imatge del joc. Aquesta opció fa la imatge més suau, usant "
+"filtres bilineals."
+
+msgid ""
+"This option allows you to rewind the game if you get killed by a monster, or "
+"if you make any other mistake. Use the HOTKEY + LEFT command within the game "
+"to rewind."
+msgstr ""
+"Aquesta opció et permet rebobinar el joc si et mata un monstre, o si et "
+"passa alguna altra cosa. Utilitza el botó HOTKEY + ESQUERRA dins el joc per "
+"rebobinar."
+
+msgid ""
+"Auto save the state when you quit a game, and auto load last saved state "
+"when you start a game."
+msgstr ""
+"Desa la partida automàticament en sortir del joc, i carrega-la "
+"automàticament al començament."
+
+msgid "Press the buttons twice to end the game and go back to the main menu."
+msgstr ""
+"Premeu dos cops els botons per finalitzar el joc i tornar al menú principal."
+
+msgid ""
+"Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, "
+"4x, etc. This option scales the image up to the greatest integer scale below "
+"the set resolution. So for instance, if you set your fullscreen resolution "
+"to 1920x1080 and enable integer scaling, it will only scale a 320x240 image "
+"up to 1280x960, and leave black borders all around. This is to maintain a "
+"1:1 pixel ratio with the original source image, so that pixels are not "
+"unevenly duplicated."
+msgstr ""
+"L'escala sencera s'escala per un factor d'un nombre sencer, com 2x, 3x, 4x, "
+"etc. Aquesta opció escala la imatge fins a l'escala sencera més gran per "
+"sota de la resolució establerta. Per exemple, si estableixes la resolució de "
+"pantalla completa en 1920x1080 i habilites l'escalat sencer, només escalarà "
+"una imatge de 320x240 fins a 1280x960 i deixarà les vores negres al voltant. "
+"Això és per mantenir una relació d'aspecte de píxels d'1: 1 amb la imatge "
+"original, de manera que els píxels no es dupliquin de manera desigual."
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a shader set "
+"here, which is a collection of shaders selected for each system. You can "
+"also change the shader within the game with HOTKEY + L2 or HOTKEY + R2."
+msgstr ""
+"Els shaders són com filtres per al renderitzat del joc. Pots seleccionar un "
+"conjunt de shaders aquí, que és una col·lecció de shaders seleccionats per a "
+"cada sistema. També pots canviar el shader dins el joc amb HOTKEY + L2 or "
+"HOTKEY + R2."
+
+msgid "Enable or disable RetroAchievements in games."
+msgstr "Activa o desactiva els assoliments retro als jocs."
+
+msgid ""
+"Hardcore mode disables *all* savestate and rewind functions within the "
+"emulator: you will not be able to save and reload at any time. You will have "
+"to complete the game and get the achievements first time, just like on the "
+"original console. In reward for this, you will earn both the standard and "
+"the hardcore achievement, in effect earning double points! A regular game "
+"worth 400 points, is now worth 800 if you complete it on hardcore! For "
+"example: if you complete the game for 400 points, you then have the "
+"opportunity to earn another 400 on hardcore."
+msgstr ""
+"El mode expert desactiva *totes* les partides desades i funcions de "
+"rebobinat de l'emulador: no podreus desar ni carregar en qualsevol moment. "
+"Haureu de completar el joc i aconseguir els assoliments des del principi, "
+"igual que en la consola original. Com a recompensa, aconseguireu tant els "
+"assoliments estàndard com també els d'expert, i per tant guanyant el doble "
+"de punts! Un joc regular de 400 punts, valdria 800 si el completeu amb el "
+"mode expert. Per exemple: si completeu el joc per 400 punts, llavors teniu "
+"l'oportunitat de guanyar-ne 400 més en el mode expert."
+
+msgid ""
+"Configure an associated controller. Your controller has to be associated / "
+"plugged before."
+msgstr ""
+"Configureu un controlador associat. El vostre controlador ha d'estar "
+"associat/connectat prèviament."
+
+msgid ""
+"Pair a bluetooth controller with your recalbox. Your controller must be in "
+"pairing mode."
+msgstr ""
+"Aparellar un controlador Bluetooth amb el seu recalbox. El controlador ha "
+"d'estar en mode d'aparellament."
+
+msgid ""
+"Forget all paired bluetooth controllers. You will have to pair your "
+"controllers again, but this option can help if you have issues to reconnect "
+"a controller, which is already paired."
+msgstr ""
+"Oblidar tots els comandaments aparellats per bluetooth. Els hauràs "
+"d'aparellar una altra vegada, però aquesta opció pot ajudar-te si tens "
+"problemes per tornar a connectar un comandament que ja està aparellat."
+
+msgid ""
+"Configure your EmulationStation experience. Select transition types, help "
+"prompts, screensaver behavior. You can also deactivate the onscreen keyboard "
+"if you have a real keyboard plugged into your recalbox.\n"
+"If you've added games since the last boot, you can also refresh the gamelist "
+"from this menu."
+msgstr ""
+"Configureu l'experiència del EmulationStation. Seleccioneu els tipus de "
+"transició, els missatges d'ajuda i el comportament del protector de "
+"pantalla. També és possible desactivar el teclat virtual si en teniu un de "
+"físic endollat.\n"
+"Si heu afegit jocs des de l'última arrencada, també podeu actualitzar la "
+"llista de jocs des d'aquest menú."
+
+msgid "Configure screensaver"
+msgstr "Configura l'estalvi de pantalla"
+
+msgid "Start the screensaver after N minutes."
+msgstr "Inicia l'estalvi de pantalla després de N minuts."
+
+msgid ""
+"Set the screensaver behavior. DIM will reduce the screen light, BLACK will "
+"turn the screen black, DEMO will launch demo mode."
+msgstr ""
+"Estableix el comportament de l'estalvi de pantalla. FOSC reduirà la llum de "
+"la pantalla, NEGRE posarà la pantalla en negre, DEMO llançarà el mode demo."
+
+msgid ""
+"Shows a help at the bottom of the screen which displays commands you can use."
+msgstr ""
+"Mostra ajuda en la part inferior de la pantalla que mostra les ordres que "
+"pot utilitzar."
+
+msgid ""
+"When enabled, you can switch between systems while browsing a gamelist by "
+"pressing LEFT or RIGHT."
+msgstr ""
+"Quan està activat, pots canviar de sistema prement ESQUERRA o DRETA mentre "
+"ets a la llista de jocs."
+
+msgid "Choose if carousel will be animated or not during transitions"
+msgstr "Trieu si el carrusel serà animat o no durant les transicions"
+
+msgid "Select a theme for your recalbox."
+msgstr "Seleccionar un tema per a la seva recalbox."
+
+msgid "Updates the gamelists, if you added games since the last boot."
+msgstr ""
+"Actualitza la llista de jocs si s'han afegit nous jocs des de l'últim accés "
+"al sistema."
+
+msgid "Configure the sound options of your recalbox."
+msgstr "Configura les opcions de so del seu recalbox."
+
+msgid "Set the volume of the sound output for the frontend and the games."
+msgstr "Ajusteu el volum de so de l'aplicació i els jocs."
+
+msgid "Select your output device. Only HDMI and JACK are supported."
+msgstr ""
+"Seleccioneu el dispositiu de sortida. Només són compatibles HDMI i JACK."
+
+msgid ""
+"Configure the network options of your recalbox.\n"
+"Check your network status and IP address, set the hostname and configure the "
+"WIFI."
+msgstr ""
+"Configura les opcions de xarxa del seu recalbox.\n"
+"Comproveu l'estat de la xarxa i l'adreça IP, establir el nom del sistema i "
+"configurar el Wi-Fi."
+
+msgid ""
+"Displays CONNECTED, if you are connected, by checking if your recalbox can "
+"access the recalbox.com update server."
+msgstr ""
+"Mostra CONNECTAT, si esteu connectat, comprovant si recalbox pot accedir al "
+"servidor d'actualitzacions recalbox.com"
+
+msgid "The IP address of your recalbox within your local network."
+msgstr "L'adreça IP de la seva recalbox dins de la seva xarxa local."
+
+msgid ""
+"Enable or disable WIFI.\n"
+"If you disable WIFI, the SSID and the WIFI passwords are saved and can be "
+"used when you reactivate it"
+msgstr ""
+"Activeu o desactiveu el wifi.\n"
+"Si desactiveu el wifi, el SSID i les contrasenyes wifi es desaran i es "
+"podran utilitzar quan es reactivi."
+
+msgid "The name of your recalbox in your local network"
+msgstr "El nom de la recalbox dins la xarxa local"
+
+msgid "SSID (WIFI Name) of your network."
+msgstr "SSID (nom de la xarxa wifi)."
+
+msgid "Private key of your WIFI network."
+msgstr "Clau privada de la xarxa wifi."
+
+msgid ""
+"Get information and visuals for your games. The scraper downloads metadata "
+"and visuals for your games from different servers, and greatly enhances the "
+"user experience in EmulationStation."
+msgstr ""
+"Obteniu informació i imatges per als vostres jocs. El cercador descarrega "
+"metadades i imatges per als vostres jocs des de diferents servidors i "
+"millora completament l'experiència d'usuari a EmulationStation."
+
+msgid ""
+"Select a server to scrape from. The SCREENSCRAPER server is recommended and "
+"is based on www.screenscraper.fr and scrapes game data in your language, if "
+"available."
+msgstr ""
+"Seleccioneu un servidor per raspar. Es recomana el servidor ScreenScraper "
+"(screenscraper.fr), que raspa dades dels jocs amb el teu idioma, si hi és."
+
+msgid ""
+"Advanced settings. Please make sure you really know what you're doing, "
+"before changing any values in this menu."
+msgstr ""
+"Configuració avançada. Assegureu-vos que sabeu què feu abans de canviar "
+"qualsevol cosa d'aquest menú."
+
+msgid ""
+"Overclock your board to increase the performance.\n"
+"Overclock settings are tested and validated by the community. Keep in mind "
+"that overclocking your board can void your warranty."
+msgstr ""
+"Overclocking al seu processador per augmentar el rendiment.\n"
+"Les configuracions d'overclock són provades i validades per la comunitat. "
+"Recordeu que l'overclocking de la placa pot anul·lar la garantia."
+
+msgid ""
+"Select which system to show when the recalbox frontend starts. The default "
+"value is 'favorites'."
+msgstr ""
+"Seleccioneu quin sistema es mostrarà quan la interfície del recalbox iniciï. "
+"El valor per defecte és «preferits»"
+
+msgid ""
+"On boot, recalbox will show the list of games of the selected system rather "
+"than the system view."
+msgstr ""
+"Al iniciar el sistema, recalbox mostrarà la llista de jocs del sistema "
+"seleccionat en lloc de la vista del sistema."
+
+msgid ""
+"Override global options like emulator, core, ratio and more for each "
+"available system in your recalbox."
+msgstr ""
+"Anul·lar les opcions globals com emulador, nucli, relació i més per a cada "
+"sistema disponible al seu recalbox."
+
+msgid ""
+"Configure boot options that make your recalbox boot straight into a system "
+"or into Kodi, lock a user to a single system, or directly show the gamelist."
+msgstr ""
+"Configura les opcions d'arrencada perquè recalbox comenci directament en un "
+"sistema o en Kodi, força l'usuari a un únic sistema, o mostra directament la "
+"llista de jocs."
+
+msgid ""
+"Enable or disable Kodi. If kodi is disabled, you won't be able to start it "
+"with the X button, or start it automatically at boot. The menu entry will be "
+"removed as well."
+msgstr ""
+"Activa o desactiva el Kodi. Si Kodi està desactivat, no es podrà iniciar amb "
+"el botó X, o al iniciar el sistema. L'entrada del menú serà també eliminada."
+
+msgid "Use the X button to start Kodi."
+msgstr "Feu servir el botó X per iniciar el Kodi."
+
+msgid "Automatically start into Kodi on boot."
+msgstr "Durant l'arrencada, inicia el Kodi automàticament."
+
+msgid "Show the framerate in EmulationStation and in game."
+msgstr "Mostra els fotogrames per segon en l'EmulationStation i durant el joc."
+
+msgid ""
+"Enable or disable the Recalbox Manager.\n"
+"The Recalbox Manager is a web application available at http://recalbox if "
+"you are on Windows, at http://recalbox.local if you are on Linux or Mac, or "
+"directly with your recalbox IP: http://192.168.1.XX.\n"
+"You can configure many options from within the manager, and even manage "
+"games, saves, and scrapes!"
+msgstr ""
+"Activa o desactiva l'administrador del Recalbox.\n"
+"L'Administrador del Recalbox és una aplicació web disponible a http://"
+"recalbox, si esteu amb Windows, http://recalbox.local si esteu amb Linux o "
+"Mac, o directament amb la seva IP del dispositiu recalbox: http://192.168.1."
+"XXX.\n"
+"El gestor permet configurar moltes opcions, com per exemple gestionar jocs, "
+"partides desades i fins i tot els scrapes!"
+
+msgid "Select which emulator to use when you start a game for this system."
+msgstr ""
+"Seleccioneu quin emulador fer servir quan inicieu un joc per aquest sistema."
+
+msgid ""
+"Switch between showing only the favorite games and showing them all. To add "
+"a game to the favorite list, select the game and toggle its state with 'Y'."
+msgstr ""
+"Commuta entre veure o no només els jocs preferits. Per afegir un joc a la "
+"llista de preferits, seleccioneu el joc i commuteu el seu estat amb 'Y'."
+
+msgid ""
+"Switch between seeing the folder structure and seeing all games in a flat "
+"top-level list."
+msgstr ""
+"Commuta entre veure l'estructura de carpetes i veure tots els jocs en un "
+"nivell superior aplanat."
+
+msgid "UPDATE TYPE"
+msgstr "TIPUS D'ACTUALITZACIÓ"
+
+msgid "INTEGER SCALE (PIXEL PERFECT)"
+msgstr "ESCALA D'ENTERS (PÍXELS PERFECTES)"
+
+msgid "ADVANCED SETTINGS"
+msgstr "PARÀMETRES AVANÇATS"
+
+msgid "BOOT SETTINGS"
+msgstr "PARÀMETRES DE L'ARRENCADA"
+
+msgid "BOOT ON SYSTEM"
+msgstr "ARRENCA AMB EL SISTEMA"
+
+msgid "BOOT ON GAMELIST"
+msgstr "ARRENCA AMB LA LLISTA DE JOCS"
+
+msgid "HIDE SYSTEM VIEW"
+msgstr "OCULTA LA VISTA DE SISTEMA"
+
+msgid "ADVANCED EMULATOR CONFIGURATION"
+msgstr "PARÀMETRES DE L'EMULADOR AVANÇATS"
+
+msgid "HELP"
+msgstr "AJUDA"
+
+msgid "THE SYSTEM IS UP TO DATE"
+msgstr "EL SISTEMA ESTÀ ACTUALITZAT"
+
+msgid "Now playing"
+msgstr "Reproduint ara"
+
+msgid "Set duration of help popups, 0 means no popup."
+msgstr ""
+"Estableix la durada de les finestres d'ajuda, 0 significa cap finestra."
+
+msgid "HELP POPUP DURATION"
+msgstr "DURADA DE LA FINESTRA D'AJUDA"
+
+msgid "POPUP SETTINGS"
+msgstr "CONFIGURACIÓ DE FINESTRES EMERGENTS"
+
+msgid "Set position and duration of popups."
+msgstr "Estableix la posició i durada de les finestres emergents."
+
+msgid "NETPLAY"
+msgstr "NETPLAY"
+
+msgid "NETPLAY SETTINGS"
+msgstr "CONFIGURACIÓ DE NETPLAY"
+
+msgid "NETPLAY LOBBY"
+msgstr "SALA DE NETPLAY"
+
+msgid "Enable or disable Netplay in games."
+msgstr "Activa o desactiva Netplay als jocs."
+
+msgid "PORT"
+msgstr "PORT"
+
+msgid "NICKNAME"
+msgstr "SOBRENOM"
+
+msgid "Enable or disable connections through relay servers."
+msgstr "Activa o desactiva les connexions a través de servidors de relleu."
+
+msgid "KODI/NETPLAY"
+msgstr "KODI/NETPLAY"
+
+msgid "NO GAMES OR NO CONNECTION"
+msgstr "SENSE JOCS O SENSE CONNEXIÓ"
+
+msgid ""
+"Add hash of roms in your gamelists to have more accurate results in Netplay."
+msgstr ""
+"Afegiu l'empremta digital de les roms a les vostres llistes de jocs per "
+"obtenir resultats més precisos a Netplay."
+
+msgid "HASH ROMS"
+msgstr "EMPREMTA DE ROMS"
+
+msgid "Username"
+msgstr "Nom d'usuari"
+
+msgid "Country"
+msgstr "País"
+
+msgid "Latency"
+msgstr "Latència"
+
+msgid "Host arch."
+msgstr "Arquitectura amfitrió"
+
+msgid "Core ver."
+msgstr "Versió del nucli"
+
+msgid "RA ver."
+msgstr "Versió RA"
+
+msgid "Can join"
+msgstr "Es pot unir"
+
+msgid "Rom and core match"
+msgstr "La rom i el nucli coincideixen"
+
+msgid "Rom, hash and core match"
+msgstr "La rom, l'empremta i el nucli coincideixen"
+
+msgid "No rom match"
+msgstr "La rom no coincideix"
+
+msgid "No core match"
+msgstr "El nucli no coincideix"
+
+msgid "Match"
+msgstr "Coincidència"
+
+msgid "No Match"
+msgstr "Sense coincidència"
+
+msgid "Rom file"
+msgstr "Fitxer rom"
+
+msgid "Rom hash"
+msgstr "Empremta de la rom"
+
+msgid "good"
+msgstr "bo"
+
+msgid "bad"
+msgstr "dolent"
+
+msgid "medium"
+msgstr "mitjà"
+
+msgid "Player"
+msgstr "Jugador"
+
+msgid "Game"
+msgstr "Joc"
+
+msgid "A Recalbox friend has started a Netplay game!"
+msgstr "Un amic de Recalbox ha iniciat una partida de Netplay!"
+
+msgid "EMPTY LIST"
+msgstr "LLISTA BUIDA"
+
+msgid "Auto"
+msgstr "Automàtic"
+
+msgid "Square pixel"
+msgstr "Píxel quadrat"
+
+msgid "Retroarch Config"
+msgstr "Configuració de Retroarch"
+
+msgid "Retroarch Custom"
+msgstr "Personalitzat de Retroarch"
+
+msgid "Core provided"
+msgstr "Proporcionat pel nucli"
+
+msgid "Do not set"
+msgstr "No establir"
+
+msgid "BIOS CHECKING"
+msgstr "COMPROVACIÓ DE BIOS"
+
+msgid ""
+"Scan and check all your BIOS files and report everything in a comprehensive "
+"way."
+msgstr ""
+"Escaneja i comprova tots els fitxers BIOS i informa de tot de manera "
+"exhaustiva."
+
+msgid "RESCAN"
+msgstr "TORNA A ESCANEJAR"
+
+msgid ""
+"EMULATOR %s MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE AVAILABLE!"
+msgstr ""
+"L'EMULADOR %s POT NO FUNCIONAR CORRECTAMENT FINS QUE TOTES LES BIOS "
+"NECESSÀRIES ESTIGUIN DISPONIBLES!"
+
+msgid ""
+"%i EMULATORS MAY NOT WORK PROPERLY UNTIL ALL REQUIRED BIOS ARE MADE "
+"AVAILABLE!"
+msgstr ""
+"%i EMULADORS PODEN NO FUNCIONAR CORRECTAMENT FINS QUE TOTES LES BIOS "
+"NECESSÀRIES ESTIGUIN DISPONIBLES!"
+
+msgid "CONGRATULATIONS! ALL EMULATORS SHOULD WORK PROPERLY!"
+msgstr "ENHORABONA! TOTS ELS EMULADORS HAURIEN DE FUNCIONAR CORRECTAMENT!"
+
+msgid "%i BIOS NOT FOUND"
+msgstr "%i BIOS NO TROBADA"
+
+msgid "%i NON-MATCHING BIOS FOUND"
+msgstr "%i BIOS NO COINCIDENT TROBADA"
+
+msgid "%i GOOD BIOS FOUND!"
+msgstr "%i BIOS CORRECTA TROBADA!"
+
+msgid "File Path"
+msgstr "Camí del fitxer"
+
+msgid "Mandatory"
+msgstr "Obligatori"
+
+msgid "Must match MD5"
+msgstr "Ha de coincidir amb l'MD5"
+
+msgid "File found ?"
+msgstr "Fitxer trobat?"
+
+msgid "Matching MD5 ?"
+msgstr "MD5 coincident?"
+
+msgid "NOTE"
+msgstr "NOTA"
+
+msgid ""
+"This bios is required in order to run the emulator properly. You won't be "
+"able to run any games with the emulator/core above."
+msgstr ""
+"Aquesta bios és necessària perquè l'emulador funcioni correctament. No "
+"podreu executar cap joc amb l'emulador/nucli anterior."
+
+msgid ""
+"This bios is not mandatory in most cases. The emulator will run properly "
+"unless you want to use features requiring this particular bios file."
+msgstr ""
+"Aquesta bios no és obligatòria en la majoria de casos. L'emulador funcionarà "
+"correctament tret que vulgueu utilitzar funcions que requereixin aquest "
+"fitxer bios en concret."
+
+msgid ""
+"Your bios file does not match any known MD5. However, there are chances of "
+"getting the emulator running fine."
+msgstr ""
+"El vostre fitxer bios no coincideix amb cap MD5 conegut. Tot i així, hi ha "
+"possibilitats que l'emulador funcioni bé."
+
+msgid ""
+"Your bios file does not match any known MD5 but this is not required. So "
+"there are strong chances of getting everything running fine."
+msgstr ""
+"El vostre fitxer bios no coincideix amb cap MD5 conegut, però això no és "
+"necessari. Així que hi ha grans possibilitats que tot funcioni bé."
+
+msgid ""
+"Your bios file does match one of the known MD5. Everything will run fine!"
+msgstr ""
+"El vostre fitxer bios coincideix amb un dels MD5 coneguts. Tot funcionarà bé!"
+
+msgid "MD5 LIST"
+msgstr "LLISTA MD5"
+
+msgid "Congratulation, all cores/emulators listed below will work flawlessly!"
+msgstr ""
+"Enhorabona, tots els nuclis/emuladors llistats a sota funcionaran "
+"perfectament!"
+
+msgid ""
+"Cores/emulators listed below won't probably work until required bios are "
+"made available."
+msgstr ""
+"Els nuclis/emuladors llistats a sota probablement no funcionaran fins que "
+"les bios necessàries estiguin disponibles."
+
+msgid ""
+"Cores/emulators listed below may work in most cases, unless you use features "
+"requiring special bios."
+msgstr ""
+"Els nuclis/emuladors llistats a sota poden funcionar en la majoria de casos, "
+"tret que utilitzeu funcions que requereixin bios especials."
+
+msgid "BIOS OK"
+msgstr "BIOS CORRECTA"
+
+msgid "BIOS UNSAFE"
+msgstr "BIOS INSEGURA"
+
+msgid "BIOS KO"
+msgstr "BIOS INCORRECTA"
+
+msgid "BIOS NOT FOUND"
+msgstr "BIOS NO TROBADA"
+
+msgid "MD5 OK"
+msgstr "MD5 CORRECTE"
+
+msgid "MD5 NOT OK"
+msgstr "MD5 INCORRECTE"
+
+msgid "BROWSE"
+msgstr "EXPLORA"
+
+msgid "Your bios' MD5"
+msgstr "L'MD5 de la vostra bios"
+
+msgid "Known MD5 List"
+msgstr "Llista d'MD5 coneguts"
+
+msgid "MY SYSTEMS"
+msgstr "ELS MEUS SISTEMES"
+
+msgid "ALL SYSTEMS"
+msgstr "TOTS ELS SISTEMES"
+
+msgid ""
+"EmulationStation has detected external changes on a gamelist file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation ha detectat canvis externs en un fitxer de llista de jocs.\n"
+"Per evitar la pèrdua de dades, EmulationStation es reiniciarà i recarregarà "
+"tots els fitxers."
+
+msgid ""
+"EmulationStation has detected external changes on a theme file.\n"
+"To avoid loss of data, EmulationStation is about to relaunch and reload all "
+"files."
+msgstr ""
+"EmulationStation ha detectat canvis externs en un fitxer de tema.\n"
+"Per evitar la pèrdua de dades, EmulationStation es reiniciarà i recarregarà "
+"tots els fitxers."
+
+msgid "VIRTUAL SYSTEMS"
+msgstr "SISTEMES VIRTUALS"
+
+msgid "SHOW ALL-GAMES SYSTEM"
+msgstr "MOSTRA EL SISTEMA TOTS ELS JOCS"
+
+msgid "SHOW MULTIPLAYER SYSTEM"
+msgstr "MOSTRA EL SISTEMA MULTIJUGADOR"
+
+msgid "SHOW LAST-PLAYED SYSTEM"
+msgstr "MOSTRA EL SISTEMA JUGATS RECENTMENT"
+
+msgid "VIRTUAL SYSTEMS PER GENRE"
+msgstr "SISTEMES VIRTUALS PER GÈNERE"
+
+msgid "Show a 'all-games' system with all games from all systems."
+msgstr ""
+"Mostra un sistema 'tots els jocs' amb tots els jocs de tots els sistemes."
+
+msgid "Show multiplayer games (all games playable by two or more players)."
+msgstr ""
+"Mostra els jocs multijugador (tots els jocs jugables per dos o més jugadors)."
+
+msgid "Show last played games."
+msgstr "Mostra els jocs jugats recentment."
+
+msgid "Select virtual systems per genre to show."
+msgstr "Seleccioneu els sistemes virtuals per gènere a mostrar."
+
+msgid "HIGHLIGHT GAMES OF REGION..."
+msgstr "RESALTA ELS JOCS DE LA REGIÓ..."
+
+msgid ""
+"Select the source of your game name. Trust the scraping database or get them "
+"from filename, raw or undecorated (without decoration in () or [] )."
+msgstr ""
+"Seleccioneu la font del nom del joc. Confieu en la base de dades de cerca o "
+"obteniu-los del nom del fitxer, en brut o sense decorar (sense decoració a "
+"() o [])."
+
+msgid "GET GAME NAME FROM"
+msgstr "OBTÉ EL NOM DEL JOC DE"
+
+msgid "Scraper results"
+msgstr "Resultats del raspador"
+
+msgid "Raw filename"
+msgstr "Nom de fitxer en brut"
+
+msgid "Undecorated filename"
+msgstr "Nom de fitxer sense decorar"
+
+msgid "OPEN-SOURCE LICENSE"
+msgstr "LLICÈNCIA DE CODI OBERT"
+
+msgid "SELECT IMAGE TYPE"
+msgstr "SELECCIONA EL TIPUS D'IMATGE"
+
+msgid "In-game screenshot"
+msgstr "Captura de pantalla del joc"
+
+msgid "Title screenshot"
+msgstr "Captura de pantalla del títol"
+
+msgid "Marquee"
+msgstr "Rètol"
+
+msgid "ScreenScraper Mix V1"
+msgstr "ScreenScraper Mix V1"
+
+msgid "ScreenScraper Mix V2"
+msgstr "ScreenScraper Mix V2"
+
+msgid "SELECT VIDEO TYPE"
+msgstr "SELECCIONA EL TIPUS DE VÍDEO"
+
+msgid "No video"
+msgstr "Sense vídeo"
+
+msgid "Original video"
+msgstr "Vídeo original"
+
+msgid "SELECT FAVORITE REGION"
+msgstr "SELECCIONA LA REGIÓ PREFERIDA"
+
+msgid "FAVORITE REGION"
+msgstr "REGIÓ PREFERIDA"
+
+msgid "SELECT FAVORITE LANGUAGE"
+msgstr "SELECCIONA L'IDIOMA PREFERIT"
+
+msgid "SYSTEM NAME"
+msgstr "NOM DEL SISTEMA"
+
+msgid "PUBLISHER"
+msgstr "EDITOR"
+
+msgid "DEFAULT"
+msgstr "PER DEFECTE"
+
+msgid ""
+"It seems that your game didn't start at all!\n"
+"\n"
+"It's most likely due to either:\n"
+"- bad rom\n"
+"- missing/bad mandatory bios files\n"
+"- missing/bad optional BIOS files (but required for this very game)"
+msgstr ""
+"Sembla que el vostre joc no ha començat en absolut!\n"
+"\n"
+"Molt probablement es deu a:\n"
+"- una rom incorrecta\n"
+"- fitxers bios obligatoris que falten/incorrectes\n"
+"- fitxers BIOS opcionals que falten/incorrectes (però necessaris per a "
+"aquest joc en concret)"
+
+msgid ""
+"At least one mandatory BIOS is missing for %emulator%!\n"
+"Your game '%game%' will very likely not run at all until required BIOS are "
+"put in the expected folder.\n"
+"\n"
+"Do you want to launch the game anyway?"
+msgstr ""
+"Falta almenys una BIOS obligatòria per a %emulator%!\n"
+"És molt probable que el vostre joc '%game%' no funcioni en absolut fins que "
+"les BIOS necessàries es col·loquin a la carpeta esperada.\n"
+"\n"
+"Voleu llançar el joc de totes maneres?"
+
+msgid "BACKSPACE"
+msgstr "RETROCÉS"
+
+msgid "FAST WHEEL"
+msgstr "RODA RÀPIDA"
+
+msgid "CHANGE CHARSET"
+msgstr "CANVIA EL JOC DE CARÀCTERS"
+
+msgid "MOVE WHEEL"
+msgstr "MOU LA RODA"
+
+msgid "DOWNLOAD GAME MANUALS"
+msgstr "DESCARREGA MANUALS DE JOCS"
+
+msgid "DOWNLOAD GAME MAPS"
+msgstr "DESCARREGA MAPES DE JOCS"
+
+msgid "INSTALL PAD-2-KEYBOARD CONFIGURATIONS"
+msgstr "INSTAL·LA CONFIGURACIONS PAD-2-KEYBOARD"
+
+msgid ""
+"You're strongly recommended to update your Recalbox.\n"
+"No support will be provided for older versions!"
+msgstr ""
+"Es recomana encaridament que actualitzeu el vostre Recalbox.\n"
+"No es proporcionarà suport per a versions més antigues!"
+
+msgid " has been plugged!"
+msgstr " s'ha connectat!"
+
+msgid "Ready to play!"
+msgstr "Llest per jugar!"
+
+msgid "Not configured yet! Press a button to enter the configuration window."
+msgstr ""
+"Encara no configurat! Premeu un botó per entrar a la finestra de "
+"configuració."
+
+msgid " has been unplugged!"
+msgstr " s'ha desconnectat!"
+
+msgid "Remove from favorite"
+msgstr "Elimina dels preferits"
+
+msgid "Default output"
+msgstr "Sortida per defecte"
+
+msgid "HIDE ORIGINAL SYSTEMS"
+msgstr "AMAGA ELS SISTEMES ORIGINALS"
+
+msgid "PREDEFINED PASSWORDS"
+msgstr "CONTRASENYES PREDEFINIDES"
+
+msgid "VALIDATE"
+msgstr "VALIDA"
+
+msgid "CHOOSE PLAYER PASSWORD"
+msgstr "TRIA LA CONTRASENYA DEL JUGADOR"
+
+msgid "SEARCH IN..."
+msgstr "CERCA A..."
+
+msgid "DOWNLOADING UPDATE..."
+msgstr "DESCARREGANT ACTUALITZACIÓ..."
+
+msgid "REBOOT IN %s"
+msgstr "REINICI EN %s"
+
+msgid "Error downloading Recalbox %s... Please retry later!"
+msgstr "Error en descarregar Recalbox %s... Torneu-ho a provar més tard!"
+
+msgid "ALL"
+msgstr "TOTS"
+
+msgid "TYPE AT LEAST 3 CHARACTERS"
+msgstr "ESCRIVIU ALMENYS 3 CARÀCTERS"
+
+msgid "AUTOMATIC WPS CONNECTION"
+msgstr "CONNEXIÓ WPS AUTOMÀTICA"
+
+msgid "Connecting to WIFI..."
+msgstr "Connectant al WIFI..."
+
+msgid "Disconnecting from WIFI..."
+msgstr "Desconnectant del WIFI..."
+
+msgid "NO WPS CONFIGURATION FOUND!"
+msgstr "NO S'HA TROBAT CAP CONFIGURACIÓ WPS!"
+
+msgid "Hostname changes will not be effective until next reboot"
+msgstr "Els canvis de nom d'amfitrió no seran efectius fins al proper reinici"
+
+msgid "Fetching WIFI parameters"
+msgstr "Obtenint paràmetres WIFI"
+
+msgid "NETPLAY MITM"
+msgstr "NETPLAY MITM"
+
+msgid "Reseting WIFI configuration..."
+msgstr "Restablint la configuració WIFI..."
+
+msgid "WPS CONFIGURATION SUCCESSFUL!"
+msgstr "CONFIGURACIÓ WPS CORRECTA!"
+
+msgid "Waiting for IP address... (%is)"
+msgstr "Esperant l'adreça IP... (%is)"
+
+msgid "Waiting for WPS configuration..."
+msgstr "Esperant la configuració WPS..."
+
+msgid "SCREENSAVER"
+msgstr "ESTALVI DE PANTALLA"
+
+msgid "SHADERS"
+msgstr "SHADERS"
+
+msgid "Saving WIFI configuration"
+msgstr "Desant la configuració WIFI"
+
+msgid "THEME"
+msgstr "TEMA"
+
+msgid ""
+"Shaders are like filters for the game rendering. You can select a raw shader "
+"file here. This setting may be overridden by the shader set if it is not set "
+"to 'none'."
+msgstr ""
+"Els shaders són com filtres per al renderitzat del joc. Aquí podeu "
+"seleccionar un fitxer shader en brut. Aquest ajust pot ser sobreescrit pel "
+"conjunt de shaders si no està definit a 'cap'."
+
+msgid "Select your keyboard layout."
+msgstr "Seleccioneu la vostra disposició de teclat."
+
+msgid "Mute (no sound)"
+msgstr "Silenci (sense so)"
+
+msgid "Internal Speakers"
+msgstr "Altaveus interns"
+
+msgid "Headphone Jack"
+msgstr "Connector d'auriculars"
+
+msgid "Internal Speakers + Headphone Jack"
+msgstr "Altaveus interns + connector d'auriculars"
+
+msgid "black"
+msgstr "negre"
+
+msgid "demo"
+msgstr "demo"
+
+msgid "dim"
+msgstr "fosc"
+
+msgid "gameclip"
+msgstr "clip de joc"
+
+msgid "Action (All)"
+msgstr "Acció (tots)"
+
+msgid "Action RPG"
+msgstr "RPG d'acció"
+
+msgid "Adventure (All)"
+msgstr "Aventura (tots)"
+
+msgid "Artillery"
+msgstr "Artilleria"
+
+msgid "Auto-battler"
+msgstr "Combat automàtic"
+
+msgid "Battle Royale"
+msgstr "Battle Royale"
+
+msgid "Beat'em All"
+msgstr "Baralles"
+
+msgid "Board game"
+msgstr "Joc de taula"
+
+msgid "Build & Management"
+msgstr "Construcció i gestió"
+
+msgid "Casino"
+msgstr "Casino"
+
+msgid "Casual game"
+msgstr "Joc casual"
+
+msgid "Competition Sport"
+msgstr "Esport de competició"
+
+msgid "Demo from Demo Screne"
+msgstr "Demo de la Demo Scene"
+
+msgid "Digital Cards"
+msgstr "Cartes digitals"
+
+msgid "Dungeon Crawler"
+msgstr "Exploració de masmorres"
+
+msgid "Educative"
+msgstr "Educatiu"
+
+msgid "Favorites"
+msgstr "Preferits"
+
+msgid "Fighting"
+msgstr "Lluita"
+
+msgid "Fighting/Violent Sport"
+msgstr "Lluita/esport violent"
+
+msgid "First Person Shooter"
+msgstr "Tirador en primera persona"
+
+msgid "Fishing & Hunting"
+msgstr "Pesca i caça"
+
+msgid "Graphical Adventure"
+msgstr "Aventura gràfica"
+
+msgid "Infiltration"
+msgstr "Infiltració"
+
+msgid "Interactive Movie"
+msgstr "Pel·lícula interactiva"
+
+msgid "JRPG"
+msgstr "JRPG"
+
+msgid "Life Simulation"
+msgstr "Simulació de vida"
+
+msgid "MMORPG"
+msgstr "MMORPG"
+
+msgid "Multi Game Compilation"
+msgstr "Recopilació de jocs"
+
+msgid "Multiplayer Online Battle Arena"
+msgstr "Arena de combat en línia multijugador"
+
+msgid "Multiplayer Party Game"
+msgstr "Joc de festa multijugador"
+
+msgid "Party based RPG"
+msgstr "RPG de grup"
+
+msgid "Pinball"
+msgstr "Futbolí de boles"
+
+msgid "Platform Shooter"
+msgstr "Tirador de plataformes"
+
+msgid "Platform"
+msgstr "Plataformes"
+
+msgid "Puzzle & Logic"
+msgstr "Trencaclosques i lògica"
+
+msgid "RPG (All)"
+msgstr "RPG (tots)"
+
+msgid "Racing"
+msgstr "Curses"
+
+msgid "Real Time 3D Adventure"
+msgstr "Aventura 3D en temps real"
+
+msgid "Real Time Strategy"
+msgstr "Estratègia en temps real"
+
+msgid "Rythm & Music"
+msgstr "Ritme i música"
+
+msgid "Science Fiction Simulation"
+msgstr "Simulació de ciència-ficció"
+
+msgid "Shoot with Gun"
+msgstr "Disparar amb pistola"
+
+msgid "Shoot'em Up"
+msgstr "Matamarcians"
+
+msgid "Simulation (All)"
+msgstr "Simulació (tots)"
+
+msgid "Sport Simulation"
+msgstr "Simulació esportiva"
+
+msgid "Sports (All)"
+msgstr "Esports (tots)"
+
+msgid "Strategy (All)"
+msgstr "Estratègia (tots)"
+
+msgid "Survival"
+msgstr "Supervivència"
+
+msgid "Tactical RPG"
+msgstr "RPG tàctic"
+
+msgid "Textual Adventure"
+msgstr "Aventura textual"
+
+msgid "Tower Defense"
+msgstr "Defensa de torres"
+
+msgid "Trivia"
+msgstr "Preguntes i respostes"
+
+msgid "Turn Based Strategy"
+msgstr "Estratègia per torns"
+
+msgid "Vehicle Simulation"
+msgstr "Simulació de vehicles"
+
+msgid "Visual Novel"
+msgstr "Novel·la visual"
+
+msgid "Wargame"
+msgstr "Joc de guerra"
+
+msgid "eXplore, eXpand, eXploit & eXterminate"
+msgstr "Explora, expandeix, explota i extermina"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Advance!\n"
+"This little presentation will show you how to use the 6 special buttons "
+"available right under the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Benvinguts a RECALBOX per a Odroid Go Advance!\n"
+"Aquesta petita presentació us mostrarà com utilitzar els 6 botons especials "
+"disponibles just sota la pantalla.\n"
+"\n"
+"Premeu qualsevol botó per començar!"
+
+msgid ""
+"The leftmost button is the SELECT button, marked with a 'I', also available "
+"on most modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"El botó més a l'esquerra és el botó SELECT, marcat amb un 'I', també "
+"disponible a la majoria de comandaments moderns.\n"
+"Però també és el botó HOTKEY que podeu utilitzar juntament amb altres botons "
+"a la majoria d'emuladors.\n"
+"Per exemple, podeu utilitzar HOTKEY+START per sortir del joc actual.\n"
+"\n"
+"Premeu el botó SELECT."
+
+msgid ""
+"Next to the SELECT button is the START button, marked with an 'II'.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Al costat del botó SELECT hi ha el botó START, marcat amb un 'II'.\n"
+"Utilitzeu-lo per obrir el menú principal a la interfície de Recalbox i "
+"utilitzeu-lo al joc com el botó START habitual disponible a la majoria de "
+"consoles.\n"
+"\n"
+"Premeu aquest botó START si us plau."
+
+msgid ""
+"Then, there are 2 buttons marked with a 'III' and a 'IV'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press either volume up or down (III/IV)."
+msgstr ""
+"A continuació, hi ha 2 botons marcats amb 'III' i 'IV'.\n"
+"Utilitzeu-los per pujar o baixar el volum en qualsevol moment a la "
+"interfície de Recalbox o al joc.\n"
+"\n"
+" Premeu pujar o baixar el volum (III/IV)."
+
+msgid ""
+"The last two buttons marked 'V' and 'VI' are useful to make your screen "
+"darker or brighter.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down (V/VI)."
+msgstr ""
+"Els últims dos botons marcats amb 'V' i 'VI' són útils per fer la pantalla "
+"més fosca o més brillant.\n"
+"Tingueu en compte que com més brillant sigui la pantalla, més energia "
+"consumeix!\n"
+"\n"
+"Premeu pujar o baixar la brillantor (V/VI)."
+
+msgid ""
+"Now you're ready to start your RETROGAMING experience with Recalbox! Press "
+"button B to start... and PLAY AGAIN!"
+msgstr ""
+"Ara esteu llestos per començar la vostra experiència RETROGAMING amb "
+"Recalbox! Premeu el botó B per començar... i TORNEU A JUGAR!"
+
+msgid "WELCOME TO RECALBOX!"
+msgstr "BENVINGUTS A RECALBOX!"
+
+msgid ""
+"Just a few words about the POWER button.\n"
+"Make a short press, just like a mouse click, and your console will enter "
+"sleep mode. Make another short press and your console will restart instanly! "
+"Work in Recalbox interface and in-game!\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Només unes paraules sobre el botó POWER.\n"
+"Feu una pressió curta, com un clic de ratolí, i la consola entrarà en mode "
+"de repòs. Feu una altra pressió curta i la consola es reiniciarà "
+"instantàniament! Funciona a la interfície de Recalbox i al joc!\n"
+"\n"
+"Premeu el botó B per continuar."
+
+msgid ""
+"If you push the POWER button more than 2 seconds, this will power-off your "
+"console. If you do so in-game, Recalbox will close the current emulator "
+"gracefully.\n"
+"Just in case, holding the POWER button down more than 5s perform an hard "
+"power-off.\n"
+"\n"
+"Press button B to continue."
+msgstr ""
+"Si premeu el botó POWER durant més de 2 segons, la consola s'apagarà. Si ho "
+"feu dins d'un joc, Recalbox tancarà l'emulador actual de manera correcta.\n"
+"Per si de cas, mantenir premut el botó POWER durant més de 5s realitza un "
+"apagat forçat.\n"
+"\n"
+"Premeu el botó B per continuar."
+
+msgid ""
+"One more thing to know: If you plug in or unplug your headphones in the jack "
+"connector, Recalbox will automatically switch the audio output. Convenient.\n"
+"\n"
+"Press button B, as usual."
+msgstr ""
+"Una cosa més a saber: si connecteu o desconnecteu els auriculars al "
+"connector jack, Recalbox canviarà automàticament la sortida d'àudio. "
+"Convenient.\n"
+"\n"
+"Premeu el botó B, com de costum."
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "Added to favorites"
+msgstr "Afegit als preferits"
+
+msgid "Removed from favorites"
+msgstr "Eliminat dels preferits"
+
+msgid "Gameclips cannot be played. No video availabe for your selection"
+msgstr ""
+"No es poden reproduir els clips de joc. No hi ha vídeo disponible per a la "
+"vostra selecció"
+
+msgid "EmulationStation must relaunch to apply your changes."
+msgstr "EmulationStation s'ha de reiniciar per aplicar els vostres canvis."
+
+msgid "PAIRING %s ..."
+msgstr "ASSOCIANT %s ..."
+
+msgid "GAME %s"
+msgstr "JOC %s"
+
+msgid "RUN WITH"
+msgstr "EXECUTA AMB"
+
+msgid ""
+"Welcome to RECALBOX for Odroid Go Super!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Benvinguts a RECALBOX per a Odroid Go Super!\n"
+"Aquesta petita presentació us mostrarà com utilitzar tots els botons "
+"especials disponibles al voltant de la pantalla.\n"
+"\n"
+"Premeu qualsevol botó per començar!"
+
+msgid ""
+"The top-left black button is the SELECT button, also available on most "
+"modern pads.\n"
+"But it is also the HOTKEY button that you can use in conjunction with other "
+"buttons in most emulators.\n"
+"For example, you can use HOTKEY+START to quit the current game.\n"
+"\n"
+"Press the SELECT button."
+msgstr ""
+"El botó negre a la part superior esquerra és el botó SELECT, també "
+"disponible a la majoria de comandaments moderns.\n"
+"Però també és el botó HOTKEY que podeu utilitzar juntament amb altres botons "
+"a la majoria d'emuladors.\n"
+"Per exemple, podeu utilitzar HOTKEY+START per sortir del joc actual.\n"
+"\n"
+"Premeu el botó SELECT."
+
+msgid ""
+"At the opposite side of the SELECT button is the START button.\n"
+"Use it to open the main menu in the Recalbox interface and use it in-game as "
+"the regular START button available on most consoles.\n"
+"\n"
+"Press this START button please."
+msgstr ""
+"Al costat oposat del botó SELECT hi ha el botó START.\n"
+"Utilitzeu-lo per obrir el menú principal a la interfície de Recalbox i "
+"utilitzeu-lo al joc com el botó START habitual disponible a la majoria de "
+"consoles.\n"
+"\n"
+"Premeu aquest botó START si us plau."
+
+msgid ""
+"Then, on the top of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+" Press any button to continue"
+msgstr ""
+"A continuació, a la part superior de la consola, hi ha 2 botons marcats amb "
+"'-' i '+'.\n"
+"Utilitzeu-los per pujar o baixar el volum en qualsevol moment a la "
+"interfície de Recalbox o al joc.\n"
+"\n"
+" Premeu qualsevol botó per continuar"
+
+msgid ""
+"The two bottom-left gray buttons control the screen brightness.\n"
+"Note that the brighter the screen, the more power it consumes!\n"
+"\n"
+" Press either brightness up or down button"
+msgstr ""
+"Els dos botons grisos a la part inferior esquerra controlen la brillantor de "
+"la pantalla.\n"
+"Tingueu en compte que com més brillant sigui la pantalla, més energia "
+"consumeix!\n"
+"\n"
+" Premeu el botó de pujar o baixar la brillantor"
+
+msgid ""
+"Finally, the two bottom-right gray buttons are third left & right triggers "
+"(L3/R3), only usefull in some emulators or to record videos.\n"
+"\n"
+" Press either L3 or R3"
+msgstr ""
+"Finalment, els dos botons grisos a la part inferior dreta són els tercers "
+"gallets esquerre i dret (L3/R3), útils només en alguns emuladors o per "
+"gravar vídeos.\n"
+"\n"
+" Premeu L3 o R3"
+
+msgid ""
+"Change the driver if your pad is not working at all or not working properly "
+"in-game."
+msgstr ""
+"Canvieu el controlador si el vostre comandament no funciona en absolut o no "
+"funciona correctament dins del joc."
+
+msgid "In Memory!"
+msgstr "En memòria!"
+
+msgid "Internal Share Partition"
+msgstr "Partició share interna"
+
+msgid "Network Share"
+msgstr "Recurs compartit de xarxa"
+
+msgid "Device %d - %l (%f)"
+msgstr "Dispositiu %d - %l (%f)"
+
+msgid "Any External Device"
+msgstr "Qualsevol dispositiu extern"
+
+msgid "DETECTED REGION"
+msgstr "REGIÓ DETECTADA"
+
+msgid "SELECT REGION PRIORITY"
+msgstr "SELECCIONA LA PRIORITAT DE REGIÓ"
+
+msgid "LATER"
+msgstr "MÉS TARD"
+
+msgid "A reboot is required to apply pending changes."
+msgstr "Cal reiniciar per aplicar els canvis pendents."
+
+msgid "SHOW LIGHTGUN SYSTEM"
+msgstr "MOSTRA EL SISTEMA DE PISTOLA ÒPTICA"
+
+msgid "SHOW PORTS SYSTEM"
+msgstr "MOSTRA EL SISTEMA DE PORTS"
+
+msgid "Show all available games playable with a lightgun."
+msgstr "Mostra tots els jocs disponibles jugables amb una pistola òptica."
+
+msgid "Show a 'ports' system with all ports in the same place."
+msgstr "Mostra un sistema de 'ports' amb tots els ports al mateix lloc."
+
+msgid ""
+"WARNING! This option erases all Recalbox and emulator configurations! Use it "
+"carefully!"
+msgstr ""
+"ATENCIÓ! Aquesta opció esborra totes les configuracions de recalbox i dels "
+"emuladors! Utilitzeu-la amb cura!"
+
+msgid "RESET TO FACTORY SETTINGS"
+msgstr "RESTABLEIX ALS VALORS DE FÀBRICA"
+
+msgid "WARNING!"
+msgstr "ATENCIÓ!"
+
+msgid ""
+"RESET TO FACTORY SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET RECALBOX AND EMULATOR SETTINGS TO DEFAULT VALUES.\n"
+"ALL YOUR DATA LIKE GAMES, SAVES, MUSIC, SCREENSHOTS AND SO ON, WILL BE "
+"KEPT.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR SETTINGS?"
+msgstr ""
+"RESTABLIMENT ALS VALORS DE FÀBRICA\n"
+"\n"
+"ESTEU A PUNT DE RESTABLIR LES CONFIGURACIONS DE RECALBOX I DELS EMULADORS "
+"ALS VALORS PER DEFECTE.\n"
+"TOTES LES VOSTRES DADES COM JOCS, DESATS, MÚSICA, CAPTURES DE PANTALLA ETC., "
+"ES CONSERVARAN.\n"
+"\n"
+"AQUESTA OPERACIÓ NO ES POT DESFER!\n"
+"ESTEU SEGUR QUE VOLEU RESTABLIR TOTES LES VOSTRES CONFIGURACIONS?"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR RECALBOX TO FACTORY SETTINGS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"ESTEU A UN CLIC DE RESTABLIR EL VOSTRE RECALBOX ALS VALORS DE FÀBRICA!\n"
+"\n"
+"ESTEU REALMENT SEGUR QUE VOLEU FER-HO?"
+
+msgid "SWAP VALIDATE/CANCEL BUTTONS"
+msgstr "INTERCANVIA ELS BOTONS VALIDAR/CANCEL·LAR"
+
+msgid "AUDIO MODE"
+msgstr "MODE D'ÀUDIO"
+
+msgid "Select sound to play. Musics, videos sound, both or none"
+msgstr "Seleccioneu el so a reproduir. Música, so de vídeos, ambdós o cap"
+
+msgid "Musics or videos sound"
+msgstr "Música o so de vídeos"
+
+msgid "Musics and videos sound"
+msgstr "Música i so de vídeos"
+
+msgid "Musics only"
+msgstr "Només música"
+
+msgid "Videos sound only"
+msgstr "Només so de vídeos"
+
+msgid "No sound"
+msgstr "Sense so"
+
+msgid "Adult"
+msgstr "Adults"
+
+msgid "Waking up!"
+msgstr "Despertant!"
+
+msgid "LightGun Games"
+msgstr "Jocs de pistola òptica"
+
+msgid "NEW YORK"
+msgstr "NOVA YORK"
+
+msgid "MADRID"
+msgstr "MADRID"
+
+msgid "Swap the validate button (B/X) and the cancel button (B/O)."
+msgstr "Permet intercanviar el botó de validar B/X i el botó de cancel·lar B/O"
+
+msgid "box3d"
+msgstr "box3d"
+
+msgid "P2K CONTROLS"
+msgstr "CONTROLS P2K"
+
+msgid "THE UPGRADE HAS FAILED"
+msgstr "L'ACTUALITZACIÓ HA FALLAT"
+
+msgid ""
+"The upgrade process has failed. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, and contact the team on https://forum."
+"recalbox.com if the problem persists."
+msgstr ""
+"El procés d'actualització ha fallat. Heu tornat a Recalbox %s.\n"
+"Torneu a provar d'actualitzar el vostre Recalbox i contacteu amb l'equip a "
+"https://forum.recalbox.com si el problema persisteix."
+
+msgid "RECALBOX OVERLAYS"
+msgstr "SUPERPOSICIONS DE RECALBOX"
+
+msgid ""
+"On wide screens, display system images that wrap around emulated screen."
+msgstr ""
+"En pantalles amples, mostra imatges del sistema que envolten la pantalla "
+"emulada."
+
+msgid "No comment available"
+msgstr "No hi ha cap comentari disponible"
+
+msgid "UNKNOWN"
+msgstr "DESCONEGUT"
+
+msgid "GO TO GAME"
+msgstr "VÉS AL JOC"
+
+msgid "MEDIA FILES"
+msgstr "FITXERS MULTIMÈDIA"
+
+msgid "CONFIGURATION AND PATCH FILES"
+msgstr "FITXERS DE CONFIGURACIÓ I PEGATS"
+
+msgid "SAVE FILES"
+msgstr "FITXERS DE DESAT"
+
+msgid "RELEASE DATE"
+msgstr "DATA DE LLANÇAMENT"
+
+msgid "TYPE, THEN NAME"
+msgstr "TIPUS, DESPRÉS NOM"
+
+msgid "TYPE, THEN RELEASE DATE"
+msgstr "TIPUS, DESPRÉS DATA DE LLANÇAMENT"
+
+msgid "MANUFACTURER, THEN NAME"
+msgstr "FABRICANT, DESPRÉS NOM"
+
+msgid "MANUFACTURER, THEN RELEASE DATE"
+msgstr "FABRICANT, DESPRÉS DATA DE LLANÇAMENT"
+
+msgid "TYPE, THEN MANUFACTURER, THEN NAME"
+msgstr "TIPUS, DESPRÉS FABRICANT, DESPRÉS NOM"
+
+msgid "TYPE, THEN MANUFACTURER, THEN RELEASE DATE"
+msgstr "TIPUS, DESPRÉS FABRICANT, DESPRÉS DATA DE LLANÇAMENT"
+
+msgid "SYSTEM SORTING"
+msgstr "ORDENACIÓ DE SISTEMES"
+
+msgid ""
+"Default: use original or custom systemlist.xml order\n"
+"System Type: order by Console/Handheld/Computer/Arcade/Other\n"
+"Release Date: order by release date asc\n"
+"Manufacturer: order by manufacturer (e.g. Sega)\n"
+"Special Blend: Sort by type then Manufacturer then Release Date"
+msgstr ""
+"Per defecte: utilitza l'ordre original o personalitzat de systemlist.xml\n"
+"Tipus de sistema: ordena per Consola/Portàtil/Ordinador/Arcade/Altres\n"
+"Data de llançament: ordena per data de llançament ascendent\n"
+"Fabricant: ordena per fabricant (p. ex. Sega)\n"
+"Barreja especial: ordena per tipus, després fabricant, després data de "
+"llançament"
+
+msgid "DELETE ALL FILES"
+msgstr "SUPRIMEIX TOTS ELS FITXERS"
+
+msgid "ADVANCED DELETE"
+msgstr "SUPRESSIÓ AVANÇADA"
+
+msgid "DELETE ALL FILES, CONFIRM?"
+msgstr "SUPRIMEIX TOTS ELS FITXERS, CONFIRMEU?"
+
+msgid "DELETE SCREENSHOT, CONFIRM?"
+msgstr "SUPRIMEIX LA CAPTURA DE PANTALLA, CONFIRMEU?"
+
+msgid ""
+"Global resolution is the resolution used by default when specific "
+"resolutions are undefined."
+msgstr ""
+"La resolució global és la resolució utilitzada per defecte quan les "
+"resolucions específiques no estan definides."
+
+msgid "Select the resolution EmulationStation will use."
+msgstr "Seleccioneu la resolució que utilitzarà EmulationStation."
+
+msgid "RESOLUTIONS"
+msgstr "RESOLUCIONS"
+
+msgid "GLOBAL RESOLUTION"
+msgstr "RESOLUCIÓ GLOBAL"
+
+msgid "EMULATIONSTATION RESOLUTION"
+msgstr "RESOLUCIÓ D'EMULATIONSTATION"
+
+msgid "USE GLOBAL"
+msgstr "UTILITZA LA GLOBAL"
+
+msgid "NATIVE"
+msgstr "NATIVA"
+
+msgid ""
+"No file selected,\n"
+"you must at least choose one."
+msgstr ""
+"Cap fitxer seleccionat,\n"
+"n'heu de triar almenys un."
+
+msgid ""
+"The device %NAME% containing roms has been plugged in! EmulationStation must "
+"relaunch to load new games."
+msgstr ""
+"El dispositiu %NAME% que conté roms s'ha connectat! EmulationStation s'ha de "
+"reiniciar per carregar els jocs nous."
+
+msgid ""
+"A device containing roms has been unplugged! EmulationStation must relaunch "
+"to remove unavailable games."
+msgstr ""
+"S'ha desconnectat un dispositiu que conté roms! EmulationStation s'ha de "
+"reiniciar per eliminar els jocs no disponibles."
+
+msgid ""
+"Your USB device has been initialized! You can unplug it and copy your games "
+"on it."
+msgstr ""
+"El vostre dispositiu USB s'ha inicialitzat! Podeu desconnectar-lo i copiar-"
+"hi els vostres jocs."
+
+msgid ""
+"Initialization failed! Your USB device is full or contains errors. Please "
+"repair or use another device."
+msgstr ""
+"La inicialització ha fallat! El vostre dispositiu USB està ple o conté "
+"errors. Repareu-lo o utilitzeu un altre dispositiu."
+
+msgid "DISPLAY BY FILENAME"
+msgstr "MOSTRA PEL NOM DEL FITXER"
+
+msgid "SEARCH GAMES HERE"
+msgstr "CERCA JOCS AQUÍ"
+
+msgid "This game is currently updating its metadata. Retry in a few seconds."
+msgstr ""
+"Aquest joc està actualitzant les seves metadades. Torneu-ho a provar en uns "
+"segons."
+
+msgid "SHOW ONLY LATEST VERSION"
+msgstr "MOSTRA NOMÉS L'ÚLTIMA VERSIÓ"
+
+msgid "SHOW ONLY FAVORITES"
+msgstr "MOSTRA NOMÉS ELS PREFERITS"
+
+msgid "SHOW HIDDEN GAMES"
+msgstr "MOSTRA ELS JOCS AMAGATS"
+
+msgid "Display game by file name instead of game name."
+msgstr "Mostra el joc pel nom del fitxer en lloc del nom del joc."
+
+msgid "DISABLE"
+msgstr "DESACTIVA"
+
+msgid "original"
+msgstr "original"
+
+msgid ""
+"A fatal error occured while scraping your game! It may be related to server "
+"issues or bad login/password.\n"
+"\n"
+"Try again in a few moment or fix your credentials if required."
+msgstr ""
+"S'ha produït un error fatal en cercar el vostre joc! Pot estar relacionat "
+"amb problemes del servidor o un nom d'usuari/contrasenya incorrectes.\n"
+"\n"
+"Torneu-ho a provar d'aquí uns moments o corregiu les vostres credencials si "
+"cal."
+
+msgid "Your scraping session completed!"
+msgstr "La vostra sessió de cerca ha finalitzat!"
+
+msgid "Please select one or more systems to scrape!"
+msgstr "Seleccioneu un o més sistemes per cercar!"
+
+msgid ""
+"Your system has not enough memory to handle %SYSTEMS% systems. You should "
+"not exceed %MAXSYSTEMS% consoles/computers or you may face stability "
+"issues!\n"
+"\n"
+"You can hide preinstalled games in UI SETTINGS menu to decrease active "
+"systems"
+msgstr ""
+"El vostre sistema no té prou memòria per gestionar %SYSTEMS% sistemes. No "
+"hauríeu de superar %MAXSYSTEMS% consoles/ordinadors o podeu tenir problemes "
+"d'estabilitat!\n"
+"\n"
+"Podeu amagar els jocs preinstal·lats al menú CONFIGURACIÓ D'INTERFÍCIE per "
+"reduir els sistemes actius"
+
+msgid ""
+"Your system has not enough memory to handle %GAMES% games. You should not "
+"exceed %MAXGAMES% or you may face stability issues!"
+msgstr ""
+"El vostre sistema no té prou memòria per gestionar %GAMES% jocs. No hauríeu "
+"de superar %MAXGAMES% o podeu tenir problemes d'estabilitat!"
+
+msgid "WARNING! SYSTEM OVERLOAD!"
+msgstr "ATENCIÓ! SOBRECÀRREGA DEL SISTEMA!"
+
+msgid ""
+"Welcome back %NAME%!\n"
+"Patron level %LEVEL%\n"
+"You are now connected to your recalbox patron account, and all exclusives "
+"features are available!"
+msgstr ""
+"Benvingut de nou %NAME%!\n"
+"Nivell de mecenes %LEVEL%\n"
+"Ara esteu connectat al vostre compte de mecenes de recalbox, i totes les "
+"funcions exclusives estan disponibles!"
+
+msgid ""
+"Hello %NAME%, your private key is linked to a Patreon account which is no "
+"longer a Recalbox Patron.\n"
+"We still hope to see you back soon as a Recalbox Patron!\n"
+"Delete your private key to suppress this message."
+msgstr ""
+"Hola %NAME%, la vostra clau privada està vinculada a un compte de Patreon "
+"que ja no és mecenes de Recalbox.\n"
+"Encara esperem tornar a veure-us aviat com a mecenes de Recalbox!\n"
+"Suprimiu la vostra clau privada per eliminar aquest missatge."
+
+msgid ""
+"Your private key does not allow to retrieve your Patreon information. Go to "
+"recalbox.com/patreon to generate a new valid key!"
+msgstr ""
+"La vostra clau privada no permet recuperar la vostra informació de Patreon. "
+"Aneu a recalbox.com/patreon per generar una nova clau vàlida!"
+
+msgid ""
+"Sorry we're not able to retrieve your Patron level because no network is "
+"available!"
+msgstr ""
+"Ho sentim, no podem recuperar el vostre nivell de mecenes perquè no hi ha "
+"cap xarxa disponible!"
+
+msgid ""
+"We're not able to retrieve your Patron level! Sorry for the inconvenience, "
+"we're already working on a fix!"
+msgstr ""
+"No podem recuperar el vostre nivell de mecenes! Sentim les molèsties, ja "
+"estem treballant en una solució!"
+
+msgid "CASE MANAGEMENT"
+msgstr "GESTIÓ DE LA CARCASSA"
+
+msgid ""
+"If you installed a case on your Recalbox, you can install or uninstall it in "
+"this menu. Some cases are detected automatically and will also be reported "
+"here."
+msgstr ""
+"Si heu instal·lat una carcassa al vostre Recalbox, podeu instal·lar-la o "
+"desinstal·lar-la aquí. Algunes carcasses es detecten automàticament i també "
+"es mostraran aquí."
+
+msgid ""
+"The USB device %NAME% with no rom folder and no share folder has been "
+"plugged in! Would you like to initialize this device?"
+msgstr ""
+"S'ha connectat el dispositiu USB %NAME% sense carpeta de roms ni carpeta "
+"share! Voleu inicialitzar aquest dispositiu?"
+
+msgid "• Choose '%INIT%' to create only all the rom folders"
+msgstr "• Trieu '%INIT%' per crear només totes les carpetes de roms"
+
+msgid ""
+"• Choose '%MOVE%' to copy all the current share to the new device, "
+"automatically switch to this device, and reboot"
+msgstr ""
+"• Trieu '%MOVE%' per copiar tot el share actual al dispositiu nou, canviar "
+"automàticament a aquest dispositiu i reiniciar"
+
+msgid "• Or just chose '%CANCEL%' to do nothing with this new device"
+msgstr ""
+"• O simplement trieu '%CANCEL%' per no fer res amb aquest dispositiu nou"
+
+msgid "INITIALIZE"
+msgstr "INICIALITZA"
+
+msgid "MOVE SHARE"
+msgstr "MOU EL SHARE"
+
+msgid "Setting up boot device..."
+msgstr "Configurant el dispositiu d'arrencada..."
+
+msgid ""
+"Your USB device has been initialized! Ready to reboot on your new share "
+"device!"
+msgstr ""
+"El vostre dispositiu USB s'ha inicialitzat! Llest per reiniciar amb el "
+"vostre nou dispositiu share!"
+
+msgid "UPDATING..."
+msgstr "ACTUALITZANT..."
+
+msgid "Video"
+msgstr "Vídeo"
+
+msgid ""
+"For safe shutdown to work, set the SAFE SHUTDOWN switch to ON. You will find "
+"it on the circuit board, inside your Retroflag case."
+msgstr ""
+"Perquè l'apagada segura funcioni, poseu l'interruptor SAFE SHUTDOWN a ON. El "
+"trobareu a la placa de circuits, dins de la vostra carcassa Retroflag."
+
+msgid "MENU RESOLUTION"
+msgstr "RESOLUCIÓ DEL MENÚ"
+
+msgid "SCREEN TYPE"
+msgstr "TIPUS DE PANTALLA"
+
+msgid "SELECT GAME REFRESH RATE AT LAUNCH"
+msgstr "SELECCIONA LA FREQÜÈNCIA D'ACTUALITZACIÓ DEL JOC EN LLANÇAR"
+
+msgid "Let you choose between 50Hz and 60Hz at launch, for compatible systems."
+msgstr ""
+"Us permet triar entre 50Hz i 60Hz en llançar, per a sistemes compatibles."
+
+msgid "SELECT GAME RESOLUTION AT LAUNCH"
+msgstr "SELECCIONA LA RESOLUCIÓ DEL JOC EN LLANÇAR"
+
+msgid ""
+"Let you choose between 240p, 480i, or 480p at launch, for compatible systems."
+msgstr ""
+"Us permet triar entre 240p, 480i o 480p en llançar, per a sistemes "
+"compatibles."
+
+msgid "FORCE SOUND ON JACK"
+msgstr "FORÇA EL SO AL JACK"
+
+msgid "Force sound on jack. Auto-enabled when 31kHz switch is ON"
+msgstr ""
+"Força el so al jack. S'activa automàticament quan l'interruptor de 31kHz "
+"està activat"
+
+msgid "MOVE SCREEN"
+msgstr "MOU LA PANTALLA"
+
+msgid "Horizontal offset:"
+msgstr "Desplaçament horitzontal:"
+
+msgid "Vertical offset:"
+msgstr "Desplaçament vertical:"
+
+msgid "YOUR LIST IS EMPTY. PRESS START TO CHANGE GAME FILTERS."
+msgstr ""
+"LA VOSTRA LLISTA ESTÀ BUIDA. PREMEU START PER CANVIAR ELS FILTRES DE JOCS."
+
+msgid "Select a region to filter out games not matching the selected region."
+msgstr ""
+"Seleccioneu una regió per filtrar els jocs que no coincideixin amb la regió "
+"seleccionada."
+
+msgid "SOFTPATCHING"
+msgstr "PEGAT PER SOFTWARE"
+
+msgid "AUTOMATIC SCRAPING"
+msgstr "CERCA AUTOMÀTICA"
+
+msgid "RUN IN BACKGROUND"
+msgstr "EXECUTA EN SEGON PLA"
+
+msgid "MONTREAL"
+msgstr "MONTREAL"
+
+msgid "SAOPAULO"
+msgstr "SAO PAULO"
+
+msgid "%i Known MD5"
+msgstr "%i MD5 conegut"
+
+msgid "Restarting."
+msgstr "Reiniciant."
+
+msgid "Entering standby..."
+msgstr "Entrant en espera..."
+
+msgid "PAD TO KEYBOARD CONTROLS"
+msgstr "CONTROLS PAD A TECLAT"
+
+msgid "You are about to delete this files, confirm ?"
+msgstr "Esteu a punt de suprimir aquests fitxers, confirmeu?"
+
+msgid "Preparing Games..."
+msgstr "Preparant jocs..."
+
+msgid "Free"
+msgstr "Lliure"
+
+msgid "FADE"
+msgstr "ESVAÏMENT"
+
+msgid "SLIDE"
+msgstr "LLISCAMENT"
+
+msgid "INSTANT"
+msgstr "INSTANTANI"
+
+msgid "You must have at least %dGB free on 'SHARE' partition!"
+msgstr "Heu de tenir almenys %dGB lliures a la partició 'SHARE'!"
+
+msgid "60Hz (US)"
+msgstr "60Hz (US)"
+
+msgid "60Hz (JP)"
+msgstr "60Hz (JP)"
+
+msgid "50Hz (EU)"
+msgstr "50Hz (EU)"
+
+msgid "60Hz"
+msgstr "60Hz"
+
+msgid "50Hz"
+msgstr "50Hz"
+
+msgid "Recalbox RGB Dual options and configuration."
+msgstr "Opcions i configuració de Recalbox RGB Dual."
+
+msgid "Select system, frontend and emulator resolutions."
+msgstr "Seleccioneu les resolucions del sistema, la interfície i l'emulador."
+
+msgid "PAIR BLUETOOTH CONTROLLERS"
+msgstr "ASSOCIA COMANDAMENTS BLUETOOTH"
+
+msgid ""
+"The bluetooth pairing will start and run for several minutes.\n"
+"During this time, you just have to apply the pairing procedure on any "
+"bluetooth controller you want to pair.\n"
+"The next window will display all detected bluetooth devices and their status "
+"for information purposes only.\n"
+"You can close it at any time, while continuing to pair your bluetooth "
+"devices for as long as the bluetooth icon is blinking on the top left."
+msgstr ""
+"L'associació bluetooth començarà i s'executarà durant diversos minuts.\n"
+"Durant aquest temps, només heu d'aplicar el procediment d'associació a "
+"qualsevol comandament bluetooth que vulgueu associar.\n"
+"La finestra següent mostrarà tots els dispositius bluetooth detectats i el "
+"seu estat només amb finalitats informatives.\n"
+"Podeu tancar-la en qualsevol moment, mentre continueu associant els vostres "
+"dispositius bluetooth mentre la icona de bluetooth parpellegi a la part "
+"superior esquerra."
+
+msgid "START DOWNLOADING..."
+msgstr "COMENÇA LA DESCÀRREGA..."
+
+msgid ""
+"Pair a bluetooth audio device. Put your device in discovery mode before "
+"starting."
+msgstr ""
+"Associeu un dispositiu d'àudio bluetooth. Poseu el vostre dispositiu en mode "
+"de descobriment abans de començar."
+
+msgid "PAIR A BLUETOOTH AUDIO DEVICE"
+msgstr "ASSOCIA UN DISPOSITIU D'ÀUDIO BLUETOOTH"
+
+msgid "J1 UP"
+msgstr "J1 AMUNT"
+
+msgid "J1 DOWN"
+msgstr "J1 AVALL"
+
+msgid "J1 LEFT"
+msgstr "J1 ESQUERRA"
+
+msgid "J1 RIGHT"
+msgstr "J1 DRETA"
+
+msgid "J2 UP"
+msgstr "J2 AMUNT"
+
+msgid "J2 DOWN"
+msgstr "J2 AVALL"
+
+msgid "J2 LEFT"
+msgstr "J2 ESQUERRA"
+
+msgid "J2 RIGHT"
+msgstr "J2 DRETA"
+
+msgid "Alias: **"
+msgstr "Àlies: **"
+
+msgid "MAC: "
+msgstr "MAC: "
+
+msgid "Connected: "
+msgstr "Connectat: "
+
+msgid "Trusted: "
+msgstr "De confiança: "
+
+msgid "Paired: "
+msgstr "Associat: "
+
+msgid "Blocked: "
+msgstr "Bloquejat: "
+
+msgid "NO DEVICE"
+msgstr "SENSE DISPOSITIU"
+
+msgid "SEARCH BY"
+msgstr "CERCA PER"
+
+msgid "NO RESULTS"
+msgstr "SENSE RESULTATS"
+
+msgid "PRIORITY TO HDMI"
+msgstr "PRIORITAT A HDMI"
+
+msgid "ON"
+msgstr "ACTIVAT"
+
+msgid "OFF"
+msgstr "DESACTIVAT"
+
+msgid "60Hz Only"
+msgstr "Només 60Hz"
+
+msgid "50Hz Only"
+msgstr "Només 50Hz"
+
+msgid "DISCOVERING BLUETOOTH AUDIO DEVICES..."
+msgstr "DESCOBRINT DISPOSITIUS D'ÀUDIO BLUETOOTH..."
+
+msgid "NO AUDIO DEVICE FOUND"
+msgstr "NO S'HA TROBAT CAP DISPOSITIU D'ÀUDIO"
+
+msgid "KODI RESOLUTION"
+msgstr "RESOLUCIÓ DE KODI"
+
+msgid "AUDIO DEVICE PAIRED"
+msgstr "DISPOSITIU D'ÀUDIO ASSOCIAT"
+
+msgid "UNABLE TO PAIR AUDIO DEVICE"
+msgstr "NO ES POT ASSOCIAR EL DISPOSITIU D'ÀUDIO"
+
+msgid "BRIGHTNESS"
+msgstr "BRILLANTOR"
+
+msgid "NAME"
+msgstr "NOM"
+
+msgid "suspend"
+msgstr "suspèn"
+
+msgid "NEXT RESOLUTION"
+msgstr "RESOLUCIÓ SEGÜENT"
+
+msgid "Game refresh rate"
+msgstr "Freqüència d'actualització del joc"
+
+msgid "Game resolution"
+msgstr "Resolució del joc"
+
+msgid "CHANGELOG"
+msgstr "REGISTRE DE CANVIS"
+
+msgid "Copying %s folder..."
+msgstr "Copiant la carpeta %s..."
+
+msgid "B"
+msgstr "B"
+
+msgid "KB"
+msgstr "KB"
+
+msgid "MB"
+msgstr "MB"
+
+msgid "GB"
+msgstr "GB"
+
+msgid "TB"
+msgstr "TB"
+
+msgid "SAVE STATES"
+msgstr "ESTATS DESATS"
+
+msgid "SHOW SAVE STATES ON START"
+msgstr "MOSTRA ELS ESTATS DESATS EN INICIAR"
+
+msgid "You are about to delete this state, confirm ?"
+msgstr "Esteu a punt de suprimir aquest estat, confirmeu?"
+
+msgid "DELETE STATE, CONFIRM?"
+msgstr "SUPRIMEIX L'ESTAT, CONFIRMEU?"
+
+msgid "CHANGE ORDER"
+msgstr "CANVIA L'ORDRE"
+
+msgid "LAUNCH GAME FROM STATE"
+msgstr "LLANÇA EL JOC DES DE L'ESTAT"
+
+msgid "DELETE STATE SLOT"
+msgstr "SUPRIMEIX LA RANURA D'ESTAT"
+
+msgid "Display the available save states before launching a game."
+msgstr ""
+"Mostrar els estats desats en iniciar mostrarà els estats desats disponibles "
+"abans de llançar un joc."
+
+msgid "DOWNLOADING GAMES FOR %s"
+msgstr "DESCARREGANT JOCS PER A %s"
+
+msgid "Downloading WASM4 games from the official site. Please wait..."
+msgstr "Descarregant jocs WASM4 des del lloc oficial. Espereu..."
+
+msgid "Downloading... Estimated time: %s"
+msgstr "Descarregant... Temps estimat: %s"
+
+msgid "Extracting... found %s games"
+msgstr "Extraient... s'han trobat %s jocs"
+
+msgid "Updating metadata..."
+msgstr "Actualitzant metadades..."
+
+msgid "Refreshing gamelist..."
+msgstr "Actualitzant la llista de jocs..."
+
+msgid ""
+"Scrap running in background.\n"
+"Return to the scrap menu to get the progression."
+msgstr ""
+"Cerca en execució en segon pla.\n"
+"Torneu al menú de cerca per veure el progrés."
+
+msgid "ADVANCED SHADERS"
+msgstr "SHADERS AVANÇATS"
+
+msgid "GAME BOY MODE"
+msgstr "MODE GAME BOY"
+
+msgid "GAME BOY"
+msgstr "GAME BOY"
+
+msgid "SUPER GAME BOY"
+msgstr "SUPER GAME BOY"
+
+msgid "ASK AT LAUNCH"
+msgstr "PREGUNTA EN LLANÇAR"
+
+msgid "CRT CURVED"
+msgstr "CRT CORBAT"
+
+msgid ""
+"YOU JUST ACTIVATED THE SHADERS FOR ALL SYSTEMS. FOR A BETTER RENDERING, IT "
+"IS ADVISED TO DISABLE GAME SMOOTHING. DO YOU WANT TO CHANGE THIS OPTION "
+"AUTOMATICALLY?"
+msgstr ""
+"ACABEU D'ACTIVAR ELS SHADERS PER A TOTS ELS SISTEMES. PER A UN MILLOR "
+"RENDERITZAT, ES RECOMANA DESACTIVAR EL SUAVITZAT DEL JOC. VOLEU CANVIAR "
+"AQUESTA OPCIÓ AUTOMÀTICAMENT?"
+
+msgid "Optimized video"
+msgstr "Vídeo optimitzat"
+
+msgid "RECOMMENDED"
+msgstr "RECOMANAT"
+
+msgid "TATE SETTINGS"
+msgstr "CONFIGURACIÓ TATE"
+
+msgid "ENABLE TATE VIRTUAL SYSTEM"
+msgstr "ACTIVA EL SISTEMA VIRTUAL TATE"
+
+msgid "GAMES ROTATION"
+msgstr "ROTACIÓ DE JOCS"
+
+msgid "COMPLETE SYSTEM ROTATION"
+msgstr "ROTACIÓ COMPLETA DEL SISTEMA"
+
+msgid ""
+"Welcome to RECALBOX for Anbernic RG!\n"
+"This little presentation will show you how to use all the special buttons "
+"available all around the screen.\n"
+"\n"
+"Press any button to start!"
+msgstr ""
+"Benvinguts a RECALBOX per a Anbernic RG!\n"
+"Aquesta petita presentació us mostrarà com utilitzar tots els botons "
+"especials disponibles al voltant de la pantalla.\n"
+"\n"
+"Premeu qualsevol botó per començar!"
+
+msgid ""
+"On the left side of the console, there are 2 buttons marked with a '-' and a "
+"'+'.\n"
+"Use them to raise or lower the volume at any time in the Recalbox interface "
+"or in-game.\n"
+"\n"
+"Press button B to continue"
+msgstr ""
+"Al costat esquerre de la consola, hi ha 2 botons marcats amb '-' i '+'.\n"
+"Utilitzeu-los per pujar o baixar el volum en qualsevol moment a la "
+"interfície de Recalbox o al joc.\n"
+"\n"
+"Premeu el botó B per continuar"
+
+msgid ""
+"On the top side of the console, there is a button marked 'F'.\n"
+"This is the Hotkey button\n"
+"To quit a game press both F + START\n"
+"Press button B to continue"
+msgstr ""
+"A la part superior de la consola, hi ha un botó marcat amb 'F'.\n"
+"Aquest és el botó Hotkey\n"
+"Per sortir d'un joc premeu F + START\n"
+"Premeu el botó B per continuar"
+
+msgid ""
+"Use the function F button and a volume button to adjust brightness\n"
+"Press button B to continue"
+msgstr ""
+"Utilitzeu el botó de funció F i un botó de volum per ajustar la brillantor\n"
+"Premeu el botó B per continuar"
+
+msgid "GameBoy Mode"
+msgstr "Mode GameBoy"
+
+msgid "Rotation"
+msgstr "Rotació"
+
+msgid "Full Screen"
+msgstr "Pantalla completa"
+
+msgid "DOWNLOAD CONTENTS"
+msgstr "DESCARREGA CONTINGUTS"
+
+msgid "Start downloading..."
+msgstr "Iniciant la descàrrega..."
+
+msgid "none"
+msgstr "cap"
+
+msgid "Games"
+msgstr "Jocs"
+
+msgid "Downloading free games from Recalbox repositories. Please wait..."
+msgstr "Descarregant jocs gratuïts dels repositoris de Recalbox. Espereu..."
+
+msgid "Installing %s games"
+msgstr "Instal·lant %s jocs"
+
+msgid "SLOT"
+msgstr "RANURA"
+
+msgid "ENABLE ENHANCED VIEW"
+msgstr "ACTIVA LA VISTA MILLORADA"
+
+msgid "FOLD CLONES BY DEFAULT"
+msgstr "PLEGA ELS CLONS PER DEFECTE"
+
+msgid "HIDE BIOS"
+msgstr "AMAGA LES BIOS"
+
+msgid "HIDE NON-WORKING GAMES"
+msgstr "AMAGA ELS JOCS QUE NO FUNCIONEN"
+
+msgid "ALWAYS USE OFFICIAL NAMES"
+msgstr "UTILITZA SEMPRE ELS NOMS OFICIALS"
+
+msgid "MANUFACTURER VIRTUAL SYSTEMS"
+msgstr "SISTEMES VIRTUALS DE FABRICANT"
+
+msgid "HD MODE"
+msgstr "MODE HD"
+
+msgid "WIDESCREEN (16/9)"
+msgstr "PANTALLA AMPLA (16/9)"
+
+msgid "LAUNCH LAST"
+msgstr "LLANÇA L'ÚLTIM"
+
+msgid "BOOTLOADER UPDATE"
+msgstr "ACTUALITZACIÓ DEL BOOTLOADER"
+
+msgid ""
+"If no configured controller is detected at boot, Recalbox will run as usual "
+"and display the system list."
+msgstr ""
+"Si no es detecta cap comandament configurat en arrencar, recalbox "
+"s'executarà com de costum i mostrarà la llista de sistemes."
+
+msgid "Could not get bootloader status. Something went wrong"
+msgstr ""
+"No s'ha pogut obtenir l'estat del bootloader. Alguna cosa ha anat malament"
+
+msgid "An update is available :\n"
+msgstr "Hi ha una actualització disponible:\n"
+
+msgid "Current version: \n"
+msgstr "Versió actual: \n"
+
+msgid ""
+"\n"
+"Latest version: \n"
+msgstr ""
+"\n"
+"Última versió: \n"
+
+msgid "Update success. The bootloader is up to date."
+msgstr "Actualització correcta. El bootloader està al dia."
+
+msgid ""
+"Your bootloader is up to date.\n"
+"The bootloader version is:\n"
+msgstr ""
+"El vostre bootloader està al dia.\n"
+"La versió del bootloader és:\n"
+
+msgid "AUTO PAIR ON BOOT"
+msgstr "ASSOCIACIÓ AUTOMÀTICA EN ARRENCAR"
+
+msgid "ALWAYS SHOW PAD OSD"
+msgstr "MOSTRA SEMPRE L'OSD DEL COMANDAMENT"
+
+msgid "PAD OSD TYPE"
+msgstr "TIPUS D'OSD DEL COMANDAMENT"
+
+msgid "REDUCED LATENCY (EXPERIMENTAL)"
+msgstr "LATÈNCIA REDUÏDA (EXPERIMENTAL)"
+
+msgid "RUN AHEAD (EXPERIMENTAL)"
+msgstr "RUN AHEAD (EXPERIMENTAL)"
+
+msgid "MONO AMP BOOST"
+msgstr "IMPULS D'AMPLIFICADOR MONO"
+
+msgid "PANEL TYPE"
+msgstr "TIPUS DE PANELL"
+
+msgid "4 PLAYERS MODE"
+msgstr "MODE 4 JUGADORS"
+
+msgid "START+BTN1 = CREDIT"
+msgstr "START+BTN1 = CRÈDIT"
+
+msgid "START+BTN = HK+BTN"
+msgstr "START+BTN = HK+BTN"
+
+msgid "START 3SEC = EXIT"
+msgstr "START 3SEC = SORTIR"
+
+msgid "START+BTN 5SEC = AUTO FIRE"
+msgstr "START+BTN 5SEC = FOC AUTOMÀTIC"
+
+msgid "PIN E/27 AS GND"
+msgstr "PIN E/27 COM A GND"
+
+msgid "RESET JAMMA CONFIGURATION"
+msgstr "RESTABLEIX LA CONFIGURACIÓ JAMMA"
+
+msgid ""
+"You will now calibrate different resolutions for the frontend. Select the "
+"refresh rate according to what your TV supports.\n"
+"During the calibration, press B to validate, and A to cancel."
+msgstr ""
+"Ara calibrareu diferents resolucions per a la interfície. Seleccioneu la "
+"freqüència d'actualització segons el que admet la vostra TV.\n"
+"Durant la calibració, premeu B per validar i A per cancel·lar."
+
+msgid "Are you sure you want to reset JAMMA configuration?"
+msgstr "Esteu segur que voleu restablir la configuració JAMMA?"
+
+msgid "BOOT ON THIS GAME"
+msgstr "ARRENCA AMB AQUEST JOC"
+
+msgid "DOWNLOAD GAMES"
+msgstr "DESCARREGA JOCS"
+
+msgid "DISPLAY ONLY TATE GAMES IN GAMELISTS"
+msgstr "MOSTRA NOMÉS ELS JOCS TATE A LES LLISTES DE JOCS"
+
+msgid "TIME PLAYED"
+msgstr "TEMPS JUGAT"
+
+msgid "DID YOU KNOW?"
+msgstr "SABÍEU QUE?"
+
+msgid ""
+"Last operation removed all systems!\n"
+"\n"
+"They have been restored to allow normal operations, regardless of the "
+"current filters."
+msgstr ""
+"L'última operació ha eliminat tots els sistemes!\n"
+"\n"
+"S'han restaurat per permetre operacions normals, independentment dels "
+"filtres actuals."
+
+msgid ""
+"{0} reports the emulation status of this game is 'preliminary'. You should "
+"expect issues such as bugs or even crashes!"
+msgstr ""
+"{0} informa que l'estat d'emulació d'aquest joc és 'preliminar'. Hauríeu "
+"d'esperar problemes com errors o fins i tot bloquejos!"
+
+msgid "Start the game standard Game Boy mode"
+msgstr "Inicia el joc en mode Game Boy estàndard"
+
+msgid "Start the game in Super Game Boy mode"
+msgstr "Inicia el joc en mode Super Game Boy"
+
+msgid "INITIALIZING SYSTEM {0}"
+msgid_plural "INITIALIZING SYSTEMS..."
+msgstr[0] "INICIALITZANT EL SISTEMA {0}"
+msgstr[1] "INICIALITZANT ELS SISTEMES..."
+
+msgid "LOADING SYSTEMS..."
+msgstr "CARREGANT SISTEMES..."
+
+msgid "LOADING VIRTUAL SYSTEMS..."
+msgstr "CARREGANT SISTEMES VIRTUALS..."
+
+msgid "INITIALIZING INTERFACE..."
+msgstr "INICIALITZANT LA INTERFÍCIE..."
+
+msgid ""
+"One or more files are corrupted. You are back on Recalbox %s.\n"
+"Please retry to upgrade your Recalbox, check your Recalbox storage (SD Card, "
+"USB Key or hard drive).\n"
+"Contact the team on https://forum.recalbox.com if the problem persists."
+msgstr ""
+"Un o més fitxers estan corromputs. Heu tornat a Recalbox %s.\n"
+"Torneu a provar d'actualitzar el vostre Recalbox, comproveu l'emmagatzematge "
+"de Recalbox (targeta SD, clau USB o disc dur).\n"
+"Contacteu amb l'equip a https://forum.recalbox.com si el problema persisteix."
+
+msgid "THE UPGRADE IS CORRUPTED"
+msgstr "L'ACTUALITZACIÓ ESTÀ CORROMPUDA"
+
+msgid "An undervoltage has been detected, the system may slow down.\n"
+msgstr "S'ha detectat una subtensió, el sistema pot alentir-se.\n"
+
+msgid ""
+"We recommend adjusting your JAMMA cabinet power supply to increase the "
+"voltage to between 5.05V and 5.2V"
+msgstr ""
+"Us recomanem ajustar la font d'alimentació del vostre moble JAMMA per "
+"augmentar el voltatge entre 5.05V i 5.2V"
+
+msgid ""
+"We recommend that you purchase an official USB-C power supply designed for "
+"your Raspberry Pi"
+msgstr ""
+"Us recomanem comprar una font d'alimentació USB-C oficial dissenyada per al "
+"vostre Raspberry Pi"
+
+msgid ""
+"The temperature of your system is high.\n"
+"The system may slow down. Try cooling your Raspberry Pi with a fan or "
+"disable overclock if it's enabled."
+msgstr ""
+"La temperatura del vostre sistema és alta.\n"
+"El sistema pot alentir-se. Proveu de refredar el vostre Raspberry Pi amb un "
+"ventilador o desactiveu el sobrefreqüenciament si està activat."
+
+msgid ""
+"Choose strategy\n"
+"\n"
+"AUTO: auto apply default patch\n"
+"\n"
+"LAUNCH LAST: always launch the last one (can be modified in edit game menu)\n"
+"\n"
+"SELECT: choose manually which patch to apply. Default one or patches in "
+"[ROM_NAME]-patches directory\n"
+"\n"
+"DISABLED: never apply patch"
+msgstr ""
+"Trieu l'estratègia\n"
+"\n"
+"AUTO: aplica automàticament el pegat per defecte\n"
+"\n"
+"LLANÇA L'ÚLTIM: llança sempre l'últim (es pot modificar al menú d'edició del "
+"joc)\n"
+"\n"
+"SELECCIONA: trieu manualment quin pegat aplicar. El per defecte o els pegats "
+"al directori [ROM_NAME]-patches\n"
+"\n"
+"DESACTIVAT: no aplica mai cap pegat"
+
+msgid "Set the Super GameBoy mode for GameBoy games."
+msgstr "Estableix el mode Super GameBoy per als jocs de GameBoy."
+
+msgid ""
+"Improves resolution on compatible 3d emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+msgstr ""
+"Millora la resolució en emuladors 3D compatibles. Pot tenir un impacte en el "
+"rendiment. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)"
+
+msgid ""
+"Enables 16:9 hacks for compatible emulators. May have an impact on "
+"performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+msgstr ""
+"Activa els hacks 16:9 per a emuladors compatibles. Pot tenir un impacte en "
+"el rendiment. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)"
+
+msgid "Always display Pad OSD whether you are in pad menus or not."
+msgstr ""
+"Mostra sempre l'OSD del comandament, tant si esteu als menús del comandament "
+"com si no."
+
+msgid "Change the icon used to display pad OSD."
+msgstr "Canvia la icona utilitzada per mostrar l'OSD del comandament."
+
+msgid "Activates Bluetooth pairing automatically each time you boot."
+msgstr ""
+"Activa l'associació Bluetooth automàticament cada vegada que arranqueu."
+
+msgid ""
+"Enable the new arcade view, with parents and clones sorted hierarchically."
+msgstr "Activa la nova vista arcade amb pares/clons ordenats jeràrquicament."
+
+msgid "Hide clones and orphaned games"
+msgstr "Amaga els clons i els jocs orfes"
+
+msgid "Hide bios files"
+msgstr "Amaga els fitxers bios"
+
+msgid "Hide unknown and non-working games"
+msgstr "Amaga els jocs desconeguts i que no funcionen"
+
+msgid "Manage screen and game rotation options"
+msgstr "Gestiona les opcions de rotació de pantalla i joc"
+
+msgid "Proceed to a complete screen rotation, for frontend and games."
+msgstr ""
+"Realitza una rotació completa de la pantalla, per a la interfície i els jocs."
+
+msgid "Configure emulators to reduce latency."
+msgstr "Configura els emuladors per reduir la latència."
+
+msgid ""
+"Use run ahead to reduce latency. Can have undesired effect on some emulators."
+msgstr ""
+"Utilitza run ahead per reduir la latència. Pot tenir efectes no desitjats en "
+"alguns emuladors."
+
+msgid "When a HDMI cable is connected, use HDMI output in priority."
+msgstr ""
+"Quan hi ha un cable HDMI connectat, utilitza la sortida HDMI amb prioritat."
+
+msgid "Superrez can increase image quality depending on your CRT."
+msgstr "Superrez pot augmentar la qualitat de la imatge segons el vostre CRT."
+
+msgid "Number of buttons on your arcade cab panel."
+msgstr "Nombre de botons del vostre panell de moble arcade."
+
+msgid "Boost mono amp power. Use only if the sound level is too low."
+msgstr ""
+"Augmenta la potència de l'amplificador mono. Utilitzeu-lo només si el nivell "
+"de so és massa baix."
+
+msgid "Define the NEOGEO layout when playing NEOGEO games."
+msgstr "Defineix la disposició NEOGEO quan jugueu a jocs NEOGEO."
+
+msgid "Add a credit in game, pressing START + BTN1. Works for all players."
+msgstr ""
+"Afegeix un crèdit al joc, prement START + BTN1. Funciona per a tots els "
+"jugadors."
+
+msgid ""
+"START + any button will send the HK+BTN event, so you can use special hotkey "
+"controls in emulators."
+msgstr ""
+"START + qualsevol botó enviarà l'esdeveniment HK+BTN, de manera que podeu "
+"utilitzar controls hotkey especials als emuladors."
+
+msgid ""
+"Pressing START for 3sec will exit the game. If you disable this option, you "
+"will have to exit the game with SERVICE + TEST."
+msgstr ""
+"Prémer START durant 3 segons sortirà del joc. Si desactiveu aquesta opció, "
+"haureu de sortir del joc amb SERVICE + TEST."
+
+msgid ""
+"Select the type of your screen. If you don't know what you are doing, do not "
+"change this value."
+msgstr ""
+"Seleccioneu el tipus de la vostra pantalla. Si no sabeu què esteu fent, no "
+"canvieu aquest valor."
+
+msgid "4-player mode, with players 2 and 3 on the CPS2 kick harness."
+msgstr "Mode de 4 jugadors, amb el jugador 2 i 3 al kickharness CPS2."
+
+msgid "Set auto fire for a button by pressing START + a button for 5 seconds"
+msgstr ""
+"Estableix el foc automàtic per a un botó prement START + un botó durant 5 "
+"segons"
+
+msgid ""
+"On some cabs, the pins E/27 of the JAMMA are the common ground for controls. "
+"Enable this option if you have this configuration."
+msgstr ""
+"En alguns mobles, els pins E/27 del JAMMA són la terra comuna per als "
+"controls. Activeu aquesta opció si teniu aquesta configuració."
+
+msgid "Refreshing systems..."
+msgstr "Actualitzant sistemes..."
+
+msgid "Your scraping session completed. Press OK to show the results."
+msgstr ""
+"La vostra sessió de cerca ha finalitzat. Premeu D'ACORD per veure els "
+"resultats."
+
+msgid ""
+"There is no game to show after this filter is changed! No change recorded."
+msgstr ""
+"No hi ha cap joc a mostrar després de canviar aquest filtre! No s'ha "
+"registrat cap canvi."
+
+msgid "ENABLE VULKAN DRIVER"
+msgstr "ACTIVA EL CONTROLADOR VULKAN"
+
+msgid "UPDATE"
+msgstr "ACTUALITZA"
+
+msgid "Could not update bootloader. Something went wrong"
+msgstr "No s'ha pogut actualitzar el bootloader. Alguna cosa ha anat malament"
+
+msgid "BOOT VIDEOS"
+msgstr "VÍDEOS D'ARRENCADA"
+
+msgid "There is no favorite games in any system!"
+msgstr "No hi ha cap joc preferit a cap sistema!"
+
+msgid "FORCED"
+msgstr "FORÇAT"
+
+msgid "SYSTEM DEFAULT"
+msgstr "PER DEFECTE DEL SISTEMA"
+
+msgid "SOUND"
+msgstr "SO"
+
+msgid "UPSIDEDOWN"
+msgstr "CAPGIRAT"
+
+msgid "There is no TATE game to show!No change recorded."
+msgstr "No hi ha cap joc TATE a mostrar! No s'ha registrat cap canvi."
+
+msgid "REGION"
+msgstr "REGIÓ"
+
+msgid "Europe"
+msgstr "Europa"
+
+msgid "USA"
+msgstr "EUA"
+
+msgid "Japan"
+msgstr "Japó"
+
+msgid "You display {0} is not in the list of this theme's supported displays:"
+msgstr ""
+"La vostra pantalla {0} no és a la llista de pantalles admeses per aquest "
+"tema:"
+
+msgid ""
+"You current resolution {0} is not in the list of this theme's supported "
+"resolutions:"
+msgstr ""
+"La vostra resolució actual {0} no és a la llista de resolucions admeses per "
+"aquest tema:"
+
+msgid "You're in TATE mode and this theme does not seem to support TATE."
+msgstr "Esteu en mode TATE i aquest tema no sembla admetre TATE."
+
+msgid ""
+"This theme may have one or more compatibility issues with your current "
+"display:\n"
+msgstr ""
+"Aquest tema pot tenir un o més problemes de compatibilitat amb la vostra "
+"pantalla actual:\n"
+
+msgid "NEXT"
+msgstr "SEGÜENT"
+
+msgid "UPDATE NOW"
+msgstr "ACTUALITZA ARA"
+
+msgid "PAGE UP/DOWN"
+msgstr "PÀGINA AMUNT/AVALL"
+
+msgid "{0} reports the emulation status of this game is 'imperfect'."
+msgstr "{0} informa que l'estat d'emulació d'aquest joc és 'imperfecte'."
+
+msgid ""
+"System \"{0}\" has no visible game yet!\n"
+"\n"
+"It will show up automatically as soon as it has visible games."
+msgstr ""
+"El sistema \"{0}\" encara no té cap joc visible!\n"
+"\n"
+"Apareixerà automàticament tan bon punt tingui jocs visibles."
+
+msgid ""
+"With regard to the new BIOS folder structure, some of your bios files have "
+"been moved automatically to their new path."
+msgstr ""
+"Pel que fa a la nova estructura de carpetes BIOS, alguns dels vostres "
+"fitxers bios s'han mogut automàticament a la seva nova ubicació."
+
+msgid "This move is applied only once. No additional operation required."
+msgstr ""
+"Aquest moviment s'aplica només una vegada. No cal cap operació addicional."
+
+msgid ""
+"However, some files failed to move. You should run the BIOS Checker and move "
+"some files manually."
+msgstr ""
+"Tot i així, alguns fitxers no s'han pogut moure. Hauríeu d'executar el "
+"Comprovador de BIOS i moure alguns fitxers manualment."
+
+msgid ""
+"However, all files failed to move. You should:\n"
+"- either run the BIOS Checker and move the required files manually.\n"
+"- or if your bios files are on a read-only device or remote share, change it "
+"to read-write, reboot your recalbox, wait until all files are moved, then "
+"protect it again."
+msgstr ""
+"Tot i així, tots els fitxers no s'han pogut moure. Hauríeu de:\n"
+"- executar el Comprovador de BIOS i moure els fitxers necessaris "
+"manualment.\n"
+"- o si els vostres fitxers bios són en un dispositiu de només lectura o "
+"share remot, canvieu-lo a lectura-escriptura, reinicieu el vostre recalbox, "
+"espereu que tots els fitxers es moguin i després protegiu-lo de nou."
+
+msgid "Updating current theme..."
+msgstr "Actualitzant el tema actual..."
+
+msgid "Loading new theme {0}"
+msgstr "Carregant el nou tema {0}"
+
+msgid "Shows the Recalbox license."
+msgstr "Mostra la llicència de Recalbox."
+
+msgid "Shows the quit menu to reboot or shutdown Recalbox."
+msgstr "Mostra el menú de sortida per reiniciar o apagar Recalbox."
+
+msgid ""
+"Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, "
+"and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running."
+msgstr ""
+"Activa el controlador vulkan quan estigui disponible. Activat per defecte a "
+"RPi4, RPi5 i PC. Establiu-lo a OFF si Dreamcast, Naomi o Atomiswave deixen "
+"de funcionar."
+
+msgid "Sets the rating of the game."
+msgstr "Estableix la valoració del joc."
+
+msgid "Sets the genre of the game."
+msgstr "Estableix el gènere del joc."
+
+msgid "Sets the description of the game."
+msgstr "Estableix la descripció del joc."
+
+msgid "Defines the screen rotation of the game for tate usage."
+msgstr "Defineix la rotació de pantalla del joc per a l'ús tate."
+
+msgid "Retroachievements user name."
+msgstr "Nom d'usuari de Retroachievements."
+
+msgid "Retroachievements password."
+msgstr "Contrasenya de Retroachievements."
+
+msgid "Netplay user name. Do not use special characters!"
+msgstr "Nom d'usuari de Netplay. No utilitzeu caràcters especials!"
+
+msgid ""
+"Local port other players will connect to when hosting a Netplay session."
+msgstr ""
+"Port local al qual es connectaran altres jugadors quan allotgeu una sessió "
+"de Netplay."
+
+msgid ""
+"List of predefined passwords to use to protect access to your Netplay "
+"sessions."
+msgstr ""
+"Llista de contrasenyes predefinides per protegir l'accés a les vostres "
+"sessions de Netplay."
+
+msgid "Choose systems to use for demo and gameclip screensavers."
+msgstr ""
+"Trieu els sistemes a utilitzar per als estalvis de pantalla de demo i clip "
+"de joc."
+
+msgid "Select the region for theme supporting regionalized assets or texts"
+msgstr ""
+"Seleccioneu la regió per al tema que admeti recursos o textos regionalitzats"
+
+msgid "Shows the Arcade virtual system in the systems list."
+msgstr "Mostra el sistema virtual Arcade a la llista de sistemes."
+
+msgid ""
+"Hides the original arcade systems when the Arcade virtual system is enabled."
+msgstr ""
+"Amaga els sistemes arcade originals quan el sistema virtual Arcade està "
+"activat."
+
+msgid "Shows the Tate virtual system in the systems list."
+msgstr "Mostra el sistema virtual Tate a la llista de sistemes."
+
+msgid "Shows only games playable in tate mode in gamelists."
+msgstr "Mostra només els jocs jugables en mode tate a les llistes de jocs."
+
+msgid "Proceed to a screen rotation in games tate compatible."
+msgstr "Realitza una rotació de pantalla en jocs compatibles amb tate."
+
+msgid ""
+"Sets whether the auto scraper is available or not. Auto scraping lets you "
+"scrape games just by moving onto them in gamelists."
+msgstr ""
+"Estableix si el cercador automàtic està disponible o no. La cerca automàtica "
+"us permet cercar jocs simplement passant-hi per sobre a les llistes de jocs."
+
+msgid "Allows you to scrape only non-scraped games, or to scrape all games."
+msgstr "Us permet cercar només els jocs no cercats o cercar tots els jocs."
+
+msgid "Allows you to choose which systems you would like to scrape."
+msgstr "Us permet triar quins sistemes voleu cercar."
+
+msgid "Selects the image type to scrape for your games."
+msgstr "Selecciona el tipus d'imatge a cercar per als vostres jocs."
+
+msgid "Selects the video type to scrape for your games."
+msgstr "Selecciona el tipus de vídeo a cercar per als vostres jocs."
+
+msgid "Selects the game region to use when you scrape your games."
+msgstr "Selecciona la regió del joc a utilitzar quan cerqueu els vostres jocs."
+
+msgid "Selects the preferred region to scrape for your games."
+msgstr "Selecciona la regió preferida a cercar per als vostres jocs."
+
+msgid "Selects the preferred language to scrape for your games."
+msgstr "Selecciona l'idioma preferit a cercar per als vostres jocs."
+
+msgid ""
+"Selects if you would like to download manuals with the scraped data if "
+"available."
+msgstr ""
+"Selecciona si voleu descarregar el manual amb les dades cercades si està "
+"disponible."
+
+msgid ""
+"Selects if you would like to download maps with the scraped data if "
+"available."
+msgstr ""
+"Selecciona si voleu descarregar mapes amb les dades cercades si estan "
+"disponibles."
+
+msgid ""
+"Selects if you would like to download pad2keyboard files with the scraped "
+"data if available."
+msgstr ""
+"Selecciona si voleu descarregar fitxers pad2keyboard amb les dades cercades "
+"si estan disponibles."
+
+msgid "Enable or disable videos on boot."
+msgstr "Activa o desactiva els vídeos en arrencar."
+
+msgid ""
+"This option allows you to select the current game to boot on it directly "
+"when you turn on your Recalbox. Don't forget to enable the boot on game "
+"option!"
+msgstr ""
+"Aquesta opció us permet seleccionar el joc actual per arrencar-hi "
+"directament quan enceneu el vostre Recalbox. No oblideu activar l'opció "
+"d'arrencar amb joc!"
+
+msgid "This option allows you to download games for the current system."
+msgstr "Aquesta opció us permet descarregar jocs per al sistema actual."
+
+msgid ""
+"This option allows you to search games specifically in the current system "
+"only."
+msgstr ""
+"Aquesta opció us permet cercar jocs específicament només al sistema actual."
+
+msgid "Select sound output: JACK/MONO or JACK/JST. Jack always takes priority."
+msgstr ""
+"Seleccioneu la sortida de so: JACK/MONO o JACK/JST. Jack sempre té prioritat."
+
+msgid "Set the volume of the music in the frontend"
+msgstr "Estableix el volum de la música a la interfície"
+
+msgid "MUSIC VOLUME"
+msgstr "VOLUM DE LA MÚSICA"
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON HD-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX SELECCIONARÀ AUTOMÀTICAMENT ELS EMULADORS PER EXECUTAR-SE EN "
+"SISTEMES COMPATIBLES AMB HD. ALGUNS JOCS PODEN NO SER 100% COMPATIBLES, PER "
+"TANT NO OBLIDEU DESACTIVAR AQUESTA OPCIÓ SI APAREIXEN PROBLEMES D'EMULACIÓ O "
+"RENDIMENT."
+
+msgid ""
+"RECALBOX WILL AUTOMATICALLY SELECT EMULATORS TO RUN ON WIDESCREEN-COMPATIBLE "
+"SYSTEMS. SOME GAMES MAY NOT BE 100% COMPATIBLE, SO DON'T FORGET TO DISABLE "
+"THIS OPTION IF EMULATION OR PERFORMANCE ISSUES APPEAR."
+msgstr ""
+"RECALBOX SELECCIONARÀ AUTOMÀTICAMENT ELS EMULADORS PER EXECUTAR-SE EN "
+"SISTEMES COMPATIBLES AMB PANTALLA AMPLA. ALGUNS JOCS PODEN NO SER 100% "
+"COMPATIBLES, PER TANT NO OBLIDEU DESACTIVAR AQUESTA OPCIÓ SI APAREIXEN "
+"PROBLEMES D'EMULACIÓ O RENDIMENT."
+
+msgid "BOOT ON GAME"
+msgstr "ARRENCA AMB JOC"
+
+msgid "Add a menu in game option to boot on a specific game on startup."
+msgstr ""
+"Afegeix una opció al menú del joc per arrencar amb un joc específic en "
+"iniciar."
+
+msgid "SHOW ONLY 3+ PLAYERS GAMES"
+msgstr "MOSTRA NOMÉS ELS JOCS DE 3+ JUGADORS"
+
+msgid "Deprecated"
+msgstr "Obsolet"
+
+msgid "QUICK JUMP"
+msgstr "SALT RÀPID"
+
+msgid "FOLD/UNFOLD"
+msgstr "PLEGA/DESPLEGA"
+
+msgid "FAST MOVE"
+msgstr "MOVIMENT RÀPID"
+
+msgid "BOTTOM"
+msgstr "AVALL"
+
+msgid "TOP"
+msgstr "AMUNT"
+
+msgid "UNFOLD"
+msgstr "DESPLEGA"
+
+msgid "ADD CHARACTER"
+msgstr "AFEGEIX CARÀCTER"
+
+msgid "GAMELIST MODIFIED!"
+msgstr "LLISTA DE JOCS MODIFICADA!"
+
+msgid "ROM FOLDERS MODIFIED!"
+msgstr "CARPETES DE ROMS MODIFICADES!"
+
+msgid "TOTAL PLAYING TIME"
+msgstr "TEMPS TOTAL DE JOC"
+
+msgid "OPTION NOT AVAILABLE"
+msgstr "OPCIÓ NO DISPONIBLE"
+
+msgid "Screen calibration only available in YOKO mode."
+msgstr "La calibració de pantalla només està disponible en mode YOKO."
+
+msgid "REALLY UPDATE {0}'S GAME LIST ?"
+msgstr "VOLEU ACTUALITZAR REALMENT LA LLISTA DE JOCS DE {0}?"
+
+msgid ""
+"REALLY UPDATE ALL GAME LISTS ?\n"
+"\n"
+"IT MAY TAKE A LONG TIME DEPENDING OF YOUR STORAGE SPEED AND THE NUMBER OF "
+"GAMES."
+msgstr ""
+"VOLEU ACTUALITZAR REALMENT TOTES LES LLISTES DE JOCS?\n"
+"\n"
+"POT TRIGAR MOLT DE TEMPS SEGONS LA VELOCITAT DEL VOSTRE EMMAGATZEMATGE I EL "
+"NOMBRE DE JOCS."
+
+msgid "Do you want to enable the 3+ player filter for all the games ?"
+msgstr "Voleu activar el filtre de 3+ jugadors per a tots els jocs?"
+
+msgid "Do you want to disable the 3+ player filter for all the games ?"
+msgstr "Voleu desactivar el filtre de 3+ jugadors per a tots els jocs?"
+
+msgid ""
+"Make sure to check the compatibility of your hardware before changing the "
+"recalbox refresh rate. Are you sure you want to switch the display mode to "
+msgstr ""
+"Assegureu-vos de comprovar la compatibilitat del vostre maquinari abans de "
+"canviar la freqüència d'actualització de recalbox. Esteu segur que voleu "
+"canviar el mode de pantalla a"
+
+msgid "PAIR"
+msgstr "ASSOCIA"
+
+msgid "JOIN GAME"
+msgstr "UNEIX-TE AL JOC"
+
+msgid "RUN"
+msgstr "EXECUTA"
+
+msgid "DON'T DELETE ANYTHING!"
+msgstr "NO SUPRIMEIXIS RES!"
+
+msgid "SHOW FAVORITES FIRST"
+msgstr "MOSTRA PRIMER ELS PREFERITS"
+
+msgid ""
+"Shutdown Recalbox. All pending operations are completed before Recalbox is "
+"switched off"
+msgstr ""
+"Apaga Recalbox. Totes les operacions pendents es completen abans que "
+"Recalbox s'apagui"
+
+msgid ""
+"Quickly shutdown Recalbox. All pending operations are ignored and no change "
+"is saved!"
+msgstr ""
+"Apaga Recalbox ràpidament. Totes les operacions pendents s'ignoren i no es "
+"desa cap canvi!"
+
+msgid ""
+"Reboot Recalbox. All pending operations are completed before Recalbox "
+"restarts"
+msgstr ""
+"Reinicia Recalbox. Totes les operacions pendents es completen abans que "
+"Recalbox es reiniciï"
+
+msgid "START GAME"
+msgstr "INICIA EL JOC"
+
+msgid "CONNECT"
+msgstr "CONNECTA"
+
+msgid "Run the original, unpatched game"
+msgstr "Executa el joc original, sense pegats"
+
+msgid "Run the game, patched with the selected patch"
+msgstr "Executa el joc, pegat amb el pegat seleccionat"
+
+msgid "USER SCRIPTS"
+msgstr "SCRIPTS D'USUARI"
+
+msgid "CHECK FOR UPDATE NOW"
+msgstr "COMPROVA ACTUALITZACIONS ARA"
+
+msgid "Username not required for the selected scraper"
+msgstr "No cal nom d'usuari per al cercador seleccionat"
+
+msgid "Password not required for the selected scraper"
+msgstr "No cal contrasenya per al cercador seleccionat"
+
+msgid "NEOGEO/PGM LAYOUT P1"
+msgstr "DISPOSICIÓ NEOGEO/PGM J1"
+
+msgid "NEOGEO/PGM LAYOUT P2"
+msgstr "DISPOSICIÓ NEOGEO/PGM J2"
+
+msgid "START+UP/DOWN = VOLUME"
+msgstr "START+AMUNT/AVALL = VOLUM"
+
+msgid "DUAL JOYSTICKS"
+msgstr "JOYSTICKS DUALS"
+
+msgid "RESET"
+msgstr "RESTABLEIX"
+
+msgid "FRONTEND SCREEN CALIBRATION"
+msgstr "CALIBRACIÓ DE PANTALLA DE LA INTERFÍCIE"
+
+msgid "Calibrate screen on frontend."
+msgstr "Calibra la pantalla a la interfície."
+
+msgid "CLOCK OSD"
+msgstr "OSD DE RELLOTGE"
+
+msgid "Script {0} started successfully!"
+msgstr "L'script {0} s'ha iniciat correctament!"
+
+msgid "Running {0}..."
+msgstr "Executant {0}..."
+
+msgid "Script execution complete"
+msgstr "Execució de l'script completada"
+
+msgid "Script {0} has failed!"
+msgstr "L'script {0} ha fallat!"
+
+msgid "With the following Error output:"
+msgstr "Amb la següent sortida d'error:"
+
+msgid "Script {0} executed successfully!"
+msgstr "L'script {0} s'ha executat correctament!"
+
+msgid "With the following output:"
+msgstr "Amb la següent sortida:"
+
+msgid "SEARCH OTHER VERSIONS"
+msgstr "CERCA ALTRES VERSIONS"
+
+msgid "SEARCH BY LICENCE"
+msgstr "CERCA PER LLICÈNCIA"
+
+msgid "DECORATIONS"
+msgstr "DECORACIONS"
+
+msgid "UNSET"
+msgstr "DESACTIVA"
+
+msgid "RUMBLE"
+msgstr "VIBRACIÓ"
+
+msgid "Search games by licence"
+msgstr "Cerca jocs per llicència"
+
+msgid ""
+"There is no TATE game available in your gamelists. Add TATE games and/or run "
+"the scraper to update TATE information"
+msgstr ""
+"No hi ha cap joc TATE disponible a les vostres llistes de jocs. Afegiu jocs "
+"TATE i/o executeu el cercador per actualitzar la informació TATE"
+
+msgid "ALL YOUR EMULATOR SETTINGS HAVE BEEN RESET TO THEIR FACTORY DEFAULTS."
+msgstr ""
+"TOTES LES CONFIGURACIONS DELS VOSTRES EMULADORS S'HAN RESTABLERT ALS VALORS "
+"DE FÀBRICA."
+
+msgid ""
+"SOME ERROR OCCURRED WHILE RESETING ALL YOUR EMULATOR SETTINGS.\n"
+"\n"
+"IF YOU STILL HAVE ISSUES WITH SOME EMULATORS, REBOOT YOUR RECALBOX AND TRY "
+"RESETING EMULATOR SETTINGS AGAIN."
+msgstr ""
+"S'HA PRODUÏT UN ERROR EN RESTABLIR TOTES LES CONFIGURACIONS DELS VOSTRES "
+"EMULADORS.\n"
+"\n"
+"SI ENCARA TENIU PROBLEMES AMB ALGUNS EMULADORS, REINICIEU EL VOSTRE RECALBOX "
+"I TORNEU A PROVAR DE RESTABLIR LES CONFIGURACIONS DELS EMULADORS."
+
+msgid "CHECKING UPDATE..."
+msgstr "COMPROVANT ACTUALITZACIÓ..."
+
+msgid "FACTORY RESET IN PROGRESS"
+msgstr "RESTABLIMENT DE FÀBRICA EN CURS"
+
+msgid ""
+"YOU'RE ONE CLICK AWAY FROM RESETTING YOUR EMULATOR SETTINGS TO FACTORY "
+"DEFAULTS!\n"
+"\n"
+"ARE YOU REALLY SURE YOU WANT TO DO THIS?"
+msgstr ""
+"ESTEU A UN CLIC DE RESTABLIR LES CONFIGURACIONS DELS VOSTRES EMULADORS ALS "
+"VALORS DE FÀBRICA!\n"
+"\n"
+"ESTEU REALMENT SEGUR QUE VOLEU FER-HO?"
+
+msgid ""
+"RESET EMULATOR SETTINGS\n"
+"\n"
+"YOU'RE ABOUT TO RESET ALL EMULATOR SETTINGS TO THEIR DEFAULT VALUES.\n"
+"YOU RECALBOX SETTINGS AND FILES WON'T BE AFFECTED.\n"
+"\n"
+"THIS OPERATION CANNOT BE UNDONE!\n"
+"ARE YOU SURE YOU WANT TO RESET ALL YOUR EMULATOR SETTINGS?"
+msgstr ""
+"RESTABLEIX LES CONFIGURACIONS DELS EMULADORS\n"
+"\n"
+"ESTEU A PUNT DE RESTABLIR TOTES LES CONFIGURACIONS DELS EMULADORS ALS SEUS "
+"VALORS PER DEFECTE.\n"
+"LES VOSTRES CONFIGURACIONS I FITXERS DE RECALBOX NO ES VEURAN AFECTATS.\n"
+"\n"
+"AQUESTA OPERACIÓ NO ES POT DESFER!\n"
+"ESTEU SEGUR QUE VOLEU RESTABLIR TOTES LES CONFIGURACIONS DELS VOSTRES "
+"EMULADORS?"
+
+msgid "EMULATOR SETTINGS RESET IN PROGRESS"
+msgstr "RESTABLIMENT DE CONFIGURACIONS D'EMULADOR EN CURS"
+
+msgid "Refreshing gamelists..."
+msgstr "Actualitzant les llistes de jocs..."
+
+msgid "Preparing gamelists..."
+msgstr "Preparant les llistes de jocs..."
+
+msgid "Scan completed for system {0}."
+msgstr "Escaneig completat per al sistema {0}."
+
+msgid "Scan completed for all your systems."
+msgstr "Escaneig completat per a tots els vostres sistemes."
+
+msgid "No game has been removed from your gamelists"
+msgstr "No s'ha eliminat cap joc de les vostres llistes de jocs"
+
+msgid "No game has been added to your gamelists"
+msgstr "No s'ha afegit cap joc a les vostres llistes de jocs"
+
+msgid ""
+"Would you like to scrape newly added games now, using your current scraper "
+"configuration?"
+msgstr ""
+"Voleu cercar ara els jocs recentment afegits, utilitzant la vostra "
+"configuració actual del cercador?"
+
+msgid "GAMELIST UPDATE COMPLETED"
+msgstr "ACTUALITZACIÓ DE LA LLISTA DE JOCS COMPLETADA"
+
+msgid "Scanning {0} - 0 Added  - 0 Removed"
+msgstr "Escanejant {0} - 0 afegits - 0 eliminats"
+
+msgid "Scanning {0}... {1} Added - {2} Removed"
+msgstr "Escanejant {0}... {1} afegits - {2} eliminats"
+
+msgid "Saving gamelist for {0}..."
+msgstr "Desant la llista de jocs per a {0}..."
+
+msgid "Added games: {0} - Removed games: {1}"
+msgstr "Jocs afegits: {0} - Jocs eliminats: {1}"
+
+msgid "WIFI CONNECTION OK!"
+msgstr "CONNEXIÓ WIFI CORRECTA!"
+
+msgid "Initializing roms folders on device "
+msgstr "Inicialitzant carpetes de roms al dispositiu "
+
+msgid "Moving share to device "
+msgstr "Movent el share al dispositiu "
+
+msgid "A new version {0} is available!"
+msgstr "Hi ha una nova versió {0} disponible!"
+
+msgid "No new version available yet."
+msgstr "Encara no hi ha cap versió nova disponible."
+
+msgid "Reloading {0} gamelist..."
+msgstr "Recarregant la llista de jocs {0}..."
+
+msgid "Recalbox interface must restart to apply your changes."
+msgstr ""
+"La interfície de Recalbox s'ha de reiniciar per aplicar els vostres canvis."
+
+msgid "TESTING CONNECTION..."
+msgstr "PROVANT LA CONNEXIÓ..."
+
+msgid "UNAVAILABLE"
+msgstr "NO DISPONIBLE"
+
+msgid "NO WIFI ACCESS POINT"
+msgstr "SENSE PUNT D'ACCÉS WIFI"
+
+msgid "NO ACCESS"
+msgstr "SENSE ACCÉS"
+
+msgid "YES, BUT NOT RECOMMENDED"
+msgstr "SÍ, PERÒ NO ES RECOMANA"
+
+msgid "CANCEL SELECTION"
+msgstr "CANCEL·LA LA SELECCIÓ"
+
+msgid "MOVE"
+msgstr "MOU"
+
+msgid "MIN/MAX"
+msgstr "MÍN/MÀX"
+
+msgid "TOGGLE"
+msgstr "COMMUTA"
+
+msgid "SELECTED"
+msgstr "SELECCIONAT"
+
+msgid "OPEN"
+msgstr "OBRE"
+
+msgid "RECALBOX (DEFAULT)"
+msgstr "RECALBOX (PER DEFECTE)"
+
+msgid "LICENCE"
+msgstr "LLICÈNCIA"
+
+msgid "GAME {0} OF {1}"
+msgstr "JOC {0} DE {1}"
+
+msgid "Saving gamelists..."
+msgstr "Desant les llistes de jocs..."
+
+msgid "DOWNLOADING GAME FOR %s"
+msgstr "DESCARREGANT JOC PER A %s"
+
+msgid ""
+"Downloading Theme Hospital demo game from the official site. Please wait..."
+msgstr ""
+"Descarregant el joc de demostració Theme Hospital des del lloc oficial. "
+"Espereu..."
+
+msgid "Extracting... found 1 game"
+msgstr "Extraient... s'ha trobat 1 joc"
+
+msgid ""
+"There is no network available.\n"
+"Please connect your recalbox and try again."
+msgstr ""
+"No hi ha cap xarxa disponible.\n"
+"Connecteu el vostre recalbox i torneu-ho a provar."
+
+msgid "In alphabetical order"
+msgstr "En ordre alfabètic"
+
+msgid "RATED {0} / 10"
+msgstr "VALORACIÓ {0} / 10"
+
+msgid "NOT RATED"
+msgstr "SENSE VALORAR"
+
+msgid "Never played"
+msgstr "Mai jugat"
+
+msgid "Just a few minutes"
+msgstr "Només uns minuts"
+
+msgid "Less than an hour"
+msgstr "Menys d'una hora"
+
+msgid "{0} hours"
+msgstr "{0} hores"
+
+msgid "One player"
+msgid_plural "{0} Players"
+msgstr[0] "Un jugador"
+msgstr[1] "{0} jugadors"
+
+msgid "Unknown developer"
+msgstr "Desenvolupador desconegut"
+
+msgid "Unknown publisher"
+msgstr "Editor desconegut"
+
+msgid "Release date unknown"
+msgstr "Data de llançament desconeguda"
+
+msgid "Year {0}"
+msgstr "Any {0}"
+
+msgid "NO REGION"
+msgstr "SENSE REGIÓ"
+
+msgid ""
+"Game are now sorted\n"
+"by {0}"
+msgstr ""
+"Els jocs ara estan ordenats\n"
+"per {0}"
+
+msgid "{0} Years ago..."
+msgstr "Fa {0} anys..."
+
+msgid "{0} Month ago..."
+msgstr "Fa {0} mesos..."
+
+msgid "{0} Days ago..."
+msgstr "Fa {0} dies..."
+
+msgid "{0} Hours ago..."
+msgstr "Fa {0} hores..."
+
+msgid "A short while ago"
+msgstr "Fa poc temps"
+
+msgid ""
+"The emulator selected to launch {0} does not support file '{1}'. Would you "
+"like to run the game anyway, even though there's a high chance it will not "
+"work?"
+msgstr ""
+"L'emulador seleccionat per llançar {0} no admet el fitxer '{1}'. Voleu "
+"executar el joc de totes maneres, encara que hi ha una alta probabilitat que "
+"no funcioni?"
+
+msgid ""
+"The emulator selected to launch {0} does not support zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"L'emulador seleccionat per llançar {0} no admet fitxers/roms comprimits en "
+"zip. Voleu executar el joc de totes maneres, encara que hi ha una alta "
+"probabilitat que no funcioni?"
+
+msgid ""
+"This zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Aquest joc comprimit en zip no conté cap fitxer admès per l'emulador "
+"seleccionat. Voleu executar el joc de totes maneres, encara que hi ha una "
+"alta probabilitat que no funcioni?"
+
+msgid ""
+"The emulator selected to launch {0} does not support 7zipped files/roms. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"L'emulador seleccionat per llançar {0} no admet fitxers/roms comprimits en "
+"7zip. Voleu executar el joc de totes maneres, encara que hi ha una alta "
+"probabilitat que no funcioni?"
+
+msgid ""
+"This 7zipped game does not contain any file supported by the selected "
+"emulator. Would you like to run the game anyway, even though there's a high "
+"chance it will not work?"
+msgstr ""
+"Aquest joc comprimit en 7zip no conté cap fitxer admès per l'emulador "
+"seleccionat. Voleu executar el joc de totes maneres, encara que hi ha una "
+"alta probabilitat que no funcioni?"
+
+msgid ""
+"The emulator selected to launch {0} does not support file extension '{1}'. "
+"Would you like to run the game anyway, even though there's a high chance it "
+"will not work?"
+msgstr ""
+"L'emulador seleccionat per llançar {0} no admet l'extensió de fitxer '{1}'. "
+"Voleu executar el joc de totes maneres, encara que hi ha una alta "
+"probabilitat que no funcioni?"
+
+msgid "Signal"
+msgstr "Senyal"
+
+msgid "MOVE 5 BY 5"
+msgstr "MOU DE 5 EN 5"
+
+msgid ""
+"We're downloading __Recalbox__ version **%s**!\n"
+"\n"
+"Once the download is complete, Recalbox will reboot and start installing the "
+"new version.\n"
+"Typical installations take about 5-10mn. **DO NOT reboot or power off "
+"Recalbox** until the installation is complete."
+msgstr ""
+"Estem descarregant la versió **%s** de __Recalbox__!\n"
+"\n"
+"Un cop finalitzada la descàrrega, Recalbox es reiniciarà i començarà a "
+"instal·lar la nova versió.\n"
+"Les instal·lacions normalment triguen entre 5 i 10 min. **NO reinicieu ni "
+"apagueu Recalbox** fins que la instal·lació hagi finalitzat."
+
+msgid "ZOOM"
+msgstr "ZOOM"
+
+msgid "SCANNING..."
+msgstr "ESCANEJANT..."
+
+msgid "Ok"
+msgstr "D'acord"
+
+msgid "Disabling WIFI..."
+msgstr "Desactivant el WIFI..."
+
+msgid "Enabling WIFI..."
+msgstr "Activant el WIFI..."
+
+msgid ""
+"CONNECTION ERROR !\n"
+"Please check your SSID and Password."
+msgstr ""
+"ERROR DE CONNEXIÓ!\n"
+"Comproveu el vostre SSID i contrasenya."
+
+msgid "FAVORITES FIRST"
+msgstr "PREFERITS PRIMER"
+
+msgid "SUPERREZ MULTIPLIER"
+msgstr "MULTIPLICADOR SUPERREZ"
+
+msgid "CALIBRATE"
+msgstr "CALIBRA"
+
+msgid "DELETE SELECTED FILES"
+msgstr "SUPRIMEIX ELS FITXERS SELECCIONATS"
+
+msgid "**YES**"
+msgstr "**SÍ**"
+
+msgid "Press any button for 5s to cancel !"
+msgstr "Premeu qualsevol botó durant 5s per cancel·lar!"
+
+msgid "Cancelling..."
+msgstr "Cancel·lant..."
+
+msgid "CANCELLED! Please release all buttons."
+msgstr "CANCEL·LAT! Deixeu anar tots els botons."
+
+msgid "NEVER"
+msgstr "MAI"
+
+msgid "THEME'S COLORSET"
+msgstr "CONJUNT DE COLORS DEL TEMA"
+
+msgid "Select a colorset from this theme."
+msgstr "Seleccioneu un conjunt de colors d'aquest tema."
+
+msgid "THEME'S ICONSET"
+msgstr "CONJUNT D'ICONES DEL TEMA"
+
+msgid "Select an iconset from this theme."
+msgstr "Seleccioneu un conjunt d'icones d'aquest tema."
+
+msgid "THEME'S MENU STYLE"
+msgstr "ESTIL DE MENÚ DEL TEMA"
+
+msgid "Select menu style from this theme."
+msgstr "Seleccioneu l'estil de menú d'aquest tema."
+
+msgid "THEME'S SYSTEMVIEW LAYOUT"
+msgstr "DISPOSICIÓ DE VISTA DE SISTEMES DEL TEMA"
+
+msgid "Select system view layout from this theme."
+msgstr "Seleccioneu la disposició de vista de sistemes d'aquest tema."
+
+msgid "THEME'S GAMELISTVIEW LAYOUT"
+msgstr "DISPOSICIÓ DE VISTA DE LLISTA DE JOCS DEL TEMA"
+
+msgid "Select gamelist view layout from this theme."
+msgstr "Seleccioneu la disposició de vista de llista de jocs d'aquest tema."
+
+msgid "THEME'S GAMECLIPVIEW LAYOUT"
+msgstr "DISPOSICIÓ DE VISTA DE CLIP DE JOC DEL TEMA"
+
+msgid "Select gameclip view layout from this theme."
+msgstr "Seleccioneu la disposició de vista de clip de joc d'aquest tema."
+
+msgid "Libretro HatariB Settings"
+msgstr "Configuració de Libretro HatariB"
+
+msgid "Machine Type"
+msgstr "Tipus de màquina"
+
+msgid ""
+"Choose the machine model to emulate. STE is a good choice for most games."
+msgstr ""
+"Trieu el model de màquina a emular. STE és una bona opció per a la majoria "
+"de jocs."
+
+msgid "Memory Size"
+msgstr "Mida de la memòria"
+
+msgid "Select the amount of memory. 1 MB is enough for gaming."
+msgstr "Seleccioneu la quantitat de memòria. 1 MB és suficient per jugar."
+
+msgid "Fast Floppy"
+msgstr "Disquet ràpid"
+
+msgid ""
+"Set ON to accelerate the floppy disc emulation. May cause some games to fail!"
+msgstr ""
+"Establiu-ho a ACTIVAT per accelerar l'emulació de disquet. Pot fer que "
+"alguns jocs fallin!"
+
+msgid "Libretro Fuse Settings"
+msgstr "Configuració de Libretro Fuse"
+
+msgid ""
+"Choose the Sinclair machine (or clone) to emulate. The original Spectrum "
+"128k is a good way to start."
+msgstr ""
+"Trieu la màquina Sinclair (o clon) a emular. L'Spectrum 128k original és una "
+"bona manera de començar."
+
+msgid "Set ON to accelerate the tape emulation. May cause some games to fail!"
+msgstr ""
+"Establiu-ho a ACTIVAT per accelerar l'emulació de cinta. Pot fer que alguns "
+"jocs fallin!"
+
+msgid "Libretro PX68K Settings"
+msgstr "Configuració de Libretro PX68K"
+
+msgid "Model/CPU Speed"
+msgstr "Model/Velocitat de CPU"
+
+msgid ""
+"Choose the CPU frequency to emulate. 10Mhz is the basic machine and will "
+"work for most of the games."
+msgstr ""
+"Trieu la freqüència de CPU a emular. 10Mhz és la màquina bàsica i funcionarà "
+"per a la majoria dels jocs."
+
+msgid "Memory Size (in MB)"
+msgstr "Mida de la memòria (en MB)"
+
+msgid ""
+"Choose the amount of memory available. Most of the games will work with 2MB "
+"but some games may require 4MB."
+msgstr ""
+"Trieu la quantitat de memòria disponible. La majoria dels jocs funcionaran "
+"amb 2MB però alguns jocs poden requerir 4MB."
+
+msgid "Dolphin / Dolphin-GUI Settings"
+msgstr "Configuració de Dolphin / Dolphin-GUI"
+
+msgid "Resolution"
+msgstr "Resolució"
+
+msgid "Choose the internal resolution."
+msgstr "Trieu la resolució interna."
+
+msgid "Dual CPU"
+msgstr "CPU dual"
+
+msgid ""
+"May improve performance on a few rare games, at the expense of others that "
+"are incompatible."
+msgstr ""
+"Trieu activar aquesta opció si pot millorar el rendiment d'alguns jocs poc "
+"habituals, però a costa d'altres que resultin incompatibles."
+
+msgid "Sync GPU"
+msgstr "Sincronitza la GPU"
+
+msgid "Enable this speed hack for dual core mode to fix some glitches."
+msgstr ""
+"Trieu activar aquest hack de velocitat per al mode de doble nucli per "
+"corregir alguns errors."
+
+msgid "Anti-aliasing"
+msgstr "Antialiàsing"
+
+msgid "Enable or disable anti-aliasing."
+msgstr "Trieu activar o desactivar l'antialiàsing."
+
+msgid "VSync"
+msgstr "VSync"
+
+msgid "Enable or disable vsync."
+msgstr "Trieu activar aquesta opció per activar o desactivar el vsync."
+
+msgid "Real Gamecube controllers"
+msgstr "Comandaments reals de Gamecube"
+
+msgid "Enable this option to play with real GameCube controllers."
+msgstr ""
+"Trieu activar aquesta opció per jugar amb comandaments reals de GameCube."
+
+msgid "Real Wiimotes"
+msgstr "Wiimotes reals"
+
+msgid "Enable this option to play with real Wiimotes."
+msgstr "Trieu activar aquesta opció per jugar amb Wiimotes reals."
+
+msgid "Emulated Wiimote"
+msgstr "Wiimote emulat"
+
+msgid "Enable this option to play with emulated Wiimotes."
+msgstr "Trieu activar per jugar amb Wiimotes emulats."
+
+msgid "Dolphinbar position"
+msgstr "Posició de la Dolphinbar"
+
+msgid "Choose the position of the Dolphin bar."
+msgstr "Trieu la posició de la barra Dolphin."
+
+msgid "Show on-screen information"
+msgstr "Mostra informació a la pantalla"
+
+msgid "PPSSPP Settings"
+msgstr "Configuració de PPSSPP"
+
+msgid "Choose the internal resolution of the PSP."
+msgstr "Trieu la resolució interna de la PSP."
+
+msgid "SCUMMVM Settings"
+msgstr "Configuració de SCUMMVM"
+
+msgid "Subtitles"
+msgstr "Subtítols"
+
+msgid "Enable subtitles"
+msgstr "Activa els subtítols"
+
+msgid "Supermodel Settings - Controllers"
+msgstr "Configuració de Supermodel - Comandaments"
+
+msgid "Sensitivity"
+msgstr "Sensibilitat"
+
+msgid ""
+"Choose the rate at which analog control values increase/decrease when "
+"controlled by a key, between 1 to 100. Default is 25."
+msgstr ""
+"Trieu la velocitat a la qual els valors de control analògic augmenten/"
+"disminueixen quan es controlen amb una tecla, entre 1 i 100. Per defecte és "
+"25."
+
+msgid "Saturation"
+msgstr "Saturació"
+
+msgid ""
+"Choose the position at which the joystick is interpreted as being in its "
+"most extreme position, between 0% to 200%. Default is 100%."
+msgstr ""
+"Trieu la posició a la qual el joystick s'interpreta com si estigués a la "
+"seva posició més extrema, entre 0% i 200%. Per defecte és 100%."
+
+msgid "Deadzone"
+msgstr "Zona morta"
+
+msgid "Choose the dead zone as a percentage, between 0% to 99%. Default is 2%."
+msgstr ""
+"Trieu la zona morta com a percentatge, entre 0% i 99%. Per defecte és 2%."
+
+msgid "Supermodel Settings - Audio"
+msgstr "Configuració de Supermodel - Àudio"
+
+msgid "Sound volume"
+msgstr "Volum del so"
+
+msgid ""
+"Choose the master volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Trieu el volum general en percentatge, entre 0% i 100%. Per defecte és 100%."
+
+msgid "Music volume"
+msgstr "Volum de la música"
+
+msgid ""
+"Choose the music volume in percentage, between 0% to 100%. Default is 100%."
+msgstr ""
+"Trieu el volum de la música en percentatge, entre 0% i 100%. Per defecte és "
+"100%."
+
+msgid "Balance"
+msgstr "Balanç"
+
+msgid ""
+"Choose the relative front/rear balance in percentage, between 0% to 100%. "
+"Default is 0%."
+msgstr ""
+"Trieu el balanç relatiu davant/darrere en percentatge, entre 0% i 100%. Per "
+"defecte és 0%."
+
+msgid "Channels"
+msgstr "Canals"
+
+msgid "Choose the number of sound channels to use on host. Default is 2."
+msgstr ""
+"Trieu el nombre de canals de so a utilitzar a l'amfitrió. Per defecte és 2."
+
+msgid "Flip stereo"
+msgstr "Inverteix l'estèreo"
+
+msgid "Swap the left and right audio channels."
+msgstr "Trieu si intercanvieu els canals d'àudio esquerre i dret."
+
+msgid "Sound"
+msgstr "So"
+
+msgid ""
+"Choose if you disable sound board emulation sound effects. Default is "
+"disabled."
+msgstr ""
+"Trieu si desactiveu els efectes de so de l'emulació de la placa de so. Per "
+"defecte està desactivat."
+
+msgid "No Digital Sound Board (DSB)"
+msgstr "Sense placa de so digital (DSB)"
+
+msgid "Enable or disable Digital Sound Board MPEG music. Default is disabled."
+msgstr ""
+"Trieu activar o desactivar la música MPEG de la placa de so digital. Per "
+"defecte està desactivat."
+
+msgid "Sound engine"
+msgstr "Motor de so"
+
+msgid ""
+"Choose between the legacy and new sound engines. Default is MAME engine."
+msgstr ""
+"Trieu entre el motor de so antic i el nou. Per defecte és el motor MAME."
+
+msgid "Supermodel Settings - Video"
+msgstr "Configuració de Supermodel - Vídeo"
+
+msgid "Supersampling"
+msgstr "Supersampling"
+
+msgid "Supersampling. Not enabled yet. Default is 1."
+msgstr "Supersampling. Encara no activat. Per defecte és 1."
+
+msgid "Upscale"
+msgstr "Ampliació"
+
+msgid "Choose the 2D layer upscaling filter mode. Default is 0."
+msgstr "Trieu el mode de filtre d'ampliació de la capa 2D. Per defecte és 0."
+
+msgid "Disable no throttle"
+msgstr "Desactiva la limitació de velocitat"
+
+msgid "Enable or disable the 60Hz frame rate lock. Default is disabled."
+msgstr ""
+"Trieu si preferiu activar o desactivar el bloqueig de la freqüència de "
+"fotogrames a 60Hz. Per defecte està desactivat."
+
+msgid "Lock the vertical refresh rate. Default is enabled."
+msgstr ""
+"Trieu bloquejar la freqüència d'actualització vertical. Per defecte està "
+"activat."
+
+msgid "True Hz"
+msgstr "Hz real"
+
+msgid "Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled."
+msgstr ""
+"Trieu utilitzar la freqüència d'actualització real del Model 3 de 57,524 Hz. "
+"Per defecte està desactivat."
+
+msgid "Crosshairs"
+msgstr "Punts de mira"
+
+msgid "Show crosshairs. Default is disabled."
+msgstr ""
+"Trieu si preferiu mostrar els punts de mira. Per defecte està desactivat."
+
+msgid "Multi texture"
+msgstr "Multi-textura"
+
+msgid "Use 8 texture maps for decoding. Default is disabled."
+msgstr ""
+"Trieu si preferiu utilitzar 8 mapes de textura per a la descodificació. Per "
+"defecte està desactivat."
+
+msgid "Quad rendering"
+msgstr "Renderitzat quad"
+
+msgid "Enable proper quad rendering. Default is disabled."
+msgstr ""
+"Trieu si preferiu activar el renderitzat quad adequat. Per defecte està "
+"desactivat."
+
+msgid "Supermodel Settings - Core"
+msgstr "Configuració de Supermodel - Nucli"
+
+msgid "GPU multi threading"
+msgstr "Multi-fil de la GPU"
+
+msgid ""
+"Set to ON to run GPU in its own thread instead of sharing the CPU thread. "
+"Faster but may cause bugs, depending on the game."
+msgstr ""
+"Configureu-ho a ON perquè la GPU s'executi en el seu propi fil en lloc de "
+"compartir el fil de la CPU. Més ràpid, però pot causar errors segons el joc."
+
+msgid "PPC Frequency"
+msgstr "Freqüència PPC"
+
+msgid "Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70."
+msgstr "Trieu la freqüència PowerPC en MHz, entre 1 i 1000. Per defecte és 70."
+
+msgid "Service button"
+msgstr "Botó de servei"
+
+msgid ""
+"Enable or disable the service menu in games (L3 = test, R3 = service). "
+"Default is enabled."
+msgstr ""
+"Trieu activar o desactivar el menú de servei als jocs (L3 = prova, R3 = "
+"servei). Per defecte està activat."
+
+msgid "Log level"
+msgstr "Nivell de registre"
+
+msgid "Choose the level of detail in the log file. Default is Information."
+msgstr ""
+"Trieu el nivell d'informació al fitxer de registre. Per defecte és "
+"informació."
+
+msgid "Xemu Settings"
+msgstr "Configuració de Xemu"
+
+msgid "Choose the internal resolution of the Xbox."
+msgstr "Trieu la resolució interna de la Xbox."
+
+msgid "Show menu bar"
+msgstr "Mostra la barra de menú"
+
+msgid "Show the menu bar."
+msgstr "Trieu si voleu mostrar la barra de menú."
+
+msgid "Skip boot animation"
+msgstr "Omet l'animació d'arrencada"
+
+msgid "Skip the boot animation."
+msgstr "Trieu si voleu ometre l'animació d'arrencada."
+
+msgid "Show notifications"
+msgstr "Mostra les notificacions"
+
+msgid "Show the notifications displayed in the top-right corner of the screen."
+msgstr ""
+"Mostra les notificacions que apareixen a la cantonada superior dreta de la "
+"pantalla."
+
+msgid "Display mode"
+msgstr "Mode de pantalla"
+
+msgid "Choose how the framebuffer should fit or scale."
+msgstr "Trieu com s'ha d'ajustar o escalar el framebuffer."
+
+msgid "Aspect Ratio"
+msgstr "Relació d'aspecte"
+
+msgid "Choose the aspect ratio of the Xbox."
+msgstr "Trieu la relació d'aspecte de la Xbox."
+
+msgid "Xemu - EEPROM General Settings"
+msgstr "Xemu - Configuració general de l'EEPROM"
+
+msgid "Choose the region to use on Xbox."
+msgstr "Trieu la regió a utilitzar a la Xbox."
+
+msgid "Video Standard"
+msgstr "Estàndard de vídeo"
+
+msgid "Choose the video standard to use on Xbox."
+msgstr "Trieu l'estàndard de vídeo a utilitzar a la Xbox."
+
+msgid "Timezone"
+msgstr "Fus horari"
+
+msgid ""
+"Choose the timezone to use on Xbox. If your country is using DST, don't take "
+"it into account when you are setting this."
+msgstr ""
+"Trieu el fus horari a utilitzar a la Xbox. Si el vostre país utilitza "
+"l'horari d'estiu, no el tingueu en compte en establir-ho."
+
+msgid "Disable automatic daylight saving time"
+msgstr "Desactiva l'horari d'estiu automàtic"
+
+msgid "Choose if you want to disable automatic daylight saving time."
+msgstr "Trieu si voleu desactivar l'horari d'estiu automàtic."
+
+msgid "DVD Region"
+msgstr "Regió del DVD"
+
+msgid "Choose the DVD region to use on Xbox."
+msgstr "Trieu la regió de DVD a utilitzar a la Xbox."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Choose the language to use on Xbox."
+msgstr "Trieu l'idioma a utilitzar a la Xbox."
+
+msgid "Xemu - EEPROM Video Settings"
+msgstr "Xemu - Configuració de vídeo de l'EEPROM"
+
+msgid "Enable 480p resolution on Xbox."
+msgstr "Trieu activar la resolució 480p a la Xbox."
+
+msgid "720p"
+msgstr "720p"
+
+msgid "Enable 720p resolution on Xbox."
+msgstr "Trieu activar la resolució 720p a la Xbox."
+
+msgid "1080i"
+msgstr "1080i"
+
+msgid "Enable 1080i resolution on Xbox."
+msgstr "Trieu activar la resolució 1080i a la Xbox."
+
+msgid "Video Mode"
+msgstr "Mode de vídeo"
+
+msgid "Choose the video mode to use on Xbox."
+msgstr "Trieu el mode de vídeo a utilitzar a la Xbox."
+
+msgid "Refresh rate"
+msgstr "Freqüència d'actualització"
+
+msgid "Set the refresh rate to 60Hz on Xbox."
+msgstr "Trieu activar la freqüència d'actualització a 60Hz a la Xbox."
+
+msgid "Xemu - EEPROM Audio Settings"
+msgstr "Xemu - Configuració d'àudio de l'EEPROM"
+
+msgid "Audio Output"
+msgstr "Sortida d'àudio"
+
+msgid "Choose the audio output to use on Xbox."
+msgstr "Trieu la sortida d'àudio a utilitzar a la Xbox."
+
+msgid "AC3"
+msgstr "AC3"
+
+msgid "Enable Dolby Digital (AC3) on Xbox."
+msgstr "Trieu activar Dolby Digital (AC3) a la Xbox."
+
+msgid "DTS"
+msgstr "DTS"
+
+msgid "Enable Dolby Surround (DTS) on Xbox."
+msgstr "Trieu activar Dolby Surround (DTS) a la Xbox."
+
+msgid "SHUTDOWN RECALBOX"
+msgstr "APAGA RECALBOX"
+
+msgid "FAST SHUTDOWN RECALBOX"
+msgstr "APAGA RECALBOX RÀPIDAMENT"
+
+msgid "RESTART RECALBOX"
+msgstr "REINICIA RECALBOX"
+
+msgid "EDIT NETPLAY PASSWORDS"
+msgstr "EDITA LES CONTRASENYES DE NETPLAY"
+
+msgid "PASSWORD #{INDEX}"
+msgstr "CONTRASENYA #{INDEX}"
+
+msgid "SHARE USAGE"
+msgstr "ÚS DEL SHARE"
+
+msgid "SHARE PARTITION"
+msgstr "PARTICIÓ SHARE"
+
+msgid "Exit the password edition."
+msgstr "Surt de l'edició de contrasenyes."
+
+msgid "AVAILABLE STORAGES"
+msgstr "EMMAGATZEMATGES DISPONIBLES"
+
+msgid ""
+"Show a list of storage available on your system. Select a storage to access "
+"extra information and available actions."
+msgstr ""
+"Mostra una llista d'emmagatzematge disponible al vostre sistema. Seleccioneu "
+"un emmagatzematge per accedir a informació addicional i accions disponibles."
+
+msgid "Get information about {DEVICE.NAME}"
+msgstr "Obtén informació sobre {DEVICE.NAME}"
+
+msgid "FREE SPACE"
+msgstr "ESPAI LLIURE"
+
+msgid "Display free space available on the device"
+msgstr "Mostra l'espai lliure disponible al dispositiu"
+
+msgid "STORAGE NAME"
+msgstr "NOM DE L'EMMAGATZEMATGE"
+
+msgid "Display real device name"
+msgstr "Mostra el nom real del dispositiu"
+
+msgid "NETWORK ACCESS"
+msgstr "ACCÉS A LA XARXA"
+
+msgid "Access to this storage through your local network."
+msgstr "Accediu a aquest emmagatzematge a través de la vostra xarxa local."
+
+msgid "FILE SYSTEM"
+msgstr "SISTEMA DE FITXERS"
+
+msgid "FileSystem"
+msgstr "Sistema de fitxers"
+
+msgid "COMPATIBLE WITH RECALBOX?"
+msgstr "COMPATIBLE AMB RECALBOX?"
+
+msgid "Show if this storage is compatible with recalbox"
+msgstr "Mostra si aquest emmagatzematge és compatible amb recalbox"
+
+msgid "INSTALL RECALBOX ROM FOLDERS"
+msgstr "INSTAL·LA LES CARPETES DE ROMS DE RECALBOX"
+
+msgid "INITIALIZE!"
+msgstr "INICIALITZA!"
+
+msgid ""
+"Create rom structure so that this storage will be used by Recalbox on next "
+"boots."
+msgstr ""
+"Crea l'estructura de roms perquè aquest emmagatzematge sigui utilitzat per "
+"Recalbox en les properes arrencades."
+
+msgid ""
+"You cannot initialize this storage, because either it is already initialized "
+"or it is not compatible."
+msgstr ""
+"No podeu inicialitzar aquest emmagatzematge, perquè ja està inicialitzat o "
+"no és compatible."
+
+msgid ""
+"Select your language. A reboot is required to set this configuration active."
+msgstr ""
+"Seleccioneu el vostre idioma. Cal reiniciar per activar aquesta configuració."
+
+msgid "TIMEZONE"
+msgstr "FUS HORARI"
+
+msgid ""
+"Select the timezone used to display dates and times in their local format."
+msgstr ""
+"Permet seleccionar el fus horari per mostrar les dates i hores en el seu "
+"format local."
+
+msgid "Shows available update version."
+msgstr "Mostra la versió d'actualització disponible."
+
+msgid "CHECK UPDATES PERIODICALLY"
+msgstr "COMPROVA ACTUALITZACIONS PERIÒDICAMENT"
+
+msgid ""
+"Automatically check if an update is available. If so, it notifies you with a "
+"message."
+msgstr ""
+"Comprova automàticament si hi ha una actualització disponible. Si és així, "
+"us notifica amb un missatge."
+
+msgid "Select update type"
+msgstr "Seleccioneu el tipus d'actualització"
+
+msgid "CHECK"
+msgstr "COMPROVA"
+
+msgid "Check if an update is available, right now."
+msgstr "Comproveu si hi ha una actualització disponible, ara mateix."
+
+msgid "SHOW NEW VERSION CHANGELOG"
+msgstr "MOSTRA EL REGISTRE DE CANVIS DE LA NOVA VERSIÓ"
+
+msgid "SHOW"
+msgstr "MOSTRA"
+
+msgid "Shows available update changelog."
+msgstr "Mostra el registre de canvis de l'actualització disponible."
+
+msgid "DOWNLOAD AND UPDATE MY RECALBOX"
+msgstr "DESCARREGA I ACTUALITZA EL MEU RECALBOX"
+
+msgid "GO!"
+msgstr "ENDAVANT!"
+
+msgid "No update available yet."
+msgstr "Encara no hi ha cap actualització disponible."
+
+msgid "RECALBOX RGB DUAL SETTINGS"
+msgstr "CONFIGURACIÓ DE RECALBOX RGB DUAL"
+
+msgid ""
+"Select Recalbox's interface resolution. 480i is recommended for better "
+"details."
+msgstr ""
+"Seleccioneu la resolució de la interfície de Recalbox. Es recomana 480i per "
+"a millors detalls."
+
+msgid "AVOID INTERLACED MODES"
+msgstr "EVITA ELS MODES ENTRELLAÇATS"
+
+msgid "Avoid interlaced mode for all games."
+msgstr "Evita el mode entrellaçat per a tots els jocs."
+
+msgid "AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS"
+msgstr "EVITA ELS MODES ENTRELLAÇATS PER A JOCS TATE EN YOKO I PORTÀTILS"
+
+msgid "31 KHZ"
+msgstr "31 KHZ"
+
+msgid "You're not in 31khz mode"
+msgstr "No esteu en mode 31khz"
+
+msgid "RUN DEMOS AND AUTOBOOT GAMES IN 240P@120"
+msgstr "EXECUTA LES DEMOS I JOCS D'AUTOARRENCADA EN 240P@120"
+
+msgid ""
+"Run the demos and autoboot games in 240p resolution on your 31kHz monitor."
+msgstr ""
+"Executa les demos i jocs d'autoarrencada en resolució 240p al vostre monitor "
+"de 31kHz."
+
+msgid "EXPERIMENTAL"
+msgstr "EXPERIMENTAL"
+
+msgid "RECALBOX RGB JAMMA SETTINGS"
+msgstr "CONFIGURACIÓ DE RECALBOX RGB JAMMA"
+
+msgid "Recalbox RGB Jamma options and configuration."
+msgstr "Opcions i configuració de Recalbox RGB Jamma."
+
+msgid ""
+"Avoid interlaced mode for tate (vertical) games on yoko (horizontal) "
+"screens, and for handheld consoles."
+msgstr ""
+"Evita el mode entrellaçat per a jocs tate (verticals) en pantalles yoko "
+"(horitzontals), i per a consoles portàtils."
+
+msgid "JAMMA OPTIONS"
+msgstr "OPCIONS JAMMA"
+
+msgid "START + UP and DOWN change the volume in frontend and in games."
+msgstr "START + AMUNT i AVALL canvien el volum a la interfície i als jocs."
+
+msgid "Load the dual joystick configuration on compatible games!"
+msgstr "Carrega la configuració de joystick dual en jocs compatibles!"
+
+msgid "Reset all previous options to their default values"
+msgstr "Restableix totes les opcions anteriors als seus valors per defecte"
+
+msgid "RECALBOX RGB DUAL 2 SETTINGS"
+msgstr "CONFIGURACIÓ DE RECALBOX RGB DUAL 2"
+
+msgid "Recalbox RGB Dual 2 options and configuration."
+msgstr "Opcions i configuració de Recalbox RGB Dual 2."
+
+msgid "Select Recalbox's interface resolution."
+msgstr "Seleccioneu la resolució de la interfície de Recalbox."
+
+msgid "FORCE COMPOSITE"
+msgstr "FORÇA EL COMPOSITE"
+
+msgid "Force composite output (On SCART, RCA and JACK)."
+msgstr "Força la sortida composite (a SCART, RCA i JACK)."
+
+msgid "COMPOSITE SIGNAL STANDARD"
+msgstr "ESTÀNDARD DE SENYAL COMPOSITE"
+
+msgid ""
+"When using composite, selects the composite signal standard for your region."
+msgstr ""
+"Quan utilitzeu composite, selecciona l'estàndard de senyal composite per a "
+"la vostra regió."
+
+msgid "16/9 CRT TV"
+msgstr "TV CRT 16/9"
+
+msgid "Activate if you have a 16/9 CRT TV."
+msgstr "Activeu-ho si teniu una TV CRT 16/9."
+
+msgid "SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH"
+msgstr "SELECCIONA EL SENYAL (RGB/COMPOSITE) EN LLANÇAR"
+
+msgid ""
+"Let you choose between RGB Signal and composite signal at launch, for "
+"compatible systems."
+msgstr ""
+"Us permet triar entre senyal RGB i senyal composite en llançar, per a "
+"sistemes compatibles."
+
+msgid "DIP SWITCHES"
+msgstr "INTERRUPTORS DIP"
+
+msgid "FORCED 50HZ DIP SWITCH"
+msgstr "INTERRUPTOR DIP FORÇAT A 50HZ"
+
+msgid "FORCED 31kHz/MULTISYNC DIP SWITCH"
+msgstr "INTERRUPTOR DIP FORÇAT A 31kHz/MULTISYNC"
+
+msgid "FORCED COMPOSITE DIP SWITCH"
+msgstr "INTERRUPTOR DIP FORÇAT A COMPOSITE"
+
+msgid "IN-GAME SETTINGS"
+msgstr "CONFIGURACIÓ DINS DEL JOC"
+
+msgid "FEATURES"
+msgstr "FUNCIONS"
+
+msgid "GAMES RENDERING"
+msgstr "RENDERITZAT DE JOCS"
+
+msgid "AUTO BLITTER (FBNEO/MAME)"
+msgstr "BLITTER AUTOMÀTIC (FBNEO/MAME)"
+
+msgid ""
+"Enables automatic blitter and CPU settings for fbneo and mame games. Can "
+"enhance emulation precision on games like Cave."
+msgstr ""
+"Activa el blitter automàtic i la configuració de CPU per als jocs fbneo i "
+"mame. Pot millorar la precisió de l'emulació en jocs com Cave."
+
+msgid "SYSTEM-LISTS & GAMELISTS SETTINGS"
+msgstr "CONFIGURACIÓ DE LLISTES DE SISTEMES I LLISTES DE JOCS"
+
+msgid "Configure system and gamelist filters and options"
+msgstr "Configureu els filtres i opcions del sistema i de la llista de jocs"
+
+msgid "SYSTEM LISTS"
+msgstr "LLISTES DE SISTEMES"
+
+msgid "SHOW SYSTEMS"
+msgstr "MOSTRA ELS SISTEMES"
+
+msgid "Show or hide systems individually"
+msgstr "Mostra o amaga els sistemes individualment"
+
+msgid "GAMES"
+msgstr "JOCS"
+
+msgid "ENABLE ADDING/REMOVING FAVORITES"
+msgstr "ACTIVA AFEGIR/ELIMINAR PREFERITS"
+
+msgid ""
+"Enable or disable adding/removing favorites in gamelist, search and other "
+"various places."
+msgstr ""
+"Activa o desactiva afegir/eliminar preferits a la llista de jocs, cerca i "
+"altres llocs diversos."
+
+msgid ""
+"Show only favorites. May hide all systems with no favorite at all until you "
+"switch off this option."
+msgstr ""
+"Mostra només els preferits. Pot amagar tots els sistemes sense cap preferit "
+"fins que desactiveu aquesta opció."
+
+msgid "Display all favorites at the top of the game list."
+msgstr "Mostra tots els preferits a la part superior de la llista de jocs."
+
+msgid "Force hidden game to show in gamelists."
+msgstr "Força que el joc amagat es mostri a les llistes de jocs."
+
+msgid "SHOW MAHJONG AND CASINO GAMES"
+msgstr "MOSTRA ELS JOCS DE MAHJONG I CASINO"
+
+msgid ""
+"Show or hide asian casino and mahjong games. You must scrape your game for "
+"this option to work."
+msgstr ""
+"Mostra o amaga els jocs de casino asiàtic i mahjong. Cal cercar el vostre "
+"joc perquè aquesta opció funcioni."
+
+msgid "SHOW ADULT GAMES"
+msgstr "MOSTRA ELS JOCS PER A ADULTS"
+
+msgid ""
+"Show or hide adult games. You must scrape your game for this option to work."
+msgstr ""
+"Mostra o amaga els jocs per a adults. Cal cercar el vostre joc perquè "
+"aquesta opció funcioni."
+
+msgid "SHOW PREINSTALLED GAMES"
+msgstr "MOSTRA ELS JOCS PREINSTAL·LATS"
+
+msgid ""
+"Show or hide games distributed with Recalbox. But you don't want to do this: "
+"they are all excellent games!"
+msgstr ""
+"Mostra o amaga els jocs distribuïts amb Recalbox. Però no voleu fer això: "
+"tots són jocs excel·lents!"
+
+msgid "Show only games playable with 3 or more players"
+msgstr "Mostra només els jocs jugables amb 3 o més jugadors"
+
+msgid "SHOW ONLY YOKO (HORIZONTAL) GAMES"
+msgstr "MOSTRA NOMÉS ELS JOCS YOKO (HORITZONTALS)"
+
+msgid ""
+"Show only YOKO (horizontal) games. Mutually exclusive with the option to "
+"show only TATE games."
+msgstr ""
+"Mostra només els jocs YOKO (horitzontals). Mútuament exclusiu amb l'opció de "
+"mostrar només jocs TATE."
+
+msgid "SHOW ONLY TATE (VERTICAL) GAMES"
+msgstr "MOSTRA NOMÉS ELS JOCS TATE (VERTICALS)"
+
+msgid ""
+"Show only TATE (vertical) games. Mutually exclusive with the option to show "
+"only YOKO games."
+msgstr ""
+"Mostra només els jocs TATE (verticals). Mútuament exclusiu amb l'opció de "
+"mostrar només jocs YOKO."
+
+msgid "SHOW ROMS MARKED AS NON-GAMES"
+msgstr "MOSTRA LES ROMS MARCADES COM A NO-JOCS"
+
+msgid ""
+"Show or hide roms that are explicitly marked as non-game (application, "
+"utilities, ...). You must scrape your game for this option to work."
+msgstr ""
+"Mostra o amaga les roms marcades explícitament com a no-joc (aplicació, "
+"utilitats, ...). Cal cercar el vostre joc perquè aquesta opció funcioni."
+
+msgid "ENABLE ONE GAME ONE ROM (1G1R)"
+msgstr "ACTIVA UN JOC UNA ROM (1G1R)"
+
+msgid "Display only one rom|disk image for a game from your preferred region."
+msgstr ""
+"Mostra només una rom|imatge de disc per a un joc de la vostra regió "
+"preferida."
+
+msgid "PRIORITY REGION (1G1R)"
+msgstr "REGIÓ PRIORITÀRIA (1G1R)"
+
+msgid "Choose your preferred region for 1G1R filtering."
+msgstr "Trieu la vostra regió preferida per al filtratge 1G1R"
+
+msgid "SECOND PRIORITY REGION (1G1R)"
+msgstr "SEGONA REGIÓ PRIORITÀRIA (1G1R)"
+
+msgid "Choose your second preferred region for 1G1R filtering."
+msgstr "Trieu la vostra segona regió preferida per al filtratge 1G1R"
+
+msgid "THIRD PRIORITY REGIONS (1G1R)"
+msgstr "TERCERA REGIÓ PRIORITÀRIA (1G1R)"
+
+msgid ""
+"Choose your preferred regions priority when there is no match with first and "
+"second regions"
+msgstr ""
+"Trieu la prioritat de les vostres regions preferides quan no hi ha "
+"coincidència amb la primera i segona regió"
+
+msgid "ARCADE SYSTEMS"
+msgstr "SISTEMES ARCADE"
+
+msgid "ENABLE AGGREGATED ARCADE SYSTEM"
+msgstr "ACTIVA EL SISTEMA ARCADE AGREGAT"
+
+msgid "Available only when aggregated arcade system is on"
+msgstr "Disponible només quan el sistema arcade agregat està activat"
+
+msgid ""
+"Select manufacturer virtual system to show in the system view (like "
+"CPS1/2/3, SEGA, TAITO, ...)"
+msgstr ""
+"Seleccioneu el sistema virtual de fabricant a mostrar a la vista de sistemes "
+"(com CPS1/2/3, SEGA, TAITO, ...)"
+
+msgid "ARCADE GAMES"
+msgstr "JOCS ARCADE"
+
+msgid ""
+"Always use arcade names from official databases. Overwrites manual edits and "
+"scraper results."
+msgstr ""
+"Utilitza sempre els noms arcade de les bases de dades oficials. Sobreescriu "
+"l'edició manual i els resultats del cercador."
+
+msgid "USER INTERFACE SETTINGS"
+msgstr "CONFIGURACIÓ DE LA INTERFÍCIE D'USUARI"
+
+msgid "SYSTEMS TO SHOW IN DEMO/GAMECLIP"
+msgstr "SISTEMES A MOSTRAR EN DEMO/CLIP DE JOC"
+
+msgid "Adjust the screen brightness"
+msgstr "Ajusta la brillantor de la pantalla"
+
+msgid "Change the look of your Recalbox!"
+msgstr "Canvieu l'aspecte del vostre Recalbox!"
+
+msgid "DEFAULT TRANSITION STYLE"
+msgstr "ESTIL DE TRANSICIÓ PER DEFECTE"
+
+msgid ""
+"Select the type of transition between system. INSTANT will do nothing, FADE "
+"will fade to dark, and SLIDE will slide the entire screen"
+msgstr ""
+"Seleccioneu el tipus de transició entre sistemes. INSTANTANI no farà res, "
+"ESVAÏMENT s'esvairà a fosc, i LLISCAMENT farà lliscar tota la pantalla"
+
+msgid "Select {THEME.OPTION.NAME}"
+msgstr "Seleccioneu {THEME.OPTION.NAME}"
+
+msgid "GAME LAUNCH TRANSITION STYLE"
+msgstr "ESTIL DE TRANSICIÓ EN LLANÇAR EL JOC"
+
+msgid ""
+"Select the type of transition when you launch a game. INSTANT will do "
+"nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover."
+msgstr ""
+"Seleccioneu el tipus de transició quan llanceu un joc. INSTANTANI no farà "
+"res, ESVAÏMENT s'esvairà a fosc, i LLISCAMENT farà zoom a la portada del joc."
+
+msgid "ENABLE FAST MOVE IN GAMELIST"
+msgstr "ACTIVA EL MOVIMENT RÀPID A LA LLISTA DE JOCS"
+
+msgid ""
+"When enabled, holding up or down for a few seconds makes the list scroll "
+"very fast."
+msgstr ""
+"Quan està activat, mantenir amunt/avall durant uns segons fa que la llista "
+"es desplaci molt ràpidament"
+
+msgid "Display the current time in a corner of the screen."
+msgstr "Mostra l'hora actual a una cantonada de la pantalla."
+
+msgid "SHOW MUSIC POPUPS"
+msgstr "MOSTRA FINESTRES EMERGENTS DE MÚSICA"
+
+msgid "When enabled, show music information every time a new music starts."
+msgstr ""
+"Quan està activat, mostra informació de música cada vegada que comença una "
+"nova música."
+
+msgid "SHOW NETPLAY POPUPS"
+msgstr "MOSTRA FINESTRES EMERGENTS DE NETPLAY"
+
+msgid ""
+"When enabled, show netplay information every time a user starts a new game "
+"over internet."
+msgstr ""
+"Quan està activat, mostra informació de netplay cada vegada que un usuari "
+"inicia un nou joc per internet."
+
+msgid "CONTROLLER SETTINGS"
+msgstr "CONFIGURACIÓ DE COMANDAMENTS"
+
+msgid "Add and configure all your controllers."
+msgstr "Afegiu i configureu tots els vostres comandaments."
+
+msgid "WIFI"
+msgstr "WIFI"
+
+msgid "CONNECT AUTOMATICALLY"
+msgstr "CONNECTA AUTOMÀTICAMENT"
+
+msgid ""
+"Automatically connect on startup if the WIFI network is available and "
+"properly configured!"
+msgstr ""
+"Connecta automàticament en iniciar si la xarxa WIFI està disponible i "
+"correctament configurada!"
+
+msgid "WIFI is disabled!"
+msgstr "El WIFI està desactivat!"
+
+msgid "SELECT SSID"
+msgstr "SELECCIONA L'SSID"
+
+msgid "Select an available SSID."
+msgstr "Seleccioneu un SSID disponible."
+
+msgid "If your Internet box has a WPS system, activate it and then click here!"
+msgstr ""
+"Si el vostre router d'internet té un sistema WPS, activeu-lo i després feu "
+"clic aquí!"
+
+msgid ""
+"Run the scraper! The operation may take a while, however you can make it a "
+"background task and keep using Recalbox."
+msgstr ""
+"Executeu el cercador! L'operació pot trigar una estona, però podeu fer-la "
+"una tasca en segon pla i continuar utilitzant Recalbox."
+
+msgid "PATRON OPTIONS"
+msgstr "OPCIONS DE MECENES"
+
+msgid "user name for the selected scraper"
+msgstr "nom d'usuari per al cercador seleccionat"
+
+msgid "password for the selected scraper"
+msgstr "contrasenya per al cercador seleccionat"
+
+msgid "Download various free games and free contents!"
+msgstr "Descarregueu diversos jocs gratuïts i continguts gratuïts!"
+
+msgid "Download games for {SYSTEM.NAME}"
+msgstr "Descarrega jocs per a {SYSTEM.NAME}"
+
+msgid ""
+"Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}"
+msgstr ""
+"Descarrega un paquet de jocs gratuïts, demos de jocs i homebrew per a "
+"{SYSTEM.NAME}"
+
+msgid "No content available yet for {SYSTEM.NAME}!"
+msgstr "Encara no hi ha contingut disponible per a {SYSTEM.NAME}!"
+
+msgid "ACTIVATE DEBUG/VERBOSE LOGS"
+msgstr "ACTIVA ELS REGISTRES DE DEPURACIÓ/DETALLATS"
+
+msgid "Activate debug and verbose logs in Recalbox and Emulators."
+msgstr ""
+"Activa els registres de depuració i detallats a Recalbox i els emuladors."
+
+msgid "You cannot set up Kodi on boot when Kodi is disabled."
+msgstr "No podeu configurar Kodi en arrencar quan Kodi està desactivat."
+
+msgid "DO NOT SCAN NEW GAMES"
+msgstr "NO ESCANEGIS JOCS NOUS"
+
+msgid ""
+"Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not "
+"scanning new files. Use it if your romsets are rarely updated."
+msgstr ""
+"Anteriorment anomenat 'NOMÉS LLISTA DE JOCS', pot accelerar molt el temps "
+"d'arrencada en no escanejar fitxers nous. Utilitzeu-ho si els vostres "
+"conjunts de roms s'actualitzen rarament."
+
+msgid "ALLOW BOOT ON GAME"
+msgstr "PERMET ARRENCAR AMB JOC"
+
+msgid ""
+"When activated, Recalbox boots into the gamelist and does not allow moving "
+"back to the system list."
+msgstr ""
+"Quan està activat, Recalbox arrenca a la llista de jocs i no permet tornar a "
+"la llista de sistemes."
+
+msgid "SYSTEM SPECIFIC RESOLUTIONS"
+msgstr "RESOLUCIONS ESPECÍFIQUES DEL SISTEMA"
+
+msgid "FOR {SYSTEM.NAME}"
+msgstr "PER A {SYSTEM.NAME}"
+
+msgid "Select the resolution used by the emulator '{SYSTEM.NAME}'."
+msgstr "Seleccioneu la resolució utilitzada per l'emulador '{SYSTEM.NAME}'."
+
+msgid "Set options for system {SYSTEM.NAME}"
+msgstr "Estableix les opcions per al sistema {SYSTEM.NAME}"
+
+msgid "Set the way you want to use Kodi mediaplayer."
+msgstr ""
+"Estableix la manera com voleu utilitzar el reproductor multimèdia Kodi."
+
+msgid "RUN KODI ON STARTUP"
+msgstr "EXECUTA KODI EN INICIAR"
+
+msgid "START KODI WITH X BUTTON"
+msgstr "INICIA KODI AMB EL BOTÓ X"
+
+msgid "Run your own scripts in shell or python"
+msgstr "Executeu els vostres propis scripts en shell o python"
+
+msgid "Run custom script {SCRIPT.NAME}"
+msgstr "Executa l'script personalitzat {SCRIPT.NAME}"
+
+msgid "ENABLE WEB MANAGER"
+msgstr "ACTIVA EL GESTOR WEB"
+
+msgid "RESET EMULATOR SETTINGS"
+msgstr "RESTABLEIX LA CONFIGURACIÓ DE L'EMULADOR"
+
+msgid "RESET!"
+msgstr "RESTABLEIX!"
+
+msgid ""
+"This option resets all emulator settings to their factory defaults. It does "
+"not affect any Recalbox setting."
+msgstr ""
+"Aquesta opció restableix totes les configuracions dels emuladors als valors "
+"de fàbrica. No afecta cap configuració de Recalbox."
+
+msgid "HARDWARE"
+msgstr "MAQUINARI"
+
+msgid "UPDATE!"
+msgstr "ACTUALITZA!"
+
+msgid "Update Pi4 / Pi400 or Pi5 bootloader if required."
+msgstr "Actualitzeu el bootloader de Pi4 / Pi400 o Pi5 si cal."
+
+msgid "Recalbox does not support overclocking for your board."
+msgstr "Recalbox no admet el sobrefreqüenciament per a la vostra placa."
+
+msgid "CONTEXTUAL OPTIONS"
+msgstr "OPCIONS CONTEXTUALS"
+
+msgid "EDIT GAME {GAME.NAME}"
+msgstr "EDITA EL JOC {GAME.NAME}"
+
+msgid "Show options related to {GAME.NAME} and allow editing game metadata."
+msgstr ""
+"Mostra les opcions relacionades amb {GAME.NAME} i permet editar les "
+"metadades del joc."
+
+msgid ""
+"You cannot edit this game because it is a pre-installed game or it is stored "
+"on a read-only device"
+msgstr ""
+"No podeu editar aquest joc perquè és un joc preinstal·lat o està "
+"emmagatzemat en un dispositiu de només lectura"
+
+msgid "Select the emulator to use to run {GAME.NAME}"
+msgstr "Seleccioneu l'emulador a utilitzar per executar {GAME.NAME}"
+
+msgid "SET PATCH"
+msgstr "ESTABLEIX EL PEGAT"
+
+msgid "Select patch to use when running an emulator supporting softpatching."
+msgstr ""
+"Seleccioneu el pegat a utilitzar en executar un emulador que admeti pegats "
+"per software."
+
+msgid ""
+"Either the game has no patch or the emulator selected to run this game is "
+"not supporting softpatching."
+msgstr ""
+"O bé el joc no té cap pegat o l'emulador seleccionat per executar aquest joc "
+"no admet pegats per software."
+
+msgid "Sets the name of the game or folder."
+msgstr "Estableix el nom del joc o de la carpeta."
+
+msgid "Set this game as favorite or not."
+msgstr "Estableix aquest joc com a preferit o no."
+
+msgid "Editing favorites is not enabled."
+msgstr "L'edició de preferits no està activada."
+
+msgid "Hide or show this game."
+msgstr "Amaga o mostra aquest joc."
+
+msgid "Defines this game as an adult game or not."
+msgstr "Defineix aquest joc com a joc per a adults o no."
+
+msgid "Scraping"
+msgstr "Cerca"
+
+msgid "Scrape this game and fill in all metadata at once!"
+msgstr "Cerqueu aquest joc i ompliu totes les metadades alhora!"
+
+msgid "Statistics"
+msgstr "Estadístiques"
+
+msgid "Show the total time you played this game"
+msgstr "Mostra el temps total que heu jugat a aquest joc"
+
+msgid "PLAY COUNT"
+msgstr "NOMBRE DE PARTIDES"
+
+msgid "Show the number of times you played this game"
+msgstr "Mostra el nombre de vegades que heu jugat a aquest joc"
+
+msgid "Show the last date/time you played this game"
+msgstr "Mostra l'última data/hora en què heu jugat a aquest joc"
+
+msgid "DELETE GAME {GAME.NAME}"
+msgstr "SUPRIMEIX EL JOC {GAME.NAME}"
+
+msgid "DELETE {ICON.WARNING}"
+msgstr "SUPRIMEIX {ICON.WARNING}"
+
+msgid ""
+"Delete game or screenshot physically on the storage. Allow keeping save, "
+"metadata and other related files individually."
+msgstr ""
+"Suprimeix el joc o la captura de pantalla físicament a l'emmagatzematge. "
+"Permet conservar individualment els fitxers de desat, metadades i altres "
+"fitxers relacionats."
+
+msgid ""
+"You cannot delete this game because it is a pre-installed game or it is "
+"stored on a read-only device or it is a folder."
+msgstr ""
+"No podeu suprimir aquest joc perquè és un joc preinstal·lat, està "
+"emmagatzemat en un dispositiu de només lectura o és una carpeta."
+
+msgid ""
+"Boot on game is not enabled. To set a game to boot on, enable the "
+"appropriate option first."
+msgstr ""
+"L'arrencada amb joc no està activada. Per establir un joc per arrencar-hi, "
+"activeu primer l'opció adequada."
+
+msgid "RUN SAVE STATE"
+msgstr "EXECUTA L'ESTAT DESAT"
+
+msgid "Select, restore and run game in the selected save state."
+msgstr "Seleccioneu, restaureu i executeu el joc a l'estat desat seleccionat."
+
+msgid ""
+"No save state has been detected for the currently selected game, or the "
+"currently selected item is not a game."
+msgstr ""
+"No s'ha detectat cap estat desat per al joc seleccionat actualment, o "
+"l'element seleccionat actualment no és un joc."
+
+msgid "JUMP"
+msgstr "SALTA"
+
+msgid "Open the Quick Jump selector."
+msgstr "Obre el selector de salt ràpid."
+
+msgid "This option allows you to search for other versions of a game."
+msgstr "Aquesta opció permet cercar altres versions d'un joc."
+
+msgid "This option allows you to search for other games with the same licence."
+msgstr "Aquesta opció permet cercar altres jocs amb la mateixa llicència."
+
+msgid ""
+"Select the way the game list is sorted (alphabetically, by rating, ...)."
+msgstr ""
+"Seleccioneu la manera com s'ordena la llista de jocs (alfabèticament, per "
+"puntuació...)."
+
+msgid "This list has a natural order and can't be sorted."
+msgstr "Aquesta llista té un ordre natural i no es pot ordenar."
+
+msgid ""
+"Select what kind of information you want to see on the right of your "
+"gamelist: regions flags, players or game genre."
+msgstr ""
+"Seleccioneu quin tipus d'informació voleu veure a la dreta de la vostra "
+"llista de jocs: banderes de regió, jugadors o gènere del joc."
+
+msgid "FLATTEN FOLDERS"
+msgstr "APLANA LES CARPETES"
+
+msgid "This system is either always flattened or cannot be flattened!"
+msgstr "Aquest sistema o bé sempre està aplanat o no es pot aplanar!"
+
+msgid "You can't hide favorites in the Favorite system!"
+msgstr "No podeu amagar els preferits al sistema Preferits!"
+
+msgid "Display favorites at the top of gamelists."
+msgstr "Mostra els preferits a la part superior de les llistes de jocs."
+
+msgid "Favorites are always first in the Favorite system!"
+msgstr "Els preferits sempre són els primers al sistema Preferits!"
+
+msgid "Virtual systems cannot be updated. Update real systems instead."
+msgstr ""
+"Els sistemes virtuals no es poden actualitzar. Actualitzeu els sistemes "
+"reals en el seu lloc."
+
+msgid "Advanced system settings"
+msgstr "Configuració avançada del sistema"
+
+msgid "Set advanced settings for system {SYSTEM.NAME}"
+msgstr "Estableix la configuració avançada per al sistema {SYSTEM.NAME}"
+
+msgid "DELETE {GAME.NAME}"
+msgstr "SUPRIMEIX {GAME.NAME}"
+
+msgid "GAME FILES (ROM, DISK IMAGE, TAPE, ...)"
+msgstr "FITXERS DEL JOC (ROM, IMATGE DE DISC, CINTA, ...)"
+
+msgid "Number of game files that are to be deleted."
+msgstr "Nombre de fitxers del joc que s'han de suprimir."
+
+msgid ""
+"Number of media files (images, video, ...) that will be deleted along with "
+"game files."
+msgstr ""
+"Nombre de fitxers multimèdia (imatges, vídeo, ...) que se suprimiran "
+"juntament amb els fitxers del joc."
+
+msgid "There is no media file associated with this game"
+msgstr "No hi ha cap fitxer multimèdia associat a aquest joc"
+
+msgid ""
+"Number of extra files associated with this game: configurations, overrides, "
+"patches, ..."
+msgstr ""
+"Nombre de fitxers addicionals associats a aquest joc: configuracions, "
+"sobreescriptures, pegats, ..."
+
+msgid "There is no extra file associated with this game"
+msgstr "No hi ha cap fitxer addicional associat a aquest joc"
+
+msgid "Number of save games and save states of {GAME.NAME}"
+msgstr "Nombre de partides desades i estats desats de {GAME.NAME}"
+
+msgid "There is no save game or save state for this game"
+msgstr "No hi ha cap partida desada ni estat desat per a aquest joc"
+
+msgid "Select files to delete one by one."
+msgstr "Seleccioneu els fitxers a suprimir un per un."
+
+msgid "Select game files that are to be deleted one by one."
+msgstr "Seleccioneu els fitxers del joc que s'han de suprimir un per un."
+
+msgid ""
+"Select media files (images, video, ...) that will be deleted along with game "
+"files."
+msgstr ""
+"Seleccioneu els fitxers multimèdia (imatges, vídeo, ...) que se suprimiran "
+"juntament amb els fitxers del joc."
+
+msgid "Select extra files to delete: configurations, overrides, patches, ..."
+msgstr ""
+"Seleccioneu els fitxers addicionals a suprimir: configuracions, "
+"sobreescriptures, pegats, ..."
+
+msgid "Select save games and save states of {GAME.NAME} to delete"
+msgstr ""
+"Seleccioneu les partides desades i estats desats de {GAME.NAME} a suprimir"
+
+msgid "Delete all files selected below"
+msgstr "Suprimeix tots els fitxers seleccionats a sota"
+
+msgid "Cancel operation. Do not delete anything"
+msgstr "Cancel·la l'operació. No suprimeixis res"
+
+msgid "Delete all files listed below"
+msgstr "Suprimeix tots els fitxers llistats a sota"
+
+msgid "SOFTPATCHING {GAME.NAME}"
+msgstr "PEGAT PER SOFTWARE {GAME.NAME}"
+
+msgid "ORIGINAL GAME"
+msgstr "JOC ORIGINAL"
+
+msgid "PATCHED GAME"
+msgstr "JOC AMB PEGAT"
+
+msgid "SELECT PATCH TO APPLY"
+msgstr "SELECCIONA EL PEGAT A APLICAR"
+
+msgid "Select the patch to apply."
+msgstr "Seleccioneu el pegat a aplicar"
+
+msgid "INITIATE {GAME.NAME} NETPLAY GAME"
+msgstr "INICIA LA PARTIDA NETPLAY {GAME.NAME}"
+
+msgid "Launch the game and wait for other player to join"
+msgstr "Llança el joc i espera que un altre jugador s'uneixi"
+
+msgid "Select password other player will have to use to join the game"
+msgstr ""
+"Seleccioneu la contrasenya que un altre jugador haurà d'utilitzar per unir-"
+"se al joc"
+
+msgid "CHOOSE VIEWER PASSWORD"
+msgstr "TRIA LA CONTRASENYA D'ESPECTADOR"
+
+msgid "Select password other player will have to use to watch the game"
+msgstr ""
+"Seleccioneu la contrasenya que un altre jugador haurà d'utilitzar per veure "
+"el joc"
+
+msgid "Do not initiate this game."
+msgstr "No iniciïs aquest joc."
+
+msgid "JOIN {GAME.NAME} NETPLAY GAME"
+msgstr "UNEIX-TE A LA PARTIDA NETPLAY {GAME.NAME}"
+
+msgid "JOIN AS PLAYER"
+msgstr "UNEIX-TE COM A JUGADOR"
+
+msgid "JOIN"
+msgstr "UNEIX-TE"
+
+msgid "Join the game as a player."
+msgstr "Uniu-vos al joc com a jugador."
+
+msgid "WATCH"
+msgstr "MIRA"
+
+msgid "Join the game as a viewer. You can watch the game, but not participate."
+msgstr ""
+"Uniu-vos al joc com a espectador. Podeu mirar el joc, però no participar-hi."
+
+msgid "USE PASSWORD"
+msgstr "UTILITZA LA CONTRASENYA"
+
+msgid "Use the selected password to join the game."
+msgstr "Utilitzeu la contrasenya seleccionada per unir-vos al joc."
+
+msgid "Do not join this game."
+msgstr "No us uniu a aquest joc."
+
+msgid "{0} free of {1}"
+msgstr "{0} lliure de {1}"
+
+msgid "{0} FREE"
+msgstr "{0} LLIURE"
+
+msgid "No vulkan driver is available on your hardware."
+msgstr "No hi ha cap controlador vulkan disponible al vostre maquinari."
+
+msgid "Enable rumble with compatible controllers."
+msgstr "Activa la vibració amb comandaments compatibles."
+
+msgid "EDIT FOLDER {GAME.NAME}"
+msgstr "EDITA LA CARPETA {GAME.NAME}"
+
+msgid "%i MINUTE"
+msgid_plural "%i MINUTES"
+msgstr[0] "%i MINUT"
+msgstr[1] "%i MINUTS"
+
+msgid "%i TIME"
+msgid_plural "%i TIMES"
+msgstr[0] "%i VEGADA"
+msgstr[1] "%i VEGADES"
+
+msgid ""
+"Show only the very latest version of a given game, hiding all previous "
+"versions/releases. Particularly useful in TOSEC romsets."
+msgstr ""
+"Mostra només l'última versió d'un joc donat, amagant totes les versions/"
+"llançaments anteriors. Especialment útil en conjunts de roms TOSEC."
+
+msgid "{THEME.OPTION.HELP}"
+msgstr "{THEME.OPTION.HELP}"
+
+msgid "Fast Tape"
+msgstr "Cinta ràpida"
+
+msgid "LIGHT"
+msgstr "LLEUGER"
+
+msgid "MEDIUM"
+msgstr "MITJÀ"
+
+msgid "HEAVY"
+msgstr "FORT"
+
+msgid "X6 (DEFAULT)"
+msgstr "X6 (PER DEFECTE)"
+
+msgid "Region flags"
+msgstr "Banderes de regió"
+
+msgid "Genres"
+msgstr "Gèneres"
+
+msgid "Support numbers"
+msgstr "Nombres de suport"
+
+msgid "Support types"
+msgstr "Tipus de suport"
+
+msgid "{0} file"
+msgid_plural "{0} files"
+msgstr[0] "{0} fitxer"
+msgstr[1] "{0} fitxers"
+
+msgid "THEME MANAGER"
+msgstr "GESTOR DE TEMES"
+
+msgid "LOADING THEME LIST..."
+msgstr "CARREGANT LA LLISTA DE TEMES..."
+
+msgid "Loading theme list..."
+msgstr "Carregant la llista de temes..."
+
+msgid "Unexpected error while retrieving theme list ! Please retry later."
+msgstr ""
+"Error inesperat en obtenir la llista de temes! Torneu-ho a provar més tard."
+
+msgid "Installed"
+msgstr "Instal·lat"
+
+msgid "Not Installed"
+msgstr "No instal·lat"
+
+msgid "Author"
+msgstr "Autor"
+
+msgid "Version"
+msgstr "Versió"
+
+msgid "Compatible with"
+msgstr "Compatible amb"
+
+msgid "Download Size"
+msgstr "Mida de la descàrrega"
+
+msgid "BROWSE PREVIEWS"
+msgstr "EXPLORA LES PREVISUALITZACIONS"
+
+msgid "BROWSE THEMES"
+msgstr "EXPLORA ELS TEMES"
+
+msgid "INSTALL"
+msgstr "INSTAL·LA"
+
+msgid "Please confirm. Do you want to update the theme {0}?"
+msgstr "Confirmeu. Voleu actualitzar el tema {0}?"
+
+msgid "Please confirm. Do you want to install the theme {0}?"
+msgstr "Confirmeu. Voleu instal·lar el tema {0}?"
+
+msgid "Please confirm. Do you really want to delete the theme {0}?"
+msgstr "Confirmeu. Voleu realment suprimir el tema {0}?"
+
+msgid "Preparing theme installation..."
+msgstr "Preparant la instal·lació del tema..."
+
+msgid "Downloading theme {0}"
+msgstr "Descarregant el tema {0}"
+
+msgid "Installing theme {0}"
+msgstr "Instal·lant el tema {0}"
+
+msgid "Installed {0}%"
+msgstr "Instal·lat {0}%"
+
+msgid "Cleaning..."
+msgstr "Netejant..."
+
+msgid ""
+"Error installing theme {0}\n"
+"Reason: {1}"
+msgstr ""
+"Error en instal·lar el tema {0}\n"
+"Motiu: {1}"
+
+msgid "Do you want to switch to the newly installed theme {0} ?"
+msgstr "Voleu canviar al tema {0} recentment instal·lat?"
+
+msgid "Failed to download theme file. Please check your internet connection."
+msgstr ""
+"No s'ha pogut descarregar el fitxer del tema. Comproveu la vostra connexió a "
+"internet."
+
+msgid ""
+"Failed to install required files. Please check you've enough free space on "
+"your storage !"
+msgstr ""
+"No s'han pogut instal·lar els fitxers necessaris. Comproveu que teniu prou "
+"espai lliure a l'emmagatzematge!"
+
+msgid "Unknown failure."
+msgstr "Error desconegut."
+
+msgid "Downloaded {0}%"
+msgstr "Descarregat {0}%"
+
+msgid ""
+"Browse, download, install, update or remove themes from Recalbox's theme "
+"repository!"
+msgstr ""
+"Exploreu, descarregueu, instal·leu, actualitzeu o elimineu temes del "
+"repositori de temes de Recalbox!"
+
+msgid "Loading theme information..."
+msgstr "Carregant informació del tema..."
+
+msgid "{THEME.NAME}"
+msgstr "{THEME.NAME}"
+
+msgid "SWITCH TO"
+msgstr "CANVIA A"
+
+msgid "DESCRIPTION"
+msgstr "DESCRIPCIÓ"
+
+msgid "and later versions"
+msgstr "i versions posteriors"
+
+msgid "The theme version is too old and the theme may not work properly."
+msgstr ""
+"La versió del tema és massa antiga i el tema pot no funcionar correctament."
+
+msgid "REGIONS"
+msgstr "REGIONS"
+
+msgid "SET THIS GAME FOR THE CURRENT CARD"
+msgstr "ESTABLEIX AQUEST JOC PER A LA TARGETA ACTUAL"
+
+msgid "This option allows you to select the current game for the current card."
+msgstr ""
+"Aquesta opció us permet seleccionar el joc actual per a la targeta actual."
+
+msgid ""
+"A gamelist file has been altered manually or by an application external to "
+"Recalbox.\n"
+"\n"
+"In order not to lose any data, this file will be reloaded as soon as you "
+"click on the 'update' button.\n"
+"If several files have been modified when you click on 'update', all the "
+"systems concerned will be updated. No reboot is required."
+msgstr ""
+"S'ha alterat un fitxer de llista de jocs manualment o per una aplicació "
+"externa a Recalbox.\n"
+"\n"
+"Per no perdre cap dada, aquest fitxer es recarregarà tan bon punt feu clic "
+"al botó 'actualitza'.\n"
+"Si s'han modificat diversos fitxers quan feu clic a 'actualitza', tots els "
+"sistemes afectats s'actualitzaran. No cal reiniciar."
+
+msgid ""
+"Changes have been detected in a roms directory on system {0}.\n"
+"\n"
+"Wait for your file operations to finish, then click on the 'update' button "
+"to update your roms in Recalbox.\n"
+"No restart is required, and if you've added roms, you'll be able to scrape "
+"them at the end of the update.\n"
+"\n"
+"If you add roms to several systems, they will all be updated when you click "
+"on the 'update' button."
+msgstr ""
+"S'han detectat canvis en un directori de roms al sistema {0}.\n"
+"\n"
+"Espereu que les vostres operacions de fitxers finalitzin, després feu clic "
+"al botó 'actualitza' per actualitzar les vostres roms a Recalbox.\n"
+"No cal reiniciar, i si heu afegit roms, podreu cercar-les al final de "
+"l'actualització.\n"
+"\n"
+"Si afegiu roms a diversos sistemes, tots s'actualitzaran quan feu clic al "
+"botó 'actualitza'."
+
+msgid "Powering off."
+msgstr "Apagant."
+
+msgid "{0} game has been removed from your gamelists"
+msgid_plural "{0} games have been removed from your gamelists"
+msgstr[0] "S'ha eliminat {0} joc de les vostres llistes de jocs"
+msgstr[1] "S'han eliminat {0} jocs de les vostres llistes de jocs"
+
+msgid "{0} game has been added to your gamelists"
+msgid_plural "{0} games have been added to your gamelists"
+msgstr[0] "S'ha afegit {0} joc a les vostres llistes de jocs"
+msgstr[1] "S'han afegit {0} jocs a les vostres llistes de jocs"
+
+msgid "FULLSCREEN"
+msgstr "PANTALLA COMPLETA"
+
+msgid "ORIGINAL"
+msgstr "ORIGINAL"
+
+msgid ""
+"The card could not be read.\n"
+"This problem can probably be fixed by blowing on the card's contacts!"
+msgstr ""
+"No s'ha pogut llegir la targeta.\n"
+"Aquest problema probablement es pot solucionar bufant els contactes de la "
+"targeta!"
+
+msgid ""
+"A card has been detected but is not yet associated with a game. Use START "
+"menu on a game to associate."
+msgstr ""
+"S'ha detectat una targeta però encara no està associada amb cap joc. "
+"Utilitzeu el menú START a un joc per associar-la."
+
+msgid "Arcade"
+msgstr "Arcade"
+
+msgid ""
+"The Recalbox team thanks you for your trust!\n"
+"\n"
+"Let's take advantage of this first launch to discover together how to use:\n"
+"- your Recalbox"
+msgstr ""
+"L'equip de Recalbox us agraeix la vostra confiança!\n"
+"\n"
+"Aprofitem aquesta primera posada en marxa per descobrir junts com "
+"utilitzar:\n"
+"- el vostre Recalbox"
+
+msgid "and its Recaltower"
+msgstr "i el seu Recaltower"
+
+msgid "- your controller"
+msgstr "- el vostre comandament"
+
+msgid "- your Recalbox RGB DUAL 2"
+msgstr "- el vostre Recalbox RGB DUAL 2"
+
+msgid "- your Recalbox RGB JAMMA 2"
+msgstr "- el vostre Recalbox RGB JAMMA 2"
+
+msgid "- your Recalbox Card Reader"
+msgstr "- el vostre lector de targetes Recalbox"
+
+msgid "Please connect your controller via USB and press X to continue."
+msgstr "Connecteu el vostre comandament via USB i premeu X per continuar."
+
+msgid "Controller"
+msgstr "Comandament"
+
+msgid ""
+"You can navigate through the menus using the directional pad, **select a "
+"system**, or start a game with the **B button**. The **A button** allows you "
+"to exit a menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To exit a game, press the SELECT and START buttons simultaneously."
+msgstr ""
+"Podeu navegar pels menús utilitzant la creueta direccional, **seleccionar un "
+"sistema**, o iniciar un joc amb el **botó B**. El **botó A** us permet "
+"sortir d'un menú o d'una llista de jocs.\n"
+"\n"
+"Accediu al **menú principal** utilitzant el **botó START**.\n"
+"Per sortir d'un joc, premeu els botons SELECT i START simultàniament."
+
+msgid "RGB JAMMA 2"
+msgstr "RGB JAMMA 2"
+
+msgid ""
+"You can navigate through the menus using the joystick, **select a system**, "
+"or start a game with the **button 1**. The **button 2** allows you to exit a "
+"menu or game list.\n"
+"\n"
+"Access the **main menu** using the **START button**.\n"
+"To **exit a game**, **press and hold START** for 4 seconds and release."
+msgstr ""
+"Podeu navegar pels menús utilitzant el joystick, **seleccionar un sistema**, "
+"o iniciar un joc amb el **botó 1**. El **botó 2** us permet sortir d'un menú "
+"o d'una llista de jocs.\n"
+"\n"
+"Accediu al **menú principal** utilitzant el **botó START**.\n"
+"Per **sortir d'un joc**, **manteniu premut START** durant 4 segons i deixeu-"
+"lo anar."
+
+msgid "RGB DUAL 2"
+msgstr "RGB DUAL 2"
+
+msgid ""
+"Your Recalbox RGB DUAL 2 has been detected and installed automatically! You "
+"can now enjoy **all your games** on Recalbox with **perfect pixels and "
+"frequency**!"
+msgstr ""
+"El vostre Recalbox RGB DUAL 2 s'ha detectat i instal·lat automàticament! Ara "
+"podeu gaudir de **tots els vostres jocs** a Recalbox amb **píxels i "
+"freqüència perfectes**!"
+
+msgid ""
+"\n"
+"\n"
+"Consider this: you can automatically switch back to **HDMI mode** by "
+"connecting an HDMI cable and restarting Recalbox!"
+msgstr ""
+"\n"
+"\n"
+"Tingueu en compte això: podeu tornar automàticament al **mode HDMI** "
+"connectant un cable HDMI i reiniciant Recalbox!"
+
+msgid ""
+"\n"
+"\n"
+"An HDMI cable has been detected and the “HDMI priority” mode is enabled in "
+"the options. To switch back to CRT mode, disconnect the HDMI cable and "
+"restart, or disable the HDMI priority option in the Recalbox RGB DUAL 2 "
+"(START) menu options."
+msgstr ""
+"\n"
+"\n"
+"S'ha detectat un cable HDMI i el mode “prioritat HDMI” està activat a les "
+"opcions. Per tornar al mode CRT, desconnecteu el cable HDMI i reinicieu, o "
+"desactiveu l'opció de prioritat HDMI a les opcions del menú Recalbox RGB "
+"DUAL 2 (START)."
+
+msgid "Recalbox Card Reader"
+msgstr "Lector de targetes Recalbox"
+
+msgid ""
+"Your Recalbox Card Reader has been detected and **installed automatically!"
+"**\n"
+"\n"
+"You can start using it right away by **inserting a card** into the reader "
+"and going to the game of your choice to **associate the game and card** "
+"using the **menu** available with the **START** button."
+msgstr ""
+"El vostre lector de targetes Recalbox s'ha detectat i **instal·lat "
+"automàticament!**\n"
+"\n"
+"Podeu començar a utilitzar-lo immediatament **inserint una targeta** al "
+"lector i anant al joc que trieu per **associar el joc i la targeta** "
+"utilitzant el **menú** disponible amb el botó **START**."
+
+msgid "Add games"
+msgstr "Afegeix jocs"
+
+msgid ""
+"Recalbox shares its ROM, BIOS, and save files folders on the local network. "
+"Adding your ROMs couldn't be easier: on your computer, search for your "
+"“recalbox” in the network shares.\n"
+"Go to the ROMs folder, then copy your game to the folder corresponding to "
+"its system. For example, to add a “NES” game, copy it to the ‘roms/nes’ "
+"folder."
+msgstr ""
+"Recalbox comparteix les seves carpetes de ROM, BIOS i fitxers desats a la "
+"xarxa local. Afegir les vostres ROMs no pot ser més fàcil: al vostre "
+"ordinador, cerqueu el vostre “recalbox” als recursos compartits de xarxa.\n"
+"Aneu a la carpeta de ROMs, després copieu el vostre joc a la carpeta "
+"corresponent al seu sistema. Per exemple, per afegir un joc “NES”, copieu-lo "
+"a la carpeta ‘roms/nes’."
+
+msgid ""
+"Remember to connect your Recalbox to the internet to enjoy all its "
+"features!\n"
+msgstr ""
+"Recordeu connectar el vostre Recalbox a internet per gaudir de totes les "
+"seves funcions!\n"
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Les actualitzacions us seran ofertes automàticament.\n"
+"\n"
+"Trobeu informació útil i tutorials a recalbox.com, o al wiki de recalbox "
+"escanejant el codi QR."
+
+msgid "Update"
+msgstr "Actualitza"
+
+msgid "Are you sure to activate this theme?"
+msgstr "Esteu segur que voleu activar aquest tema?"
+
+msgid "Can't write game to share!"
+msgid_plural "Can't write games to share!"
+msgstr[0] "No es pot escriure el joc al share!"
+msgstr[1] "No es poden escriure els jocs al share!"
+
+msgid "Error downloading game! Retry later."
+msgid_plural "Error downloading games! Retry later."
+msgstr[0] "Error en descarregar el joc! Torneu-ho a provar més tard."
+msgstr[1] "Error en descarregar els jocs! Torneu-ho a provar més tard."
+
+msgid "Button "
+msgstr "Botó "
+
+msgid "Axis "
+msgstr "Eix "
+
+msgid "pressed"
+msgstr "premut"
+
+msgid "released"
+msgstr "alliberat"
+
+msgid " {0} Fps ({1}%) "
+msgstr " {0} Fps ({1}%) "
+
+msgid ""
+"Scraping game %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Cercant el joc %VALUE%/%TOTAL%\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Scraper starting..."
+msgstr "El cercador s'està iniciant..."
+
+msgid "Scraping completed!"
+msgstr "Cerca completada!"
+
+msgid "All games scraped successfully."
+msgstr "Tots els jocs s'han cercat correctament."
+
+msgid "You reached your daily quota. Retry tomorrow."
+msgstr "Heu arribat al vostre límit diari. Torneu-ho a provar demà."
+
+msgid "Your disk is full Pleas make room before trying again."
+msgstr "El vostre disc està ple. Feu espai abans de tornar-ho a provar."
+
+msgid ""
+"Errors occurred and prevented some games to get their metadata. Retry later."
+msgstr ""
+"S'han produït errors que han impedit que alguns jocs obtinguessin les seves "
+"metadades. Torneu-ho a provar més tard."
+
+msgid ""
+"Scraping game... %COUNT% yet to go.\n"
+"%SYSTEM%\n"
+"%NAME%"
+msgstr ""
+"Cercant el joc... encara en queden %COUNT%.\n"
+"%SYSTEM%\n"
+"%NAME%"
+
+msgid "Starting background scraper..."
+msgstr "Iniciant el cercador en segon pla..."
+
+msgid " by "
+msgstr " de "
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"The filters will be reset and recalbox will be reloaded."
+msgstr ""
+"Les vostres preferències de filtres amaguen tots els vostres jocs!\n"
+"Els filtres es restabliran i recalbox es recarregarà."
+
+msgid ""
+"Your filters preferences hide all your games !\n"
+"All filters have been reset."
+msgstr ""
+"Les vostres preferències de filtres amaguen tots els vostres jocs!\n"
+"Tots els filtres s'han restablert."
+
+msgid ""
+"Free space on device %NAME% has gone under %LIMIT%!\n"
+"You should try to free some space quickly!"
+msgstr ""
+"L'espai lliure al dispositiu %NAME% ha baixat de %LIMIT%!\n"
+"Hauríeu de provar d'alliberar espai ràpidament!"
+
+msgid "Running script..."
+msgstr "Executant l'script..."
+
+msgid "Passwords cannot be empty ! Replaced with default value."
+msgstr ""
+"Les contrasenyes no poden estar buides! Substituïdes pel valor per defecte."
+
+msgid "%i SECOND"
+msgid_plural "%i SECONDS"
+msgstr[0] "%i SEGON"
+msgstr[1] "%i SEGONS"
+
+msgid "%i HOUR"
+msgid_plural "%i HOURS"
+msgstr[0] "%i HORA"
+msgstr[1] "%i HORES"
+
+msgid ""
+"\n"
+"WARNING: You device may not have been properly unplugged and has consistency "
+"errors. As a result, it's been mounted as read-only. You should plug your "
+"device in a Window PC and use the repair tool."
+msgstr ""
+"\n"
+"ATENCIÓ: és possible que el vostre dispositiu no s'hagi desconnectat "
+"correctament i tingui errors de consistència. Com a resultat, s'ha muntat en "
+"només lectura. Hauríeu de connectar el vostre dispositiu a un PC Windows i "
+"utilitzar l'eina de reparació."
+
+msgid "{THEME.NAME} CONFIGURATION"
+msgstr "CONFIGURACIÓ DE {THEME.NAME}"
+
+msgid "ENABLE SIDE NAVIGATION IN GAME LISTS"
+msgstr "ACTIVA LA NAVEGACIÓ LATERAL A LES LLISTES DE JOCS"
+
+msgid "JOIN AS VIEWER"
+msgstr "UNEIX-TE COM A ESPECTADOR"
+
+msgid "RECALCARDS SETTINGS"
+msgstr "CONFIGURACIÓ DE RECALCARDS"
+
+msgid "Recalbox Card Reader options and configuration."
+msgstr "Opcions i configuració del lector de targetes Recalbox."
+
+msgid "CARD READER"
+msgstr "LECTOR DE TARGETES"
+
+msgid "Card Reader Version and status."
+msgstr "Versió i estat del lector de targetes."
+
+msgid "BOOT ON CARD"
+msgstr "ARRENCA AMB TARGETA"
+
+msgid "Boot on the card when inserted at Recalbox boot."
+msgstr ""
+"Arrenca amb la targeta quan s'insereixi durant l'arrencada de Recalbox."
+
+msgid "RECALBOX BOOT VIDEOS"
+msgstr "VÍDEOS D'ARRENCADA DE RECALBOX"
+
+msgid "Enable or disable recalbox videos on boot."
+msgstr "Activa o desactiva els vídeos de recalbox en arrencar."
+
+msgid "Console Mode (cards only)"
+msgstr "Mode consola (només targetes)"
+
+msgid "Start Recalbox in console mode, where only cards can be played."
+msgstr "Inicia Recalbox en mode consola, on només es poden jugar targetes."
+
+msgid "Console Mode exit buttons"
+msgstr "Botons de sortida del mode consola"
+
+msgid "Select how to exit console mode."
+msgstr "Seleccioneu com sortir del mode consola."
+
+msgid "Console Mode video"
+msgstr "Vídeo del mode consola"
+
+msgid "Select the video to run in console mode."
+msgstr "Seleccioneu el vídeo a executar en mode consola."
+
+msgid "Console Mode sound"
+msgstr "So del mode consola"
+
+msgid "Switch between recalbox music and bios sound."
+msgstr "Commuta entre la música de recalbox i el so de la bios."
+
+msgid "({0} AVAILABLE)"
+msgstr "({0} DISPONIBLE)"
+
+msgid "UP TO DATE"
+msgstr "AL DIA"
+
+msgid ""
+"The game associated with the card was not found on your Recalbox, the card "
+"association has been cleared."
+msgstr ""
+"No s'ha trobat el joc associat amb la targeta al vostre Recalbox, "
+"l'associació de la targeta s'ha eliminat."
+
+msgid "Unable to start on the game, could not find the game."
+msgstr "No es pot iniciar el joc, no s'ha trobat el joc."
+
+msgid "Unable to start on the game, no controllers found."
+msgstr "No es pot iniciar el joc, no s'ha trobat cap comandament."
+
+msgid "GLOBAL CONFIGURATION"
+msgstr "CONFIGURACIÓ GLOBAL"
+
+msgid "Board"
+msgstr "Placa"
+
+msgid "Shows your current board."
+msgstr "Mostra la vostra placa actual."
+
+msgid "Show release notes"
+msgstr "Mostra les notes de llançament"
+
+msgid "Shows current version's release notes."
+msgstr "Mostra les notes de llançament de la versió actual."
+
+msgid "RELEASE NOTES"
+msgstr "NOTES DE LLANÇAMENT"
+
+msgid "Scroll manually"
+msgstr "Desplaça manualment"
+
+msgid "AVAILABLE UPDATE"
+msgstr "ACTUALITZACIÓ DISPONIBLE"
+
+msgid "DOWNLOAD"
+msgstr "DESCARREGA"
+
+msgid "Libretro Geolith Settings"
+msgstr "Configuració de Libretro Geolith"
+
+msgid "System Type"
+msgstr "Tipus de sistema"
+
+msgid "Specify the System Type: AES, MVS or Universe BIOS System."
+msgstr "Especifiqueu el tipus de sistema: AES, MVS o Universe BIOS System."
+
+msgid "480p"
+msgstr "480p"
+
+msgid "Select the resolution for Kodi interface and videos"
+msgstr "Seleccioneu la resolució per a la interfície i vídeos de Kodi"
+
+msgid ""
+"You are currently running a preview version of **Recalbox 10**. An update to "
+"the public version will be offered automatically when it becomes available "
+"for download."
+msgstr ""
+"Actualment esteu executant una versió preliminar de **Recalbox 10**. Una "
+"actualització a la versió pública s'oferirà automàticament quan estigui "
+"disponible per a descarregar."
+
+msgid ""
+"Find useful information and tutorials at recalbox.com, or on the recalbox "
+"wiki by scanning the QR code."
+msgstr ""
+"Trobeu informació útil i tutorials a recalbox.com, o al wiki de recalbox "
+"escanejant el codi QR."
+
+msgid ""
+"Updates will be offered to you automatically.\n"
+"\n"
+msgstr ""
+"Les actualitzacions us seran ofertes automàticament.\n"
+"\n"
+
+msgid ""
+"Cannot check update ! Ensure your Recalbox is connected to the Internet, and "
+"try later."
+msgstr ""
+"No es pot comprovar l'actualització! Assegureu-vos que el vostre Recalbox "
+"estigui connectat a Internet, i torneu-ho a provar més tard."
+
+msgid "Libretro MelonDS Settings"
+msgstr "Configuració de Libretro MelonDS"
+
+msgid "Touch Mode"
+msgstr "Mode tàctil"
+
+msgid "Choose mode for interactions with the touch screen."
+msgstr "Trieu el mode per a interaccions amb la pantalla tàctil."
+
+msgid "Swap Screen Mode"
+msgstr "Mode d'intercanvi de pantalla"
+
+msgid "Choose if the 'Swap screens' button should work on press or on hold."
+msgstr ""
+"Trieu si el botó 'Intercanvia pantalles' ha de funcionar en prémer o en "
+"mantenir premut."
+
+msgid "Screen Layout"
+msgstr "Disposició de pantalla"
+
+msgid ""
+"Choose how many screens should be displayed, and how they should be arranged."
+msgstr "Trieu quantes pantalles s'han de mostrar i com s'han de mostrar."
+
+msgid "Enabled (GPU)"
+msgstr "Activat (GPU)"
+
+msgid "Run in main thread (CPU)"
+msgstr "Executa al fil principal (CPU)"
+
+msgid "Disabled"
+msgstr "Desactivat"
+
+msgid "Center"
+msgstr "Centre"
+
+msgid "Stretch"
+msgstr "Estira"
+
+msgid "Scale"
+msgstr "Escala"
+
+msgid "North America"
+msgstr "Amèrica del Nord"
+
+msgid "Europe and Australia"
+msgstr "Europa i Austràlia"
+
+msgid "Manufacturing plant"
+msgstr "Planta de fabricació"
+
+msgid "NTSC-M (North America)"
+msgstr "NTSC-M (Amèrica del Nord)"
+
+msgid "NTSC-J (Japan)"
+msgstr "NTSC-J (Japó)"
+
+msgid "PAL-I (Europe and Australia)"
+msgstr "PAL-I (Europa i Austràlia)"
+
+msgid "PAL-M (Brazil)"
+msgstr "PAL-M (Brasil)"
+
+msgid "Stereo"
+msgstr "Estèreo"
+
+msgid "Legacy sound engine"
+msgstr "Motor de so antic"
+
+msgid "New sound engine based on MAME"
+msgstr "Nou motor de so basat en MAME"
+
+msgid "Enable for 1 player"
+msgstr "Activa per a 1 jugador"
+
+msgid "Enable for 2 players"
+msgstr "Activa per a 2 jugadors"
+
+msgid "MOUSE"
+msgstr "RATOLÍ"
+
+msgid "TOUCH"
+msgstr "TÀCTIL"
+
+msgid "HOLD"
+msgstr "MANTENIR"
+
+msgid "Top/Bottom"
+msgstr "Amunt/Avall"
+
+msgid "Bottom/Top"
+msgstr "Avall/Amunt"
+
+msgid "Left/Right"
+msgstr "Esquerra/Dreta"
+
+msgid "Right/Left"
+msgstr "Dreta/Esquerra"
+
+msgid "Top Only"
+msgstr "Només amunt"
+
+msgid "Bottom Only"
+msgstr "Només avall"
+
+msgid "Hybrid Top"
+msgstr "Híbrid amunt"
+
+msgid "Hybrid Bottom"
+msgstr "Híbrid avall"
+
+msgid "Downloading Quake 3 demo game from the official site. Please wait..."
+msgstr ""
+"Descarregant el joc de demostració Quake 3 des del lloc oficial. Espereu..."
+
+msgid ""
+"Downloading Tomb Raider demo game from the official site. Please wait..."
+msgstr ""
+"Descarregant el joc de demostració Tomb Raider des del lloc oficial. "
+"Espereu..."
+
+msgid "AVOID LOW FREQUENCY MODES"
+msgstr "EVITA MODES DE FREQÜÈNCIA BAIXA"
+
+msgid "Avoid modes under 57Hz for non-compatible TVs."
+msgstr "Evita modes per sota de 57Hz per a TV no compatibles."
+
+msgid "HANDHELDS RATIO"
+msgstr "RELACIÓ DE PORTÀTILS"
+
+msgid ""
+"Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full "
+"image, or ORIGINAL to get original and pixel perfect resolution."
+msgstr ""
+"Relació de vídeo en CRT per a consoles portàtils. Seleccioneu PANTALLA "
+"COMPLETA per obtenir una imatge completa, o ORIGINAL per obtenir una "
+"resolució original i píxel perfecte."
+
+#: GuiInputConfig — phase messages
+msgid "Press %LABEL%"
+msgstr "PREMEU %LABEL%"
+
+msgid "Release to confirm"
+msgstr "Deixeu anar per confirmar"
+
+msgid "Press **HOTKEY + START** to validate"
+msgstr "Premeu **HOTKEY + START** per validar"
+
+msgid "ALREADY USED"
+msgstr "JA UTILITZAT"
+
+msgid "ALREADY USED BY {0}"
+msgstr "JA UTILITZAT PER {0}"
+
+msgid "Button combination"
+msgstr "Combinació de botons"
+
+msgid ""
+"Your controller has __no SELECT or HOTKEY button__. The START button will be "
+"used for special actions:\n"
+"- **Long press on START** = quit the game (START + HOTKEY)\n"
+"- **START + Validate** = SELECT (insert credit in arcade games)\n"
+"- **START + any other button** = HOTKEY + that button"
+msgstr ""
+"El vostre comandament __no té botó SELECT ni HOTKEY__. El botó START "
+"s'utilitzarà per a accions especials:\n"
+"- **Pressió llarga a START** = sortir del joc (START + HOTKEY)\n"
+"- **START + Validar** = SELECT (inserir crèdit als jocs arcade)\n"
+"- **START + qualsevol altre botó** = HOTKEY + aquest botó"
+
+msgid "**Long-press START** to validate"
+msgstr "**Manteniu premut START** per validar"
+
+msgid "SAME AS SELECT"
+msgstr "IGUAL QUE SELECT"
+
+msgid "DPAD RIGHT to skip"
+msgstr "DPAD DRETA per ometre"
+
+msgid "DPAD LEFT to go back"
+msgstr "DPAD ESQUERRA per tornar"
+
+#: GuiInputConfig — DPAD / hat
+msgid "DPAD UP"
+msgstr "DPAD AMUNT"
+
+msgid "DPAD RIGHT"
+msgstr "DPAD DRETA"
+
+msgid "DPAD DOWN"
+msgstr "DPAD AVALL"
+
+msgid "DPAD LEFT"
+msgstr "DPAD ESQUERRA"
+
+#: GuiInputConfig — left stick
+msgid "LEFT STICK UP"
+msgstr "STICK ESQUERRE AMUNT"
+
+msgid "LEFT STICK RIGHT"
+msgstr "STICK ESQUERRE DRETA"
+
+msgid "LEFT STICK DOWN"
+msgstr "STICK ESQUERRE AVALL"
+
+msgid "LEFT STICK LEFT"
+msgstr "STICK ESQUERRE ESQUERRA"
+
+#: GuiInputConfig — right stick
+msgid "RIGHT STICK UP"
+msgstr "STICK DRET AMUNT"
+
+msgid "RIGHT STICK RIGHT"
+msgstr "STICK DRET DRETA"
+
+msgid "RIGHT STICK DOWN"
+msgstr "STICK DRET AVALL"
+
+msgid "RIGHT STICK LEFT"
+msgstr "STICK DRET ESQUERRA"
+
+#: GuiInputConfig — Gamecube main stick
+msgid "MAIN STICK UP"
+msgstr "STICK PRINCIPAL AMUNT"
+
+msgid "MAIN STICK RIGHT"
+msgstr "STICK PRINCIPAL DRETA"
+
+msgid "MAIN STICK DOWN"
+msgstr "STICK PRINCIPAL AVALL"
+
+msgid "MAIN STICK LEFT"
+msgstr "STICK PRINCIPAL ESQUERRA"
+
+#: GuiInputConfig — Gamecube C-stick
+msgid "C-STICK UP"
+msgstr "C-STICK AMUNT"
+
+msgid "C-STICK RIGHT"
+msgstr "C-STICK DRETA"
+
+msgid "C-STICK DOWN"
+msgstr "C-STICK AVALL"
+
+msgid "C-STICK LEFT"
+msgstr "C-STICK ESQUERRA"
+
+#: GuiInputConfig — N64 C buttons
+msgid "C UP"
+msgstr "C AMUNT"
+
+msgid "C RIGHT"
+msgstr "C DRETA"
+
+msgid "C DOWN"
+msgstr "C AVALL"
+
+msgid "C LEFT"
+msgstr "C ESQUERRA"
+
+#: GuiInputConfig — arcade single stick
+msgid "STICK UP"
+msgstr "STICK AMUNT"
+
+msgid "STICK RIGHT"
+msgstr "STICK DRETA"
+
+msgid "STICK DOWN"
+msgstr "STICK AVALL"
+
+msgid "STICK LEFT"
+msgstr "STICK ESQUERRA"
+
+#: GuiInputConfig — Sony face buttons
+msgid "CIRCLE"
+msgstr "CERCLE"
+
+msgid "CROSS"
+msgstr "CREU"
+
+msgid "TRIANGLE"
+msgstr "TRIANGLE"
+
+msgid "SQUARE"
+msgstr "QUADRAT"
+
+#: GuiInputConfig — arcade 4 button labels
+msgid "BUTTON 1"
+msgstr "BOTÓ 1"
+
+msgid "BUTTON 2"
+msgstr "BOTÓ 2"
+
+msgid "BUTTON 3"
+msgstr "BOTÓ 3"
+
+msgid "BUTTON 4"
+msgstr "BOTÓ 4"
+
+#: GuiInputConfig — arcade row labels
+msgid "TOP ROW 1"
+msgstr "FILA SUPERIOR 1"
+
+msgid "TOP ROW 2"
+msgstr "FILA SUPERIOR 2"
+
+msgid "TOP ROW 3"
+msgstr "FILA SUPERIOR 3"
+
+msgid "TOP ROW 4"
+msgstr "FILA SUPERIOR 4"
+
+msgid "BOTTOM ROW 1"
+msgstr "FILA INFERIOR 1"
+
+msgid "BOTTOM ROW 2"
+msgstr "FILA INFERIOR 2"
+
+msgid "BOTTOM ROW 3"
+msgstr "FILA INFERIOR 3"
+
+msgid "BOTTOM ROW 4"
+msgstr "FILA INFERIOR 4"
+
+#: GuiInputConfig — shoulders / triggers stick clicks
+msgid "L1 (Left Shoulder)"
+msgstr "L1 (espatlla esquerra)"
+
+msgid "R1 (Right Shoulder)"
+msgstr "R1 (espatlla dreta)"
+
+msgid "L2 (Left Trigger)"
+msgstr "L2 (gallet esquerre)"
+
+msgid "R2 (Right Trigger)"
+msgstr "R2 (gallet dret)"
+
+msgid "L3 (Left Joystick Click)"
+msgstr "L3 (clic del joystick esquerre)"
+
+msgid "R3 (Right Joystick Click)"
+msgstr "R3 (clic del joystick dret)"
+
+#: GuiInputConfig — XBox shoulders / triggers
+msgid "LB (Left Shoulder)"
+msgstr "LB (espatlla esquerra)"
+
+msgid "RB (Right Shoulder)"
+msgstr "RB (espatlla dreta)"
+
+msgid "LT (Left Trigger)"
+msgstr "LT (gallet esquerre)"
+
+msgid "RT (Right Trigger)"
+msgstr "RT (gallet dret)"
+
+#: GuiInputConfig — Gamecube / Megadrive N64 shoulders
+msgid "L (Left Shoulder)"
+msgstr "L (espatlla esquerra)"
+
+msgid "R (Right Shoulder)"
+msgstr "R (espatlla dreta)"
+
+msgid "Z (Trigger)"
+msgstr "Z (gallet)"
+
+#: GuiInputConfig — Sony Start/Select/Hotkey
+msgid "OPTIONS (Start)"
+msgstr "OPTIONS (Start)"
+
+msgid "SHARE"
+msgstr "SHARE"
+
+msgid "SHARE (Select)"
+msgstr "SHARE (Select)"
+
+msgid "PS BUTTON (Hotkey)"
+msgstr "BOTÓ PS (Hotkey)"
+
+#: GuiInputConfig — XBox Start/Select/Hotkey
+msgid "MENU (Start)"
+msgstr "MENU (Start)"
+
+msgid "VIEW"
+msgstr "VIEW"
+
+msgid "VIEW (Select)"
+msgstr "VIEW (Select)"
+
+msgid "GUIDE (Hotkey)"
+msgstr "GUIDE (Hotkey)"
+
+msgid "HEART (Hotkey)"
+msgstr "COR (Hotkey)"
+
+#: GuiInputConfig — skippable Select/Hotkey 2-line hints
+msgid "Skip if absent"
+msgstr "Omet si no hi és"
+
+msgid "Skip if physically absent"
+msgstr "Omet si no hi és físicament"
+
+msgid "Unable to update"
+msgstr "No s'ha pogut actualitzar"
+
+msgid ""
+"Recalbox adds many new features with each new version, which gradually "
+"increases the size of the system.\n"
+"The system partition on your installation is too small to accommodate "
+"version {0}.\n"
+"\n"
+"To continue receiving updates, you must reinstall Recalbox by downloading "
+"the latest image from www.recalbox.com."
+msgstr ""
+"Recalbox afegeix moltes funcions noves amb cada versió nova, la qual cosa "
+"augmenta gradualment la mida del sistema.\n"
+"La partició del sistema en la vostra instal·lació és massa petita per "
+"allotjar la versió {0}.\n"
+"\n"
+"Per continuar rebent actualitzacions, heu de reinstal·lar Recalbox "
+"descarregant la darrera imatge des de www.recalbox.com."
+
+msgid ""
+"Unable to verify that there is enough space left on the boot partition. The "
+"update may not complete successfully."
+msgstr ""
+"No s'ha pogut verificar que hi ha prou espai a la partició d'arrencada. "
+"L'actualització pot no completar-se correctament."
+
+msgid "PLAY"
+msgstr "REPRODUEIX"
+
+msgid "ENABLE/DISABLE"
+msgstr "ACTIVA/DESACTIVA"
+
+msgid "Downloading"
+msgstr "Descarregant"
+
+msgid "SEEK"
+msgstr "CERCA"
+
+msgid "FOLLOW"
+msgstr "SEGUEIX"
+
+msgid "SWITCH TO LINEAR PLAY"
+msgstr "CANVIA A REPRODUCCIÓ LINEAL"
+
+msgid "SWITCH TO RANDOM PLAY"
+msgstr "CANVIA A REPRODUCCIÓ ALEATÒRIA"
+
+msgid "JUKEBOX"
+msgstr "JUKEBOX"
+
+#: MenuProvider.cpp InstallDevice — first warning title (destructive)
+msgid "WARNING ! DESTRUCTIVE OPERATION !"
+msgstr "ATENCIÓ! OPERACIÓ DESTRUCTIVA!"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: AND data
+msgid ""
+"**{DEVICE}** contains **partitions with existing data**.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly**:\n"
+"\n"
+"- Erase **all partitions** on this disk\n"
+"- **Destroy all data** present on those partitions\n"
+"\n"
+"**There is no going back.** Once confirmed, there is absolutely no way to "
+"recover your files or partitions.\n"
+"\n"
+"Are you **absolutely sure** you want to continue?"
+msgstr ""
+"**{DEVICE}** conté **particions amb dades existents**.\n"
+"\n"
+"Si ho confirmes, Recalbox farà el següent de manera **permanent i "
+"irreversible**:\n"
+"\n"
+"- Esborrar **totes les particions** d'aquest disc\n"
+"- **Destruir totes les dades** presents en aquestes particions\n"
+"\n"
+"**No hi ha marxa enrere.** Un cop confirmat, no hi ha absolutament cap "
+"manera de recuperar els teus fitxers o particions.\n"
+"\n"
+"Estàs **totalment segur** que vols continuar?"
+
+#: MenuProvider.cpp InstallDevice — first warning body, disk with partitions
+#: but no detected data
+msgid ""
+"**{DEVICE}** already has partitions.\n"
+"\n"
+"If you confirm, Recalbox will **permanently and irreversibly erase all "
+"existing partitions** on this disk.\n"
+"\n"
+"**There is no going back.**\n"
+"\n"
+"Are you sure you want to continue?"
+msgstr ""
+"**{DEVICE}** ja té particions.\n"
+"\n"
+"Si ho confirmes, Recalbox **esborrarà de manera permanent i irreversible "
+"totes les particions existents** en aquest disc.\n"
+"\n"
+"**No hi ha marxa enrere.**\n"
+"\n"
+"Estàs segur que vols continuar?"
+
+#: MenuProvider.cpp InstallDevice — second confirmation title
+msgid "LAST WARNING BEFORE INSTALLATION"
+msgstr "ÚLTIM AVÍS ABANS DE LA INSTAL·LACIÓ"
+
+#: MenuProvider.cpp InstallDevice — second confirmation body
+msgid ""
+"The installation of Recalbox on **{DEVICE}** may take **several minutes**.\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation.\n"
+"If the process is interrupted, the disk may be left in an unusable state.\n"
+"\n"
+"You can still change your mind and **cancel right now**."
+msgstr ""
+"La instal·lació de Recalbox a **{DEVICE}** pot trigar **uns quants "
+"minuts**.\n"
+"\n"
+"⚠ **NO** apaguis ni reiniciïs Recalbox durant la instal·lació.\n"
+"Si el procés s'interromp, el disc pot quedar en un estat inutilitzable.\n"
+"\n"
+"Encara pots canviar d'opinió i **cancel·lar-ho ara mateix**."
+
+#: GuiInstallRecalbox.cpp — window title
+msgid "INSTALLATION IN PROGRESS..."
+msgstr "INSTAL·LACIÓ EN CURS..."
+
+#: GuiInstallRecalbox.cpp — body text shown during installation
+msgid ""
+"Installing Recalbox on **{DEVICE}**...\n"
+"\n"
+"⚠ **Do NOT** shut down or reboot Recalbox during the installation process.\n"
+"If the installation is interrupted, the disk may be left in an unusable "
+"state.\n"
+"\n"
+"Please wait — this may take **several minutes**."
+msgstr ""
+"S'està instal·lant Recalbox a **{DEVICE}**...\n"
+"\n"
+"⚠ **NO** apaguis ni reiniciïs Recalbox durant el procés d'instal·lació.\n"
+"Si la instal·lació s'interromp, el disc pot quedar en un estat "
+"inutilitzable.\n"
+"\n"
+"Espera si us plau — això pot trigar **uns quants minuts**."
+
+#: GuiInstallRecalbox.cpp — initial status line
+msgid "Starting installation..."
+msgstr "Iniciant la instal·lació..."
+
+#: GuiInstallRecalbox.cpp — status line on success
+msgid "Installation complete! Press any button to reboot."
+msgstr "Instal·lació completa! Prem qualsevol botó per reiniciar."
+
+#: GuiInstallRecalbox.cpp — help bar label when installation is complete
+msgid "REBOOT"
+msgstr "REINICIA"
+
+#: GuiInstallRecalbox.cpp — status line on failure
+msgid "Installation failed! Check the logs for details."
+msgstr "La instal·lació ha fallat! Consulta els registres per a més detalls."
+
+#: GuiInstallRecalbox.cpp — partition step status strings
+msgid "Unmounting existing partitions..."
+msgstr "Desmuntant les particions existents..."
+
+msgid "Wiping existing partitions..."
+msgstr "Esborrant les particions existents..."
+
+msgid "Creating RECALBOX partition (FAT32, 6 GB)..."
+msgstr "Creant la partició RECALBOX (FAT32, 6 GB)..."
+
+msgid "Creating SHARE partition (exFAT)..."
+msgstr "Creant la partició SHARE (exFAT)..."
+
+msgid "Creating OVERLAY partition (ext4, 1 GB)..."
+msgstr "Creant la partició OVERLAY (ext4, 1 GB)..."
+
+msgid "Reloading partition table..."
+msgstr "Recarregant la taula de particions..."
+
+msgid "Formatting RECALBOX partition (FAT32)..."
+msgstr "Formatant la partició RECALBOX (FAT32)..."
+
+msgid "Formatting SHARE partition (exFAT)..."
+msgstr "Formatant la partició SHARE (exFAT)..."
+
+msgid "Formatting OVERLAY partition (ext4)..."
+msgstr "Formatant la partició OVERLAY (ext4)..."
+
+#: GuiInstallRecalbox.cpp — pre-flight size check
+msgid "Checking available disk space..."
+msgstr "Comprovant l'espai disponible al disc..."
+
+msgid ""
+"Not enough space on the target disk.\n"
+"\n"
+"The content of **/recalbox/share** ({SIZE_SHARE}) does not fit in the "
+"available SHARE partition ({SIZE_AVAIL}).\n"
+"\n"
+"Please use a larger disk or free up space on /recalbox/share first."
+msgstr ""
+"No hi ha prou espai al disc de destinació.\n"
+"\n"
+"El contingut de **/recalbox/share** ({SIZE_SHARE}) no cap a la partició "
+"SHARE disponible ({SIZE_AVAIL}).\n"
+"\n"
+"Utilitza un disc més gran o allibera espai a /recalbox/share primer."
+
+#: GuiInstallRecalbox.cpp — mount and measure steps
+msgid "Mounting partitions..."
+msgstr "Muntant les particions..."
+
+msgid "Measuring data to copy..."
+msgstr "Mesurant les dades a copiar..."
+
+msgid "{COUNT} files copied ({DONE}/{TOTAL})"
+msgstr "{COUNT} fitxers copiats ({DONE}/{TOTAL})"
+
+#: GuiInstallRecalbox.cpp — final step
+msgid "Finalizing installation..."
+msgstr "Finalitzant la instal·lació..."
+
+msgid "GUIDE"
+msgstr "GUIDE"
+
+#: GuiInputConfig — 8bitdo Hotkey
+msgid "HEART"
+msgstr "COR"
+
+msgid "PS BUTTON"
+msgstr "BOTÓ PS"
+
+msgid "Text list"
+msgstr "Llista de text"
+
+msgid "Logo list"
+msgstr "Llista de logotips"
+
+msgid "Carousel"
+msgstr "Carrusel"
+
+msgid "Grid"
+msgstr "Graella"
+
+msgid "Gamelist layout"
+msgstr "Disposició de la llista de jocs"
+
+msgid "Game list layout"
+msgstr "Disposició de la llista de jocs"
+
+msgid ""
+"Select the way your games are shown. Text list, logo list, carousel, "
+"grid, ..."
+msgstr ""
+"Seleccioneu la manera com es mostren els vostres jocs. Llista de text, "
+"llista de logotips, carrusel, graella, ..."

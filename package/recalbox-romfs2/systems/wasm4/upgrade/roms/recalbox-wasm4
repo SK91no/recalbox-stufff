@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# WASM-4 Software Downloader
+#
+# This script downloads WASM4 cartridges from https://github.com/aduros/wasm4/tree/main/site/static/carts
+# Cartridges are downloaded and stored as .wasm files.
+# The file name format is as follows:
+#   ${cartridgeName}.wasm
+
+#############
+# VARIABLES #
+#############
+
+releaseDate=2023.04.16
+
+#############
+# FUNCTIONS #
+#############
+
+# unescapeHTML
+#   converts stdin HTML tags to plain text
+function unescapeHTML {
+  sed 's/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;'
+}
+
+
+# downloadCartridge <cartridgeName>
+#   downloads a given cartridge
+function downloadCartridge {
+  local name=$1
+  echo -n "Downloading cartridge ${name}"
+  curl -sLf "https://raw.githubusercontent.com/aduros/wasm4/main/site/static/carts/${name}" -o "${name}" && echo " [OK]" || echo " [ERROR]"
+}
+
+# downloadAllCartridges
+#   downloads all cartridges
+function downloadAllCartridges {
+  local categoryPageContent=$(curl -sLf https://api.github.com/repos/aduros/wasm4/contents/site/static/carts)
+  local cartridgeNames=( $(echo "${categoryPageContent}" | grep '"name": ".*\.wasm"' | awk -F'"' '{print $4}' | unescapeHTML) )
+  for (( i = 0; i < ${#cartridgeNames[@]}; i++ )); do
+    downloadCartridge "${cartridgeNames[$i]}"
+  done
+}
+
+########
+# MAIN #
+########
+
+echo "recalbox-wasm4 ver. ${releaseDate}"
+
+downloadAllCartridges

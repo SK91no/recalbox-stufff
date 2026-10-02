@@ -1,0 +1,23 @@
+#!/bin/sh
+
+systemsetting="recalbox_settings"
+
+if test "$1" != "start"
+then
+  exit 0
+fi
+
+settingsPassword="`$systemsetting -command load -key system.default_password`"
+if [[ "$settingsPassword" != "" ]];then
+	echo "root:${settingsPassword}:::::::" > /run/recalbox.shadow
+else
+	MASTERPASSWD="recalboxroot"
+
+	# write the /etc/shadow file
+	SHADOWPASSWD=$(openssl passwd -1 "${MASTERPASSWD}")
+	echo "root:${SHADOWPASSWD}:::::::" > /run/recalbox.shadow
+fi
+
+# secure samba
+mkdir -p "/var/lib/samba/private"
+(echo "${MASTERPASSWD}"; echo "${MASTERPASSWD}") | smbpasswd -a root

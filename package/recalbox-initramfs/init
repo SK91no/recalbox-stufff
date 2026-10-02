@@ -1,0 +1,303 @@
+#!/bin/busybox ash
+# Check https://github.com/jumperfly/initramfs-overlay/blob/master/src/init
+
+#!/bin/ash
+
+safeboot="/overlay_root/.safeboot"
+bootloaderlog="/boot_root/boot/bl-update.log"
+rotate=go
+
+UPD_NO_ERROR=0
+UPD_CORRUPTED_FILE=1
+UPD_FAILED=2
+
+do_splash() {
+    img="$1"
+    for fbdev in /dev/fb[0-9]; do
+        [ -e "$fbdev" ] || break
+        fbsplash -s "${img}" -d "$fbdev"
+    done
+}
+
+do_logo() {
+  echo
+  cat << EOF
+[38;2;242;119;22m [39m[38;2;243;114;25m_[39m[38;2;245;110;27m_[39m[38;2;247;106;30m_[39m[38;2;248;102;33m_[39m[38;2;249;98;35m [39m[38;2;250;94;38m [39m[38;2;251;90;41m_[39m[38;2;252;86;45m_[39m[38;2;253;82;48m_[39m[38;2;254;78;51m_[39m[38;2;254;74;55m [39m[38;2;254;70;58m [39m[38;2;254;66;62m_[39m[38;2;254;63;65m_[39m[38;2;254;59;69m_[39m[38;2;254;55;73m [39m[38;2;254;52;77m [39m[38;2;253;49;81m [39m[38;2;252;45;85m_[39m[38;2;252;42;89m_[39m[38;2;251;39;93m [39m[38;2;250;36;97m [39m[38;2;248;33;101m [39m[38;2;247;30;105m_[39m[38;2;245;28;109m_[39m[38;2;244;25;113m [39m[38;2;242;23;118m [39m[38;2;240;20;122m [39m[38;2;238;18;126m [39m[38;2;236;16;130m_[39m[38;2;234;14;135m_[39m[38;2;231;12;139m_[39m[38;2;229;11;143m_[39m[38;2;226;9;147m [39m[38;2;224;8;151m [39m[38;2;221;6;156m [39m[38;2;218;5;160m_[39m[38;2;215;4;164m_[39m[38;2;212;3;168m [39m[38;2;208;2;172m [39m[38;2;205;2;176m_[39m[38;2;202;1;180m [39m[38;2;198;1;183m [39m[38;2;195;1;187m_[39m[38;2;191;1;191m [39m[38;2;187;1;195m[39m
+[38;2;247;106;30m([39m[38;2;248;102;33m [39m[38;2;249;98;35m [39m[38;2;250;94;38m_[39m[38;2;251;90;41m [39m[38;2;252;86;45m\[39m[38;2;253;82;48m([39m[38;2;254;78;51m [39m[38;2;254;74;55m [39m[38;2;254;70;58m_[39m[38;2;254;66;62m_[39m[38;2;254;63;65m)[39m[38;2;254;59;69m/[39m[38;2;254;55;73m [39m[38;2;254;52;77m_[39m[38;2;253;49;81m_[39m[38;2;252;45;85m)[39m[38;2;252;42;89m [39m[38;2;251;39;93m/[39m[38;2;250;36;97m [39m[38;2;248;33;101m_[39m[38;2;247;30;105m\[39m[38;2;245;28;109m [39m[38;2;244;25;113m([39m[38;2;242;23;118m [39m[38;2;240;20;122m [39m[38;2;238;18;126m)[39m[38;2;236;16;130m [39m[38;2;234;14;135m [39m[38;2;231;12;139m([39m[38;2;229;11;143m [39m[38;2;226;9;147m [39m[38;2;224;8;151m_[39m[38;2;221;6;156m [39m[38;2;218;5;160m\[39m[38;2;215;4;164m [39m[38;2;212;3;168m/[39m[38;2;208;2;172m [39m[38;2;205;2;176m [39m[38;2;202;1;180m\[39m[38;2;198;1;183m([39m[38;2;195;1;187m [39m[38;2;191;1;191m\[39m[38;2;187;1;195m/[39m[38;2;184;1;198m [39m[38;2;180;1;202m)[39m[38;2;176;2;205m[39m
+[38;2;250;94;38m [39m[38;2;251;90;41m)[39m[38;2;252;86;45m [39m[38;2;253;82;48m [39m[38;2;254;78;51m [39m[38;2;254;74;55m/[39m[38;2;254;70;58m [39m[38;2;254;66;62m)[39m[38;2;254;63;65m [39m[38;2;254;59;69m_[39m[38;2;254;55;73m)[39m[38;2;254;52;77m([39m[38;2;253;49;81m [39m[38;2;252;45;85m([39m[38;2;252;42;89m_[39m[38;2;251;39;93m_[39m[38;2;250;36;97m [39m[38;2;248;33;101m/[39m[38;2;247;30;105m [39m[38;2;245;28;109m [39m[38;2;244;25;113m [39m[38;2;242;23;118m [39m[38;2;240;20;122m\[39m[38;2;238;18;126m/[39m[38;2;236;16;130m [39m[38;2;234;14;135m([39m[38;2;231;12;139m_[39m[38;2;229;11;143m/[39m[38;2;226;9;147m\[39m[38;2;224;8;151m [39m[38;2;221;6;156m)[39m[38;2;218;5;160m [39m[38;2;215;4;164m_[39m[38;2;212;3;168m [39m[38;2;208;2;172m([39m[38;2;205;2;176m([39m[38;2;202;1;180m [39m[38;2;198;1;183m [39m[38;2;195;1;187mO[39m[38;2;191;1;191m [39m[38;2;187;1;195m)[39m[38;2;184;1;198m)[39m[38;2;180;1;202m [39m[38;2;176;2;205m [39m[38;2;172;2;208m([39m[38;2;168;3;211m [39m[38;2;164;4;215m[39m
+[38;2;253;82;48m([39m[38;2;254;78;51m_[39m[38;2;254;74;55m_[39m[38;2;254;70;58m\[39m[38;2;254;66;62m_[39m[38;2;254;63;65m)[39m[38;2;254;59;69m([39m[38;2;254;55;73m_[39m[38;2;254;52;77m_[39m[38;2;253;49;81m_[39m[38;2;252;45;85m_[39m[38;2;252;42;89m)[39m[38;2;251;39;93m\[39m[38;2;250;36;97m_[39m[38;2;248;33;101m_[39m[38;2;247;30;105m_[39m[38;2;245;28;109m)[39m[38;2;244;25;113m\[39m[38;2;242;23;118m_[39m[38;2;240;20;122m/[39m[38;2;238;18;126m\[39m[38;2;236;16;130m_[39m[38;2;234;14;135m/[39m[38;2;231;12;139m\[39m[38;2;229;11;143m_[39m[38;2;226;9;147m_[39m[38;2;224;8;151m_[39m[38;2;221;6;156m_[39m[38;2;218;5;160m/[39m[38;2;215;4;164m([39m[38;2;212;3;168m_[39m[38;2;208;2;172m_[39m[38;2;205;2;176m_[39m[38;2;202;1;180m_[39m[38;2;198;1;183m/[39m[38;2;195;1;187m [39m[38;2;191;1;191m\[39m[38;2;187;1;195m_[39m[38;2;184;1;198m_[39m[38;2;180;1;202m/[39m[38;2;176;2;205m([39m[38;2;172;2;208m_[39m[38;2;168;3;211m/[39m[38;2;164;4;215m\[39m[38;2;160;5;218m_[39m[38;2;156;6;221m)[39m[38;2;152;7;223m[39m
+EOF
+  echo
+}
+
+do_rotate_cursor() {
+  while [ "$rotate" != stop ]; do
+    for C in '|' '/' '-' '\\'; do
+      echo -n -e "$C"
+      echo -n -e "\033[1D"
+      sleep 0.05
+    done
+  done
+}
+
+check_safeboot() {
+    if test -e "${safeboot}" ; then
+        safebootvalue=`cat "${safeboot}"`
+        let safebootvalue++
+        if test "${safebootvalue}" -gt 6 ; then
+            return 1
+        else
+            echo "${safebootvalue}" > "${safeboot}"
+        fi
+    else
+        echo "0" > "${safeboot}"
+    fi
+    sync
+    return 0
+}
+
+check_update() {
+    # All update files?
+    cd /boot_root/update
+    if md5sum -c boot.md5 >>/boot_root/update.log 2>&1; then
+      return 0
+    else
+      return 1
+    fi
+}
+
+should_update() {
+    # if boot.md5 found, then should update
+    [ -f /boot_root/update/boot.md5 ] && return 0 || return 1
+}
+
+do_clean_overlay() {
+    # backup and clean up overlay
+    rm -rf /overlay_root/upper.old
+    mv /overlay_root/upper /overlay_root/upper.old
+    mkdir -p /overlay_root/upper
+}
+
+do_clean_case() {
+    # clear case setting
+    sed -i -E 's/^case=(.+):1/case=\1/' /boot_root/recalbox-boot.conf
+}
+
+do_clean_safeboot() {
+    echo "0" > "${safeboot}"
+}
+
+do_clean_update() {
+    # delete content of /boot_root/update/
+    rm -rf /boot_root/update/*
+    # Remove useless files
+    [ -f /boot_root/boot.lst ] && rm /boot_root/boot.lst
+    [ -f /boot_root/boot.md5 ] && rm /boot_root/boot.md5
+    [ -f /boot_root/pre-upgrade.sh ] && rm /boot_root/pre-upgrade.sh
+    [ -d /boot_root/boot/bootloader ] && rm -rf /boot_root/boot/bootloader
+}
+
+do_update() {
+    # UPDATE!
+    if [ -f /boot_root/update/boot.lst ]; then
+      echo "boot.lst found, proceed to update" >>/boot_root/update.log
+      # filelist mode
+      while read -r file; do
+        [ ! -d `dirname "/boot_root/$file"` ] && mkdir -p `dirname "/boot_root/$file"`
+        mv "/boot_root/update/$file" "/boot_root/$file" 2>>/boot_root/update.log|| return 1
+        echo "$file done" >>/boot_root/update.log
+      done < /boot_root/update/boot.lst
+      rm /boot_root/update/boot.lst
+    else
+      echo "boot.lst not found, update failed" >>/boot_root/update.log
+      return 1
+    fi
+
+    return 0 # mask errors
+}
+
+get_boot_device() {
+    # return /dev entry which is mounted under /boot_root
+    mount >&2
+    part=$(mount | sed '/\/boot_root/!d;s/\son\s*.*//')
+    part=${part#/dev/}
+    disk=$(readlink /sys/class/block/$part)
+    disk=$(dirname $disk)
+    disk=/dev/$(basename $disk)
+    echo $disk
+}
+
+do_flash() {
+    # flash bootloader:
+    # $1 file name to flash
+    # $2 device where to flash
+    # $3 sector where to flash
+    echo "will flash $1 on $2 at sector $3"
+    dd if="$1" of="$2" conv=notrunc seek="$3" 2>&1
+}
+
+do_bootloader_update() {
+    echo "==========================="
+    boot_device=$(get_boot_device)
+    if [ -z "$boot_device" ]; then
+        echo "boot device not found..." >&2
+        return 1
+    fi
+
+    echo "boot_device=$boot_device"
+    error=0
+    find /boot_root/boot/bootloader -type f | while read -r file; do
+        echo "found $file"
+        sector_dir=$(dirname $file)
+        sector=$(basename $sector_dir)
+        max_tries=3
+        while [ $max_tries -gt 0 ]; do
+            max_tries=$((max_tries-1))
+            if do_flash "$file" "$boot_device" "$sector"; then
+                echo "flash of $file done"
+                max_tries=0
+            else
+                echo "flash of $file ended in error, $max_tries tries left"
+                error=1
+            fi
+        done
+    done
+    return $error
+}
+
+do_root() {
+    mkdir -p /boot_root /new_root /overlay_root /sys /proc || return 1
+    mount -t proc  -o nodev,noexec,nosuid proc  /proc || return 1
+    mount -t sysfs -o nodev,noexec,nosuid sysfs /sys || return 1
+
+    # read the parameters
+    read -r cmdline < /proc/cmdline
+    for param in ${cmdline} ; do
+        case ${param} in
+            dev=*)   dev=${param#dev=};;
+            label=*) label=${param#label=};;
+        esac
+    done
+
+    # look for devices
+    mount -t devtmpfs none /dev
+
+    toMount="LABEL=RECALBOX"
+    isDevice="0"
+    test -n "${dev}"   && toMount=${dev} && isDevice="1"
+    test -n "${label}" && toMount=LABEL=${label}
+
+    # Wait for boot mount to be ready
+    timeout=0
+    while ! mount -t vfat -o rw ${toMount} /boot_root ; do
+        echo "Waiting for the root device"
+        sleep 1
+    done
+
+    # Background display for supported devices
+    # eg: gpicase
+    test -e /boot_root/boot.ppm && do_splash /boot_root/boot.ppm
+
+    # update
+    test -d /boot_root/update || mkdir -p /boot_root/update/
+    updated="0"
+    if should_update ; then
+      do_logo >/dev/tty1
+      echo "Update found, please wait... " >/dev/tty1
+      echo -n "Checking files ......... " >/dev/tty1
+      do_rotate_cursor >/dev/tty1 2>&1 &
+      CURSOR_PID=$!
+      echo "MD5 list file found, checking files" >/boot_root/update.log
+      if check_update ; then
+        echo -e -n "\033[0;32mOK\033[1;97m\n" >/dev/tty1
+        echo -e -n "Processing to update ... " >/dev/tty1
+        echo "MD5 check succeeded" >>/boot_root/update.log
+        if do_update ; then
+          echo -e -n "\033[0;32mOK\033[1:97m\nUpdate is successful ... " >/dev/tty1
+          echo "update done" >>/boot_root/update.log
+          check_update_rc=$UPD_NO_ERROR
+        else
+          echo -e -n "\033[0;31mFAIL\033[1;97m\nUpdate has FAILED! ..... " >/dev/tty1
+          echo "update failed" >>/boot_root/update.log
+          check_update_rc=$UPD_FAILED
+        fi
+      else
+        echo -e -n "\033[0;31mFAIL\033[1;97m\nVerification has FAILED! " >/dev/tty1
+        echo "MD5 check failed" >>/boot_root/update.log
+        check_update_rc=$UPD_CORRUPTED_FILE
+      fi
+      [ -d /boot_root/boot/bootloader ] && do_bootloader_update >>$bootloaderlog 2>&1
+      kill "$CURSOR_PID"
+      updated="1"
+    fi
+
+    # Get overlay mount
+    overlayToMount="LABEL=OVERLAY"
+    if test "$isDevice" -eq "1" ; then
+        deviceLength=$((${#toMount}-1))
+        overlayToMount=${toMount:0:$deviceLength}$((${toMount:$deviceLength}+2))
+    fi
+
+    # Mount overlay partition
+    if ! mount -o rw ${overlayToMount} /overlay_root ; then
+        # Partition not available: Mount tmpfs partition
+        mount -t tmpfs -o size=128M tmpfs /overlay_root || return 1
+    fi
+    # Backup, clean up overlay, clean up case setting, set ES flag and reboot
+    if test "$updated" -eq "1" ; then
+        echo -e -n "\n\nRestarting, please wait... " >/dev/tty1
+        do_clean_overlay
+        do_clean_case
+        do_clean_safeboot
+        do_clean_update
+        case $check_update_rc in
+          $UPD_NO_ERROR)       echo "" > /overlay_root/.upgrade_success ; sleep 3 ;;
+          $UPD_CORRUPTED_FILE) echo "" > /overlay_root/.upgrade_corrupted; sleep 10 ;;
+          $UPD_FAILED)         echo "" > /overlay_root/.upgrade_failed; sleep 10 ;;
+        esac
+        umount /overlay_root
+        mount -o remount,ro /boot_root
+        sync
+        reboot -f
+    fi
+
+    # Clean overlay and case setting after X unsuccessfull boot attempts
+    if ! check_safeboot ; then
+        do_clean_overlay
+        do_clean_case
+        do_clean_safeboot
+        echo "Cleaned overlay and case after multiple unsuccessful boots" >> /boot_root/update.log
+    fi
+
+    # Create overlay folders and user video folder
+    mkdir -p /overlay_root/lower /overlay_root/upper /overlay_root/work /overlay_root/bootvideos /overlay_root/dropbear \
+             /overlay_root/.configs || return 1
+
+    # write protect boot device
+    mount -o remount,ro /boot_root || return 1
+
+    # Mount the squashfs as overlay "lower" file-system
+    mount /boot_root/boot/recalbox /overlay_root/lower || return 1
+
+    # Mount the future root in read write
+    if ! mount -t overlay overlay -o ro,lowerdir=/overlay_root/lower,upperdir=/overlay_root/upper,workdir=/overlay_root/work /new_root ; then
+        # Mount squashfs as new root when overlayfs is not supported
+        mount /boot_root/boot/recalbox /new_root || return 1
+    fi
+
+    # moving current mounts
+    mount --move /boot_root    /new_root/boot    || return 1
+    mount --move /overlay_root /new_root/overlay || return 1
+    mount --move /sys          /new_root/sys     || return 1
+    mount --move /proc         /new_root/proc    || return 1
+    mount --move /dev          /new_root/dev     || return 1
+
+    # switch to the new root
+    exec switch_root /new_root /sbin/init || return 1
+}
+
+if ! do_root
+then
+    echo "Recalbox cannot boot at initramfs stage. Please contact support!" >/dev/tty1
+    exec /bin/ash
+fi

@@ -1,0 +1,9 @@
+config BR2_PACKAGE_QTSIXA_SHANWAN
+	bool "qtsixashanwan"
+	depends on BR2_PACKAGE_QTSIXA
+	select BR2_PACKAGE_SDL
+	help
+	  Support for ps3 controllers.
+
+comment "qtsixashanwan depends on qtsixa"
+	depends on !BR2_PACKAGE_QTSIXA

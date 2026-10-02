@@ -1,0 +1,8 @@
+config BR2_PACKAGE_RECALBOX_DRM_INFO
+	bool "recalbox-drm-info"
+	depends on BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_LIBDRM
+	select BR2_PACKAGE_XLIB_LIBXRANDR
+	select BR2_PACKAGE_XLIB_LIBX11
+	help
+	  Recalbox DRM information

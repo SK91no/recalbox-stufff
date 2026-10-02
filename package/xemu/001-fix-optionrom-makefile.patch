@@ -1,0 +1,12 @@
+--- a/pc-bios/optionrom/Makefile	2024-07-23 08:52:43.000000000 +0200
++++ b/pc-bios/optionrom/Makefile	2024-07-24 21:46:29.950843331 +0200
+@@ -41,7 +41,7 @@
+ pvh.img: pvh.o pvh_main.o
+ 
+ %.o: %.S
+-	$(call quiet-command,$(CC) $(CPPFLAGS) $(CFLAGS) -c -o $@ $<,Assembling)
++	$(call quiet-command,$(CC) $(CPPFLAGS) $(CFLAGS) -o $@ $<,Assembling)
+ 
+ %.o: %.c
+ 	$(call quiet-command,$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@,Compiling)
+

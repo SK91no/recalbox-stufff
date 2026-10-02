@@ -1,0 +1,52 @@
+From 49e7c341dc6f57eefedce1c2613e081394433944 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 20 Feb 2025 00:47:48 +0100
+Subject: [PATCH] change bezels path
+
+---
+ src/io/cmdline.cpp  | 15 +--------------
+ src/video/video.cpp |  2 +-
+ 2 files changed, 2 insertions(+), 15 deletions(-)
+
+diff --git a/src/io/cmdline.cpp b/src/io/cmdline.cpp
+index 42ba662..b9cc8d9 100644
+--- a/src/io/cmdline.cpp
++++ b/src/io/cmdline.cpp
+@@ -1198,20 +1198,7 @@ bool parse_cmd_line(int argc, char **argv)
+                         loadbezel = false;
+ 
+                     if (loadbezel) { // alphanum
+-                        string s3 = s1.substr(0, (iLen-4));
+-                        for (int i = 0; s3[i] != '\0'; i++) {
+-                            if (!isalnum(s3[i]) && s3[i] != int('-')
+-                                && s3[i] != int('_') && s3[i] != int('/')
+-#ifdef WIN32
+-                                    && s3[i] != int('\\')
+-#endif
+-                                ) {
+-                                loadbezel = false;
+-                            }
+-                        }
+-
+-                        if (loadbezel)
+-                            video::set_bezel_file(s);
++                        video::set_bezel_file(s);
+                     }
+                 }
+ 
+diff --git a/src/video/video.cpp b/src/video/video.cpp
+index f95cb95..132c0ad 100644
+--- a/src/video/video.cpp
++++ b/src/video/video.cpp
+@@ -1848,7 +1848,7 @@ void vid_render_bezels () {
+ 
+     if (!g_bezel_load) {
+         if (!g_bezel_file.empty() && !g_bezel_texture) {
+-            std::string bezelpath =  g_bezel_path + std::string(PATH_SEPARATOR) + g_bezel_file;
++            std::string bezelpath = g_bezel_file;
+             g_bezel_texture = IMG_LoadTexture(g_renderer, bezelpath.c_str());
+ 
+             if (g_bezel_texture) {
+-- 
+2.48.1
+

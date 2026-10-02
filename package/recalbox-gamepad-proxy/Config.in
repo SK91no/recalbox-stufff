@@ -1,0 +1,9 @@
+config BR2_PACKAGE_RECALBOX_GAMEPAD_PROXY
+	bool "Recalbox gamepad proxy driver"
+	depends on BR2_LINUX_KERNEL
+	select BR2_PACKAGE_RECALBOX_HARDWARE
+	help
+	  Support for gamepad proxy
+
+comment "Recalbox gamepad proxy driver needs a kernel and headers"
+	depends on !BR2_LINUX_KERNEL

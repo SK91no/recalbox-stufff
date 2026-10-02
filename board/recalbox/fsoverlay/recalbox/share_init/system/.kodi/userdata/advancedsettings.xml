@@ -1,0 +1,11 @@
+<advancedsettings>
+        <services>
+                <webserver>true</webserver>
+                <webserverport>8081</webserverport>
+        </services>
+        <videoplayer>
+                <useprimedecoder>true</useprimedecoder>
+                <useprimedecoderforhw>true</useprimedecoderforhw>
+                <useprimerenderer>0</useprimerenderer>
+        </videoplayer>
+</advancedsettings>

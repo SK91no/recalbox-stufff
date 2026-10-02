@@ -1,0 +1,53 @@
+From 343d914099134c94a13837f111922046574e6de0 Mon Sep 17 00:00:00 2001
+From: Bkg2k <bkg2k9@gmail.com>
+Date: Wed, 23 Feb 2022 09:48:08 +0100
+Subject: [PATCH 07/27] fix min max udev mouse lightgun
+
+---
+ input/drivers/udev_input.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/input/drivers/udev_input.c b/input/drivers/udev_input.c
+index e12b536b0a..6959d5b0ca 100644
+--- a/input/drivers/udev_input.c
++++ b/input/drivers/udev_input.c
+@@ -3252,6 +3252,36 @@ static int udev_input_add_device(udev_input_t *udev,
+          device->mouse.y_min = absinfo.minimum;
+          device->mouse.y_max = absinfo.maximum;
+       }
++      else
++      {
++         if (ioctl(fd, EVIOCGABS(ABS_X), &absinfo) >= 0)
++         {
++            if (absinfo.minimum >= absinfo.maximum )
++            {
++               device->mouse.x_min = -1;
++               device->mouse.x_max = -1;
++            }
++            else
++            {
++               device->mouse.x_min = absinfo.minimum;
++               device->mouse.x_max = absinfo.maximum;
++            }
++         }
++
++         if (ioctl(fd, EVIOCGABS(ABS_Y), &absinfo) >= 0)
++         {
++            if (absinfo.minimum >= absinfo.maximum )
++            {
++               device->mouse.y_min = -1;
++               device->mouse.y_max = -1;
++            }
++            else
++            {
++               device->mouse.y_min = absinfo.minimum;
++               device->mouse.y_max = absinfo.maximum;
++            }
++         }
++      }
+ 
+       if (touch)
+       {
+-- 
+2.51.0
+

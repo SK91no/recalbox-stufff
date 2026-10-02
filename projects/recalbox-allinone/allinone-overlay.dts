@@ -1,0 +1,333 @@
+/dts-v1/;
+/plugin/;
+
+
+/ {
+    compatible = "brcm,bcm2712";
+
+    fragment@0 {
+        target = <&gpio>;
+        __overlay__ {
+            aio_controls_gpio: aio_controls_gpio_conf {
+                // 4 = DAC, 23 = AMP, 8 = util, 22 = gain0, 27 = gain 1, 12 = led enable
+                brcm,pins = <4 23 8 22 27 12>; //
+                brcm,function = <1 1 0 1 1 1>; //
+                brcm,pull = <0 0 2 0 0 0>; // Pull up
+            };
+        };
+    };
+
+    /* I2S Audio */
+    fragment@100 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            rp1_i2s0: rp1_i2s0 {
+                function = "i2s0";
+                pins = "gpio18", "gpio19", "gpio21";
+                bias-disable;
+            };
+        };
+    };
+    fragment@101 {
+        target = <&i2s_clk_producer>;
+        __overlay__ {
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2s0>;
+            status = "okay";
+        };
+    };
+    fragment@102 {
+        target = <&sound>;
+        __overlay__ {
+            compatible = "simple-audio-card";
+            simple-audio-card,name = "AllInOne";
+            status = "okay";
+            simple-audio-card,dai-link@1 {
+                format = "i2s";
+                cpu {
+                    sound-dai = <&i2s_clk_producer>;
+                    dai-tdm-slot-num = <2>;
+                    dai-tdm-slot-width = <32>;
+                };
+                codec {
+                    sound-dai = <&aio_codec_out>;
+                };
+            };
+        };
+    };
+    fragment@103 {
+        target-path = "/";
+            __overlay__ {
+            aio_codec_out: aio_codec_out {
+                #sound-dai-cells = <0>;
+                //compatible = "ti,pcm5102a";
+                compatible = "maxim,max98357a";
+                sdmode-gpios = <&gpio 17 0>;
+                //sdmode-delay = <1000>;
+                status = "okay";
+            };
+        };
+    };
+
+    /* I2C Controls */
+    fragment@200 {
+        target = <&gpio>;
+        __overlay__ {
+            irq_gpio_24: irq_gpio_24_conf {
+                brcm,pins = <24>; // GPIO 24
+                brcm,function = <0>; // Input
+                brcm,pull = <2>; // Pull up
+            };
+            irq_gpio_25: irq_gpio_25_conf {
+                brcm,pins = <25>; // GPIO 25
+                brcm,function = <0>; // Input
+                brcm,pull = <2>; // Pull up
+            };
+        };
+    };
+    fragment@201 {
+        target = <&i2c1>;
+        __overlay__ {
+            status = "okay";
+            pinctrl-names = "default";
+            pinctrl-0 = <&rp1_i2c1_2_3>;
+            clock-frequency = <400000>;
+            read-timeout-ms = <50>;
+
+            aio_jammactrl_0: aio_jammactrl_0@20 {
+                compatible = "raspberrypi,allinone";
+                reg = <0x20>;
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&irq_gpio_24>;
+                interrupt-parent = <&gpio>;
+                interrupts = <24 2>;
+                irq-gpios = <&gpio 24 0>;
+
+
+                // Got to put that here, will do better later
+                pinctrl-1 = <&aio_controls_gpio>;
+                aio_controls-gpios = <&gpio 4 0>,<&gpio 23 0>,<&gpio 8 0>,<&gpio 22 0>,<&gpio 27 0>;
+                disable_amp = <0>;
+                amp_boost_1 = <0>;
+                amp_boost_2 = <0>;
+                hk_on_start = <0>;
+                sound_on_start = <0>;
+                credit_on_start_btn1 = <0>;
+                exit_on_start = <0>;
+                autofire = <0>;
+                p1_credits_also_p2 = <0>;
+
+                buttons = <6>;
+                start = <1>;
+                coin = <1>;
+                hotkey = <1>;
+            };
+            aio_jammactrl_1: aio_jammactrl_1@21 {
+                compatible = "raspberrypi,allinone";
+                reg = <0x21>;
+                status = "okay";
+                pinctrl-names = "default";
+                pinctrl-0 = <&irq_gpio_25>;
+                interrupt-parent = <&gpio>;
+                interrupts = <25 2>;
+                irq-gpios = <&gpio 25 0>;
+
+                buttons = <6>;
+                start = <1>;
+                coin = <1>;
+                hotkey = <1>;
+            };
+        };
+    };
+
+
+
+    /* FAN */
+    fragment@300 {
+        target-path = "/";
+        __overlay__ {
+            aio_fan0: gpio-fan@0 {
+                compatible = "gpio-fan";
+                gpios = <&gpio 26 0>;
+                gpio-fan,speed-map = <0    0>,
+                                     <5000 1>;
+                #cooling-cells = <2>;
+            };
+        };
+    };
+    fragment@301 {
+        target = <&cpu_thermal>;
+        polling-delay = <5000>;    /* milliseconds */
+        __overlay__ {
+            trips {
+                cpu_hot: trip-point@0 {
+                    temperature = <60000>;    /* (millicelsius) Fan started at 60°C */
+                    hysteresis = <10000>;    /* (millicelsius) Fan stopped at 50°C */
+                    type = "active";
+                };
+            };
+            cooling-maps {
+                map0 {
+                    trip = <&cpu_hot>;
+                    cooling-device = <&aio_fan0 1 1>;
+                };
+            };
+        };
+    };
+
+
+    /* SPI LEDS WITH PROTO 2.0 */
+    fragment@400 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            aio_spi1_20: aio_spi1_20 {
+                function = "spi1";
+                pins = "gpio20";
+                bias-disable;
+                drive-strength = <12>;
+                slew-rate = <1>;
+            };
+        };
+    };
+    fragment@401 {
+        target = <&spidev1>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+    fragment@402 {
+        target = <&spidev0>;
+        __overlay__ {
+            status = "disabled";
+        };
+    };
+    fragment@403 {
+        target = <&spi1>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&aio_spi1_20>;
+            status = "okay";
+            cs-gpios;
+
+            aio_led_controller_p1: aio_led_controller_p1@0 {
+                compatible = "allinoneleds";
+                reg = <0>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+                spi-max-frequency = <2850000>;
+
+                pinctrl-names = "default";
+                pinctrl-0 = <&aio_controls_gpio>;
+                aio_controls-gpios = <&gpio 12 0>;
+
+                player = <1>;
+
+            };
+        };
+    };
+
+    fragment@404 {
+        target = <&rp1_gpio>;
+        __overlay__ {
+            aio_spi0_10: aio_spi0_10 {
+                function = "spi0";
+                pins = "gpio10";
+                bias-disable;
+                drive-strength = <12>;
+                slew-rate = <1>;
+            };
+        };
+    };
+
+    fragment@405 {
+        target = <&spi0>;
+        __overlay__ {
+            #address-cells = <1>;
+            #size-cells = <0>;
+            pinctrl-names = "default";
+            pinctrl-0 = <&aio_spi0_10>;
+            status = "okay";
+            cs-gpios;
+
+            aio_led_controller_p2: aio_led_controller_p2@0 {
+                compatible = "allinoneleds";
+                reg = <0>;
+                #address-cells = <1>;
+                #size-cells = <0>;
+                spi-max-frequency = <2850000>;
+
+                player = <2>;
+
+            };
+        };
+    };
+
+    __overrides__ {
+        disable_amp = <&aio_jammactrl_0>,"disable_amp:0";
+        amp_boost_1 = <&aio_jammactrl_0>,"amp_boost_1:0";
+        amp_boost_2 = <&aio_jammactrl_0>,"amp_boost_2:0";
+        hk_on_start = <&aio_jammactrl_0>,"hk_on_start:0";
+        sound_on_start = <&aio_jammactrl_0>,"sound_on_start:0";
+        credit_on_start_btn1 = <&aio_jammactrl_0>,"credit_on_start_btn1:0";
+        exit_on_start = <&aio_jammactrl_0>,"exit_on_start:0";
+        autofire = <&aio_jammactrl_0>,"autofire:0";
+        p1_credits_also_p2 = <&aio_jammactrl_0>,"p1_credits_also_p2:0";
+        p1_buttons = <&aio_jammactrl_0>,"buttons:0";
+        p1_start = <&aio_jammactrl_0>,"start:0";
+        p1_coin = <&aio_jammactrl_0>,"coin:0";
+        p1_hotkey = <&aio_jammactrl_0>,"hotkey:0";
+        p2_buttons = <&aio_jammactrl_1>,"buttons:0";
+        p2_start = <&aio_jammactrl_1>,"start:0";
+        p2_coin = <&aio_jammactrl_1>,"coin:0";
+        p2_hotkey = <&aio_jammactrl_1>,"hotkey:0";
+        /* RGB */
+        p1_rgb_buttons = <&aio_led_controller_p1>,"rgb_buttons:0";
+        p1_rgb_start = <&aio_led_controller_p1>,"rgb_start:0";
+        p1_rgb_coin = <&aio_led_controller_p1>,"rgb_coin:0";
+        p1_rgb_hotkey = <&aio_led_controller_p1>,"rgb_hotkey:0";
+        p2_rgb_buttons = <&aio_led_controller_p2>,"rgb_buttons:0";
+        p2_rgb_start = <&aio_led_controller_p2>,"rgb_start:0";
+        p2_rgb_coin = <&aio_led_controller_p2>,"rgb_coin:0";
+        p2_rgb_hotkey = <&aio_led_controller_p2>,"rgb_hotkey:0";
+    };
+
+/*
+    Overrides
+    All values are defaulted to "no"
+
+    Audio:
+        - disable_amp: disable integrated audio amp. Can be forced when you use an external amp
+        - amp_boost_1, amp_boost_2: boot audio amp. You should not need that, as the amplification is already high.
+
+    Controls:
+    Par default, la configuration du AllInOne permet de gerer 6 boutons de jeu par joueur, plus start + select + hotkey pour chaque joueur.
+    Pour surcharger la configuration, utilisez les elements suivants:
+        - p1_buttons: number of buttons for p1 (1 to 8)
+        - p1_start: if p1 has no start button, use p1_start=0
+        - p1_coin: if p1 has no coin button, use p1_coin=0
+        - p1_hotkey: if p1 has no hotkey button, use p1_hotkey=0
+        - p2_buttons: number of buttons for p2 (1 to 8)
+        - p2_start: if p2 has no start button, use p2_start=0
+        - p2_coin: if p2 has no coin button, use p2_coin=0
+        - p2_hotkey: if p2 has no hotkey button, use p2_hotkey=0
+
+    Les raccourcis sont tous desactivés, vous pouvez les activer en utilisant les elements suivants:
+        - hk_on_start: Enable hotkey on start. If you do not have hotkey button, you can use start button as hotkey.
+        - sound_on_start: Enable the shortcut for start + UP and DOWN to change sound volume.
+        - credit_on_start_btn1: Enable the shortcut for use start + BTN1 to add a credit (works for both P1 and P2). Can be used when you have no credit button.
+        - exit_on_start: Enable the shortcut for pressing start 4 seconds and release to exit a game. Use when you don't have hotkey button.
+        - autofire: Keep Start pressed, then press a button for 4 seconds to enable autofire for this button.
+        - p1_credits_also_p2: when credit is pressed on P1, it also send the credit on P2. Can be used if you have only 1 credit button, and want to play games like Cadillac and Dino, etc...
+
+    Exemple: votre config est la suivante: 8 boutons par joueurs, start, et un seul coin pour les deux joueurs.
+    Le plus interessant sera d'utiliser le bouton start du joueur 1 comme hotkey, et de doubler les coin sur l'unique bouton coin (ou votre monnayeur)
+    dtoverlay=allinone,p1_buttons=8,p2_buttons=8,p1_hotkey=0,p2_hotkey=0,p2_coin=0,hk_on_start,exit_on_start,p1_credits_also_p2
+
+    Exemple: votre config est celle d'une borne d'arcade neogeo : 4 boutons par joueur, start pour chaque joueur et 1 monnayeur.
+    Le bouton start du joueur sera utilisé 1 comme hotkey, et les coin peuvent etre doublés sur votre monnayeur.
+    dtoverlay=allinone,p1_buttons=4,p2_buttons=4,hk_on_start,exit_on_start,p1_credits_also_p2
+*/
+};

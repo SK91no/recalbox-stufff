@@ -1,0 +1,47 @@
+Implement the Linux side of the texture-preload memory throttle.
+
+The concurrent texture loader in Player::Player() gates each decode on the
+amount of available physical memory (3x the estimated GPU size of the image),
+but only on Windows: the Linux side is a 'TODO implement for other platforms'
+that unconditionally reports memory as available. On a Pi 5 this means one
+full-size decode per core at all times, whatever the table weighs; with
+overcommit, allocations never fail (so the resizeOnLowMem fallback never
+triggers either) and the OOM killer takes the process down instead -- a heavy
+table freezes the machine mid-load.
+
+Implement the check with MemAvailable from /proc/meminfo rather than the
+sysinfo() sketch the TODO suggests: freeram does not count the reclaimable
+page cache, which holds most of the 'free' memory right after streaming a
+table file from disk, and would throttle the load down to nothing.
+
+Same as upstream's Windows logic, the check only delays a decode while
+another is in flight (nLoadInProgress == 0 loads unconditionally), so
+progress is guaranteed and a mis-read of /proc/meminfo (availKB == 0) simply
+restores the old behavior.
+
+Signed-off-by: Adrien Beudin <beudbeud@gmail.com>
+
+--- a/src/core/player.cpp	2026-07-18 18:43:34.619564876 +0200
++++ b/src/core/player.cpp	2026-07-18 18:43:54.341168780 +0200
+@@ -607,11 +607,17 @@
+                      statex.dwLength = sizeof(statex);
+                      GlobalMemoryStatusEx(&statex);
+                      readyToLoad = statex.ullAvailPhys > neededMem;
++                  #elif defined(__linux__)
++                     // MemAvailable, unlike sysinfo()'s freeram, accounts for the
++                     // reclaimable page cache, which holds most of the 'free' memory
++                     // right after streaming a big table file from disk.
++                     size_t availKB = 0;
++                     std::ifstream meminfo("/proc/meminfo");
++                     for (string l; std::getline(meminfo, l);)
++                        if (sscanf(l.c_str(), "MemAvailable: %zu", &availKB) == 1)
++                           break;
++                     readyToLoad = (availKB == 0) || (availKB * 1024 > neededMem);
+                   #else
+-                     // TODO implement for other platforms
+-                     // struct sysinfo memInfo;
+-                     // sysinfo(&memInfo);
+-                     // readyToLoad = memInfo.freeram > neededMem;
+                      readyToLoad = true;
+                   #endif
+                }

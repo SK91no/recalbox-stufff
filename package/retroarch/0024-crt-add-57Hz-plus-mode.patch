@@ -1,0 +1,45 @@
+From a3ca2e14957b3f5b179dc217d8d88e42e39c2b37 Mon Sep 17 00:00:00 2001
+From: digitalLumberjack <digitallumberjack@gmail.com>
+Date: Mon, 5 Jan 2026 15:08:06 +0100
+Subject: [PATCH 24/27] crt: add 57Hz plus mode
+
+---
+ deps/switchres/monitor.cpp | 6 ++++++
+ gfx/video_crt_switch.c     | 4 ++++
+ 2 files changed, 10 insertions(+)
+
+diff --git a/deps/switchres/monitor.cpp b/deps/switchres/monitor.cpp
+index 0305f9d279..d577a30401 100644
+--- a/deps/switchres/monitor.cpp
++++ b/deps/switchres/monitor.cpp
+@@ -231,6 +231,12 @@ int monitor_set_preset(const char *type, monitor_range *range)
+ 		monitor_fill_range(&range[1], "24960-24960, 49.50-65.00, 0.800, 4.000, 3.200, 0.080, 0.200, 1.000, 0, 0, 384, 384, 0, 0");
+ 		return 1;
+ 	}
++	// TV progressive 15.7 kHz - 57Hz minimum
++	else if (!strcmp(type, "tv_15khz_prog_57hz_min"))
++	{
++		monitor_fill_range(&range[0], "15625-16000, 57.00-62.00, 2.000, 4.700, 8.000, 0.064, 0.192, 1.024, 0, 0, 192, 256, 0, 0");
++		return 1;
++	}
+ 	// Makvision 2929D
+ 	else if (!strcmp(type, "m2929"))
+ 	{
+diff --git a/gfx/video_crt_switch.c b/gfx/video_crt_switch.c
+index ae1b9c747d..22b4d82bad 100644
+--- a/gfx/video_crt_switch.c
++++ b/gfx/video_crt_switch.c
+@@ -250,6 +250,10 @@ static bool crt_sr2_init(videocrt_switch_t *p_switch,
+             RARCH_LOG("[CRT]: CRT Mode: %d - forced_15_progressive\n", crt_mode);
+             break;
+          case 16:
++            sr_set_monitor("tv_15khz_prog_57hz_min");
++            RARCH_LOG("[CRT]: CRT Mode: %d - tv_15khz_prog_57hz_min\n", crt_mode);
++            break;
++         case 17:
+             RARCH_LOG("[CRT]: CRT Mode: %d - Selected from ini \n", crt_mode);
+             break;
+          default:
+-- 
+2.51.0
+

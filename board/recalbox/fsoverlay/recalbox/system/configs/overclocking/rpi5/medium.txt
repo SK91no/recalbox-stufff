@@ -1,0 +1,9 @@
+# Plateform: RPI5
+# Description: Medium
+# Frequency: 2600
+
+# Set the Arm A76 core frequency (in MHz; default 2400).
+arm_freq=2600
+
+# Set the VideoCore VII core frequency (in MHz; default 800).
+gpu_freq=1000

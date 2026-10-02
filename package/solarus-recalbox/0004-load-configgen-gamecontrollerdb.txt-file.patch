@@ -1,0 +1,25 @@
+From a1b2883c5cced04480ab0b354f25ad274f39037f Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Fri, 2 May 2025 19:23:18 +0200
+Subject: [PATCH] load configgen gamecontrollerdb.txt file
+
+---
+ src/core/System.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/core/System.cpp b/src/core/System.cpp
+index a0e00f3b3..9589d5e5d 100644
+--- a/src/core/System.cpp
++++ b/src/core/System.cpp
+@@ -73,7 +73,7 @@ void System::initialize(const Arguments& args, ResourceProvider& resource_provid
+ 
+   // try the application base path first
+   if (gcdb_full_path.empty()) {
+-    const auto base_path = SDL_GetBasePath();
++    const auto base_path = "/recalbox/share/system/.config/solarus/";
+     if (base_path != nullptr) {
+       const auto full_path = std::string(base_path) + gcdb_filename;
+       if (std::filesystem::exists(full_path)) {
+-- 
+2.49.0
+

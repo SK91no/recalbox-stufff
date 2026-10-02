@@ -1,0 +1,699 @@
+<menus>
+	<!--
+		EMULATOR SPECIFIC SETTINGS
+	-->
+	<menu id="EmulatorSpecificSettings">
+		<menu id="auto" caption="Libretro HatariB Settings" include="true">
+			<setting caption="Machine Type" core="libretro:hatari" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="hatarib_machine" type="list" props="d" values="0:ST|1:Mega ST|2:STE|3:Mega STE|4:TT|5:Falcon" default="0" help="Choose the machine model to emulate. STE is a good choice for most games." />
+			<setting caption="Memory Size" core="libretro:hatari" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="hatarib_memory" type="list" props="d" values="256:256 KB|512:512 KB|1024:1 MB|2048:2 MB|2560:2.5 MB|4096:4 MB|8192:8 MB|10240:10 MB|14336:14 MB" default="1024" help="Select the amount of memory. 1 MB is enough for gaming." />
+			<setting caption="Fast Floppy" core="libretro:hatari" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="hatarib_fast_floppy" type="nbool" props="d" default="0" help="Set ON to accelerate the floppy disc emulation. May cause some games to fail!" />
+		</menu>
+		<menu id="auto" caption="Libretro Fuse Settings" include="true">
+			<setting caption="Machine Type" core="libretro:fuse" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="fuse_machine" type="list" props="d" values="Spectrum 48K|Spectrum 48K (NTSC)|Spectrum 128K|Spectrum +2|Spectrum +2A|Spectrum +3|Spectrum +3e|Spectrum SE|Timex TC2048|Timex TC2068|Timex TS2068|Spectrum 16K|Pentagon 128K|Pentagon 512K|Pentagon 1024|Scorpion 256K" default="Spectrum 128K" help="Choose the Sinclair machine (or clone) to emulate. The original Spectrum 128k is a good way to start." />
+			<setting caption="Fast Tape" core="libretro:fuse" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="fuse_fast_load" type="cbool" props="d" values="enabled:disabled" default="enabled" help="Set ON to accelerate the tape emulation. May cause some games to fail!" />
+		</menu>
+		<menu id="auto" caption="Libretro MelonDS Settings" include="true">
+			<setting caption="Touch Mode" core="libretro:melonds" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="melonds_touch_mode" type="list" props="d" values="Mouse:MOUSE|Touch:TOUCH|Joystick|Disabled:Disabled" default="Mouse" help="Choose mode for interactions with the touch screen." />
+			<setting caption="Swap Screen Mode" core="libretro:melonds" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="melonds_swapscreen_mode" type="list" props="d" values="Toggle:TOGGLE|Hold:HOLD" default="Toggle" help="Choose if the 'Swap screens' button should work on press or on hold." />
+			<setting caption="Screen Layout" core="libretro:melonds" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="melonds_screen_layout" type="list" props="d" values="Top/Bottom:Top/Bottom|Bottom/Top:Bottom/Top|Left/Right:Left/Right|Right/Left:Right/Left|Top Only: Top Only|Bottom Only:Bottom Only|Hybrid Top:Hybrid Top|Hybrid Bottom:Hybrid Bottom" default="Top/Bottom" help="Choose how many screens should be displayed, and how they should be arranged." />
+		</menu>
+		<menu id="auto" caption="Libretro PX68K Settings" include="true">
+			<setting caption="Model/CPU Speed" core="libretro:px68k" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="px68k_cpuspeed" type="list" props="d" values="10Mhz:Models 1987-1990 @ 10Mhz(Original,ACE,PRO I&amp;II,EXPERT &amp; SUPER)|16Mhz:Models 1991-1992 @ 16Mhz (XVI &amp; Compact)|25Mhz:Models 1993 @ 25Mhz|33Mhz:Overclocked machine @ 33Mhz|66Mhz:Overclocked machine @ 66Mhz|100Mhz:Overclocked machine @ 100Mhz" default="10Mhz" help="Choose the CPU frequency to emulate. 10Mhz is the basic machine and will work for most of the games." />
+			<setting caption="Memory Size (in MB)" core="libretro:px68k" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="px68k_ramsize" type="range" props="d" values="1:12:1:+MB" default="2" help="Choose the amount of memory available. Most of the games will work with 2MB but some games may require 4MB." />
+		</menu>
+		<menu id="auto" caption="Libretro Geolith Settings" include="true">
+			<setting caption="System Type" core="libretro:geolith" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="geolith_system_type" type="list" props="d" values="aes:AES (Home Console)|mvs:MVS (Arcade)|uni:Universe BIOS (Community-enhanced BIOS)" default="aes" help="Specify the System Type: AES, MVS or Universe BIOS System." />
+		</menu>
+		<menu id="auto" caption="Dolphin / Dolphin-GUI Settings" include="true">
+			<setting caption="Resolution" core="dolphin" file="$configs/dolphin-emu/GFX.ini" fileType="sini" key="Settings/InternalResolution" type="list" values="1:1x native (640x528)|2:2x 720p (1280x1056)|3:3x 1080p (1920x1584)|4:4x 1440p (2560×2112) |5:5x (3200×2640)|6:6x 4K (3840×3168)|7:7x (4480×3696)|8:8x 5K (5120×4224)" default="1" help="Choose the internal resolution." />
+			<setting caption="Dual CPU" core="dolphin" file="$configs/dolphin-emu/Dolphin.ini" fileType="sini" key="Core/CPUThread" type="cbool" values="True:False" default="False" help="May improve performance on a few rare games, at the expense of others that are incompatible." />
+			<setting caption="Sync GPU" core="dolphin" file="$configs/dolphin-emu/Dolphin.ini" fileType="sini" key="Core/SyncGPU" type="cbool" values="True:False" default="False" help="Enable this speed hack for dual core mode to fix some glitches." />
+			<setting caption="Anti-aliasing" core="dolphin" file="$configs/dolphin-emu/GFX.ini" fileType="sini" key="Settings/MSAA" type="cbool" values="True:False" default="True" help="Enable or disable anti-aliasing." />
+			<setting caption="VSync" core="dolphin" file="$configs/dolphin-emu/GFX.ini" fileType="sini" key="Hacks" type="nbool" default="1" help="Enable or disable vsync." />
+			<setting caption="Real Gamecube controllers" core="dolphin" file="$home/recalbox.conf" fileType="ini" key="gamecube.realgamecubepads" type="nbool" default="0" help="Enable this option to play with real GameCube controllers." />
+			<setting caption="Real Wiimotes" core="dolphin" file="$home/recalbox.conf" fileType="ini" key="wii.realwiimotes" type="nbool" default="0" help="Enable this option to play with real Wiimotes." />
+			<setting caption="Emulated Wiimote" core="dolphin" file="$home/recalbox.conf" fileType="ini" key="wii.emulatedwiimote" type="nbool" default="0" help="Enable this option to play with emulated Wiimotes." />
+			<setting caption="Dolphinbar position" core="dolphin" file="$home/recalbox.conf" fileType="ini" key="wii.sensorbar.position" type="list" values="0:BOTTOM|1:TOP" default="1" help="Choose the position of the Dolphin bar." />
+			<setting caption="Show on-screen information" core="dolphin" file="$configs/dolphin-emu/Dolphin.ini" fileType="sini" key="Interface/OnScreenDisplayMessages" type="cbool" values="True:False" default="True" help="" />
+            <!--
+                - Créer une seule option si wiimote émulée ou pas
+                - Passer par un fichier intermédiaire
+                - Si activé, émulé, sinon réel
+            -->
+		</menu>
+		<menu id="auto" caption="PPSSPP Settings" include="true">
+			<setting caption="Resolution" core="ppsspp" file="$configs/ppsspp/PSP/SYSTEM/ppsspp.ini" fileType="sini" key="Graphics/InternalResolution" type="list" values="0:Automatic (1:1)|1:PSP x1|2:PSP x2|3:PSP x3|4:PSP x4 (1080p)|5:PSP x5|6:PSP x6|7:PSP x7|8:PSP x8 (4k)|9:PSP x9|10:PSP x10" default="0" help="Choose the internal resolution of the PSP." />
+		</menu>
+		<menu id="auto" caption="SCUMMVM Settings" include="true">
+			<setting caption="Subtitles" core="scummvm:scummvm" file="$configs/recalbox/tmp-scummvm.ini" fileType="ini" key="subtitles" type="tbool" default="true" help="Enable subtitles" />
+		</menu>
+		<menu id="auto" caption="Supermodel Settings - Controllers" include="true">
+            <setting caption="Sensitivity" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="sensitivity" type="range" props="d" values="1:100" default="25" help="Choose the rate at which analog control values increase/decrease when controlled by a key, between 1 to 100. Default is 25." />
+            <setting caption="Saturation" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="saturation" type="range" props="d" values="0:200" default="100" help="Choose the position at which the joystick is interpreted as being in its most extreme position, between 0% to 200%. Default is 100%." />
+            <setting caption="Deadzone" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="deadzone" type="range" props="d" values="0:99" default="2" help="Choose the dead zone as a percentage, between 0% to 99%. Default is 2%." />
+        </menu>
+        <menu id="auto" caption="Supermodel Settings - Audio" include="true">
+            <setting caption="Sound volume" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="sound-volume" type="range" props="d" values="0:100" default="100" help="Choose the master volume in percentage, between 0% to 100%. Default is 100%." />
+            <setting caption="Music volume" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="music-volume" type="range" props="d" values="0:200" default="100" help="Choose the music volume in percentage, between 0% to 100%. Default is 100%." />
+			<setting caption="Balance" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="balance" type="range" props="d" values="0:100" default="0" help="Choose the relative front/rear balance in percentage, between 0% to 100%. Default is 0%." />
+			<setting caption="Channels" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="channels" type="list" values="2:2|4:4" default="4" help="Choose the number of sound channels to use on host. Default is 2." />
+            <setting caption="Flip stereo" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="flip-stereo" type="nbool" default="0" help="Swap the left and right audio channels." />
+            <setting caption="Sound" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="no-sound" type="nbool" default="0" help="Choose if you disable sound board emulation sound effects. Default is disabled." />
+            <setting caption="No Digital Sound Board (DSB)" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="no-dsb" type="nbool" default="0" help="Enable or disable Digital Sound Board MPEG music. Default is disabled." />
+            <setting caption="Sound engine" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="sound-engine" type="list" values="0:New sound engine based on MAME|1:Legacy sound engine" default="0" help="Choose between the legacy and new sound engines. Default is MAME engine." />
+        </menu>
+        <menu id="auto" caption="Supermodel Settings - Video" include="true">
+			<setting caption="Supersampling" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="supersampling" type="range" props="d" values="1:8" default="1" help="Supersampling. Not enabled yet. Default is 1." />
+			<setting caption="Upscale" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="upscalemode" type="range" props="d" values="0-3" default="0" help="Choose the 2D layer upscaling filter mode. Default is 0." />
+            <setting caption="Disable no throttle" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="no-throttle" type="nbool" default="0" help="Enable or disable the 60Hz frame rate lock. Default is disabled." />
+			<setting caption="VSync" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="vsync" type="nbool" default="1" help="Lock the vertical refresh rate. Default is enabled." />
+			<setting caption="True Hz" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="true-hz" type="nbool" default="0" help="Use the true Model 3 refresh rate of 57.524 Hz. Default is disabled." />
+			<setting caption="Crosshairs" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="crosshairs" type="list" values="0:Disabled|1:Enable for 1 player|2:Enable for 2 players" default="0" help="Show crosshairs. Default is disabled." />
+            <setting caption="Multi texture" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="multi-texture" type="nbool" default="0" help="Use 8 texture maps for decoding. Default is disabled." />
+            <setting caption="Quad rendering" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="quad-rendering" type="nbool" default="0" help="Enable proper quad rendering. Default is disabled." />
+        </menu>
+        <menu id="auto" caption="Supermodel Settings - Core" include="true">
+            <setting caption="GPU multi threading" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="multi-threading" type="list" values="0:Enabled (GPU)|1:Run in main thread (CPU)|2:Disabled" default="0" help="Set to ON to run GPU in its own thread instead of sharing the CPU thread. Faster but may cause bugs, depending on the game." />
+            <setting caption="PPC Frequency" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="ppc-frequency" type="range" props="d" values="1:1000" default="70" help="Choose the PowerPC frequency in MHz, between 1 to 1000. Default is 70." />
+            <setting caption="Service button" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="service-button" type="nbool" default="1" help="Enable or disable the service menu in games (L3 = test, R3 = service). Default is enabled." />
+            <setting caption="Log level" core="supermodel" file="$configs/model3/ConfigModel3.ini" fileType="ini" key="log-level" type="list" values="info:Information|error:Error" default="info" help="Choose the level of detail in the log file. Default is Information." />
+        </menu>
+		<!--
+		<menu id="auto" caption="Visual Pinball Settings" include="true">
+			<setting caption="Table Screen" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.screen1" type="list" default="None" values="eDP:eDP|HDMI-A-0:HDMI-A-0" help="Choose screen for Pinball Table" />
+			<setting caption="Table Resolution" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.screen1.resolution" type="list" default="None" values="1920x1080|1280x1024" help="Choose resolution for Pinball Table screen" />
+			<setting caption="Backglass Screen" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.screen2" type="list" default="None" values="eDP:eDP|HDMI-A-0:HDMI-A-0" help="Choose screen for Pinball Backglass" />
+			<setting caption="Backglass Resolution" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.screen2.resolution" type="list" default="None" values="1920x1080|1280x1024" help="Choose resolution for Pinball Backglass screen" />
+			<setting caption="Multiscreen Mode" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.cabinet" type="nbool" default="0" help="Enable Cabinet Mode" />
+			<setting caption="Auto configuration" core="vpinball:vpinball" if="board.ispcboard" file="$home/recalbox.conf" fileType="ini" key="pinball.autoconf" type="nbool" default="0" help="Enable auto configuration for multi screen" />
+			<setting caption="Ball Trail" core="vpinball:vpinball" file="$home/recalbox.conf" fileType="ini" key="pinball.ball_trail" type="nbool" default="0" help="Enable Ball trail" />
+			<setting caption="Score Size" core="vpinball:vpinball" file="$home/recalbox.conf" fileType="ini" key="pinball.score_size" type="list" default="8" values="1:x1|1.5:x1.5|2:x2|4:x4|8:8x" help="Choose size of score panel" />
+			<setting caption="Performance Profile" core="vpinball:vpinball" file="$home/recalbox.conf" fileType="ini" key="pinball.profile" type="list" default="1" values="1:Low|2:Medium|3:High" help="Choose performance profile" />
+		</menu>
+		-->
+		<menu id="auto" caption="Xemu Settings" include="true">
+			<setting caption="Resolution" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="display.quality/surface_scale" type="list" values="1:1x|2:2x|3:3x|4:4x|5:5x|6:6x|7:7x|8:8x|9:9x|10:10x" default="1" help="Choose the internal resolution of the Xbox." />
+			<setting caption="Show menu bar" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="display.ui/show_menubar" type="tbool" default="false" help="Show the menu bar." />
+			<setting caption="Skip boot animation" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="general/skip_boot_anim" type="tbool" default="false" help="Skip the boot animation." />
+			<setting caption="Show notifications" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="display.ui/show_notifications" type="tbool" default="false" help="Show the notifications displayed in the top-right corner of the screen." />
+			<setting caption="Display mode" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="display.ui/fit" type="list" props="q" values="center:Center|stretch:Stretch|scale:Scale" default="scale" help="Choose how the framebuffer should fit or scale." />
+			<setting caption="Aspect Ratio" core="xemu" file="$configs/xemu/xemu_config.ini" fileType="sini" key="display.ui/aspect_ratio" type="list" props="q" values="native:NATIVE|auto:Auto|4x3:4x3|16x9:16x9" default="auto" help="Choose the aspect ratio of the Xbox." />
+		</menu>
+		<menu id="auto" caption="Xemu - EEPROM General Settings" include="true">
+			<setting caption="Region" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/region" type="list" values="1:North America|2:Japan|4:Europe and Australia|0:Manufacturing plant" default="1" help="Choose the region to use on Xbox." />
+			<setting caption="Video Standard" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/video_standard" type="list" values="4194560:NTSC-M (North America)|4194816:NTSC-J (Japan)|8389376:PAL-I (Europe and Australia)|4195328:PAL-M (Brazil)" default="4194560" help="Choose the video standard to use on Xbox." />
+			<setting caption="Timezone" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/timezone" type="list" values="660:UTC -11|60:UTC -10|540:UTC -9|480:UTC -8|420:UTC -7|360:UTC -6|300:UTC -5|240:UTC -4|180:UTC -3|120:UTC -2|60:UTC -1|0:UTC|4294967236:UTC +1|4294967176:UTC +2|4294967116:UTC +3|4294967056:UTC +4|4294966996:UTC +5|4294966936:UTC +6|4294966876:UTC +7|4294966816:UTC +8|4294966756:UTC +9|4294966696:UTC +10|4294966636:UTC +11|4294966576:UTC +12" default="4294967236" help="Choose the timezone to use on Xbox. If your country is using DST, don't take it into account when you are setting this." />
+			<setting caption="Disable automatic daylight saving time" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/disable_dst" type="nbool" default="1" help="Choose if you want to disable automatic daylight saving time." />
+			<setting caption="DVD Region" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/dvd_zone" type="list" values="0:NONE|1:Region 1 (United States, american territories, Canada and Bermudes)|2:Region 2 (Japan, Europe, South Africa, Egypt and Middle-Orient)|3:Region 3 (South-East and East Asia, including Hong Kong)|4:Region 4 (Australia, New Zealand, Pacific Islands, Central and South America, Caribbean)|5:Region 5 (Oriental Europe, Russia, Central and South Asia, Africa, North Korea and Mongolia)|6:Region 6 (China)" default="0" help="Choose the DVD region to use on Xbox." />
+			<setting caption="Language" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="general/language" type="list" values="1:English|2:日本語|3:Deutsch|4:Français|5:Español|6:Italiano|7:한국어|8:简体中文|9:Português" default="1" help="Choose the language to use on Xbox." />
+		</menu>
+		<menu id="auto" caption="Xemu - EEPROM Video Settings" include="true">
+			<setting caption="480p" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="video/resolution_480p" type="nbool" default="1" help="Enable 480p resolution on Xbox." />
+			<setting caption="720p" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="video/resolution_720p" type="nbool" default="0" help="Enable 720p resolution on Xbox." />
+			<setting caption="1080i" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="video/resolution_1080i" type="nbool" default="0" help="Enable 1080i resolution on Xbox." />
+			<setting caption="Video Mode" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="video/video_mode" type="list" values="0:Normal|1:Letterbox|2:WIDESCREEN (16/9)" default="0" help="Choose the video mode to use on Xbox." />
+			<setting caption="Refresh rate" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="video/refresh_rate" type="list" values="0:50 Hz|1:60 Hz" default="0" help="Set the refresh rate to 60Hz on Xbox." />
+		</menu>
+		<menu id="auto" caption="Xemu - EEPROM Audio Settings" include="true">
+			<setting caption="Audio Output" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="audio/audio_output" type="list" values="0:Mono|1:Stereo|2:Surround" default="0" help="Choose the audio output to use on Xbox." />
+			<setting caption="AC3" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="audio/ac3" type="nbool" default="0" help="Enable Dolby Digital (AC3) on Xbox." />
+			<setting caption="DTS" core="xemu" file="$configs/xemu/eeprom_config.ini" fileType="sini" key="audio/dts" type="nbool" default="0" help="Enable Dolby Surround (DTS) on Xbox." />
+		</menu>
+		<menu id="auto" caption="PUAE Settings" include="true">
+			<setting caption="WHDLoad Splash Screen" core="libretro:puae" file="$configs/retroarch/cores/retroarch-core-options.cfg" fileType="ini" key="puae_use_whdload_prefs" type="list" values="disabled:Disabled|config:Config|splash:Splash|both:Both" default="config" help="Showing popup config, Splash or both before start ROM" />
+		</menu>
+	</menu>
+	<!--
+		QUIT MENU
+	-->
+	<menu id="Quit" caption="QUIT" help="Shows the quit menu to reboot or shutdown Recalbox.">
+		<item id="Shutdown" icon="Shutdown" caption="SHUTDOWN RECALBOX" if="!board.haspowerbutton" help="Shutdown Recalbox. All pending operations are completed before Recalbox is switched off" />
+		<item id="FastShutdown" icon="FastShutdown" caption="FAST SHUTDOWN RECALBOX" if="!board.haspowerbutton" help="Quickly shutdown Recalbox. All pending operations are ignored and no change is saved!" />
+		<item id="Restart" icon="Restart" caption="RESTART RECALBOX" help="Reboot Recalbox. All pending operations are completed before Recalbox restarts" />
+	</menu>
+	<!--
+		QUICK MENU TO CHOOSE BETWEEN KODI & NETPLAY LOBBY
+	-->
+	<menu id="ChooseKodiLobby" caption="KODI/NETPLAY">
+		<item id="RunKodi" caption="KODI MEDIA CENTER" caption2="RUN" help="Start kodi media player." if="feature.kodienabled" />
+		<item id="OpenLobby" caption="NETPLAY LOBBY" caption2="OPEN" />
+	</menu>
+	<!--
+		EDIT NETPLAY PASSWORDS
+	-->
+	<menu id="NetplayPasswords" caption="EDIT NETPLAY PASSWORDS" help="List of predefined passwords to use to protect access to your Netplay sessions.">
+		<item id="NetplayPassword" caption="PASSWORD #{INDEX}" />
+		<item id="NetplayCancel" caption="BACK" help="Exit the password edition." />
+	</menu>
+	<!--
+		MAIN MENU
+	-->
+	<menu id="Main" caption="MAIN MENU" animated="true">
+		<item id="RunKodi" icon="Kodi" caption="KODI MEDIA CENTER" help="Start kodi media player." if="feature.kodienabled and feature.kodiexists" />
+		<!--
+			SYSTEM SETTINGS
+		-->
+		<menu id="SystemSettings" icon="System" caption="SYSTEM SETTINGS" if="!menu.bartop" help="Select the language for your recalbox, select an external drive to store your games and configurations, check your current version and the free space on your drive">
+			<item id="RecalboxVersion" caption="VERSION" help="Shows your current recalboxOS version." />
+			<item id="RecalboxArch" caption="Board" help="Shows your current board." />
+			<item id="Changelog" caption="Show release notes" caption2="SHOW" help="Shows current version's release notes." />
+			<item id="UsedShare" caption="SHARE USAGE" help="Show how much space is used on your SHARE partition, located either on the SDCARD or on an external drive. The information shows how many GB are used and how many GB your storage has in total (example 13GB/26GB)."/>
+			<item id="ShareDevice" caption="SHARE PARTITION" reboot="true" help="Select an external drive to store your roms, saves, configurations etc.\nUse a FAT32 formatted drive. The system does not format the drive. On first boot, with this option enabled, recalbox will create a '/recalbox' folder with all system files inside." />
+			<menu id="StorageList" caption="AVAILABLE STORAGES" if="storage.hasextradevices" help="Show a list of storage available on your system. Select a storage to access extra information and available actions.">
+				<menu id="StorageDevice" foreach="devices.external" caption="{DEVICE.NAME}" help="Get information about {DEVICE.NAME}">
+					<item id="DeviceFreeSpace" caption="FREE SPACE" help="Display free space available on the device"/>
+					<item id="DeviceName" caption="STORAGE NAME" help="Display real device name"/>
+					<item id="DeviceNetworkAccess" caption="NETWORK ACCESS" help="Access to this storage through your local network."/>
+					<item id="DeviceFS" caption="FILE SYSTEM" help="FileSystem"/>
+					<item id="DeviceUsable" caption="COMPATIBLE WITH RECALBOX?" help="Show if this storage is compatible with recalbox"/>
+					<item id="DeviceInitialize" caption="INSTALL RECALBOX ROM FOLDERS" caption2="INITIALIZE!" help="Create rom structure so that this storage will be used by Recalbox on next boots." grayedHelp="You cannot initialize this storage, because either it is already initialized or it is not compatible."/>
+				</menu>
+			</menu>
+			<menu id="InstallList" caption="INSTALL TO..." if="board.ispcboard | board.ispi3board | board.ispi4board | board.ispi5board" help="Select a disk to install Recalbox on it.">
+				<item id="InstallDevice" foreach="devices.physical" caption="{DEVICE.NAME}" caption2="INSTALL HERE" help="Install Recalbox on {DEVICE.NAME}."/>
+			</menu>
+			<item id="SystemInformation" icon="System" caption="SYSTEM INFORMATION" caption2="SHOW" help="Display detailed information about the system: board, CPU, memory, display, video, audio, network, controllers and storage." />
+			<item id="Language" caption="LANGUAGE" reboot="true" help="Select your language. A reboot is required to set this configuration active." />
+			<item id="TimeZone" caption="TIMEZONE" reboot="true" help="Select the timezone used to display dates and times in their local format."/>
+			<item id="Keyboard" caption="KEYBOARD" reboot="true" help="Select your keyboard layout." />
+			<item id="VirtualKeyboard" caption="ON-SCREEN KEYBOARD" help="Choose between the arcade rotating wheel and a classic on-screen keyboard layout for text entry." />
+		</menu>
+		<!--
+			UPDATE
+		-->
+		<menu id="Update" icon="Updates" caption="UPDATES" help="Manage your recalbox updates. Select the update type. Activate update check.">
+			<item id="UpdateAvailable" caption="AVAILABLE UPDATE" help="Shows available update version." />
+			<item id="UpdateCheck" caption="CHECK UPDATES PERIODICALLY" help="Automatically check if an update is available. If so, it notifies you with a message." />
+			<item id="UpdateType" caption="UPDATE TYPE" help="Select update type" />
+			<item id="UpdateCheckNow" caption="CHECK FOR UPDATE NOW" caption2="CHECK" help="Check if an update is available, right now." />
+			<item id="UpdateChangelog" caption="SHOW NEW VERSION CHANGELOG" caption2="SHOW" help="Shows available update changelog." />
+			<item id="UpdateStart" caption="DOWNLOAD AND UPDATE MY RECALBOX" caption2="GO!" help="Check if an update is available, and start the update process." grayedHelp="No update available yet." />
+		</menu>
+		<item id="ThemeManager" icon="Themes" caption="THEME MANAGER" caption2="RUN" help="Browse, download, install, update or remove themes from Recalbox's theme repository!" />
+		<item id="OpenJukebox" icon="Sound" caption="JUKEBOX" caption2="OPEN" if="state.ispatron" help="Open the Recalbox Jukebox and listen to music from your Patron playlist." />
+		<!--
+			CRT
+		-->
+		<menu id="RGBDual" icon="RRGBD" caption="RECALBOX RGB DUAL SETTINGS" if="!menu.bartop and hardware.rrgbd" help="Recalbox RGB Dual options and configuration.">
+			<item id="CrtMenuResolution" caption="MENU RESOLUTION" help="Select Recalbox's interface resolution. 480i is recommended for better details." />
+			<item id="CrtHDMIPriority" caption="PRIORITY TO HDMI" help="When a HDMI cable is connected, use HDMI output in priority." />
+			<item id="CrtSelectRefreshAtLaunch" caption="SELECT GAME REFRESH RATE AT LAUNCH" help="Let you choose between 50Hz and 60Hz at launch, for compatible systems." />
+			<item id="CrtSelectResolutionAtLaunch" caption="SELECT GAME RESOLUTION AT LAUNCH" help="Let you choose between 240p, 480i, or 480p at launch, for compatible systems." />
+			<item id="CrtSuperrezMultiplier" caption="SUPERREZ MULTIPLIER" help="Superrez can increase image quality depending on your CRT." />
+			<item id="CrtForceJack" if="hardware.rrgbd" caption="FORCE SOUND ON JACK" help="Force sound on jack. Auto-enabled when 31kHz switch is ON" />
+			<item id="CrtAvoidInterlaced" if="hardware.crtinterlaced" caption="AVOID INTERLACED MODES" help="Avoid interlaced mode for all games." />
+			<item id="CrtAvoidInterlacedTateOnYokoAndHandhelds" if="hardware.crtinterlaced" caption="AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS" help="Avoid interlaced mode for tate (vertical) games on yoko (horizontal) screens, and for handheld consoles." />
+			<item id="CrtAvoidLowFreqModes" caption="AVOID LOW FREQUENCY MODES" help="Avoid modes under 57Hz for non-compatible TVs." />
+			<header caption="31 KHZ" />
+			<item id="CrtScanline240in480" caption="240P GRID" help="Add a grid overlay to render 240p games on a 31kHz screen with that classic 240p look." grayedHelp="You're not in 31khz mode" />
+			<item id="CrtDemoAuto240" caption="RUN DEMOS AND AUTOBOOT GAMES IN 240P@120" help="Run the demos and autoboot games in 240p resolution on your 31kHz monitor." grayedHelp="You're not in 31khz mode" />
+			<header caption="EXPERIMENTAL" />
+			<item id="CrtReducedLantency" caption="REDUCED LATENCY (EXPERIMENTAL)" help="Configure emulators to reduce latency." />
+			<item id="CrtRunAhead" caption="RUN AHEAD (EXPERIMENTAL)" help="Use run ahead to reduce latency. Can have undesired effect on some emulators." />
+			<item id="CrtScreenCalibration" caption="FRONTEND SCREEN CALIBRATION" caption2="CALIBRATE" help="Calibrate screen on frontend." />
+		</menu>
+		<!--
+			JAMMA
+		-->
+		<menu id="RGBJAMMA" icon="RRGBD" caption="RECALBOX RGB JAMMA SETTINGS" if="(!menu.bartop and hardware.rrgbj) or menu.debug" help="Recalbox RGB Jamma options and configuration.">
+			<item id="CrtMenuResolution" caption="MENU RESOLUTION" help="Select Recalbox's interface resolution. 480i is recommended for better details." />
+			<item id="CrtScreenType" caption="SCREEN TYPE" help="Select the type of your screen. If you don't know what you are doing, do not change this value." />
+			<item id="CrtHDMIPriority" caption="PRIORITY TO HDMI" help="When a HDMI cable is connected, use HDMI output in priority." />
+			<item id="CrtSelectResolutionAtLaunch" caption="SELECT GAME RESOLUTION AT LAUNCH" help="Let you choose between 240p, 480i, or 480p at launch, for compatible systems." />
+			<item id="CrtSuperrezMultiplier" caption="SUPERREZ MULTIPLIER" help="Superrez can increase image quality depending on your CRT." />
+			<item id="CrtAvoidInterlaced" caption="AVOID INTERLACED MODES" help="Avoid interlaced mode for all games." />
+			<item id="CrtAvoidInterlacedTateOnYokoAndHandhelds" if="hardware.crtinterlaced" caption="AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS" help="Avoid interlaced mode for tate (vertical) games on yoko (horizontal) screens, and for handheld consoles." />
+			<header caption="31 KHZ" />
+			<item id="CrtScanline240in480" caption="240P GRID" help="Add a grid overlay to render 240p games on a 31kHz screen with that classic 240p look." grayedHelp="You're not in 31khz mode" />
+			<header caption="JAMMA OPTIONS" />
+			<item id="JammaSound" caption="SOUND" help="Select sound output: JACK/MONO or JACK/JST. Jack always takes priority." />
+			<item id="JammaAmpBoost" caption="MONO AMP BOOST" help="Boost mono amp power. Use only if the sound level is too low." />
+			<item id="JammaPanelType" caption="PANEL TYPE" help="Number of buttons on your arcade cab panel." />
+			<item id="JammaNeogeoLayoutP1" caption="NEOGEO/PGM LAYOUT P1" help="Define the NEOGEO layout when playing NEOGEO games." />
+			<item id="JammaNeogeoLayoutP2" caption="NEOGEO/PGM LAYOUT P2" help="Define the NEOGEO layout when playing NEOGEO games." />
+			<item id="Jamma4PlayerMode" caption="4 PLAYERS MODE" help="4-player mode, with players 2 and 3 on the CPS2 kick harness." />
+			<item id="JammaCredit" caption="START+BTN1 = CREDIT" help="Add a credit in game, pressing START + BTN1. Works for all players."/>
+			<item id="JammaHotkey" caption="START+BTN = HK+BTN" help="START + any button will send the HK+BTN event, so you can use special hotkey controls in emulators." />
+			<item id="JammaVolume" caption="START+UP/DOWN = VOLUME" help="START + UP and DOWN change the volume in frontend and in games." />
+			<item id="JammaExit" caption="START 3SEC = EXIT" help="Pressing START for 3sec will exit the game. If you disable this option, you will have to exit the game with SERVICE + TEST." />
+			<item id="JammaAutoFire" caption="START+BTN 5SEC = AUTO FIRE" help="Set auto fire for a button by pressing START + a button for 5 seconds" />
+			<item id="JammaDualJoystick" caption="DUAL JOYSTICKS" help="Load the dual joystick configuration on compatible games!" />
+			<item id="JammaPinE27" caption="PIN E/27 AS GND" help="On some cabs, the pins E/27 of the JAMMA are the common ground for controls. Enable this option if you have this configuration." />
+			<item id="JammaReset" caption="RESET JAMMA CONFIGURATION" help="Reset all previous options to their default values" />
+			<header caption="EXPERIMENTAL" />
+			<item id="CrtReducedLantency" caption="REDUCED LATENCY (EXPERIMENTAL)" help="Configure emulators to reduce latency." />
+			<item id="CrtRunAhead" caption="RUN AHEAD (EXPERIMENTAL)" help="Use run ahead to reduce latency. Can have undesired effect on some emulators." />
+			<item id="CrtScreenCalibration" caption="FRONTEND SCREEN CALIBRATION" caption2="CALIBRATE" help="Calibrate screen on frontend." />
+		</menu>
+		<menu id="JVS" icon="JVS" caption="RECALBOX JVS SETTINGS" if="hardware.jvs and !menu.bartop" help="Recalbox JVS options and configuration.">
+			<header caption="JVS DISPLAY" />
+			<item id="CrtMenuResolution" if="!hardware.hdmi" caption="MENU RESOLUTION" help="Select Recalbox's interface resolution." />
+			<item id="CrtScreenType" caption="SCREEN TYPE" help="Select the type of your screen. If you don't know what you are doing, do not change this value." />
+			<item id="CrtHDMIPriority" caption="PRIORITY TO HDMI" help="When a HDMI cable is connected, use HDMI output in priority." />
+			<item id="CrtSelectResolutionAtLaunch" if="!hardware.hdmi" caption="SELECT GAME RESOLUTION AT LAUNCH" help="Let you choose between 240p, 480i, or 480p at launch, for compatible systems." />
+			<item id="CrtScanline240in480" if="!hardware.hdmi" caption="240P GRID" help="Add a grid overlay to render 240p games on a 31kHz screen with that classic 240p look." grayedHelp="You're not in 31khz mode" />
+			<item id="CrtSuperrezMultiplier" if="!hardware.hdmi" caption="SUPERREZ MULTIPLIER" help="Superrez can increase image quality depending on your CRT." />
+			<item id="IntegerScale" if="hardware.hdmi" caption="INTEGER SCALE (PIXEL PERFECT)" help="Integer scaling preserves a 1:1 pixel ratio with the source image. Scales by whole factors (2x, 3x, 4x...) and leaves black borders around." />
+			<item id="ShaderSet" if="hardware.hdmi" caption="SHADERS SET" help="Shaders are like filters for the game rendering. You can select a shader set here, applied to every system. You can also change the shader within the game with HOTKEY + L2 or HOTKEY + R2." />
+			<item id="CrtAvoidInterlaced" if="hardware.crtinterlaced and !hardware.hdmi" caption="AVOID INTERLACED MODES" help="Avoid interlaced mode for all games." />
+			<item id="CrtAvoidInterlacedTateOnYokoAndHandhelds" if="hardware.crtinterlaced and !hardware.hdmi" caption="AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS" help="Avoid interlaced mode for tate (vertical) games on yoko (horizontal) screens, and for handheld consoles." />
+			<header caption="JVS CABINET" />
+			<item id="JvsCabType" caption="CAB TYPE" help="Cabinet type (joystick, race, gun…). Changes the controls layout and which inputs are enabled." />
+			<item id="JvsPlayersOnPanel" caption="PLAYERS ON PANEL" help="Number of controllers physically wired on the cab panel (1 or 2)." />
+			<item id="JvsLinkMode" caption="LINK MODE" help="When two IO boards are linked for 4-player play: 1vs1 splits as P1+P2 vs P3+P4, 2vs2 groups them differently." />
+			<item id="JammaPanelType" caption="PANEL TYPE" help="Number of buttons on your arcade cab panel." />
+			<item id="JvsStartQuickExit" caption="QUICK EXIT" help="If on: hold START 3 sec to exit the game. If off: 3 sec opens the JVS menu instead." />
+			<item id="JvsSkipBootLogo" caption="SKIP BOOT LOGO" help="Boot straight into Pi5 mode and skip the firmware splash screen." />
+			<item id="JvsFlipGunX" if="hardware.jvs.guncab" caption="FLIP GUN X AXIS" help="Invert lightgun horizontal axis. Adjust if your gun aims left/right reversed." />
+			<item id="JvsFlipGunY" if="hardware.jvs.guncab" caption="FLIP GUN Y AXIS" help="Invert lightgun vertical axis. Adjust if your gun aims up/down reversed." />
+			<header caption="JVS CONTROLS" />
+			<item id="JammaNeogeoLayoutP1" caption="NEOGEO/PGM LAYOUT P1" help="Define the NEOGEO layout when playing NEOGEO games." />
+			<item id="JammaNeogeoLayoutP2" caption="NEOGEO/PGM LAYOUT P2" help="Define the NEOGEO layout when playing NEOGEO games." />
+			<item id="JammaCredit" caption="START+BTN1 = CREDIT" help="Add a credit in game, pressing START + BTN1. Works for all players."/>
+			<item id="JammaHotkey" caption="START+BTN = HK+BTN" help="START + any button will send the HK+BTN event, so you can use special hotkey controls in emulators." />
+			<item id="JammaVolume" caption="START+UP/DOWN = VOLUME" help="START + UP and DOWN change the volume in frontend and in games." />
+			<header caption="EXPERIMENTAL" />
+			<item id="CrtReducedLantency" caption="REDUCED LATENCY (EXPERIMENTAL)" help="Configure emulators to reduce latency." />
+			<item id="CrtRunAhead" caption="RUN AHEAD (EXPERIMENTAL)" help="Use run ahead to reduce latency. Can have undesired effect on some emulators." />
+			<!--<item id="CrtScreenCalibration" caption="SCREEN CALIBRATION (COMING SOON)" caption2="CALIBRATE" help="Calibrate horizontal geometry (experimental feature)""/> -->
+		</menu>
+		<!--
+			Recalbox Card Reader
+		-->
+		<menu id="CardReader" icon="CardReader" caption="RECALCARDS SETTINGS" if="(hardware.cardreader.available and !menu.bartop) or menu.debug" help="Recalbox Card Reader options and configuration.">
+			<item id="CRVersion" caption="CARD READER" help="Card Reader Version and status." />
+			<item id="AllowBootOnGame" caption="BOOT ON CARD" help="Boot on the card when inserted at Recalbox boot." />
+			<item id="BootShowVideo" caption="RECALBOX BOOT VIDEOS" help="Enable or disable recalbox videos on boot." />
+			<item id="CRConsoleMode" caption="Console Mode (cards only)" help="Start Recalbox in console mode, where only cards can be played." />
+			<item id="CRConsoleModeExitMode" caption="Console Mode exit buttons" help="Select how to exit console mode." />
+			<item id="CRConsoleModeVideo" caption="Console Mode video" help="Select the video to run in console mode." />
+			<item id="CRConsoleModeSound" caption="Console Mode sound" help="Switch between recalbox music and bios sound." />
+		</menu>
+		<!--
+			RGB DUAL 2
+		-->
+		<menu id="RGBDual2" icon="RRGBD" caption="RECALBOX RGB DUAL 2 SETTINGS" if="(hardware.rrgbd2 and !menu.bartop) or menu.debug" help="Recalbox RGB Dual 2 options and configuration.">
+			<item id="CrtMenuResolution" relaunch="true" caption="MENU RESOLUTION" help="Select Recalbox's interface resolution." />
+			<item id="CrtScreenType" reboot="true" caption="SCREEN TYPE" help="Select the type of your screen. If you don't know what you are doing, do not change this value." />
+			<item id="CrtForceComposite" reboot="true" caption="FORCE COMPOSITE" help="Force composite output (On SCART, RCA and JACK)." />
+			<item id="CrtCompositeStandard" reboot="true" caption="COMPOSITE SIGNAL STANDARD" help="When using composite, selects the composite signal standard for your region." />
+			<item id="CrtWideScreen" relaunch="true" caption="16/9 CRT TV" help="Activate if you have a 16/9 CRT TV." />
+			<item id="CrtHDMIPriority" caption="PRIORITY TO HDMI" help="When a HDMI cable is connected, use HDMI output in priority." />
+			<item id="CrtSelectSignalAtLaunch" caption="SELECT SIGNAL (RGB/COMPOSITE) AT LAUNCH" help="Let you choose between RGB Signal and composite signal at launch, for compatible systems." />
+			<item id="CrtSelectResolutionAtLaunch" caption="SELECT GAME RESOLUTION AT LAUNCH" help="Let you choose between 240p, 480i, or 480p at launch, for compatible systems." />
+			<item id="CrtSelectRefreshAtLaunch" caption="SELECT GAME REFRESH RATE AT LAUNCH" help="Let you choose between 50Hz and 60Hz at launch, for compatible systems." />
+			<item id="CrtAvoidInterlaced" caption="AVOID INTERLACED MODES" help="Avoid interlaced mode for all games." />
+			<item id="CrtAvoidLowFreqModes" caption="AVOID LOW FREQUENCY MODES" help="Avoid modes under 57Hz for non-compatible TVs." />
+			<item id="CrtAvoidInterlacedTateOnYokoAndHandhelds" if="hardware.crtinterlaced" caption="AVOID INTERLACED MODES FOR TATE GAMES ON YOKO AND HANDHELDS" help="Avoid interlaced mode for tate (vertical) games on yoko (horizontal) screens, and for handheld consoles." />
+			<item id="CrtHandheldFormat" caption="HANDHELDS RATIO" help="Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full image, or ORIGINAL to get original and pixel perfect resolution." />
+			<header caption="DIP SWITCHES"/>
+			<item id="CrtForced50hzDip"  caption="FORCED 50HZ DIP SWITCH" />
+			<item id="CrtForced31kHzDip"  caption="FORCED 31kHz/MULTISYNC DIP SWITCH" />
+			<item id="CrtForcedCompositeDip"  caption="FORCED COMPOSITE DIP SWITCH" />
+			<header caption="31 KHZ" />
+			<item id="CrtScanline240in480" caption="240P GRID" help="Add a grid overlay to render 240p games on a 31kHz screen with that classic 240p look." grayedHelp="You're not in 31khz mode" />
+			<item id="CrtDemoAuto240" caption="RUN DEMOS AND AUTOBOOT GAMES IN 240P@120" help="Run the demos and autoboot games in 240p resolution on your 31kHz monitor." grayedHelp="You're not in 31khz mode" />
+			<header caption="ADVANCED" />
+			<item id="CrtSuperrezMultiplier" caption="SUPERREZ MULTIPLIER" help="Superrez can increase image quality depending on your CRT." />
+			<header caption="EXPERIMENTAL" />
+			<item id="CrtReducedLantency" caption="REDUCED LATENCY (EXPERIMENTAL)" help="Configure emulators to reduce latency." />
+			<item id="CrtRunAhead" caption="RUN AHEAD (EXPERIMENTAL)" help="Use run ahead to reduce latency. Can have undesired effect on some emulators." />
+			<item id="CrtScreenCalibration" caption="FRONTEND SCREEN CALIBRATION" help="Calibrate screen on frontend." />
+		</menu>
+		<!--
+			IN-GAME SETTINGS
+		-->
+		<menu id="InGame" icon="InGame" caption="IN-GAME SETTINGS" help="Configure games display, ratio, filters (shaders), auto save and load and retroachievement account.">
+			<header caption="FEATURES" />
+			<item id="Rewind" caption="REWIND" help="This option allows you to rewind the game if you get killed by a monster, or if you make any other mistake. Use the HOTKEY + LEFT command within the game to rewind." />
+			<item id="SoftPatching" caption="SOFTPATCHING" help="Choose strategy\n\nAUTO: auto apply default patch\n\nLAUNCH LAST: always launch the last one (can be modified in edit game menu)\n\nSELECT: choose manually which patch to apply. Default one or patches in [ROM_NAME]-patches directory\n\nDISABLED: never apply patch" />
+			<item id="ShowSaveStates" caption="SHOW SAVE STATES ON START" help="Display the available save states before launching a game." />
+			<item id="AutoSave" caption="AUTO SAVE/LOAD" help="Auto save the state when you quit a game, and auto load last saved state when you start a game." />
+			<item id="PressTwice" caption="PRESS TWICE TO QUIT GAME" help="Press the buttons twice to end the game and go back to the main menu." />
+			<item id="SuperGameboyMode" caption="GAME BOY MODE" help="Set the Super GameBoy mode for GameBoy games." />
+			<header caption="GAMES RENDERING" />
+			<item id="GameRatio" caption="GAME RATIO" if="!(hardware.crt or hardware.rrgbj)" help="The game ratio is the ratio between image width and image height. Use AUTO to let the emulator choose the original game ratio, that will give you the best retrogaming experience." />
+			<item id="RecalboxOverlays" caption="RECALBOX OVERLAYS" help="On wide screens, display system images that wrap around emulated screen." />
+			<item id="Smooth" caption="SMOOTH GAMES" help="Smooth the game image. This option makes the image smoother, using bilinear filtering." />
+			<item id="IntegerScale" caption="INTEGER SCALE (PIXEL PERFECT)" altCaptionIf="hardware.crt and !hardware.rrgbj;HORIZONTAL INTEGER SCALE" if="!crt and !hardware.rrgbj" help="Integer scaling is scaling by a factor of a whole number, such as 2x, 3x, 4x, etc. This option scales the image up to the greatest integer scale below the set resolution. So for instance, if you set your fullscreen resolution to 1920x1080 and enable integer scaling, it will only scale a 320x240 image up to 1280x960, and leave black borders all around. This is to maintain a 1:1 pixel ratio with the original source image, so that pixels are not unevenly duplicated." />			<item id="ShaderSet" caption="SHADERS SET"  if="!hardware.crt" help="Shaders are like filters for the game rendering. You can select a shader set here, which is a collection of shaders selected for each system. You can also change the shader within the game with HOTKEY + L2 or HOTKEY + R2." />
+			<item id="AdvancedShaders" caption="ADVANCED SHADERS" if="!hardware.crt" help="Shaders are like filters for the game rendering. You can select a raw shader file here. This setting may be overridden by the shader set if it is not set to 'none'." />
+			<item id="HDMode" caption="HD MODE" if="!hardware.crt and (board.ispcboard or board.ispi5board or board.issteamdeck)" help="Improves resolution on compatible 3d emulators. May have an impact on performance. (Dreamcast, Naomi, Atomiswave, Playstation, Saturn)" />
+			<item id="WideScreen" caption="WIDESCREEN (16/9)" if="(!hardware.crt or hardware.rrgbd2) and (board.ispcboard or board.ispi5board or board.ispi4board or board.issteamdeck)" help="Enables 16:9 hacks for compatible emulators. May have an impact on performance. (Dreamcast, Naomi, Atomiswave, Snes, Megadrive)" />
+			<item id="AutoBlitter" caption="AUTO BLITTER (FBNEO/MAME)" help="Enables automatic blitter and CPU settings for fbneo and mame games. Can enhance emulation precision on games like Cave." />
+			<item id="VulkanDriver" caption="ENABLE VULKAN DRIVER" grayedif="!feature.hasvulkan" help="Enable the Vulkan driver when available. Enabled by default on RPi4, RPi5, and PC. Set to OFF if Dreamcast, Naomi or Atomiswave stop running." grayedHelp="No vulkan driver is available on your hardware."/>
+			<header caption="RETROACHIEVEMENTS SETTINGS" />
+			<item id="Retroachievements" caption="RETROACHIEVEMENTS" help="Enable or disable RetroAchievements in games." />
+			<item id="RetroachievementsHardcore" caption="HARDCORE MODE" help="Hardcore mode disables *all* savestate and rewind functions within the emulator: you will not be able to save and reload at any time. You will have to complete the game and get the achievements first time, just like on the original console. In reward for this, you will earn both the standard and the hardcore achievement, in effect earning double points! A regular game worth 400 points, is now worth 800 if you complete it on hardcore! For example: if you complete the game for 400 points, you then have the opportunity to earn another 400 on hardcore." />
+			<item id="RetroachievementsUsername" caption="USERNAME" help="Retroachievements user name." />
+			<item id="RetroachievementsPassword" caption="PASSWORD" help="Retroachievements password." />
+			<item id="RetroachievementsSounds" caption="ENABLE SOUNDS" help="Enable Retroachievements sounds." />
+			<header caption="NETPLAY SETTINGS" />
+			<item id="Netplay" caption="NETPLAY" help="Enable or disable Netplay in games." />
+			<item id="NetplayNickname" caption="NICKNAME" help="Netplay user name. Do not use special characters!" />
+			<item id="NetplayPort" caption="PORT" help="Local port other players will connect to when hosting a Netplay session." />
+			<item id="NetplayRelay" caption="NETPLAY MITM" help="Enable or disable connections through relay servers." />
+			<menuref id="NetplayPasswords" caption="PREDEFINED PASSWORDS" help="List of predefined passwords to use to protect access to your Netplay sessions." />
+			<item id="HashRoms" caption="HASH ROMS" caption2="RUN" help="Add hash of roms in your gamelists to have more accurate results in Netplay." />
+		</menu>
+		<!--
+			SYSTEM LIST & GAME LISTS
+		-->
+		<menu id="Lists" icon="Lists" caption="SYSTEM-LISTS &amp; GAMELISTS SETTINGS" if="!menu.bartop" help="Configure system and gamelist filters and options">
+			<header caption="SYSTEM LISTS" />
+			<item id="ShowSystems" caption="SHOW SYSTEMS" help="Show or hide systems individually" />
+			<item id="SystemSorting" caption="SYSTEM SORTING" help="Default: use original or custom systemlist.xml order\nSystem Type: order by Console/Handheld/Computer/Arcade/Other\nRelease Date: order by release date asc\nManufacturer: order by manufacturer (e.g. Sega)\nSpecial Blend: Sort by type then Manufacturer then Release Date" />
+			<item id="UpdateGamelists" caption="UPDATE GAMES LISTS" help="Updates the gamelists, if you added games since the last boot." />
+			<header caption="GAMELISTS" />
+			<!--
+				GAMELIST LAYOUT
+			-->
+			<menu id="GamelistLayouts" caption="GAMELIST LAYOUT" help="Choose how games are shown in your gamelists: a text list, a logo list, and the carousel or the grid when the theme provides them.">
+				<item id="GamelistLayoutGlobal" caption="DEFAULT LAYOUT" help="The layout used by every system that has no layout of its own." />
+				<header caption="PER SYSTEM" />
+				<item id="GamelistLayoutPerSystem" foreach="systems.visible" caption="{SYSTEM.NAME}" help="Select the layout used for the game list of {SYSTEM.NAME}." />
+			</menu>
+			<header caption="VIRTUAL SYSTEMS" />
+			<item id="VirtualAllGames" caption="SHOW ALL-GAMES SYSTEM" help="Show a 'all-games' system with all games from all systems." />
+			<item id="VirtualMultiplayer" caption="SHOW MULTIPLAYER SYSTEM" help="Show multiplayer games (all games playable by two or more players)." />
+			<item id="VirtualLastPlayed" caption="SHOW LAST-PLAYED SYSTEM" help="Show last played games." />
+			<item id="VirtualLightgun" caption="SHOW LIGHTGUN SYSTEM" if="board.homeboard" help="Show all available games playable with a lightgun." />
+			<item id="VirtualDial" caption="SHOW SPINNER SYSTEM" help="Show all available arcade games played with a spinner (rotary knob), such as Arkanoid or Tempest." />
+			<item id="VirtualTrackball" caption="SHOW TRACKBALL SYSTEM" help="Show all available arcade games played with a trackball, such as Marble Madness or Centipede." />
+			<item id="VirtualPorts" caption="SHOW PORTS SYSTEM" help="Show a 'ports' system with all ports in the same place." />
+			<item id="VirtualPerGenre" caption="VIRTUAL SYSTEMS PER GENRE" help="Select virtual systems per genre to show." />
+			<header caption="GAMES" />
+			<item id="EnableFavorites" caption="ENABLE ADDING/REMOVING FAVORITES" help="Enable or disable adding/removing favorites in gamelist, search and other various places." />
+			<item id="ShowOnlyFavorites" caption="SHOW ONLY FAVORITES" help="Show only favorites. May hide all systems with no favorite at all until you switch off this option." />
+			<item id="ShowFavoriteFirst" caption="SHOW FAVORITES FIRST" help="Display all favorites at the top of the game list." />
+			<item id="ShowHiddenGames" caption="SHOW HIDDEN GAMES" help="Force hidden game to show in gamelists." />
+			<item id="ShowOnlyLastVersions" caption="SHOW ONLY LATEST VERSION" help="Show only the very latest version of a given game, hiding all previous versions/releases. Particularly useful in TOSEC romsets." />
+			<item id="ShowMahjongCasino" caption="SHOW MAHJONG AND CASINO GAMES" help="Show or hide asian casino and mahjong games. You must scrape your game for this option to work." />
+			<item id="ShowAdultGames" caption="SHOW ADULT GAMES" help="Show or hide adult games. You must scrape your game for this option to work." />
+			<item id="ShowPreinstalledGames" caption="SHOW PREINSTALLED GAMES" help="Show or hide games distributed with Recalbox. But you don't want to do this: they are all excellent games!" />
+			<item id="Show3PlayerGames" caption="SHOW ONLY 3+ PLAYERS GAMES" help="Show only games playable with 3 or more players" />
+			<item id="ShowOnlyYoko" caption="SHOW ONLY YOKO (HORIZONTAL) GAMES" help="Show only YOKO (horizontal) games. Mutually exclusive with the option to show only TATE games." />
+			<item id="ShowOnlyTate" caption="SHOW ONLY TATE (VERTICAL) GAMES" help="Show only TATE (vertical) games. Mutually exclusive with the option to show only YOKO games." />
+			<item id="ShowNonGames" caption="SHOW ROMS MARKED AS NON-GAMES" help="Show or hide roms that are explicitly marked as non-game (application, utilities, ...). You must scrape your game for this option to work." />
+			<item id="DisplayByFilename" caption="DISPLAY BY FILENAME" help="Display game by file name instead of game name." />
+			<item id="OneGameOneRom" caption="ENABLE ONE GAME ONE ROM (1G1R)" help="Display only one rom|disk image for a game from your preferred region." />
+			<item id="RomPreferredRegion" caption="PRIORITY REGION (1G1R)" help="Choose your preferred region for 1G1R filtering." />
+			<item id="RomSecondPreferredRegion" caption="SECOND PRIORITY REGION (1G1R)" help="Choose your second preferred region for 1G1R filtering." />
+			<item id="RomPreferredFallback" caption="THIRD PRIORITY REGIONS (1G1R)" help="Choose your preferred regions priority when there is no match with first and second regions" />
+			<header caption="ARCADE SYSTEMS" />
+			<item id="ArcadeAggregateEnable" caption="ENABLE AGGREGATED ARCADE SYSTEM" help="Shows the Arcade virtual system in the systems list." />
+			<item id="ArcadeAggregateOriginal" caption="HIDE ORIGINAL SYSTEMS" help="Hides the original arcade systems when the Arcade virtual system is enabled."  grayedHelp="Available only when aggregated arcade system is on" />
+			<item id="ArcadeManufacturerSystems" caption="MANUFACTURER VIRTUAL SYSTEMS" help="Select manufacturer virtual system to show in the system view (like CPS1/2/3, SEGA, TAITO, ...)" />
+			<header caption="ARCADE GAMES" />
+			<item id="ArcadeEnhancedView" caption="ENABLE ENHANCED VIEW" help="Enable the new arcade view, with parents and clones sorted hierarchically." />
+			<item id="ArcadeFoldClones" caption="FOLD CLONES BY DEFAULT" help="Hide clones and orphaned games" />
+			<item id="ArcadeHideBios" caption="HIDE BIOS" help="Hide bios files" />
+			<item id="ArcadeHideNonWorking" caption="HIDE NON-WORKING GAMES" help="Hide unknown and non-working games" />
+			<item id="ArcadeUseOfficielNames" caption="ALWAYS USE OFFICIAL NAMES" help="Always use arcade names from official databases. Overwrites manual edits and scraper results." />
+		</menu>
+		<!--
+			USER INTERFACE
+		-->
+		<menu id="UI" icon="UI" caption="USER INTERFACE SETTINGS" if="!menu.bartop" help="Configure your EmulationStation experience. Select transition types, help prompts, screensaver behavior. You can also deactivate the onscreen keyboard if you have a real keyboard plugged into your recalbox.\nIf you've added games since the last boot, you can also refresh the gamelist from this menu.">
+			<!--
+				SCREENSAVER
+			-->
+			<menu id="Screensaver" caption="SCREENSAVER" help="Configure screensaver" >
+				<item id="ScreensaverTimeout" caption="SCREENSAVER AFTER" help="Start the screensaver after N minutes." />
+				<item id="ScreensaverType" caption="SCREENSAVER BEHAVIOR" help="Set the screensaver behavior. DIM will reduce the screen light, BLACK will turn the screen black, DEMO will launch demo mode." />
+				<item id="ScreensaverSystems" caption="SYSTEMS TO SHOW IN DEMO/GAMECLIP" help="Choose systems to use for demo and gameclip screensavers." />
+			</menu>
+			<item id="Brightness" caption="BRIGHTNESS" if="board.hasbrightness" help="Adjust the screen brightness" />
+			<!--
+				THEME
+			-->
+			<menu id="Theme" caption="THEME" help="Change the look of your Recalbox!">
+				<item id="ThemeSet" caption="THEME SET" help="Select a theme for your recalbox." />
+				<item id="ThemeCarousel" caption="CAROUSEL ANIMATION" grayedif="theme.hasdefaulttransition" help="Choose if carousel will be animated or not during transitions" />
+				<item id="ThemeTransition" caption="DEFAULT TRANSITION STYLE" grayedif="theme.hasdefaulttransition" help="Select the type of transition between system. INSTANT will do nothing, FADE will fade to dark, and SLIDE will slide the entire screen" />
+				<item id="ThemeRegion" caption="REGION" help="Select the region for theme supporting regionalized assets or texts" />
+				<header caption="{THEME.NAME} CONFIGURATION" />
+				<item id="ThemeOptions" foreach="theme.options" caption="Select {THEME.OPTION.NAME}" help="{THEME.OPTION.HELP}" />
+			</menu>
+			<item id="QuickSelectSystem" caption="ENABLE SIDE NAVIGATION IN GAME LISTS" help="When enabled, you can switch between systems while browsing a gamelist by pressing LEFT or RIGHT." />
+			<item id="GameTransition" caption="GAME LAUNCH TRANSITION STYLE" help="Select the type of transition when you launch a game. INSTANT will do nothing, FADE will fade to dark, and SLIDE will zoom in on the game cover." />
+			<item id="ListFastMoveEnabled" caption="ENABLE FAST MOVE IN GAMELIST" help="When enabled, holding up or down for a few seconds makes the list scroll very fast." />
+			<item id="OnScreenHelp" caption="ON-SCREEN HELP" help="Shows a help at the bottom of the screen which displays commands you can use." />
+			<item id="SwapValidateCancel" caption="SWAP VALIDATE/CANCEL BUTTONS" help="Swap the validate button (B/X) and the cancel button (B/O)." />
+			<item id="OSDClock" caption="CLOCK OSD" help="Display the current time in a corner of the screen." />
+			<!--
+				POPUP SETTINGS
+			-->
+			<menu id="PopupSettings" caption="POPUP SETTINGS" help="Set position and duration of popups.">
+				<item id="PopupHelpDuration" caption="HELP POPUP DURATION" help="Set duration of help popups, 0 means no popup." />
+				<item id="PopupMusicOnOff" caption="SHOW MUSIC POPUPS" help="When enabled, show music information every time a new music starts." />
+				<item id="PopupNetplayOnOff" caption="SHOW NETPLAY POPUPS" help="When enabled, show netplay information every time a user starts a new game over internet." />
+			</menu>
+		</menu>
+		<!--
+			TATE SETTINGS
+		-->
+		<menu id="Tate" icon="Tate" caption="TATE SETTINGS" if="!menu.bartop" help="Manage screen and game rotation options">
+		</menu>
+		<!--
+			CONTROLLER SETTINGS
+		-->
+		<menu id="Controllers" icon="Controllers" caption="CONTROLLER SETTINGS" if="!menu.bartop" help="Add and configure all your controllers.">
+		</menu>
+		<!--
+			SOUND SETTINGS
+		-->
+		<menu id="Sound" icon="Sound" caption="SOUND SETTINGS" help="Configure the sound options of your recalbox.">
+			<item id="SoundSystemVolumem" bootConf="true" caption="SYSTEM VOLUME" help="Set the volume of the sound output for the frontend and the games." />
+			<item id="SoundMusicVolume" caption="MUSIC VOLUME" help="Set the volume of the music in the frontend" />
+			<item id="SoundAudioMode" caption="AUDIO MODE" help="Select sound to play. Musics, videos sound, both or none" />
+			<item id="SoundAudioOutput" caption="OUTPUT DEVICE" if="!menu.bartop" help="Select your output device. Only HDMI and JACK are supported." />
+			<item id="SoundBTPairing" caption="PAIR A BLUETOOTH AUDIO DEVICE" caption2="CONNECT" help="Pair a bluetooth audio device. Put your device in discovery mode before starting." />
+		</menu>
+		<!--
+			NETWORK SETTINGS
+		-->
+		<menu id="Network" icon="Network" caption="NETWORK SETTINGS" if="!menu.bartop" help="Configure the network options of your recalbox.\nCheck your network status and IP address, set the hostname and configure the WIFI.">
+			<item id="NetworkStatus" caption="STATUS" help="Displays CONNECTED, if you are connected, by checking if your recalbox can access the recalbox.com update server." />
+			<item id="NetworkIP" caption="IP ADDRESS" help="The IP address of your recalbox within your local network." />
+			<item id="NetworkHostname" caption="HOSTNAME" help="The name of your recalbox in your local network" reboot="true" />
+			<header caption="WIFI" />
+			<item id="NetworkEnableWIFI" caption="ENABLE WIFI" bootConf="true" help="Enable or disable WIFI.\nIf you disable WIFI, the SSID and the WIFI passwords are saved and can be used when you reactivate it" />
+			<item id="NetworkConnect" caption="CONNECT AUTOMATICALLY" bootConf="true" grayedif="!feature.wifi" help="Automatically connect on startup if the WIFI network is available and properly configured!" grayedHelp="WIFI is disabled!" />
+			<item id="NetworkPickSSID" caption="SELECT SSID" grayedif="!feature.wifi" help="Select an available SSID." grayedHelp="WIFI is disabled!" />
+			<item id="NetworkSSID" caption="WIFI SSID" bootConf="true" grayedif="!feature.wifi" help="SSID (WIFI Name) of your network." grayedHelp="WIFI is disabled!" />
+			<item id="NetworkPassword" caption="WIFI KEY" bootConf="true" grayedif="!feature.wifi" help="Private key of your WIFI network." grayedHelp="WIFI is disabled!" />
+			<item id="NetworkWPS" caption="AUTOMATIC WPS CONNECTION" caption2="CONNECT" grayedif="!feature.wifi" help="If your Internet box has a WPS system, activate it and then click here!" grayedHelp="WIFI is disabled!" />
+		</menu>
+		<!--
+			SCRAPER
+		-->
+		<menu id="Scraper" icon="Scraper" caption="SCRAPER" if="!menu.bartop" help="Get information and visuals for your games. The scraper downloads metadata and visuals for your games from different servers, and greatly enhances the user experience in EmulationStation.">
+			<item id="ScrapeFrom" caption="SCRAPE FROM" help="Select a server to scrape from. The SCREENSCRAPER server is recommended and is based on www.screenscraper.fr and scrapes game data in your language, if available." />
+			<item id="ScrapeFilter" caption="FILTER" help="Allows you to scrape only non-scraped games, or to scrape all games." />
+			<item id="ScrapeSystems" caption="SYSTEMS" help="Allows you to choose which systems you would like to scrape." />
+			<item id="ScrapeRun" caption="SCRAPE NOW" caption2="RUN" help="Run the scraper! The operation may take a while, however you can make it a background task and keep using Recalbox." />
+			<header caption="PATRON OPTIONS" />
+			<item id="ScrapeAuto" caption="AUTOMATIC SCRAPING" if="state.ispatron" help="Sets whether the auto scraper is available or not. Auto scraping lets you scrape games just by moving onto them in gamelists." />
+			<header caption="OPTIONS" />
+			<item id="ScrapeOptionNameFrom" caption="GET GAME NAME FROM" help="Select the source of your game name. Trust the scraping database or get them from filename, raw or undecorated (without decoration in () or [] )." />
+			<item id="ScrapeOptionImage" caption="SELECT IMAGE TYPE" help="Selects the image type to scrape for your games." />
+			<item id="ScrapeOptionVideo" caption="SELECT VIDEO TYPE" help="Selects the video type to scrape for your games." />
+			<item id="ScrapeOptionBox" caption="SELECT BOX TYPE" help="Selects the box type to scrape for your games." />
+			<item id="ScrapeOptionLogo" caption="SELECT LOGO TYPE" help="Selects the logo type to scrape for your games." />
+			<item id="ScrapeOptionRegionPriority" caption="SELECT REGION PRIORITY" help="Selects the game region to use when you scrape your games." />
+			<item id="ScrapeOptionRegionFavorite" caption="SELECT FAVORITE REGION" help="Selects the preferred region to scrape for your games." />
+			<item id="ScrapeOptionLanguageFavorite" caption="SELECT FAVORITE LANGUAGE" help="Selects the preferred language to scrape for your games." />
+			<item id="ScrapeOptionManual" caption="DOWNLOAD GAME MANUALS" help="Selects if you would like to download manuals with the scraped data if available." />
+			<item id="ScrapeOptionMap" caption="DOWNLOAD GAME MAPS" help="Selects if you would like to download maps with the scraped data if available." />
+			<item id="ScrapeOptionTips" caption="DOWNLOAD TIPS &amp; TRICKS" help="Selects if you would like to download tips&amp;tricks files with the scrape data if available." />
+			<item id="ScrapeOptionP2K" caption="INSTALL PAD-2-KEYBOARD CONFIGURATIONS" help="Selects if you would like to download pad2keyboard files with the scraped data if available." />
+			<item id="ScrapeOptionUsername" caption="USERNAME" help="user name for the selected scraper" grayedHelp="Username not required for the selected scraper" />
+			<item id="ScrapeOptionPassword" caption="PASSWORD" help="password for the selected scraper" grayedHelp="Password not required for the selected scraper" />
+		</menu>
+		<item id="CheckBios" icon="Bios" caption="BIOS CHECKING" caption2="CHECK" if="!menu.bartop" help="Scan and check all your BIOS files and report everything in a comprehensive way." />
+		<menu id="Download" icon="Download" caption="DOWNLOAD CONTENTS" if="!menu.bartop" help="Download various free games and free contents!">
+			<item id="DownloadGamePack" caption="Download games for {SYSTEM.NAME}" caption2="DOWNLOAD" help="Download a pack of free games, game demos and homebrew for {SYSTEM.NAME}" grayedHelp="No content available yet for {SYSTEM.NAME}!" />
+		</menu>
+		<item id="ShowLicense" icon="License" caption="OPEN-SOURCE LICENSE" caption2="SHOW" help="Shows the Recalbox license." />
+		<!--
+			ADVANCED SETTINGS
+		-->
+		<menu id="Advanced" icon="Advanced" caption="ADVANCED SETTINGS" if="!menu.bartop" help="Advanced settings. Please make sure you really know what you're doing, before changing any values in this menu.">
+			<item id="AdvDebugLogs" caption="ACTIVATE DEBUG/VERBOSE LOGS" help="Activate debug and verbose logs in Recalbox and Emulators." />
+			<item id="AdvShowFPS" caption="SHOW FRAMERATE" help="Show the framerate in EmulationStation and in game." />
+			<!--
+				BOOT SETTINGS
+			-->
+			<menu id="BootSettings" caption="BOOT SETTINGS" help="Configure boot options that make your recalbox boot straight into a system or into Kodi, lock a user to a single system, or directly show the gamelist.">
+				<item id="BootOnKodi" caption="KODI AT START" if="feature.kodiexists" help="Automatically start into Kodi on boot." grayedHelp="You cannot set up Kodi on boot when Kodi is disabled."/>
+				<item id="BootDoNotScan" caption="DO NOT SCAN NEW GAMES" help="Formerly called 'GAMELIST ONLY', it can greatly speed up boot time by not scanning new files. Use it if your romsets are rarely updated." />
+				<item id="AllowBootOnGame" caption="ALLOW BOOT ON GAME" help="Add a menu in game option to boot on a specific game on startup." />
+				<item id="BootOnSystem" caption="BOOT ON SYSTEM" help="Select which system to show when the recalbox frontend starts. The default value is 'favorites'." />
+				<item id="BootOnGamelist" caption="BOOT ON GAMELIST" help="On boot, recalbox will show the list of games of the selected system rather than the system view." />
+				<item id="BootShowVideo" caption="BOOT VIDEOS" help="Enable or disable videos on boot." />
+				<item id="HideSystemView" caption="HIDE SYSTEM VIEW" help="When activated, Recalbox boots into the gamelist and does not allow moving back to the system list." />
+			</menu>
+			<!--
+				GLOBAL RESOLUTIONS
+			-->
+			<menu id="Resolutions" caption="RESOLUTIONS" if="!hardware.crtattached" help="Select system, frontend and emulator resolutions.">
+				<item id="ResolutionGlobal" caption="GLOBAL RESOLUTION" help="Global resolution is the resolution used by default when specific resolutions are undefined." />
+				<item id="ResolutionFrontEnd" if="!(board.ispcboard or board.issteamdeck)" caption="EMULATIONSTATION RESOLUTION" help="Select the resolution EmulationStation will use." />
+				<header caption="SYSTEM SPECIFIC RESOLUTIONS" />
+				<item id="ResolutionEmulators" if="!(board.ispcboard or board.issteamdeck)" foreach="systems.visible" caption="FOR {SYSTEM.NAME}" help="Select the resolution used by the emulator '{SYSTEM.NAME}'." />
+			</menu>
+			<!--
+				ADVANCED EMULATOR CONFIGURATION
+			-->
+			<menu id="AdvancedEmulatorOptionsList" caption="ADVANCED EMULATOR CONFIGURATION" help="Override global options like emulator, core, ratio and more for each available system in your recalbox.">
+				<menu id="AdvancedSingleEmulatorOptions" foreach="systems.visible" caption="{SYSTEM.NAME} - {SYSTEM.DEFAULTEMULATOR}" help="Set options for system {SYSTEM.NAME}">
+					<item id="PerSystemEmulator" caption="Emulator" help="Select which emulator to use when you start a game for this system." />
+					<item id="PerSystemRatio" caption="GAME RATIO" if="!hardware.crt" help="The game ratio is the ratio between image width and image height. Use AUTO to let the emulator choose the original game ratio, that will give you the best retrogaming experience." />
+					<item id="PerSystemSmooth" caption="SMOOTH GAMES" if="!hardware.crt" help="Smooth the game image. This option makes the image smoother, using bilinear filtering." />
+					<item id="PerSystemRewind" caption="REWIND" help="This option allows you to rewind the game if you get killed by a monster, or if you make any other mistake. Use the HOTKEY + LEFT command within the game to rewind." />
+					<item id="PerSystemAutoLoadSave" caption="AUTO SAVE/LOAD" help="Auto save the state when you quit a game, and auto load last saved state when you start a game." />
+					<item id="PerSystemShaderSet" caption="SHADERS SET" if="!hardware.crt" help="Shaders are like filters for the game rendering. You can select a shader set here, which is a collection of shaders selected for each system. You can also change the shader within the game with HOTKEY + L2 or HOTKEY + R2." />
+					<item id="PerSystemShaders" caption="SHADERS" if="!hardware.crt" help="Shaders are like filters for the game rendering. You can select a raw shader file here. This setting may be overridden by the shader set if it is not set to 'none'." />
+					<item id="PerSystemCrtHandheldFormat" caption="CRT RATIO" if="hardware.crt and system.ishandheld" help="Video ratio on CRT for handheld consoles. Select FULLSCREEN to get a full image, or ORIGINAL to get original and pixel perfect resolution." />
+					<menuref id="EmulatorSpecificSettings" include="true"/>
+				</menu>
+			</menu>
+			<!--
+				KODI SETTINGS
+			-->
+			<menu id="Kodi" caption="KODI MEDIA CENTER" if="feature.kodiexists" help="Set the way you want to use Kodi mediaplayer.">
+				<item id="EnableKodi" caption="ENABLE KODI" help="Enable or disable Kodi. If kodi is disabled, you won't be able to start it with the X button, or start it automatically at boot. The menu entry will be removed as well." />
+				<item id="KodiResolution" caption="KODI RESOLUTION" help="Select the resolution for Kodi interface and videos" />
+				<item id="KodiOnStartup" caption="RUN KODI ON STARTUP" help="Automatically start into Kodi on boot." />
+				<item id="KodiOnX" caption="START KODI WITH X BUTTON" help="Use the X button to start Kodi." />
+			</menu>
+			<menu id="UserScripts" caption="USER SCRIPTS" grayedif="!feature.hasuserscripts" help="Run your own scripts in shell or python" grayedHelp="There is no script to execute in the userscript folder.">
+				<item id="UserScript" foreach="scripts.all" caption="{SCRIPT.NAME}" caption2="RUN" help="Run custom script {SCRIPT.NAME}" />
+			</menu>
+			<item id="WebManagerEnable" caption="ENABLE WEB MANAGER" help="Enable or disable the Recalbox Manager.\nThe Recalbox Manager is a web application available at http://recalbox if you are on Windows, at http://recalbox.local if you are on Linux or Mac, or directly with your recalbox IP: http://192.168.1.XX.\nYou can configure many options from within the manager, and even manage games, saves, and scrapes!" />
+			<item id="EmulatorsReset" caption="RESET EMULATOR SETTINGS" caption2="RESET!" help="This option resets all emulator settings to their factory defaults. It does not affect any Recalbox setting." />
+			<item id="FactoryReset" caption="RESET TO FACTORY SETTINGS" caption2="RESET!" help="WARNING! This option erases all Recalbox and emulator configurations! Use it carefully!" />
+			<header caption="HARDWARE" />
+			<menu id="Crt" caption="CRT SETTINGS" if="board.ispiboard and !board.handheldboard and !hardware.crthat" help="CRT options and configuration.">
+				<item id="CrtAdapter" caption="CRT DAC" help="CRT DAC (Adapter)" />
+				<item id="CrtMenuResolution" caption="MENU RESOLUTION" help="Select Recalbox's interface resolution. 480i is recommended for better details." />
+				<item id="CrtHDMIPriority" caption="PRIORITY TO HDMI" help="When a HDMI cable is connected, use HDMI output in priority." />
+				<item id="CrtSuperrezMultiplier" caption="SUPERREZ MULTIPLIER" help="Superrez can increase image quality depending on your CRT." />
+				<item id="CrtAvoidLowFreqModes" caption="AVOID LOW FREQUENCY MODES" help="Avoid modes under 57Hz for non-compatible TVs." />
+				<item id="CrtScreenCalibration" caption="FRONTEND SCREEN CALIBRATION" caption2="CALIBRATE" help="Calibrate screen on frontend." />
+			</menu>
+			<item id="Case" if="!case and !hardware.crthat" caption="CASE MANAGEMENT" help="If you installed a case on your Recalbox, you can install or uninstall it in this menu. Some cases are detected automatically and will also be reported here." />
+			<item id="BootloaderUpdate" if="board.ispi4board or board.ispi5board" caption="BOOTLOADER UPDATE" caption2="UPDATE!" help="Update Pi4 / Pi400 or Pi5 bootloader if required." />
+			<item id="Overclock" caption="OVERCLOCK" help="Overclock your board to increase the performance.\nOverclock settings are tested and validated by the community. Keep in mind that overclocking your board can void your warranty." grayedHelp="Recalbox does not support overclocking for your board." />
+		</menu>
+		<menuref id="Quit" icon="Quit" />
+	</menu>
+	<!--
+		GAMELIST MENU
+	-->
+	<menu id="Gamelist" caption="CONTEXTUAL OPTIONS">
+		<!--
+			EDIT METADATA
+		-->
+		<menu id="EditGame" caption="EDIT GAME {GAME.NAME}" altCaptionIf="game.isfolder;EDIT FOLDER {GAME.NAME}" if="game.isgame or game.isfolder" grayedif="game.isreadonly" help="Show options related to {GAME.NAME} and allow editing game metadata." grayedHelp="You cannot edit this game because it is a pre-installed game or it is stored on a read-only device" >
+			<item id="MetadataSetEmulator" caption="RUN WITH" if="game.isgame" help="Select the emulator to use to run {GAME.NAME}" />
+			<item id="MetadataSoftpatching" caption="SET PATCH" if="game.isgame" grayedif="!game.hassoftpatch or !game.hassoftpatchcore" help="Select patch to use when running an emulator supporting softpatching." grayedHelp="Either the game has no patch or the emulator selected to run this game is not supporting softpatching." />
+			<item id="MetadataRatio" caption="Ratio" if="game.isgame" help="The game ratio is the ratio between image width and image height. Use AUTO to let the emulator choose the original game ratio, that will give you the best retrogaming experience." />
+			<item id="MetadataName" caption="Name" help="Sets the name of the game or folder." />
+			<item id="MetadataRating" caption="Rating" if="game.isgame" help="Sets the rating of the game." />
+			<item id="MetadataGenre" caption="Genre" if="game.isgame" help="Sets the genre of the game." />
+			<item id="MetadataDescription" caption="Description" help="Sets the description of the game." />
+			<item id="MetadataFavorite" caption="Favorite" if="game.isgame" grayedif="!feature.editfavorite" help="Set this game as favorite or not." grayedHelp="Editing favorites is not enabled." />
+			<item id="MetadataHidden" caption="Hidden" if="game.isgame" help="Hide or show this game." />
+			<item id="MetadataAdult" caption="Adult" if="game.isgame" help="Defines this game as an adult game or not." />
+			<item id="MetadataRotation" caption="Rotation" if="game.isgame" help="Defines the screen rotation of the game for tate usage." />
+			<header caption="Scraping" />
+			<item id="MetadataScrape" caption="SCRAPE" caption2="RUN" help="Scrape this game and fill in all metadata at once!" />
+			<header caption="Statistics" />
+			<item id="MetastatPlaytime" caption="TIME PLAYED" if="game.isgame" help="Show the total time you played this game" />
+			<item id="MetastatPlaycount" caption="PLAY COUNT" if="game.isgame" help="Show the number of times you played this game" />
+			<item id="MetastatLastplayed" caption="LAST PLAYED" if="game.isgame" help="Show the last date/time you played this game" />
+		</menu>
+		<item id="ShowManual" caption="SHOW MANUAL/MAP" caption2="SHOW" grayedif="!game.hasmanual and !game.hasmap and !game.hastips" help="Show manual and/or game map" grayedHelp="This game has no manual, no game map or this is not a game." />
+		<item id="SetGameForCard" if="hardware.cardreader.available" caption="SET THIS GAME FOR THE CURRENT CARD" grayedif="!game.isgame or !hardware.cardreader.plugged" help="This option allows you to select the current game for the current card." />
+		<item id="DeleteGame" caption="DELETE GAME {GAME.NAME}" caption2="DELETE {ICON.WARNING}" altCaptionIf="system.isscreenshots;DELETE THIS SCREENSHOT" if="game.isgame or game.isfolder" grayedif="game.isreadonly or game.isfolder" help="Delete game or screenshot physically on the storage. Allow keeping save, metadata and other related files individually." grayedHelp="You cannot delete this game because it is a pre-installed game or it is stored on a read-only device or it is a folder." />
+		<item id="SetGameToBootOn" if="!hardware.cardreader.available" caption="BOOT ON THIS GAME" grayedif="!game.isgame or !feature.bootongame" help="This option allows you to select the current game to boot on it directly when you turn on your Recalbox. Don't forget to enable the boot on game option!" grayedHelp="Boot on game is not enabled. To set a game to boot on, enable the appropriate option first." />
+		<item id="RunSaveStates" caption="RUN SAVE STATE" caption2="SELECT" grayedif="!game.isgame or !game.hassavestate" help="Select, restore and run game in the selected save state." grayedHelp="No save state has been detected for the currently selected game, or the currently selected item is not a game." />
+		<item id="DownloadGamePack" caption="DOWNLOAD GAMES" if="system.hasdownloader" help="This option allows you to download games for the current system." />
+		<item id="SearchInSystem" caption="SEARCH GAMES HERE" caption2="SEARCH" help="This option allows you to search games specifically in the current system only." />
+		<item id="SearchOtherVersion" caption="SEARCH OTHER VERSIONS" grayedif="!game.isgame" help="This option allows you to search for other versions of a game." />
+		<item id="SearchByLicence" caption="SEARCH BY LICENCE" grayedif="!game.isgame or !game.hasslicences" help="This option allows you to search for other games with the same licence." />
+		<item id="JumpToLetter" caption="JUMP TO LETTER" caption2="JUMP" help="Open the Quick Jump selector." />
+		<header caption="Gamelist layout" />
+		<item id="SortGames" caption="SORT GAMES BY" grayedif="system.isselfsorted" help="Select the way the game list is sorted (alphabetically, by rating, ...)." grayedHelp="This list has a natural order and can't be sorted." />
+		<item id="GamelistLayout" caption="Game list layout" help="Select the way your games are shown. Text list, logo list, carousel, grid, ..." />
+		<item id="DecorateGames" caption="DECORATIONS" help="Select what kind of information you want to see on the right of your gamelist: regions flags, players or game genre." />
+		<item id="HighlightRegion" caption="HIGHLIGHT GAMES OF REGION..." help="Select a region to filter out games not matching the selected region." />
+		<item id="FlattenFolders" caption="FLATTEN FOLDERS" grayedif="system.isalwaysflat" help="Switch between seeing the folder structure and seeing all games in a flat top-level list." grayedHelp="This system is either always flattened or cannot be flattened!" />
+		<item id="ShowOnlyFavorites" caption="SHOW ONLY FAVORITES" grayedif="system.isfavorites" help="Switch between showing only the favorite games and showing them all. To add a game to the favorite list, select the game and toggle its state with 'Y'." grayedHelp="You can't hide favorites in the Favorite system!" />
+		<item id="ShowFavoriteFirst" caption="FAVORITES FIRST" grayedif="system.isfavorites" help="Display favorites at the top of gamelists." grayedHelp="Favorites are always first in the Favorite system!" />
+		<item id="UpdateGamelists" caption="UPDATE GAMES LISTS" caption2="UPDATE!" grayedif="system.isvirtual" help="Updates the gamelists, if you added games since the last boot." grayedHelp="Virtual systems cannot be updated. Update real systems instead." />
+	   	<menuref id="AdvancedSingleEmulatorOptions" caption="Advanced system settings" help="Set advanced settings for system {SYSTEM.NAME}" />
+		<menuref id="Main" if="!menu.nomenu" />
+		<menuref id="Quit" if="!menu.nomenu" />
+	</menu>
+	<!--
+		GAME DELETE OPTIONS
+	-->
+	<menu id="DeleteOptions" caption="DELETE {GAME.NAME}" >
+		<item id="DeleteGameFiles" caption="GAME FILES (ROM, DISK IMAGE, TAPE, ...)" help="Number of game files that are to be deleted." />
+		<item id="DeleteGameMedia" caption="MEDIA FILES" grayedif="!game.hasmediafiles" help="Number of media files (images, video, ...) that will be deleted along with game files." grayedHelp="There is no media file associated with this game" />
+		<item id="DeleteFileExtra" caption="CONFIGURATION AND PATCH FILES" grayedif="game.hasextrafiles" help="Number of extra files associated with this game: configurations, overrides, patches, ..." grayedHelp="There is no extra file associated with this game" />
+		<item id="DeleteFileSaves" caption="SAVE FILES" grayedif="game.hassavefiles"  help="Number of save games and save states of {GAME.NAME}" grayedHelp="There is no save game or save state for this game" />
+		<menu id="DeleteAdvanced" caption="ADVANCED DELETE" help="Select files to delete one by one.">
+			<item id="DeleteSelectGameFiles" caption="GAME FILES (ROM, DISK IMAGE, TAPE, ...)" help="Select game files that are to be deleted one by one." />
+			<item id="DeleteSelectGameMedia" caption="MEDIA FILES" grayedif="!game.hasmediafiles" help="Select media files (images, video, ...) that will be deleted along with game files." grayedHelp="There is no media file associated with this game" />
+			<item id="DeleteSelectFileExtra" caption="CONFIGURATION AND PATCH FILES" grayedif="!game.hasextrafiles" help="Select extra files to delete: configurations, overrides, patches, ..." grayedHelp="There is no extra file associated with this game" />
+			<item id="DeleteSelectFileSaves" caption="SAVE FILES" grayedif="!game.hassavefiles"  help="Select save games and save states of {GAME.NAME} to delete" grayedHelp="There is no save game or save state for this game" />
+			<item id="DeleteGo" caption="DELETE SELECTED FILES" caption2="DELETE" help="Delete all files selected below" />
+			<item id="DeleteCancel" caption="DON'T DELETE ANYTHING!" caption2="CANCEL" help="Cancel operation. Do not delete anything" />
+		</menu>
+		<item id="DeleteGo" caption="DELETE ALL FILES" help="Delete all files listed below" />
+		<item id="DeleteCancel" caption="DON'T DELETE ANYTHING!" caption2="CANCEL" help="Cancel operation. Do not delete anything" />
+	</menu>
+	<!--
+		SOFTPATCHING (AT GAME LAUNCH)
+	-->
+	<menu id="SelectSoftpatch" caption="SOFTPATCHING {GAME.NAME}" >
+		<item id="SoftpatchingRunOriginal" caption="ORIGINAL GAME" caption2="RUN" help="Run the original, unpatched game" />
+		<item id="SoftpatchingRunPatched" caption="PATCHED GAME" caption2="RUN" help="Run the game, patched with the selected patch" />
+		<item id="SoftpatchingSelectPatch" caption="SELECT PATCH TO APPLY" help="Select the patch to apply." />
+	</menu>
+	<!--
+		NETPLAY HOST MENU (INITIATE GAME)
+	-->
+	<menu id="NetplayHost" caption="INITIATE {GAME.NAME} NETPLAY GAME">
+		<item id="NetplayStart" caption="START GAME" caption2="START" help="Launch the game and wait for other player to join" />
+		<item id="NetplaySelectPlayerPassword" caption="CHOOSE PLAYER PASSWORD" help="Select password other player will have to use to join the game" />
+		<item id="NetplaySelectViewerPassword" caption="CHOOSE VIEWER PASSWORD" help="Select password other player will have to use to watch the game" />
+		<item id="NetplayCancel" caption="BACK" help="Do not initiate this game." />
+		<menuref id="NetplayPasswords" />
+	</menu>
+	<!--
+		NETPLAY CLIENT MENU (JOIN GAME)
+	-->
+	<menu id="NetplayClient" caption="JOIN {GAME.NAME} NETPLAY GAME">
+		<item id="NetplayJoinAsPlayer" caption="JOIN AS PLAYER" caption2="JOIN" help="Join the game as a player." />
+		<item id="NetplayJoinAsViewer" caption="JOIN AS VIEWER" caption2="WATCH" help="Join the game as a viewer. You can watch the game, but not participate." />
+		<item id="NetplayUsePassword" caption="USE PASSWORD" help="Use the selected password to join the game." />
+		<item id="NetplayCancel" caption="BACK" help="Do not join this game." />
+		<menuref id="NetplayPasswords" />
+	</menu>
+	<!--
+	    THEME OPTIONS SOLO
+	-->
+	<menu id="ThemeOptions" caption="{THEME.NAME} OPTIONS" >
+		<header caption="GLOBAL CONFIGURATION" />
+		<item id="ThemeCarousel" caption="CAROUSEL ANIMATION" grayedif="theme.hasdefaulttransition" help="Choose if carousel will be animated or not during transitions" />
+		<item id="ThemeTransition" caption="DEFAULT TRANSITION STYLE" grayedif="theme.hasdefaulttransition" help="Select the type of transition between system. INSTANT will do nothing, FADE will fade to dark, and SLIDE will slide the entire screen" />
+		<item id="ThemeRegion" caption="REGION" help="Select the region for theme supporting regionalized assets or texts" />
+		<header caption="{THEME.NAME} CONFIGURATION" />
+		<item id="ThemeOptions" foreach="theme.options" caption="Select {THEME.OPTION.NAME}" help="{THEME.OPTION.HELP}" />
+	</menu>
+</menus>
+

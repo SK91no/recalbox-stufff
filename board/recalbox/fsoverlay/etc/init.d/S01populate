@@ -1,0 +1,22 @@
+#!/bin/ash
+
+if [ "$1" != "start" ]; then
+  exit 0
+fi
+
+# create system directories
+mkdir -p /var/lib/sixad/profiles /var/lib/samba/private \
+         /var/cache /var/db /var/log /var/run \
+         /overlay/.configs/dbus /overlay/.configs/db/dhcpcd \
+         /run/udev/
+[ -n "$XDG_RUNTIME_DIR" ] && mkdir -m 0700 -p "$XDG_RUNTIME_DIR"
+
+# make links for persistent files
+ln -sf /overlay/.configs/dbus /var/lib/.
+ln -sf /overlay/.configs/db/dhcpcd /var/db/.
+
+# sixad
+cp /etc/sixad.profile /var/lib/sixad/profiles/default
+
+# samba
+chmod 0755 /var/lib/samba

@@ -1,0 +1,12 @@
+diff --git a/src/util/rand_xor.c b/src/util/rand_xor.c
+index 81b64f1ea71..fcb481487fa 100644
+--- a/src/util/rand_xor.c
++++ b/src/util/rand_xor.c
+@@ -25,6 +25,7 @@
+ #include "detect_os.h"
+ 
+ #if !DETECT_OS_WINDOWS
++#include <stddef.h>
+ #if defined(HAVE_GETRANDOM)
+ #include <sys/random.h>
+ #endif

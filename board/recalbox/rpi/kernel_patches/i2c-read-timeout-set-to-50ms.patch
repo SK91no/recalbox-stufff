@@ -1,0 +1,27 @@
+diff --git a/drivers/i2c/busses/i2c-bcm2835.c b/drivers/i2c/busses/i2c-bcm2835.c
+index 7408e2c136b0..aa46ddfcfaa7 100644
+--- a/drivers/i2c/busses/i2c-bcm2835.c
++++ b/drivers/i2c/busses/i2c-bcm2835.c
+@@ -525,6 +525,7 @@ static int bcm2835_i2c_probe(struct platform_device *pdev)
+ 	struct i2c_adapter *adap;
+ 	struct clk *mclk;
+ 	u32 bus_clk_rate;
++	u32 read_timeout;
+ 
+ 	i2c_dev = devm_kzalloc(&pdev->dev, sizeof(*i2c_dev), GFP_KERNEL);
+ 	if (!i2c_dev)
+@@ -594,6 +595,14 @@ static int bcm2835_i2c_probe(struct platform_device *pdev)
+ 	adap->dev.of_node = pdev->dev.of_node;
+ 	adap->quirks = of_device_get_match_data(&pdev->dev);
+ 
++
++	ret = of_property_read_u32(pdev->dev.of_node, "read-timeout-ms",
++				   &read_timeout);
++	if (ret >= 0) {
++		dev_info(&pdev->dev,
++			 "Setting i2c read timeout to %u ms\n", read_timeout);
++		adap->timeout	= msecs_to_jiffies(read_timeout);
++	}
+ 	/*
+ 	 * Disable the hardware clock stretching timeout. SMBUS
+ 	 * specifies a limit for how long the device can stretch the

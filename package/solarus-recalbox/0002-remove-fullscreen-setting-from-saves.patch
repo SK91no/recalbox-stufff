@@ -1,0 +1,46 @@
+From c6265e4a91014f89967eab7d016eed7dd1e689c3 Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Tue, 15 Apr 2025 14:16:57 +0200
+Subject: [PATCH 2/3] Remove fullscreen setting from saves
+
+---
+ src/core/Settings.cpp | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/src/core/Settings.cpp b/src/core/Settings.cpp
+index 42e72dd96..ae3ba901e 100644
+--- a/src/core/Settings.cpp
++++ b/src/core/Settings.cpp
+@@ -251,10 +251,10 @@ bool Settings::save(const std::string& file_name) {
+     oss << it->first << " = \"" << it->second << "\"\n";
+   }
+ 
+-  it = entries.find(key_fullscreen);
+-  if (it != entries.end()) {
+-    oss << it->first << " = " << it->second << "\n";
+-  }
++  //it = entries.find(key_fullscreen);
++  //if (it != entries.end()) {
++  //  oss << it->first << " = " << it->second << "\n";
++  //}
+ 
+   it = entries.find(key_sound_volume);
+   if (it != entries.end()) {
+@@ -322,10 +322,10 @@ void Settings::apply_to_quest() {
+     }
+ 
+     // Fullscreen.
+-    auto fullscreen = get_boolean(key_fullscreen);
+-    if (fullscreen.second) {
+-      Video::set_fullscreen(fullscreen.first);
+-    }
++    //auto fullscreen = get_boolean(key_fullscreen);
++    //if (fullscreen.second) {
++    //  Video::set_fullscreen(fullscreen.first);
++    //}
+   }
+ 
+   if (Sound::is_initialized()) {
+-- 
+2.49.0
+

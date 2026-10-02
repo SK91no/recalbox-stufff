@@ -1,0 +1,48 @@
+From 99a113bac8997f37bdfb7dd0b86335b747b3aea6 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Tue, 11 Mar 2025 09:07:29 +0100
+Subject: [PATCH 3/9] steamdeck enable a joystick deadzone
+
+---
+ drivers/hid/hid-steam.c | 18 ++++++++++++++----
+ 1 file changed, 14 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/hid/hid-steam.c b/drivers/hid/hid-steam.c
+index 76a70635f29d..0a1a699ce701 100644
+--- a/drivers/hid/hid-steam.c
++++ b/drivers/hid/hid-steam.c
+@@ -1603,6 +1603,16 @@ static void steam_do_input_event(struct steam_device *steam,
+  *  15.6 | --         | unknown
+  *  15.7 | --         | unknown
+  */
++s16 apply_deadzone(s16 value, s16 flat) {
++  s16 max = 32768;
++  if (value > -flat && value < flat)
++      return 0;
++  if (value > 0)
++      return (value - flat) * max / (max - flat);
++  else
++      return (value + flat) * max / (max - flat);
++}
++
+ static void steam_do_deck_input_event(struct steam_device *steam,
+ 		struct input_dev *input, u8 *data)
+ {
+@@ -1646,10 +1656,10 @@ static void steam_do_deck_input_event(struct steam_device *steam,
+ 		input_report_abs(input, ABS_HAT1Y, 0);
+ 	}
+ 
+-	input_report_abs(input, ABS_X, steam_le16(data + 48));
+-	input_report_abs(input, ABS_Y, -steam_le16(data + 50));
+-	input_report_abs(input, ABS_RX, steam_le16(data + 52));
+-	input_report_abs(input, ABS_RY, -steam_le16(data + 54));
++	input_report_abs(input, ABS_X, apply_deadzone(steam_le16(data + 48), 800));
++	input_report_abs(input, ABS_Y, apply_deadzone(-steam_le16(data + 50), 800));
++	input_report_abs(input, ABS_RX, apply_deadzone(steam_le16(data + 52), 800));
++	input_report_abs(input, ABS_RY, apply_deadzone(-steam_le16(data + 54), 800));
+ 
+ 	input_report_abs(input, ABS_HAT2Y, steam_le16(data + 44));
+ 	input_report_abs(input, ABS_HAT2X, steam_le16(data + 46));
+-- 
+2.52.0
+

@@ -1,0 +1,34 @@
+From 0d9fec6806bf515cc491108bf4f635d975cedc9e Mon Sep 17 00:00:00 2001
+From: Adrien Beudin <beudbeud@gmail.com>
+Date: Thu, 8 Jan 2026 09:20:39 +0100
+Subject: [PATCH] fix: name and path for capslib
+
+---
+ sources/src/caps/caps.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sources/src/caps/caps.c b/sources/src/caps/caps.c
+index f337891a..3b0e3ba3 100644
+--- a/sources/src/caps/caps.c
++++ b/sources/src/caps/caps.c
+@@ -37,7 +37,7 @@ char CAPSLIB_PATH[RETRO_PATH_MAX];
+ #ifdef _WIN32
+ #define CAPSLIB_NAME    "capsimg.dll"
+ #else
+-#define CAPSLIB_NAME    "capsimg.so"
++#define CAPSLIB_NAME    "libcapsimage.so"
+ #endif
+ 
+ /*
+@@ -80,7 +80,7 @@ static int load_capslib (void)
+     if (!path_is_valid(CAPSLIB_PATH))
+         snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", "/data/user/0/com.retroarch.ra32/cores", DIR_SEP_CHR, CAPSLIB_NAME);
+ #else
+-    snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s%c%s", retro_system_directory, DIR_SEP_CHR, CAPSLIB_NAME);
++    snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "/usr/lib/%s", CAPSLIB_NAME);
+ #endif
+     if (!path_is_valid(CAPSLIB_PATH))
+         snprintf(CAPSLIB_PATH, RETRO_PATH_MAX, "%s", CAPSLIB_NAME);
+-- 
+2.48.1
+

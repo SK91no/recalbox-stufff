@@ -1,0 +1,27 @@
+/dts-v1/;
+/plugin/;
+
+#include <dt-bindings/gpio/gpio.h>
+#include <dt-bindings/interrupt-controller/irq.h>
+
+
+/ {
+	compatible = "brcm,bcm2712";
+
+	fragment@0 {
+		target-path = "/";
+
+		__overlay__ {
+			recalbox_gamepad_proxy: recalbox_gamepad_proxy {
+				compatible = "recalbox-gamepad-proxy";
+				#address-cells = <1>;
+				#size-cells = <0>;
+			};
+		};
+	};
+
+
+	__overrides__ {
+
+	};
+};

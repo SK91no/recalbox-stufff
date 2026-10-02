@@ -1,0 +1,32 @@
+From bebacea4292b05ad1c33bb6540ce1770e67ba7de Mon Sep 17 00:00:00 2001
+From: AreaScout <d.mehrwald@gmail.com>
+Date: Thu, 1 Sep 2022 13:14:57 +0200
+Subject: [PATCH 8/8] Fix: do not use gbm modifiers and bo map on ODROID's,
+ it's not supported
+
+---
+ cmake/modules/FindGBM.cmake | 8 --------
+ 1 file changed, 8 deletions(-)
+
+diff --git a/cmake/modules/FindGBM.cmake b/cmake/modules/FindGBM.cmake
+index 38b4174f85..a47bfc681d 100644
+--- a/cmake/modules/FindGBM.cmake
++++ b/cmake/modules/FindGBM.cmake
+@@ -50,14 +50,6 @@ if(NOT TARGET GBM::GBM)
+                                    IMPORTED_LOCATION "${GBM_LIBRARY}"
+                                    INTERFACE_INCLUDE_DIRECTORIES "${GBM_INCLUDE_DIR}"
+                                    INTERFACE_COMPILE_DEFINITIONS "HAVE_GBM=1")
+-    if(GBM_HAS_BO_MAP)
+-      set_property(TARGET GBM::GBM APPEND PROPERTY
+-                                          INTERFACE_COMPILE_DEFINITIONS HAS_GBM_BO_MAP=1)
+-    endif()
+-    if(GBM_HAS_MODIFIERS)
+-      set_property(TARGET GBM::GBM APPEND PROPERTY
+-                                          INTERFACE_COMPILE_DEFINITIONS HAS_GBM_MODIFIERS=1)
+-    endif()
+     set_property(GLOBAL APPEND PROPERTY INTERNAL_DEPS_PROP GBM::GBM)
+   endif()
+ endif()
+-- 
+2.46.1
+

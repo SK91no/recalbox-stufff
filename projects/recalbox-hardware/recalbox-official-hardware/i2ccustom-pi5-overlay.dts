@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+/{
+	compatible = "brcm,bcm2712";
+
+	fragment@0 {
+		target = <&i2c0>;
+		frag0: __overlay__ {
+			status = "okay";
+			clock-frequency = <100000>;
+			pinctrl-0 = <&rp1_i2c0_0_1>;
+		};
+	};
+    fragment@1 {
+        target = <&i2c1>;
+        frag1: __overlay__ {
+            status = "okay";
+            clock-frequency = <100000>;
+            pinctrl-0 = <&rp1_i2c1_10_11>;
+        };
+    };
+};

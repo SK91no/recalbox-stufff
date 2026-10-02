@@ -1,0 +1,86 @@
+diff --git a/arch/arm/boot/dts/bcm2712-rpi.dtsi b/arch/arm/boot/dts/bcm2712-rpi.dtsi
+index e6b4edadce5d..dc6927841334 100644
+--- a/arch/arm/boot/dts/bcm2712-rpi.dtsi
++++ b/arch/arm/boot/dts/bcm2712-rpi.dtsi
+@@ -168,6 +168,8 @@ gpiomem@7d510700 {
+ i2c6: &rp1_i2c6 { };
+ i2s:  &rp1_i2s0 { };
+ i2s_clk_producer: &rp1_i2s0 { };
++i2s_clk_producer_27: &rp1_i2s0_27 { };
++i2s_clk_producer_no_20: &rp1_i2s0_no_20 { };
+ i2s_clk_consumer: &rp1_i2s1 { };
+ pwm0: &rp1_pwm0 { };
+ pwm1: &rp1_pwm1 { };
+@@ -228,6 +230,16 @@ &i2s_clk_producer {
+ 	pinctrl-0 = <&rp1_i2s0_18_21>;
+ };
+ 
++&i2s_clk_producer_27 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&rp1_i2s0_18_27>;
++};
++
++&i2s_clk_producer_no_20 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&rp1_i2s0_18_21_no_20>;
++};
++
+ &i2s_clk_consumer {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rp1_i2s1_18_21>;
+diff --git a/arch/arm/boot/dts/rp1.dtsi b/arch/arm/boot/dts/rp1.dtsi
+index 6ce514bd4280..829324ef40ef 100644
+--- a/arch/arm/boot/dts/rp1.dtsi
++++ b/arch/arm/boot/dts/rp1.dtsi
+@@ -410,6 +410,32 @@ rp1_i2s0: i2s@a0000 {
+ 			status = "disabled";
+ 		};
+ 
++		rp1_i2s0_27: i2s27@a0000 {
++			reg = <0xc0 0x400a0000  0x0 0x1000>;
++			compatible = "snps,designware-i2s";
++			// Providing an interrupt disables DMA
++			// interrupts = <RP1_INT_I2S0 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&rp1_clocks RP1_CLK_I2S>;
++			clock-names = "i2sclk";
++			#sound-dai-cells = <0>;
++			dmas = <&rp1_dma RP1_DMA_I2S0_TX>,<&rp1_dma RP1_DMA_I2S0_RX>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
++
++		rp1_i2s0_no_20: rp1_i2s0_no_20@a0000 {
++			reg = <0xc0 0x400a0000  0x0 0x1000>;
++			compatible = "snps,designware-i2s";
++			// Providing an interrupt disables DMA
++			// interrupts = <RP1_INT_I2S0 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&rp1_clocks RP1_CLK_I2S>;
++			clock-names = "i2sclk";
++			#sound-dai-cells = <0>;
++			dmas = <&rp1_dma RP1_DMA_I2S0_TX>,<&rp1_dma RP1_DMA_I2S0_RX>;
++			dma-names = "tx", "rx";
++			status = "disabled";
++		};
++
+ 		rp1_i2s1: i2s@a4000 {
+ 			reg = <0xc0 0x400a4000  0x0 0x1000>;
+ 			compatible = "snps,designware-i2s";
+@@ -648,6 +674,18 @@ rp1_i2s0_18_21: rp1_i2s0_18_21 {
+ 				bias-disable;
+ 			};
+ 
++			rp1_i2s0_18_27: rp1_i2s0_18_27 {
++				function = "i2s0";
++				pins = "gpio18", "gpio19", "gpio27";
++				bias-disable;
++			};
++
++			rp1_i2s0_18_21_no_20: rp1_i2s0_18_21_no_20 {
++				function = "i2s0";
++				pins = "gpio18", "gpio19", "gpio21";
++				bias-disable;
++			};
++
+ 			rp1_i2s1_18_21: rp1_i2s1_18_21 {
+ 				function = "i2s1";
+ 				pins = "gpio18", "gpio19", "gpio20", "gpio21";

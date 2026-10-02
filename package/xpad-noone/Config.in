@@ -1,0 +1,7 @@
+config BR2_PACKAGE_XPAD_NOONE
+	bool "xpad-noone"
+	depends on BR2_LINUX_KERNEL
+	help
+	  This is the original xpad kernel driver
+	  with support for Xbox One controllers removed.
+	  https://github.com/medusalix/xpad-noone

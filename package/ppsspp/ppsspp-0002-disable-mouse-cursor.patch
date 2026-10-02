@@ -1,0 +1,14 @@
+diff --git a/SDL/SDLMain.cpp b/SDL/SDLMain.cpp
+index 6853525fb7..763662e1d0 100644
+--- a/SDL/SDLMain.cpp
++++ b/SDL/SDLMain.cpp
+@@ -1765,9 +1765,7 @@ int main(int argc, char *argv[]) {
+ 	// OK, we have a valid graphics backend selected. Let's clear the failures.
+ 	g_Config.sFailedGPUBackends.clear();
+ 
+-#ifdef MOBILE_DEVICE
+ 	SDL_ShowCursor(SDL_DISABLE);
+-#endif
+ 
+ 	// Avoid the IME popup when holding keys. This doesn't affect all versions of SDL.
+ 	// Note: We re-enable it in text input fields! This is necessary otherwise we don't receive

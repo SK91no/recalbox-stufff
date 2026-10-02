@@ -1,0 +1,62 @@
+From 28d075fdce1ce25c58241884ece5c58a0e489842 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Thu, 4 Nov 2021 21:48:53 +0100
+Subject: [PATCH 1/4] lto
+
+---
+ plugins/gpu-gles/gpulib_if.c | 4 ++--
+ plugins/gpulib/gpu.h         | 2 +-
+ plugins/gpulib/vout_pl.c     | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/plugins/gpu-gles/gpulib_if.c b/plugins/gpu-gles/gpulib_if.c
+index 1f4a23d..6e86cb8 100644
+--- a/plugins/gpu-gles/gpulib_if.c
++++ b/plugins/gpu-gles/gpulib_if.c
+@@ -674,7 +674,7 @@ void vout_set_config(const struct rearmed_cbs *cbs)
+ 
+ static struct rearmed_cbs *cbs;
+ 
+-long GPUopen(void **dpy)
++long GPUopen(unsigned long * disp,char * CapText,char * CfgFile)
+ {
+  int ret;
+ 
+@@ -733,7 +733,7 @@ void renderer_set_config(const struct rearmed_cbs *cbs_)
+  if (is_opened && cbs->gles_display != NULL && cbs->gles_surface != NULL) {
+   // HACK..
+   GPUclose();
+-  GPUopen(NULL);
++  GPUopen(NULL, NULL, NULL);
+  }
+ 
+  set_vram(gpu.vram);
+diff --git a/plugins/gpulib/gpu.h b/plugins/gpulib/gpu.h
+index d11f991..50d84de 100644
+--- a/plugins/gpulib/gpu.h
++++ b/plugins/gpulib/gpu.h
+@@ -131,7 +131,7 @@ uint32_t GPUreadStatus(void);
+ void GPUwriteStatus(uint32_t data);
+ long GPUfreeze(uint32_t type, struct GPUFreeze *freeze);
+ void GPUupdateLace(void);
+-long GPUopen(void **dpy);
++long GPUopen(unsigned long * disp,char * CapText,char * CfgFile);
+ long GPUclose(void);
+ void GPUvBlank(int is_vblank, int lcf);
+ void GPUrearmedCallbacks(const struct rearmed_cbs *cbs_);
+diff --git a/plugins/gpulib/vout_pl.c b/plugins/gpulib/vout_pl.c
+index a9437cb..71b84dc 100644
+--- a/plugins/gpulib/vout_pl.c
++++ b/plugins/gpulib/vout_pl.c
+@@ -98,7 +98,7 @@ void vout_blank(void)
+   cbs->pl_vout_flip(NULL, 1024, gpu.status.rgb24, w, h);
+ }
+ 
+-long GPUopen(void **unused)
++long GPUopen(unsigned long * disp,char * CapText,char * CfgFile)
+ {
+   gpu.frameskip.active = 0;
+   gpu.frameskip.frame_ready = 1;
+-- 
+2.33.1
+

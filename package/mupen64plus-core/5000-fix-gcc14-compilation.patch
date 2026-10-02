@@ -1,0 +1,24 @@
+From ec844925020f79d80ebbfb6a9c8f7a72418d9ed4 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Thu, 26 Sep 2024 09:34:54 +0100
+Subject: [PATCH 1/2] fix gcc14 compilation
+
+---
+ src/device/r4300/new_dynarec/arm/arm_cpu_features.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/device/r4300/new_dynarec/arm/arm_cpu_features.c b/src/device/r4300/new_dynarec/arm/arm_cpu_features.c
+index e369b9e1..0ee7ede9 100644
+--- a/src/device/r4300/new_dynarec/arm/arm_cpu_features.c
++++ b/src/device/r4300/new_dynarec/arm/arm_cpu_features.c
+@@ -25,6 +25,7 @@
+ 
+ #include "api/callbacks.h"
+ #include "arm_cpu_features.h"
++#include "osal/files.h"
+ 
+ arm_cpu_features_t arm_cpu_features;
+ 
+-- 
+2.52.0
+

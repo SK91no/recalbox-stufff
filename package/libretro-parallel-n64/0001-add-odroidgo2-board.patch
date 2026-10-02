@@ -1,0 +1,44 @@
+From 32db227a72ae11b78eca8662e2f8d8de887fe618 Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Wed, 17 Mar 2021 22:29:33 +0200
+Subject: [PATCH 1/5] add odroidgo2 board
+
+---
+ Makefile | 10 +++++++++-
+ 1 file changed, 9 insertions(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index fc2885de..22877ee4 100644
+--- a/Makefile
++++ b/Makefile
+@@ -179,18 +179,26 @@ ifneq (,$(findstring unix,$(platform)))
+       GLES = 1
+       GL_LIB := -lGLESv2
+       CPUFLAGS += -DNO_ASM -DARM -D__arm__ -DARM_ASM -D__NEON_OPT -DNOSSE -DARM_FIX
+-      CPUFLAGS += -marm -mfloat-abi=hard
+       HAVE_NEON = 1
+       WITH_DYNAREC=arm
+       ifneq (,$(findstring ODROIDC,$(BOARD)))
+          # ODROID-C1
+          CPUFLAGS += -mcpu=cortex-a5 -mfpu=neon
++         CPUFLAGS += -marm -mfloat-abi=hard
+       else ifneq (,$(findstring ODROID-XU,$(BOARD)))
+          # ODROID-XU3 XU4 and XU3-Lite
+          CPUFLAGS += -mcpu=cortex-a15 -mtune=cortex-a15.cortex-a7 -mfpu=neon-vfpv4
++         CPUFLAGS += -marm -mfloat-abi=hard
++      else ifneq (,$(findstring ODROIDGO2,$(BOARD)))
++         # ODROIDGO2 and ODROIDGO3 (64 bits)
++         HAVE_PARALLEL = 1
++         WITH_DYNAREC = aarch64
++         CPUFLAGS += -DCLASSIC -DARM64
++         CPUFLAGS += -march=armv8-a+crc+simd -mtune=cortex-a35 -mcpu=cortex-a35
+       else
+          # ODROID-U3, U2, X2 & X
+           CPUFLAGS += -mcpu=cortex-a9 -mfpu=neon
++          CPUFLAGS += -marm -mfloat-abi=hard
+       endif
+    endif
+    
+-- 
+2.52.0
+

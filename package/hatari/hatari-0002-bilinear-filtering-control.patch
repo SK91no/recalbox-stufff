@@ -1,0 +1,51 @@
+diff --git a/src/configuration.c b/src/configuration.c
+index 95ebe9ac..982aabc8 100644
+--- a/src/configuration.c
++++ b/src/configuration.c
+@@ -98,6 +98,7 @@ static const struct Config_Tag configs_Screen[] =
+ 	{ "nZoomFactor", Float_Tag, &ConfigureParams.Screen.nZoomFactor },
+ 	{ "bUseSdlRenderer", Bool_Tag, &ConfigureParams.Screen.bUseSdlRenderer },
+ 	{ "bUseVsync", Bool_Tag, &ConfigureParams.Screen.bUseVsync },
++  { "bBilinear", Bool_Tag, &ConfigureParams.Screen.bBilinear },
+ 	{ NULL , Error_Tag, NULL }
+ };
+ 
+@@ -775,6 +776,7 @@ void Configuration_SetDefault(void)
+ 	ConfigureParams.Screen.bShowStatusbar = true;
+ 	ConfigureParams.Screen.bShowDriveLed = true;
+ 	ConfigureParams.Screen.bCrop = false;
++  ConfigureParams.Screen.bBilinear = false;
+ 	/* use approximately similar Hatari framebuffer/window size
+ 	 * on all resolutions (like real Atari monitor would do) by
+ 	 * allowing ST low resolution to be doubled (see screen.c)
+diff --git a/src/includes/configuration.h b/src/includes/configuration.h
+index c9080bb3..e4b0e2d1 100644
+--- a/src/includes/configuration.h
++++ b/src/includes/configuration.h
+@@ -309,6 +309,7 @@ typedef struct
+   bool bResizable;
+   bool bUseVsync;
+   bool bUseSdlRenderer;
++  bool bBilinear;
+   float nZoomFactor;
+   int nSpec512Threshold;
+   int nVdiColors;
+diff --git a/src/screen.c b/src/screen.c
+index 206fccc9..d5a8f6da 100644
+--- a/src/screen.c
++++ b/src/screen.c
+@@ -335,10 +335,12 @@ void Screen_SetTextureScale(int width, int height, int win_width, int win_height
+ 		 */
+ 		scale = (scale_w + scale_h) / 2.0;
+ 
+-	if (scale == floorf(scale))
++	/*if (scale == floorf(scale))
+ 		quality = '0';	// nearest pixel
+ 	else
+-		quality = '1';	// linear filtering
++		quality = '1';	// linear filtering*/
++  (void)scale;
++  quality = ConfigureParams.Screen.bBilinear ? '1' : '0';
+ 
+ 	DEBUGPRINT(("%dx%d / %dx%d -> scale = %g, Render Scale Quality = %c\n",
+ 		    win_width, win_height, width, height, scale, quality));

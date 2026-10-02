@@ -1,0 +1,51 @@
+Gate the GunCon manual calibration on the lightgun-flash shader being
+the active video shader.
+
+The calibration logic introduced by 0031 (OSD prompts, target capture,
+AUX button masking) was activated by default for every lightgun, because
+`cal_state` starts at 0 (= PHASE1) and the OSD is pushed whenever
+cal_state == 0. For non-GunCon lightguns (e.g. firmware-driven JVS
+guns), configgen does NOT load the lightgun-flash shader — so the user
+sees the "SHOOT THE RED TARGET" OSD with no actual targets drawn, and
+the gun's AUX buttons stay masked toward the core forever (they can't
+shoot the invisible targets to advance to cal_state == 2).
+
+configgen only loads `lightgun-flash.{glslp,slangp}` for GunCon 2 pads.
+Use the presence of that shader (detected by looking up the cal_phase
+parameter on the currently bound video shader) as the gate: if the
+flash shader is not loaded, force cal_state = 2 (DONE) every frame.
+That keeps the calibration code path inactive for every other lightgun
+without changing the cal_state defaults or touching any other code.
+
+diff --git a/input/lightguns.c b/input/lightguns.c
+--- a/input/lightguns.c
++++ b/input/lightguns.c
+@@ -289,6 +289,27 @@
+    video_driver_state_t *video_st = video_state_get_ptr();
+    bool real_pressed              = (res != 0);
+
++   /* Calibration is GunCon-only: configgen loads the lightgun-flash
++    * shader (which draws the cal targets and exposes the cal_phase
++    * parameter) only for GunCon 2 pads. If that shader isn't the
++    * active one there's nothing to calibrate against — force cal DONE
++    * so no calibration OSD is shown and the gun's AUX buttons are not
++    * masked toward the core. */
++   {
++      video_shader_ctx_t cal_sc;
++      bool flash_shader = false;
++      cal_sc.data = NULL;
++      if (video_shader_driver_get_current_shader(&cal_sc) && cal_sc.data)
++      {
++         unsigned i;
++         for (i = 0; i < cal_sc.data->num_parameters; i++)
++            if (!strcmp(cal_sc.data->parameters[i].id, "cal_phase"))
++            { flash_shader = true; break; }
++      }
++      if (!flash_shader)
++         input_st->lightgun.cal_state[port] = 2;
++   }
++
+    /* Force-poll AUX_A and AUX_B from inside the TRIGGER read so the
+     * cal validate/retry buttons work even with cores that never
+     * poll them (e.g. fbneo Point Blank only reads TRIGGER +
+

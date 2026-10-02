@@ -1,0 +1,14 @@
+diff --git a/libretro/Makefile b/libretro/Makefile
+index a8a0a3a0..5221968f 100644
+--- a/libretro/Makefile
++++ b/libretro/Makefile
+@@ -677,6 +686,9 @@ $(NLOHMANN_JSON_HEADER):
+
+ $(TARGET): $(OBJECTS)
+ 	$(CXX) $(INCFLAGS) $(FLAGS) -o $@ $^ $(LDFLAGS)
++ifneq ($(DEBUG), 1)
++	$(STRIP) --strip-unneeded $@
++endif
+
+ $(LIBRETRO_INFO): $(LIBRETRO_DIR)/libretro.cpp $(AMIBERRY_DIR)/CMakeLists.txt
+ 	@printf 'display_name = "Amiberry"\n' > $@

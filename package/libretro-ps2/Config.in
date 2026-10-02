@@ -1,0 +1,14 @@
+config BR2_PACKAGE_LIBRETRO_PS2
+	bool "libretro-ps2"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	depends on BR2_PACKAGE_XZ
+	select BR2_PACKAGE_LIBAIO
+	select BR2_PACKAGE_VULKAN_HEADERS
+	help
+	  A Sony PS2 libretro core.
+
+	  https://www.libretro.com
+
+comment "LIBRETRO_PS2 needs a toolchain w/ C++"
+	depends on !BR2_INSTALL_LIBSTDCPP

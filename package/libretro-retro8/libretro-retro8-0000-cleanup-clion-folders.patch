@@ -1,0 +1,10 @@
+diff --git a/.gitignore b/.gitignore
+index 0456c41..63505a4 100755
+--- a/.gitignore
++++ b/.gitignore
+@@ -10,3 +10,5 @@ projects/funkey/**
+ **/Debug/**
+ **/Release/**
+ .DS_Store
++.idea/
++cmake-build-debug/

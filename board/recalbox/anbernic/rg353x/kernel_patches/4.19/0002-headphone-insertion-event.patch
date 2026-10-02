@@ -1,0 +1,92 @@
+From 30351af799cdf7fb357e26664e31225d3960845d Mon Sep 17 00:00:00 2001
+From: David Barbion <davidb@230ruedubac.fr>
+Date: Sat, 23 Sep 2023 20:52:50 +0200
+Subject: [PATCH 2/2] headphone insertion event
+
+---
+ drivers/headset_observe/rk_headset.c              |  4 ++--
+ drivers/headset_observe/rk_headset.h              |  2 +-
+ drivers/headset_observe/rk_headset_irq_hook_adc.c | 11 ++++-------
+ 3 files changed, 7 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/headset_observe/rk_headset.c b/drivers/headset_observe/rk_headset.c
+index 5b16db723..86cac1864 100644
+--- a/drivers/headset_observe/rk_headset.c
++++ b/drivers/headset_observe/rk_headset.c
+@@ -267,7 +267,7 @@ static void hook_work(struct work_struct *work)
+ 			irq_set_irq_type(headset_info->irq[HOOK],
+ 					 IRQF_TRIGGER_FALLING);
+ 	}
+-	input_report_key(headset_info->input_dev, HOOK_KEY_CODE,
++	input_report_switch(headset_info->input_dev, HOOK_KEY_CODE,
+ 			 headset_info->hook_status);
+ 	input_sync(headset_info->input_dev);
+ RE_ERROR:
+@@ -404,7 +404,7 @@ int rk_headset_probe(struct platform_device *pdev,
+ 		dev_err(&pdev->dev, "failed to register input device\n");
+ 		goto failed;
+ 	}
+-	input_set_capability(headset->input_dev, EV_KEY, HOOK_KEY_CODE);
++	input_set_capability(headset->input_dev, EV_SW, HOOK_KEY_CODE);
+ #ifdef CONFIG_HAS_EARLYSUSPEND
+ 	hs_early_suspend.suspend = NULL;
+ 	hs_early_suspend.resume = headset_early_resume;
+diff --git a/drivers/headset_observe/rk_headset.h b/drivers/headset_observe/rk_headset.h
+index c10961ce6..58349585c 100644
+--- a/drivers/headset_observe/rk_headset.h
++++ b/drivers/headset_observe/rk_headset.h
+@@ -27,7 +27,7 @@ struct rk_headset_pdata {
+ 	int headset_wakeup;
+ };
+ 
+-#define HOOK_KEY_CODE KEY_MEDIA
++#define HOOK_KEY_CODE SW_HEADPHONE_INSERT
+ 
+ int rk_headset_probe(struct platform_device *pdev,
+ 		     struct rk_headset_pdata *pdata);
+diff --git a/drivers/headset_observe/rk_headset_irq_hook_adc.c b/drivers/headset_observe/rk_headset_irq_hook_adc.c
+index b6cd06c60..3ec60a3b6 100644
+--- a/drivers/headset_observe/rk_headset_irq_hook_adc.c
++++ b/drivers/headset_observe/rk_headset_irq_hook_adc.c
+@@ -174,6 +174,9 @@ static irqreturn_t headset_interrupt(int irq, void *dev_id)
+ 		pdata->headset_insert_type ? "high level" : "low level",
+ 		headset_info->headset_status ? "in" : "out");
+ 
++	input_report_switch(headset_info->input_dev, HOOK_KEY_CODE, headset_info->headset_status);
++	input_sync(headset_info->input_dev);
++
+ 	#if defined(CONFIG_SND_SOC_ES8316)
+ 	es8316_headset_detect(headset_info->headset_status);
+ 	#endif
+@@ -208,8 +211,6 @@ static irqreturn_t headset_interrupt(int irq, void *dev_id)
+ 		if (headset_info->isMic) {
+ 			if (headset_info->hook_status == HOOK_DOWN) {
+ 				headset_info->hook_status = HOOK_UP;
+-				input_report_key(headset_info->input_dev, HOOK_KEY_CODE, headset_info->hook_status);
+-				input_sync(headset_info->input_dev);
+ 			}
+ #ifdef CONFIG_SND_SOC_WM8994
+ 			//rt5625_headset_mic_detect(false);
+@@ -387,10 +388,6 @@ static void hook_work_callback(struct work_struct *work)
+ 		     gpio_get_value(pdata->headset_gpio) > 0)) {
+ 		printk("headset is out, HOOK status must discard\n");
+ 		goto out;
+-	} else {
+-		input_report_key(headset->input_dev,
+-				 HOOK_KEY_CODE, headset->hook_status);
+-		input_sync(headset->input_dev);
+ 	}
+ status_error:
+ 	schedule_delayed_work(&headset_info->hook_work, msecs_to_jiffies(100));
+@@ -466,7 +463,7 @@ int rk_headset_adc_probe(struct platform_device *pdev,
+ 		dev_err(&pdev->dev, "failed to register input device\n");
+ 		goto failed;
+ 	}
+-	input_set_capability(headset->input_dev, EV_KEY, HOOK_KEY_CODE);
++	input_set_capability(headset->input_dev, EV_SW, HOOK_KEY_CODE);
+ 	if (pdata->headset_gpio) {
+ 		unsigned long irq_type;
+ 
+-- 
+2.42.0
+

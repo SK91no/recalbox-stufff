@@ -1,0 +1,11 @@
+config BR2_PACKAGE_LIBRETRO_RB5000
+	bool "rb5000"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_INSTALL_LIBSTDCPP
+	help
+	  Phillips VG 5000 Emulator
+
+	  http://gitlab.com/bkg2k/rb5000
+
+comment "Gsplus needs a toolchain w/ OpenGl, SDL2"
+	depends on BR2_PACKAGE_SDL2

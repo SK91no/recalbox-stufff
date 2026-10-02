@@ -1,0 +1,15 @@
+diff --git a/package/ntp/ntp.mk b/package/ntp/ntp.mk
+index 1a7c7e7937..48e6657dc5 100644
+--- a/package/ntp/ntp.mk
++++ b/package/ntp/ntp.mk
+@@ -86,6 +86,10 @@ else
+ NTP_CONF_OPTS += --without-sntp
+ endif
+ 
++ifeq ($(BR2_PACKAGE_RECALBOX_SYSTEM),y)
++NTP_DAEMON_EXTRA_ARGS = -4
++endif
++
+ NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTP_KEYGEN) += util/ntp-keygen
+ NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTP_WAIT) += scripts/ntp-wait/ntp-wait
+ NTP_INSTALL_FILES_$(BR2_PACKAGE_NTP_NTPDATE) += ntpdate/ntpdate

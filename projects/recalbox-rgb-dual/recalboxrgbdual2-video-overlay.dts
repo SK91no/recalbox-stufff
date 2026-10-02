@@ -1,0 +1,41 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "brcm,bcm2712";
+
+    fragment@1 {
+        target = <&dpi>;
+        __overlay__  {
+            status = "okay";
+        };
+    };
+    fragment@2 {
+        target = <&dpi>;
+        __overlay__  {
+            status = "disabled";
+        };
+    };
+
+    fragment@3 {
+        target = <&vec>;
+        fragvec: __overlay__ {
+            status = "okay";
+            tv_mode = <0>;
+        };
+    };
+    fragment@4 {
+        target = <&vec>;
+        __overlay__  {
+            status = "disabled";
+        };
+    };
+
+    // need to remove the dtoverlay between usages
+    __overrides__ {
+        vec = <0>, "-1+2+3-4";
+        dpi = <0>, "-3+4-2+1";
+        tv_mode = <&fragvec>, "tv_mode:0";
+        //DRM_MODE_TV_MODE_NTSC=0, DRM_MODE_TV_MODE_NTSC_443=1, DRM_MODE_TV_MODE_NTSC_J=2, DRM_MODE_TV_MODE_PAL=3, DRM_MODE_TV_MODE_PAL_M=4, DRM_MODE_TV_MODE_PAL_N=5
+    };
+};

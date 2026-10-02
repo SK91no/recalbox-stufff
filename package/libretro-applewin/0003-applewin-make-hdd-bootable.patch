@@ -1,0 +1,11 @@
+--- a/source/CardManager.h	2025-01-26 22:25:07.000000000 +0100
++++ b/source/CardManager.h	2025-01-27 15:09:29.496018318 +0100
+@@ -22,7 +22,7 @@
+ 		InsertInternal(SLOT4, CT_Empty);
+ 		InsertInternal(SLOT5, CT_Empty);
+ 		InsertInternal(SLOT6, CT_Disk2);
+-		InsertInternal(SLOT7, CT_Empty);
++		InsertInternal(SLOT7, CT_GenericHDD);
+ 		InsertAuxInternal(CT_Extended80Col);	// For Apple //e and above
+ 	}
+ 	~CardManager(void)

@@ -1,0 +1,178 @@
+//
+// Created by bkg2k on 03/08/2021.
+//
+// As part of the RECALBOX Project
+// http://www.recalbox.com
+//
+
+#include "Mapper.h"
+#include "resources/ResourceManager.h"
+#include "Canvas.h"
+#include "Shader.h"
+#include "Renderer.h"
+
+Canvas::Canvas(int width, int height, int colorSpace)
+  : TextureHolder(Path::Empty, width, height, Properties::Free | Properties::NoCache)
+  , mNextCanvas(nullptr)
+  , mFrameBuffer(0)
+  , mColorSpace(colorSpace)
+{
+  // Prepare texture with the given size
+  if (Prepare() == RenderingError::NoError)
+  {
+    if (!CreateFrameBuffer())
+      LOG(LogError) << "[TextureCanvas] Error creating texture framebuffer!";
+  }
+  else LOG(LogError) << "[TextureCanvas] Error creating texture canvas!";
+}
+
+bool Canvas::CreateFrameBuffer()
+{
+  glGenFramebuffers(1, &mFrameBuffer);
+  glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
+
+  glBindTexture(GL_TEXTURE_2D, mGLTextureID);
+  glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + mColorSpace, GL_TEXTURE_2D, mGLTextureID, 0);
+
+  GLenum DrawBuffers[1];
+  DrawBuffers[0] = GL_COLOR_ATTACHMENT0 + mColorSpace;
+  glDrawBuffers(1, DrawBuffers);
+
+  bool ok = glCheckFramebufferStatus(GL_FRAMEBUFFER) == GL_FRAMEBUFFER_COMPLETE;
+
+  Deactivate();
+
+  return ok;
+}
+
+void Canvas::Activate() const
+{
+  glBindFramebuffer(GL_FRAMEBUFFER, mFrameBuffer);
+  //glClearColor(((mGLTextureID + 13) & 0xFF)/255.0f, ((mGLTextureID + 89) & 0xFF)/255.0f, ((mGLTextureID + 168) & 0xFF)/255.0f, 1.0f );
+  //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
+void Canvas::Deactivate()
+{
+  (void)mFrameBuffer;
+  glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+Canvas::~Canvas()
+{
+  Deactivate();
+  glDeleteFramebuffers(1, &mFrameBuffer);
+  FreeSecondBuffer();
+}
+
+void Canvas::RenderFullScreen()
+{
+  // Reset matrix
+  Renderer::SetMatrix(Transform4x4f::Identity());
+
+  // Target rectangle fullscreen
+  Rectangle screen(Renderer::Instance().DisplayWidthAsFloat(), Renderer::Instance().DisplayHeightAsFloat());
+
+  // Map texture and draw
+  Vertex vertexes[Vertex::sVertexPerRectangle];
+  Mapper::MapTexture(screen, vertexes);
+  Renderer::DrawTexturedTriangles(mGLTextureID, vertexes, Colors::Common::White, Vertex::sVertexPerRectangle, false);
+}
+
+void Canvas::RenderGrayscaleFullScreen()
+{
+  // Reset matrix
+  Renderer::SetMatrix(Transform4x4f::Identity());
+
+  // Target rectangle fullscreen
+  Rectangle screen(Renderer::Instance().DisplayWidthAsFloat(), Renderer::Instance().DisplayHeightAsFloat());
+
+  // Map texture and draw
+  Vertex vertexes[Vertex::sVertexPerRectangle];
+  Mapper::MapTexture(screen, vertexes);
+
+  // Shader
+  Shader grayScale = GrayShader();
+  grayScale.Activate();
+  grayScale.SetFloat("uWidth", Renderer::Instance().DisplayWidthAsFloat());
+  grayScale.SetFloat("uHeight", Renderer::Instance().DisplayHeightAsFloat());
+  grayScale.SetFloat("uFactor", 1.0f);
+  grayScale.SetTexture("aPosition", "aTexCoord", "vTexture", mGLTextureID, vertexes);
+
+  // Draw offscreen
+  AllocateSecondBuffer();
+  mNextCanvas->Activate();
+  Renderer::DrawTexturedTriangles(mGLTextureID, vertexes, Colors::Common::White, Vertex::sVertexPerRectangle, false);
+  mNextCanvas->Deactivate();
+
+  // Deactivate shader
+  grayScale.Deactivate();
+
+  mNextCanvas->RenderFullScreen();
+}
+
+void Canvas::RenderBlurredFullScreen()
+{
+  // Reset matrix
+  Renderer::SetMatrix(Transform4x4f::Identity());
+
+  // Target rectangle fullscreen
+  Rectangle screen(Renderer::Instance().DisplayWidthAsFloat(), Renderer::Instance().DisplayHeightAsFloat());
+
+  // Map texture and draw
+  Vertex vertexes[Vertex::sVertexPerRectangle];
+  Mapper::MapTexture(screen, vertexes);
+
+  // Shader
+  Shader& blur = BlurShader();
+  blur.Activate();
+  blur.SetFloat("uWidth", Renderer::Instance().DisplayWidthAsFloat());
+  blur.SetFloat("uHeight", Renderer::Instance().DisplayHeightAsFloat());
+  blur.SetFloat("uSigma", .2f);
+  blur.SetVec2("uTextureSize", (float)mWidth, (float)mHeight);
+  blur.SetVec2("uDir", 0.0f, 1.0f);
+  blur.SetTexture("aPosition", "aTexCoord", "uTexture", mGLTextureID, vertexes);
+
+  // Draw offscreen
+  AllocateSecondBuffer();
+  mNextCanvas->Activate();
+  Renderer::DrawTexturedTriangles(mGLTextureID, vertexes, Colors::Common::White, Vertex::sVertexPerRectangle, false);
+  mNextCanvas->Deactivate();
+
+  Activate();
+  blur.SetVec2("uDir", 1.0f, 0.0f);
+  Renderer::DrawTexturedTriangles(mNextCanvas->mGLTextureID, vertexes, Colors::Common::White, Vertex::sVertexPerRectangle, false);
+  Deactivate();
+
+  // Deactivate shader
+  blur.Deactivate();
+
+  RenderGrayscaleFullScreen();
+}
+
+Shader& Canvas::GrayShader()
+{
+  static Shader sGrayScale(ResourceManager::getFileData(Path(":/shaders/grayscale.glsl")));
+  return sGrayScale;
+}
+
+Shader& Canvas::BlurShader()
+{
+  static Shader sBlur(ResourceManager::getFileData(Path(":/shaders/blur.glsl")));
+  return sBlur;
+}
+
+void Canvas::AllocateSecondBuffer()
+{
+  if (mNextCanvas == nullptr)
+    mNextCanvas = new Canvas(mWidth, mHeight, mColorSpace + 1);
+}
+
+void Canvas::FreeSecondBuffer()
+{
+  if (mNextCanvas != nullptr)
+  {
+    delete mNextCanvas;
+    mNextCanvas = nullptr;
+  }
+}

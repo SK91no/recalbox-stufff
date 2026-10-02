@@ -1,0 +1,17 @@
+#!/bin/bash
+
+isRecalboxAllInOne(){
+    lsmod | grep -q "^allinone"
+}
+if test "$1" == "start"; then
+  # AllInOne volumed
+  if isRecalboxAllInOne; then
+    for js in $(find /sys/class/input/ -name "event*"); do
+      if [[ $(cat "$js/device/name") == "AllInOneP1" ]]; then
+        (sleep 5 && volumed "/dev/input/$(basename "$js")") &
+      fi
+    done
+    echo 'bash /recalbox/scripts/recalbox_allinone_rgb.sh $6' > "/recalbox/share/userscripts/allinone[systembrowsing].sh"
+    echo -e 'system=$(echo "$6" | cut -d "/" -f 5)\nbash /recalbox/scripts/recalbox_allinone_rgb.sh $system' > "/recalbox/share/userscripts/allinone[startgameclip].sh"
+  fi
+fi

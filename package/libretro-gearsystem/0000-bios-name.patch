@@ -1,0 +1,11 @@
+--- a/platforms/libretro/libretro.cpp
++++ b/platforms/libretro/libretro.cpp
+@@ -396,7 +396,7 @@ static void load_bootroms(void)
+     char bootrom_sms_path[4112];
+     char bootrom_gg_path[4112];
+ 
+-    snprintf(bootrom_sms_path, sizeof(bootrom_sms_path), "%s%cbios.sms", retro_system_directory, slash);
++    snprintf(bootrom_sms_path, sizeof(bootrom_sms_path), "%s%cbios_U.sms", retro_system_directory, slash);
+     snprintf(bootrom_gg_path, sizeof(bootrom_gg_path), "%s%cbios.gg", retro_system_directory, slash);
+ 
+     core->GetMemory()->LoadBootromSMS(bootrom_sms_path);

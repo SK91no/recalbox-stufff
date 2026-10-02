@@ -1,0 +1,15 @@
+config BR2_PACKAGE_LIBRETRO_DOLPHIN
+	bool "libretro-dolphin"
+	depends on BR2_PACKAGE_RETROARCH
+	depends on BR2_PACKAGE_HAS_UDEV
+	select BR2_PACKAGE_BLUEZ5_UTILS
+	select BR2_PACKAGE_FMT
+	select BR2_PACKAGE_LIBEVDEV
+	select BR2_PACKAGE_SDL2
+	select BR2_PACKAGE_VULKAN_HEADERS
+	select BR2_PACKAGE_XSERVER_XORG_SERVER if BR2_PACKAGE_RECALBOX_VIDEO_XORG_SERVER
+	help
+	  A libretro core for GameCube / Wii emulation.
+
+	  http://www.libretro.com
+	  https://github.com/libretro/dolphin

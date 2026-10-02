@@ -1,0 +1,73 @@
+--- a/src/osd/libretro/libretro-internal/libretro.cpp	2025-02-04 20:39:36.000000000 +0100
++++ b/src/osd/libretro/libretro-internal/libretro.cpp	2025-02-05 09:21:19.891012769 +0100
+@@ -407,6 +407,16 @@
+          mouse_enable = true;
+    }
+ 
++   var.key   = CORE_NAME "_drc_enable";
++   var.value = NULL;
++   if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
++   {
++      if (!strcmp(var.value, "disabled"))
++         drc_enable = false;
++      if (!strcmp(var.value, "enabled"))
++         drc_enable = true;
++   }
++
+    var.key   = CORE_NAME "_lightgun_mode";
+    var.value = NULL;
+    if (environ_cb(RETRO_ENVIRONMENT_GET_VARIABLE, &var) && var.value)
+--- a/src/osd/libretro/libretro-internal/libretro_shared.h	2025-02-04 20:39:36.000000000 +0100
++++ b/src/osd/libretro/libretro-internal/libretro_shared.h	2025-02-05 09:21:19.891012769 +0100
+@@ -82,6 +82,7 @@
+ 
+ extern int  lightgun_mode;
+ extern int  lightgun_offscreen_mode;
++extern bool drc_enable;
+ extern bool mouse_enable;
+ extern bool cheats_enable;
+ extern bool alternate_renderer;
+--- a/src/osd/libretro/libretro-internal/retro_init.cpp	2025-02-04 20:39:36.000000000 +0100
++++ b/src/osd/libretro/libretro-internal/retro_init.cpp	2025-02-05 09:21:19.891012769 +0100
+@@ -50,6 +50,7 @@
+ int  lightgun_mode = RETRO_SETTING_LIGHTGUN_MODE_DISABLED;
+ int  lightgun_offscreen_mode = RETRO_SETTING_LIGHTGUN_OFFSCREEN_MODE_FREE;
+ bool mouse_enable = false;
++bool drc_enable = true;
+ bool cheats_enable = false;
+ bool alternate_renderer = false;
+ bool boot_to_osd_enable = false;
+@@ -487,6 +488,10 @@
+    XARGC = 0;
+    Add_Option(CORE_NAME);
+ 
++   if (drc_enable)
++	   Add_Option("-drc");
++   else
++	   Add_Option("-nodrc");
+    Add_Option("-joystick");
+    Add_Option("-joystick_deadzone");
+    Add_Option(joystick_deadzone);
+--- a/src/osd/libretro/libretro-internal/libretro_core_options.h	2025-02-04 20:39:36.000000000 +0100
++++ b/src/osd/libretro/libretro-internal/libretro_core_options.h	2025-02-05 16:46:35.518264608 +0100
+@@ -272,6 +272,20 @@
+       "rom"
+    },
+    {
++      CORE_NAME "_drc_enable",
++      "Dynamic recompiler",
++      NULL,
++      "",
++      NULL,
++      "system",
++      {
++         { "disabled", NULL },
++         { "enabled",  NULL },
++         { NULL, NULL },
++      },
++      "enabled"
++   },
++   {
+       CORE_NAME "_joystick_deadzone",
+       "Joystick Deadzone",
+       NULL,

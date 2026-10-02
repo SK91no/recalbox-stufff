@@ -1,0 +1,51 @@
+From 01729b4638825a334b80d87c1372c6207ec00bfc Mon Sep 17 00:00:00 2001
+From: Pit64 <yrigaud@icloud.com>
+Date: Thu, 16 Oct 2025 23:43:47 +0200
+Subject: [PATCH] bios path
+
+---
+ src/platform/libretro/libretro.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/src/platform/libretro/libretro.c b/src/platform/libretro/libretro.c
+index 3f0b49b..6443116 100644
+--- a/src/platform/libretro/libretro.c
++++ b/src/platform/libretro/libretro.c
+@@ -2073,7 +2073,7 @@ bool retro_load_game(const struct retro_game_info* game) {
+ #ifdef M_CORE_GBA
+ 	if (core->platform(core) == mPLATFORM_GBA) {
+ 		core->setPeripheral(core, mPERIPH_GBA_LUMINANCE, &lux);
+-		biosName = "gba_bios.bin";
++		biosName = "gba/gba_bios.bin";
+ 	}
+ #endif
+ 
+@@ -2100,14 +2100,14 @@ bool retro_load_game(const struct retro_game_info* game) {
+ 		switch (gb->model) {
+ 		case GB_MODEL_AGB:
+ 		case GB_MODEL_CGB:
+-			biosName = "gbc_bios.bin";
++			biosName = "gbc/gbc_bios.bin";
+ 			break;
+ 		case GB_MODEL_SGB:
+-			biosName = "sgb_bios.bin";
++			biosName = "sgb/sgb_bios.bin";
+ 			break;
+ 		case GB_MODEL_DMG:
+ 		default:
+-			biosName = "gb_bios.bin";
++			biosName = "gb/gb_bios.bin";
+ 			break;
+ 		}
+ 	}
+@@ -2115,6 +2115,7 @@ bool retro_load_game(const struct retro_game_info* game) {
+ 
+ 	if (core->opts.useBios && sysDir && biosName) {
+ 		snprintf(biosPath, sizeof(biosPath), "%s%s%s", sysDir, PATH_SEP, biosName);
++		mLOG(GBA_MEM, INFO, "Bios path: %s", biosPath);
+ 		struct VFile* bios = VFileOpen(biosPath, O_RDONLY);
+ 		if (bios) {
+ 			core->loadBIOS(core, bios, 0);
+-- 
+2.51.1
+

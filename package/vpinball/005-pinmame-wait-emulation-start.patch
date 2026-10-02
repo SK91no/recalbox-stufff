@@ -1,0 +1,40 @@
+Wait for the PinMAME emulation thread to come up before probing its state.
+
+PinmameRun() starts the emulation on a separate thread and returns immediately.
+PinmameIsRunning() therefore still reports 0 (stopped) for a few milliseconds,
+while the wait loop below only spins on 2 (starting). On slower hardware (Pi5)
+the loop exits at once, the "(PinmameIsRunning() == 1)" test fails, and startup
+is reported as failed even though the ROM loads and the machine runs fine a few
+ms later:
+
+    ERROR Failed to start emulation of rom 'mm_109c'
+    INFO  [thread] PinMAME: osd_display_loading_rom_message(): loading mm_1_09c.bin...
+    INFO  [thread] PinMAME: osd_create_display: 60.00 fps
+
+The real damage is that m_onGameStartHandler is skipped, so the game start event
+is broadcast with an empty game id. No DMD source ever gets registered, and the
+ScoreView plugin finds no matching layout and renders nothing:
+
+    WARN  PUP: Ignoring game start with empty gameId
+    INFO  Serum: No colorization file found for
+    INFO  VNI: No PAL file found for
+
+Only wait when PinmameRun() itself reported success, so a genuine failure is
+still reported without delay.
+
+Signed-off-by: Adrien Beudin <beudbeud@gmail.com>
+
+diff --git a/plugins/pinmame/Controller.cpp b/plugins/pinmame/Controller.cpp
+--- a/plugins/pinmame/Controller.cpp
++++ b/plugins/pinmame/Controller.cpp
+@@ -104,2 +104,10 @@
+    PINMAME_STATUS status = PinmameRun(m_pPinmameGame->name);
++   // PinmameRun() is asynchronous: the emulation thread may not have flipped the
++   // state to 2 (starting) yet, so the loop below would exit immediately and the
++   // startup be reported as failed while it actually succeeds. Give the thread a
++   // chance to come up, bounded so a real failure is not delayed for long.
++   if (status == PINMAME_STATUS_OK)
++      for (int i = 0; (i < 20) && (PinmameIsRunning() == 0); ++i)
++         std::this_thread::sleep_for(std::chrono::milliseconds(75));
++
+    while (PinmameIsRunning() == 2) // Wait until the machine is either running or stopped
